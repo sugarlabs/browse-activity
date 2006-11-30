@@ -78,7 +78,7 @@ class _PopupCreator(gobject.GObject):
 	def get_embed(self):
 		return self._embed
 
-class WebBrowser(Browser):
+class WebView(Browser):
 	__gtype_name__ = "SugarWebBrowser"
 
 	def __init__(self):

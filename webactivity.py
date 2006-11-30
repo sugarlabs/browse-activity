@@ -28,7 +28,7 @@ from sugar import env
 from sugar.graphics import style
 
 import stylesheet
-from webbrowser import WebBrowser
+from webview import WebView
 from toolbar import Toolbar
 from linksmodel import LinksModel
 from linksview import LinksView
