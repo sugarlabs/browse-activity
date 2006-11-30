@@ -49,7 +49,7 @@ class WebActivity(Activity):
 		if browser:
 			self._browser = browser
 		else:
-			self._browser = WebBrowser()
+			self._browser = WebView()
 		self._browser.connect('notify::title', self._title_changed_cb)
 
 		self._links_model = LinksModel()
