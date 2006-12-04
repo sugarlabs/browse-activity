@@ -95,6 +95,10 @@ class WebActivity(Activity):
         if url:
             self._service.set_published_value('URL', url)
 
+    def execute(self, command, args):
+        if command == "load-uri":
+            self._browser.load_url(args[0])
+
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
 
