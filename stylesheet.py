@@ -19,9 +19,9 @@ import gtk
 from sugar.graphics import style
 
 links_Icon = {
-	'size' : style.standard_icon_size
+    'size' : style.standard_icon_size
 }
 
 links_Box = {
-	'background_color' : 0x414141ff,
+    'background_color' : 0x414141ff,
 }

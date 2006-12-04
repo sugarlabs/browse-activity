@@ -37,103 +37,103 @@ from linkscontroller import LinksController
 _HOMEPAGE = 'http://www.google.com'
 
 class WebActivity(Activity):
-	def __init__(self, browser=None):
-		Activity.__init__(self)
+    def __init__(self, browser=None):
+        Activity.__init__(self)
 
-		logging.debug('Starting the web activity')
+        logging.debug('Starting the web activity')
 
-		self.set_title(_('Web Activity'))
+        self.set_title(_('Web Activity'))
 
-		vbox = gtk.VBox()
+        vbox = gtk.VBox()
 
-		if browser:
-			self._browser = browser
-		else:
-			self._browser = WebView()
-		self._browser.connect('notify::title', self._title_changed_cb)
+        if browser:
+            self._browser = browser
+        else:
+            self._browser = WebView()
+        self._browser.connect('notify::title', self._title_changed_cb)
 
-		self._links_model = LinksModel()
-		links_view = LinksView(self._links_model, self._browser)
+        self._links_model = LinksModel()
+        links_view = LinksView(self._links_model, self._browser)
 
-		self._toolbar = Toolbar(self._browser)
-		vbox.pack_start(self._toolbar, False)
-		self._toolbar.show()
+        self._toolbar = Toolbar(self._browser)
+        vbox.pack_start(self._toolbar, False)
+        self._toolbar.show()
 
-		hbox = gtk.HBox()
+        hbox = gtk.HBox()
 
-		hbox.pack_start(links_view, False)
-		hbox.pack_start(self._browser)
-		self._browser.show()
+        hbox.pack_start(links_view, False)
+        hbox.pack_start(self._browser)
+        self._browser.show()
 
-		vbox.pack_start(hbox)
-		hbox.show()
+        vbox.pack_start(hbox)
+        hbox.show()
 
-		self.add(vbox)
-		vbox.show()
+        self.add(vbox)
+        vbox.show()
 
-		self._browser.load_url(_HOMEPAGE)
+        self._browser.load_url(_HOMEPAGE)
 
-	def _setup_links_controller(self):
-		links_controller = LinksController(self._service, self._links_model)
-		self._toolbar.set_links_controller(links_controller)
+    def _setup_links_controller(self):
+        links_controller = LinksController(self._service, self._links_model)
+        self._toolbar.set_links_controller(links_controller)
 
-	def join(self, activity_ps):
-		Activity.join(self, activity_ps)
+    def join(self, activity_ps):
+        Activity.join(self, activity_ps)
 
-		self._setup_links_controller()
+        self._setup_links_controller()
 
-		url = self._service.get_published_value('URL')
-		if url:
-			self._browser.load_url(url)
+        url = self._service.get_published_value('URL')
+        if url:
+            self._browser.load_url(url)
 
-	def share(self):
-		Activity.share(self)
+    def share(self):
+        Activity.share(self)
 
-		self._setup_links_controller()
+        self._setup_links_controller()
 
-		url = self._browser.get_location()
-		if url:
-			self._service.set_published_value('URL', url)
+        url = self._browser.get_location()
+        if url:
+            self._service.set_published_value('URL', url)
 
-	def _title_changed_cb(self, embed, pspec):
-		self.set_title(embed.props.title)
+    def _title_changed_cb(self, embed, pspec):
+        self.set_title(embed.props.title)
 
 def start():
-	gtkmozembed.set_profile_path(env.get_profile_path(), 'gecko')
+    gtkmozembed.set_profile_path(env.get_profile_path(), 'gecko')
 
-	gtkmozembed.push_startup()
-	if not _sugar.startup_browser():
-		raise "Error when initializising the web activity."
+    gtkmozembed.push_startup()
+    if not _sugar.startup_browser():
+        raise "Error when initializising the web activity."
 
-	style.load_stylesheet(stylesheet)
-	
-	download_manager = _sugar.get_download_manager()
-	download_manager.connect('download-started', download_started_cb)
-	download_manager.connect('download-completed', download_completed_cb)
-	download_manager.connect('download-cancelled', download_started_cb)
-	download_manager.connect('download-progress', download_progress_cb)
+    style.load_stylesheet(stylesheet)
+    
+    download_manager = _sugar.get_download_manager()
+    download_manager.connect('download-started', download_started_cb)
+    download_manager.connect('download-completed', download_completed_cb)
+    download_manager.connect('download-cancelled', download_started_cb)
+    download_manager.connect('download-progress', download_progress_cb)
 
 def stop():
-	gtkmozembed.pop_startup()
+    gtkmozembed.pop_startup()
 
 def download_started_cb(download_manager, download):
-	name = download.get_url().rsplit('/', 1)[1]
+    name = download.get_url().rsplit('/', 1)[1]
 
-	cbService = ClipboardService.get_instance()
-	cbService.add_object(name,
-						 download.get_mime_type(),
-						 download.get_file_name())
+    cbService = ClipboardService.get_instance()
+    cbService.add_object(name,
+                         download.get_mime_type(),
+                         download.get_file_name())
 
 def download_completed_cb(download_manager, download):
-	cbService = ClipboardService.get_instance()
-	cbService.set_object_state(download.get_file_name(), 100)
+    cbService = ClipboardService.get_instance()
+    cbService.set_object_state(download.get_file_name(), 100)
 
 def download_cancelled_cb(download_manager, download):
-	#FIXME: Needs to update the state of the object to 'download stopped'.
-	#FIXME: Will do it when we complete progress on the definition of the
-	#FIXME: clipboard API.
-	raise "Cancelling downloads still not implemented."
+    #FIXME: Needs to update the state of the object to 'download stopped'.
+    #FIXME: Will do it when we complete progress on the definition of the
+    #FIXME: clipboard API.
+    raise "Cancelling downloads still not implemented."
 
 def download_progress_cb(download_manager, download):
-	cbService = ClipboardService.get_instance()
-	cbService.set_object_state(download.get_file_name(), download.get_percent())
+    cbService = ClipboardService.get_instance()
+    cbService.set_object_state(download.get_file_name(), download.get_percent())
