@@ -21,7 +21,6 @@ import logging
 import dbus
 
 import _sugar
-import sugar.util
 from sugar.activity import ActivityFactory
 from sugar.activity.Activity import Activity
 from sugar.clipboard import clipboardservice
