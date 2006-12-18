@@ -5,4 +5,4 @@ host_version = 1
 service_name = org.laptop.WebActivity
 icon = activity-web
 show_launcher = 1
-exec = sugar-activity-factory org.laptop.WebActivity webactivity.WebActivity
+exec = sugar-activity-factory webactivity.WebActivity
