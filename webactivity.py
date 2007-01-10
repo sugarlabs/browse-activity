@@ -133,7 +133,7 @@ def download_started_cb(download_manager, download):
 
 def download_completed_cb(download_manager, download):
     cb_service = clipboardservice.get_instance()
-    cb_service.set_object_state(download.get_file_name(), 100)
+    cb_service.set_object_percent(download.get_file_name(), 100)
 
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
@@ -143,4 +143,4 @@ def download_cancelled_cb(download_manager, download):
 
 def download_progress_cb(download_manager, download):
     cb_service = clipboardservice.get_instance()
-    cb_service.set_object_state(download.get_file_name(), download.get_percent())
+    cb_service.set_object_percent(download.get_file_name(), download.get_percent())
