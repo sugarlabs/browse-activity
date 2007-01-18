@@ -27,7 +27,7 @@ class LinkIcon(MenuIcon):
     def __init__(self, menu_shell, link):
         color = IconColor(link.buddy.get_color())
         MenuIcon.__init__(self, menu_shell, color=color,
-                          icon_name='activity-web')
+                          icon_name='theme:activity-web')
 
         self._link = link
 
