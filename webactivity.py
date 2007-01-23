@@ -16,7 +16,6 @@
 
 from gettext import gettext as _
 import gtk
-import gtkmozembed
 import logging
 import dbus
 
@@ -103,10 +102,7 @@ class WebActivity(Activity):
         self.set_title(embed.props.title)
 
 def start():
-    gtkmozembed.set_profile_path(env.get_profile_path(), 'gecko')
-
-    gtkmozembed.push_startup()
-    if not _sugar.startup_browser():
+    if not _sugar.browser_startup(env.get_profile_path(), 'gecko'):
         raise "Error when initializising the web activity."
 
     style.load_stylesheet(stylesheet)
@@ -118,7 +114,7 @@ def start():
     download_manager.connect('download-progress', download_progress_cb)
 
 def stop():
-    gtkmozembed.pop_startup()
+    _sugar.browser_shutdown()
 
 def download_started_cb(download_manager, download):
     name = download.get_url().rsplit('/', 1)[1]
