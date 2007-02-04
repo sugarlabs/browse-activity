@@ -13,10 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+import os
 
 import gtk
 import hippo
 
+from sugar import env
 from sugar.graphics.menu import Menu
 from sugar.graphics.menushell import MenuShell
 from sugar.graphics.menuicon import MenuIcon
@@ -26,8 +28,11 @@ from sugar.graphics import style
 class LinkIcon(MenuIcon):
     def __init__(self, menu_shell, link):
         color = IconColor(link.buddy.get_color())
+        
+        path = os.path.join(env.get_bundle_path(), 'activity')
+        icon_name = os.path.join(path, 'activity-web.svg')
         MenuIcon.__init__(self, menu_shell, color=color,
-                          icon_name='theme:activity-web')
+                          icon_name=icon_name)
 
         self._link = link
 
