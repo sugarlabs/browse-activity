@@ -15,20 +15,17 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from gettext import gettext as _
-import gtk
+import hippo
 import logging
 import dbus
 
 import _sugar
-from sugar.activity import ActivityFactory
 from sugar.activity.Activity import Activity
 from sugar.clipboard import clipboardservice
 from sugar import env
-from sugar.graphics import style
 
-import stylesheet
 from webview import WebView
-from toolbar import Toolbar
+from webtoolbar import WebToolbar
 from linksmodel import LinksModel
 from linksview import LinksView
 from linkscontroller import LinksController
@@ -43,7 +40,12 @@ class WebActivity(Activity):
 
         self.set_title(_('Web Activity'))
 
-        vbox = gtk.VBox()
+        canvas = hippo.Canvas()
+        self.add(canvas)
+        canvas.show()
+        
+        vbox = hippo.CanvasBox()
+        canvas.set_root(vbox)
 
         if browser:
             self._browser = browser
@@ -51,26 +53,33 @@ class WebActivity(Activity):
             self._browser = WebView()
         self._browser.connect('notify::title', self._title_changed_cb)
 
+        self._toolbar = WebToolbar(self._browser)
+        vbox.append(self._toolbar)
+
+        self._hbox = hippo.CanvasBox(orientation=hippo.ORIENTATION_HORIZONTAL)
+        vbox.append(self._hbox, hippo.PACK_EXPAND)
+
         self._links_model = LinksModel()
-        links_view = LinksView(self._links_model, self._browser)
+        self._links_view = LinksView(self._links_model, self._browser)
+        self._hbox.append(self._links_view)
+        self._hbox.set_child_visible(self._links_view, False)
+            
+        self._links_model.connect('link_added', self._link_added_cb)
+        self._links_model.connect('link_removed', self._link_removed_cb)
 
-        self._toolbar = Toolbar(self._browser)
-        vbox.pack_start(self._toolbar, False)
-        self._toolbar.show()
-
-        hbox = gtk.HBox()
-
-        hbox.pack_start(links_view, False)
-        hbox.pack_start(self._browser)
-        self._browser.show()
-
-        vbox.pack_start(hbox)
-        hbox.show()
-
-        self.add(vbox)
-        vbox.show()
+        browser_widget = hippo.CanvasWidget()
+        browser_widget.props.widget = self._browser
+        self._hbox.append(browser_widget, hippo.PACK_EXPAND)
 
         self._browser.load_url(_HOMEPAGE)
+
+    def _link_added_cb(self, model, link):
+        if self._links_view.get_link_count() > 0:
+            self._hbox.set_child_visible(self._links_view, True)
+
+    def _link_removed_cb(self, model, link):
+        if self._links_view.get_link_count() == 0:
+            self._hbox.set_child_visible(self._links_view, False)
 
     def _setup_links_controller(self):
         links_controller = LinksController(self._service, self._links_model)
@@ -105,8 +114,6 @@ def start():
     if not _sugar.browser_startup(env.get_profile_path(), 'gecko'):
         raise "Error when initializising the web activity."
 
-    style.load_stylesheet(stylesheet)
-    
     download_manager = _sugar.get_download_manager()
     download_manager.connect('download-started', download_started_cb)
     download_manager.connect('download-completed', download_completed_cb)
