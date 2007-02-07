@@ -15,10 +15,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 
-import gtk
 import hippo
 
 from sugar import env
+from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.menu import Menu
 from sugar.graphics.menushell import MenuShell
 from sugar.graphics.menuicon import MenuIcon
@@ -40,17 +40,13 @@ class LinkIcon(MenuIcon):
         menu = Menu(self._link.title)
         return menu
 
-class LinksView(hippo.Canvas):
-    def __init__(self, model, browser):
-        hippo.Canvas.__init__(self)
+class LinksView(Toolbar):
+    def __init__(self, model, browser, **kwargs):
+        Toolbar.__init__(self, orientation=hippo.ORIENTATION_VERTICAL)
 
         self._icons = {}
         self._browser = browser
         self._menu_shell = MenuShell(self)
-
-        self._box = hippo.CanvasBox()
-        style.apply_stylesheet(self._box, 'links.Box')
-        self.set_root(self._box)
 
         for link in model:
             self._add_link(link)
@@ -59,24 +55,18 @@ class LinksView(hippo.Canvas):
         model.connect('link_removed', self._link_removed_cb)
 
     def _add_link(self, link):
-        if len(self._icons) == 0:
-            self.show()
-
         icon = LinkIcon(self._menu_shell, link)
         icon.connect('activated', self._link_activated_cb, link)
         style.apply_stylesheet(icon, 'links.Icon')
-        self._box.append(icon)
+        self.append(icon)
 
         self._icons[link] = icon
 
     def _remove_link(self, link):
         icon = self._icons[link]
-        self._box.remove(icon)
+        self.remove(icon)
 
         del self._icons[link]
-
-        if len(self._icons) == 0:
-            self.hide()
 
     def _link_added_cb(self, model, link):
         self._add_link(link)
@@ -86,3 +76,6 @@ class LinksView(hippo.Canvas):
 
     def _link_activated_cb(self, link_item, link):
         self._browser.load_url(link.url)
+
+    def get_link_count(self):
+        return len(self._icons)

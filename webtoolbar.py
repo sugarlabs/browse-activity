@@ -14,70 +14,43 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import hippo
 import gtk
 
 from _sugar import AddressEntry
 
-class Toolbar(gtk.Toolbar):
+from sugar.graphics.toolbar import Toolbar
+from sugar.graphics.button import Button
+
+class WebToolbar(Toolbar):
     def __init__(self, embed):
-        gtk.Toolbar.__init__(self)
+        Toolbar.__init__(self)
         
-        self.set_style(gtk.TOOLBAR_BOTH_HORIZ)
+        self._back = Button('theme:stock-back')
+        self._back.props.active = False
+        self._back.connect("activated", self._go_back_cb)
+        self.append(self._back)
 
-        self._insert_spring()
+        self._forward = Button('theme:stock-forward')
+        self._forward.props.active = False
+        self._forward.connect("activated", self._go_forward_cb)
+        self.append(self._forward)
 
-        self._back = gtk.ToolButton()
-        self._back.props.sensitive = False
-        self._back.set_icon_name('stock-back')
-        self._back.connect("clicked", self._go_back_cb)
-        self.insert(self._back, -1)
-        self._back.show()
-
-        self._forward = gtk.ToolButton()
-        self._forward.props.sensitive = False
-        self._forward.set_icon_name('stock-forward')
-        self._forward.connect("clicked", self._go_forward_cb)
-        self.insert(self._forward, -1)
-        self._forward.show()
-
-        self._stop_and_reload = gtk.ToolButton()
-        self._forward.props.sensitive = False
-        self._stop_and_reload.connect("clicked", self._stop_and_reload_cb)
-        self.insert(self._stop_and_reload, -1)
-        self._stop_and_reload.show()
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)        
-        self.insert(separator, -1)
-        separator.show()
-
-        address_item = gtk.ToolItem()
+        self._stop_and_reload = Button('theme:stock-close')
+        self._stop_and_reload.connect("activated", self._stop_and_reload_cb)
+        self.append(self._stop_and_reload)
 
         self._entry = AddressEntry()
         self._entry.connect("activate", self._entry_activate_cb)
 
-        width = int(gtk.gdk.screen_width() / 1.8)
-        self._entry.set_size_request(width, -1)
+        entry_widget = hippo.CanvasWidget()
+        entry_widget.props.widget = self._entry
+        self.append(entry_widget, hippo.PACK_EXPAND)
 
-        address_item.add(self._entry)
-        self._entry.show()
-
-        self.insert(address_item, -1)
-        address_item.show()
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)        
-        self.insert(separator, -1)
-        separator.show()
-
-        self._post = gtk.ToolButton()
-        self._post.props.sensitive = False
-        self._post.set_icon_name('stock-add')
-        self._post.connect("clicked", self._post_cb)
-        self.insert(self._post, -1)
-        self._post.show()
-
-        self._insert_spring()
+        self._post = Button('theme:stock-add')
+        self._post.props.active = False
+        self._post.connect("activated", self._post_cb)
+        self.append(self._post)
 
         self._embed = embed
         self._embed.connect("notify::progress", self._progress_changed_cb)
@@ -93,13 +66,13 @@ class Toolbar(gtk.Toolbar):
 
     def set_links_controller(self, links_controller):
         self._links_controller = links_controller
-        self._post.props.sensitive = True
+        self._post.props.active = True
 
     def _update_stop_and_reload_icon(self):
         if self._embed.props.loading:
-            self._stop_and_reload.set_icon_name('stock-close')
+            self._stop_and_reload.props.icon_name = 'theme:stock-close'
         else:
-            self._stop_and_reload.set_icon_name('stock-continue')
+            self._stop_and_reload.props.icon_name = 'theme:stock-continue'
 
     def _progress_changed_cb(self, embed, spec):
         self._entry.props.progress = embed.props.progress
@@ -114,10 +87,10 @@ class Toolbar(gtk.Toolbar):
         self._entry.props.title = embed.props.title
 
     def _can_go_back_changed_cb(self, embed, spec):
-        self._back.props.sensitive = embed.props.can_go_back
+        self._back.props.active = embed.props.can_go_back
 
     def _can_go_forward_changed_cb(self, embed, spec):
-        self._forward.props.sensitive = embed.props.can_go_forward
+        self._forward.props.active = embed.props.can_go_forward
 
     def _entry_activate_cb(self, entry):
         self._embed.load_url(entry.get_text())
@@ -139,10 +112,3 @@ class Toolbar(gtk.Toolbar):
         title = self._embed.get_title()
         address = self._embed.get_location()
         self._links_controller.post_link(title, address)
-
-    def _insert_spring(self):
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        separator.set_expand(True)        
-        self.insert(separator, -1)
-        separator.show()
