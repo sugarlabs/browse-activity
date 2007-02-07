@@ -33,7 +33,7 @@ from linksmodel import LinksModel
 from linksview import LinksView
 from linkscontroller import LinksController
 
-_HOMEPAGE = 'http://www.google.com'
+_HOMEPAGE = 'file:///home/olpc/Library/index.html'
 
 class WebActivity(Activity):
     def __init__(self, browser=None):
