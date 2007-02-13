@@ -17,7 +17,7 @@
 import hippo
 import gtk
 
-from _sugar import AddressEntry
+from addressentry import AddressEntry
 
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.button import Button
@@ -41,11 +41,8 @@ class WebToolbar(Toolbar):
         self.append(self._stop_and_reload)
 
         self._entry = AddressEntry()
-        self._entry.connect("activate", self._entry_activate_cb)
-
-        entry_widget = hippo.CanvasWidget()
-        entry_widget.props.widget = self._entry
-        self.append(entry_widget, hippo.PACK_EXPAND)
+        self._entry.connect("activated", self._entry_activate_cb)
+        self.append(self._entry, hippo.PACK_EXPAND)
 
         self._post = Button('theme:stock-add')
         self._post.props.active = False
@@ -93,7 +90,7 @@ class WebToolbar(Toolbar):
         self._forward.props.active = embed.props.can_go_forward
 
     def _entry_activate_cb(self, entry):
-        self._embed.load_url(entry.get_text())
+        self._embed.load_url(entry.props.text)
         self._embed.grab_focus()
 
     def _go_back_cb(self, button):
