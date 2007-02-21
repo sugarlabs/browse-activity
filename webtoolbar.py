@@ -20,23 +20,23 @@ import gtk
 from addressentry import AddressEntry
 
 from sugar.graphics.toolbar import Toolbar
-from sugar.graphics.button import Button
+from sugar.graphics.iconbutton import IconButton
 
 class WebToolbar(Toolbar):
     def __init__(self, embed):
         Toolbar.__init__(self)
         
-        self._back = Button('theme:stock-back')
+        self._back = IconButton('theme:stock-back')
         self._back.props.active = False
         self._back.connect("activated", self._go_back_cb)
         self.append(self._back)
 
-        self._forward = Button('theme:stock-forward')
+        self._forward = IconButton('theme:stock-forward')
         self._forward.props.active = False
         self._forward.connect("activated", self._go_forward_cb)
         self.append(self._forward)
 
-        self._stop_and_reload = Button('theme:stock-close')
+        self._stop_and_reload = IconButton('theme:stock-close')
         self._stop_and_reload.connect("activated", self._stop_and_reload_cb)
         self.append(self._stop_and_reload)
 
@@ -44,7 +44,7 @@ class WebToolbar(Toolbar):
         self._entry.connect("activated", self._entry_activate_cb)
         self.append(self._entry, hippo.PACK_EXPAND)
 
-        self._post = Button('theme:stock-add')
+        self._post = IconButton('theme:stock-add')
         self._post.props.active = False
         self._post.connect("activated", self._post_cb)
         self.append(self._post)

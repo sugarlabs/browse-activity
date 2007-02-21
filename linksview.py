@@ -23,7 +23,6 @@ from sugar.graphics.menu import Menu
 from sugar.graphics.menushell import MenuShell
 from sugar.graphics.menuicon import MenuIcon
 from sugar.graphics.iconcolor import IconColor
-from sugar.graphics import style
 
 class LinkIcon(MenuIcon):
     def __init__(self, menu_shell, link):
@@ -57,7 +56,6 @@ class LinksView(Toolbar):
     def _add_link(self, link):
         icon = LinkIcon(self._menu_shell, link)
         icon.connect('activated', self._link_activated_cb, link)
-        style.apply_stylesheet(icon, 'links.Icon')
         self.append(icon)
 
         self._icons[link] = icon
