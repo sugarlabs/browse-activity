@@ -20,22 +20,21 @@ import hippo
 from sugar import env
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.menu import Menu
-from sugar.graphics.menushell import MenuShell
-from sugar.graphics.menuicon import MenuIcon
+from sugar.graphics.canvasicon import CanvasIcon
+from sugar.graphics.popupcontext import PopupContext
 from sugar.graphics.iconcolor import IconColor
 
-class LinkIcon(MenuIcon):
-    def __init__(self, menu_shell, link):
+class LinkIcon(CanvasIcon):
+    def __init__(self, link):
         color = IconColor(link.buddy.get_color())
         
         path = os.path.join(env.get_bundle_path(), 'activity')
         icon_name = os.path.join(path, 'activity-web.svg')
-        MenuIcon.__init__(self, menu_shell, color=color,
-                          icon_name=icon_name)
+        CanvasIcon.__init__(self, color=color, icon_name=icon_name)
 
         self._link = link
 
-    def create_menu(self):
+    def get_popup(self):
         menu = Menu(self._link.title)
         return menu
 
@@ -45,7 +44,6 @@ class LinksView(Toolbar):
 
         self._icons = {}
         self._browser = browser
-        self._menu_shell = MenuShell(self)
 
         for link in model:
             self._add_link(link)
@@ -54,7 +52,7 @@ class LinksView(Toolbar):
         model.connect('link_removed', self._link_removed_cb)
 
     def _add_link(self, link):
-        icon = LinkIcon(self._menu_shell, link)
+        icon = LinkIcon(link)
         icon.connect('activated', self._link_activated_cb, link)
         self.append(icon)
 
