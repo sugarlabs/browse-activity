@@ -20,7 +20,7 @@ import logging
 import dbus
 
 import _sugar
-from sugar.activity.Activity import Activity
+from sugar.activity import activity
 from sugar.clipboard import clipboardservice
 from sugar import env
 
@@ -32,9 +32,9 @@ from linkscontroller import LinksController
 
 _HOMEPAGE = 'file:///home/olpc/Library/index.html'
 
-class WebActivity(Activity):
-    def __init__(self, browser=None):
-        Activity.__init__(self)
+class WebActivity(activity.Activity):
+    def __init__(self, handle, browser=None):
+        activity.Activity.__init__(self, handle)
 
         logging.debug('Starting the web activity')
 
@@ -71,7 +71,17 @@ class WebActivity(Activity):
         browser_widget.props.widget = self._browser
         self._hbox.append(browser_widget, hippo.PACK_EXPAND)
 
-        self._browser.load_url(_HOMEPAGE)
+        self._service = handle.get_presence_service() 
+        if self._service:
+            self._setup_links_controller()
+            url = self._service.get_published_value('URL')
+        elif handle.uri:
+            url = handle.uri
+        else:
+            url = _HOMEPAGE
+
+        if url:
+            self._browser.load_url(url)
 
     def _link_added_cb(self, model, link):
         if self._links_view.get_link_count() > 0:
@@ -84,15 +94,6 @@ class WebActivity(Activity):
     def _setup_links_controller(self):
         links_controller = LinksController(self._service, self._links_model)
         self._toolbar.set_links_controller(links_controller)
-
-    def join(self, activity_ps):
-        Activity.join(self, activity_ps)
-
-        self._setup_links_controller()
-
-        url = self._service.get_published_value('URL')
-        if url:
-            self._browser.load_url(url)
 
     def share(self):
         Activity.share(self)
