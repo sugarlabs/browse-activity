@@ -17,7 +17,7 @@ import os
 
 import hippo
 
-from sugar import env
+from sugar.activity import activity
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.menu import Menu
 from sugar.graphics.canvasicon import CanvasIcon
@@ -28,7 +28,7 @@ class LinkIcon(CanvasIcon):
     def __init__(self, link):
         color = IconColor(link.buddy.get_color())
         
-        path = os.path.join(env.get_bundle_path(), 'activity')
+        path = os.path.join(activity.get_bundle_path(), 'activity')
         icon_name = os.path.join(path, 'activity-web.svg')
         CanvasIcon.__init__(self, color=color, icon_name=icon_name)
 
