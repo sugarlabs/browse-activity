@@ -22,11 +22,11 @@ from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.menu import Menu
 from sugar.graphics.canvasicon import CanvasIcon
 from sugar.graphics.popupcontext import PopupContext
-from sugar.graphics.iconcolor import IconColor
+from sugar.graphics.xocolor import XoColor
 
 class LinkIcon(CanvasIcon):
     def __init__(self, link):
-        color = IconColor(link.buddy.get_color())
+        color = XoColor(link.buddy.get_color())
         
         path = os.path.join(activity.get_bundle_path(), 'activity')
         icon_name = os.path.join(path, 'activity-web.svg')
