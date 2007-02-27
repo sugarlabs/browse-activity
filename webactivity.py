@@ -40,12 +40,8 @@ class WebActivity(activity.Activity):
 
         self.set_title(_('Web Activity'))
 
-        canvas = hippo.Canvas()
-        self.add(canvas)
-        canvas.show()
-        
         vbox = hippo.CanvasBox()
-        canvas.set_root(vbox)
+        self.set_root(vbox)
 
         if browser:
             self._browser = browser
