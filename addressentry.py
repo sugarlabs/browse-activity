@@ -28,8 +28,8 @@ class AddressEntry(Entry):
         'progress' : (float, None, None, 0.0, 1.0, 0.0, gobject.PARAM_READWRITE)
     }
     
-    def __init__(self):
-        Entry.__init__(self)
+    def __init__(self, **kwargs):
+        Entry.__init__(self, **kwargs)
 
     def create_entry(self):
         self._address_entry = _sugar.AddressEntry()

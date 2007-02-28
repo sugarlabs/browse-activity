@@ -30,7 +30,7 @@ class LinkIcon(CanvasIcon):
         
         path = os.path.join(activity.get_bundle_path(), 'activity')
         icon_name = os.path.join(path, 'activity-web.svg')
-        CanvasIcon.__init__(self, color=color, icon_name=icon_name)
+        CanvasIcon.__init__(self, xo_color=color, icon_name=icon_name)
 
         self._link = link
 

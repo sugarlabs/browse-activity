@@ -92,7 +92,7 @@ class WebActivity(activity.Activity):
         self._toolbar.set_links_controller(links_controller)
 
     def share(self):
-        Activity.share(self)
+        activity.Activity.share(self)
 
         self._setup_links_controller()
 
