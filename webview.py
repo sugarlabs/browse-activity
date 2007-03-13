@@ -85,6 +85,11 @@ class WebView(Browser):
         Browser.__init__(self)
         self._popup_creators = []
 
+        self.connect('mouse-click', self._dom_click_cb)
+
+    def _dom_click_cb(self, browser, event):
+        print event.image_uri
+
     def do_create_window(self):
         popup_creator = _PopupCreator(self.get_toplevel())
         popup_creator.connect('popup-created', self._popup_created_cb)
