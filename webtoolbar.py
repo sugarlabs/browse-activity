@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+import os
 
 import hippo
 import gtk
@@ -25,6 +26,10 @@ from sugar.graphics.iconbutton import IconButton
 class WebToolbar(Toolbar):
     def __init__(self, embed):
         Toolbar.__init__(self)
+        
+        self._save = IconButton(icon_name='theme:stock-save')
+        self._save.connect("activated", self._save_cb)
+        self.append(self._save)
         
         self._back = IconButton(icon_name='theme:stock-back')
         self._back.props.active = False
@@ -109,3 +114,19 @@ class WebToolbar(Toolbar):
         title = self._embed.get_title()
         address = self._embed.get_location()
         self._links_controller.post_link(title, address)
+
+    def _save_cb(self, button):
+        chooser = gtk.FileChooserDialog(title=None,
+                                        action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                        buttons=(gtk.STOCK_CANCEL,
+                                                 gtk.RESPONSE_CANCEL,
+                                                 gtk.STOCK_SAVE,
+                                                 gtk.RESPONSE_OK))
+        chooser.set_default_response(gtk.RESPONSE_OK)
+        chooser.set_current_folder(os.path.expanduser('~'))
+        response = chooser.run()
+
+        if response == gtk.RESPONSE_OK:
+            self._embed.save_document(chooser.get_filename())
+
+        chooser.destroy()
