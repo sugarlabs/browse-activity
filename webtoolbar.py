@@ -15,6 +15,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import logging
+from gettext import gettext as _
 
 import hippo
 import gtk
@@ -146,8 +147,37 @@ class WebToolbar(Toolbar):
                                                  gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
-        response = chooser.run()
 
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All supported formats"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Web pages"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Images"))
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All files"))
+        file_filter.add_pattern("*")
+        chooser.add_filter(file_filter)
+
+        response = chooser.run()
         if response == gtk.RESPONSE_OK:
             self._embed.load_url(chooser.get_filename())
             self._embed.grab_focus()
