@@ -14,6 +14,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
+import logging
+from gettext import gettext as _
 
 import hippo
 import gtk
@@ -26,10 +28,6 @@ from sugar.graphics.iconbutton import IconButton
 class WebToolbar(Toolbar):
     def __init__(self, embed):
         Toolbar.__init__(self)
-        
-        self._save = IconButton(icon_name='theme:stock-save')
-        self._save.connect("activated", self._save_cb)
-        self.append(self._save)
         
         self._back = IconButton(icon_name='theme:stock-back')
         self._back.props.active = False
@@ -53,6 +51,14 @@ class WebToolbar(Toolbar):
         self._post.props.active = False
         self._post.connect("activated", self._post_cb)
         self.append(self._post)
+        
+        self._open = IconButton(icon_name='theme:stock-open')
+        self._open.connect("activated", self._open_cb)
+        self.append(self._open)
+        
+        self._save = IconButton(icon_name='theme:stock-save')
+        self._save.connect("activated", self._save_cb)
+        self.append(self._save)
 
         self._embed = embed
         self._embed.connect("notify::progress", self._progress_changed_cb)
@@ -127,6 +133,54 @@ class WebToolbar(Toolbar):
         response = chooser.run()
 
         if response == gtk.RESPONSE_OK:
-            self._embed.save_document(chooser.get_filename())
+            if not self._embed.save_document(chooser.get_filename()):
+                logging.error("Couldn't save to %s." % chooser.get_filename())
+
+        chooser.destroy()
+
+    def _open_cb(self, button):
+        chooser = gtk.FileChooserDialog(title=None,
+                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                        buttons=(gtk.STOCK_CANCEL,
+                                                 gtk.RESPONSE_CANCEL,
+                                                 gtk.STOCK_OPEN,
+                                                 gtk.RESPONSE_OK))
+        chooser.set_default_response(gtk.RESPONSE_OK)
+        chooser.set_current_folder(os.path.expanduser('~'))
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All supported formats"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Web pages"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Images"))
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All files"))
+        file_filter.add_pattern("*")
+        chooser.add_filter(file_filter)
+
+        response = chooser.run()
+        if response == gtk.RESPONSE_OK:
+            self._embed.load_url(chooser.get_filename())
+            self._embed.grab_focus()
+            logging.debug('Opened %s.' % chooser.get_filename())
 
         chooser.destroy()
