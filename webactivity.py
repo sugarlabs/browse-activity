@@ -146,5 +146,10 @@ def download_progress_cb(download_manager, download):
     if not object_id:
         logging.debug("Unknown download object %r" % download)
         return
-    cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(object_id, download.get_percent())
+
+    # don't send 100% unless it's really done, which we handle
+    # from download_completed_cb instead
+    percent = download.get_percent()
+    if percent < 100:
+        cb_service = clipboardservice.get_instance()
+        cb_service.set_object_percent(object_id, percent)
