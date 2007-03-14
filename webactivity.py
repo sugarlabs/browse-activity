@@ -118,18 +118,22 @@ def stop():
 
 def download_started_cb(download_manager, download):
     name = download.get_url().rsplit('/', 1)[1]
-    object_id = download.get_file_name() # The file name passed is already unique.
 
     cb_service = clipboardservice.get_instance()
-    cb_service.add_object(object_id, name)
+    object_id = cb_service.add_object(name)
+    download.set_data('object-id', object_id)
     cb_service.add_object_format(object_id,
                                  download.get_mime_type(),
                                  download.get_file_name(),
                                  on_disk = True)
 
 def download_completed_cb(download_manager, download):
+    object_id = download.get_data('object-id')
+    if not object_id:
+        logging.debug("Unknown download object %r" % download)
+        return
     cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(download.get_file_name(), 100)
+    cb_service.set_object_percent(object_id, 100)
 
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
@@ -138,5 +142,9 @@ def download_cancelled_cb(download_manager, download):
     raise "Cancelling downloads still not implemented."
 
 def download_progress_cb(download_manager, download):
+    object_id = download.get_data('object-id')
+    if not object_id:
+        logging.debug("Unknown download object %r" % download)
+        return
     cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(download.get_file_name(), download.get_percent())
+    cb_service.set_object_percent(object_id, download.get_percent())
