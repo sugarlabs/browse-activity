@@ -42,7 +42,7 @@ class _PopupCreator(gobject.GObject):
         self._dialog.realize()
         self._dialog.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
 
-        self._embed = Browser()
+        self._embed = WebView()
         self._size_to_sid = self._embed.connect('size_to', self._size_to_cb)
         self._vis_sid = self._embed.connect('visibility', self._visibility_cb)
 
@@ -68,8 +68,11 @@ class _PopupCreator(gobject.GObject):
                 # It seem like a pretty special case though, I doubt
                 # other activities will need something similar.
                 from webactivity import WebActivity
-                activity = WebActivity(self._embed)
-                activity.set_type('org.laptop.WebActivity')
+                from sugar.activity import activityfactory
+                from sugar.activity.activityhandle import ActivityHandle
+                handle = ActivityHandle(activityfactory.create_activity_id())
+                activity = WebActivity(handle, self._embed)
+                activity.show()
 
             self._embed.disconnect(self._size_to_sid)
             self._embed.disconnect(self._vis_sid)
