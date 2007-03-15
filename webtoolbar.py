@@ -24,6 +24,7 @@ from addressentry import AddressEntry
 
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.iconbutton import IconButton
+from sugar.graphics.filechooser import FileChooserDialog
 
 class WebToolbar(Toolbar):
     def __init__(self, embed):
@@ -122,12 +123,12 @@ class WebToolbar(Toolbar):
         self._links_controller.post_link(title, address)
 
     def _save_cb(self, button):
-        chooser = gtk.FileChooserDialog(title=None,
-                                        action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                        buttons=(gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_SAVE,
-                                                 gtk.RESPONSE_OK))
+        chooser = FileChooserDialog(title=None,
+                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_SAVE,
+                                             gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
         response = chooser.run()
@@ -139,12 +140,12 @@ class WebToolbar(Toolbar):
         chooser.destroy()
 
     def _open_cb(self, button):
-        chooser = gtk.FileChooserDialog(title=None,
-                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                        buttons=(gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN,
-                                                 gtk.RESPONSE_OK))
+        chooser = FileChooserDialog(title=None,
+                                    action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_OPEN,
+                                             gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
 
