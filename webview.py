@@ -19,6 +19,7 @@ import gobject
 import gtk
 import logging
 
+from sugar.graphics.filechooser import FileChooserDialog
 from _sugar import Browser
 from _sugar import PushScroller
 
@@ -116,12 +117,12 @@ class WebView(Browser):
         self._popup_creators.remove(creator)
 
     def _save_menu_activate_cb(self, menu_item, image_uri):
-        chooser = gtk.FileChooserDialog(title=None,
-                                        action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                        buttons=(gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_SAVE,
-                                                 gtk.RESPONSE_OK))
+        chooser = FileChooserDialog(title=None,
+                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_SAVE,
+                                             gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
         response = chooser.run()
