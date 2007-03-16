@@ -13,17 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-import os
-import logging
-from gettext import gettext as _
 
+from gettext import gettext as _
 import hippo
+import logging
 import dbus
-import gtk
 
 import _sugar
 from sugar.activity import activity
-from sugar.graphics.filechooser import FileChooserDialog
 from sugar.clipboard import clipboardservice
 from sugar import env
 
@@ -51,7 +48,6 @@ class WebActivity(activity.Activity):
         else:
             self._browser = WebView()
         self._browser.connect('notify::title', self._title_changed_cb)
-        self._browser.connect('mouse-click', self._dom_click_cb)
 
         self._toolbar = WebToolbar(self._browser)
         vbox.append(self._toolbar)
@@ -106,35 +102,6 @@ class WebActivity(activity.Activity):
 
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
-
-    def _get_menu(self, image_uri):
-        menu = gtk.Menu()
-        menu_item = gtk.ImageMenuItem(gtk.STOCK_SAVE)
-        menu_item.connect('activate', self._save_menu_activate_cb, image_uri)
-        menu.add(menu_item)
-        menu.show_all()
-        return menu
-
-    def _dom_click_cb(self, browser, event):
-        if event.image_uri:
-            self._get_menu(event.image_uri).popup(None, None, None, 1, 0)
-
-    def _save_menu_activate_cb(self, menu_item, image_uri):
-        chooser = FileChooserDialog(title=None,
-                                    parent=self,
-                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                    buttons=(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_SAVE,
-                                             gtk.RESPONSE_OK))
-        chooser.set_default_response(gtk.RESPONSE_OK)
-        chooser.set_current_folder(os.path.expanduser('~'))
-        response = chooser.run()
-
-        if response == gtk.RESPONSE_OK:
-            self.save_uri(image_uri, chooser.get_filename())
-
-        chooser.destroy()
 
 def start():
     if not _sugar.browser_startup(env.get_profile_path(), 'gecko'):
