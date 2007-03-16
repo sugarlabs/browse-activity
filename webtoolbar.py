@@ -124,6 +124,7 @@ class WebToolbar(Toolbar):
 
     def _save_cb(self, button):
         chooser = FileChooserDialog(title=None,
+                                    parent=self._embed.get_toplevel(),
                                     action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                     buttons=(gtk.STOCK_CANCEL,
                                              gtk.RESPONSE_CANCEL,
@@ -141,6 +142,7 @@ class WebToolbar(Toolbar):
 
     def _open_cb(self, button):
         chooser = FileChooserDialog(title=None,
+                                    parent=self._embed.get_toplevel(),
                                     action=gtk.FILE_CHOOSER_ACTION_OPEN,
                                     buttons=(gtk.STOCK_CANCEL,
                                              gtk.RESPONSE_CANCEL,

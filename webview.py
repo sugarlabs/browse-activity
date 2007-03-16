@@ -101,7 +101,7 @@ class WebView(Browser):
         return menu
 
     def _dom_click_cb(self, browser, event):
-        if event.button == 3 and event.image_uri:
+        if event.image_uri:
             self._get_menu(event.image_uri).popup(None, None, None, 1, 0)
 
     def do_create_window(self):
@@ -117,6 +117,7 @@ class WebView(Browser):
 
     def _save_menu_activate_cb(self, menu_item, image_uri):
         chooser = FileChooserDialog(title=None,
+                                    parent=self.get_toplevel(),
                                     action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                     buttons=(gtk.STOCK_CANCEL,
                                              gtk.RESPONSE_CANCEL,
