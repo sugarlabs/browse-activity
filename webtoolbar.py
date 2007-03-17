@@ -123,6 +123,11 @@ class WebToolbar(Toolbar):
         self._links_controller.post_link(title, address)
 
     def _save_cb(self, button):
+        filename = self._embed.props.document_metadata.filename
+        print filename
+        if not filename:
+            filename = self._embed.get_title() + '.html'
+
         chooser = FileChooserDialog(title=None,
                                     parent=self._embed.get_toplevel(),
                                     action=gtk.FILE_CHOOSER_ACTION_SAVE,
@@ -132,6 +137,7 @@ class WebToolbar(Toolbar):
                                              gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
+        chooser.set_current_name(filename)
         response = chooser.run()
 
         if response == gtk.RESPONSE_OK:
