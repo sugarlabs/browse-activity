@@ -137,8 +137,37 @@ class WebToolbar(Toolbar):
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
         chooser.set_current_name(filename)
-        response = chooser.run()
 
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All supported formats"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Web pages"))
+        file_filter.add_mime_type("text/html")
+        file_filter.add_mime_type("application/xhtml+xml")
+        file_filter.add_mime_type("text/xml")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Images"))
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All files"))
+        file_filter.add_pattern("*")
+        chooser.add_filter(file_filter)
+
+        response = chooser.run()
         if response == gtk.RESPONSE_OK:
             if not self._embed.save_document(chooser.get_filename()):
                 logging.error("Couldn't save to %s." % chooser.get_filename())

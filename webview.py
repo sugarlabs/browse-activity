@@ -14,6 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
+from gettext import gettext as _
 
 import gobject
 import gtk
@@ -108,6 +109,19 @@ class _ImageMenu(gtk.Menu):
         chooser.set_current_folder(os.path.expanduser('~'))
         if self._image_name:
             chooser.set_current_name(self._image_name)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("Images"))
+        file_filter.add_mime_type("image/png")
+        file_filter.add_mime_type("image/jpeg")
+        file_filter.add_mime_type("image/gif")
+        chooser.add_filter(file_filter)
+
+        file_filter = gtk.FileFilter()
+        file_filter.set_name(_("All files"))
+        file_filter.add_pattern("*")
+        chooser.add_filter(file_filter)
+
         response = chooser.run()
 
         if response == gtk.RESPONSE_OK:
