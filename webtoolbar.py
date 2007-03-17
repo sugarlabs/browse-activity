@@ -124,7 +124,6 @@ class WebToolbar(Toolbar):
 
     def _save_cb(self, button):
         filename = self._embed.props.document_metadata.filename
-        print filename
         if not filename:
             filename = self._embed.get_title() + '.html'
 
