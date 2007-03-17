@@ -84,9 +84,10 @@ class _PopupCreator(gobject.GObject):
         return self._embed
 
 class _ImageMenu(gtk.Menu):
-    def __init__(self, event):
+    def __init__(self, browser, event):
         gtk.Menu.__init__(self)
 
+        self._browser = browser
         self._image_uri = event.image_uri
         self._image_name = event.image_name
 
@@ -97,6 +98,7 @@ class _ImageMenu(gtk.Menu):
 
     def _save_activate_cb(self, menu_item):
         chooser = FileChooserDialog(title=None,
+                                    parent=self._browser.get_toplevel(),
                                     action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                     buttons=(gtk.STOCK_CANCEL,
                                              gtk.RESPONSE_CANCEL,
@@ -124,7 +126,7 @@ class WebView(Browser):
 
     def _dom_click_cb(self, browser, event):
         if event.button == 3 and event.image_uri:
-            menu = _ImageMenu(event)
+            menu = _ImageMenu(browser, event)
             menu.popup(None, None, None, 1, 0)
 
     def do_create_window(self):
