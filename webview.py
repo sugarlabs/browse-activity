@@ -83,6 +83,36 @@ class _PopupCreator(gobject.GObject):
     def get_embed(self):
         return self._embed
 
+class _ImageMenu(gtk.Menu):
+    def __init__(self, event):
+        gtk.Menu.__init__(self)
+
+        self._image_uri = event.image_uri
+        self._image_name = event.image_name
+
+        menu_item = gtk.ImageMenuItem(gtk.STOCK_SAVE)
+        menu_item.connect('activate', self._save_activate_cb)
+        self.add(menu_item)
+        menu_item.show()
+
+    def _save_activate_cb(self, menu_item):
+        chooser = FileChooserDialog(title=None,
+                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_SAVE,
+                                             gtk.RESPONSE_OK))
+        chooser.set_default_response(gtk.RESPONSE_OK)
+        chooser.set_current_folder(os.path.expanduser('~'))
+        if self._image_name:
+            chooser.set_current_name(self._image_name)
+        response = chooser.run()
+
+        if response == gtk.RESPONSE_OK:
+            self.save_uri(self._image_uri, chooser.get_filename())
+
+        chooser.destroy()
+
 class WebView(Browser):
     __gtype_name__ = "SugarWebBrowser"
 
@@ -92,17 +122,10 @@ class WebView(Browser):
 
         self.connect('mouse-click', self._dom_click_cb)
 
-    def _get_menu(self, image_uri):
-        menu = gtk.Menu()
-        menu_item = gtk.ImageMenuItem(gtk.STOCK_SAVE)
-        menu_item.connect('activate', self._save_menu_activate_cb, image_uri)
-        menu.add(menu_item)
-        menu.show_all()
-        return menu
-
     def _dom_click_cb(self, browser, event):
         if event.button == 3 and event.image_uri:
-            self._get_menu(event.image_uri).popup(None, None, None, 1, 0)
+            menu = _ImageMenu(event)
+            menu.popup(None, None, None, 1, 0)
 
     def do_create_window(self):
         popup_creator = _PopupCreator(self.get_toplevel())
@@ -114,19 +137,3 @@ class WebView(Browser):
 
     def _popup_created_cb(self, creator):
         self._popup_creators.remove(creator)
-
-    def _save_menu_activate_cb(self, menu_item, image_uri):
-        chooser = FileChooserDialog(title=None,
-                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                    buttons=(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_SAVE,
-                                             gtk.RESPONSE_OK))
-        chooser.set_default_response(gtk.RESPONSE_OK)
-        chooser.set_current_folder(os.path.expanduser('~'))
-        response = chooser.run()
-
-        if response == gtk.RESPONSE_OK:
-            self.save_uri(image_uri, chooser.get_filename())
-
-        chooser.destroy()
