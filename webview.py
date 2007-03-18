@@ -111,7 +111,7 @@ class _ImageMenu(gtk.Menu):
         response = chooser.run()
 
         if response == gtk.RESPONSE_OK:
-            self.save_uri(self._image_uri, chooser.get_filename())
+            self._browser.save_uri(self._image_uri, chooser.get_filename())
 
         chooser.destroy()
 
