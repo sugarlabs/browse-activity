@@ -1,6 +1,6 @@
 [Activity]
 name = Web
-activity_version = 11
+activity_version = 12
 service_name = org.laptop.WebActivity
 icon = activity-web
 class = webactivity.WebActivity
