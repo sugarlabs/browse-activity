@@ -1,0 +1,61 @@
+# Spanish translations for PACKAGE package.
+# Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tomeu <tomeu@tomeuvizoso.net>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-23 15:02+0100\n"
+"PO-Revision-Date: 2007-03-23 15:04+0100\n"
+"Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: webactivity.py:41
+msgid "Web Activity"
+msgstr "Actividad web"
+
+#: webtoolbar.py:33
+msgid "Back"
+msgstr "Volver"
+
+#: webtoolbar.py:39
+msgid "Forward"
+msgstr "Avanzar"
+
+#: webtoolbar.py:45 webtoolbar.py:90
+msgid "Stop"
+msgstr "Interrumpir"
+
+#: webtoolbar.py:62
+msgid "Open"
+msgstr "Abrir"
+
+#: webtoolbar.py:67
+msgid "Save"
+msgstr "Guardar"
+
+#: webtoolbar.py:93
+msgid "Reload"
+msgstr "Refrescar"
+
+#: webtoolbar.py:151 webtoolbar.py:198
+msgid "All supported formats"
+msgstr "Todos los formatos soportados"
+
+#: webtoolbar.py:161 webtoolbar.py:208
+msgid "Web pages"
+msgstr "Páginas web"
+
+#: webtoolbar.py:168 webtoolbar.py:215 webview.py:114
+msgid "Images"
+msgstr "Imágenes"
+
+#: webtoolbar.py:175 webtoolbar.py:222 webview.py:121
+msgid "All files"
+msgstr "Todos los ficheros"

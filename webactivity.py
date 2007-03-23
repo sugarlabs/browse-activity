@@ -14,7 +14,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from gettext import gettext as _
 import hippo
 import logging
 import dbus
@@ -23,6 +22,7 @@ import _sugar
 from sugar.activity import activity
 from sugar.clipboard import clipboardservice
 from sugar import env
+from sugar.activity.locale import _
 
 from webview import WebView
 from webtoolbar import WebToolbar

@@ -8,6 +8,8 @@ configure
 install-sh
 missing
 py-compile
+*.pot
+*.mo
 *.pyc
 *.xo
 *~

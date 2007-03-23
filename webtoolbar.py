@@ -15,7 +15,6 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import logging
-from gettext import gettext as _
 
 import hippo
 import gtk
@@ -25,22 +24,25 @@ from addressentry import AddressEntry
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.iconbutton import IconButton
 from sugar.graphics.filechooser import FileChooserDialog
+from sugar.activity.locale import _
 
 class WebToolbar(Toolbar):
     def __init__(self, embed):
         Toolbar.__init__(self)
         
-        self._back = IconButton(icon_name='theme:stock-back')
+        self._back = IconButton(icon_name='theme:stock-back', tooltip=_('Back'))
         self._back.props.active = False
         self._back.connect("activated", self._go_back_cb)
         self.append(self._back)
 
-        self._forward = IconButton(icon_name='theme:stock-forward')
+        self._forward = IconButton(icon_name='theme:stock-forward',
+                                   tooltip=_('Forward'))
         self._forward.props.active = False
         self._forward.connect("activated", self._go_forward_cb)
         self.append(self._forward)
 
-        self._stop_and_reload = IconButton(icon_name='theme:stock-close')
+        self._stop_and_reload = IconButton(icon_name='theme:stock-close',
+                                           tooltip=_('Stop'))
         self._stop_and_reload.connect("activated", self._stop_and_reload_cb)
         self.append(self._stop_and_reload)
 
@@ -48,16 +50,21 @@ class WebToolbar(Toolbar):
         self._entry.connect("activated", self._entry_activate_cb)
         self.append(self._entry, hippo.PACK_EXPAND)
 
-        self._post = IconButton(icon_name='theme:stock-add')
+        """
+        self._post = IconButton(icon_name='theme:stock-add',
+                                tooltip=_('Post'))
         self._post.props.active = False
         self._post.connect("activated", self._post_cb)
         self.append(self._post)
+        """
         
-        self._open = IconButton(icon_name='theme:stock-open')
+        self._open = IconButton(icon_name='theme:stock-open',
+                                           tooltip=_('Open'))
         self._open.connect("activated", self._open_cb)
         self.append(self._open)
         
-        self._save = IconButton(icon_name='theme:stock-save')
+        self._save = IconButton(icon_name='theme:stock-save',
+                                           tooltip=_('Save'))
         self._save.connect("activated", self._save_cb)
         self.append(self._save)
 
@@ -75,13 +82,15 @@ class WebToolbar(Toolbar):
 
     def set_links_controller(self, links_controller):
         self._links_controller = links_controller
-        self._post.props.active = True
+        #self._post.props.active = True
 
     def _update_stop_and_reload_icon(self):
         if self._embed.props.loading:
             self._stop_and_reload.props.icon_name = 'theme:stock-close'
+            self._stop_and_reload.props.tooltip = _('Stop')
         else:
             self._stop_and_reload.props.icon_name = 'theme:stock-continue'
+            self._stop_and_reload.props.tooltip = _('Reload')
 
     def _progress_changed_cb(self, embed, spec):
         self._entry.props.progress = embed.props.progress

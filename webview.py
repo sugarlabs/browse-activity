@@ -14,13 +14,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
-from gettext import gettext as _
 
 import gobject
 import gtk
 import logging
 
 from sugar.graphics.filechooser import FileChooserDialog
+from sugar.activity.locale import _
 from _sugar import Browser
 from _sugar import PushScroller
 
@@ -121,7 +121,6 @@ class _ImageMenu(gtk.Menu):
         file_filter.set_name(_("All files"))
         file_filter.add_pattern("*")
         chooser.add_filter(file_filter)
-
         response = chooser.run()
 
         if response == gtk.RESPONSE_OK:
