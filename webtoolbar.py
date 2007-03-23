@@ -15,6 +15,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import logging
+from gettext import gettext as _
 
 import hippo
 import gtk
@@ -24,7 +25,6 @@ from addressentry import AddressEntry
 from sugar.graphics.toolbar import Toolbar
 from sugar.graphics.iconbutton import IconButton
 from sugar.graphics.filechooser import FileChooserDialog
-from sugar.activity.locale import _
 
 class WebToolbar(Toolbar):
     def __init__(self, embed):

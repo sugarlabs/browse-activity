@@ -17,12 +17,12 @@
 import hippo
 import logging
 import dbus
+from gettext import gettext as _
 
 import _sugar
 from sugar.activity import activity
 from sugar.clipboard import clipboardservice
 from sugar import env
-from sugar.activity.locale import _
 
 from webview import WebView
 from webtoolbar import WebToolbar
