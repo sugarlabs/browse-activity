@@ -18,9 +18,9 @@ import os
 import gobject
 import gtk
 import logging
+from gettext import gettext as _
 
 from sugar.graphics.filechooser import FileChooserDialog
-from sugar.activity.locale import _
 from _sugar import Browser
 from _sugar import PushScroller
 
