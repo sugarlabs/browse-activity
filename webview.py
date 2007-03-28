@@ -19,6 +19,7 @@ from gettext import gettext as _
 import gobject
 import gtk
 import logging
+from gettext import gettext as _
 
 from sugar.graphics.filechooser import FileChooserDialog
 from _sugar import Browser
