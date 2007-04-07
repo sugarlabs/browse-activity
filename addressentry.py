@@ -16,7 +16,7 @@
 # Boston, MA 02111-1307, USA.
 import gobject
 
-import _sugar
+import sugar.browser
 from sugar.graphics.entry import Entry
 
 class AddressEntry(Entry):
@@ -32,5 +32,5 @@ class AddressEntry(Entry):
         Entry.__init__(self, **kwargs)
 
     def create_entry(self):
-        self._address_entry = _sugar.AddressEntry()
+        self._address_entry = sugar.browser.AddressEntry()
         return self._address_entry

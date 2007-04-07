@@ -19,7 +19,7 @@ import logging
 import dbus
 from gettext import gettext as _
 
-import _sugar
+import sugar.browser
 from sugar.activity import activity
 from sugar.clipboard import clipboardservice
 from sugar import env
@@ -104,17 +104,17 @@ class WebActivity(activity.Activity):
         self.set_title(embed.props.title)
 
 def start():
-    if not _sugar.browser_startup(env.get_profile_path(), 'gecko'):
+    if not sugar.browser.startup(env.get_profile_path(), 'gecko'):
         raise "Error when initializising the web activity."
 
-    download_manager = _sugar.get_download_manager()
+    download_manager = sugar.browser.get_download_manager()
     download_manager.connect('download-started', download_started_cb)
     download_manager.connect('download-completed', download_completed_cb)
     download_manager.connect('download-cancelled', download_started_cb)
     download_manager.connect('download-progress', download_progress_cb)
 
 def stop():
-    _sugar.browser_shutdown()
+    sugar.browser.shutdown()
 
 def download_started_cb(download_manager, download):
     name = download.get_url().rsplit('/', 1)[1]
