@@ -28,7 +28,7 @@ from webview import WebView
 from webtoolbar import WebToolbar
 from linksmodel import LinksModel
 from linksview import LinksView
-from linkscontroller import LinksController
+#from linkscontroller import LinksController
 
 _HOMEPAGE = 'file:///home/olpc/Library/index.html'
 
