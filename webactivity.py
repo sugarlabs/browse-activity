@@ -40,9 +40,6 @@ class WebActivity(activity.Activity):
 
         self.set_title(_('Web Activity'))
 
-        vbox = hippo.CanvasBox()
-        self.set_root(vbox)
-
         if browser:
             self._browser = browser
         else:
@@ -50,22 +47,20 @@ class WebActivity(activity.Activity):
         self._browser.connect('notify::title', self._title_changed_cb)
 
         self._toolbar = WebToolbar(self._browser)
-        vbox.append(self._toolbar)
+        self.toolbox.add_toolbar(self._toolbar)
+        self._toolbar.show()
 
-        self._hbox = hippo.CanvasBox(orientation=hippo.ORIENTATION_HORIZONTAL)
-        vbox.append(self._hbox, hippo.PACK_EXPAND)
+        self._hbox = gtk.HBox()
 
         self._links_model = LinksModel()
         self._links_view = LinksView(self._links_model, self._browser)
-        self._hbox.append(self._links_view)
-        self._hbox.set_child_visible(self._links_view, False)
+        self._hbox.pack_start(self._links_view, False)
             
         self._links_model.connect('link_added', self._link_added_cb)
         self._links_model.connect('link_removed', self._link_removed_cb)
 
-        browser_widget = hippo.CanvasWidget()
-        browser_widget.props.widget = self._browser
-        self._hbox.append(browser_widget, hippo.PACK_EXPAND)
+        self.set_canvas(self._hbox)
+        self._hbox.show()
 
         self._service = handle.get_presence_service() 
         if self._service:

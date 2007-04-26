@@ -13,70 +13,55 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
 import os
 import logging
-from gettext import gettext as _
 
-import hippo
 import gtk
+
+from sugar.graphics.toolbutton import ToolButton
+from sugar.graphics.filechooser import FileChooserDialog
 
 from addressentry import AddressEntry
 
-from sugar.graphics.toolbar import Toolbar
-from sugar.graphics.iconbutton import IconButton
-from sugar.graphics.filechooser import FileChooserDialog
-
-class WebToolbar(Toolbar):
+class WebToolbar(gtk.Toolbar):
     def __init__(self, embed):
-        Toolbar.__init__(self)
+        gtk.Toolbar.__init__(self)
         
-        self._back = IconButton(icon_name='theme:stock-back', tooltip=_('Back'))
-        self._back.props.active = False
-        self._back.connect("activated", self._go_back_cb)
-        self.append(self._back)
+        self._back = ToolButton('stock-back')
+        self._back.props.sensitive = False
+        self._back.connect('clicked', self._go_back_cb)
+        self.insert(self._back, -1)
 
-        self._forward = IconButton(icon_name='theme:stock-forward',
-                                   tooltip=_('Forward'))
-        self._forward.props.active = False
-        self._forward.connect("activated", self._go_forward_cb)
-        self.append(self._forward)
+        self._forward = ToolButton('stock-forward')
+        self._forward.props.sensitive = False
+        self._forward.connect('clicked', self._go_forward_cb)
+        self.insert(self._forward, -1)
 
-        self._stop_and_reload = IconButton(icon_name='theme:stock-close',
-                                           tooltip=_('Stop'))
-        self._stop_and_reload.connect("activated", self._stop_and_reload_cb)
-        self.append(self._stop_and_reload)
+        self._stop_and_reload = ToolButton('window-close')
+        self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
+        self.insert(self._stop_and_reload, -1)
 
         self._entry = AddressEntry()
-        self._entry.connect("activated", self._entry_activate_cb)
+        self._entry.connect('activated', self._entry_activate_cb)
         self.append(self._entry, hippo.PACK_EXPAND)
 
-        """
-        self._post = IconButton(icon_name='theme:stock-add',
-                                tooltip=_('Post'))
-        self._post.props.active = False
-        self._post.connect("activated", self._post_cb)
-        self.append(self._post)
-        """
+        self._open = ToolButton('stock-open')
+        self._open.connect('clicked', self._open_cb)
+        self.insert(self._open, -1)
         
-        self._open = IconButton(icon_name='theme:stock-open',
-                                           tooltip=_('Open'))
-        self._open.connect("activated", self._open_cb)
-        self.append(self._open)
-        
-        self._save = IconButton(icon_name='theme:stock-save',
-                                           tooltip=_('Save'))
-        self._save.connect("activated", self._save_cb)
+        self._save = ToolButton('stock-save')
+        self._save.connect('clicked', self._save_cb)
         self.append(self._save)
 
         self._embed = embed
-        self._embed.connect("notify::progress", self._progress_changed_cb)
-        self._embed.connect("notify::loading", self._loading_changed_cb)
-        self._embed.connect("notify::address", self._address_changed_cb)
-        self._embed.connect("notify::title", self._title_changed_cb)
-        self._embed.connect("notify::can-go-back",
-                            self._can_go_back_changed_cb)
-        self._embed.connect("notify::can-go-forward",
-                            self._can_go_forward_changed_cb)
+        embed.connect("notify::progress", self._progress_changed_cb)
+        embed.connect("notify::loading", self._loading_changed_cb)
+        embed.connect("notify::address", self._address_changed_cb)
+        embed.connect("notify::title", self._title_changed_cb)
+        embed.connect("notify::can-go-back", self._can_go_back_changed_cb)
+        embed.connect("notify::can-go-forward",
+                      self._can_go_forward_changed_cb)
 
         self._update_stop_and_reload_icon()
 
@@ -105,10 +90,10 @@ class WebToolbar(Toolbar):
         self._entry.props.title = embed.props.title
 
     def _can_go_back_changed_cb(self, embed, spec):
-        self._back.props.active = embed.props.can_go_back
+        self._back.props.sensitive = embed.props.can_go_back
 
     def _can_go_forward_changed_cb(self, embed, spec):
-        self._forward.props.active = embed.props.can_go_forward
+        self._forward.props.sensitive = embed.props.can_go_forward
 
     def _entry_activate_cb(self, entry):
         self._embed.load_url(entry.props.text)
