@@ -48,10 +48,8 @@ class WebActivity(activity.Activity):
         self.toolbox.add_toolbar(_('Browse'), self._toolbar)
         self._toolbar.show()
 
-        self._hbox = gtk.HBox()
-
-        self.set_canvas(self._hbox)
-        self._hbox.show()
+        self.set_canvas(self._browser)
+        self._browser.show()
 
         if handle.uri:
             url = handle.uri

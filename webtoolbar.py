@@ -32,32 +32,39 @@ class WebToolbar(gtk.Toolbar):
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
         self.insert(self._back, -1)
+        self._back.show()
 
         self._forward = ToolButton('stock-forward')
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
         self.insert(self._forward, -1)
+        self._forward.show()
 
         self._stop_and_reload = ToolButton('window-close')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
         self.insert(self._stop_and_reload, -1)
+        self._stop_and_reload.show()
 
         self._entry = AddressEntry()
         self._entry.connect('activate', self._entry_activate_cb)
 
         entry_item = gtk.ToolItem()
+        entry_item.set_expand(True)
         entry_item.add(self._entry)
         self._entry.show()
         
         self.insert(entry_item, -1)
+        entry_item.show()
 
         self._open = ToolButton('stock-open')
         self._open.connect('clicked', self._open_cb)
         self.insert(self._open, -1)
+        self._open.show()
         
         self._save = ToolButton('stock-save')
         self._save.connect('clicked', self._save_cb)
         self.insert(self._save, -1)
+        self._save.show()
 
         self._embed = embed
         embed.connect("notify::progress", self._progress_changed_cb)
