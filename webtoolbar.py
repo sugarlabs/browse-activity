@@ -22,7 +22,7 @@ import gtk
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.filechooser import FileChooserDialog
 
-from addressentry import AddressEntry
+from sugar.browser import AddressEntry
 
 class WebToolbar(gtk.Toolbar):
     def __init__(self, embed):
@@ -43,8 +43,13 @@ class WebToolbar(gtk.Toolbar):
         self.insert(self._stop_and_reload, -1)
 
         self._entry = AddressEntry()
-        self._entry.connect('activated', self._entry_activate_cb)
-        self.append(self._entry, hippo.PACK_EXPAND)
+        self._entry.connect('activate', self._entry_activate_cb)
+
+        entry_item = gtk.ToolItem()
+        entry_item.add(self._entry)
+        self._entry.show()
+        
+        self.insert(entry_item, -1)
 
         self._open = ToolButton('stock-open')
         self._open.connect('clicked', self._open_cb)
@@ -52,7 +57,7 @@ class WebToolbar(gtk.Toolbar):
         
         self._save = ToolButton('stock-save')
         self._save.connect('clicked', self._save_cb)
-        self.append(self._save)
+        self.insert(self._save, -1)
 
         self._embed = embed
         embed.connect("notify::progress", self._progress_changed_cb)
@@ -65,17 +70,11 @@ class WebToolbar(gtk.Toolbar):
 
         self._update_stop_and_reload_icon()
 
-    def set_links_controller(self, links_controller):
-        self._links_controller = links_controller
-        #self._post.props.active = True
-
     def _update_stop_and_reload_icon(self):
         if self._embed.props.loading:
-            self._stop_and_reload.props.icon_name = 'theme:stock-close'
-            self._stop_and_reload.props.tooltip = _('Stop')
+            self._stop_and_reload.set_icon_name('stock-close')
         else:
-            self._stop_and_reload.props.icon_name = 'theme:stock-continue'
-            self._stop_and_reload.props.tooltip = _('Reload')
+            self._stop_and_reload.set_icon_name('stock-continue')
 
     def _progress_changed_cb(self, embed, spec):
         self._entry.props.progress = embed.props.progress
@@ -110,11 +109,6 @@ class WebToolbar(gtk.Toolbar):
             self._embed.stop_load()
         else:
             self._embed.reload(0)
-
-    def _post_cb(self, button):
-        title = self._embed.get_title()
-        address = self._embed.get_location()
-        self._links_controller.post_link(title, address)
 
     def _save_cb(self, button):
         filename = self._embed.props.document_metadata.filename

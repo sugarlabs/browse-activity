@@ -14,10 +14,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import hippo
 import logging
-import dbus
 from gettext import gettext as _
+
+import gtk
+import dbus
 
 import sugar.browser
 from sugar.activity import activity
@@ -26,9 +27,6 @@ from sugar import env
 
 from webview import WebView
 from webtoolbar import WebToolbar
-from linksmodel import LinksModel
-from linksview import LinksView
-#from linkscontroller import LinksController
 
 _HOMEPAGE = 'file:///home/olpc/Library/index.html'
 
@@ -47,53 +45,21 @@ class WebActivity(activity.Activity):
         self._browser.connect('notify::title', self._title_changed_cb)
 
         self._toolbar = WebToolbar(self._browser)
-        self.toolbox.add_toolbar(self._toolbar)
+        self.toolbox.add_toolbar(_('Browse'), self._toolbar)
         self._toolbar.show()
 
         self._hbox = gtk.HBox()
 
-        self._links_model = LinksModel()
-        self._links_view = LinksView(self._links_model, self._browser)
-        self._hbox.pack_start(self._links_view, False)
-            
-        self._links_model.connect('link_added', self._link_added_cb)
-        self._links_model.connect('link_removed', self._link_removed_cb)
-
         self.set_canvas(self._hbox)
         self._hbox.show()
 
-        self._service = handle.get_presence_service() 
-        if self._service:
-            self._setup_links_controller()
-            url = self._service.get_published_value('URL')
-        elif handle.uri:
+        if handle.uri:
             url = handle.uri
         else:
             url = _HOMEPAGE
 
         if url:
             self._browser.load_url(url)
-
-    def _link_added_cb(self, model, link):
-        if self._links_view.get_link_count() > 0:
-            self._hbox.set_child_visible(self._links_view, True)
-
-    def _link_removed_cb(self, model, link):
-        if self._links_view.get_link_count() == 0:
-            self._hbox.set_child_visible(self._links_view, False)
-
-    def _setup_links_controller(self):
-        links_controller = LinksController(self._service, self._links_model)
-        self._toolbar.set_links_controller(links_controller)
-
-    def share(self):
-        activity.Activity.share(self)
-
-        self._setup_links_controller()
-
-        url = self._browser.get_location()
-        if url:
-            self._service.set_published_value('URL', url)
 
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
