@@ -88,7 +88,7 @@ def download_started_cb(download_manager, download):
     download.set_data('object-id', object_id)
     cb_service.add_object_format(object_id,
                                  download.get_mime_type(),
-                                 download.get_file_name(),
+                                 'file://' + download.get_file_name(),
                                  on_disk = True)
 
 def download_completed_cb(download_manager, download):
