@@ -44,9 +44,14 @@ class WebActivity(activity.Activity):
             self._browser = WebView()
         self._browser.connect('notify::title', self._title_changed_cb)
 
-        self._toolbar = WebToolbar(self._browser)
-        self.toolbox.add_toolbar(_('Browse'), self._toolbar)
-        self._toolbar.show()
+        toolbox = activity.ActivityToolbox(self)
+
+        toolbar = WebToolbar(self._browser)
+        toolbox.add_toolbar(_('Browse'), toolbar)
+        toolbar.show()
+
+        self.set_toolbox(toolbox)
+        toolbox.show()
 
         self.set_canvas(self._browser)
         self._browser.show()
