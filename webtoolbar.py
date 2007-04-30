@@ -20,7 +20,6 @@ import logging
 import gtk
 
 from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.filechooser import FileChooserDialog
 
 from sugar.browser import AddressEntry
 
@@ -122,13 +121,13 @@ class WebToolbar(gtk.Toolbar):
         if not filename:
             filename = self._embed.get_title() + '.html'
 
-        chooser = FileChooserDialog(title=None,
-                                    parent=self._embed.get_toplevel(),
-                                    action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                    buttons=(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_SAVE,
-                                             gtk.RESPONSE_OK))
+        chooser = gtk.FileChooserDialog(title=None,
+                                        parent=self._embed.get_toplevel(),
+                                        action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                        buttons=(gtk.STOCK_CANCEL,
+                                                 gtk.RESPONSE_CANCEL,
+                                                 gtk.STOCK_SAVE,
+                                                 gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         chooser.set_current_folder(os.path.expanduser('~'))
         chooser.set_current_name(filename)
