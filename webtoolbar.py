@@ -27,19 +27,19 @@ class WebToolbar(gtk.Toolbar):
     def __init__(self, embed):
         gtk.Toolbar.__init__(self)
         
-        self._back = ToolButton('stock-back')
+        self._back = ToolButton('go-previous')
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
         self.insert(self._back, -1)
         self._back.show()
 
-        self._forward = ToolButton('stock-forward')
+        self._forward = ToolButton('go-next')
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
         self.insert(self._forward, -1)
         self._forward.show()
 
-        self._stop_and_reload = ToolButton('window-close')
+        self._stop_and_reload = ToolButton('stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
         self.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
@@ -78,9 +78,9 @@ class WebToolbar(gtk.Toolbar):
 
     def _update_stop_and_reload_icon(self):
         if self._embed.props.loading:
-            self._stop_and_reload.set_icon_name('stock-close')
+            self._stop_and_reload.set_named_icon('stop')
         else:
-            self._stop_and_reload.set_icon_name('stock-continue')
+            self._stop_and_reload.set_named_icon('view-refresh')
 
     def _progress_changed_cb(self, embed, spec):
         self._entry.props.progress = embed.props.progress
