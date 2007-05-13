@@ -17,6 +17,7 @@ import os
 import logging
 import time
 from gettext import gettext as _
+import urlparse
 
 import gtk
 import dbus
@@ -24,9 +25,7 @@ import dbus
 import sugar.browser
 from sugar.activity import activity
 from sugar.datastore import datastore
-from sugar.datastore.datastore import WebSession
 from sugar import profile
-from sugar.clipboard import clipboardservice
 from sugar import env
 
 from webview import WebView
@@ -40,9 +39,6 @@ class WebActivity(activity.Activity):
 
         logging.debug('Starting the web activity')
 
-        self._journal_handle = None
-        self._last_saved_session = None
-
         self.set_title(_('Web Activity'))
 
         if browser:
@@ -53,7 +49,6 @@ class WebActivity(activity.Activity):
 
         toolbox = activity.ActivityToolbox(self)
         activity_toolbar = toolbox.get_activity_toolbar()
-        activity_toolbar.close.connect('clicked', self._close_clicked_cb)
 
         toolbar = WebToolbar(self._browser)
         toolbox.add_toolbar(_('Browse'), toolbar)
@@ -65,71 +60,43 @@ class WebActivity(activity.Activity):
         self.set_canvas(self._browser)
         self._browser.show()
 
-        if handle.object_id:
-            self._journal_handle = handle.object_id
-            # Will set the session in the realize callback.
-            self._browser.connect('realize', self._realize_cb)
-        elif handle.uri:
+        if handle.uri:
             self._browser.load_url(handle.uri)
         else:
             self._browser.load_url(_HOMEPAGE)
 
-        self.connect('focus-out-event', self._focus_out_event_cb)
+        if not self.jobject['title']:
+            self.jobject['title'] = _('Web session')
+
+        # FIXME: this should be done in activity.Activity
+        self._browser.connect('realize', self._realize_cb)
+
+    def _realize_cb(self, browser):
+        if self.jobject.file_path:
+            self.read_file()
 
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
 
-    def _realize_cb(self, browser):
-        if self._journal_handle:
-            obj = datastore.read(self._journal_handle)
-            f = open(obj.get_file_path(), 'r')
-            try:
-                session_data = f.read()
-            finally:
-                f.close()
-            logging.debug('Trying to set session: %s.' % session_data)
-            self._browser.set_session(session_data)
+    def read_file(self):
+        f = open(self.jobject.file_path, 'r')
+        try:
+            session_data = f.read()
+        finally:
+            f.close()
+        logging.debug('Trying to set session: %s.' % session_data)
+        self._browser.set_session(session_data)
 
-    def _focus_out_event_cb(self, widget, event):
-        self._autosave()
-
-    def _close_clicked_cb(self, widget):
-        self._autosave()
-        return False
-
-    def _autosave(self):
+    def write_file(self):
         session_data = self._browser.get_session()
-        if not self._journal_handle:
-            home_dir = os.path.expanduser('~')
-            journal_dir = os.path.join(home_dir, "Journal")
-            web_session = WebSession({
-                'preview'      : _('No preview'),
-                'date'         : str(time.time()),
-                'title'        : _('Web session'),
-                'icon'         : 'theme:object-link',
-                'keep'         : '0',
-                'buddies'      : str([ { 'name' : profile.get_nick_name(),
-                                        'color': profile.get_color().to_string() }]),
-                'icon-color'   : profile.get_color().to_string()})
-            f = open(os.path.join(journal_dir, '%i.txt' % time.time()), 'w')
-            try:
-                f.write(session_data)
-            finally:
-                f.close()
-            web_session.set_file_path(f.name)
-            self._journal_handle = datastore.write(web_session)
-        elif session_data != self._last_saved_session:
-            web_session = datastore.read(self._journal_handle)
-            metadata = web_session.get_metadata()
-            metadata['date'] = str(time.time())
-            f = open(web_session.get_file_path(), 'w')
-            try:
-                f.write(session_data)
-            finally:
-                f.close()
-            datastore.write(web_session)
-
-        self._last_saved_session = session_data
+        self.jobject['preview'] = self._browser.props.title
+        self.jobject['icon'] = 'theme:object-link'
+        f = open(self.jobject.file_path, 'w')
+        try:
+            f.write(session_data)
+        finally:
+            f.close()
+        return f.name
 
 def start():
     if not sugar.browser.startup(env.get_profile_path(), 'gecko'):
@@ -144,24 +111,38 @@ def start():
 def stop():
     sugar.browser.shutdown()
 
-def download_started_cb(download_manager, download):
-    name = download.get_url().rsplit('/', 1)[1]
+def get_download_file_name(download):
+    uri = urlparse.urlparse(download.get_url())
+    path, file_name = os.path.split(uri[2])
+    return file_name
 
-    cb_service = clipboardservice.get_instance()
-    object_id = cb_service.add_object(name)
-    download.set_data('object-id', object_id)
-    cb_service.add_object_format(object_id,
-                                 download.get_mime_type(),
-                                 'file://' + download.get_file_name(),
-                                 on_disk = True)
+def download_started_cb(download_manager, download):
+    jobject = datastore.create()
+    jobject['title'] = _('Downloading %s from \n%s. Progress %i%%.') % \
+        (get_download_file_name(download), download.get_url(), 0)
+
+    if download.get_mime_type() in ['application/pdf', 'application/x-pdf']:
+        jobject['activity'] = 'org.laptop.sugar.Xbook'
+        jobject['icon'] = 'object-text'
+    else:
+        jobject['activity'] = ''
+        jobject['icon'] = 'object-link'
+
+    jobject['date'] = str(time.time())
+    jobject['keep'] = '0'
+    jobject['buddies'] = ''
+    jobject['preview'] = ''
+    jobject['icon-color'] = profile.get_color().to_string()
+    jobject.file_path = ''
+    datastore.write(jobject)
+    download.set_data('object-id', jobject.object_id)
 
 def download_completed_cb(download_manager, download):
-    object_id = download.get_data('object-id')
-    if not object_id:
-        logging.debug("Unknown download object %r" % download)
-        return
-    cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(object_id, 100)
+    jobject = datastore.get(download.get_data('object-id'))
+    jobject['title'] = _('File %s downloaded from\n%s.') % \
+        (get_download_file_name(download), download.get_url())
+    jobject.file_path = download.get_file_name()
+    datastore.write(jobject)
 
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
@@ -179,5 +160,7 @@ def download_progress_cb(download_manager, download):
     # from download_completed_cb instead
     percent = download.get_percent()
     if percent < 100:
-        cb_service = clipboardservice.get_instance()
-        cb_service.set_object_percent(object_id, percent)
+        jobject = datastore.get(download.get_data('object-id'))
+        jobject['title'] = _('Downloading %s from\n%s.\nProgress %i%%.') % \
+            (get_download_file_name(download), download.get_url(), percent)
+        datastore.write(jobject)
