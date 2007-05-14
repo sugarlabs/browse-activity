@@ -26,6 +26,7 @@ import sugar.browser
 from sugar.activity import activity
 from sugar.datastore import datastore
 from sugar import profile
+from sugar.clipboard import clipboardservice
 from sugar import env
 
 from webview import WebView
@@ -118,15 +119,15 @@ def get_download_file_name(download):
 
 def download_started_cb(download_manager, download):
     jobject = datastore.create()
-    jobject['title'] = _('Downloading %s from \n%s. Progress %i%%.') % \
-        (get_download_file_name(download), download.get_url(), 0)
+    jobject['title'] = _('Downloading %s from \n%s.') % \
+        (get_download_file_name(download), download.get_url())
 
     if download.get_mime_type() in ['application/pdf', 'application/x-pdf']:
         jobject['activity'] = 'org.laptop.sugar.Xbook'
-        jobject['icon'] = 'object-text'
+        jobject['icon'] = 'theme:object-text'
     else:
         jobject['activity'] = ''
-        jobject['icon'] = 'object-link'
+        jobject['icon'] = 'theme:object-link'
 
     jobject['date'] = str(time.time())
     jobject['keep'] = '0'
@@ -135,14 +136,29 @@ def download_started_cb(download_manager, download):
     jobject['icon-color'] = profile.get_color().to_string()
     jobject.file_path = ''
     datastore.write(jobject)
-    download.set_data('object-id', jobject.object_id)
+    download.set_data('jobject-id', jobject.object_id)
+
+    cb_service = clipboardservice.get_instance()
+    object_id = cb_service.add_object(get_download_file_name(download))
+    download.set_data('object-id', object_id)
+    cb_service.add_object_format(object_id,
+                                 download.get_mime_type(),
+                                 'file://' + download.get_file_name(),
+                                 on_disk = True)
 
 def download_completed_cb(download_manager, download):
-    jobject = datastore.get(download.get_data('object-id'))
+    jobject = datastore.get(download.get_data('jobject-id'))
     jobject['title'] = _('File %s downloaded from\n%s.') % \
         (get_download_file_name(download), download.get_url())
     jobject.file_path = download.get_file_name()
     datastore.write(jobject)
+
+    object_id = download.get_data('object-id')
+    if not object_id:
+        logging.debug("Unknown download object %r" % download)
+        return
+    cb_service = clipboardservice.get_instance()
+    cb_service.set_object_percent(object_id, 100)
 
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
@@ -151,7 +167,7 @@ def download_cancelled_cb(download_manager, download):
     raise "Cancelling downloads still not implemented."
 
 def download_progress_cb(download_manager, download):
-    object_id = download.get_data('object-id')
+    object_id = download.get_data('jobject-id')
     if not object_id:
         logging.debug("Unknown download object %r" % download)
         return
@@ -160,7 +176,12 @@ def download_progress_cb(download_manager, download):
     # from download_completed_cb instead
     percent = download.get_percent()
     if percent < 100:
-        jobject = datastore.get(download.get_data('object-id'))
+        """
+        jobject = datastore.get(download.get_data('jobject-id'))
         jobject['title'] = _('Downloading %s from\n%s.\nProgress %i%%.') % \
             (get_download_file_name(download), download.get_url(), percent)
         datastore.write(jobject)
+        """
+
+        cb_service = clipboardservice.get_instance()
+        cb_service.set_object_percent(download.get_data('object-id'), percent)
