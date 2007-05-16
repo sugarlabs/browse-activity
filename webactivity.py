@@ -90,7 +90,10 @@ class WebActivity(activity.Activity):
 
     def write_file(self):
         session_data = self._browser.get_session()
-        self.jobject['preview'] = self._browser.props.title
+        if self._browser.props.title:
+            self.jobject['preview'] = self._browser.props.title
+        else:
+            self.jobject['preview'] = ''
         self.jobject['icon'] = 'theme:object-link'
         f = open(self.jobject.file_path, 'w')
         try:
