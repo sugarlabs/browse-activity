@@ -146,12 +146,10 @@ def download_started_cb(download_manager, download):
                                  'file://' + download.get_file_name(),
                                  on_disk = True)
 
-def download_completed_cb(download_manager, download):
-    jobject = datastore.get(download.get_data('jobject-id'))
-    jobject['title'] = _('File %s downloaded from\n%s.') % \
-        (get_download_file_name(download), download.get_url())
-    jobject.file_path = download.get_file_name()
-    datastore.write(jobject)
+def _dl_completed_cb(download, success, err=None):
+    if not success:
+        # Log errors but still set object completed
+        logging.debug("Error writing completed download to datastore: %s" % err)
 
     object_id = download.get_data('object-id')
     if not object_id:
@@ -160,11 +158,28 @@ def download_completed_cb(download_manager, download):
     cb_service = clipboardservice.get_instance()
     cb_service.set_object_percent(object_id, 100)
 
+def download_completed_cb(download_manager, download):
+    jobject = datastore.get(download.get_data('jobject-id'))
+    jobject['title'] = _('File %s downloaded from\n%s.') % \
+        (get_download_file_name(download), download.get_url())
+    jobject.file_path = download.get_file_name()
+    datastore.write(jobject,
+            reply_handler=lambda *args: _dl_completed_cb(download, True, *args),
+            error_handler=lambda *args: _dl_completed_cb(download, False, *args))
+
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
     #FIXME: Will do it when we complete progress on the definition of the
     #FIXME: clipboard API.
     raise "Cancelling downloads still not implemented."
+
+def _dl_progress_cb(download, percent, success, err=None):
+    if not success:
+        # Log errors but still set object completed
+        logging.debug("Error writing completed download to datastore: %s" % err)
+
+    cb_service = clipboardservice.get_instance()
+    cb_service.set_object_percent(download.get_data('object-id'), percent)
 
 def download_progress_cb(download_manager, download):
     object_id = download.get_data('jobject-id')
@@ -176,12 +191,9 @@ def download_progress_cb(download_manager, download):
     # from download_completed_cb instead
     percent = download.get_percent()
     if percent < 100:
-        """
         jobject = datastore.get(download.get_data('jobject-id'))
         jobject['title'] = _('Downloading %s from\n%s.\nProgress %i%%.') % \
             (get_download_file_name(download), download.get_url(), percent)
-        datastore.write(jobject)
-        """
-
-        cb_service = clipboardservice.get_instance()
-        cb_service.set_object_percent(download.get_data('object-id'), percent)
+        datastore.write(jobject,
+            reply_handler=lambda *args: _dl_progress_cb(download, percent, True, *args),
+            error_handler=lambda *args: _dl_progress_cb(download, percent, False, *args))
