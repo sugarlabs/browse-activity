@@ -24,6 +24,7 @@ import dbus
 
 import sugar.browser
 from sugar.activity import activity
+from sugar.activity import activityfactory
 from sugar.datastore import datastore
 from sugar import profile
 from sugar.clipboard import clipboardservice
@@ -125,6 +126,7 @@ def download_started_cb(download_manager, download):
     jobject['title'] = _('Downloading %s from \n%s.') % \
         (get_download_file_name(download), download.get_url())
 
+    # FIXME: We should use here the mime registry when we have one.
     if download.get_mime_type() in ['application/pdf', 'application/x-pdf']:
         jobject['activity'] = 'org.laptop.sugar.Xbook'
         jobject['icon'] = 'theme:object-text'
@@ -169,6 +171,10 @@ def download_completed_cb(download_manager, download):
     datastore.write(jobject,
             reply_handler=lambda *args: _dl_completed_cb(download, True, *args),
             error_handler=lambda *args: _dl_completed_cb(download, False, *args))
+
+    if jobject['activity']:
+        activityfactory.create_with_object_id(jobject['activity'],
+                                              jobject.object_id)
 
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
