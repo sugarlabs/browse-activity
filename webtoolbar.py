@@ -42,10 +42,10 @@ class _ProgressListener:
         
     def onStateChange(self, webProgress, request, stateFlags, status):
         if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-            self._toolbar._show_reload_icon()
+            self._toolbar._show_stop_icon()
             self._toolbar._update_navigation_buttons()
         if stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-            self._toolbar._show_stop_icon()
+            self._toolbar._show_reload_icon()
             self._toolbar._update_navigation_buttons()            
 
     def onStatusChange(self, webProgress, request, status, message):
@@ -107,8 +107,7 @@ class WebToolbar(gtk.Toolbar):
         self._forward.props.sensitive = can_go_forward
 
     def _entry_activate_cb(self, entry):
-        self._embed.load_uri(entry.props.text)
-        self._embed.grab_focus()
+        self._browser.load_uri(entry.props.text)
 
     def _go_back_cb(self, button):
         self._browser.web_navigation.goBack()
@@ -118,6 +117,7 @@ class WebToolbar(gtk.Toolbar):
 
     def _stop_and_reload_cb(self, button):
         if self._embed.props.loading:
-            self._embed.stop_load()
+            self._browser.web_navigation.stop()
         else:
-            self._embed.reload(0)
+            flags = interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
+            self._browser.web_navigation.reload(flags)
