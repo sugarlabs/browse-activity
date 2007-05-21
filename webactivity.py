@@ -13,27 +13,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
 import os
 import logging
-import time
 from gettext import gettext as _
-import urlparse
 
 import gtk
 import dbus
 
-import sugar.browser
 from sugar.activity import activity
-from sugar.activity import activityfactory
 from sugar.datastore import datastore
 from sugar import profile
 from sugar.clipboard import clipboardservice
 from sugar import env
 
-from webview import WebView
+import hulahop
+hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
+
+from browser import Browser
 from webtoolbar import WebToolbar
 
-_HOMEPAGE = 'file:///home/olpc/Library/index.html'
+_HOMEPAGE = 'http://www.google.com'
 
 class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
@@ -46,8 +46,7 @@ class WebActivity(activity.Activity):
         if browser:
             self._browser = browser
         else:
-            self._browser = WebView()
-        self._browser.connect('notify::title', self._title_changed_cb)
+            self._browser = Browser()
 
         toolbox = activity.ActivityToolbox(self)
         activity_toolbar = toolbox.get_activity_toolbar()
@@ -63,12 +62,9 @@ class WebActivity(activity.Activity):
         self._browser.show()
 
         if handle.uri:
-            self._browser.load_url(handle.uri)
+            self._browser.load_uri(handle.uri)
         else:
-            self._browser.load_url(_HOMEPAGE)
-
-        if not self.jobject['title']:
-            self.jobject['title'] = _('Web session')
+            self._browser.load_uri(_HOMEPAGE)
 
         # FIXME: this should be done in activity.Activity
         self._browser.connect('realize', self._realize_cb)
@@ -103,6 +99,8 @@ class WebActivity(activity.Activity):
             f.close()
         return f.name
 
+"""
+
 def start():
     if not sugar.browser.startup(env.get_profile_path(), 'gecko'):
         raise "Error when initializising the web activity."
@@ -126,7 +124,6 @@ def download_started_cb(download_manager, download):
     jobject['title'] = _('Downloading %s from \n%s.') % \
         (get_download_file_name(download), download.get_url())
 
-    # FIXME: We should use here the mime registry when we have one.
     if download.get_mime_type() in ['application/pdf', 'application/x-pdf']:
         jobject['activity'] = 'org.laptop.sugar.Xbook'
         jobject['icon'] = 'theme:object-text'
@@ -172,10 +169,6 @@ def download_completed_cb(download_manager, download):
             reply_handler=lambda *args: _dl_completed_cb(download, True, *args),
             error_handler=lambda *args: _dl_completed_cb(download, False, *args))
 
-    if jobject['activity']:
-        activityfactory.create_with_object_id(jobject['activity'],
-                                              jobject.object_id)
-
 def download_cancelled_cb(download_manager, download):
     #FIXME: Needs to update the state of the object to 'download stopped'.
     #FIXME: Will do it when we complete progress on the definition of the
@@ -206,3 +199,5 @@ def download_progress_cb(download_manager, download):
         datastore.write(jobject,
             reply_handler=lambda *args: _dl_progress_cb(download, percent, True, *args),
             error_handler=lambda *args: _dl_progress_cb(download, percent, False, *args))
+
+"""

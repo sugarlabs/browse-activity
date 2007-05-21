@@ -21,11 +21,13 @@ import gtk
 
 from sugar.graphics.toolbutton import ToolButton
 
-from sugar.browser import AddressEntry
+from sugar.graphics import AddressEntry
 
 class WebToolbar(gtk.Toolbar):
     def __init__(self, embed):
         gtk.Toolbar.__init__(self)
+
+        self._embed = embed
         
         self._back = ToolButton('go-previous')
         self._back.props.sensitive = False
@@ -55,43 +57,14 @@ class WebToolbar(gtk.Toolbar):
         self.insert(entry_item, -1)
         entry_item.show()
 
-        self._embed = embed
-        embed.connect("notify::progress", self._progress_changed_cb)
-        embed.connect("notify::loading", self._loading_changed_cb)
-        embed.connect("notify::address", self._address_changed_cb)
-        embed.connect("notify::title", self._title_changed_cb)
-        embed.connect("notify::can-go-back", self._can_go_back_changed_cb)
-        embed.connect("notify::can-go-forward",
-                      self._can_go_forward_changed_cb)
-
-        self._update_stop_and_reload_icon()
-
     def _update_stop_and_reload_icon(self):
         if self._embed.props.loading:
             self._stop_and_reload.set_named_icon('stop')
         else:
             self._stop_and_reload.set_named_icon('view-refresh')
 
-    def _progress_changed_cb(self, embed, spec):
-        self._entry.props.progress = embed.props.progress
-
-    def _loading_changed_cb(self, embed, spec):
-        self._update_stop_and_reload_icon()
-
-    def _address_changed_cb(self, embed, spec):
-        self._entry.props.address = embed.props.address
-
-    def _title_changed_cb(self, embed, spec):
-        self._entry.props.title = embed.props.title
-
-    def _can_go_back_changed_cb(self, embed, spec):
-        self._back.props.sensitive = embed.props.can_go_back
-
-    def _can_go_forward_changed_cb(self, embed, spec):
-        self._forward.props.sensitive = embed.props.can_go_forward
-
     def _entry_activate_cb(self, entry):
-        self._embed.load_url(entry.props.text)
+        self._embed.load_uri(entry.props.text)
         self._embed.grab_focus()
 
     def _go_back_cb(self, button):

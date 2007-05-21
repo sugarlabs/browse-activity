@@ -13,16 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-import os
-from gettext import gettext as _
 
-import gobject
-import gtk
-import logging
-from gettext import gettext as _
+from hulahop.webview import WebView
 
-from sugar.browser import Browser
+class Browser(WebView):
+    def __init__(self):
+        WebView.__init__(self)
 
+"""
 class _PopupCreator(gobject.GObject):
     __gsignals__ = {
         'popup-created':  (gobject.SIGNAL_RUN_FIRST,
@@ -43,7 +41,7 @@ class _PopupCreator(gobject.GObject):
         self._dialog.realize()
         self._dialog.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
 
-        self._embed = WebView()
+        self._embed = webviewWebView()
         self._size_to_sid = self._embed.connect('size_to', self._size_to_cb)
         self._vis_sid = self._embed.connect('visibility', self._visibility_cb)
 
@@ -82,52 +80,8 @@ class _PopupCreator(gobject.GObject):
 
     def get_embed(self):
         return self._embed
-
-class _ImageMenu(gtk.Menu):
-    def __init__(self, browser, event):
-        gtk.Menu.__init__(self)
-
-        self._browser = browser
-        self._image_uri = event.image_uri
-        self._image_name = event.image_name
-
-        menu_item = gtk.ImageMenuItem(gtk.STOCK_SAVE)
-        menu_item.connect('activate', self._save_activate_cb)
-        self.add(menu_item)
-        menu_item.show()
-
-    def _save_activate_cb(self, menu_item):
-        chooser = gtk.FileChooserDialog(title=None,
-                                        parent=self._browser.get_toplevel(),
-                                        action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                        buttons=(gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_SAVE,
-                                                 gtk.RESPONSE_OK))
-        chooser.set_default_response(gtk.RESPONSE_OK)
-        chooser.set_current_folder(os.path.expanduser('~'))
-        if self._image_name:
-            chooser.set_current_name(self._image_name)
-
-        file_filter = gtk.FileFilter()
-        file_filter.set_name(_("Images"))
-        file_filter.add_mime_type("image/png")
-        file_filter.add_mime_type("image/jpeg")
-        file_filter.add_mime_type("image/gif")
-        chooser.add_filter(file_filter)
-
-        file_filter = gtk.FileFilter()
-        file_filter.set_name(_("All files"))
-        file_filter.add_pattern("*")
-        chooser.add_filter(file_filter)
-        response = chooser.run()
-
-        if response == gtk.RESPONSE_OK:
-            self._browser.save_uri(self._image_uri, chooser.get_filename())
-
-        chooser.destroy()
-
-class WebView(Browser):
+        
+class WebView(webview.WebView):
     __gtype_name__ = "SugarWebBrowser"
 
     def __init__(self):
@@ -151,3 +105,4 @@ class WebView(Browser):
 
     def _popup_created_cb(self, creator):
         self._popup_creators.remove(creator)
+"""        
