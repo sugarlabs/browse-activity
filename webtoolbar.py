@@ -18,17 +18,45 @@ import os
 import logging
 
 import gtk
+import xpcom
+from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
-
 from sugar.graphics import AddressEntry
 
+class _ProgressListener:
+    _com_interfaces_ = interfaces.nsIWebProgressListener
+    
+    def __init__(self, toolbar):
+        self._toolbar = toolbar
+    
+    def onLocationChange(self, webProgress, request, location):
+        self._toolbar._update_navigation_buttons()
+        
+    def onProgressChange(self, webProgress, request, curSelfProgress,
+                         maxSelfProgress, curTotalProgress, maxTotalProgress):
+        pass
+    
+    def onSecurityChange(self, webProgress, request, state):
+        pass
+        
+    def onStateChange(self, webProgress, request, stateFlags, status):
+        if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
+            self._toolbar._show_reload_icon()
+            self._toolbar._update_navigation_buttons()
+        if stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+            self._toolbar._show_stop_icon()
+            self._toolbar._update_navigation_buttons()            
+
+    def onStatusChange(self, webProgress, request, status, message):
+        pass
+
 class WebToolbar(gtk.Toolbar):
-    def __init__(self, embed):
+    def __init__(self, browser):
         gtk.Toolbar.__init__(self)
 
-        self._embed = embed
-        
+        self._browser = browser
+                
         self._back = ToolButton('go-previous')
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
@@ -56,22 +84,37 @@ class WebToolbar(gtk.Toolbar):
         
         self.insert(entry_item, -1)
         entry_item.show()
+        
+        self._listener = xpcom.server.WrapObject(
+            _ProgressListener(self), interfaces.nsIWebProgressListener)
+        weak_ref = xpcom.client.WeakReference(self._listener)
 
-    def _update_stop_and_reload_icon(self):
-        if self._embed.props.loading:
-            self._stop_and_reload.set_named_icon('stop')
-        else:
-            self._stop_and_reload.set_named_icon('view-refresh')
+        mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
+               interfaces.nsIWebProgress.NOTIFY_LOCATION
+        self._browser.web_progress.addProgressListener(self._listener, mask)
+
+    def _show_stop_icon(self):
+        self._stop_and_reload.set_named_icon('stop')
+
+    def _show_reload_icon(self):
+        self._stop_and_reload.set_named_icon('view-refresh')
+
+    def _update_navigation_buttons(self):
+        can_go_back = self._browser.web_navigation.canGoBack
+        self._back.props.sensitive = can_go_back
+
+        can_go_forward = self._browser.web_navigation.canGoForward
+        self._forward.props.sensitive = can_go_forward
 
     def _entry_activate_cb(self, entry):
         self._embed.load_uri(entry.props.text)
         self._embed.grab_focus()
 
     def _go_back_cb(self, button):
-        self._embed.go_back()
+        self._browser.web_navigation.goBack()
     
     def _go_forward_cb(self, button):
-        self._embed.go_forward()
+        self._browser.web_navigation.goForward()
 
     def _stop_and_reload_cb(self, button):
         if self._embed.props.loading:
