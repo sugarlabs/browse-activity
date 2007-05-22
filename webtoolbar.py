@@ -28,10 +28,16 @@ class _ProgressListener:
     _com_interfaces_ = interfaces.nsIWebProgressListener
     
     def __init__(self, toolbar):
-        self._toolbar = toolbar
+        self.toolbar = toolbar
+        self._reset_requests_count()
+    
+    def _reset_requests_count(self):
+        self.total_requests = 0
+        self.completed_requests = 0
     
     def onLocationChange(self, webProgress, request, location):
-        self._toolbar._update_navigation_buttons()
+        self.toolbar._set_address(location.spec)
+        self.toolbar._update_navigation_buttons()
         
     def onProgressChange(self, webProgress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
@@ -41,12 +47,26 @@ class _ProgressListener:
         pass
         
     def onStateChange(self, webProgress, request, stateFlags, status):
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-            self._toolbar._show_stop_icon()
-            self._toolbar._update_navigation_buttons()
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-            self._toolbar._show_reload_icon()
-            self._toolbar._update_navigation_buttons()            
+        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST:
+            if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
+                self.total_requests += 1
+            elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+                self.completed_requests += 1
+        
+        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
+            if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
+                self.toolbar._show_stop_icon()
+                self.toolbar._update_navigation_buttons()
+                self._reset_requests_count()                
+            elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+                self.toolbar._show_reload_icon()
+                self.toolbar._update_navigation_buttons()
+
+        if self.total_requests > 0:
+            self.toolbar._set_progress(float(self.completed_requests) /
+                                       float(self.total_requests))
+        else:
+            self.toolbar._set_progress(0.0)
 
     def onStatusChange(self, webProgress, request, status, message):
         pass
@@ -90,8 +110,17 @@ class WebToolbar(gtk.Toolbar):
         weak_ref = xpcom.client.WeakReference(self._listener)
 
         mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
+               interfaces.nsIWebProgress.NOTIFY_STATE_REQUEST | \
                interfaces.nsIWebProgress.NOTIFY_LOCATION
         self._browser.web_progress.addProgressListener(self._listener, mask)
+        
+        self._browser.connect("notify::title", self._title_changed_cb)
+
+    def _set_progress(self, progress):
+        self._entry.props.progress = progress
+
+    def _set_address(self, address):
+        self._entry.props.address = address
 
     def _show_stop_icon(self):
         self._stop_and_reload.set_named_icon('stop')
@@ -114,6 +143,9 @@ class WebToolbar(gtk.Toolbar):
     
     def _go_forward_cb(self, button):
         self._browser.web_navigation.goForward()
+
+    def _title_changed_cb(self, embed, spec):
+        self._entry.props.title = embed.props.title
 
     def _stop_and_reload_cb(self, button):
         if self._embed.props.loading:
