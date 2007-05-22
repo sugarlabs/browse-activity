@@ -16,9 +16,17 @@
 
 from hulahop.webview import WebView
 
+import sessionstore
+
 class Browser(WebView):
     def __init__(self):
         WebView.__init__(self)
+
+    def get_session(self):
+        return sessionstore.get_session(self)
+
+    def set_session(self, session_data):
+        return sessionstore.set_session(self, session_data)
 
 """
 class _PopupCreator(gobject.GObject):
