@@ -62,7 +62,9 @@ class _ProgressListener:
                 self.toolbar._show_reload_icon()
                 self.toolbar._update_navigation_buttons()
 
-        if self.total_requests > 0:
+        if self.total_requests < self.completed_requests:
+            self.toolbar._set_progress(1.0)        
+        elif self.total_requests > 0:
             self.toolbar._set_progress(float(self.completed_requests) /
                                        float(self.total_requests))
         else:
