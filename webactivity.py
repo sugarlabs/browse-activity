@@ -22,9 +22,6 @@ import gtk
 import dbus
 
 from sugar.activity import activity
-from sugar.datastore import datastore
-from sugar import profile
-from sugar.clipboard import clipboardservice
 from sugar import env
 
 import hulahop
@@ -32,6 +29,7 @@ hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
 
 from browser import Browser
 from webtoolbar import WebToolbar
+import downloadmanager
 
 _HOMEPAGE = 'http://www.google.com'
 
@@ -47,6 +45,8 @@ class WebActivity(activity.Activity):
             self._browser = browser
         else:
             self._browser = Browser()
+
+        downloadmanager.init(self._browser)
 
         toolbox = activity.ActivityToolbox(self)
         activity_toolbar = toolbox.get_activity_toolbar()
@@ -99,105 +99,3 @@ class WebActivity(activity.Activity):
             f.close()
         return f.name
 
-"""
-
-def start():
-    if not sugar.browser.startup(env.get_profile_path(), 'gecko'):
-        raise "Error when initializising the web activity."
-
-    download_manager = sugar.browser.get_download_manager()
-    download_manager.connect('download-started', download_started_cb)
-    download_manager.connect('download-completed', download_completed_cb)
-    download_manager.connect('download-cancelled', download_started_cb)
-    download_manager.connect('download-progress', download_progress_cb)
-
-def stop():
-    sugar.browser.shutdown()
-
-def get_download_file_name(download):
-    uri = urlparse.urlparse(download.get_url())
-    path, file_name = os.path.split(uri[2])
-    return file_name
-
-def download_started_cb(download_manager, download):
-    jobject = datastore.create()
-    jobject['title'] = _('Downloading %s from \n%s.') % \
-        (get_download_file_name(download), download.get_url())
-
-    if download.get_mime_type() in ['application/pdf', 'application/x-pdf']:
-        jobject['activity'] = 'org.laptop.sugar.Xbook'
-        jobject['icon'] = 'theme:object-text'
-    else:
-        jobject['activity'] = ''
-        jobject['icon'] = 'theme:object-link'
-
-    jobject['date'] = str(time.time())
-    jobject['keep'] = '0'
-    jobject['buddies'] = ''
-    jobject['preview'] = ''
-    jobject['icon-color'] = profile.get_color().to_string()
-    jobject.file_path = ''
-    datastore.write(jobject)
-    download.set_data('jobject-id', jobject.object_id)
-
-    cb_service = clipboardservice.get_instance()
-    object_id = cb_service.add_object(get_download_file_name(download))
-    download.set_data('object-id', object_id)
-    cb_service.add_object_format(object_id,
-                                 download.get_mime_type(),
-                                 'file://' + download.get_file_name(),
-                                 on_disk = True)
-
-def _dl_completed_cb(download, success, err=None):
-    if not success:
-        # Log errors but still set object completed
-        logging.debug("Error writing completed download to datastore: %s" % err)
-
-    object_id = download.get_data('object-id')
-    if not object_id:
-        logging.debug("Unknown download object %r" % download)
-        return
-    cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(object_id, 100)
-
-def download_completed_cb(download_manager, download):
-    jobject = datastore.get(download.get_data('jobject-id'))
-    jobject['title'] = _('File %s downloaded from\n%s.') % \
-        (get_download_file_name(download), download.get_url())
-    jobject.file_path = download.get_file_name()
-    datastore.write(jobject,
-            reply_handler=lambda *args: _dl_completed_cb(download, True, *args),
-            error_handler=lambda *args: _dl_completed_cb(download, False, *args))
-
-def download_cancelled_cb(download_manager, download):
-    #FIXME: Needs to update the state of the object to 'download stopped'.
-    #FIXME: Will do it when we complete progress on the definition of the
-    #FIXME: clipboard API.
-    raise "Cancelling downloads still not implemented."
-
-def _dl_progress_cb(download, percent, success, err=None):
-    if not success:
-        # Log errors but still set object completed
-        logging.debug("Error writing completed download to datastore: %s" % err)
-
-    cb_service = clipboardservice.get_instance()
-    cb_service.set_object_percent(download.get_data('object-id'), percent)
-
-def download_progress_cb(download_manager, download):
-    object_id = download.get_data('jobject-id')
-    if not object_id:
-        logging.debug("Unknown download object %r" % download)
-        return
-
-    # don't send 100% unless it's really done, which we handle
-    # from download_completed_cb instead
-    percent = download.get_percent()
-    if percent < 100:
-        jobject = datastore.get(download.get_data('jobject-id'))
-        jobject['title'] = _('Downloading %s from\n%s.\nProgress %i%%.') % \
-            (get_download_file_name(download), download.get_url(), percent)
-        datastore.write(jobject,
-            reply_handler=lambda *args: _dl_progress_cb(download, percent, True, *args),
-            error_handler=lambda *args: _dl_progress_cb(download, percent, False, *args))
-
-"""
