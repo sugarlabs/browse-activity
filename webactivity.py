@@ -63,21 +63,16 @@ class WebActivity(activity.Activity):
 
         if handle.uri:
             self._browser.load_uri(handle.uri)
-        else:
+        elif not self._jobject.file_path:
+            # TODO: we need this hack until we extend the activity API for
+            # opening URIs and default docs.
             self._browser.load_uri(_HOMEPAGE)
-
-        # FIXME: this should be done in activity.Activity
-        self._browser.connect('realize', self._realize_cb)
-
-    def _realize_cb(self, browser):
-        if self.jobject.file_path:
-            self.read_file()
 
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
 
-    def read_file(self):
-        f = open(self.jobject.file_path, 'r')
+    def read_file(self, file_path):
+        f = open(file_path, 'r')
         try:
             session_data = f.read()
         finally:
@@ -85,17 +80,16 @@ class WebActivity(activity.Activity):
         logging.debug('Trying to set session: %s.' % session_data)
         self._browser.set_session(session_data)
 
-    def write_file(self):
+    def write_file(self, file_path):
         session_data = self._browser.get_session()
         if self._browser.props.title:
-            self.jobject['preview'] = self._browser.props.title
+            self.metadata['preview'] = self._browser.props.title
         else:
-            self.jobject['preview'] = ''
-        self.jobject['icon'] = 'theme:object-link'
-        f = open(self.jobject.file_path, 'w')
+            self.metadata['preview'] = ''
+        self.metadata['icon'] = 'theme:object-link'
+        f = open(file_path, 'w')
         try:
             f.write(session_data)
         finally:
             f.close()
-        return f.name
 
