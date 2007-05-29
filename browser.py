@@ -32,10 +32,8 @@ class Browser(WebView):
         WebView.__init__(self)
 
         window_creator = WindowCreator(self)
-        
         cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
-        
         window_watcher.setWindowCreator(window_creator)
 
     def get_session(self):
@@ -60,6 +58,9 @@ class WindowCreator:
         self._popup_creators.append(popup_creator)
 
         browser = popup_creator.get_embed()
+        
+        if chrome_flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
+            browser.is_chrome = True
         
         return browser.browser.containerWindow
 
