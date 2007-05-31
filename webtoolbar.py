@@ -125,10 +125,10 @@ class WebToolbar(gtk.Toolbar):
         self._entry.props.address = address
 
     def _show_stop_icon(self):
-        self._stop_and_reload.set_named_icon('stop')
+        self._stop_and_reload.set_icon('stop')
 
     def _show_reload_icon(self):
-        self._stop_and_reload.set_named_icon('view-refresh')
+        self._stop_and_reload.set_icon('view-refresh')
 
     def _update_navigation_buttons(self):
         can_go_back = self._browser.web_navigation.canGoBack
