@@ -70,7 +70,7 @@ class Download:
         self._mime_info = mime_info
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
-        self._jobject = None
+        self._dl_jobject = None
         self._cb_object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
@@ -87,10 +87,10 @@ class Download:
             else:
                 path, file_name = os.path.split(self._target_file.path)
 
-                self._jobject['title'] = _('File %s downloaded from\n%s.') % \
+                self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
                     (file_name, self._source.spec)
-                self._jobject.file_path = self._target_file.path
-                datastore.write(self._jobject)
+                self._dl_jobject.file_path = self._target_file.path
+                datastore.write(self._dl_jobject)
 
                 cb_service = clipboardservice.get_instance()
                 cb_service.set_object_percent(self._cb_object_id, 100)
@@ -109,9 +109,9 @@ class Download:
         self._last_update_percent = percent
 
         if percent < 100:
-            self._jobject['title'] = _('Downloading %s from\n%s. Progress %i%%.') % \
+            self._dl_jobject.metadata['title'] = _('Downloading %s from\n%s. Progress %i%%.') % \
                 (file_name, self._source.spec, percent)
-            datastore.write(self._jobject)
+            datastore.write(self._dl_jobject)
 
             cb_service = clipboardservice.get_instance()
             cb_service.set_object_percent(self._cb_object_id, percent)
@@ -120,24 +120,24 @@ class Download:
         path, file_name = os.path.split(self._target_file.path)
         mime_type = self._mime_info.MIMEType
 
-        self._jobject = datastore.create()
-        self._jobject['title'] = _('Downloading %s from \n%s.') % \
+        self._dl_jobject = datastore.create()
+        self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
             (file_name, self._source.spec)
 
         if mime_type in ['application/pdf', 'application/x-pdf']:
-            self._jobject['activity'] = 'org.laptop.sugar.Xbook'
-            self._jobject['icon'] = 'theme:object-text'
+            self._dl_jobject.metadata['activity'] = 'org.laptop.sugar.Xbook'
+            self._dl_jobject.metadata['icon'] = 'theme:object-text'
         else:
-            self._jobject['activity'] = ''
-            self._jobject['icon'] = 'theme:object-link'
+            self._dl_jobject.metadata['activity'] = ''
+            self._dl_jobject.metadata['icon'] = 'theme:object-link'
 
-        self._jobject['date'] = str(time.time())
-        self._jobject['keep'] = '0'
-        self._jobject['buddies'] = ''
-        self._jobject['preview'] = ''
-        self._jobject['icon-color'] = profile.get_color().to_string()
-        self._jobject.file_path = ''
-        datastore.write(self._jobject)
+        self._dl_jobject.metadata['date'] = str(time.time())
+        self._dl_jobject.metadata['keep'] = '0'
+        self._dl_jobject.metadata['buddies'] = ''
+        self._dl_jobject.metadata['preview'] = ''
+        self._dl_jobject.metadata['icon-color'] = profile.get_color().to_string()
+        self._dl_jobject.file_path = ''
+        datastore.write(self._dl_jobject)
 
     def _create_clipboard_object(self):
         path, file_name = os.path.split(self._target_file.path)
