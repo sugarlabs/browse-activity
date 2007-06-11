@@ -28,6 +28,7 @@ from xpcom.server.factory import Factory
 from sugar.datastore import datastore
 from sugar.clipboard import clipboardservice
 from sugar import profile
+from sugar import objects
 
 _browser = None
 def init(browser):
@@ -67,14 +68,14 @@ class Download:
     def init(self, source, target, display_name, mime_info, start_time, temp_file,
              cancelable):
         self._source = source
-        self._mime_info = mime_info
+        self._mime_type = mime_info.MIMEType
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
         self._dl_jobject = None
         self._cb_object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
-        
+
         return NS_OK
 
     def onStateChange(self, web_progress, request, state_flags, status):
@@ -83,17 +84,22 @@ class Download:
             self._create_clipboard_object()
         elif state_flags == interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
-                pass
-            else:
-                path, file_name = os.path.split(self._target_file.path)
+                return
 
-                self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
-                    (file_name, self._source.spec)
-                self._dl_jobject.file_path = self._target_file.path
-                datastore.write(self._dl_jobject)
+            path, file_name = os.path.split(self._target_file.path)
 
-                cb_service = clipboardservice.get_instance()
-                cb_service.set_object_percent(self._cb_object_id, 100)
+            self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
+                (file_name, self._source.spec)
+            self._dl_jobject.file_path = self._target_file.path
+
+            if self._mime_type == 'application/octet-stream':
+                sniffed_mime_type = objects.mime.get_for_file(self._target_file.path)
+                self._dl_jobject.metadata['mime-type'] = sniffed_mime_type
+
+            datastore.write(self._dl_jobject)
+
+            cb_service = clipboardservice.get_instance()
+            cb_service.set_object_percent(self._cb_object_id, 100)
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
@@ -118,35 +124,27 @@ class Download:
 
     def _create_journal_object(self):
         path, file_name = os.path.split(self._target_file.path)
-        mime_type = self._mime_info.MIMEType
 
         self._dl_jobject = datastore.create()
         self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
             (file_name, self._source.spec)
-
-        if mime_type in ['application/pdf', 'application/x-pdf']:
-            self._dl_jobject.metadata['activity'] = 'org.laptop.sugar.Xbook'
-            self._dl_jobject.metadata['icon'] = 'theme:object-text'
-        else:
-            self._dl_jobject.metadata['activity'] = ''
-            self._dl_jobject.metadata['icon'] = 'theme:object-link'
 
         self._dl_jobject.metadata['date'] = str(time.time())
         self._dl_jobject.metadata['keep'] = '0'
         self._dl_jobject.metadata['buddies'] = ''
         self._dl_jobject.metadata['preview'] = ''
         self._dl_jobject.metadata['icon-color'] = profile.get_color().to_string()
+        self._dl_jobject.metadata['mime-type'] = self._mime_type
         self._dl_jobject.file_path = ''
         datastore.write(self._dl_jobject)
 
     def _create_clipboard_object(self):
         path, file_name = os.path.split(self._target_file.path)
-        mime_type = self._mime_info.MIMEType
 
         cb_service = clipboardservice.get_instance()
         self._cb_object_id = cb_service.add_object(file_name)
         cb_service.add_object_format(self._cb_object_id,
-                                     mime_type,
+                                     self._mime_type,
                                      'file://' + self._target_file.path.encode('utf8'),
                                      on_disk = True)
 
