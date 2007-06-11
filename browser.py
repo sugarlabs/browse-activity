@@ -35,6 +35,8 @@ class Browser(WebView):
         cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
         window_watcher.setWindowCreator(window_creator)
+        
+        self.is_chrome= False
 
     def get_session(self):
         return sessionstore.get_session(self)
@@ -60,7 +62,16 @@ class WindowCreator:
         browser = popup_creator.get_embed()
         
         if chrome_flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
+            logging.debug('Creating chrome window.')
             browser.is_chrome = True
+            item = browser.browser.queryInterface(interfaces.nsIDocShellTreeItem)
+            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
+        else:
+            logging.debug('Creating browser window.')
+            item = browser.browser.queryInterface(interfaces.nsIDocShellTreeItem)
+            item.itemType = interfaces.nsIDocShellTreeItem.typeContentWrapper
+        
+        browser.realize()
         
         return browser.browser.containerWindow
 
@@ -87,19 +98,22 @@ class _PopupCreator(gobject.GObject):
         self._dialog.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
 
         self._embed = Browser()
-        self._vis_sid = self._embed.connect('map', self._map_cb)
-        self._embed.show()
-
+        self._vis_sid = self._embed.connect('notify::visible', self._notify_visible_cb)
         self._dialog.add(self._embed)
 
-    def _map_cb(self, embed):
-        if self._embed.type == Browser.TYPE_POPUP:
+    def _notify_visible_cb(self, embed, param):
+        self._embed.disconnect(self._vis_sid)
+
+        if self._embed.type == Browser.TYPE_POPUP or self._embed.is_chrome:
             logging.debug('Show the popup')
+            self._embed.show()
             self._dialog.set_transient_for(self._parent_window)
             self._dialog.show()
         else:
             logging.debug('Open a new activity for the popup')
             self._dialog.remove(self._embed)
+            self._dialog.destroy()
+            self._dialog = None
 
             # FIXME We need a better way to handle this.
             # It seem like a pretty special case though, I doubt
@@ -111,7 +125,6 @@ class _PopupCreator(gobject.GObject):
             activity = WebActivity(handle, self._embed)
             activity.show()
 
-        self._embed.disconnect(self._vis_sid)
         self.emit('popup-created')
 
     def get_embed(self):

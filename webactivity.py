@@ -30,6 +30,8 @@ hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
 from browser import Browser
 from webtoolbar import WebToolbar
 import downloadmanager
+import promptservice
+import securitydialogs
 
 _HOMEPAGE = 'http://www.google.com'
 
@@ -63,7 +65,7 @@ class WebActivity(activity.Activity):
 
         if handle.uri:
             self._browser.load_uri(handle.uri)
-        elif not self._jobject.file_path:
+        elif not self._jobject.file_path and not browser:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
             self._browser.load_uri(_HOMEPAGE)
