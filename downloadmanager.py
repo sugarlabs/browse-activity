@@ -94,7 +94,7 @@ class Download:
 
             if self._mime_type == 'application/octet-stream':
                 sniffed_mime_type = objects.mime.get_for_file(self._target_file.path)
-                self._dl_jobject.metadata['mime-type'] = sniffed_mime_type
+                self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
             datastore.write(self._dl_jobject)
 
@@ -134,7 +134,7 @@ class Download:
         self._dl_jobject.metadata['buddies'] = ''
         self._dl_jobject.metadata['preview'] = ''
         self._dl_jobject.metadata['icon-color'] = profile.get_color().to_string()
-        self._dl_jobject.metadata['mime-type'] = self._mime_type
+        self._dl_jobject.metadata['mime_type'] = self._mime_type
         self._dl_jobject.file_path = ''
         datastore.write(self._dl_jobject)
 
