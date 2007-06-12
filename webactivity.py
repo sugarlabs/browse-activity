@@ -74,24 +74,30 @@ class WebActivity(activity.Activity):
         self.set_title(embed.props.title)
 
     def read_file(self, file_path):
-        f = open(file_path, 'r')
-        try:
-            session_data = f.read()
-        finally:
-            f.close()
-        logging.debug('Trying to set session: %s.' % session_data)
-        self._browser.set_session(session_data)
+        if self.metadata['mime_type'] == 'text/plain':
+            f = open(file_path, 'r')
+            try:
+                session_data = f.read()
+            finally:
+                f.close()
+            logging.debug('Trying to set session: %s.' % session_data)
+            self._browser.set_session(session_data)
+        else:
+            self._browser.load_uri(file_path)
 
     def write_file(self, file_path):
-        session_data = self._browser.get_session()
-        if self._browser.props.title:
-            self.metadata['preview'] = self._browser.props.title
-        else:
-            self.metadata['preview'] = ''
-        self.metadata['icon'] = 'theme:object-link'
-        f = open(file_path, 'w')
-        try:
-            f.write(session_data)
-        finally:
-            f.close()
+        if not self.metadata['mime_type']:
+            self.metadata['mime_type'] = 'text/plain'
+        
+        if self.metadata['mime_type'] == 'text/plain':
+            session_data = self._browser.get_session()
+            if self._browser.props.title:
+                self.metadata['preview'] = self._browser.props.title
+            else:
+                self.metadata['preview'] = ''
+            f = open(file_path, 'w')
+            try:
+                f.write(session_data)
+            finally:
+                f.close()
 

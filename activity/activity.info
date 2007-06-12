@@ -4,3 +4,4 @@ activity_version = 20
 service_name = org.laptop.WebActivity
 icon = activity-web
 class = webactivity.WebActivity
+mime_types = image/png
