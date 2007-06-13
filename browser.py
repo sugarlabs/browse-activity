@@ -26,6 +26,7 @@ from xpcom.components import interfaces
 from hulahop.webview import WebView
 
 import sessionstore
+from dnd import DragDropHooks
 
 class Browser(WebView):
     def __init__(self):
@@ -36,7 +37,20 @@ class Browser(WebView):
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
         window_watcher.setWindowCreator(window_creator)
         
-        self.is_chrome= False
+        self.is_chrome = False
+        
+        self.connect('realize', self._realize_cb)
+        
+    def _realize_cb(self, widget):
+        drag_drop_hooks = DragDropHooks(self)
+
+        cls = components.classes['@mozilla.org/embedcomp/command-params;1']
+        cmd_params = cls.createInstance('nsICommandParams')
+        cmd_params.setISupportsValue('addhook', drag_drop_hooks)
+
+        requestor = self.browser.queryInterface(interfaces.nsIInterfaceRequestor)
+        command_manager = requestor.getInterface(interfaces.nsICommandManager)
+        command_manager.doCommand('cmd_clipboardDragDropHook', cmd_params, self.window)
 
     def get_session(self):
         return sessionstore.get_session(self)
