@@ -55,6 +55,7 @@ class _ProgressListener:
         
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
+                self.toolbar._set_title(None)
                 self.toolbar._show_stop_icon()
                 self.toolbar._update_navigation_buttons()
                 self._reset_requests_count()                
@@ -124,6 +125,9 @@ class WebToolbar(gtk.Toolbar):
     def _set_address(self, address):
         self._entry.props.address = address
 
+    def _set_title(self, title):
+        self._entry.props.title = title
+
     def _show_stop_icon(self):
         self._stop_and_reload.set_icon('stop')
 
@@ -139,6 +143,7 @@ class WebToolbar(gtk.Toolbar):
 
     def _entry_activate_cb(self, entry):
         self._browser.load_uri(entry.props.text)
+        self._browser.grab_focus()
 
     def _go_back_cb(self, button):
         self._browser.web_navigation.goBack()
@@ -147,7 +152,7 @@ class WebToolbar(gtk.Toolbar):
         self._browser.web_navigation.goForward()
 
     def _title_changed_cb(self, embed, spec):
-        self._entry.props.title = embed.props.title
+        self._set_title(embed.props.title)
 
     def _stop_and_reload_cb(self, button):
         if self._embed.props.loading:
