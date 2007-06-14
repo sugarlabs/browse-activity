@@ -52,19 +52,19 @@ class _ProgressListener:
                 self.total_requests += 1
             elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
                 self.completed_requests += 1
-        
+
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
                 self.toolbar._set_title(None)
-                self.toolbar._show_stop_icon()
+                self.toolbar.set_loading(True)
                 self.toolbar._update_navigation_buttons()
                 self._reset_requests_count()                
             elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-                self.toolbar._show_reload_icon()
+                self.toolbar.set_loading(False)
                 self.toolbar._update_navigation_buttons()
 
         if self.total_requests < self.completed_requests:
-            self.toolbar._set_progress(1.0)        
+            self.toolbar._set_progress(1.0)
         elif self.total_requests > 0:
             self.toolbar._set_progress(float(self.completed_requests) /
                                        float(self.total_requests))
@@ -155,8 +155,16 @@ class WebToolbar(gtk.Toolbar):
         self._set_title(embed.props.title)
 
     def _stop_and_reload_cb(self, button):
-        if self._embed.props.loading:
-            self._browser.web_navigation.stop()
+        if self._loading:
+            self._browser.web_navigation.stop(interfaces.nsIWebNavigation.STOP_ALL)
         else:
             flags = interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
             self._browser.web_navigation.reload(flags)
+
+    def set_loading(self, loading):
+        self._loading = loading
+
+        if self._loading:
+            self._show_stop_icon()
+        else:
+            self._show_reload_icon()
