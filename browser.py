@@ -50,7 +50,7 @@ class Browser(WebView):
 
         requestor = self.browser.queryInterface(interfaces.nsIInterfaceRequestor)
         command_manager = requestor.getInterface(interfaces.nsICommandManager)
-        command_manager.doCommand('cmd_clipboardDragDropHook', cmd_params, self.window)
+        command_manager.doCommand('cmd_clipboardDragDropHook', cmd_params, self.dom_window)
 
     def get_session(self):
         return sessionstore.get_session(self)

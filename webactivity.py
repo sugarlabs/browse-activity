@@ -91,10 +91,12 @@ class WebActivity(activity.Activity):
         
         if self.metadata['mime_type'] == 'text/plain':
             session_data = self._browser.get_session()
+
             if self._browser.props.title:
-                self.metadata['preview'] = self._browser.props.title
+                self.metadata['title'] = self._browser.props.title
             else:
-                self.metadata['preview'] = ''
+                self.metadata['title'] = _('Web Activity')
+
             f = open(file_path, 'w')
             try:
                 f.write(session_data)
