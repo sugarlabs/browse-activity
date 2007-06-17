@@ -83,10 +83,13 @@ class DragDropHooks:
         document_node = DocumentNode(target_node, self._browser.web_navigation)
 
         if document_node.is_image():
+            # Take out this flavors as they confuse the receivers:
             trans.removeDataFlavor('text/x-moz-url')
-            trans.addDataFlavor('text/uri-list')
-            
+            trans.removeDataFlavor('text/html')
+            trans.removeDataFlavor('text/unicode')
+
             data_provider = UriListDataProvider(document_node)
+            trans.addDataFlavor('text/uri-list')
             trans.setTransferData('text/uri-list', data_provider, 0)
 
         return True
