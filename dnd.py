@@ -14,11 +14,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import os.path
+import os
 import tempfile
 
 from xpcom.nsError import *
-from xpcom import COMException
+from xpcom import ServerException
 from xpcom import components
 from xpcom.components import interfaces
 
@@ -29,6 +29,11 @@ class UriListDataProvider:
     
     def __init__(self, doc_node):
         self._doc_node = doc_node
+        self._file_path = None
+
+    def __del__(self):
+        if self._file_path:
+            os.remove(self._file_path)
 
     def getFlavorData(self, transferable, flavor):
         if flavor != 'text/uri-list':
@@ -45,14 +50,14 @@ class UriListDataProvider:
         mime_service = cls.getService(interfaces.nsIMIMEService)
         file_ext = mime_service.getPrimaryExtension(mime_type, file_ext)
             
-        f, file_path = tempfile.mkstemp(image_name + '.' + file_ext)
+        f, self._file_path = tempfile.mkstemp(image_name + '.' + file_ext)
         del f
 
-        self._doc_node.save_image(file_path)
+        self._doc_node.save_image(self._file_path)
 
         cls = components.classes['@mozilla.org/supports-string;1']        
         string_supports = cls.createInstance(interfaces.nsISupportsString)
-        string_supports.data = 'file://' + file_path
+        string_supports.data = 'file://' + self._file_path
 
         return string_supports, 32
 
@@ -63,10 +68,10 @@ class DragDropHooks:
         self._browser = browser
     
     def allowDrop(self, event, session):
-        raise COMException(NS_ERROR_NOT_IMPLEMENTED)
+        raise ServerException(NS_ERROR_NOT_IMPLEMENTED)
 
     def allowStartDrag(self, event):
-        raise COMException(NS_ERROR_NOT_IMPLEMENTED)
+        raise ServerException(NS_ERROR_NOT_IMPLEMENTED)
 
     def onPasteOrDrop(self, event, trans):
         return False
