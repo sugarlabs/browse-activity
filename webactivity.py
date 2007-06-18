@@ -92,10 +92,9 @@ class WebActivity(activity.Activity):
         if self.metadata['mime_type'] == 'text/plain':
             session_data = self._browser.get_session()
 
-            if self._browser.props.title:
-                self.metadata['title'] = self._browser.props.title
-            else:
-                self.metadata['title'] = _('Web Activity')
+            if not self._jobject.metadata['title_set_by_user']:
+                if self._browser.props.title:
+                    self.metadata['title'] = self._browser.props.title
 
             f = open(file_path, 'w')
             try:
