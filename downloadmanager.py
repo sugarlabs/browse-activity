@@ -147,6 +147,11 @@ class Download:
                                      self._mime_type,
                                      'file://' + self._target_file.path.encode('utf8'),
                                      on_disk = True)
+        # Also add the 'text/uri-list' target for the same file path.
+        cb_service.add_object_format(self._cb_object_id,
+                                     'text/uri-list',
+                                     'file://' + self._target_file.path.encode('utf8'),
+                                     on_disk = True)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}"',
                                      'Sugar Download',

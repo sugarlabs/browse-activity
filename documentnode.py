@@ -130,13 +130,16 @@ class DocumentNode:
         file_output_stream = cls.createInstance(interfaces.nsIFileOutputStream)
         file_output_stream.init(dest_file, -1, -1, 0)
 
+        # TODO: this is not reliable, sometimes reports 4096
         bytes_to_read = http_input_stream.available()
         while bytes_to_read:
             buf = str(http_input_stream.read(min(8192, bytes_to_read)))
             bytes_read = len(buf)
+            print "bytes_read %i" % bytes_read
             bytes_to_write = bytes_read
             while bytes_to_write:
                 bytes_written = file_output_stream.write(buf, bytes_read)
+                print "bytes_written %i" % bytes_written
                 bytes_to_write -= bytes_written
 
             bytes_to_read -= bytes_read
