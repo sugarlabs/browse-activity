@@ -23,6 +23,7 @@ from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics import AddressEntry
+from gettext import gettext as _
 
 class _ProgressListener:
     _com_interfaces_ = interfaces.nsIWebProgressListener
@@ -81,12 +82,14 @@ class WebToolbar(gtk.Toolbar):
         self._browser = browser
                 
         self._back = ToolButton('go-previous')
+        self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
         self.insert(self._back, -1)
         self._back.show()
 
         self._forward = ToolButton('go-next')
+        self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
         self.insert(self._forward, -1)
@@ -166,5 +169,7 @@ class WebToolbar(gtk.Toolbar):
 
         if self._loading:
             self._show_stop_icon()
+            self._stop_and_reload.set_tooltip(_('Stop'))
         else:
             self._show_reload_icon()
+            self._stop_and_reload.set_tooltip(_('Reload'))
