@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 16:54+0200\n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,4 +43,20 @@ msgstr ""
 
 #: webactivity.py:57
 msgid "Browse"
+msgstr ""
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr ""
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr ""
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr ""
+
+#: webtoolbar.py:175
+msgid "Reload"
 msgstr ""
