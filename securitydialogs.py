@@ -29,8 +29,9 @@ class SecurityDialogs:
     def notifyCrlNextupdate(socketInfo, targetURL, cert):
         logging.debug('UNIMPLEMENTED: SecurityDialogs.notifyCrlNextupdate()')
 
+"""
 components.registrar.registerFactory(SecurityDialogs.cid,
                                      SecurityDialogs.description,
                                      '@mozilla.org/nsBadCertListener;1',
                                      Factory(SecurityDialogs))
-
+"""

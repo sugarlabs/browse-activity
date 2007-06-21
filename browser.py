@@ -37,8 +37,6 @@ class Browser(WebView):
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
         window_watcher.setWindowCreator(window_creator)
         
-        self.is_chrome = False
-        
         self.connect('realize', self._realize_cb)
         
     def _realize_cb(self, widget):
