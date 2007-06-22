@@ -32,6 +32,7 @@ from webtoolbar import WebToolbar
 import downloadmanager
 import promptservice
 import securitydialogs
+import filepicker
 
 _HOMEPAGE = 'http://www.google.com'
 
