@@ -22,32 +22,47 @@ from xpcom.components import interfaces
 
 class HistoryListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsISHistoryListener
-    
+
+    __gsignals__ = {
+        'session-history-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                                    ([int]))
+    }
+
     def __init__(self, browser):
         gobject.GObject.__init__(self)
 
         self._wrapped_self = xpcom.server.WrapObject(self, interfaces.nsISHistoryListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
 
-        session_history = browser.web_navigation.sessionHistory
-        session_history.addSHistoryListener(self._wrapped_self)
+        self._session_history = browser.web_navigation.sessionHistory
+        self._session_history.addSHistoryListener(self._wrapped_self)
 
     def OnHistoryGoBack(self, back_uri):
+        logging.debug("OnHistoryGoBack: %s" % back_uri.spec)
+        self.emit('session-history-changed', self._session_history.index - 1)
         return True
 
     def OnHistoryGoForward(self, forward_uri):
+        logging.debug("OnHistoryGoForward: %s" % forward_uri.spec)
+        self.emit('session-history-changed', self._session_history.index + 1)
         return True
 
     def OnHistoryGotoIndex(self, index, goto_uri):
+        logging.debug("OnHistoryGotoIndex: %i %s" % (index, goto_uri.spec))
+        self.emit('session-history-changed', index)
         return True
 
     def OnHistoryNewEntry(self, new_uri):
-        logging.debug(new_uri.spec)
+        logging.debug("OnHistoryNewEntry: %s" % new_uri.spec)
+        self.emit('session-history-changed', self._session_history.index + 1)
 
     def OnHistoryPurge(self, num_entries):
+        logging.debug("OnHistoryPurge: %i" % num_entries)
+        #self.emit('session-history-changed')
         return True
 
     def OnHistoryReload(self, reload_uri, reload_flags):
+        logging.debug("OnHistoryReload: %s" % reload_uri.spec)
         return True
 
 _session_history_listener = None

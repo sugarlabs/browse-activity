@@ -19,6 +19,7 @@ import os
 import logging
 from gettext import gettext as _
 
+import gobject
 import gtk
 import xpcom
 from xpcom.components import interfaces
@@ -72,9 +73,13 @@ class WebToolbar(gtk.Toolbar):
         progress_listener.connect('loading-progress', self._loading_progress_cb)
 
         session_history = sessionhistory.get_instance()
-        #session_history.connect('location-changed', self._location_changed_cb)
+        session_history.connect('session-history-changed', self._session_history_changed_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
+
+    def _session_history_changed_cb(self, session_history, current_page_index):
+        # We have to wait until the history info is updated.
+        gobject.idle_add(self._reload_session_history, current_page_index)
 
     def _location_changed_cb(self, progress_listener, uri):
         self._set_address(uri)
@@ -143,3 +148,33 @@ class WebToolbar(gtk.Toolbar):
         else:
             self._show_reload_icon()
             self._stop_and_reload.set_tooltip(_('Reload'))
+
+    def _reload_session_history(self, current_page_index=None):
+        if current_page_index is None:
+            current_page_index = session_history.index
+
+        for palette in (self._back.get_palette(), self._forward.get_palette()):
+            while palette.menu_item_count():
+                palette.remove_menu_item(0)
+
+        session_history = self._browser.web_navigation.sessionHistory
+        for i in range(0, session_history.count):
+            if i == current_page_index:
+                continue
+
+            entry = session_history.getEntryAtIndex(i, False)
+            menu_item = gtk.MenuItem(entry.title)
+            menu_item.connect('activate', self._history_item_activated_cb, i)
+
+            if i < current_page_index:
+                palette = self._back.get_palette()
+                palette.insert_menu_item(menu_item, 0)
+            elif i > current_page_index:
+                palette = self._forward.get_palette()
+                palette.insert_menu_item(menu_item, -1)
+
+            menu_item.show()
+
+    def _history_item_activated_cb(self, menu_item, index):
+        self._browser.web_navigation.gotoIndex(index)
+
