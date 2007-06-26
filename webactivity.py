@@ -33,6 +33,8 @@ import downloadmanager
 import promptservice
 import securitydialogs
 import filepicker
+import sessionhistory
+import progresslistener
 
 _HOMEPAGE = 'http://www.google.com'
 
@@ -49,7 +51,12 @@ class WebActivity(activity.Activity):
         else:
             self._browser = Browser()
 
+        self.set_canvas(self._browser)
+        self._browser.show()
+
         downloadmanager.init(self._browser)
+        sessionhistory.init(self._browser)
+        progresslistener.init(self._browser)
 
         toolbox = activity.ActivityToolbox(self)
         activity_toolbar = toolbox.get_activity_toolbar()
@@ -60,9 +67,6 @@ class WebActivity(activity.Activity):
 
         self.set_toolbox(toolbox)
         toolbox.show()
-
-        self.set_canvas(self._browser)
-        self._browser.show()
 
         if handle.uri:
             self._browser.load_uri(handle.uri)

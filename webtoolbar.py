@@ -1,4 +1,5 @@
 # Copyright (C) 2006, Red Hat, Inc.
+# Copyright (C) 2007, One Laptop Per Child
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,6 +17,7 @@
 
 import os
 import logging
+from gettext import gettext as _
 
 import gtk
 import xpcom
@@ -23,64 +25,16 @@ from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics import AddressEntry
-from gettext import gettext as _
 
-class _ProgressListener:
-    _com_interfaces_ = interfaces.nsIWebProgressListener
-    
-    def __init__(self, toolbar):
-        self.toolbar = toolbar
-        self._reset_requests_count()
-    
-    def _reset_requests_count(self):
-        self.total_requests = 0
-        self.completed_requests = 0
-    
-    def onLocationChange(self, webProgress, request, location):
-        self.toolbar._set_address(location.spec)
-        self.toolbar._update_navigation_buttons()
-        
-    def onProgressChange(self, webProgress, request, curSelfProgress,
-                         maxSelfProgress, curTotalProgress, maxTotalProgress):
-        pass
-    
-    def onSecurityChange(self, webProgress, request, state):
-        pass
-        
-    def onStateChange(self, webProgress, request, stateFlags, status):
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST:
-            if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-                self.total_requests += 1
-            elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-                self.completed_requests += 1
-
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
-            if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-                self.toolbar._set_title(None)
-                self.toolbar.set_loading(True)
-                self.toolbar._update_navigation_buttons()
-                self._reset_requests_count()                
-            elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-                self.toolbar.set_loading(False)
-                self.toolbar._update_navigation_buttons()
-
-        if self.total_requests < self.completed_requests:
-            self.toolbar._set_progress(1.0)
-        elif self.total_requests > 0:
-            self.toolbar._set_progress(float(self.completed_requests) /
-                                       float(self.total_requests))
-        else:
-            self.toolbar._set_progress(0.0)
-
-    def onStatusChange(self, webProgress, request, status, message):
-        pass
+import sessionhistory
+import progresslistener
 
 class WebToolbar(gtk.Toolbar):
     def __init__(self, browser):
         gtk.Toolbar.__init__(self)
 
         self._browser = browser
-                
+
         self._back = ToolButton('go-previous')
         self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
@@ -110,17 +64,33 @@ class WebToolbar(gtk.Toolbar):
         
         self.insert(entry_item, -1)
         entry_item.show()
-        
-        self._listener = xpcom.server.WrapObject(
-            _ProgressListener(self), interfaces.nsIWebProgressListener)
-        weak_ref = xpcom.client.WeakReference(self._listener)
 
-        mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
-               interfaces.nsIWebProgress.NOTIFY_STATE_REQUEST | \
-               interfaces.nsIWebProgress.NOTIFY_LOCATION
-        self._browser.web_progress.addProgressListener(self._listener, mask)
-        
+        progress_listener = progresslistener.get_instance()
+        progress_listener.connect('location-changed', self._location_changed_cb)
+        progress_listener.connect('loading-start', self._loading_start_cb)
+        progress_listener.connect('loading-stop', self._loading_stop_cb)
+        progress_listener.connect('loading-progress', self._loading_progress_cb)
+
+        session_history = sessionhistory.get_instance()
+        #session_history.connect('location-changed', self._location_changed_cb)
+
         self._browser.connect("notify::title", self._title_changed_cb)
+
+    def _location_changed_cb(self, progress_listener, uri):
+        self._set_address(uri)
+        self._update_navigation_buttons()
+
+    def _loading_start_cb(self, progress_listener):
+        self._set_title(None)
+        self._set_loading(True)
+        self._update_navigation_buttons()
+
+    def _loading_stop_cb(self, progress_listener):
+        self._set_loading(False)
+        self._update_navigation_buttons()
+
+    def _loading_progress_cb(self, progress_listener, progress):
+        self._set_progress(progress)
 
     def _set_progress(self, progress):
         self._entry.props.progress = progress
@@ -164,7 +134,7 @@ class WebToolbar(gtk.Toolbar):
             flags = interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
             self._browser.web_navigation.reload(flags)
 
-    def set_loading(self, loading):
+    def _set_loading(self, loading):
         self._loading = loading
 
         if self._loading:
