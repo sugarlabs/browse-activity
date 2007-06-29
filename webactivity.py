@@ -44,8 +44,6 @@ class WebActivity(activity.Activity):
 
         logging.debug('Starting the web activity')
 
-        self.set_title(_('Web Activity'))
-
         if browser:
             self._browser = browser
         else:
