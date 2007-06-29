@@ -1,0 +1,70 @@
+# translation of web-activity.master.po to Arabic
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: web-activity.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"PO-Revision-Date: 2007-06-28 21:44+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+"الملف %s نُزِّل من\n"
+"%s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"يجري تنزيل %s من\n"
+"%s. التقدم %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"جري تنزيل %s من\n"
+"%s."
+
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "نشاط الوِب"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "تصفّح"
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr "للخلف"
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr "للأمام"
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr "قف"
+
+#: webtoolbar.py:175
+msgid "Reload"
+msgstr "أعد التحميل"
+
