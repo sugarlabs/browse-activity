@@ -42,6 +42,9 @@ class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
         activity.Activity.__init__(self, handle)
 
+        import time
+        time.sleep(100)
+
         logging.debug('Starting the web activity')
 
         if browser:
