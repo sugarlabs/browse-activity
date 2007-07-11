@@ -1,5 +1,5 @@
 [Activity]
-name = Web
+name = Browse
 activity_version = 27
 service_name = org.laptop.WebActivity
 icon = activity-web
