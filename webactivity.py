@@ -36,7 +36,7 @@ import filepicker
 import sessionhistory
 import progresslistener
 
-_HOMEPAGE = 'http://www.google.com'
+_LIBRARY_PATH = '/home/olpc/Library/index.html'
 
 class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
@@ -71,7 +71,13 @@ class WebActivity(activity.Activity):
         elif not self._jobject.file_path and not browser:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
-            self._browser.load_uri(_HOMEPAGE)
+            self._load_homepage()
+
+    def _load_homepage(self):
+        if os.path.isfile(_LIBRARY_PATH):
+            self._browser.load_uri('file://' + _LIBRARY_PATH)
+        else:
+            self._browser.load_uri('about:blank')
 
     def _title_changed_cb(self, embed, pspec):
         self.set_title(embed.props.title)
