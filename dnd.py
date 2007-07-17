@@ -77,6 +77,10 @@ class DragDropHooks:
         return False
 
     def onCopyOrDrag(self, event, trans):
+        if not event:
+            logging.warning('DragDropHooks.onCopyOrDrag: no event received.')
+            return True
+
         mouse_event = event.queryInterface(interfaces.nsIDOMMouseEvent)
         event_target = mouse_event.target
         target_node = event_target.queryInterface(interfaces.nsIDOMNode)
