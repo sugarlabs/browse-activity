@@ -1,0 +1,69 @@
+# translation of web-activity.master.po to Macedonian
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Arangel Angov <arangel@linux.net.mk>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: web-activity.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"PO-Revision-Date: 2007-07-06 13:43+0200\n"
+"Last-Translator: Arangel Angov <arangel@linux.net.mk>\n"
+"Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+"Датотеката %s е преземена од\n"
+"%s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"Преземам %s од\n"
+"%s. Прогрес %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Преземам %s од \n"
+"%s."
+
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "Активности на веб"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Разгледај"
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr "Назад"
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr "Напред"
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr "Стоп"
+
+#: webtoolbar.py:175
+msgid "Reload"
+msgstr "Освежи"
+
