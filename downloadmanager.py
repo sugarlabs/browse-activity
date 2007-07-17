@@ -129,7 +129,6 @@ class Download:
         self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
             (file_name, self._source.spec)
 
-        self._dl_jobject.metadata['date'] = str(time.time())
         self._dl_jobject.metadata['keep'] = '0'
         self._dl_jobject.metadata['buddies'] = ''
         self._dl_jobject.metadata['preview'] = ''
