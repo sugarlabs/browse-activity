@@ -50,7 +50,7 @@ class WebToolbar(gtk.Toolbar):
         self.insert(self._forward, -1)
         self._forward.show()
 
-        self._stop_and_reload = ToolButton('stop')
+        self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
         self.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
@@ -107,7 +107,7 @@ class WebToolbar(gtk.Toolbar):
         self._entry.props.title = title
 
     def _show_stop_icon(self):
-        self._stop_and_reload.set_icon('stop')
+        self._stop_and_reload.set_icon('media-playback-stop')
 
     def _show_reload_icon(self):
         self._stop_and_reload.set_icon('view-refresh')
