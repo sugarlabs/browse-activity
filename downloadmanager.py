@@ -86,6 +86,9 @@ class Download:
             if NS_FAILED(status): # download cancelled
                 return
 
+            cb_service = clipboardservice.get_instance()
+            cb_service.set_object_percent(self._cb_object_id, 100)
+
             path, file_name = os.path.split(self._target_file.path)
 
             self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
@@ -97,9 +100,9 @@ class Download:
                 self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
             datastore.write(self._dl_jobject)
-
-            cb_service = clipboardservice.get_instance()
-            cb_service.set_object_percent(self._cb_object_id, 100)
+            os.remove(self._dl_jobject.file_path)
+            self._dl_jobject.destroy()
+            self._dl_jobject = None
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
@@ -142,10 +145,14 @@ class Download:
 
         cb_service = clipboardservice.get_instance()
         self._cb_object_id = cb_service.add_object(file_name)
-        cb_service.add_object_format(self._cb_object_id,
-                                     self._mime_type,
-                                     'file://' + self._target_file.path.encode('utf8'),
-                                     on_disk = True)
+        
+        # TODO: avoid by now adding two formats, as they would create two
+        # identical files in /tmp
+        #cb_service.add_object_format(self._cb_object_id,
+        #                             self._mime_type,
+        #                             'file://' + self._target_file.path.encode('utf8'),
+        #                             on_disk = True)
+
         # Also add the 'text/uri-list' target for the same file path.
         cb_service.add_object_format(self._cb_object_id,
                                      'text/uri-list',
