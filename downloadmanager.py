@@ -87,7 +87,10 @@ class Download:
                 return
 
             cb_service = clipboardservice.get_instance()
-            cb_service.set_object_percent(self._cb_object_id, 100)
+            # Test if the object still exists in the clipboard as it could have 
+            # been removed.
+            if cb_service.get_object(self._cb_object_id):
+                cb_service.set_object_percent(self._cb_object_id, 100)
 
             path, file_name = os.path.split(self._target_file.path)
 
@@ -123,7 +126,10 @@ class Download:
             datastore.write(self._dl_jobject)
 
             cb_service = clipboardservice.get_instance()
-            cb_service.set_object_percent(self._cb_object_id, percent)
+            # Test if the object still exists in the clipboard as it could have 
+            # been removed.
+            if cb_service.get_object(self._cb_object_id):
+                cb_service.set_object_percent(self._cb_object_id, percent)
 
     def _create_journal_object(self):
         path, file_name = os.path.split(self._target_file.path)
