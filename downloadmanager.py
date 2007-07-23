@@ -35,6 +35,15 @@ def init(browser):
     global _browser
     _browser = browser
 
+_active_ds_writes = 0
+_quit_callback = None
+
+def can_quit():
+    return _active_ds_writes == 0
+
+def set_quit_callback(callback):
+    _quit_callback = callback
+
 class DownloadManager:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
 
@@ -102,10 +111,30 @@ class Download:
                 sniffed_mime_type = objects.mime.get_for_file(self._target_file.path)
                 self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
-            datastore.write(self._dl_jobject)
-            os.remove(self._dl_jobject.file_path)
-            self._dl_jobject.destroy()
-            self._dl_jobject = None
+            global _active_ds_writes
+            _active_ds_writes = _active_ds_writes + 1
+            datastore.write(self._dl_jobject,
+                            reply_handler=self._internal_save_cb,
+                            error_handler=self._internal_save_error_cb)
+
+    def _cleanup_datastore_write(self):
+        global _active_ds_writes
+        _active_ds_writes = _active_ds_writes - 1
+
+        os.remove(self._dl_jobject.file_path)
+        self._dl_jobject.destroy()
+        self._dl_jobject = None
+
+        global _quit_callback
+        if _active_ds_writes == 0 and not _quit_callback is None:
+            _quit_callback()
+
+    def _internal_save_cb(self):
+        self._cleanup_datastore_write()
+
+    def _internal_save_error_cb(self, err):
+        logging.debug("Error saving activity object to datastore: %s" % err)
+        self._cleanup_datastore_write()
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,

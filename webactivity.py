@@ -111,3 +111,13 @@ class WebActivity(activity.Activity):
             finally:
                 f.close()
 
+    def destroy(self):
+        if downloadmanager.can_quit():
+            activity.Activity.destroy(self)
+        else:
+            downloadmanager.set_quit_callback(self._quit_callback_cb)
+
+    def _quit_callback_cb(self):
+        logging.debug('_quit_callback_cb')
+        activity.Activity.destroy(self)
+
