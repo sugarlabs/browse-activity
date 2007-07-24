@@ -16,6 +16,7 @@
 
 import os
 import tempfile
+import logging
 
 from xpcom.nsError import *
 from xpcom import ServerException

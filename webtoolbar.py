@@ -29,6 +29,7 @@ from sugar.graphics import AddressEntry
 
 import sessionhistory
 import progresslistener
+import filepicker
 
 class WebToolbar(gtk.Toolbar):
     def __init__(self, browser):
@@ -84,6 +85,7 @@ class WebToolbar(gtk.Toolbar):
     def _location_changed_cb(self, progress_listener, uri):
         self._set_address(uri)
         self._update_navigation_buttons()
+        filepicker.cleanup_temp_files()
 
     def _loading_start_cb(self, progress_listener):
         self._set_title(None)

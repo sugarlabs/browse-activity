@@ -1,6 +1,8 @@
+* #2364: Fix uploads and clean up correctly the temp files. (tomeu)
+
 33
 
-* #2196: Improve the download of big documents to the clipboard.
+* #2196: Improve the download of big documents to the clipboard. (tomeu)
 
 32
 

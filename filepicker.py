@@ -15,6 +15,9 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import logging
+import os
+import tempfile
+import shutil
 
 import gtk
 
@@ -24,6 +27,13 @@ from xpcom.components import interfaces
 from xpcom.server.factory import Factory
 
 from sugar.graphics.objectchooser import ObjectChooser
+
+_temp_files_to_clean = []
+
+def cleanup_temp_files():
+    for temp_file in _temp_files_to_clean:
+        logging.debug('filepicker.cleanup_temp_files: %r' % temp_file)
+        os.remove(temp_file)
 
 class FilePicker:
     _com_interfaces_ = interfaces.nsIFilePicker
@@ -62,9 +72,18 @@ class FilePicker:
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
+                logging.debug('FilePicker.show: %r' % chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
-                    self._file = jobject.file_path
+                    ext = os.path.splitext(jobject.file_path)[1]
+                    f, new_temp = tempfile.mkstemp(ext)
+                    del f
+
+                    global _temp_files_to_clean
+                    _temp_files_to_clean.append(new_temp)
+                    shutil.copy(jobject.file_path, new_temp)
+
+                    self._file = new_temp
         finally:
             chooser.destroy()
             del chooser
@@ -103,6 +122,7 @@ class FilePicker:
         return None
 
     def get_file(self):
+        logging.debug('FilePicker.get_file: %r' % self._file)
         if self._file:
             cls = components.classes["@mozilla.org/file/local;1"]
             local_file = cls.createInstance(interfaces.nsILocalFile)
