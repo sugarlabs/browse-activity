@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-23 15:02+0100\n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
 "PO-Revision-Date: 2007-03-23 15:04+0100\n"
 "Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -16,46 +16,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: webactivity.py:41
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+"El archivo %s se bajó de\n"
+"%s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"Bajando %s desde\n"
+"%s. Progreso %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Bajando %s desde \n"
+"%s."
+
+#: webactivity.py:44
 msgid "Web Activity"
 msgstr "Actividad web"
 
-#: webtoolbar.py:33
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Navegar"
+
+#: webtoolbar.py:85
 msgid "Back"
 msgstr "Volver"
 
-#: webtoolbar.py:39
+#: webtoolbar.py:92
 msgid "Forward"
 msgstr "Avanzar"
 
-#: webtoolbar.py:45 webtoolbar.py:90
+#: webtoolbar.py:172
 msgid "Stop"
-msgstr "Interrumpir"
+msgstr "Parar"
 
-#: webtoolbar.py:62
-msgid "Open"
-msgstr "Abrir"
-
-#: webtoolbar.py:67
-msgid "Save"
-msgstr "Guardar"
-
-#: webtoolbar.py:93
+#: webtoolbar.py:175
 msgid "Reload"
 msgstr "Refrescar"
 
-#: webtoolbar.py:151 webtoolbar.py:198
-msgid "All supported formats"
-msgstr "Todos los formatos soportados"
+#~ msgid "Open"
+#~ msgstr "Abrir"
 
-#: webtoolbar.py:161 webtoolbar.py:208
-msgid "Web pages"
-msgstr "Páginas web"
+#~ msgid "Save"
+#~ msgstr "Guardar"
 
-#: webtoolbar.py:168 webtoolbar.py:215 webview.py:114
-msgid "Images"
-msgstr "Imágenes"
+#~ msgid "All supported formats"
+#~ msgstr "Todos los formatos soportados"
 
-#: webtoolbar.py:175 webtoolbar.py:222 webview.py:121
-msgid "All files"
-msgstr "Todos los ficheros"
+#~ msgid "Web pages"
+#~ msgstr "Páginas web"
+
+#~ msgid "Images"
+#~ msgstr "Imágenes"
+
+#~ msgid "All files"
+#~ msgstr "Todos los archivos"
