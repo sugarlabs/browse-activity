@@ -115,7 +115,8 @@ class Download:
             _active_ds_writes = _active_ds_writes + 1
             datastore.write(self._dl_jobject,
                             reply_handler=self._internal_save_cb,
-                            error_handler=self._internal_save_error_cb)
+                            error_handler=self._internal_save_error_cb,
+                            timeout=360)
 
     def _cleanup_datastore_write(self):
         global _active_ds_writes
