@@ -25,7 +25,7 @@ import xpcom
 from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics import AddressEntry
+from sugar._sugaruiext import AddressEntry
 
 import sessionhistory
 import progresslistener
