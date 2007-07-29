@@ -1,0 +1,67 @@
+# Greek translation of Web activity.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Simos Xenitellis <simos.lists@googlemail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Web activity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-21 17:38+0200\n"
+"PO-Revision-Date: 2007-07-25 18:49+0100\n"
+"Last-Translator: Simos Xenitellis <simos.lists@googlemail.com>\n"
+"Language-Team: Greek <olpc@grnet.gr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+"Το αρχείο %s έχει παραληφθεί\n"
+"από %s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"Γίνεται λήψη του %s από\n"
+"%s. Πρόοδος %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Γίνεται λήψη του %s από \n"
+"%s."
+
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "Δραστηριότητα στον Ιστό"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Περιήγηση"
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr "Πίσω"
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr "Μπροστά"
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr "Σταμάτημα"
+
+#: webtoolbar.py:175
+msgid "Reload"
+msgstr "Φόρτωση ξανά"

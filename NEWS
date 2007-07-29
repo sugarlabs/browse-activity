@@ -1,3 +1,5 @@
+* Add greek translation. (simosx)
+
 36
 
 * Increase timeout when copying the file into the datastore to 360s. (tomeu)
