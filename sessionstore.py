@@ -25,16 +25,24 @@ from xpcom.components import interfaces
 import json
 
 def get_session(browser):
+    session_history = browser.web_navigation.sessionHistory
+    
+    if session_history.count == 0:
+        return ''
+
     session_data = {}
-    session_data['history'] = _get_history(browser.web_navigation.sessionHistory)
+    session_data['history'] = _get_history(session_history)
     logging.debug('%r' % session_data)
     return json.write(session_data)
 
 def set_session(browser, session_str):
     session_data = json.read(session_str)
     _set_history(browser.web_navigation.sessionHistory, session_data['history'])
-    
-    browser.web_navigation.gotoIndex(len(session_data['history']) - 1);
+
+    if session_data['history']:
+        browser.web_navigation.gotoIndex(len(session_data['history']) - 1)
+    else:
+        browser.load_uri('about:blank')
 
 def _get_history(history):
     logging.debug('%r' % history.count)

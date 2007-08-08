@@ -99,17 +99,17 @@ class WebActivity(activity.Activity):
             self.metadata['mime_type'] = 'text/plain'
         
         if self.metadata['mime_type'] == 'text/plain':
-            session_data = self._browser.get_session()
-
             if not self._jobject.metadata['title_set_by_user'] == '1':
                 if self._browser.props.title:
                     self.metadata['title'] = self._browser.props.title
 
-            f = open(file_path, 'w')
-            try:
-                f.write(session_data)
-            finally:
-                f.close()
+            session_data = self._browser.get_session()
+            if session_data:
+                f = open(file_path, 'w')
+                try:
+                    f.write(session_data)
+                finally:
+                    f.close()
 
     def destroy(self):
         if downloadmanager.can_quit():
