@@ -156,8 +156,8 @@ class WebToolbar(gtk.Toolbar):
             current_page_index = session_history.index
 
         for palette in (self._back.get_palette(), self._forward.get_palette()):
-            while palette.menu_item_count():
-                palette.remove_menu_item(0)
+            for menu_item in palette.menu.get_children():
+                palette.menu.remove(menu_item)
 
         session_history = self._browser.web_navigation.sessionHistory
         for i in range(0, session_history.count):
@@ -170,10 +170,10 @@ class WebToolbar(gtk.Toolbar):
 
             if i < current_page_index:
                 palette = self._back.get_palette()
-                palette.insert_menu_item(menu_item, 0)
+                palette.menu.prepend(menu_item)
             elif i > current_page_index:
                 palette = self._forward.get_palette()
-                palette.insert_menu_item(menu_item, -1)
+                palette.menu.append(menu_item)
 
             menu_item.show()
 
