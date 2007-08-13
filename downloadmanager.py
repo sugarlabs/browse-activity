@@ -31,9 +31,13 @@ from sugar import profile
 from sugar import objects
 
 _browser = None
-def init(browser):
+_temp_path = '/tmp'
+def init(browser, temp_path):
     global _browser
     _browser = browser
+
+    global _temp_path
+    _temp_path = temp_path
 
 _active_ds_writes = 0
 _quit_callback = None
@@ -52,11 +56,15 @@ class DownloadManager:
         file_class = components.classes["@mozilla.org/file/local;1"]
         dest_file = file_class.createInstance(interfaces.nsILocalFile)
 
-        if default_file:
-            file_path = os.path.join(tempfile.gettempdir(), default_file)
-        else:
-            f, file_path = tempfile.mkstemp(suggested_file_extension)
-            del f
+        if not default_file:
+            default_file = time.time()
+            if suggested_file_extension:
+                default_file = '%s.%s' % (default_file, suggested_file_extension)
+
+        global _temp_path
+        if not os.path.exists(_temp_path):
+            os.makedirs(_temp_path)
+        file_path = os.path.join(_temp_path, default_file)
 
         dest_file.initWithPath(file_path)
         

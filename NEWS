@@ -1,3 +1,5 @@
+* #2763: Save downloads to flash, not to /tmp. (tomeu)
+
 37
 
 * Add greek translation. (simosx)

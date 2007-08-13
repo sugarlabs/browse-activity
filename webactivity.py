@@ -52,7 +52,8 @@ class WebActivity(activity.Activity):
         self.set_canvas(self._browser)
         self._browser.show()
 
-        downloadmanager.init(self._browser)
+        temp_path = os.path.join(self.get_activity_root(), 'tmp')
+        downloadmanager.init(self._browser, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
 
