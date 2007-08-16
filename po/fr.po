@@ -1,0 +1,66 @@
+# French file for web activity, for OLPC.
+# Copyright (C) 2007 The package's copyright holder
+# This file is distributed under the same license as the web package.
+#
+# Samuel Bizien <samuel@bizien.info>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"PO-Revision-Date: 2007-07-31 09:48+0200\n"
+"Last-Translator: Samuel Bizien <samuel@bizien.info>\n"
+"Language-Team: Traduc-fr <traduc@traduc.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr "Téléchargé depuis\n"
+"%s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"Téléchargement de %s depuis \n"
+"%s. Avancement %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Téléchargement de %s depuis \n"
+"%s."
+
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "Activité : internet"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Naviguer"
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr "Précédent"
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr "Suivant"
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr "Arrêter"
+
+#: webtoolbar.py:175
+msgid "Reload"
+msgstr "Recharger"
