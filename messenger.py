@@ -21,6 +21,7 @@ import os
 import dbus
 from dbus.gobject_service import ExportedGObject
 import base64
+import sha
 
 SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
@@ -29,13 +30,14 @@ PATH = "/org/laptop/WebActivity"
 _logger = logging.getLogger('messenger')
 
 class Messenger(ExportedGObject):
-    def __init__(self, tube, is_initiator, linkbar):
+    def __init__(self, tube, is_initiator, model, linkbar):
         ExportedGObject.__init__(self, tube, PATH)
         self.tube = tube
         self.is_initiator = is_initiator
         self.members = []
         self.entered = False
         self.linkbar = linkbar
+        self.model = model
         self.tube.watch_participants(self.participant_change_cb)
     
     def participant_change_cb(self, added, removed):
@@ -77,8 +79,9 @@ class Messenger(ExportedGObject):
         self.members.append(sender)            
         if self.is_initiator:
             self.tube.get_object(sender, PATH).init_members(self.members)            
-            for child in self.linkbar.get_children():
-                self.tube.get_object(sender, PATH).transfer_links(child.link_name, base64.b64encode(child.buf),dbus_interface=IFACE, reply_handler=self.reply_transfer, error_handler=lambda e:self.error_transfer(e, 'transfering file'))
+            for link in self.model.links:
+                if link['deleted'] == 0:
+                    self.tube.get_object(sender, PATH).transfer_links(link['url'], link['title'], base64.b64encode(link['thumb']),dbus_interface=IFACE, reply_handler=self.reply_transfer, error_handler=lambda e:self.error_transfer(e, 'transfering file'))
 
     def reply_transfer(self):
         pass
@@ -93,28 +96,33 @@ class Messenger(ExportedGObject):
         self.members = members
         self.id = self.members.index(self.tube.get_unique_name())
         
-    @dbus.service.method(dbus_interface=IFACE, in_signature='ss', out_signature='')
-    def transfer_links(self, linkname, thumb):
+    @dbus.service.method(dbus_interface=IFACE, in_signature='sss', out_signature='')
+    def transfer_links(self, url, title, buffer):
         '''Sync the link list with the others '''
         _logger.debug('Data received to sync link list.')
-        self.linkbar._add_link(linkname, base64.b64decode(thumb), -1)
+        thumb = base64.b64decode(buffer)
+        self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
+                                  'owner':'me', 'color':'red', 'deleted':0} )            
+        self.linkbar._add_link(url, thumb, len(self.model.links)-1)
             
-    def add_link(self, linkname, pix):
-        _logger.debug('Add Link: %s '%linkname)
-        thumb = base64.b64encode(pix)
-        self._add_link(linkname, thumb)
+    def add_link(self, url, title, thumb):
+        _logger.debug('Add Link: %s '%url)
+        self._add_link(url, title, base64.b64encode(thumb))
         
-    @dbus.service.signal(IFACE, signature='ss')
-    def _add_link(self, linkname, thumb):        
+    @dbus.service.signal(IFACE, signature='sss')
+    def _add_link(self, url, title, thumb):        
         '''Signal to send the link information (add)'''
         
-    def _add_link_receiver(self, linkname, thumb, sender=None):
+    def _add_link_receiver(self, url, title, thumb, sender=None):
         '''Member sent a link'''
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
-            data = base64.b64decode(thumb)
-            self.linkbar._add_link(linkname, data, -1)
-            _logger.debug('Added link: %s to linkbar.'%(linkname))
+            buffer = base64.b64decode(thumb)
+
+            self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':buffer,
+                                      'owner':'me', 'color':'red', 'deleted':0} )            
+            self.linkbar._add_link(url, buffer, len(self.model.links)-1)                
+            _logger.debug('Added link: %s to linkbar.'%(url))
     
     def rm_link(self, linkname):
         _logger.debug('Remove Link: %s '%linkname)

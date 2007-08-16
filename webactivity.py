@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 import gtk
 import dbus
+import sha
 
 from sugar.activity import activity
 from sugar import env
@@ -44,7 +45,7 @@ import progresslistener
 _LIBRARY_PATH = '/home/olpc/Library/index.html'
 
 from linktoolbar import LinkToolbar
-from xmlio import Xmlio
+from model import Model
 from tubeconn import TubeConnection
 from messenger import Messenger
 
@@ -88,7 +89,7 @@ class WebActivity(activity.Activity):
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         
         self._browser.connect("notify::title", self._title_changed_cb)
-        self.xmlio = Xmlio(os.path.dirname(__file__), self.linkbar)
+        self.model = Model(os.path.dirname(__file__))
         
         self._main_view = gtk.VBox()
         self.set_canvas(self._main_view)
@@ -101,6 +102,7 @@ class WebActivity(activity.Activity):
         self.linkbar.show()
 
         self.current = 'blank'
+        self.webtitle = 'blank'
         self.connect('key-press-event', self.key_press_cb)
         self.sname =  _sugarext.get_prgname()
         _logger.debug('PNAME:  %s' %self.sname)
@@ -231,7 +233,7 @@ class WebActivity(activity.Activity):
                 id, group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
             
             _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating, self.linkbar)         
+            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.linkbar)         
 
              
     def _load_homepage(self):
@@ -249,15 +251,21 @@ class WebActivity(activity.Activity):
         if embed.props.title is not '':
             #self.set_title(embed.props.title)            
             _logger.debug('Title changed=%s' % embed.props.title)
+            self.webtitle = embed.props.title
             _sugarext.set_prgname("org.laptop.WebActivity")
             
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
-
-            self.xmlio.read(file_path)
-            
-            _logger.debug('Trying to set session: %s.' % self.xmlio.session_data)
-            self._browser.set_session(self.xmlio.session_data)                
+            self.model.read(file_path)
+            i=0
+            for link in self.model.links:
+                _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['deleted']))
+                if link['deleted'] == 0:                    
+                    self.linkbar._add_link(link['url'], link['thumb'], i)
+                i+=1
+                
+            if self.model.session_data is not '':                
+                self._browser.set_session(self.model.session_data)                
         else:
             self._browser.load_uri(file_path)
             _sugarext.set_prgname(self.sname)
@@ -271,9 +279,12 @@ class WebActivity(activity.Activity):
                 if self._browser.props.title:
                     self.metadata['title'] = self._browser.props.title
 
-            self.xmlio.session_data = self._browser.get_session()                
-            _logger.debug('Trying save session: %s.' % self.xmlio.session_data)
-            self.xmlio.write(file_path)
+            for link in self.model.links:
+                _logger.debug('write: url=%s title=%s d=%s' % (link['url'], link['title'], link['deleted']))
+
+            self.model.session_data = self._browser.get_session()                
+            _logger.debug('Trying save session: %s.' % self.model.session_data)
+            self.model.write(file_path)
             
     def destroy(self):
         if downloadmanager.can_quit():
@@ -288,24 +299,28 @@ class WebActivity(activity.Activity):
     def _link_selected_cb(self, linkbar, link):
         self._browser.load_uri(link)
 
-    def _link_rm_cb(self, linkbar, link):
-        if self.messenger is not None:
-            self.messenger.rm_link(link)
+    def _link_rm_cb(self, linkbar, index):
+        self.model.links[index]['deleted'] = 1
+        self.model.links[index]['thumb'] = ''
             
     def key_press_cb(self, widget, event):        
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":
                 buffer = self._get_screenshot()
-                _logger.debug('Add link: %s.' % self.current)                                        
-                self.linkbar._add_link(self.current, buffer, -1)
+                _logger.debug('Add link: %s.' % self.current)                
+                self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle, 'thumb':buffer,
+                                    'owner':'me', 'color':'red', 'deleted':0} )
+
+                self.linkbar._add_link(self.current, buffer, len(self.model.links)-1)
                 if self.messenger is not None:
-                    self.messenger.add_link(self.current, buffer)
+                    self.messenger.add_link(self.current, self.webtitle, buffer)
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "r":
                 _logger.debug('Remove link: %s.' % self.current)
                 current = self.linkbar._rm_link()
-                if self.messenger is not None:
-                    self.messenger.rm_link(current)
+                _logger.debug('Remove link: %s.' % self.current)
+                self.model.links[current]['deleted'] = 1
+                self.model.links[current]['thumb'] = ''
                 return True
         return False
 

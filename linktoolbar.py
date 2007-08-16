@@ -36,26 +36,26 @@ class LinkToolbar(gtk.Toolbar):
                            ([str])),
         'link-rm': (gobject.SIGNAL_RUN_FIRST,
                            gobject.TYPE_NONE,
-                           ([str]))
+                           ([int]))
     }
 
     def __init__(self):
         gtk.Toolbar.__init__(self)       
         
-    def _add_link(self, link_name, buffer, pos):
+    def _add_link(self, url, buffer, pos):
 
         if self.get_children():
             group = self.get_children()[0]
         else:
             group = None
 
-        palette = Palette(link_name)
+        palette = Palette(url)
         palette.props.position = Palette.TOP        
         
-        link = LinkButton(link_name, buffer, group)        
+        link = LinkButton(buffer, pos, group)        
         link.set_palette(palette)    
-        link.connect('clicked', self._link_clicked_cb, link_name)
-        self.insert(link, pos)
+        link.connect('clicked', self._link_clicked_cb, url)
+        self.insert(link, 0)
         link.show()
         
         menu_item = gtk.MenuItem(_('remove'))
@@ -68,22 +68,23 @@ class LinkToolbar(gtk.Toolbar):
         if len(self.get_children()) > 0:
             self.show()
     
-    def _link_clicked_cb(self, link, link_name):
+    def _link_clicked_cb(self, link, url):
         if link.get_active():
-            _logger.debug('link clicked=%s' %link_name)
-            self.emit('link-selected', link_name)
+            _logger.debug('link clicked=%s' %url)
+            self.emit('link-selected', url)
             
     def _rm_link(self):
         childs = self.get_children()
         for child in childs:
             if child.get_active():
-                link_name = child.link_name
+                index = child.pos
                 self.remove(child)
                 # self.get_children()[0].props.active = True        
                 if len(self.get_children()) is 0:
                     self.hide()
-                return link_name   
+                return index
 
+    ''' deprecated        
     def _rm_link_messenger(self, linkname):
         childs = self.get_children()
         for child in childs:
@@ -92,9 +93,10 @@ class LinkToolbar(gtk.Toolbar):
                 if len(self.get_children()) is 0:
                     self.hide()
                 return   
-            
+    '''
+    
     def _link_rm_palette_cb(self, widget, link):
-        self.emit('link-rm', link.link_name)
+        self.emit('link-rm', link.pos)
         self.remove(link)
         # self.get_children()[0].props.active = True        
         if len(self.get_children()) is 0:

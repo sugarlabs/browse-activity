@@ -11,7 +11,11 @@
 >
 <!ELEMENT link (#PCDATA)* >
 <!ATTLIST link
-  id    CDATA  #REQUIRED
-  name    CDATA  #IMPLIED
+  hash    CDATA  #REQUIRED
+  url     CDATA  #IMPLIED
+  title   CDATA  #IMPLIED
   thumb	  CDATA  #IMPLIED
+  owner	  CDATA  #IMPLIED
+  color   CDATA  #IMPLIED
+  deleted CDATA  #IMPLIED
 >

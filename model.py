@@ -22,16 +22,16 @@ import logging
 import base64
 
 
-_logger = logging.getLogger('xmlio')
+_logger = logging.getLogger('model')
 
 
-class Xmlio(object):
-    ''' The xmlio of the activity. Contains methods to read and write
+class Model(object):
+    ''' The model of the activity. Contains methods to read and write
     the configuration for a browser session to and from xml. 
     '''
     
-    def __init__(self, dtdpath, linkbar):        
-        self.linkbar = linkbar        
+    def __init__(self, dtdpath):
+        self.links = []
         self.data = {}
         self.dtdpath = dtdpath
         self.data['name'] = 'first'
@@ -58,18 +58,25 @@ class Xmlio(object):
                 # write their content to the data structure
                 for elem in res:
                     attributes = elem.get_properties()
-                    thumb = ''
-                    link_name = ''
-                    id = None
                     if( elem.name == 'link' ):
                         for attribute in attributes:
-                            if(attribute.name == 'id'):
-                                id = int(attribute.content)
-                            elif(attribute.name == 'name'):
-                                link_name = attribute.content
+                            if(attribute.name == 'hash'):
+                                hash = attribute.content
+                            elif(attribute.name == 'url'):
+                                url = attribute.content
+                            elif(attribute.name == 'title'):
+                                title = attribute.content                               
                             elif(attribute.name == 'thumb'):
-                                thumb = attribute.content                                
-                        self.linkbar._add_link(link_name, base64.b64decode(thumb), id)
+                                thumb = base64.b64decode(attribute.content)                                
+                            elif(attribute.name == 'owner'):
+                                owner = attribute.content
+                            elif(attribute.name == 'color'):
+                                color = attribute.content
+                            elif(attribute.name == 'deleted'):
+                                deleted = int(attribute.content)
+                                
+                        self.links.append( {'hash':hash, 'url':url, 'title':title, 'thumb':thumb,
+                                            'owner':owner, 'color':color, 'deleted':deleted} )
                 
                     elif( elem.name == 'session' ):
                         for attribute in attributes:
@@ -107,12 +114,15 @@ class Xmlio(object):
         elem = root.newChild(None, "session", None)
         elem.setProp("data", self.session_data)
 
-        for child in self.linkbar.get_children():
+        for link in self.links:
             elem = root.newChild(None, "link", None)
-            elem.setProp("id", str(self.linkbar.get_item_index(child)))
-            elem.setProp("name", child.link_name)
-            elem.setProp("thumb", base64.b64encode(child.buf))
-
+            elem.setProp("hash", link['hash'])
+            elem.setProp("url", link['url'])
+            elem.setProp("title", link['title'])
+            elem.setProp("thumb", base64.b64encode(link['thumb']))
+            elem.setProp("owner", link['owner'])
+            elem.setProp("color", link['color'])
+            elem.setProp("deleted", str(link['deleted']))
                         
         if doc.validateDtd(self.ctxt, self.dtd):
             doc.saveFormatFile(filepath, 1)
@@ -125,3 +135,38 @@ class Xmlio(object):
         
 
     
+if __name__ == '__main__':
+    model = Model(os.path.dirname(__file__))
+
+    filepath = 'sports.png'
+
+    target = os.open(filepath, os.O_RDONLY)
+    filelen = os.stat(filepath).st_size
+    data = os.read(target, filelen)
+    os.close(target)
+
+    '''
+    import sha
+    url = 'www.sport.de'
+    title = 'sports'
+    hash = sha.new(url)
+    model.links.append({'hash':hash.hexdigest(), 'url':url, 'title':title})
+
+    url = 'www.jazz.de'
+    title = 'more on jazz'
+    hash = sha.new(url)
+    model.links.append({'hash':hash.hexdigest(), 'url':url, 'title':title})
+
+    url = 'www.taz.de'
+    title = 'die zeitung'
+    hash = sha.new(url)
+    model.links.append({'hash':hash.hexdigest(), 'url':url, 'title':title})
+                        
+    model.write('/tmp/test.bwr')
+    '''
+    
+    model.read('/tmp/test.bwr')
+
+    model.links.remove(model.links[1])
+    
+    print model.links

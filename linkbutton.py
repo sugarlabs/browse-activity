@@ -21,12 +21,11 @@ from sugar.graphics.palette import Palette, WidgetInvoker
 from sugar.graphics import style
 
 class LinkButton(gtk.RadioToolButton):
-    def __init__(self, link_name, buffer=None, group=None):
+    def __init__(self, buffer, pos, group=None):
         gtk.RadioToolButton.__init__(self, group=group)
         self._palette = None
         self.set_image(buffer)
-        self.link_name = link_name
-        self.buf = buffer
+        self.pos = pos
         
     def set_image(self, buffer):
         img = gtk.Image()                    
