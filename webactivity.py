@@ -23,6 +23,11 @@ import dbus
 
 from sugar.activity import activity
 from sugar import env
+from sugar.graphics import style
+import telepathy
+import telepathy.client
+from sugar import _sugarext
+from sugar.presence import presenceservice
 
 import hulahop
 hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
@@ -33,26 +38,35 @@ import downloadmanager
 import promptservice
 import securitydialogs
 import filepicker
-import sessionhistory
+import sessionhistory 
 import progresslistener
 
 _LIBRARY_PATH = '/home/olpc/Library/index.html'
 
+from linktoolbar import LinkToolbar
+from xmlio import Xmlio
+from tubeconn import TubeConnection
+from messenger import Messenger
+
+SERVICE = "org.laptop.WebActivity"
+IFACE = SERVICE
+PATH = "/org/laptop/WebActivity"
+
+_logger = logging.getLogger('web-activity')
+
+
 class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
-        activity.Activity.__init__(self, handle)
-
-        logging.debug('Starting the web activity')
+        activity.Activity.__init__(self, handle)        
+        
+        _logger.debug('Starting the web activity')
 
         if browser:
             self._browser = browser
         else:
             self._browser = Browser()
-
-        self.set_canvas(self._browser)
-        self._browser.show()
-
-        temp_path = os.path.join(self.get_activity_root(), 'tmp')
+        
+        temp_path = os.path.join(self.get_activity_root(), 'tmp')        
         downloadmanager.init(self._browser, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
@@ -67,6 +81,30 @@ class WebActivity(activity.Activity):
         self.set_toolbox(toolbox)
         toolbox.show()
 
+        self.linkbar = LinkToolbar()
+        self.linkbar.connect('link-selected', self._link_selected_cb)
+        self.linkbar.connect('link-rm', self._link_rm_cb)
+        self.session_history = sessionhistory.get_instance()
+        self.session_history.connect('session-link-changed', self._session_history_changed_cb)
+        
+        self._browser.connect("notify::title", self._title_changed_cb)
+        self.xmlio = Xmlio(os.path.dirname(__file__), self.linkbar)
+        
+        self._main_view = gtk.VBox()
+        self.set_canvas(self._main_view)
+        self._main_view.show()
+        
+        self._main_view.pack_start(self._browser)
+        self._browser.show()
+
+        self._main_view.pack_start(self.linkbar, expand=False)
+        self.linkbar.show()
+
+        self.current = 'blank'
+        self.connect('key-press-event', self.key_press_cb)
+        self.sname =  _sugarext.get_prgname()
+        _logger.debug('PNAME:  %s' %self.sname)
+        
         if handle.uri:
             self._browser.load_uri(handle.uri)
         elif not self._jobject.file_path and not browser:
@@ -74,27 +112,156 @@ class WebActivity(activity.Activity):
             # opening URIs and default docs.
             self._load_homepage()
 
+        _sugarext.set_prgname(self.sname)
+                    
+        self.set_title('WebActivity')
+        self.messenger = None
+        self.connect('shared', self._shared_cb)
+                                
+        # Get the Presence Service
+        self.pservice = presenceservice.get_instance()
+        name, path = self.pservice.get_preferred_connection()
+        self.tp_conn_name = name
+        self.tp_conn_path = path
+        self.conn = telepathy.client.Connection(name, path)
+        self.initiating = None
+            
+        if self._shared_activity is not None:
+            _logger.debug('shared:  %s' %self._shared_activity.props.joined)
+        
+        if self._shared_activity is not None:
+            # We are joining the activity
+            _logger.debug('Joined activity')                      
+            self.connect('joined', self._joined_cb)
+            if self.get_shared():
+                # We've already joined
+                self._joined_cb()
+        else:   
+            _logger.debug('Created activity')
+
+    
+    def _shared_cb(self, activity):
+        _logger.debug('My activity was shared')        
+        self.initiating = True                        
+        self._setup()
+
+        _logger.debug('This is my activity: making a tube...')
+        id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferTube(
+            telepathy.TUBE_TYPE_DBUS, SERVICE, {})
+        
+        
+    def _setup(self):
+        if self._shared_activity is None:
+            _logger.debug('Failed to share or join activity')
+            return
+
+        bus_name, conn_path, channel_paths = self._shared_activity.get_channels()
+
+        # Work out what our room is called and whether we have Tubes already
+        room = None
+        tubes_chan = None
+        text_chan = None
+        for channel_path in channel_paths:
+            channel = telepathy.client.Channel(bus_name, channel_path)
+            htype, handle = channel.GetHandle()
+            if htype == telepathy.HANDLE_TYPE_ROOM:
+                _logger.debug('Found our room: it has handle#%d "%s"' 
+                    %(handle, self.conn.InspectHandles(htype, [handle])[0]))
+                room = handle
+                ctype = channel.GetChannelType()
+                if ctype == telepathy.CHANNEL_TYPE_TUBES:
+                    _logger.debug('Found our Tubes channel at %s'%channel_path)
+                    tubes_chan = channel
+                elif ctype == telepathy.CHANNEL_TYPE_TEXT:
+                    _logger.debug('Found our Text channel at %s'%channel_path)
+                    text_chan = channel
+
+        if room is None:
+            _logger.debug("Presence service didn't create a room")
+            return
+        if text_chan is None:
+            _logger.debug("Presence service didn't create a text channel")
+            return
+
+        # Make sure we have a Tubes channel - PS doesn't yet provide one
+        if tubes_chan is None:
+            _logger.debug("Didn't find our Tubes channel, requesting one...")
+            tubes_chan = self.conn.request_channel(telepathy.CHANNEL_TYPE_TUBES, 
+                                                   telepathy.HANDLE_TYPE_ROOM, room, True)
+
+        self.tubes_chan = tubes_chan
+        self.text_chan = text_chan
+
+        tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal('NewTube', 
+                                                                   self._new_tube_cb)
+
+    def _list_tubes_reply_cb(self, tubes):
+        for tube_info in tubes:
+            self._new_tube_cb(*tube_info)
+
+    def _list_tubes_error_cb(self, e):
+        _logger.debug('ListTubes() failed: %s'%e)
+
+    def _joined_cb(self, activity):
+        if not self._shared_activity:
+            return
+
+        _logger.debug('Joined an existing shared activity')
+        
+        self.initiating = False
+        self._setup()
+                
+        _logger.debug('This is not my activity: waiting for a tube...')
+        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].ListTubes(
+            reply_handler=self._list_tubes_reply_cb, 
+            error_handler=self._list_tubes_error_cb)
+
+    def _new_tube_cb(self, id, initiator, type, service, params, state):
+        _logger.debug('New tube: ID=%d initator=%d type=%d service=%s '
+                     'params=%r state=%d' %(id, initiator, type, service, 
+                     params, state))
+
+        if (type == telepathy.TUBE_TYPE_DBUS and
+            service == SERVICE):
+            if state == telepathy.TUBE_STATE_LOCAL_PENDING:
+                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptTube(id)
+
+            self.tube_conn = TubeConnection(self.conn, 
+                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES], 
+                id, group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
+            
+            _logger.debug('Tube created')
+            self.messenger = Messenger(self.tube_conn, self.initiating, self.linkbar)         
+
+             
     def _load_homepage(self):
         if os.path.isfile(_LIBRARY_PATH):
             self._browser.load_uri('file://' + _LIBRARY_PATH)
         else:
             self._browser.load_uri('about:blank')
+        _sugarext.set_prgname(self.sname)
 
+    def _session_history_changed_cb(self, session_history, link):
+        _logger.debug('NewPage: %s.' %link)
+        self.current = link
+        
     def _title_changed_cb(self, embed, pspec):
-        self.set_title(embed.props.title)
-
+        if embed.props.title is not '':
+            #self.set_title(embed.props.title)            
+            _logger.debug('Title changed=%s' % embed.props.title)
+            _sugarext.set_prgname("org.laptop.WebActivity")
+            
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
-            f = open(file_path, 'r')
-            try:
-                session_data = f.read()
-            finally:
-                f.close()
-            logging.debug('Trying to set session: %s.' % session_data)
-            self._browser.set_session(session_data)
+
+            self.xmlio.read(file_path)
+            
+            _logger.debug('Trying to set session: %s.' % self.xmlio.session_data)
+            self._browser.set_session(self.xmlio.session_data)                
         else:
             self._browser.load_uri(file_path)
-
+            _sugarext.set_prgname(self.sname)
+        
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
@@ -104,14 +271,10 @@ class WebActivity(activity.Activity):
                 if self._browser.props.title:
                     self.metadata['title'] = self._browser.props.title
 
-            session_data = self._browser.get_session()
-            if session_data:
-                f = open(file_path, 'w')
-                try:
-                    f.write(session_data)
-                finally:
-                    f.close()
-
+            self.xmlio.session_data = self._browser.get_session()                
+            _logger.debug('Trying save session: %s.' % self.xmlio.session_data)
+            self.xmlio.write(file_path)
+            
     def destroy(self):
         if downloadmanager.can_quit():
             activity.Activity.destroy(self)
@@ -119,6 +282,56 @@ class WebActivity(activity.Activity):
             downloadmanager.set_quit_callback(self._quit_callback_cb)
 
     def _quit_callback_cb(self):
-        logging.debug('_quit_callback_cb')
+        _logger.debug('_quit_callback_cb')
         activity.Activity.destroy(self)
 
+    def _link_selected_cb(self, linkbar, link):
+        self._browser.load_uri(link)
+
+    def _link_rm_cb(self, linkbar, link):
+        if self.messenger is not None:
+            self.messenger.rm_link(link)
+            
+    def key_press_cb(self, widget, event):        
+        if event.state & gtk.gdk.CONTROL_MASK:
+            if gtk.gdk.keyval_name(event.keyval) == "l":
+                buffer = self._get_screenshot()
+                _logger.debug('Add link: %s.' % self.current)                                        
+                self.linkbar._add_link(self.current, buffer, -1)
+                if self.messenger is not None:
+                    self.messenger.add_link(self.current, buffer)
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "r":
+                _logger.debug('Remove link: %s.' % self.current)
+                current = self.linkbar._rm_link()
+                if self.messenger is not None:
+                    self.messenger.rm_link(current)
+                return True
+        return False
+
+
+    def _pixbuf_save_cb(self, buf, data):
+        data[0] += buf
+        return True
+
+    def get_buffer(self, pixbuf):
+        data = [""]
+        pixbuf.save_to_callback(self._pixbuf_save_cb, "png", {}, data)
+        return str(data[0])
+
+                
+    def _get_screenshot(self):
+        window = self._browser.window
+        width, height = window.get_size()
+
+        screenshot = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, has_alpha=False,
+                                    bits_per_sample=8, width=width, height=height)
+        screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
+                                     width, height)
+
+        screenshot = screenshot.scale_simple(style.zoom(150),
+                                                 style.zoom(150),
+                                                 gtk.gdk.INTERP_BILINEAR)
+
+        buffer = self.get_buffer(screenshot)
+        return buffer

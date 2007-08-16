@@ -25,7 +25,9 @@ class HistoryListener(gobject.GObject):
 
     __gsignals__ = {
         'session-history-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                                    ([int]))
+                                    ([int])),
+        'session-link-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                                    ([str]))
     }
 
     def __init__(self, browser):
@@ -39,21 +41,25 @@ class HistoryListener(gobject.GObject):
 
     def OnHistoryGoBack(self, back_uri):
         logging.debug("OnHistoryGoBack: %s" % back_uri.spec)
+        self.emit('session-link-changed', back_uri.spec)
         self.emit('session-history-changed', self._session_history.index - 1)
         return True
 
     def OnHistoryGoForward(self, forward_uri):
         logging.debug("OnHistoryGoForward: %s" % forward_uri.spec)
+        self.emit('session-link-changed', forward_uri.spec)
         self.emit('session-history-changed', self._session_history.index + 1)
         return True
 
     def OnHistoryGotoIndex(self, index, goto_uri):
         logging.debug("OnHistoryGotoIndex: %i %s" % (index, goto_uri.spec))
+        self.emit('session-link-changed', goto_uri.spec)
         self.emit('session-history-changed', index)
         return True
 
     def OnHistoryNewEntry(self, new_uri):
         logging.debug("OnHistoryNewEntry: %s" % new_uri.spec)
+        self.emit('session-link-changed', new_uri.spec)
         self.emit('session-history-changed', self._session_history.index + 1)
 
     def OnHistoryPurge(self, num_entries):
@@ -62,6 +68,7 @@ class HistoryListener(gobject.GObject):
         return True
 
     def OnHistoryReload(self, reload_uri, reload_flags):
+        self.emit('session-link-changed', reload_uri.spec)
         logging.debug("OnHistoryReload: %s" % reload_uri.spec)
         return True
 
