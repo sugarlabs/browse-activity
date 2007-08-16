@@ -1,0 +1,68 @@
+# This file is distributed under the same license as the PACKAGE package.
+# Fabian Affolter <fab@fedoraproject.org>, 2007.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: web\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"PO-Revision-Date: 2007-07-30 10:37+0100\n"
+"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
+"Language-Team: German <fedora-trans-de@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+
+#: downloadmanager.py:91
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+"Datei %s heruntergeladen von\n"
+"%s."
+
+#: downloadmanager.py:118
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+"Herunterladen %s von\n"
+"%s. Fortschritt %i%%."
+
+#: downloadmanager.py:129
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Herunterladen %s von \n"
+"%s."
+
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "Web-Aktivität"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Durchsuchen"
+
+#: webtoolbar.py:85
+msgid "Back"
+msgstr "Zurück"
+
+#: webtoolbar.py:92
+msgid "Forward"
+msgstr "Weiter"
+
+#: webtoolbar.py:172
+msgid "Stop"
+msgstr "Stopp"
+
+#: webtoolbar.py:175
+msgid "Reload"
+msgstr "Neu laden"
+
