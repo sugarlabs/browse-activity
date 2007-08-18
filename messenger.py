@@ -30,7 +30,7 @@ PATH = "/org/laptop/WebActivity"
 _logger = logging.getLogger('messenger')
 
 class Messenger(ExportedGObject):
-    def __init__(self, tube, is_initiator, model, linkbar):
+    def __init__(self, tube, is_initiator, model, linkbar, owner):
         ExportedGObject.__init__(self, tube, PATH)
         self.tube = tube
         self.is_initiator = is_initiator
@@ -38,6 +38,8 @@ class Messenger(ExportedGObject):
         self.entered = False
         self.linkbar = linkbar
         self.model = model
+        self.owner = owner
+        _logger.debug('Owner=%s %s' %(self.owner.props.nick, self.owner.props.color))
         self.tube.watch_participants(self.participant_change_cb)
     
     def participant_change_cb(self, added, removed):
@@ -81,7 +83,7 @@ class Messenger(ExportedGObject):
             self.tube.get_object(sender, PATH).init_members(self.members)            
             for link in self.model.links:
                 if link['deleted'] == 0:
-                    self.tube.get_object(sender, PATH).transfer_links(link['url'], link['title'], base64.b64encode(link['thumb']),dbus_interface=IFACE, reply_handler=self.reply_transfer, error_handler=lambda e:self.error_transfer(e, 'transfering file'))
+                    self.tube.get_object(sender, PATH).transfer_links(link['url'], link['title'], link['color'], link['owner'], base64.b64encode(link['thumb']),dbus_interface=IFACE, reply_handler=self.reply_transfer, error_handler=lambda e:self.error_transfer(e, 'transfering file'))
 
     def reply_transfer(self):
         pass
@@ -96,32 +98,32 @@ class Messenger(ExportedGObject):
         self.members = members
         self.id = self.members.index(self.tube.get_unique_name())
         
-    @dbus.service.method(dbus_interface=IFACE, in_signature='sss', out_signature='')
-    def transfer_links(self, url, title, buffer):
+    @dbus.service.method(dbus_interface=IFACE, in_signature='sssss', out_signature='')
+    def transfer_links(self, url, title, color, owner, buffer):
         '''Sync the link list with the others '''
         _logger.debug('Data received to sync link list.')
         thumb = base64.b64decode(buffer)
         self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
-                                  'owner':'me', 'color':'red', 'deleted':0} )            
-        self.linkbar._add_link(url, thumb, len(self.model.links)-1)
+                                  'owner':owner, 'color':color, 'deleted':0} )            
+        self.linkbar._add_link(url, thumb, color, title, owner, len(self.model.links)-1)
             
-    def add_link(self, url, title, thumb):
+    def add_link(self, url, title, color, owner, thumb):
         _logger.debug('Add Link: %s '%url)
-        self._add_link(url, title, base64.b64encode(thumb))
+        self._add_link(url, title, color, owner, base64.b64encode(thumb))
         
-    @dbus.service.signal(IFACE, signature='sss')
-    def _add_link(self, url, title, thumb):        
+    @dbus.service.signal(IFACE, signature='sssss')
+    def _add_link(self, url, title, color, owner, thumb):        
         '''Signal to send the link information (add)'''
         
-    def _add_link_receiver(self, url, title, thumb, sender=None):
+    def _add_link_receiver(self, url, title, color, owner, thumb, sender=None):
         '''Member sent a link'''
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
             buffer = base64.b64decode(thumb)
 
             self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':buffer,
-                                      'owner':'me', 'color':'red', 'deleted':0} )            
-            self.linkbar._add_link(url, buffer, len(self.model.links)-1)                
+                                      'owner':owner, 'color':color, 'deleted':0} )            
+            self.linkbar._add_link(url, buffer, color, title, owner, len(self.model.links)-1)                
             _logger.debug('Added link: %s to linkbar.'%(url))
     
     def rm_link(self, linkname):

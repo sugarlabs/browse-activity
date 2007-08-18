@@ -130,7 +130,8 @@ class WebActivity(activity.Activity):
             
         if self._shared_activity is not None:
             _logger.debug('shared:  %s' %self._shared_activity.props.joined)
-        
+
+        self.owner = self.pservice.get_owner()
         if self._shared_activity is not None:
             # We are joining the activity
             _logger.debug('Joined activity')                      
@@ -233,7 +234,7 @@ class WebActivity(activity.Activity):
                 id, group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
             
             _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.linkbar)         
+            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.linkbar, self.owner)         
 
              
     def _load_homepage(self):
@@ -259,7 +260,7 @@ class WebActivity(activity.Activity):
             self.model.read(file_path)
             i=0
             for link in self.model.links:
-                _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['deleted']))
+                _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
                 if link['deleted'] == 0:                    
                     self.linkbar._add_link(link['url'], link['thumb'], i)
                 i+=1
@@ -280,7 +281,7 @@ class WebActivity(activity.Activity):
                     self.metadata['title'] = self._browser.props.title
 
             for link in self.model.links:
-                _logger.debug('write: url=%s title=%s d=%s' % (link['url'], link['title'], link['deleted']))
+                _logger.debug('write: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
 
             self.model.session_data = self._browser.get_session()                
             _logger.debug('Trying save session: %s.' % self.model.session_data)
@@ -308,12 +309,13 @@ class WebActivity(activity.Activity):
             if gtk.gdk.keyval_name(event.keyval) == "l":
                 buffer = self._get_screenshot()
                 _logger.debug('Add link: %s.' % self.current)                
-                self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle, 'thumb':buffer,
-                                    'owner':'me', 'color':'red', 'deleted':0} )
+                self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle,
+                                          'thumb':buffer, 'owner':self.owner.props.nick, 'color':self.owner.props.color, 'deleted':0} )
 
-                self.linkbar._add_link(self.current, buffer, len(self.model.links)-1)
+                self.linkbar._add_link(self.current, buffer, self.owner.props.color, self.webtitle, self.owner.props.nick,
+                                       len(self.model.links)-1)
                 if self.messenger is not None:
-                    self.messenger.add_link(self.current, self.webtitle, buffer)
+                    self.messenger.add_link(self.current, self.webtitle, self.owner.props.color, self.owner.props.nick, buffer)
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "r":
                 _logger.debug('Remove link: %s.' % self.current)
@@ -344,8 +346,8 @@ class WebActivity(activity.Activity):
         screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
                                      width, height)
 
-        screenshot = screenshot.scale_simple(style.zoom(150),
-                                                 style.zoom(150),
+        screenshot = screenshot.scale_simple(style.zoom(160),
+                                                 style.zoom(120),
                                                  gtk.gdk.INTERP_BILINEAR)
 
         buffer = self.get_buffer(screenshot)

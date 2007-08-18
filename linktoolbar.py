@@ -42,17 +42,18 @@ class LinkToolbar(gtk.Toolbar):
     def __init__(self):
         gtk.Toolbar.__init__(self)       
         
-    def _add_link(self, url, buffer, pos):
+    def _add_link(self, url, buffer, color, title, owner, pos):
 
         if self.get_children():
             group = self.get_children()[0]
         else:
             group = None
 
-        palette = Palette(url)
+        info = 'title: ' + title +'\nurl: '+ url + '\nowner: ' + owner     
+        palette = Palette(info)
         palette.props.position = Palette.TOP        
         
-        link = LinkButton(buffer, pos, group)        
+        link = LinkButton(buffer, color, pos, group)        
         link.set_palette(palette)    
         link.connect('clicked', self._link_clicked_cb, url)
         self.insert(link, 0)
