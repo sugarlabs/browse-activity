@@ -75,9 +75,9 @@ class WebActivity(activity.Activity):
         toolbox = activity.ActivityToolbox(self)
         activity_toolbar = toolbox.get_activity_toolbar()
 
-        toolbar = WebToolbar(self._browser)
-        toolbox.add_toolbar(_('Browse'), toolbar)
-        toolbar.show()
+        self.toolbar = WebToolbar(self._browser)
+        toolbox.add_toolbar(_('Browse'), self.toolbar)
+        self.toolbar.show()
 
         self.set_toolbox(toolbox)
         toolbox.show()
@@ -87,6 +87,7 @@ class WebActivity(activity.Activity):
         self.linkbar.connect('link-rm', self._link_rm_cb)
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
+        self.toolbar._add_link.connect('clicked', self._add_link_button_cb)
         
         self._browser.connect("notify::title", self._title_changed_cb)
         self.model = Model(os.path.dirname(__file__))
@@ -303,21 +304,14 @@ class WebActivity(activity.Activity):
     def _link_rm_cb(self, linkbar, index):
         self.model.links[index]['deleted'] = 1
         self.model.links[index]['thumb'] = ''
-            
+
+    def _add_link_button_cb(self, button):
+        self._add_link()
+        
     def key_press_cb(self, widget, event):        
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":
-                buffer = self._get_screenshot()
-                _logger.debug('keyboard: Add link: %s.' % self.current)                
-                self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle,
-                                          'thumb':buffer, 'owner':self.owner.props.nick, 'color':self.owner.props.color, 'deleted':0} )
-
-                self.linkbar._add_link(self.current, buffer, self.owner.props.color, self.webtitle, self.owner.props.nick,
-                                       len(self.model.links)-1)
-                if self.messenger is not None:
-                    import base64
-                    self.messenger._add_link(self.current, self.webtitle, self.owner.props.color,
-                                             self.owner.props.nick, base64.b64encode(buffer))
+                self._add_link()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "r":
                 _logger.debug('keyboard: Remove link: %s.' % self.current)
@@ -327,7 +321,19 @@ class WebActivity(activity.Activity):
                 return True
         return False
 
+    def _add_link(self):
+        buffer = self._get_screenshot()
+        _logger.debug('keyboard: Add link: %s.' % self.current)                
+        self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle,
+                                  'thumb':buffer, 'owner':self.owner.props.nick, 'color':self.owner.props.color, 'deleted':0} )
 
+        self.linkbar._add_link(self.current, buffer, self.owner.props.color, self.webtitle, self.owner.props.nick,
+                               len(self.model.links)-1)
+        if self.messenger is not None:
+            import base64
+            self.messenger._add_link(self.current, self.webtitle, self.owner.props.color,
+                                     self.owner.props.nick, base64.b64encode(buffer))
+                    
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
         return True

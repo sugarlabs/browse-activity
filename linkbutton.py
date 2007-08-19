@@ -40,7 +40,7 @@ class LinkButton(gtk.RadioToolButton):
         pixbuf = loader.get_pixbuf()
         del loader            
 
-        xo_buddy = os.path.join(os.path.dirname(__file__), "stock-buddy-link.svg")
+        xo_buddy = os.path.join(os.path.dirname(__file__), "icons/buddy-link.svg")
         pixbuf_xo = self._read_xo_icon(xo_buddy, fill, stroke)
 
         width  = pixbuf_xo.get_width()

@@ -67,6 +67,11 @@ class WebToolbar(gtk.Toolbar):
         self.insert(entry_item, -1)
         entry_item.show()
 
+        self._add_link = ToolButton('add-link')
+        self._add_link.set_tooltip(_('Add Link'))
+        self.insert(self._add_link, -1)
+        self._add_link.show()
+
         progress_listener = progresslistener.get_instance()
         progress_listener.connect('location-changed', self._location_changed_cb)
         progress_listener.connect('loading-start', self._loading_start_cb)
