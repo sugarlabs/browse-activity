@@ -261,8 +261,8 @@ class WebActivity(activity.Activity):
             i=0
             for link in self.model.links:
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
-                if link['deleted'] == 0:                    
-                    self.linkbar._add_link(link['url'], link['thumb'], i)
+                if link['deleted'] == 0:
+                    self.linkbar._add_link(link['url'], link['thumb'], link['color'], link['title'], link['owner'], i)                    
                 i+=1
                 
             if self.model.session_data is not '':                
@@ -308,19 +308,20 @@ class WebActivity(activity.Activity):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":
                 buffer = self._get_screenshot()
-                _logger.debug('Add link: %s.' % self.current)                
+                _logger.debug('keyboard: Add link: %s.' % self.current)                
                 self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle,
                                           'thumb':buffer, 'owner':self.owner.props.nick, 'color':self.owner.props.color, 'deleted':0} )
 
                 self.linkbar._add_link(self.current, buffer, self.owner.props.color, self.webtitle, self.owner.props.nick,
                                        len(self.model.links)-1)
                 if self.messenger is not None:
-                    self.messenger.add_link(self.current, self.webtitle, self.owner.props.color, self.owner.props.nick, buffer)
+                    import base64
+                    self.messenger._add_link(self.current, self.webtitle, self.owner.props.color,
+                                             self.owner.props.nick, base64.b64encode(buffer))
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "r":
-                _logger.debug('Remove link: %s.' % self.current)
+                _logger.debug('keyboard: Remove link: %s.' % self.current)
                 current = self.linkbar._rm_link()
-                _logger.debug('Remove link: %s.' % self.current)
                 self.model.links[current]['deleted'] = 1
                 self.model.links[current]['thumb'] = ''
                 return True

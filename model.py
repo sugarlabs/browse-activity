@@ -132,7 +132,13 @@ class Model(object):
             return 2
         doc.freeDoc()
         return 0
-        
+
+    def get_links_ids(self):
+        ids = []
+        for link in self.links:
+            ids.append(link['hash'])
+        ids.append('')    
+        return ids
 
     
 if __name__ == '__main__':

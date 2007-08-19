@@ -49,7 +49,7 @@ class LinkToolbar(gtk.Toolbar):
         else:
             group = None
 
-        info = 'title: ' + title +'\nurl: '+ url + '\nowner: ' + owner     
+        info = 'title: ' + title +'\nurl:  '+ url + '\nowner: ' + owner     
         palette = Palette(info)
         palette.props.position = Palette.TOP        
         
@@ -84,17 +84,6 @@ class LinkToolbar(gtk.Toolbar):
                 if len(self.get_children()) is 0:
                     self.hide()
                 return index
-
-    ''' deprecated        
-    def _rm_link_messenger(self, linkname):
-        childs = self.get_children()
-        for child in childs:
-            if child.link_name == linkname:
-                self.remove(child)                
-                if len(self.get_children()) is 0:
-                    self.hide()
-                return   
-    '''
     
     def _link_rm_palette_cb(self, widget, link):
         self.emit('link-rm', link.pos)

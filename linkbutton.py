@@ -46,12 +46,6 @@ class LinkButton(gtk.RadioToolButton):
         width  = pixbuf_xo.get_width()
         height = pixbuf_xo.get_height()
 
-        print pixbuf.get_width()
-        print pixbuf.get_height()
-
-        print pixbuf_xo.get_width()
-        print pixbuf_xo.get_height()
-
         dest_x = 100
         dest_y = 66 
         w = width/2 
