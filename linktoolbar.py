@@ -49,7 +49,7 @@ class LinkToolbar(gtk.Toolbar):
         else:
             group = None
 
-        info = 'title: ' + title +'\nurl:  '+ url + '\nowner: ' + owner     
+        info = _('title: ') + title +'\n' + _('url: ') + url + '\n' + _('owner: ') + owner     
         palette = Palette(info)
         palette.props.position = Palette.TOP        
         

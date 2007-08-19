@@ -1,20 +1,20 @@
-# translation of web-activity.master.po to Macedonian
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Arangel Angov <arangel@linux.net.mk>, 2007.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: web-activity.master\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-19 20:16+0200\n"
-"PO-Revision-Date: 2007-07-06 13:43+0200\n"
-"Last-Translator: Arangel Angov <arangel@linux.net.mk>\n"
-"Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: downloadmanager.py:114
 #, python-format
@@ -22,8 +22,6 @@ msgid ""
 "File %s downloaded from\n"
 "%s."
 msgstr ""
-"Датотеката %s е преземена од\n"
-"%s."
 
 #: downloadmanager.py:162
 #, python-format
@@ -31,8 +29,6 @@ msgid ""
 "Downloading %s from\n"
 "%s. Progress %i%%."
 msgstr ""
-"Преземам %s од\n"
-"%s. Прогрес %i%%."
 
 #: downloadmanager.py:176
 #, python-format
@@ -40,8 +36,6 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"Преземам %s од \n"
-"%s."
 
 #: linktoolbar.py:52
 msgid "title: "
@@ -61,7 +55,7 @@ msgstr ""
 
 #: webactivity.py:79
 msgid "Browse"
-msgstr "Разгледај"
+msgstr ""
 
 #: webactivity.py:104 webactivity.py:105
 msgid "blank"
@@ -69,19 +63,16 @@ msgstr ""
 
 #: webtoolbar.py:41
 msgid "Back"
-msgstr "Назад"
+msgstr ""
 
 #: webtoolbar.py:48
 msgid "Forward"
-msgstr "Напред"
+msgstr ""
 
 #: webtoolbar.py:149
 msgid "Stop"
-msgstr "Стоп"
+msgstr ""
 
 #: webtoolbar.py:152
 msgid "Reload"
-msgstr "Освежи"
-
-#~ msgid "Web Activity"
-#~ msgstr "Активности на веб"
+msgstr ""

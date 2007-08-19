@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"POT-Creation-Date: 2007-08-19 20:16+0200\n"
 "PO-Revision-Date: 2007-06-28 21:44+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -15,9 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
+"3\n"
 
-#: downloadmanager.py:91
+#: downloadmanager.py:114
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -26,7 +27,7 @@ msgstr ""
 "الملف %s نُزِّل من\n"
 "%s."
 
-#: downloadmanager.py:118
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "Downloading %s from\n"
@@ -35,7 +36,7 @@ msgstr ""
 "يجري تنزيل %s من\n"
 "%s. التقدم %i%%."
 
-#: downloadmanager.py:129
+#: downloadmanager.py:176
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -44,27 +45,45 @@ msgstr ""
 "جري تنزيل %s من\n"
 "%s."
 
-#: webactivity.py:44
-msgid "Web Activity"
-msgstr "نشاط الوِب"
+#: linktoolbar.py:52
+msgid "title: "
+msgstr ""
 
-#: webactivity.py:57
+#: linktoolbar.py:52
+msgid "url: "
+msgstr ""
+
+#: linktoolbar.py:52
+msgid "owner: "
+msgstr ""
+
+#: linktoolbar.py:62
+msgid "remove"
+msgstr ""
+
+#: webactivity.py:79
 msgid "Browse"
 msgstr "تصفّح"
 
-#: webtoolbar.py:85
+#: webactivity.py:104 webactivity.py:105
+msgid "blank"
+msgstr ""
+
+#: webtoolbar.py:41
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:92
+#: webtoolbar.py:48
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:149
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:175
+#: webtoolbar.py:152
 msgid "Reload"
 msgstr "أعد التحميل"
 
+#~ msgid "Web Activity"
+#~ msgstr "نشاط الوِب"

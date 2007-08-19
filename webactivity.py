@@ -101,11 +101,11 @@ class WebActivity(activity.Activity):
         self._main_view.pack_start(self.linkbar, expand=False)
         self.linkbar.show()
 
-        self.current = 'blank'
-        self.webtitle = 'blank'
+        self.current = _('blank')
+        self.webtitle = _('blank')
         self.connect('key-press-event', self.key_press_cb)
         self.sname =  _sugarext.get_prgname()
-        _logger.debug('PNAME:  %s' %self.sname)
+        _logger.debug('ProgName:  %s' %self.sname)
         
         if handle.uri:
             self._browser.load_uri(handle.uri)

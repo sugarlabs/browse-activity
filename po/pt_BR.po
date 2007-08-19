@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"POT-Creation-Date: 2007-08-19 20:16+0200\n"
 "PO-Revision-Date: 2007-07-03 10:43-0300\n"
 "Last-Translator: Diego Búrigo Zacarão <diegobz@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: downloadmanager.py:91
+#: downloadmanager.py:114
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Arquivo %s feito download a partir de \n"
 "%s."
 
-#: downloadmanager.py:118
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "Downloading %s from\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Efetuando download %s a partir de\n"
 "%s. Progresso %i%%."
 
-#: downloadmanager.py:129
+#: downloadmanager.py:176
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -43,27 +43,45 @@ msgstr ""
 "Efetuando download %s a partir de\n"
 "%s."
 
-#: webactivity.py:44
-msgid "Web Activity"
-msgstr "Atividade Web"
+#: linktoolbar.py:52
+msgid "title: "
+msgstr ""
 
-#: webactivity.py:57
+#: linktoolbar.py:52
+msgid "url: "
+msgstr ""
+
+#: linktoolbar.py:52
+msgid "owner: "
+msgstr ""
+
+#: linktoolbar.py:62
+msgid "remove"
+msgstr ""
+
+#: webactivity.py:79
 msgid "Browse"
 msgstr "Navegar"
 
-#: webtoolbar.py:85
+#: webactivity.py:104 webactivity.py:105
+msgid "blank"
+msgstr ""
+
+#: webtoolbar.py:41
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:92
+#: webtoolbar.py:48
 msgid "Forward"
 msgstr "Ir adiante"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:149
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:175
+#: webtoolbar.py:152
 msgid "Reload"
 msgstr "Recarregar"
 
+#~ msgid "Web Activity"
+#~ msgstr "Atividade Web"
