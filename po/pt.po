@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-23 15:02+0100\n"
+"POT-Creation-Date: 2007-08-20 10:55-0400\n"
 "PO-Revision-Date: 2007-03-23 15:04+0100\n"
 "Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
@@ -16,46 +16,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: webactivity.py:41
-msgid "Web Activity"
-msgstr "Actividade Web"
+#: activity/activity.info:2 webactivity.py:64
+msgid "Browse"
+msgstr ""
 
-#: webtoolbar.py:33
+#: downloadmanager.py:114
+#, python-format
+msgid ""
+"File %s downloaded from\n"
+"%s."
+msgstr ""
+
+#: downloadmanager.py:162
+#, python-format
+msgid ""
+"Downloading %s from\n"
+"%s. Progress %i%%."
+msgstr ""
+
+#: downloadmanager.py:176
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+
+#: webtoolbar.py:41
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:39
+#: webtoolbar.py:48
 msgid "Forward"
 msgstr "Avançar"
 
-#: webtoolbar.py:45 webtoolbar.py:90
+#: webtoolbar.py:149
 msgid "Stop"
 msgstr "Interromper"
 
-#: webtoolbar.py:62
-msgid "Open"
-msgstr "Abrir"
-
-#: webtoolbar.py:67
-msgid "Save"
-msgstr "Guardar"
-
-#: webtoolbar.py:93
+#: webtoolbar.py:152
 msgid "Reload"
 msgstr "Recarregar"
 
-#: webtoolbar.py:151 webtoolbar.py:198
-msgid "All supported formats"
-msgstr "Tudos os formatos suportados"
+#~ msgid "Web Activity"
+#~ msgstr "Actividade Web"
 
-#: webtoolbar.py:161 webtoolbar.py:208
-msgid "Web pages"
-msgstr "Páginas web"
+#~ msgid "Open"
+#~ msgstr "Abrir"
 
-#: webtoolbar.py:168 webtoolbar.py:215 webview.py:114
-msgid "Images"
-msgstr "Imagens"
+#~ msgid "Save"
+#~ msgstr "Guardar"
 
-#: webtoolbar.py:175 webtoolbar.py:222 webview.py:121
-msgid "All files"
-msgstr "Tudos os ficheiros"
+#~ msgid "All supported formats"
+#~ msgstr "Tudos os formatos suportados"
+
+#~ msgid "Web pages"
+#~ msgstr "Páginas web"
+
+#~ msgid "Images"
+#~ msgstr "Imagens"
+
+#~ msgid "All files"
+#~ msgstr "Tudos os ficheiros"

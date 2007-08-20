@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Web activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 17:38+0200\n"
+"POT-Creation-Date: 2007-08-20 10:55-0400\n"
 "PO-Revision-Date: 2007-07-25 18:49+0100\n"
 "Last-Translator: Simos Xenitellis <simos.lists@googlemail.com>\n"
 "Language-Team: Greek <olpc@grnet.gr>\n"
@@ -15,7 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: downloadmanager.py:91
+#: activity/activity.info:2 webactivity.py:64
+msgid "Browse"
+msgstr "Περιήγηση"
+
+#: downloadmanager.py:114
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -24,7 +28,7 @@ msgstr ""
 "Το αρχείο %s έχει παραληφθεί\n"
 "από %s."
 
-#: downloadmanager.py:118
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "Downloading %s from\n"
@@ -33,7 +37,7 @@ msgstr ""
 "Γίνεται λήψη του %s από\n"
 "%s. Πρόοδος %i%%."
 
-#: downloadmanager.py:129
+#: downloadmanager.py:176
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -42,26 +46,21 @@ msgstr ""
 "Γίνεται λήψη του %s από \n"
 "%s."
 
-#: webactivity.py:44
-msgid "Web Activity"
-msgstr "Δραστηριότητα στον Ιστό"
-
-#: webactivity.py:57
-msgid "Browse"
-msgstr "Περιήγηση"
-
-#: webtoolbar.py:85
+#: webtoolbar.py:41
 msgid "Back"
 msgstr "Πίσω"
 
-#: webtoolbar.py:92
+#: webtoolbar.py:48
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:149
 msgid "Stop"
 msgstr "Σταμάτημα"
 
-#: webtoolbar.py:175
+#: webtoolbar.py:152
 msgid "Reload"
 msgstr "Φόρτωση ξανά"
+
+#~ msgid "Web Activity"
+#~ msgstr "Δραστηριότητα στον Ιστό"

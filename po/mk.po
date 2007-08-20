@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"POT-Creation-Date: 2007-08-20 10:55-0400\n"
 "PO-Revision-Date: 2007-07-06 13:43+0200\n"
 "Last-Translator: Arangel Angov <arangel@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
@@ -16,7 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: downloadmanager.py:91
+#: activity/activity.info:2 webactivity.py:64
+msgid "Browse"
+msgstr "Разгледај"
+
+#: downloadmanager.py:114
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -25,7 +29,7 @@ msgstr ""
 "Датотеката %s е преземена од\n"
 "%s."
 
-#: downloadmanager.py:118
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "Downloading %s from\n"
@@ -34,7 +38,7 @@ msgstr ""
 "Преземам %s од\n"
 "%s. Прогрес %i%%."
 
-#: downloadmanager.py:129
+#: downloadmanager.py:176
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -43,27 +47,21 @@ msgstr ""
 "Преземам %s од \n"
 "%s."
 
-#: webactivity.py:44
-msgid "Web Activity"
-msgstr "Активности на веб"
-
-#: webactivity.py:57
-msgid "Browse"
-msgstr "Разгледај"
-
-#: webtoolbar.py:85
+#: webtoolbar.py:41
 msgid "Back"
 msgstr "Назад"
 
-#: webtoolbar.py:92
+#: webtoolbar.py:48
 msgid "Forward"
 msgstr "Напред"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:149
 msgid "Stop"
 msgstr "Стоп"
 
-#: webtoolbar.py:175
+#: webtoolbar.py:152
 msgid "Reload"
 msgstr "Освежи"
 
+#~ msgid "Web Activity"
+#~ msgstr "Активности на веб"
