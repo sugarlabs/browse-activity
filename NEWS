@@ -1,5 +1,3 @@
-40
-
 * #2304 This adds the sharing facilities to the web-activity. 
 
 You share the currently loaded page by hitting the star button in the browser toolbbar when you are in the shared mode of the activity. The link will come up as a thumbnail in the toolbar at the bottom of the page. The information about the link: url, title, thumbnail, creator gets then transmitted to all the other members. They can then decide whether to show the link in their browser or not. Everyone can add a link but you can only delete a link in your local linkbar which prevents someone from erasing all your links. (erikos)
