@@ -46,8 +46,8 @@ class LinkButton(gtk.RadioToolButton):
         width  = pixbuf_xo.get_width()
         height = pixbuf_xo.get_height()
 
-        dest_x = 100
-        dest_y = 66 
+        dest_x = style.zoom(120) 
+        dest_y = style.zoom(80) 
         w = width/2 
         h = height/2 
         scale_x = 0.5
