@@ -46,12 +46,12 @@ class LinkButton(gtk.RadioToolButton):
         width  = pixbuf_xo.get_width()
         height = pixbuf_xo.get_height()
 
-        dest_x = style.zoom(120) 
-        dest_y = style.zoom(80) 
-        w = width/2 
-        h = height/2 
-        scale_x = 0.5
-        scale_y = 0.5
+        dest_x = style.zoom(105) 
+        dest_y = style.zoom(65) 
+        w = width*0.7
+        h = height*0.7 
+        scale_x = 0.7
+        scale_y = 0.7
         
         pixbuf_xo.composite(pixbuf, dest_x, dest_y, w, h, dest_x, dest_y, scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
 
