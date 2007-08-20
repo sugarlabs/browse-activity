@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-19 20:16+0200\n"
+"POT-Creation-Date: 2007-08-20 10:55-0400\n"
 "PO-Revision-Date: 2007-06-28 21:44+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
 "3\n"
+
+#: activity/activity.info:2 webactivity.py:64
+msgid "Browse"
+msgstr "تصفّح"
 
 #: downloadmanager.py:114
 #, python-format
@@ -44,30 +48,6 @@ msgid ""
 msgstr ""
 "جري تنزيل %s من\n"
 "%s."
-
-#: linktoolbar.py:52
-msgid "title: "
-msgstr ""
-
-#: linktoolbar.py:52
-msgid "url: "
-msgstr ""
-
-#: linktoolbar.py:52
-msgid "owner: "
-msgstr ""
-
-#: linktoolbar.py:62
-msgid "remove"
-msgstr ""
-
-#: webactivity.py:79
-msgid "Browse"
-msgstr "تصفّح"
-
-#: webactivity.py:104 webactivity.py:105
-msgid "blank"
-msgstr ""
 
 #: webtoolbar.py:41
 msgid "Back"

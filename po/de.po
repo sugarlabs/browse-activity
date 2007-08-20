@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-19 20:16+0200\n"
+"POT-Creation-Date: 2007-08-20 10:55-0400\n"
 "PO-Revision-Date: 2007-07-30 10:37+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
+
+#: activity/activity.info:2 webactivity.py:64
+msgid "Browse"
+msgstr "Durchsuchen"
 
 #: downloadmanager.py:114
 #, python-format
@@ -41,30 +45,6 @@ msgid ""
 msgstr ""
 "Herunterladen %s von \n"
 "%s."
-
-#: linktoolbar.py:52
-msgid "title: "
-msgstr ""
-
-#: linktoolbar.py:52
-msgid "url: "
-msgstr ""
-
-#: linktoolbar.py:52
-msgid "owner: "
-msgstr ""
-
-#: linktoolbar.py:62
-msgid "remove"
-msgstr ""
-
-#: webactivity.py:79
-msgid "Browse"
-msgstr "Durchsuchen"
-
-#: webactivity.py:104 webactivity.py:105
-msgid "blank"
-msgstr ""
 
 #: webtoolbar.py:41
 msgid "Back"
