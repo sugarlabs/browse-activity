@@ -49,7 +49,7 @@ class LinkToolbar(gtk.Toolbar):
         else:
             group = None
 
-        info = _('title: ') + title +'\n' + _('url: ') + url + '\n' + _('owner: ') + owner     
+        info = title +'\n' + owner     
         palette = Palette(info)
         palette.props.position = Palette.TOP        
         
@@ -59,12 +59,10 @@ class LinkToolbar(gtk.Toolbar):
         self.insert(link, 0)
         link.show()
         
-        menu_item = gtk.MenuItem(_('remove'))
+        menu_item = gtk.MenuItem(_('Remove'))
         menu_item.connect('activate', self._link_rm_palette_cb, link)
         palette.menu.append(menu_item)
         menu_item.show()
-
-        #link.props.active = True
         
         if len(self.get_children()) > 0:
             self.show()
@@ -80,7 +78,6 @@ class LinkToolbar(gtk.Toolbar):
             if child.get_active():
                 index = child.pos
                 self.remove(child)
-                # self.get_children()[0].props.active = True        
                 if len(self.get_children()) is 0:
                     self.hide()
                 return index
@@ -88,7 +85,6 @@ class LinkToolbar(gtk.Toolbar):
     def _link_rm_palette_cb(self, widget, link):
         self.emit('link-rm', link.pos)
         self.remove(link)
-        # self.get_children()[0].props.active = True        
         if len(self.get_children()) is 0:
             self.hide()
             
