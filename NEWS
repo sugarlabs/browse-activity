@@ -1,3 +1,6 @@
+* Port to new tubes API. (cassidy)
+* Use sugar's tubeconn.py. (cassidy)
+
 41
 
 * Code cleanup. (simon)

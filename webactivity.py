@@ -46,7 +46,7 @@ _LIBRARY_PATH = '/home/olpc/Library/index.html'
 
 from linktoolbar import LinkToolbar
 from model import Model
-from tubeconn import TubeConnection
+from sugar.presence.tubeconn import TubeConnection
 from messenger import Messenger
 
 SERVICE = "org.laptop.WebActivity"
@@ -150,8 +150,8 @@ class WebActivity(activity.Activity):
         self._setup()
 
         _logger.debug('This is my activity: making a tube...')
-        id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferTube(
-            telepathy.TUBE_TYPE_DBUS, SERVICE, {})
+        id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(
+                SERVICE, {})
         
         
     def _setup(self):
@@ -228,7 +228,7 @@ class WebActivity(activity.Activity):
         if (type == telepathy.TUBE_TYPE_DBUS and
             service == SERVICE):
             if state == telepathy.TUBE_STATE_LOCAL_PENDING:
-                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptTube(id)
+                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptDBusTube(id)
 
             self.tube_conn = TubeConnection(self.conn, 
                 self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES], 
