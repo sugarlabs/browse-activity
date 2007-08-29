@@ -52,7 +52,6 @@ class LinkToolbar(gtk.Toolbar):
 
         info = title +'\n' + owner     
         palette = Palette(info)
-        palette.props.position = Palette.TOP        
         
         link = LinkButton(buffer, color, pos, group)        
         link.set_palette(palette)    
