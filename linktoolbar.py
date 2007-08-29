@@ -41,6 +41,7 @@ class LinkToolbar(gtk.Toolbar):
 
     def __init__(self):
         gtk.Toolbar.__init__(self)       
+        self.isvisible = False
         
     def _add_link(self, url, buffer, color, title, owner, pos):
 
@@ -65,6 +66,7 @@ class LinkToolbar(gtk.Toolbar):
         menu_item.show()
         
         if len(self.get_children()) > 0:
+            self.isvisible = True
             self.show()
     
     def _link_clicked_cb(self, link, url):
@@ -79,7 +81,8 @@ class LinkToolbar(gtk.Toolbar):
                 index = child.pos
                 self.remove(child)
                 if len(self.get_children()) is 0:
-                    self.hide()
+                    self.isvisible = False
+                    self.hide()                    
                 return index
     
     def _link_rm_palette_cb(self, widget, link):

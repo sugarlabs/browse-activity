@@ -310,7 +310,7 @@ class WebActivity(activity.Activity):
         
     def key_press_cb(self, widget, event):        
         if event.state & gtk.gdk.CONTROL_MASK:
-            if gtk.gdk.keyval_name(event.keyval) == "l":
+            if gtk.gdk.keyval_name(event.keyval) == "l":                
                 self._add_link()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "r":
@@ -318,6 +318,10 @@ class WebActivity(activity.Activity):
                 current = self.linkbar._rm_link()
                 self.model.links[current]['deleted'] = 1
                 self.model.links[current]['thumb'] = ''
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "s":
+                _logger.debug('keyboard: Toggle visibility of tray')
+                self._toggle_visibility_tray()
                 return True
         return False
 
@@ -333,6 +337,14 @@ class WebActivity(activity.Activity):
             import base64
             self.messenger._add_link(self.current, self.webtitle, self.owner.props.color,
                                      self.owner.props.nick, base64.b64encode(buffer))
+
+    def _toggle_visibility_tray(self):
+        if self.linkbar.isvisible is True:
+            self.linkbar.isvisible = False
+            self.linkbar.hide()
+        else:
+            self.linkbar.isvisible = True
+            self.linkbar.show()
                     
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
@@ -342,7 +354,6 @@ class WebActivity(activity.Activity):
         data = [""]
         pixbuf.save_to_callback(self._pixbuf_save_cb, "png", {}, data)
         return str(data[0])
-
                 
     def _get_screenshot(self):
         window = self._browser.window
