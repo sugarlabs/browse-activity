@@ -366,8 +366,8 @@ class WebActivity(activity.Activity):
         screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
                                      width, height)
 
-        screenshot = screenshot.scale_simple(style.zoom(160),
-                                                 style.zoom(120),
+        screenshot = screenshot.scale_simple(style.zoom(100),
+                                                 style.zoom(80),
                                                  gtk.gdk.INTERP_BILINEAR)
 
         buffer = self.get_buffer(screenshot)

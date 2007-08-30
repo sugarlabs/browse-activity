@@ -40,26 +40,26 @@ class LinkButton(gtk.RadioToolButton):
         pixbuf = loader.get_pixbuf()
         del loader            
 
-        xo_buddy = os.path.join(os.path.dirname(__file__), "icons/buddy-link.svg")
-        pixbuf_xo = self._read_xo_icon(xo_buddy, fill, stroke)
-
-        width  = pixbuf_xo.get_width()
-        height = pixbuf_xo.get_height()
-
-        dest_x = style.zoom(105) 
-        dest_y = style.zoom(65) 
-        w = width*0.7
-        h = height*0.7 
-        scale_x = 0.7
-        scale_y = 0.7
+        xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
+        pixbuf_bg = self._read_link_background(xo_buddy, fill, stroke)
+        pixbuf_bg = pixbuf_bg.scale_simple(style.zoom(120),
+                                           style.zoom(110),
+                                           gtk.gdk.INTERP_BILINEAR)        
+        dest_x = style.zoom(10) 
+        dest_y = style.zoom(20) 
+        w = pixbuf.get_width()
+        h = pixbuf.get_height() 
+        scale_x = 1
+        scale_y = 1
         
-        pixbuf_xo.composite(pixbuf, dest_x, dest_y, w, h, dest_x, dest_y, scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
+        pixbuf.composite(pixbuf_bg, dest_x, dest_y, w, h, dest_x, dest_y,
+                         scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
 
-        img.set_from_pixbuf(pixbuf)
+        img.set_from_pixbuf(pixbuf_bg)
         self.set_icon_widget(img)
         img.show()
 
-    def _read_xo_icon(self, filename, fill_color, stroke_color):
+    def _read_link_background(self, filename, fill_color, stroke_color):
         icon_file = open(filename, 'r')
         data = icon_file.read()
         icon_file.close()
