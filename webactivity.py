@@ -110,7 +110,7 @@ class WebActivity(activity.Activity):
         
         if handle.uri:
             self._browser.load_uri(handle.uri)
-            toolbox.set_current_toolbar(1)
+            self.toolbox.set_current_toolbar(1)
         elif not self._jobject.file_path and not browser:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
@@ -136,6 +136,7 @@ class WebActivity(activity.Activity):
         self.owner = self.pservice.get_owner()
         if self._shared_activity is not None:
             # We are joining the activity
+            self.toolbox.set_current_toolbar(1)
             _logger.debug('Joined activity')                      
             self.connect('joined', self._joined_cb)
             if self.get_shared():
