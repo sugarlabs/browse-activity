@@ -1,6 +1,9 @@
+* start the activity with in the browser tab open when in joined 
+   a shared session or a handle.uri is given (erikos)
+
 43
 
-fix for Palette.TOP (erikos)
+* fix for Palette.TOP (erikos)
 
 42
 
