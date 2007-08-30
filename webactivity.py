@@ -110,6 +110,7 @@ class WebActivity(activity.Activity):
         
         if handle.uri:
             self._browser.load_uri(handle.uri)
+            toolbox.set_current_toolbar(1)
         elif not self._jobject.file_path and not browser:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
@@ -308,7 +309,7 @@ class WebActivity(activity.Activity):
     def _add_link_button_cb(self, button):
         self._add_link()
         
-    def key_press_cb(self, widget, event):        
+    def key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":                
                 self._add_link()
