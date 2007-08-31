@@ -90,7 +90,7 @@ class WebActivity(activity.Activity):
         self.toolbar._add_link.connect('clicked', self._add_link_button_cb)
         
         self._browser.connect("notify::title", self._title_changed_cb)
-        self.model = Model(os.path.dirname(__file__))
+        self.model = Model()
         
         self._main_view = gtk.VBox()
         self.set_canvas(self._main_view)
@@ -260,7 +260,7 @@ class WebActivity(activity.Activity):
             
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
-            self.model.read(file_path)
+            self.model.deserialize(file_path)
             i=0
             for link in self.model.links:
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
@@ -268,8 +268,8 @@ class WebActivity(activity.Activity):
                     self.linkbar._add_link(link['url'], link['thumb'], link['color'], link['title'], link['owner'], i)                    
                 i+=1
                 
-            if self.model.session_data is not '':                
-                self._browser.set_session(self.model.session_data)                
+            if self.model.data['history'] is not '':                
+                self._browser.set_session(self.model.data['history'])                
         else:
             self._browser.load_uri(file_path)
             _sugarext.set_prgname(self.sname)

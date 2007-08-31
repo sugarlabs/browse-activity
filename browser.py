@@ -53,8 +53,8 @@ class Browser(WebView):
     def get_session(self):
         return sessionstore.get_session(self)
 
-    def set_session(self, session_data):
-        return sessionstore.set_session(self, session_data)
+    def set_session(self, data):
+        return sessionstore.set_session(self, data)
 
 class WindowCreator:
     _com_interfaces_ = interfaces.nsIWindowCreator
