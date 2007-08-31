@@ -20,17 +20,25 @@ import libxml2
 import os
 import logging
 import base64
-
+import sha
+import gobject
 
 _logger = logging.getLogger('model')
 
 
-class Model(object):
+class Model(gobject.GObject):
+    #__gtype_name__ = 'Model'
+    __gsignals__ = {
+        'add_link': (gobject.SIGNAL_RUN_FIRST,
+                        gobject.TYPE_NONE, ([int]))
+        }
+        
     ''' The model of the activity. Contains methods to read and write
     the configuration for a browser session to and from xml. 
     '''
     
     def __init__(self, dtdpath):
+        gobject.GObject.__init__(self)    
         self.links = []
         self.data = {}
         self.dtdpath = dtdpath
@@ -44,6 +52,12 @@ class Model(object):
             self.dtd = None
         self.ctxt = libxml2.newValidCtxt()               
 
+    def add_link(self, url, title, thumb, owner, color):
+        print 'model: add link'
+        self.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
+                                  'owner':owner, 'color':color, 'deleted':0} )
+        self.emit('add_link', len(self.links)-1)
+            
     def read(self, filepath):
         ''' reads the configuration from an xml file '''
         

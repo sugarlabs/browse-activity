@@ -21,7 +21,6 @@ import os
 import dbus
 from dbus.gobject_service import ExportedGObject
 import base64
-import sha
 
 SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
@@ -30,13 +29,12 @@ PATH = "/org/laptop/WebActivity"
 _logger = logging.getLogger('messenger')
 
 class Messenger(ExportedGObject):
-    def __init__(self, tube, is_initiator, model, linkbar, owner):
+    def __init__(self, tube, is_initiator, model, owner):
         ExportedGObject.__init__(self, tube, PATH)
         self.tube = tube
         self.is_initiator = is_initiator
         self.members = []
         self.entered = False
-        self.linkbar = linkbar
         self.model = model
         self.owner = owner
         self.tube.watch_participants(self.participant_change_cb)
@@ -102,11 +100,10 @@ class Messenger(ExportedGObject):
         '''Send link'''
         _logger.debug('Received data for link.')
         a_ids = self.model.get_links_ids()
+        print a_ids
         if id not in a_ids:
             thumb = base64.b64decode(buffer)
-            self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
-                                      'owner':owner, 'color':color, 'deleted':0} )            
-            self.linkbar._add_link(url, thumb, color, title, owner, len(self.model.links)-1)
+            self.model.add_link(url, title, thumb, owner, color)
                     
     @dbus.service.signal(IFACE, signature='sssss')
     def _add_link(self, url, title, color, owner, thumb):        
@@ -118,9 +115,6 @@ class Messenger(ExportedGObject):
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
             buffer = base64.b64decode(thumb)
-
-            self.model.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':buffer,
-                                      'owner':owner, 'color':color, 'deleted':0} )            
-            self.linkbar._add_link(url, buffer, color, title, owner, len(self.model.links)-1)                
+            self.model.add_link(url, title, buffer, owner, color)            
             _logger.debug('Added link: %s to linkbar.'%(url))
     
