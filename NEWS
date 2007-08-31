@@ -1,5 +1,8 @@
+* only try to connect to presence service when offline (erikos)
+
 44
 
+* new design for shared links (erikos)
 * start the activity with in the browser tab open when in joined 
    a shared session or a handle.uri is given (erikos)
 
