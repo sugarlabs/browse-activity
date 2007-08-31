@@ -1,3 +1,4 @@
+* use sugar tray which enables scrolling for the links (erikos)
 * only try to connect to presence service when offline (erikos)
 
 44
