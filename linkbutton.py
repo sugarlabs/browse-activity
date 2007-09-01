@@ -23,7 +23,6 @@ import rsvg
 import re
 
 from sugar.graphics.palette import Palette
-from sugar.graphics.palette import WidgetInvoker
 from sugar.graphics.tray import TrayButton
 from sugar.graphics.icon import Icon
 from sugar.graphics import style
@@ -88,7 +87,6 @@ class LinkButton(TrayButton, gobject.GObject):
     def setup_rollover_options(self, info):
         palette = Palette(info)
         self.set_palette(palette)
-        palette.props.invoker = WidgetInvoker(self)
 
         menu_item = gtk.MenuItem(_('Remove'))
         menu_item.connect('activate', self.item_remove_cb)
