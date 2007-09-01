@@ -1,3 +1,7 @@
+45
+
+* use json for storing the history and the shared
+  link information to the journal (erikos)
 * use sugar tray which enables scrolling for the links (erikos)
 * only try to connect to presence service when offline (erikos)
 
