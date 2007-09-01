@@ -21,7 +21,8 @@ from gettext import gettext as _
 import gtk
 import dbus
 import sha
-
+import base64
+            
 from sugar.activity import activity
 from sugar import env
 from sugar.graphics import style
@@ -87,6 +88,7 @@ class WebActivity(activity.Activity):
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         self.toolbar._add_link.connect('clicked', self._share_link_button_cb)
+        self.tray_isvisible = False
         
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -262,14 +264,20 @@ class WebActivity(activity.Activity):
             
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
-            self.model.deserialize(file_path)
+            f = open(file_path, 'r')
+            try:
+                data = f.read()
+            finally:
+                f.close()
+            self.model.deserialize(data)
+            
             i=0
-            for link in self.model['shared_links']:
+            for link in self.model.data['shared_links']:
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'],
                                                               link['title'],
                                                               link['color']))
                 if link['deleted'] == 0:                            
-                    self._add_link_totray(link['url'], link['thumb'],
+                    self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
                                           link['color'], link['title'],
                                           link['owner'], i)                    
                 i+=1
@@ -289,8 +297,13 @@ class WebActivity(activity.Activity):
                 if self._browser.props.title:
                     self.metadata['title'] = self._browser.props.title
 
-            self.model.data['history'] = self._browser.get_session()                
-            # self.model.write(file_path)
+            self.model.data['history'] = self._browser.get_session()
+
+            f = open(file_path, 'w')
+            try:
+                f.write(self.model.serialize())
+            finally:
+                f.close()
 
     def _share_link_button_cb(self, button):
         _logger.debug('button: Add link: %s.' % self.current)                
@@ -315,7 +328,6 @@ class WebActivity(activity.Activity):
                              self.owner.props.nick, self.owner.props.color)
 
         if self.messenger is not None:
-            import base64
             self.messenger._add_link(self.current, self.webtitle,
                                      self.owner.props.color,
                                      self.owner.props.nick,
@@ -323,8 +335,8 @@ class WebActivity(activity.Activity):
 
     def _add_link_model_cb(self, model, index):
         ''' receive index of new link from the model '''
-        link = self.model._links[index]
-        self._add_link_totray(link['url'], link['thumb'],
+        link = self.model.data['shared_links'][index]
+        self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
                               link['color'], link['title'],
                               link['owner'], index)              
         
@@ -335,6 +347,7 @@ class WebActivity(activity.Activity):
         item.connect('remove_link', self._link_removed_cb)
         self._tray.add_item(item, 0) # add to the beginning of the tray
         item.show()
+        self.tray_isvisible = True
 
     def _link_removed_cb(self, button, index):
         ''' remove a link from tray and mark deleted in the model '''
@@ -346,11 +359,11 @@ class WebActivity(activity.Activity):
         self._browser.load_uri(url)
         
     def _toggle_visibility_tray(self):
-        if self._tray.isvisible is True:
-            self._tray.isvisible = False
+        if self.tray_isvisible is True:
+            self.tray_isvisible = False
             self._tray.hide()
         else:
-            self._tray.isvisible = True
+            self.tray_isvisible = True
             self._tray.show()
                     
     def _pixbuf_save_cb(self, buf, data):

@@ -40,13 +40,16 @@ class Messenger(ExportedGObject):
         self.tube.watch_participants(self.participant_change_cb)
 
     def participant_change_cb(self, added, removed):
-        _logger.debug('Participants change add=%s    rem=%s' %(added, removed))
+        _logger.debug('Participants change add=%s    rem=%s'
+                      %(added, removed))
         for handle, bus_name in added:
-            _logger.debug('Add member handle=%s  bus_name=%s' %(str(handle), str(bus_name)))
+            _logger.debug('Add member handle=%s  bus_name=%s'
+                          %(str(handle), str(bus_name)))
             self.members.append(bus_name)
                     
         for handle, bus_name in removed:
-            _logger.debug('Remove member handle=%s  bus_name=%s' %(str(handle), str(bus_name)))
+            _logger.debug('Remove member handle=%s  bus_name=%s'
+                          %(str(handle), str(bus_name)))
             try:
                 self.members.remove(bus_name)
             except ValueError:
@@ -54,10 +57,13 @@ class Messenger(ExportedGObject):
                 pass        
                 
         if not self.entered:
-            self.tube.add_signal_receiver(self._add_link_receiver, '_add_link', IFACE, path=PATH, sender_keyword='sender',
-                                           byte_arrays=True)
+            self.tube.add_signal_receiver(self._add_link_receiver, '_add_link',
+                                          IFACE, path=PATH,
+                                          sender_keyword='sender',
+                                          byte_arrays=True)
             if self.is_initiator:
-                _logger.debug('Initialising a new shared browser, I am %s .'%self.tube.get_unique_name())                
+                _logger.debug('Initialising a new shared browser, I am %s .'
+                              %self.tube.get_unique_name())                
             else:               
                 # sync with other members
                 self.bus_name = self.tube.get_unique_name()
@@ -65,17 +71,21 @@ class Messenger(ExportedGObject):
                 for member in self.members:
                     if member != self.bus_name:
                         _logger.debug('Get info from %s' %member)
-                        self.tube.get_object(member, PATH).sync_with_members(self.model.get_links_ids(), dbus_interface=IFACE, reply_handler=self.reply_sync, error_handler=lambda e:self.error_sync(e, 'transfering file'))
+                        self.tube.get_object(member, PATH).sync_with_members(
+                            self.model.get_links_ids(), dbus_interface=IFACE,
+                            reply_handler=self.reply_sync, error_handler=lambda
+                            e:self.error_sync(e, 'transfering file'))
                                                                          
         self.entered = True
         
     def reply_sync(self, a_ids):
         a_ids.pop()                    
-        for link in self.model.links:
+        for link in self.model.data['shared_links']:
             if link['hash'] not in a_ids:
                 if link['deleted'] == 0:
-                    self.tube.get_object(sender, PATH).send_link(link['hash'], link['url'], link['title'], link['color'],
-                                                                 link['owner'], base64.b64encode(link['thumb']))
+                    self.tube.get_object(sender, PATH).send_link(
+                        link['hash'], link['url'], link['title'], link['color'],
+                        link['owner'], link['thumb'])
             
     def error_sync(self, e, when):    
         _logger.error('Error %s: %s'%(when, e))
@@ -85,11 +95,11 @@ class Messenger(ExportedGObject):
         '''Sync with members '''
         b_ids.pop()
         # links the caller wants from me
-        for link in self.model.links:
+        for link in self.model.data['shared_links']:
             if link['hash'] not in b_ids:
                 if link['deleted'] == 0:
                     self.tube.get_object(sender, PATH).send_link(link['hash'], link['url'], link['title'], link['color'],
-                                                                 link['owner'], base64.b64encode(link['thumb']))
+                                                                 link['owner'], link['thumb'])
         a_ids = self.model.get_links_ids()
         a_ids.append('')
         # links I want from the caller
@@ -98,9 +108,7 @@ class Messenger(ExportedGObject):
     @dbus.service.method(dbus_interface=IFACE, in_signature='ssssss', out_signature='')
     def send_link(self, id, url, title, color, owner, buffer):
         '''Send link'''
-        _logger.debug('Received data for link.')
         a_ids = self.model.get_links_ids()
-        print a_ids
         if id not in a_ids:
             thumb = base64.b64decode(buffer)
             self.model.add_link(url, title, thumb, owner, color)
@@ -110,11 +118,11 @@ class Messenger(ExportedGObject):
         '''Signal to send the link information (add)'''
         _logger.debug('Add Link: %s '%url)
         
-    def _add_link_receiver(self, url, title, color, owner, thumb, sender=None):
+    def _add_link_receiver(self, url, title, color, owner, buffer, sender=None):
         '''Member sent a link'''
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
-            buffer = base64.b64decode(thumb)
-            self.model.add_link(url, title, buffer, owner, color)            
+            thumb = base64.b64decode(buffer)
+            self.model.add_link(url, title, thumb, owner, color)            
             _logger.debug('Added link: %s to linkbar.'%(url))
     

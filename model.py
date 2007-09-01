@@ -17,16 +17,14 @@
 #
 
 import os
-import logging
 import json
 import sha
 import gobject
-
-_logger = logging.getLogger('model')
+import base64
 
 class Model(gobject.GObject):
-    ''' The model of the activity which uses json to serialize its data
-    to a file and deserelize from it. 
+    ''' The model of web-activity which uses json to serialize its data
+    to a file and deserealize from it. 
     '''
     __gsignals__ = {
         'add_link': (gobject.SIGNAL_RUN_FIRST,
@@ -35,31 +33,31 @@ class Model(gobject.GObject):
     
     def __init__(self):
         gobject.GObject.__init__(self)    
-
         self.data = {}
-        self._links = []
-        self.data['shared_links'] = self._links
+        self.data['shared_links'] = []
 
     def add_link(self, url, title, thumb, owner, color):
-        self.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
-                            'owner':owner, 'color':color, 'deleted':0} )        
-        self.emit('add_link', len(self.links)-1)
+        self.data['shared_links'].append( {'hash':sha.new(str(url)).hexdigest(),
+                                           'url':str(url), 'title':str(title),
+                                           'thumb':base64.b64encode(thumb),
+                                           'owner':str(owner),
+                                           'color':str(color), 'deleted':0} )        
+        self.emit('add_link', len(self.data['shared_links'])-1)
 
     def mark_link_deleted(self, index):
-        self._links[index]['deleted'] = 1
-        self._links[index]['thumb'] = ''
+        self.data['shared_links'][index]['deleted'] = 1
+        self.data['shared_links'][index]['thumb'] = ''
         
     def serialize(self):
-        self.get_session()
+        print self.data
         return json.write(self.data)
 
     def deserialize(self, data):
         self.data = json.read(data)                
-        self.links = self.data
         
     def get_links_ids(self):
         ids = []
-        for link in self._links:
+        for link in self.data['shared_links']:
             ids.append(link['hash'])
         ids.append('')    
         return ids
