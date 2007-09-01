@@ -264,7 +264,7 @@ class WebActivity(activity.Activity):
         if self.metadata['mime_type'] == 'text/plain':
             self.model.deserialize(file_path)
             i=0
-            for link in self.model.links:
+            for link in self.model['shared_links']:
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'],
                                                               link['title'],
                                                               link['color']))
@@ -289,20 +289,17 @@ class WebActivity(activity.Activity):
                 if self._browser.props.title:
                     self.metadata['title'] = self._browser.props.title
 
-            for link in self.model.links:
-                _logger.debug('write: url=%s title=%s d=%s' % (link['url'],
-                                                               link['title'],
-                                                               link['color']))
-
             self.model.data['history'] = self._browser.get_session()                
             # self.model.write(file_path)
 
     def _share_link_button_cb(self, button):
+        _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
         
     def key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
-            if gtk.gdk.keyval_name(event.keyval) == "l":                
+            if gtk.gdk.keyval_name(event.keyval) == "l":
+                _logger.debug('keyboard: Add link: %s.' % self.current)                
                 self._add_link()
                 return True           
             elif gtk.gdk.keyval_name(event.keyval) == "s":
@@ -312,16 +309,11 @@ class WebActivity(activity.Activity):
         return False
 
     def _add_link(self):
+        ''' take screenshot and add link info to the model '''
         buffer = self._get_screenshot()
-        _logger.debug('keyboard: Add link: %s.' % self.current)                
-        self.model.links.append( {'hash':sha.new(self.current).hexdigest(),
-                                  'url':self.current, 'title':self.webtitle,
-                                  'thumb':buffer, 'owner':self.owner.props.nick,
-                                  'color':self.owner.props.color, 'deleted':0} )
+        self.model.add_link( self.current, self.webtitle, buffer,
+                             self.owner.props.nick, self.owner.props.color)
 
-        self._add_link_totray(self.current, buffer, self.owner.props.color,
-                              self.webtitle, self.owner.props.nick,
-                              len(self.model.links)-1)
         if self.messenger is not None:
             import base64
             self.messenger._add_link(self.current, self.webtitle,
@@ -330,25 +322,28 @@ class WebActivity(activity.Activity):
                                      base64.b64encode(buffer))
 
     def _add_link_model_cb(self, model, index):
-        link = self.model.links[index]
+        ''' receive index of new link from the model '''
+        link = self.model._links[index]
         self._add_link_totray(link['url'], link['thumb'],
                               link['color'], link['title'],
                               link['owner'], index)              
         
-    def _add_link_totray(self, url, buffer, color, title, owner, index):        
+    def _add_link_totray(self, url, buffer, color, title, owner, index):
+        ''' add a link to the tray '''
         item = LinkButton(url, buffer, color, title, owner, index)
         item.connect('clicked', self._link_clicked_cb, url)
         item.connect('remove_link', self._link_removed_cb)
         self._tray.add_item(item, 0) # add to the beginning of the tray
         item.show()
 
-    def _link_clicked_cb(self, button, url):
-        self._browser.load_uri(url)
-
     def _link_removed_cb(self, button, index):
-        self.model.links[index]['deleted'] = 1
-        self.model.links[index]['thumb'] = ''        
+        ''' remove a link from tray and mark deleted in the model '''
+        self.model.mark_link_deleted(index)
         self._tray.remove_item(button)
+
+    def _link_clicked_cb(self, button, url):
+        ''' an item of the link tray has been clicked '''
+        self._browser.load_uri(url)
         
     def _toggle_visibility_tray(self):
         if self._tray.isvisible is True:

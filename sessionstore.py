@@ -22,15 +22,11 @@ import logging
 from xpcom import components
 from xpcom.components import interfaces
 
-import json
-
-
 def get_session(browser):
     session_history = browser.web_navigation.sessionHistory
         
     if session_history.count == 0:
-        return ''
-        
+        return ''        
     return _get_history(session_history)            
     
 def set_session(browser, data):

@@ -37,14 +37,18 @@ class Model(gobject.GObject):
         gobject.GObject.__init__(self)    
 
         self.data = {}
-        self.links = []
-        self.data['shared_links'] = self.links
+        self._links = []
+        self.data['shared_links'] = self._links
 
     def add_link(self, url, title, thumb, owner, color):
         self.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
                             'owner':owner, 'color':color, 'deleted':0} )        
         self.emit('add_link', len(self.links)-1)
-                                
+
+    def mark_link_deleted(self, index):
+        self._links[index]['deleted'] = 1
+        self._links[index]['thumb'] = ''
+        
     def serialize(self):
         self.get_session()
         return json.write(self.data)
@@ -55,7 +59,7 @@ class Model(gobject.GObject):
         
     def get_links_ids(self):
         ids = []
-        for link in self.links:
+        for link in self._links:
             ids.append(link['hash'])
         ids.append('')    
         return ids
