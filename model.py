@@ -18,22 +18,32 @@
 
 import os
 import logging
-import base64
 import json
-
-from xpcom import components
-from xpcom.components import interfaces
+import sha
+import gobject
 
 _logger = logging.getLogger('model')
 
-class Model(object):
+class Model(gobject.GObject):
     ''' The model of the activity which uses json to serialize its data
     to a file and deserelize from it. 
     '''
+    __gsignals__ = {
+        'add_link': (gobject.SIGNAL_RUN_FIRST,
+                     gobject.TYPE_NONE, ([int]))
+        }
     
     def __init__(self):
+        gobject.GObject.__init__(self)    
+
         self.data = {}
         self.links = []
+        self.data['shared_links'] = self.links
+
+    def add_link(self, url, title, thumb, owner, color):
+        self.links.append( {'hash':sha.new(url).hexdigest(), 'url':url, 'title':title, 'thumb':thumb,
+                            'owner':owner, 'color':color, 'deleted':0} )        
+        self.emit('add_link', len(self.links)-1)
                                 
     def serialize(self):
         self.get_session()

@@ -29,6 +29,7 @@ import telepathy
 import telepathy.client
 from sugar import _sugarext
 from sugar.presence import presenceservice
+from sugar.graphics.tray import HTray
 
 import hulahop
 hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
@@ -44,10 +45,10 @@ import progresslistener
 
 _LIBRARY_PATH = '/home/olpc/Library/index.html'
 
-from linktoolbar import LinkToolbar
 from model import Model
 from sugar.presence.tubeconn import TubeConnection
 from messenger import Messenger
+from linkbutton import LinkButton
 
 SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
@@ -82,15 +83,15 @@ class WebActivity(activity.Activity):
         self.set_toolbox(toolbox)
         toolbox.show()
 
-        self.linkbar = LinkToolbar()
-        self.linkbar.connect('link-selected', self._link_selected_cb)
-        self.linkbar.connect('link-rm', self._link_rm_cb)
+        self._tray = HTray()
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
-        self.toolbar._add_link.connect('clicked', self._add_link_button_cb)
+        self.toolbar._add_link.connect('clicked', self._share_link_button_cb)
         
         self._browser.connect("notify::title", self._title_changed_cb)
+
         self.model = Model()
+        self.model.connect('add_link', self._add_link_model_cb)
         
         self._main_view = gtk.VBox()
         self.set_canvas(self._main_view)
@@ -99,8 +100,8 @@ class WebActivity(activity.Activity):
         self._main_view.pack_start(self._browser)
         self._browser.show()
 
-        self._main_view.pack_start(self.linkbar, expand=False)
-        self.linkbar.show()
+        self._main_view.pack_start(self._tray, expand=False)
+        self._tray.show()
 
         self.current = _('blank')
         self.webtitle = _('blank')
@@ -122,12 +123,15 @@ class WebActivity(activity.Activity):
         self.messenger = None
         self.connect('shared', self._shared_cb)
                                 
-        # Get the Presence Service
+        # Get the Presence Service        
         self.pservice = presenceservice.get_instance()
-        name, path = self.pservice.get_preferred_connection()
-        self.tp_conn_name = name
-        self.tp_conn_path = path
-        self.conn = telepathy.client.Connection(name, path)
+        try:
+            name, path = self.pservice.get_preferred_connection()
+            self.tp_conn_name = name
+            self.tp_conn_path = path
+            self.conn = telepathy.client.Connection(name, path)
+        except TypeError:
+            _logger.debug('Offline')
         self.initiating = None
             
         if self._shared_activity is not None:
@@ -144,7 +148,6 @@ class WebActivity(activity.Activity):
                 self._joined_cb()
         else:   
             _logger.debug('Created activity')
-
     
     def _shared_cb(self, activity):
         _logger.debug('My activity was shared')        
@@ -154,8 +157,7 @@ class WebActivity(activity.Activity):
         _logger.debug('This is my activity: making a tube...')
         id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(
                 SERVICE, {})
-        
-        
+                
     def _setup(self):
         if self._shared_activity is None:
             _logger.debug('Failed to share or join activity')
@@ -237,7 +239,7 @@ class WebActivity(activity.Activity):
                 id, group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
             
             _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.linkbar, self.owner)         
+            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.owner)         
 
              
     def _load_homepage(self):
@@ -263,9 +265,13 @@ class WebActivity(activity.Activity):
             self.model.deserialize(file_path)
             i=0
             for link in self.model.links:
-                _logger.debug('read: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
-                if link['deleted'] == 0:
-                    self.linkbar._add_link(link['url'], link['thumb'], link['color'], link['title'], link['owner'], i)                    
+                _logger.debug('read: url=%s title=%s d=%s' % (link['url'],
+                                                              link['title'],
+                                                              link['color']))
+                if link['deleted'] == 0:                            
+                    self._add_link_totray(link['url'], link['thumb'],
+                                          link['color'], link['title'],
+                                          link['owner'], i)                    
                 i+=1
                 
             if self.model.data['history'] is not '':                
@@ -284,43 +290,21 @@ class WebActivity(activity.Activity):
                     self.metadata['title'] = self._browser.props.title
 
             for link in self.model.links:
-                _logger.debug('write: url=%s title=%s d=%s' % (link['url'], link['title'], link['color']))
+                _logger.debug('write: url=%s title=%s d=%s' % (link['url'],
+                                                               link['title'],
+                                                               link['color']))
 
-            self.model.session_data = self._browser.get_session()                
-            _logger.debug('Trying save session: %s.' % self.model.session_data)
-            self.model.write(file_path)
-            
-    def destroy(self):
-        if downloadmanager.can_quit():
-            activity.Activity.destroy(self)
-        else:
-            downloadmanager.set_quit_callback(self._quit_callback_cb)
+            self.model.data['history'] = self._browser.get_session()                
+            # self.model.write(file_path)
 
-    def _quit_callback_cb(self):
-        _logger.debug('_quit_callback_cb')
-        activity.Activity.destroy(self)
-
-    def _link_selected_cb(self, linkbar, link):
-        self._browser.load_uri(link)
-
-    def _link_rm_cb(self, linkbar, index):
-        self.model.links[index]['deleted'] = 1
-        self.model.links[index]['thumb'] = ''
-
-    def _add_link_button_cb(self, button):
+    def _share_link_button_cb(self, button):
         self._add_link()
         
     def key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":                
                 self._add_link()
-                return True
-            elif gtk.gdk.keyval_name(event.keyval) == "r":
-                _logger.debug('keyboard: Remove link: %s.' % self.current)
-                current = self.linkbar._rm_link()
-                self.model.links[current]['deleted'] = 1
-                self.model.links[current]['thumb'] = ''
-                return True
+                return True           
             elif gtk.gdk.keyval_name(event.keyval) == "s":
                 _logger.debug('keyboard: Toggle visibility of tray')
                 self._toggle_visibility_tray()
@@ -330,23 +314,49 @@ class WebActivity(activity.Activity):
     def _add_link(self):
         buffer = self._get_screenshot()
         _logger.debug('keyboard: Add link: %s.' % self.current)                
-        self.model.links.append( {'hash':sha.new(self.current).hexdigest(), 'url':self.current, 'title':self.webtitle,
-                                  'thumb':buffer, 'owner':self.owner.props.nick, 'color':self.owner.props.color, 'deleted':0} )
+        self.model.links.append( {'hash':sha.new(self.current).hexdigest(),
+                                  'url':self.current, 'title':self.webtitle,
+                                  'thumb':buffer, 'owner':self.owner.props.nick,
+                                  'color':self.owner.props.color, 'deleted':0} )
 
-        self.linkbar._add_link(self.current, buffer, self.owner.props.color, self.webtitle, self.owner.props.nick,
-                               len(self.model.links)-1)
+        self._add_link_totray(self.current, buffer, self.owner.props.color,
+                              self.webtitle, self.owner.props.nick,
+                              len(self.model.links)-1)
         if self.messenger is not None:
             import base64
-            self.messenger._add_link(self.current, self.webtitle, self.owner.props.color,
-                                     self.owner.props.nick, base64.b64encode(buffer))
+            self.messenger._add_link(self.current, self.webtitle,
+                                     self.owner.props.color,
+                                     self.owner.props.nick,
+                                     base64.b64encode(buffer))
 
+    def _add_link_model_cb(self, model, index):
+        link = self.model.links[index]
+        self._add_link_totray(link['url'], link['thumb'],
+                              link['color'], link['title'],
+                              link['owner'], index)              
+        
+    def _add_link_totray(self, url, buffer, color, title, owner, index):        
+        item = LinkButton(url, buffer, color, title, owner, index)
+        item.connect('clicked', self._link_clicked_cb, url)
+        item.connect('remove_link', self._link_removed_cb)
+        self._tray.add_item(item, 0) # add to the beginning of the tray
+        item.show()
+
+    def _link_clicked_cb(self, button, url):
+        self._browser.load_uri(url)
+
+    def _link_removed_cb(self, button, index):
+        self.model.links[index]['deleted'] = 1
+        self.model.links[index]['thumb'] = ''        
+        self._tray.remove_item(button)
+        
     def _toggle_visibility_tray(self):
-        if self.linkbar.isvisible is True:
-            self.linkbar.isvisible = False
-            self.linkbar.hide()
+        if self._tray.isvisible is True:
+            self._tray.isvisible = False
+            self._tray.hide()
         else:
-            self.linkbar.isvisible = True
-            self.linkbar.show()
+            self._tray.isvisible = True
+            self._tray.show()
                     
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
@@ -362,7 +372,8 @@ class WebActivity(activity.Activity):
         width, height = window.get_size()
 
         screenshot = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, has_alpha=False,
-                                    bits_per_sample=8, width=width, height=height)
+                                    bits_per_sample=8, width=width,
+                                    height=height)
         screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
                                      width, height)
 
@@ -372,3 +383,13 @@ class WebActivity(activity.Activity):
 
         buffer = self.get_buffer(screenshot)
         return buffer
+
+    def destroy(self):
+        if downloadmanager.can_quit():
+            activity.Activity.destroy(self)
+        else:
+            downloadmanager.set_quit_callback(self._quit_callback_cb)
+            
+    def _quit_callback_cb(self):
+        _logger.debug('_quit_callback_cb')
+        activity.Activity.destroy(self)

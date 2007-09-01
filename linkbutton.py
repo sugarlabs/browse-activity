@@ -17,20 +17,31 @@
 
 import gtk
 import os
-
+import gobject
+from gettext import gettext as _
 import rsvg
 import re
 
-from sugar.graphics.palette import Palette, WidgetInvoker
+from sugar.graphics.palette import Palette
+from sugar.graphics.palette import WidgetInvoker
+from sugar.graphics.tray import TrayButton
+from sugar.graphics.icon import Icon
 from sugar.graphics import style
 
 
-class LinkButton(gtk.RadioToolButton):
-    def __init__(self, buffer, color, pos, group=None):
-        gtk.RadioToolButton.__init__(self, group=group)
-        self._palette = None        
+class LinkButton(TrayButton, gobject.GObject):
+    __gtype_name__ = 'LinkButton'
+    __gsignals__ = {
+        'remove_link': (gobject.SIGNAL_RUN_FIRST,
+                        gobject.TYPE_NONE, ([int]))
+        }
+    def __init__(self, url, buffer, color, title, owner, index):
+        TrayButton.__init__(self)
         self.set_image(buffer, color.split(',')[1], color.split(',')[0])
-        self.pos = pos
+
+        self.index = index
+        info = title +'\n'+ owner     
+        self.setup_rollover_options(info)        
         
     def set_image(self, buffer, fill='#0000ff', stroke='#4d4c4f'):
         img = gtk.Image()                    
@@ -54,7 +65,6 @@ class LinkButton(gtk.RadioToolButton):
         
         pixbuf.composite(pixbuf_bg, dest_x, dest_y, w, h, dest_x, dest_y,
                          scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
-
         img.set_from_pixbuf(pixbuf_bg)
         self.set_icon_widget(img)
         img.show()
@@ -75,15 +85,15 @@ class LinkButton(gtk.RadioToolButton):
         data_size = len(data)
         return rsvg.Handle(data=data).get_pixbuf()
 
-    def get_palette(self):
-        return self._palette
-    
-    def set_palette(self, palette):
-        self._palette = palette
-        self._palette.props.invoker = WidgetInvoker(self.child)
+    def setup_rollover_options(self, info):
+        palette = Palette(info)
+        self.set_palette(palette)
+        palette.props.invoker = WidgetInvoker(self)
 
-    def set_tooltip(self, text):
-        self._palette = Palette(text)
-        self._palette.props.invoker = WidgetInvoker(self.child)
-    
-    palette = property(get_palette, set_palette)
+        menu_item = gtk.MenuItem(_('Remove'))
+        menu_item.connect('activate', self.item_remove_cb)
+        palette.menu.append(menu_item)
+        menu_item.show()
+
+    def item_remove_cb(self, widget):
+        self.emit('remove_link', self.index)
