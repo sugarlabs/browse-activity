@@ -82,47 +82,47 @@ class Messenger(ExportedGObject):
         a_ids.pop()                    
         for link in self.model.data['shared_links']:
             if link['hash'] not in a_ids:
-                if link['deleted'] == 0:
                     self.tube.get_object(sender, PATH).send_link(
                         link['hash'], link['url'], link['title'], link['color'],
-                        link['owner'], link['thumb'])
+                        link['owner'], link['thumb'], link['timestamp'])
             
     def error_sync(self, e, when):    
         _logger.error('Error %s: %s'%(when, e))
 
-    @dbus.service.method(dbus_interface=IFACE, in_signature='as', out_signature='ass', sender_keyword='sender')
+    @dbus.service.method(dbus_interface=IFACE, in_signature='as',
+                         out_signature='ass', sender_keyword='sender')
     def sync_with_members(self, b_ids, sender=None):
         '''Sync with members '''
         b_ids.pop()
         # links the caller wants from me
         for link in self.model.data['shared_links']:
             if link['hash'] not in b_ids:
-                if link['deleted'] == 0:
-                    self.tube.get_object(sender, PATH).send_link(link['hash'], link['url'], link['title'], link['color'],
-                                                                 link['owner'], link['thumb'])
+                    self.tube.get_object(sender, PATH).send_link(
+                        link['hash'], link['url'], link['title'], link['color'],
+                        link['owner'], link['thumb'], link['timestamp'])
         a_ids = self.model.get_links_ids()
         a_ids.append('')
         # links I want from the caller
         return (a_ids, self.bus_name)               
         
-    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssss', out_signature='')
-    def send_link(self, id, url, title, color, owner, buffer):
+    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssssd', out_signature='')
+    def send_link(self, id, url, title, color, owner, buffer, timestamp):
         '''Send link'''
         a_ids = self.model.get_links_ids()
         if id not in a_ids:
             thumb = base64.b64decode(buffer)
-            self.model.add_link(url, title, thumb, owner, color)
+            self.model.add_link(url, title, thumb, owner, color, timestamp)
                     
-    @dbus.service.signal(IFACE, signature='sssss')
-    def _add_link(self, url, title, color, owner, thumb):        
+    @dbus.service.signal(IFACE, signature='sssssd')
+    def _add_link(self, url, title, color, owner, thumb, timestamp):        
         '''Signal to send the link information (add)'''
         _logger.debug('Add Link: %s '%url)
         
-    def _add_link_receiver(self, url, title, color, owner, buffer, sender=None):
+    def _add_link_receiver(self, url, title, color, owner, buffer, timestamp, sender=None):
         '''Member sent a link'''
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
             thumb = base64.b64decode(buffer)
-            self.model.add_link(url, title, thumb, owner, color)            
+            self.model.add_link(url, title, thumb, owner, color, timestamp)            
             _logger.debug('Added link: %s to linkbar.'%(url))
     

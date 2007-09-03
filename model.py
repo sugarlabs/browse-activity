@@ -35,18 +35,29 @@ class Model(gobject.GObject):
         gobject.GObject.__init__(self)    
         self.data = {}
         self.data['shared_links'] = []
+        self.data['deleted'] = []
+        
+    def add_link(self, url, title, thumb, owner, color, timestamp):
+        index = len(self.data['shared_links'])
+        for item in self.data['shared_links']:
+            if timestamp <= item['timestamp']: 
+                index = self.data['shared_links'].index(item)
+                break
+        
+        self.data['shared_links'].insert(index,
+                                         {'hash':sha.new(str(url)).hexdigest(),
+                                          'url':str(url), 'title':str(title),
+                                          'thumb':base64.b64encode(thumb),
+                                          'owner':str(owner), 'color':str(color),
+                                          'timestamp':float(timestamp)} )        
+        self.emit('add_link', index)
 
-    def add_link(self, url, title, thumb, owner, color):
-        self.data['shared_links'].append( {'hash':sha.new(str(url)).hexdigest(),
-                                           'url':str(url), 'title':str(title),
-                                           'thumb':base64.b64encode(thumb),
-                                           'owner':str(owner),
-                                           'color':str(color), 'deleted':0} )        
-        self.emit('add_link', len(self.data['shared_links'])-1)
-
-    def mark_link_deleted(self, index):
-        self.data['shared_links'][index]['deleted'] = 1
-        self.data['shared_links'][index]['thumb'] = ''
+    def remove_link(self, hash):
+        for link in self.data['shared_links']:
+            if link['hash'] == hash:
+                self.data['deleted'].append(link['hash'])
+                self.data['shared_links'].remove(link)
+                break                
         
     def serialize(self):
         return json.write(self.data)
@@ -58,6 +69,7 @@ class Model(gobject.GObject):
         ids = []
         for link in self.data['shared_links']:
             ids.append(link['hash'])
+        ids.extend(self.data['deleted'])
         ids.append('')    
         return ids
     

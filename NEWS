@@ -1,5 +1,10 @@
-46
+* redesign when members leave and rejoin, added timestamp to be 
+able to bring the links in the right order, you can not add alink 
+twice unless you deleted it already, links are added to the tray 
+on the right side (erikos)
 
+46
+* fix for gray page when resuming from journal (erikos)
 * #2327 Unescape the URI to display it in the address bar (marco)
 * fixed memory consuption when creating shared links 
   by calling the garbage collector (erikos)
