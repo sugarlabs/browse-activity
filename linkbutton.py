@@ -21,6 +21,7 @@ import gobject
 from gettext import gettext as _
 import rsvg
 import re
+import gc
 
 from sugar.graphics.palette import Palette
 from sugar.graphics.tray import TrayButton
@@ -67,6 +68,9 @@ class LinkButton(TrayButton, gobject.GObject):
         img.set_from_pixbuf(pixbuf_bg)
         self.set_icon_widget(img)
         img.show()
+        del pixbuf
+        del pixbuf_bg
+        gc.collect()
 
     def _read_link_background(self, filename, fill_color, stroke_color):
         icon_file = open(filename, 'r')

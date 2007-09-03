@@ -49,7 +49,6 @@ class Model(gobject.GObject):
         self.data['shared_links'][index]['thumb'] = ''
         
     def serialize(self):
-        print self.data
         return json.write(self.data)
 
     def deserialize(self, data):

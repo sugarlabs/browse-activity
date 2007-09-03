@@ -280,10 +280,8 @@ class WebActivity(activity.Activity):
                     self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
                                           link['color'], link['title'],
                                           link['owner'], i)                    
-                i+=1
-                
-            if self.model.data['history'] is not '':                
-                self._browser.set_session(self.model.data['history'])                
+                i+=1            
+            self._browser.set_session(self.model.data['history'])
         else:
             self._browser.load_uri(file_path)
             _sugarext.set_prgname(self.sname)
