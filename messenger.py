@@ -61,12 +61,12 @@ class Messenger(ExportedGObject):
                                           IFACE, path=PATH,
                                           sender_keyword='sender',
                                           byte_arrays=True)
+            self.bus_name = self.tube.get_unique_name()
             if self.is_initiator:
                 _logger.debug('Initialising a new shared browser, I am %s .'
                               %self.tube.get_unique_name())                
             else:               
                 # sync with other members
-                self.bus_name = self.tube.get_unique_name()
                 _logger.debug('Joined I am %s .'%self.bus_name)                
                 for member in self.members:
                     if member != self.bus_name:
@@ -78,7 +78,7 @@ class Messenger(ExportedGObject):
                                                                          
         self.entered = True
         
-    def reply_sync(self, a_ids):
+    def reply_sync(self, a_ids, sender):
         a_ids.pop()                    
         for link in self.model.data['shared_links']:
             if link['hash'] not in a_ids:
@@ -90,7 +90,7 @@ class Messenger(ExportedGObject):
     def error_sync(self, e, when):    
         _logger.error('Error %s: %s'%(when, e))
 
-    @dbus.service.method(dbus_interface=IFACE, in_signature='as', out_signature='as', sender_keyword='sender')
+    @dbus.service.method(dbus_interface=IFACE, in_signature='as', out_signature='ass', sender_keyword='sender')
     def sync_with_members(self, b_ids, sender=None):
         '''Sync with members '''
         b_ids.pop()
@@ -103,7 +103,7 @@ class Messenger(ExportedGObject):
         a_ids = self.model.get_links_ids()
         a_ids.append('')
         # links I want from the caller
-        return a_ids                        
+        return (a_ids, self.bus_name)               
         
     @dbus.service.method(dbus_interface=IFACE, in_signature='ssssss', out_signature='')
     def send_link(self, id, url, title, color, owner, buffer):
