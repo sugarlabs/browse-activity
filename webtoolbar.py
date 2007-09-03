@@ -21,8 +21,8 @@ from gettext import gettext as _
 
 import gobject
 import gtk
-import xpcom
 from xpcom.components import interfaces
+from xpcom import components
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar._sugaruiext import AddressEntry
@@ -88,7 +88,11 @@ class WebToolbar(gtk.Toolbar):
         gobject.idle_add(self._reload_session_history, current_page_index)
 
     def _location_changed_cb(self, progress_listener, uri):
-        self._set_address(uri)
+        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+
+        self._set_address(ui_uri)
         self._update_navigation_buttons()
         filepicker.cleanup_temp_files()
 

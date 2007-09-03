@@ -24,7 +24,7 @@ class ProgressListener(gobject.GObject):
 
     __gsignals__ = {
         'location-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([str])),
+                             ([object])),
         'loading-start':    (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
                              ([])),
         'loading-stop':     (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
@@ -51,7 +51,7 @@ class ProgressListener(gobject.GObject):
         self.completed_requests = 0
     
     def onLocationChange(self, webProgress, request, location):
-        self.emit('location-changed', location.spec)
+        self.emit('location-changed', location)
         
     def onProgressChange(self, webProgress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
