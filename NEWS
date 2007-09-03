@@ -1,3 +1,6 @@
+* fixed memory consuption when creating shared links 
+  by calling the garbage collector (erikos)
+
 45
 
 * use json for storing the history and the shared
