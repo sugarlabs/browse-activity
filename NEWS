@@ -1,4 +1,5 @@
 * Added missing fill_color in icon (erikos)
+* #2555: Report download progress to the Journal via the DataStore. (tomeu)
 
 48
 
