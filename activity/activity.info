@@ -1,6 +1,6 @@
 [Activity]
 name = Browse
-activity_version = 48
+activity_version = 49
 service_name = org.laptop.WebActivity
 icon = activity-web
 class = webactivity.WebActivity
