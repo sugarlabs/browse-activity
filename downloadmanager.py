@@ -113,6 +113,7 @@ class Download:
 
             self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
                 (file_name, self._source.spec)
+            self._dl_jobject.metadata['progress'] = '100'
             self._dl_jobject.file_path = self._target_file.path
 
             if self._mime_type == 'application/octet-stream':
@@ -151,16 +152,17 @@ class Download:
         path, file_name = os.path.split(self._target_file.path)
         percent = (cur_self_progress  * 100) / max_self_progress
 
-        if (time.time() - self._last_update_time) < 10 and \
-           (percent - self._last_update_percent) < 10:
+        if (time.time() - self._last_update_time) < 5 and \
+           (percent - self._last_update_percent) < 5:
             return
 
         self._last_update_time = time.time()
         self._last_update_percent = percent
 
         if percent < 100:
-            self._dl_jobject.metadata['title'] = _('Downloading %s from\n%s. Progress %i%%.') % \
-                (file_name, self._source.spec, percent)
+            self._dl_jobject.metadata['title'] = _('Downloading %s from\n%s.') % \
+                (file_name, self._source.spec)
+            self._dl_jobject.metadata['progress'] = str(percent)
             datastore.write(self._dl_jobject)
 
             cb_service = clipboardservice.get_instance()
@@ -176,6 +178,7 @@ class Download:
         self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
             (file_name, self._source.spec)
 
+        self._dl_jobject.metadata['progress'] = '0'
         self._dl_jobject.metadata['keep'] = '0'
         self._dl_jobject.metadata['buddies'] = ''
         self._dl_jobject.metadata['preview'] = ''
