@@ -1,3 +1,8 @@
+* View source for Browse
+  With the ctrl+u command does load the current page from the cache and 
+  launches write to display it #3261 (erikos)
+* Changed the show/hide frame key to be ctrl+v for visibility (erikos)
+  
 49
 
 * Added missing fill_color in icon (erikos)
