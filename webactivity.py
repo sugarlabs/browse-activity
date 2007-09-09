@@ -311,9 +311,13 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Add link: %s.' % self.current)                
                 self._add_link()
                 return True           
-            elif gtk.gdk.keyval_name(event.keyval) == "s":
+            elif gtk.gdk.keyval_name(event.keyval) == "v":
                 _logger.debug('keyboard: Toggle visibility of tray')
                 self._toggle_visibility_tray()
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "u":
+                _logger.debug('keyboard: Show source of the current page')
+                self._show_source()
                 return True
         return False
 
@@ -367,7 +371,10 @@ class WebActivity(activity.Activity):
         else:
             self.tray_isvisible = True
             self._tray.show()
-                    
+
+    def _show_source(self):
+        self._browser.get_source()
+        
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
         return True
