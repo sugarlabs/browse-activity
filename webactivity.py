@@ -56,8 +56,9 @@ SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
-_logger = logging.getLogger('web-activity')
+_VIEW_SOURCE_KEY_CODE = 0x1008FF1A
 
+_logger = logging.getLogger('web-activity')
 
 class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
@@ -319,6 +320,11 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Show source of the current page')
                 self._show_source()
                 return True
+        elif event.keyval == _VIEW_SOURCE_KEY_CODE:
+            _logger.debug('keyboard: Show source of the current page SHOW_KEY')
+            self._show_source()
+            return True
+        
         return False
 
     def _add_link(self):
