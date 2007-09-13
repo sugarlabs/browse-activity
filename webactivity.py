@@ -89,8 +89,10 @@ class WebActivity(activity.Activity):
         self._tray = HTray()
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
-        self.toolbar._add_link.connect('clicked', self._share_link_button_cb)
-        self.tray_isvisible = False
+        self.toolbar.connect('add-link', self._link_add_button_cb)
+        self.toolbar.connect('show-tray', self._tray_show_cb)
+        self.toolbar.connect('hide-tray', self._tray_hide_cb)
+        self.tray_isvisible = True
         
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -302,10 +304,20 @@ class WebActivity(activity.Activity):
             finally:
                 f.close()
 
-    def _share_link_button_cb(self, button):
+    def _link_add_button_cb(self, button):
         _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
-        
+
+    def _tray_show_cb(self, button):
+        if self.tray_isvisible == False:
+            self._tray.show()
+            self.tray_isvisible = True
+
+    def _tray_hide_cb(self, button):
+        if self.tray_isvisible == True:
+            self._tray.hide()
+            self.tray_isvisible = False
+            
     def key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":
@@ -359,7 +371,9 @@ class WebActivity(activity.Activity):
         item.connect('remove_link', self._link_removed_cb)
         self._tray.add_item(item, index) # use index to add to the tray
         item.show()
-        self.tray_isvisible = True
+        if self.tray_isvisible == False:
+            self._tray.show()
+            self.tray_isvisible = True
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''

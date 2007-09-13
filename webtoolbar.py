@@ -32,6 +32,20 @@ import progresslistener
 import filepicker
 
 class WebToolbar(gtk.Toolbar):
+    __gtype_name__ = 'WebToolbar'
+
+    __gsignals__ = {
+        'add-link': (gobject.SIGNAL_RUN_FIRST,
+                     gobject.TYPE_NONE,
+                     ([])),
+        'show-tray': (gobject.SIGNAL_RUN_FIRST,
+                      gobject.TYPE_NONE,
+                      ([])),
+        'hide-tray': (gobject.SIGNAL_RUN_FIRST,
+                      gobject.TYPE_NONE,
+                      ([]))
+    }
+
     def __init__(self, browser):
         gtk.Toolbar.__init__(self)
 
@@ -67,10 +81,23 @@ class WebToolbar(gtk.Toolbar):
         self.insert(entry_item, -1)
         entry_item.show()
 
-        self._add_link = ToolButton('add-link')
-        self._add_link.set_tooltip(_('Add Link'))
-        self.insert(self._add_link, -1)
-        self._add_link.show()
+        self._link_add = ToolButton('add-link')
+        self._link_add.set_tooltip(_('Add Link'))
+        self._link_add.connect('clicked', self._link_add_clicked_cb)
+        self.insert(self._link_add, -1)
+        self._link_add.show()
+
+        self._tray_show = ToolButton('tray-show')
+        self._tray_show.set_tooltip(_('Show Tray'))
+        self._tray_show.connect('clicked', self._tray_show_clicked_cb)
+        self.insert(self._tray_show, -1)
+        self._tray_show.show()
+
+        self._tray_hide = ToolButton('tray-hide')
+        self._tray_hide.set_tooltip(_('Hide Tray'))
+        self._tray_hide.connect('clicked', self._tray_hide_clicked_cb)
+        self.insert(self._tray_hide, -1)
+        self._tray_hide.show()
 
         progress_listener = progresslistener.get_instance()
         progress_listener.connect('location-changed', self._location_changed_cb)
@@ -189,3 +216,11 @@ class WebToolbar(gtk.Toolbar):
     def _history_item_activated_cb(self, menu_item, index):
         self._browser.web_navigation.gotoIndex(index)
 
+    def _link_add_clicked_cb(self, button):
+        self.emit('add-link')
+
+    def _tray_show_clicked_cb(self, button):
+        self.emit('show-tray')
+
+    def _tray_hide_clicked_cb(self, button):
+        self.emit('hide-tray')
