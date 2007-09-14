@@ -46,16 +46,15 @@ class Messenger(ExportedGObject):
             _logger.debug('Add member handle=%s  bus_name=%s'
                           %(str(handle), str(bus_name)))
             self.members.append(bus_name)
-                    
-        for handle, bus_name in removed:
-            _logger.debug('Remove member handle=%s  bus_name=%s'
-                          %(str(handle), str(bus_name)))
+            
+        for handle in removed:
+            _logger.debug('Remove member %r', handle)
             try:
-                self.members.remove(bus_name)
+                self.members.remove(self.tube.participants[handle])
             except ValueError:
                 # already absent
-                pass        
-                
+                pass
+                        
         if not self.entered:
             self.tube.add_signal_receiver(self._add_link_receiver, '_add_link',
                                           IFACE, path=PATH,

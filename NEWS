@@ -1,3 +1,4 @@
+* Fix for when participant leaves (erikos)
 * #3347 Advertise ogg and wav mime types (marco)
 * Added the buttons for hide/show tray (erikos)
 
