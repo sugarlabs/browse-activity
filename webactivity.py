@@ -90,9 +90,9 @@ class WebActivity(activity.Activity):
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         self.toolbar.connect('add-link', self._link_add_button_cb)
-        self.toolbar.connect('show-tray', self._tray_show_cb)
-        self.toolbar.connect('hide-tray', self._tray_hide_cb)
-        self.tray_isvisible = True
+        self.toolbar.connect('visibility-tray', self._tray_visibility_cb)
+        self._tray_isvisible = False
+        self._tray_numelems = 0
         
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -279,7 +279,8 @@ class WebActivity(activity.Activity):
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'],
                                                               link['title'],
                                                               link['color']))
-                self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
+                self._add_link_totray(link['url'],
+                                      base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])                                
             self._browser.set_session(self.model.data['history'])
@@ -307,16 +308,6 @@ class WebActivity(activity.Activity):
     def _link_add_button_cb(self, button):
         _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
-
-    def _tray_show_cb(self, button):
-        if self.tray_isvisible == False:
-            self._tray.show()
-            self.tray_isvisible = True
-
-    def _tray_hide_cb(self, button):
-        if self.tray_isvisible == True:
-            self._tray.hide()
-            self.tray_isvisible = False
             
     def key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
@@ -325,8 +316,8 @@ class WebActivity(activity.Activity):
                 self._add_link()
                 return True           
             elif gtk.gdk.keyval_name(event.keyval) == "v":
-                _logger.debug('keyboard: Toggle visibility of tray')
-                self._toggle_visibility_tray()
+                # toggle visibility of tray
+                self._tray_visibility()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "u":
                 _logger.debug('keyboard: Show source of the current page')
@@ -343,7 +334,8 @@ class WebActivity(activity.Activity):
         ''' take screenshot and add link info to the model '''
         for link in self.model.data['shared_links']:
             if link['hash'] == sha.new(self.current).hexdigest():
-                _logger.debug('_add_link: link exist already')
+                _logger.debug('_add_link: link exist already a=%s b=%s' %(
+                    link['hash'], sha.new(self.current).hexdigest()))
                 return
         buffer = self._get_screenshot()
         timestamp = time.time()
@@ -371,26 +363,38 @@ class WebActivity(activity.Activity):
         item.connect('remove_link', self._link_removed_cb)
         self._tray.add_item(item, index) # use index to add to the tray
         item.show()
-        if self.tray_isvisible == False:
+        self._tray_numelems+=1
+        if self._tray_isvisible == False:
             self._tray.show()
-            self.tray_isvisible = True
-
+            self._tray_isvisible = True
+            self.toolbar.tray_set_hide()
+            
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
         self._tray.remove_item(button)
+        self._tray_numelems-=1
+        if self._tray_numelems == 0:
+            self.toolbar.tray_set_empty()
+            self._tray_isvisible = False
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
         self._browser.load_uri(url)
         
-    def _toggle_visibility_tray(self):
-        if self.tray_isvisible is True:
-            self.tray_isvisible = False
-            self._tray.hide()
-        else:
-            self.tray_isvisible = True
-            self._tray.show()
+    def _tray_visibility_cb(self, toolbar):
+        self._tray_visibility()
+        
+    def _tray_visibility(self):    
+        if self._tray_numelems > 0:
+            if self._tray_isvisible is False:
+                self.toolbar.tray_set_hide()
+                self._tray.show()
+                self._tray_isvisible = True            
+            else:
+                self.toolbar.tray_set_show()
+                self._tray.hide()
+                self._tray_isvisible = False
 
     def _show_source(self):
         self._browser.get_source()
