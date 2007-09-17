@@ -125,7 +125,6 @@ class WebActivity(activity.Activity):
 
         _sugarext.set_prgname(self.sname)
                     
-        self.set_title('WebActivity')
         self.messenger = None
         self.connect('shared', self._shared_cb)
                                 
