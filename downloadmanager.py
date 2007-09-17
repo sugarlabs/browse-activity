@@ -66,6 +66,7 @@ class DownloadManager:
             os.makedirs(_temp_path)
         file_path = os.path.join(_temp_path, default_file)
 
+        print file_path
         dest_file.initWithPath(file_path)
         
         return dest_file

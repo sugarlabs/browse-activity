@@ -34,7 +34,6 @@ from sugar import profile
 from sugar.activity import activityfactory
 
 import sessionstore
-from dnd import DragDropHooks
 
 class GetSourceListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
@@ -75,19 +74,6 @@ class Browser(WebView):
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
         window_watcher.setWindowCreator(window_creator)
         
-        self.connect('realize', self._realize_cb)
-        
-    def _realize_cb(self, widget):
-        drag_drop_hooks = DragDropHooks(self)
-
-        cls = components.classes['@mozilla.org/embedcomp/command-params;1']
-        cmd_params = cls.createInstance('nsICommandParams')
-        cmd_params.setISupportsValue('addhook', drag_drop_hooks)
-
-        requestor = self.browser.queryInterface(interfaces.nsIInterfaceRequestor)
-        command_manager = requestor.getInterface(interfaces.nsICommandManager)
-        command_manager.doCommand('cmd_clipboardDragDropHook', cmd_params, self.dom_window)
-
     def get_session(self):
         return sessionstore.get_session(self)
 
