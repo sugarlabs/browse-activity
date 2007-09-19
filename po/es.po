@@ -5,22 +5,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 10:55-0400\n"
-"PO-Revision-Date: 2007-03-23 15:04+0100\n"
-"Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"PO-Revision-Date: 2007-09-18 09:57-0300\n"
+"Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
+"Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Spanish\n"
 
-#: activity/activity.info:2 webactivity.py:64
-msgid "Browse"
-msgstr "Navegar"
-
-#: downloadmanager.py:114
+#: downloadmanager.py:91
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -29,7 +26,7 @@ msgstr ""
 "El archivo %s se bajó de\n"
 "%s."
 
-#: downloadmanager.py:162
+#: downloadmanager.py:118
 #, python-format
 msgid ""
 "Downloading %s from\n"
@@ -38,7 +35,7 @@ msgstr ""
 "Bajando %s desde\n"
 "%s. Progreso %i%%."
 
-#: downloadmanager.py:176
+#: downloadmanager.py:129
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -47,39 +44,40 @@ msgstr ""
 "Bajando %s desde \n"
 "%s."
 
-#: webtoolbar.py:41
+#: webactivity.py:44
+msgid "Web Activity"
+msgstr "Actividad web"
+
+#: webactivity.py:57
+msgid "Browse"
+msgstr "Navegar"
+
+#: webtoolbar.py:85
 msgid "Back"
 msgstr "Volver"
 
-#: webtoolbar.py:48
+#: webtoolbar.py:92
 msgid "Forward"
 msgstr "Avanzar"
 
-#: webtoolbar.py:149
+#: webtoolbar.py:172
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:152
+#: webtoolbar.py:175
 msgid "Reload"
 msgstr "Refrescar"
 
-#~ msgid "Web Activity"
-#~ msgstr "Actividad web"
-
 #~ msgid "Open"
 #~ msgstr "Abrir"
-
 #~ msgid "Save"
 #~ msgstr "Guardar"
-
 #~ msgid "All supported formats"
 #~ msgstr "Todos los formatos soportados"
-
 #~ msgid "Web pages"
 #~ msgstr "Páginas web"
-
 #~ msgid "Images"
 #~ msgstr "Imágenes"
-
 #~ msgid "All files"
 #~ msgstr "Todos los archivos"
+
