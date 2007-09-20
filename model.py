@@ -63,7 +63,11 @@ class Model(gobject.GObject):
         return json.write(self.data)
 
     def deserialize(self, data):
-        self.data = json.read(data)                
+        self.data = json.read(data)
+        if not self.data.has_key('shared_links'):
+            self.data['shared_links'] = []
+        if not self.data.has_key('deleted'):
+            self.data['deleted'] = []
         
     def get_links_ids(self):
         ids = []
