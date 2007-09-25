@@ -135,6 +135,7 @@ class WebActivity(activity.Activity):
             self.tp_conn_name = name
             self.tp_conn_path = path
             self.conn = telepathy.client.Connection(name, path)
+            self.owner = self.pservice.get_owner()
         except TypeError:
             _logger.debug('Offline')
         self.initiating = None
@@ -142,7 +143,6 @@ class WebActivity(activity.Activity):
         if self._shared_activity is not None:
             _logger.debug('shared:  %s' %self._shared_activity.props.joined)
 
-        self.owner = self.pservice.get_owner()
         if self._shared_activity is not None:
             # We are joining the activity
             self.toolbox.set_current_toolbar(1)
