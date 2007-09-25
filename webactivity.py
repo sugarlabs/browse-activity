@@ -135,7 +135,6 @@ class WebActivity(activity.Activity):
             self.tp_conn_name = name
             self.tp_conn_path = path
             self.conn = telepathy.client.Connection(name, path)
-            self.owner = self.pservice.get_owner()
         except TypeError:
             _logger.debug('Offline')
         self.initiating = None
@@ -244,7 +243,7 @@ class WebActivity(activity.Activity):
                 id, group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
             
             _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating, self.model, self.owner)         
+            self.messenger = Messenger(self.tube_conn, self.initiating, self.model)         
 
              
     def _load_homepage(self):

@@ -29,14 +29,13 @@ PATH = "/org/laptop/WebActivity"
 _logger = logging.getLogger('messenger')
 
 class Messenger(ExportedGObject):
-    def __init__(self, tube, is_initiator, model, owner):
+    def __init__(self, tube, is_initiator, model):
         ExportedGObject.__init__(self, tube, PATH)
         self.tube = tube
         self.is_initiator = is_initiator
         self.members = []
         self.entered = False
         self.model = model
-        self.owner = owner
         self.tube.watch_participants(self.participant_change_cb)
 
     def participant_change_cb(self, added, removed):
