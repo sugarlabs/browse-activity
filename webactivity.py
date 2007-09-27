@@ -32,6 +32,7 @@ import telepathy.client
 from sugar import _sugarext
 from sugar.presence import presenceservice
 from sugar.graphics.tray import HTray
+from sugar import profile
 
 import hulahop
 hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
@@ -62,16 +63,16 @@ _logger = logging.getLogger('web-activity')
 
 class WebActivity(activity.Activity):
     def __init__(self, handle, browser=None):
-        activity.Activity.__init__(self, handle)        
-        
+        activity.Activity.__init__(self, handle)
+
         _logger.debug('Starting the web activity')
 
         if browser:
             self._browser = browser
         else:
             self._browser = Browser()
-        
-        temp_path = os.path.join(self.get_activity_root(), 'tmp')        
+
+        temp_path = os.path.join(self.get_activity_root(), 'tmp')
         downloadmanager.init(self._browser, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
@@ -93,16 +94,16 @@ class WebActivity(activity.Activity):
         self.toolbar.connect('visibility-tray', self._tray_visibility_cb)
         self._tray_isvisible = False
         self._tray_numelems = 0
-        
+
         self._browser.connect("notify::title", self._title_changed_cb)
 
         self.model = Model()
         self.model.connect('add_link', self._add_link_model_cb)
-        
+
         self._main_view = gtk.VBox()
         self.set_canvas(self._main_view)
         self._main_view.show()
-        
+
         self._main_view.pack_start(self._browser)
         self._browser.show()
 
@@ -114,7 +115,7 @@ class WebActivity(activity.Activity):
         self.connect('key-press-event', self.key_press_cb)
         self.sname =  _sugarext.get_prgname()
         _logger.debug('ProgName:  %s' %self.sname)
-        
+
         if handle.uri:
             self._browser.load_uri(handle.uri)
             self.toolbox.set_current_toolbar(1)
@@ -124,10 +125,10 @@ class WebActivity(activity.Activity):
             self._load_homepage()
 
         _sugarext.set_prgname(self.sname)
-                    
+
         self.messenger = None
         self.connect('shared', self._shared_cb)
-                                
+
         # Get the Presence Service        
         self.pservice = presenceservice.get_instance()
         try:
@@ -259,7 +260,6 @@ class WebActivity(activity.Activity):
         
     def _title_changed_cb(self, embed, pspec):
         if embed.props.title is not '':
-            # self.set_title(embed.props.title)            
             _logger.debug('Title changed=%s' % embed.props.title)
             self.webtitle = embed.props.title
             _sugarext.set_prgname("org.laptop.WebActivity")
@@ -325,7 +325,6 @@ class WebActivity(activity.Activity):
             _logger.debug('keyboard: Show source of the current page SHOW_KEY')
             self._show_source()
             return True
-        
         return False
 
     def _add_link(self):
@@ -338,22 +337,22 @@ class WebActivity(activity.Activity):
         buffer = self._get_screenshot()
         timestamp = time.time()
         self.model.add_link(self.current, self.webtitle, buffer,
-                            self.owner.props.nick, self.owner.props.color,
-                            timestamp)
+                            profile.get_nick_name(),
+                            profile.get_color().to_string(), timestamp)
 
         if self.messenger is not None:
-            self.messenger._add_link(self.current, self.webtitle,
-                                     self.owner.props.color,
-                                     self.owner.props.nick,
+            self.messenger._add_link(self.current, self.webtitle,                                     
+                                     profile.get_color().to_string(),
+                                     profile.get_nick_name(),
                                      base64.b64encode(buffer), timestamp)
 
-    def _add_link_model_cb(self, model, index):        
+    def _add_link_model_cb(self, model, index):
         ''' receive index of new link from the model '''
         link = self.model.data['shared_links'][index]
         self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
                               link['color'], link['title'],
-                              link['owner'], index, link['hash'])              
-        
+                              link['owner'], index, link['hash'])
+
     def _add_link_totray(self, url, buffer, color, title, owner, index, hash):
         ''' add a link to the tray '''
         item = LinkButton(url, buffer, color, title, owner, index, hash)
@@ -366,7 +365,7 @@ class WebActivity(activity.Activity):
             self._tray.show()
             self._tray_isvisible = True
             self.toolbar.tray_set_hide()
-            
+
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
@@ -379,16 +378,16 @@ class WebActivity(activity.Activity):
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
         self._browser.load_uri(url)
-        
+
     def _tray_visibility_cb(self, toolbar):
         self._tray_visibility()
-        
-    def _tray_visibility(self):    
+
+    def _tray_visibility(self):
         if self._tray_numelems > 0:
             if self._tray_isvisible is False:
                 self.toolbar.tray_set_hide()
                 self._tray.show()
-                self._tray_isvisible = True            
+                self._tray_isvisible = True
             else:
                 self.toolbar.tray_set_show()
                 self._tray.hide()
@@ -396,7 +395,7 @@ class WebActivity(activity.Activity):
 
     def _show_source(self):
         self._browser.get_source()
-        
+
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
         return True
@@ -405,7 +404,7 @@ class WebActivity(activity.Activity):
         data = [""]
         pixbuf.save_to_callback(self._pixbuf_save_cb, "png", {}, data)
         return str(data[0])
-                
+
     def _get_screenshot(self):
         window = self._browser.window
         width, height = window.get_size()
@@ -428,7 +427,7 @@ class WebActivity(activity.Activity):
             activity.Activity.destroy(self)
         else:
             downloadmanager.set_quit_callback(self._quit_callback_cb)
-            
+
     def _quit_callback_cb(self):
         _logger.debug('_quit_callback_cb')
         activity.Activity.destroy(self)
