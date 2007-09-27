@@ -30,6 +30,14 @@ from sugar.clipboard import clipboardservice
 from sugar import profile
 from sugar import objects
 
+# #3903 - this constant can be removed and assumed to be 1 when dbus-python
+# 0.82.3 is the only version used
+import dbus
+if dbus.version >= (0, 82, 3):
+    DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1
+else:
+    DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1000
+
 _browser = None
 _temp_path = '/tmp'
 def init(browser, temp_path):
@@ -126,7 +134,7 @@ class Download:
             datastore.write(self._dl_jobject,
                             reply_handler=self._internal_save_cb,
                             error_handler=self._internal_save_error_cb,
-                            timeout=360000)
+                            timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
 
     def _cleanup_datastore_write(self):
         global _active_ds_writes
