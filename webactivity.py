@@ -58,6 +58,7 @@ IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
 _VIEW_SOURCE_KEY_CODE = 0x1008FF1A
+_TOOLBAR_BROWSE = 1
 
 _logger = logging.getLogger('web-activity')
 
@@ -114,11 +115,11 @@ class WebActivity(activity.Activity):
         self.webtitle = _('blank')
         self.connect('key-press-event', self.key_press_cb)
         self.sname =  _sugarext.get_prgname()
-        _logger.debug('ProgName:  %s' %self.sname)
 
+        self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
+        
         if handle.uri:
-            self._browser.load_uri(handle.uri)
-            self.toolbox.set_current_toolbar(1)
+            self._browser.load_uri(handle.uri)        
         elif not self._jobject.file_path and not browser:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
@@ -145,7 +146,6 @@ class WebActivity(activity.Activity):
 
         if self._shared_activity is not None:
             # We are joining the activity
-            self.toolbox.set_current_toolbar(1)
             _logger.debug('Joined activity')                      
             self.connect('joined', self._joined_cb)
             if self.get_shared():
