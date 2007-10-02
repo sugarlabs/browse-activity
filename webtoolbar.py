@@ -31,7 +31,7 @@ import sessionhistory
 import progresslistener
 import filepicker
 
-_MAX_HISTORY_ENTRIES = 16
+_MAX_HISTORY_ENTRIES = 15
 
 class WebToolbar(gtk.Toolbar):
     __gtype_name__ = 'WebToolbar'
@@ -189,14 +189,13 @@ class WebToolbar(gtk.Toolbar):
                 palette.menu.remove(menu_item)
 
         session_history = self._browser.web_navigation.sessionHistory
-        if session_history.count <= _MAX_HISTORY_ENTRIES \
-               or current_page_index < _MAX_HISTORY_ENTRIES:
-            bottom = 0
+        if current_page_index > _MAX_HISTORY_ENTRIES:
+            bottom = current_page_index - _MAX_HISTORY_ENTRIES
         else:
-            bottom = session_history.count - _MAX_HISTORY_ENTRIES
-
-        if session_history.count == current_page_index:
-            top = session_history.count-1
+            bottom = 0
+        if  (session_history.count - current_page_index) > \
+               _MAX_HISTORY_ENTRIES:
+            top = current_page_index + _MAX_HISTORY_ENTRIES + 1
         else:
             top = session_history.count
 
