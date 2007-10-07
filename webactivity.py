@@ -93,7 +93,6 @@ class WebActivity(activity.Activity):
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         self.toolbar.connect('add-link', self._link_add_button_cb)
         self.toolbar.connect('visibility-tray', self._tray_visibility_cb)
-        self._tray_isvisible = False
         self._tray_numelems = 0
 
         self._browser.connect("notify::title", self._title_changed_cb)
@@ -113,7 +112,7 @@ class WebActivity(activity.Activity):
 
         self.current = _('blank')
         self.webtitle = _('blank')
-        self.connect('key-press-event', self.key_press_cb)
+        self.connect('key-press-event', self._key_press_cb)
         self.sname =  _sugarext.get_prgname()
 
         self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
@@ -307,11 +306,11 @@ class WebActivity(activity.Activity):
         _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
             
-    def key_press_cb(self, widget, event):
+    def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "l":
                 _logger.debug('keyboard: Add link: %s.' % self.current)                
-                self._add_link()
+                self._add_link()                
                 return True           
             elif gtk.gdk.keyval_name(event.keyval) == "v":
                 # toggle visibility of tray
@@ -361,10 +360,9 @@ class WebActivity(activity.Activity):
         self._tray.add_item(item, index) # use index to add to the tray
         item.show()
         self._tray_numelems+=1
-        if self._tray_isvisible == False:
-            self._tray.show()
-            self._tray_isvisible = True
-            self.toolbar.tray_set_hide()
+        if self._tray.props.visible is False:
+            self._tray.show()        
+        self.toolbar.tray_set_hide()
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
@@ -373,7 +371,6 @@ class WebActivity(activity.Activity):
         self._tray_numelems-=1
         if self._tray_numelems == 0:
             self.toolbar.tray_set_empty()
-            self._tray_isvisible = False
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
@@ -384,14 +381,12 @@ class WebActivity(activity.Activity):
 
     def _tray_visibility(self):
         if self._tray_numelems > 0:
-            if self._tray_isvisible is False:
+            if self._tray.props.visible is False:
                 self.toolbar.tray_set_hide()
                 self._tray.show()
-                self._tray_isvisible = True
             else:
                 self.toolbar.tray_set_show()
                 self._tray.hide()
-                self._tray_isvisible = False
 
     def _show_source(self):
         self._browser.get_source()
