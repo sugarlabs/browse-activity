@@ -41,7 +41,6 @@ from browser import Browser
 from webtoolbar import WebToolbar
 import downloadmanager
 import promptservice
-import securitydialogs
 import filepicker
 import sessionhistory 
 import progresslistener

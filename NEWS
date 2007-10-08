@@ -1,3 +1,6 @@
+* Adopted to the latest actviity launch changes (erikos)
+* Took the import of securitydialog out (erikos)
+
 60
 
 * Limit to 15 entries in the palette of the back/forward buttons (erikos)
