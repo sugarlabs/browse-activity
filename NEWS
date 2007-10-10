@@ -1,3 +1,6 @@
+* Add agent-stylesheet.css and support for blocking flash. (tomeu)
+* Add support for agent and user stylesheets. (tomeu)
+
 61
 
 * Adopted to the latest actviity launch changes (erikos)
