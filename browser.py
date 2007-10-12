@@ -31,7 +31,9 @@ from hulahop.webview import WebView
 
 from sugar.datastore import datastore
 from sugar import profile
+from sugar import env
 from sugar.activity import activityfactory
+from sugar.activity import activity
 
 import sessionstore
 
@@ -66,8 +68,30 @@ class GetSourceListener(gobject.GObject):
         pass
     
 class Browser(WebView):
+
+    AGENT_SHEET = os.path.join(activity.get_bundle_path(), 'agent-stylesheet.css')
+    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko', 'user-stylesheet.css')
+
     def __init__(self):
         WebView.__init__(self)
+
+        io_service_class = components.classes["@mozilla.org/network/io-service;1"]
+        io_service = io_service_class.getService(interfaces.nsIIOService)
+
+        cls = components.classes['@mozilla.org/content/style-sheet-service;1']
+        style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
+
+        if os.path.exists(Browser.AGENT_SHEET):
+            agent_sheet_uri = io_service.newURI('file:///' + Browser.AGENT_SHEET,
+                    None, None)
+            style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
+                    interfaces.nsIStyleSheetService.AGENT_SHEET)
+
+        if os.path.exists(Browser.USER_SHEET):
+            user_sheet_uri = io_service.newURI('file:///' + Browser.USER_SHEET,
+                    None, None)
+            style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
+                    interfaces.nsIStyleSheetService.USER_SHEET)
 
     def get_session(self):
         return sessionstore.get_session(self)
