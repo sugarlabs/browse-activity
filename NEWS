@@ -1,9 +1,6 @@
-<<<<<<< HEAD:NEWS
 * #2910 Open popups in the current window (marco)
-=======
 * Add agent-stylesheet.css and support for blocking flash. (tomeu)
 * Add support for agent and user stylesheets. (tomeu)
->>>>>>> d800b328ebea44310d6bb475c72f6a9e1557f13c:NEWS
 
 61
 
