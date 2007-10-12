@@ -62,7 +62,7 @@ _TOOLBAR_BROWSE = 1
 _logger = logging.getLogger('web-activity')
 
 class WebActivity(activity.Activity):
-    def __init__(self, handle, browser=None):
+    def __init__(self, handle):
         activity.Activity.__init__(self, handle)
 
         _logger.debug('Starting the web activity')

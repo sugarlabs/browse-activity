@@ -69,11 +69,6 @@ class Browser(WebView):
     def __init__(self):
         WebView.__init__(self)
 
-        window_creator = WindowCreator(self)
-        cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
-        window_watcher = cls.getService(interfaces.nsIWindowWatcher)
-        window_watcher.setWindowCreator(window_creator)
-        
     def get_session(self):
         return sessionstore.get_session(self)
 
@@ -137,91 +132,4 @@ class Browser(WebView):
                 logging.debug('_cleanup_jobject: removing %r' % self._jobject.file_path)
                 os.remove(self._jobject.file_path)            
             self._jobject.destroy()
-            self._jobject = None            
-            
-class WindowCreator:
-    _com_interfaces_ = interfaces.nsIWindowCreator
-
-    def __init__(self, browser):
-        self._popup_creators = []
-        self._browser = browser
-
-    def createChromeWindow(self, parent, chrome_flags):
-        logging.debug('createChromeWindow: %r %r' % (parent, chrome_flags))
-
-        popup_creator = _PopupCreator(self._browser.get_toplevel())
-        popup_creator.connect('popup-created', self._popup_created_cb)
-
-        self._popup_creators.append(popup_creator)
-
-        browser = popup_creator.get_embed()
-        
-        if chrome_flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
-            logging.debug('Creating chrome window.')
-            browser.is_chrome = True
-            item = browser.browser.queryInterface(interfaces.nsIDocShellTreeItem)
-            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
-        else:
-            logging.debug('Creating browser window.')
-            item = browser.browser.queryInterface(interfaces.nsIDocShellTreeItem)
-            item.itemType = interfaces.nsIDocShellTreeItem.typeContentWrapper
-        
-        browser.realize()
-        
-        return browser.browser.containerWindow
-
-    def _popup_created_cb(self, creator):
-        self._popup_creators.remove(creator)
-
-class _PopupCreator(gobject.GObject):
-    __gsignals__ = {
-        'popup-created':  (gobject.SIGNAL_RUN_FIRST,
-                           gobject.TYPE_NONE, ([])),
-    }
-
-    def __init__(self, parent_window):
-        gobject.GObject.__init__(self)
-
-        logging.debug('Creating the popup widget')
-
-        self._parent_window = parent_window
-
-        self._dialog = gtk.Window()
-        self._dialog.set_resizable(True)
-
-        self._dialog.realize()
-        self._dialog.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
-
-        self._embed = Browser()
-        self._vis_sid = self._embed.connect('notify::visible', self._notify_visible_cb)
-        self._dialog.add(self._embed)
-
-    def _notify_visible_cb(self, embed, param):
-        self._embed.disconnect(self._vis_sid)
-
-        if self._embed.type == Browser.TYPE_POPUP or self._embed.is_chrome:
-            logging.debug('Show the popup')
-            self._embed.show()
-            self._dialog.set_transient_for(self._parent_window)
-            self._dialog.show()
-        else:
-            logging.debug('Open a new activity for the popup')
-            self._dialog.remove(self._embed)
-            self._dialog.destroy()
-            self._dialog = None
-
-            # FIXME We need a better way to handle this.
-            # It seem like a pretty special case though, I doubt
-            # other activities will need something similar.
-            from webactivity import WebActivity
-            from sugar.activity import activityfactory
-            from sugar.activity.activityhandle import ActivityHandle
-            handle = ActivityHandle(activityfactory.create_activity_id())
-            activity = WebActivity(handle, self._embed)
-            activity.show()
-
-        self.emit('popup-created')
-
-    def get_embed(self):
-        return self._embed
-
+            self._jobject = None
