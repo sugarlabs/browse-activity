@@ -24,6 +24,7 @@ from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
+import dbus
 
 from sugar.datastore import datastore
 from sugar.clipboard import clipboardservice
@@ -37,6 +38,12 @@ if dbus.version >= (0, 82, 3):
     DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1
 else:
     DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1000
+
+NS_BINDING_ABORTED = 0x804b0002     # From nsNetError.h
+
+DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
+DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
+DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 
 _browser = None
 _temp_path = '/tmp'
@@ -101,6 +108,7 @@ class Download:
         self._cb_object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
+        self._cancelable = cancelable
 
         return NS_OK
 
@@ -169,8 +177,6 @@ class Download:
         self._last_update_percent = percent
 
         if percent < 100:
-            self._dl_jobject.metadata['title'] = _('Downloading %s from\n%s.') % \
-                (file_name, self._source.spec)
             self._dl_jobject.metadata['progress'] = str(percent)
             datastore.write(self._dl_jobject)
 
@@ -195,6 +201,17 @@ class Download:
         self._dl_jobject.metadata['mime_type'] = self._mime_type
         self._dl_jobject.file_path = ''
         datastore.write(self._dl_jobject)
+
+        bus = dbus.SessionBus()
+        obj = bus.get_object(DS_DBUS_SERVICE, DS_DBUS_PATH)
+        datastore_dbus = dbus.Interface(obj, DS_DBUS_INTERFACE)
+        datastore_dbus.connect_to_signal('Deleted', self.__datastore_deleted_cb,
+                arg0=self._dl_jobject.object_id)
+
+    def __datastore_deleted_cb(self, uid):
+        logging.debug('Downloaded entry has been deleted from the datastore: %r' % uid)
+        # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
+        self._cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
 
     def _create_clipboard_object(self):
         path, file_name = os.path.split(self._target_file.path)
