@@ -24,6 +24,7 @@ from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
+import dbus
 
 from sugar.datastore import datastore
 from sugar import profile
@@ -38,6 +39,12 @@ if dbus.version >= (0, 82, 3):
     DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1
 else:
     DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1000
+
+NS_BINDING_ABORTED = 0x804b0002     # From nsNetError.h
+
+DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
+DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
+DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 
 _browser = None
 _temp_path = '/tmp'
@@ -106,7 +113,9 @@ class Download:
         self._last_update_time = 0
         self._last_update_percent = 0
         self._cancelable = cancelable
-    
+
+        return NS_OK
+
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags == interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
@@ -152,16 +161,16 @@ class Download:
     def __start_response_cb(self, alert, response_id):
         if response_id == 0:
             logging.debug('Download Canceled')
-            self._cancelable.cancel(NS_ERROR_FAILURE)
-            # if self._dl_jobject is not None:
-            #    datastore.delete(self._dl_jobject)
+            self._cancelable.cancel(NS_ERROR_FAILURE) 
+            if self._dl_jobject is not None:
+                self._datastore_deleted_handler.remove()
+                datastore.delete(self._dl_jobject.object_id)
+                self._dl_jobject.destroy()
+                self._dl_jobject = None
         _activity.remove_alert(alert)
 
     def __stop_response_cb(self, alert, response_id):
         logging.debug('Download Completed %d'%response_id)
-        #if response_id == 0:
-        #    logging.debug(_('Download Canceled'))
-        #    self._cancelable.cancel(NS_ERROR_FAILURE)
         _activity.remove_alert(alert)
             
     def _cleanup_datastore_write(self):
@@ -197,8 +206,6 @@ class Download:
         self._last_update_percent = percent
 
         if percent < 100:
-            self._dl_jobject.metadata['title'] = _('Downloading %s from\n%s.') % \
-                (file_name, self._source.spec)
             self._dl_jobject.metadata['progress'] = str(percent)
             datastore.write(self._dl_jobject)
 
@@ -218,6 +225,17 @@ class Download:
         self._dl_jobject.file_path = ''
         datastore.write(self._dl_jobject)
 
+        bus = dbus.SessionBus()
+        obj = bus.get_object(DS_DBUS_SERVICE, DS_DBUS_PATH)
+        datastore_dbus = dbus.Interface(obj, DS_DBUS_INTERFACE)
+        self._datastore_deleted_handler = datastore_dbus.connect_to_signal(
+            'Deleted', self.__datastore_deleted_cb,
+            arg0=self._dl_jobject.object_id)
+
+    def __datastore_deleted_cb(self, uid):
+        logging.debug('Downloaded entry has been deleted from the datastore: %r' % uid)
+        # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
+        self._cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}"',
                                      'Sugar Download',
