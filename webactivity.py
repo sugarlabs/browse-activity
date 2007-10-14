@@ -67,13 +67,10 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
-        if browser:
-            self._browser = browser
-        else:
-            self._browser = Browser()
+        self._browser = Browser()
 
         temp_path = os.path.join(self.get_activity_root(), 'tmp')
-        downloadmanager.init(self._browser, temp_path)
+        downloadmanager.init(self._browser, self, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
 
@@ -118,7 +115,7 @@ class WebActivity(activity.Activity):
         
         if handle.uri:
             self._browser.load_uri(handle.uri)        
-        elif not self._jobject.file_path and not browser:
+        elif not self._jobject.file_path: 
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
             self._load_homepage()

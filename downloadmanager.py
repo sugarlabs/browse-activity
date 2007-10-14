@@ -26,9 +26,10 @@ from xpcom.components import interfaces
 from xpcom.server.factory import Factory
 
 from sugar.datastore import datastore
-from sugar.clipboard import clipboardservice
 from sugar import profile
 from sugar import objects
+from sugar.graphics.alert import Alert, ContinueAlert
+from sugar.graphics import style
 
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
 # 0.82.3 is the only version used
@@ -40,10 +41,13 @@ else:
 
 _browser = None
 _temp_path = '/tmp'
-def init(browser, temp_path):
+def init(browser, activity, temp_path):
     global _browser
     _browser = browser
 
+    global _activity
+    _activity = activity
+    
     global _temp_path
     _temp_path = temp_path
 
@@ -90,9 +94,9 @@ components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}"',
 
 class Download:
     _com_interfaces_ = interfaces.nsITransfer
-
-    def init(self, source, target, display_name, mime_info, start_time, temp_file,
-             cancelable):
+    
+    def init(self, source, target, display_name, mime_info, start_time,
+             temp_file, cancelable):
         self._source = source
         self._mime_type = mime_info.MIMEType
         self._temp_file = temp_file
@@ -101,22 +105,31 @@ class Download:
         self._cb_object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
-
-        return NS_OK
-
+        self._cancelable = cancelable
+    
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags == interfaces.nsIWebProgressListener.STATE_START:
-            self._create_journal_object()
-            self._create_clipboard_object()
+            self._create_journal_object()            
+            alert = ContinueAlert(9, 'Continue')
+            alert.props.title = _('Download started')
+            path, file_name = os.path.split(self._target_file.path)
+            alert.props.msg = _('%s'%(file_name)) 
+            _activity.add_alert(alert)
+            alert.connect('response', self.__start_response_cb)
+            alert.show()            
         elif state_flags == interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
                 return
-
-            cb_service = clipboardservice.get_instance()
-            # Test if the object still exists in the clipboard as it could have 
-            # been removed.
-            if cb_service.get_object(self._cb_object_id):
-                cb_service.set_object_percent(self._cb_object_id, 100)
+            alert = Alert()
+            alert.props.title = _('Download completed')
+            path, file_name = os.path.split(self._target_file.path)
+            alert.props.msg = _('%s'%(file_name))
+            alert.add_button(0, _('Open'))
+            alert.add_button(1, _('Show'))
+            alert.add_button(2, _('Ok'))
+            _activity.add_alert(alert)
+            alert.connect('response', self.__stop_response_cb)
+            alert.show()
 
             path, file_name = os.path.split(self._target_file.path)
 
@@ -136,6 +149,21 @@ class Download:
                             error_handler=self._internal_save_error_cb,
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
 
+    def __start_response_cb(self, alert, response_id):
+        if response_id == 0:
+            logging.debug('Download Canceled')
+            self._cancelable.cancel(NS_ERROR_FAILURE)
+            # if self._dl_jobject is not None:
+            #    datastore.delete(self._dl_jobject)
+        _activity.remove_alert(alert)
+
+    def __stop_response_cb(self, alert, response_id):
+        logging.debug('Download Completed %d'%response_id)
+        #if response_id == 0:
+        #    logging.debug(_('Download Canceled'))
+        #    self._cancelable.cancel(NS_ERROR_FAILURE)
+        _activity.remove_alert(alert)
+            
     def _cleanup_datastore_write(self):
         global _active_ds_writes
         _active_ds_writes = _active_ds_writes - 1
@@ -174,12 +202,6 @@ class Download:
             self._dl_jobject.metadata['progress'] = str(percent)
             datastore.write(self._dl_jobject)
 
-            cb_service = clipboardservice.get_instance()
-            # Test if the object still exists in the clipboard as it could have 
-            # been removed.
-            if cb_service.get_object(self._cb_object_id):
-                cb_service.set_object_percent(self._cb_object_id, percent)
-
     def _create_journal_object(self):
         path, file_name = os.path.split(self._target_file.path)
 
@@ -196,24 +218,6 @@ class Download:
         self._dl_jobject.file_path = ''
         datastore.write(self._dl_jobject)
 
-    def _create_clipboard_object(self):
-        path, file_name = os.path.split(self._target_file.path)
-
-        cb_service = clipboardservice.get_instance()
-        self._cb_object_id = cb_service.add_object(file_name)
-        
-        # TODO: avoid by now adding two formats, as they would create two
-        # identical files in /tmp
-        #cb_service.add_object_format(self._cb_object_id,
-        #                             self._mime_type,
-        #                             'file://' + self._target_file.path.encode('utf8'),
-        #                             on_disk = True)
-
-        # Also add the 'text/uri-list' target for the same file path.
-        cb_service.add_object_format(self._cb_object_id,
-                                     'text/uri-list',
-                                     'file://' + self._target_file.path.encode('utf8'),
-                                     on_disk = True)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}"',
                                      'Sugar Download',
