@@ -188,7 +188,9 @@ class Download:
             activities = []
             for activity_info in activities_info:
                 activities.append(activity_info)
+            logging.debug('--> act=%s mime=%s'%(activities, self._mime_type))
             bundle_id = activities[0].bundle_id
+            logging.debug('--> bundle_id=%s'%bundle_id)
             activityfactory.create_with_object_id(bundle_id, self._object_id)            
         _activity.remove_alert(alert)
             
