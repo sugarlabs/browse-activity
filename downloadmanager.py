@@ -29,7 +29,7 @@ import dbus
 
 from sugar.datastore import datastore
 from sugar import profile
-from sugar import objects
+from sugar import mime
 from sugar.graphics.alert import Alert, TimeoutAlert
 from sugar.graphics import style
 from sugar.graphics.icon import Icon
@@ -160,7 +160,7 @@ class Download:
             self._dl_jobject.file_path = self._target_file.path
 
             if self._mime_type == 'application/octet-stream':
-                sniffed_mime_type = objects.mime.get_for_file(self._target_file.path)
+                sniffed_mime_type = mime.get_for_file(self._target_file.path)
                 self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
             datastore.write(self._dl_jobject,

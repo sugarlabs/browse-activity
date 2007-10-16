@@ -1,3 +1,9 @@
+66
+
+* Adapt to sugar API change (marco)
+
+65
+
 * Removed hack to set the right service name for sharing (erikos)
 * Removed the clipboard part from the download manager and added alerts (erikos)
 
