@@ -33,6 +33,8 @@ from sugar import _sugarext
 from sugar.presence import presenceservice
 from sugar.graphics.tray import HTray
 from sugar import profile
+from sugar.graphics.alert import Alert
+from sugar.graphics.icon import Icon
 
 import hulahop
 hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
@@ -413,12 +415,30 @@ class WebActivity(activity.Activity):
         buffer = self.get_buffer(screenshot)
         return buffer
 
-    def destroy(self):
+    def close(self):
         if downloadmanager.can_quit():
-            activity.Activity.destroy(self)
+            activity.Activity.close(self)        
         else:
-            downloadmanager.set_quit_callback(self._quit_callback_cb)
-
-    def _quit_callback_cb(self):
-        _logger.debug('_quit_callback_cb')
-        activity.Activity.destroy(self)
+            logging.debug('Close is called')
+            alert = Alert()
+            alert.props.title = _('Download in progress')
+            alert.props.msg = _('Stopping now will cancel your download')
+            cancel_icon = Icon(icon_name='dialog-cancel')
+            alert.add_button(gtk.RESPONSE_CANCEL, _('Cancel'), cancel_icon)
+            stop_icon = Icon(icon_name='activity-stop')
+            alert.add_button(gtk.RESPONSE_CLOSE, _('Stop'), stop_icon)
+            stop_icon.show()
+            self.add_alert(alert)
+            alert.connect('response', self.__inprogress_response_cb)
+            alert.show()            
+            self.present()
+            
+    def __inprogress_response_cb(self, alert, response_id):
+        self.remove_alert(alert)
+        if response_id is gtk.RESPONSE_CANCEL:
+            logging.debug('Keep on')
+        elif response_id == gtk.RESPONSE_CLOSE:
+            logging.debug('Stop downloads and quit')
+            downloadmanager.remove_all_downloads()
+            activity.Activity.close(self)        
+            

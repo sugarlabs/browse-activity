@@ -19,6 +19,7 @@ import logging
 import tempfile
 from gettext import gettext as _
 import time
+import gtk
 
 from xpcom.nsError import *
 from xpcom import components
@@ -29,8 +30,9 @@ import dbus
 from sugar.datastore import datastore
 from sugar import profile
 from sugar import objects
-from sugar.graphics.alert import Alert, ContinueAlert
+from sugar.graphics.alert import Alert, TimeoutAlert
 from sugar.graphics import style
+from sugar.graphics.icon import Icon
 
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
 # 0.82.3 is the only version used
@@ -58,14 +60,18 @@ def init(browser, activity, temp_path):
     global _temp_path
     _temp_path = temp_path
 
-_active_ds_writes = 0
-_quit_callback = None
+_active_downloads = []
 
 def can_quit():
-    return _active_ds_writes == 0
+    return len(_active_downloads) == 0
 
-def set_quit_callback(callback):
-    _quit_callback = callback
+def remove_all_downloads():
+    for download in _active_downloads:
+        download._cancelable.cancel(NS_ERROR_FAILURE) 
+        if download._dl_jobject is not None:
+            download._datastore_deleted_handler.remove()
+            datastore.delete(download._dl_jobject.object_id)
+            download._cleanup_datastore_write()
 
 class DownloadManager:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
@@ -109,7 +115,7 @@ class Download:
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
         self._dl_jobject = None
-        self._cb_object_id = None
+        self._object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
         self._cancelable = cancelable
@@ -119,13 +125,15 @@ class Download:
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags == interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
-            alert = ContinueAlert(9, 'Continue')
+            alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
             path, file_name = os.path.split(self._target_file.path)
             alert.props.msg = _('%s'%(file_name)) 
             _activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
-            alert.show()            
+            alert.show()
+            global _active_downloads
+            _active_downloads.append(self)
         elif state_flags == interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
                 return
@@ -133,12 +141,16 @@ class Download:
             alert.props.title = _('Download completed')
             path, file_name = os.path.split(self._target_file.path)
             alert.props.msg = _('%s'%(file_name))
-            alert.add_button(0, _('Open'))
-            alert.add_button(1, _('Show'))
-            alert.add_button(2, _('Ok'))
+            open_icon = Icon(icon_name='zoom-activity')
+            alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon)
+            open_icon.show()
+            ok_icon = Icon(icon_name='dialog-ok')
+            alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            ok_icon.show()
             _activity.add_alert(alert)
             alert.connect('response', self.__stop_response_cb)
             alert.show()
+            self._object_id = self._dl_jobject.object_id
 
             path, file_name = os.path.split(self._target_file.path)
 
@@ -151,39 +163,43 @@ class Download:
                 sniffed_mime_type = objects.mime.get_for_file(self._target_file.path)
                 self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
-            global _active_ds_writes
-            _active_ds_writes = _active_ds_writes + 1
             datastore.write(self._dl_jobject,
                             reply_handler=self._internal_save_cb,
                             error_handler=self._internal_save_error_cb,
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
 
     def __start_response_cb(self, alert, response_id):
-        if response_id == 0:
+        if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Download Canceled')
             self._cancelable.cancel(NS_ERROR_FAILURE) 
             if self._dl_jobject is not None:
                 self._datastore_deleted_handler.remove()
                 datastore.delete(self._dl_jobject.object_id)
-                self._dl_jobject.destroy()
-                self._dl_jobject = None
+                self._cleanup_datastore_write()
         _activity.remove_alert(alert)
 
     def __stop_response_cb(self, alert, response_id):
-        logging.debug('Download Completed %d'%response_id)
+        if response_id is gtk.RESPONSE_APPLY:
+            logging.debug('Start application with downloaded object')
+            from sugar.activity import activityfactory
+            from sugar import activity
+            activities_info = activity.get_registry().get_activities_for_type(
+                self._mime_type)
+            activities = []
+            for activity_info in activities_info:
+                activities.append(activity_info)
+            bundle_id = activities[0].bundle_id
+            activityfactory.create_with_object_id(bundle_id, self._object_id)            
         _activity.remove_alert(alert)
             
     def _cleanup_datastore_write(self):
-        global _active_ds_writes
-        _active_ds_writes = _active_ds_writes - 1
+        global _active_downloads        
+        _active_downloads.remove(self)
 
-        os.remove(self._dl_jobject.file_path)
+        if os.path.isfile(self._dl_jobject.file_path):
+            os.remove(self._dl_jobject.file_path)
         self._dl_jobject.destroy()
         self._dl_jobject = None
-
-        global _quit_callback
-        if _active_ds_writes == 0 and not _quit_callback is None:
-            _quit_callback()
 
     def _internal_save_cb(self):
         self._cleanup_datastore_write()
