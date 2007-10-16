@@ -29,7 +29,6 @@ from sugar import env
 from sugar.graphics import style
 import telepathy
 import telepathy.client
-from sugar import _sugarext
 from sugar.presence import presenceservice
 from sugar.graphics.tray import HTray
 from sugar import profile
@@ -111,7 +110,6 @@ class WebActivity(activity.Activity):
         self.current = _('blank')
         self.webtitle = _('blank')
         self.connect('key-press-event', self._key_press_cb)
-        self.sname =  _sugarext.get_prgname()
 
         self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
         
@@ -121,8 +119,6 @@ class WebActivity(activity.Activity):
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
             self._load_homepage()
-
-        _sugarext.set_prgname(self.sname)
 
         self.messenger = None
         self.connect('shared', self._shared_cb)
@@ -249,7 +245,6 @@ class WebActivity(activity.Activity):
             self._browser.load_uri('file://' + _LIBRARY_PATH)
         else:
             self._browser.load_uri('about:blank')
-        _sugarext.set_prgname(self.sname)
 
     def _session_history_changed_cb(self, session_history, link):
         _logger.debug('NewPage: %s.' %link)
@@ -259,7 +254,6 @@ class WebActivity(activity.Activity):
         if embed.props.title is not '':
             _logger.debug('Title changed=%s' % embed.props.title)
             self.webtitle = embed.props.title
-            _sugarext.set_prgname("org.laptop.WebActivity")
             
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
@@ -281,7 +275,6 @@ class WebActivity(activity.Activity):
             self._browser.set_session(self.model.data['history'])
         else:
             self._browser.load_uri(file_path)
-            _sugarext.set_prgname(self.sname)
         
     def write_file(self, file_path):
         if not self.metadata['mime_type']:

@@ -186,12 +186,17 @@ class Download:
             activities_info = activity.get_registry().get_activities_for_type(
                 self._mime_type)
             activities = []
+            bundle_id = None
             for activity_info in activities_info:
                 activities.append(activity_info)
-            logging.debug('--> act=%s mime=%s'%(activities, self._mime_type))
             bundle_id = activities[0].bundle_id
-            logging.debug('--> bundle_id=%s'%bundle_id)
-            activityfactory.create_with_object_id(bundle_id, self._object_id)            
+            if bundle_id is not None:
+                logging.debug('--> Found activity to open mime=%s bundle_id=%s'
+                              %(self._mime_type, bundle_id))
+                activityfactory.create_with_object_id(bundle_id, self._object_id)
+            else:
+                logging.debug('--> Can not open mime=%s'%(self._mime_type))
+                
         _activity.remove_alert(alert)
             
     def _cleanup_datastore_write(self):
