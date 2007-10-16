@@ -418,8 +418,8 @@ class WebActivity(activity.Activity):
             alert.props.msg = _('Stopping now will cancel your download')
             cancel_icon = Icon(icon_name='dialog-cancel')
             alert.add_button(gtk.RESPONSE_CANCEL, _('Cancel'), cancel_icon)
-            stop_icon = Icon(icon_name='activity-stop')
-            alert.add_button(gtk.RESPONSE_CLOSE, _('Stop'), stop_icon)
+            stop_icon = Icon(icon_name='dialog-ok')
+            alert.add_button(gtk.RESPONSE_OK, _('Stop'), stop_icon)
             stop_icon.show()
             self.add_alert(alert)
             alert.connect('response', self.__inprogress_response_cb)
@@ -430,7 +430,7 @@ class WebActivity(activity.Activity):
         self.remove_alert(alert)
         if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Keep on')
-        elif response_id == gtk.RESPONSE_CLOSE:
+        elif response_id == gtk.RESPONSE_OK:
             logging.debug('Stop downloads and quit')
             downloadmanager.remove_all_downloads()
             activity.Activity.close(self)        
