@@ -1,3 +1,5 @@
+* Adapt to sugar API change (marco)
+
 65
 
 * Removed hack to set the right service name for sharing (erikos)
