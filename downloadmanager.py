@@ -183,13 +183,11 @@ class Download:
             logging.debug('Start application with downloaded object')
             from sugar.activity import activityfactory
             from sugar import activity
-            activities_info = activity.get_registry().get_activities_for_type(
+            activities = activity.get_registry().get_activities_for_type(
                 self._mime_type)
-            activities = []
             bundle_id = None
-            for activity_info in activities_info:
-                activities.append(activity_info)
-            bundle_id = activities[0].bundle_id
+            if len(activities):
+                bundle_id = activities[0].bundle_id
             if bundle_id is not None:
                 logging.debug('--> Found activity to open mime=%s bundle_id=%s'
                               %(self._mime_type, bundle_id))
