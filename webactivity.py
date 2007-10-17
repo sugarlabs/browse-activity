@@ -303,7 +303,7 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Add link: %s.' % self.current)                
                 self._add_link()                
                 return True           
-            elif gtk.gdk.keyval_name(event.keyval) == "v":
+            elif gtk.gdk.keyval_name(event.keyval) == "t":
                 # toggle visibility of tray
                 self._tray_visibility()
                 return True
