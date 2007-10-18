@@ -1,3 +1,7 @@
+* Use ctrl+t for tray visibility, this should move to sugar-graphics-window (erikos)
+* Fix the case where no activity can be associated with the downloaded file (erikos)
+* Changed icon for stop button, place alert on top (erikos)
+
 66
 
 * Adapt to sugar API change (marco)
