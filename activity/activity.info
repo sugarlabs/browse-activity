@@ -1,6 +1,6 @@
 [Activity]
 name = Browse
-activity_version = 67
+activity_version = 68
 service_name = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
