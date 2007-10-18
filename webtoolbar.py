@@ -50,14 +50,14 @@ class WebToolbar(gtk.Toolbar):
 
         self._browser = browser
 
-        self._back = ToolButton('go-previous')
+        self._back = ToolButton('go-previous-paired')
         self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
         self.insert(self._back, -1)
         self._back.show()
 
-        self._forward = ToolButton('go-next')
+        self._forward = ToolButton('go-next-paired')
         self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
