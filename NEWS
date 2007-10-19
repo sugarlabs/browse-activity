@@ -1,3 +1,5 @@
+* Remove download object when download is canceled when downloaded already 
+as well (erikos)
 * Make use of the tray support in sugar activity window (erikos)
 
 68

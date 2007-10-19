@@ -71,7 +71,7 @@ def remove_all_downloads():
         if download._dl_jobject is not None:
             download._datastore_deleted_handler.remove()
             datastore.delete(download._dl_jobject.object_id)
-            download._cleanup_datastore_write()
+            download._cleanup_datastore_write()        
 
 class DownloadManager:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
@@ -114,16 +114,21 @@ class Download:
         self._mime_type = mime_info.MIMEType
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
+        self._cancelable = cancelable
+        
         self._dl_jobject = None
         self._object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
-        self._cancelable = cancelable
+        self._stop_alert = None
+        
         return NS_OK
 
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags == interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
+            self._object_id = self._dl_jobject.object_id
+            
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
             path, file_name = os.path.split(self._target_file.path)
@@ -133,23 +138,24 @@ class Download:
             alert.show()
             global _active_downloads
             _active_downloads.append(self)
+            
         elif state_flags == interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
                 return
-            alert = Alert()
-            alert.props.title = _('Download completed')
+
+            self._stop_alert = Alert()
+            self._stop_alert.props.title = _('Download completed')
             path, file_name = os.path.split(self._target_file.path)
-            alert.props.msg = _('%s'%(file_name))
+            self._stop_alert.props.msg = _('%s'%(file_name))
             open_icon = Icon(icon_name='zoom-activity')
-            alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon)
+            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon)
             open_icon.show()
             ok_icon = Icon(icon_name='dialog-ok')
-            alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
             ok_icon.show()
-            _activity.add_alert(alert)
-            alert.connect('response', self.__stop_response_cb)
-            alert.show()
-            self._object_id = self._dl_jobject.object_id
+            _activity.add_alert(self._stop_alert)
+            self._stop_alert.connect('response', self.__stop_response_cb)
+            self._stop_alert.show()
 
             path, file_name = os.path.split(self._target_file.path)
 
@@ -168,16 +174,24 @@ class Download:
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
 
     def __start_response_cb(self, alert, response_id):
+        global _active_downloads
         if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Download Canceled')
             self._cancelable.cancel(NS_ERROR_FAILURE) 
-            if self._dl_jobject is not None:
+            try:
                 self._datastore_deleted_handler.remove()
-                datastore.delete(self._dl_jobject.object_id)
+                datastore.delete(self._object_id)
+            except:
+                logging.warning('Object has been deleted already')
+            if self._dl_jobject is not None:
                 self._cleanup_datastore_write()
-        _activity.remove_alert(alert)
+            if self._stop_alert is not None:
+                _activity.remove_alert(self._stop_alert)
+
+        _activity.remove_alert(alert)        
 
     def __stop_response_cb(self, alert, response_id):
+        global _active_downloads
         if response_id is gtk.RESPONSE_APPLY:
             logging.debug('Start application with downloaded object')
             from sugar.activity import activityfactory
@@ -188,11 +202,11 @@ class Download:
             if len(activities):
                 bundle_id = activities[0].bundle_id
             if bundle_id is not None:
-                logging.debug('--> Found activity to open mime=%s bundle_id=%s'
+                logging.debug('Found activity to open mime=%s bundle_id=%s'
                               %(self._mime_type, bundle_id))
                 activityfactory.create_with_object_id(bundle_id, self._object_id)
             else:
-                logging.debug('--> Can not open mime=%s'%(self._mime_type))
+                logging.debug('Can not open mime=%s'%(self._mime_type))
                 
         _activity.remove_alert(alert)
             
