@@ -85,7 +85,13 @@ class WebActivity(activity.Activity):
         self.set_toolbox(toolbox)
         toolbox.show()
 
+        self.set_canvas(self._browser)
+        self._browser.show()
+
         self._tray = HTray()
+        self.set_tray(self._tray, gtk.POS_BOTTOM)
+        self._tray.show()
+        
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         self.toolbar.connect('add-link', self._link_add_button_cb)
@@ -96,16 +102,6 @@ class WebActivity(activity.Activity):
 
         self.model = Model()
         self.model.connect('add_link', self._add_link_model_cb)
-
-        self._main_view = gtk.VBox()
-        self.set_canvas(self._main_view)
-        self._main_view.show()
-
-        self._main_view.pack_start(self._browser)
-        self._browser.show()
-
-        self._main_view.pack_start(self._tray, expand=False)
-        self._tray.show()
 
         self.current = _('blank')
         self.webtitle = _('blank')

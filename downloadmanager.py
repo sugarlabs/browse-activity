@@ -119,7 +119,6 @@ class Download:
         self._last_update_time = 0
         self._last_update_percent = 0
         self._cancelable = cancelable
-        _activity.alert_position = 1
         return NS_OK
 
     def onStateChange(self, web_progress, request, state_flags, status):
