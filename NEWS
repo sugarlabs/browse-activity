@@ -1,3 +1,5 @@
+* Moved the handling from hide/show of the tray to activity window (erikos)
+
 69
 
 * Remove download object when download is canceled when downloaded already 
