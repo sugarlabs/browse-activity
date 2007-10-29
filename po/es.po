@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-21 21:10+0200\n"
+"POT-Creation-Date: 2007-10-29 23:46+0100\n"
 "PO-Revision-Date: 2007-09-18 09:57-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
@@ -17,7 +17,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Spanish\n"
 
-#: downloadmanager.py:91
+#: activity/activity.info:2 webactivity.py:82
+msgid "Browse"
+msgstr "Navegar"
+
+#: browser.py:131
+msgid "Source"
+msgstr ""
+
+#: downloadmanager.py:133
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:135 downloadmanager.py:149
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:147
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:151
+msgid "Open"
+msgstr "Abrir"
+
+#: downloadmanager.py:154
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -26,58 +55,85 @@ msgstr ""
 "El archivo %s se bajó de\n"
 "%s."
 
-#: downloadmanager.py:118
-#, python-format
-msgid ""
-"Downloading %s from\n"
-"%s. Progress %i%%."
-msgstr ""
-"Bajando %s desde\n"
-"%s. Progreso %i%%."
-
-#: downloadmanager.py:129
-#, python-format
-msgid ""
-"Downloading %s from \n"
-"%s."
+#: downloadmanager.py:250
+#, fuzzy, python-format
+msgid "Downloading %s from %s."
 msgstr ""
 "Bajando %s desde \n"
 "%s."
 
-#: webactivity.py:44
-msgid "Web Activity"
-msgstr "Actividad web"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
 
-#: webactivity.py:57
-msgid "Browse"
-msgstr "Navegar"
+#: webactivity.py:107 webactivity.py:108
+msgid "blank"
+msgstr ""
 
-#: webtoolbar.py:85
-msgid "Back"
-msgstr "Volver"
+#: webactivity.py:415
+#, fuzzy
+msgid "Download in progress"
+msgstr ""
+"Bajando %s desde \n"
+"%s."
 
-#: webtoolbar.py:92
-msgid "Forward"
-msgstr "Avanzar"
+#: webactivity.py:416
+msgid "Stopping now will cancel your download"
+msgstr ""
 
-#: webtoolbar.py:172
+#: webactivity.py:418
+msgid "Cancel"
+msgstr ""
+
+#: webactivity.py:420 webtoolbar.py:178
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:175
+#: webtoolbar.py:54
+msgid "Back"
+msgstr "Volver"
+
+#: webtoolbar.py:61
+msgid "Forward"
+msgstr "Avanzar"
+
+#: webtoolbar.py:84
+msgid "Add Link"
+msgstr ""
+
+#: webtoolbar.py:181
 msgid "Reload"
 msgstr "Refrescar"
 
-#~ msgid "Open"
-#~ msgstr "Abrir"
+#: webtoolbar.py:231
+msgid "Show Tray"
+msgstr ""
+
+#: webtoolbar.py:236
+msgid "Hide Tray"
+msgstr ""
+
+#~ msgid ""
+#~ "Downloading %s from\n"
+#~ "%s. Progress %i%%."
+#~ msgstr ""
+#~ "Bajando %s desde\n"
+#~ "%s. Progreso %i%%."
+
+#~ msgid "Web Activity"
+#~ msgstr "Actividad web"
+
 #~ msgid "Save"
 #~ msgstr "Guardar"
+
 #~ msgid "All supported formats"
 #~ msgstr "Todos los formatos soportados"
+
 #~ msgid "Web pages"
 #~ msgstr "Páginas web"
+
 #~ msgid "Images"
 #~ msgstr "Imágenes"
+
 #~ msgid "All files"
 #~ msgstr "Todos los archivos"
-

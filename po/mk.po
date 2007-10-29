@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 10:55-0400\n"
+"POT-Creation-Date: 2007-10-29 23:46+0100\n"
 "PO-Revision-Date: 2007-07-06 13:43+0200\n"
 "Last-Translator: Arangel Angov <arangel@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
@@ -16,11 +16,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: activity/activity.info:2 webactivity.py:64
+#: activity/activity.info:2 webactivity.py:82
 msgid "Browse"
 msgstr "Разгледај"
 
-#: downloadmanager.py:114
+#: browser.py:131
+msgid "Source"
+msgstr ""
+
+#: downloadmanager.py:133
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:135 downloadmanager.py:149
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:147
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:151
+msgid "Open"
+msgstr ""
+
+#: downloadmanager.py:154
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -29,39 +54,70 @@ msgstr ""
 "Датотеката %s е преземена од\n"
 "%s."
 
-#: downloadmanager.py:162
-#, python-format
-msgid ""
-"Downloading %s from\n"
-"%s. Progress %i%%."
-msgstr ""
-"Преземам %s од\n"
-"%s. Прогрес %i%%."
-
-#: downloadmanager.py:176
-#, python-format
-msgid ""
-"Downloading %s from \n"
-"%s."
+#: downloadmanager.py:250
+#, fuzzy, python-format
+msgid "Downloading %s from %s."
 msgstr ""
 "Преземам %s од \n"
 "%s."
 
-#: webtoolbar.py:41
-msgid "Back"
-msgstr "Назад"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
 
-#: webtoolbar.py:48
-msgid "Forward"
-msgstr "Напред"
+#: webactivity.py:107 webactivity.py:108
+msgid "blank"
+msgstr ""
 
-#: webtoolbar.py:149
+#: webactivity.py:415
+#, fuzzy
+msgid "Download in progress"
+msgstr ""
+"Преземам %s од \n"
+"%s."
+
+#: webactivity.py:416
+msgid "Stopping now will cancel your download"
+msgstr ""
+
+#: webactivity.py:418
+msgid "Cancel"
+msgstr ""
+
+#: webactivity.py:420 webtoolbar.py:178
 msgid "Stop"
 msgstr "Стоп"
 
-#: webtoolbar.py:152
+#: webtoolbar.py:54
+msgid "Back"
+msgstr "Назад"
+
+#: webtoolbar.py:61
+msgid "Forward"
+msgstr "Напред"
+
+#: webtoolbar.py:84
+msgid "Add Link"
+msgstr ""
+
+#: webtoolbar.py:181
 msgid "Reload"
 msgstr "Освежи"
+
+#: webtoolbar.py:231
+msgid "Show Tray"
+msgstr ""
+
+#: webtoolbar.py:236
+msgid "Hide Tray"
+msgstr ""
+
+#~ msgid ""
+#~ "Downloading %s from\n"
+#~ "%s. Progress %i%%."
+#~ msgstr ""
+#~ "Преземам %s од\n"
+#~ "%s. Прогрес %i%%."
 
 #~ msgid "Web Activity"
 #~ msgstr "Активности на веб"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 10:55-0400\n"
+"POT-Creation-Date: 2007-10-29 23:46+0100\n"
 "PO-Revision-Date: 2007-06-28 21:44+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -18,11 +18,36 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
 "3\n"
 
-#: activity/activity.info:2 webactivity.py:64
+#: activity/activity.info:2 webactivity.py:82
 msgid "Browse"
 msgstr "تصفّح"
 
-#: downloadmanager.py:114
+#: browser.py:131
+msgid "Source"
+msgstr ""
+
+#: downloadmanager.py:133
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:135 downloadmanager.py:149
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:147
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:151
+msgid "Open"
+msgstr ""
+
+#: downloadmanager.py:154
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -31,39 +56,70 @@ msgstr ""
 "الملف %s نُزِّل من\n"
 "%s."
 
-#: downloadmanager.py:162
-#, python-format
-msgid ""
-"Downloading %s from\n"
-"%s. Progress %i%%."
-msgstr ""
-"يجري تنزيل %s من\n"
-"%s. التقدم %i%%."
-
-#: downloadmanager.py:176
-#, python-format
-msgid ""
-"Downloading %s from \n"
-"%s."
+#: downloadmanager.py:250
+#, fuzzy, python-format
+msgid "Downloading %s from %s."
 msgstr ""
 "جري تنزيل %s من\n"
 "%s."
 
-#: webtoolbar.py:41
-msgid "Back"
-msgstr "للخلف"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
 
-#: webtoolbar.py:48
-msgid "Forward"
-msgstr "للأمام"
+#: webactivity.py:107 webactivity.py:108
+msgid "blank"
+msgstr ""
 
-#: webtoolbar.py:149
+#: webactivity.py:415
+#, fuzzy
+msgid "Download in progress"
+msgstr ""
+"جري تنزيل %s من\n"
+"%s."
+
+#: webactivity.py:416
+msgid "Stopping now will cancel your download"
+msgstr ""
+
+#: webactivity.py:418
+msgid "Cancel"
+msgstr ""
+
+#: webactivity.py:420 webtoolbar.py:178
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:152
+#: webtoolbar.py:54
+msgid "Back"
+msgstr "للخلف"
+
+#: webtoolbar.py:61
+msgid "Forward"
+msgstr "للأمام"
+
+#: webtoolbar.py:84
+msgid "Add Link"
+msgstr ""
+
+#: webtoolbar.py:181
 msgid "Reload"
 msgstr "أعد التحميل"
+
+#: webtoolbar.py:231
+msgid "Show Tray"
+msgstr ""
+
+#: webtoolbar.py:236
+msgid "Hide Tray"
+msgstr ""
+
+#~ msgid ""
+#~ "Downloading %s from\n"
+#~ "%s. Progress %i%%."
+#~ msgstr ""
+#~ "يجري تنزيل %s من\n"
+#~ "%s. التقدم %i%%."
 
 #~ msgid "Web Activity"
 #~ msgstr "نشاط الوِب"

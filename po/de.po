@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 10:55-0400\n"
+"POT-Creation-Date: 2007-10-29 23:46+0100\n"
 "PO-Revision-Date: 2007-07-30 10:37+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
@@ -15,11 +15,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
 
-#: activity/activity.info:2 webactivity.py:64
+#: activity/activity.info:2 webactivity.py:82
 msgid "Browse"
 msgstr "Durchsuchen"
 
-#: downloadmanager.py:114
+#: browser.py:131
+msgid "Source"
+msgstr ""
+
+#: downloadmanager.py:133
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:135 downloadmanager.py:149
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:147
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:151
+msgid "Open"
+msgstr ""
+
+#: downloadmanager.py:154
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:162
 #, python-format
 msgid ""
 "File %s downloaded from\n"
@@ -28,39 +53,70 @@ msgstr ""
 "Datei %s heruntergeladen von\n"
 "%s."
 
-#: downloadmanager.py:162
-#, python-format
-msgid ""
-"Downloading %s from\n"
-"%s. Progress %i%%."
-msgstr ""
-"Herunterladen %s von\n"
-"%s. Fortschritt %i%%."
-
-#: downloadmanager.py:176
-#, python-format
-msgid ""
-"Downloading %s from \n"
-"%s."
+#: downloadmanager.py:250
+#, fuzzy, python-format
+msgid "Downloading %s from %s."
 msgstr ""
 "Herunterladen %s von \n"
 "%s."
 
-#: webtoolbar.py:41
-msgid "Back"
-msgstr "Zurück"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
 
-#: webtoolbar.py:48
-msgid "Forward"
-msgstr "Weiter"
+#: webactivity.py:107 webactivity.py:108
+msgid "blank"
+msgstr ""
 
-#: webtoolbar.py:149
+#: webactivity.py:415
+#, fuzzy
+msgid "Download in progress"
+msgstr ""
+"Herunterladen %s von \n"
+"%s."
+
+#: webactivity.py:416
+msgid "Stopping now will cancel your download"
+msgstr ""
+
+#: webactivity.py:418
+msgid "Cancel"
+msgstr ""
+
+#: webactivity.py:420 webtoolbar.py:178
 msgid "Stop"
 msgstr "Stopp"
 
-#: webtoolbar.py:152
+#: webtoolbar.py:54
+msgid "Back"
+msgstr "Zurück"
+
+#: webtoolbar.py:61
+msgid "Forward"
+msgstr "Weiter"
+
+#: webtoolbar.py:84
+msgid "Add Link"
+msgstr ""
+
+#: webtoolbar.py:181
 msgid "Reload"
 msgstr "Neu laden"
+
+#: webtoolbar.py:231
+msgid "Show Tray"
+msgstr ""
+
+#: webtoolbar.py:236
+msgid "Hide Tray"
+msgstr ""
+
+#~ msgid ""
+#~ "Downloading %s from\n"
+#~ "%s. Progress %i%%."
+#~ msgstr ""
+#~ "Herunterladen %s von\n"
+#~ "%s. Fortschritt %i%%."
 
 #~ msgid "Web Activity"
 #~ msgstr "Web-Aktivität"

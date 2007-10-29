@@ -160,7 +160,7 @@ class Download:
             path, file_name = os.path.split(self._target_file.path)
 
             self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
-                (file_name, self._source.spec)
+                                                 (file_name, self._source.spec)
             self._dl_jobject.metadata['progress'] = '100'
             self._dl_jobject.file_path = self._target_file.path
 
@@ -247,8 +247,8 @@ class Download:
         path, file_name = os.path.split(self._target_file.path)
 
         self._dl_jobject = datastore.create()
-        self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
-            (file_name, self._source.spec)
+        self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') \
+                                             %(file_name, self._source.spec)
 
         self._dl_jobject.metadata['progress'] = '0'
         self._dl_jobject.metadata['keep'] = '0'
