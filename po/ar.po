@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 15:06+0100\n"
+"POT-Creation-Date: 2007-11-01 22:55+0100\n"
 "PO-Revision-Date: 2007-06-28 21:44+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
 "3\n"
 
-#: activity/activity.info:2 webactivity.py:82
+#: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
 msgstr "تصفّح"
 
-#: browser.py:131
+#: browser.py:133
 msgid "Source"
 msgstr ""
 
@@ -69,52 +69,48 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: webactivity.py:107 webactivity.py:108
+#: webactivity.py:91
+msgid "View"
+msgstr ""
+
+#: webactivity.py:109 webactivity.py:110
 msgid "blank"
 msgstr ""
 
-#: webactivity.py:415
+#: webactivity.py:407
 #, fuzzy
 msgid "Download in progress"
 msgstr ""
 "جري تنزيل %s من\n"
 "%s."
 
-#: webactivity.py:416
+#: webactivity.py:408
 msgid "Stopping now will cancel your download"
 msgstr ""
 
-#: webactivity.py:418
+#: webactivity.py:410
 msgid "Cancel"
 msgstr ""
 
-#: webactivity.py:420 webtoolbar.py:178
+#: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:54
+#: webtoolbar.py:51
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:61
+#: webtoolbar.py:58
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:84
+#: webtoolbar.py:81
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:181
+#: webtoolbar.py:172
 msgid "Reload"
 msgstr "أعد التحميل"
-
-#: webtoolbar.py:231
-msgid "Show Tray"
-msgstr ""
-
-#: webtoolbar.py:236
-msgid "Hide Tray"
-msgstr ""
 
 #~ msgid ""
 #~ "Downloading %s from\n"

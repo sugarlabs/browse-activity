@@ -39,10 +39,7 @@ class WebToolbar(gtk.Toolbar):
     __gsignals__ = {
         'add-link': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
-                     ([])),
-        'visibility-tray': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            ([]))
+                     ([]))
     }
 
     def __init__(self, browser):
@@ -85,12 +82,6 @@ class WebToolbar(gtk.Toolbar):
         self._link_add.connect('clicked', self._link_add_clicked_cb)
         self.insert(self._link_add, -1)
         self._link_add.show()
-
-        self._tray_vis = ToolButton()
-        self._tray_vis.connect('clicked', self._tray_vis_clicked_cb)
-        self.insert(self._tray_vis, -1)
-        self.tray_set_empty()
-        self._tray_vis.show()
         
         progress_listener = progresslistener.get_instance()
         progress_listener.connect('location-changed', self._location_changed_cb)
@@ -222,19 +213,3 @@ class WebToolbar(gtk.Toolbar):
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
 
-    def tray_set_empty(self):
-        self._tray_vis.set_icon('tray-empty')
-        self._tray_vis.set_sensitive(False)
-        
-    def tray_set_show(self):
-        self._tray_vis.set_icon('tray-show')
-        self._tray_vis.set_tooltip(_('Show Tray'))
-        self._tray_vis.set_sensitive(True)
-        
-    def tray_set_hide(self):
-        self._tray_vis.set_icon('tray-hide')
-        self._tray_vis.set_tooltip(_('Hide Tray'))
-        self._tray_vis.set_sensitive(True)
-    
-    def _tray_vis_clicked_cb(self, button):    
-        self.emit('visibility-tray')

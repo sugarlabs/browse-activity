@@ -8,5 +8,5 @@
 
 <svg  version="1.1" id="Icon" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="120" height="110"
 	  overflow="visible" xml:space="preserve" viewBox="0 0 120 110" enable-background="new 0 0 120 110"> 
-  <rect x="0" y="0" width="120" height="110" fill="&fill_color;" stroke="&stroke_color;" stroke-width="10px" />
+  <rect x="0" y="0" width="120" height="110" fill="&fill_color;" stroke="&stroke_color;" stroke-width="4px" />
 </svg>

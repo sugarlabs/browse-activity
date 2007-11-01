@@ -40,6 +40,7 @@ hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
 
 from browser import Browser
 from webtoolbar import WebToolbar
+from viewtoolbar import ViewToolbar
 import downloadmanager
 import promptservice
 import filepicker
@@ -81,23 +82,24 @@ class WebActivity(activity.Activity):
         self.toolbar = WebToolbar(self._browser)
         toolbox.add_toolbar(_('Browse'), self.toolbar)
         self.toolbar.show()
+       
+        self._tray = HTray()
+        self.set_tray(self._tray, gtk.POS_BOTTOM)
+        self._tray.show()
+        
+        self.viewtoolbar = ViewToolbar(self)
+        toolbox.add_toolbar(_('View'), self.viewtoolbar)
+        self.viewtoolbar.show()
 
         self.set_toolbox(toolbox)
         toolbox.show()
 
         self.set_canvas(self._browser)
         self._browser.show()
-
-        self._tray = HTray()
-        self.set_tray(self._tray, gtk.POS_BOTTOM)
-        self._tray.show()
-        self._tray.connect('unmap', self._unmap_cb)
-        self._tray.connect('map', self._map_cb)
-                
+                 
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', self._session_history_changed_cb)
         self.toolbar.connect('add-link', self._link_add_button_cb)
-        self.toolbar.connect('visibility-tray', self._tray_visibility_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -304,6 +306,15 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Show source of the current page')
                 self._show_source()
                 return True
+            elif gtk.gdk.keyval_name(event.keyval) == "minus":
+                _logger.debug('keyboard: Zoom in')
+                self._browser.zoom_in()
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "plus" \
+                     or gtk.gdk.keyval_name(event.keyval) == "equal" :
+                _logger.debug('keyboard: Zoom out')
+                self._browser.zoom_out()
+                return True
         elif event.keyval == _VIEW_SOURCE_KEY_CODE:
             _logger.debug('keyboard: Show source of the current page SHOW_KEY')
             self._show_source()
@@ -345,37 +356,18 @@ class WebActivity(activity.Activity):
         item.show()
         if self._tray.props.visible is False:
             self._tray.show()        
-        self.toolbar.tray_set_hide()
-
+        self.viewtoolbar.traybutton.props.sensitive = True
+        
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
         self._tray.remove_item(button)
         if len(self._tray.get_children()) == 0:
-            self.toolbar.tray_set_empty()
+            self.viewtoolbar.traybutton.props.sensitive = False
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
         self._browser.load_uri(url)
-
-    def _tray_visibility_cb(self, toolbar):
-        self._tray_visibility()
-
-    def _map_cb(self, tray):
-        if len(self._tray.get_children()) > 0:
-            self.toolbar.tray_set_hide()
-    
-    def _unmap_cb(self, tray):
-        self.toolbar.tray_set_show()
-    
-    def _tray_visibility(self):
-        if len(self._tray.get_children()) > 0:
-            if self._tray.props.visible is False:
-                self.toolbar.tray_set_hide()
-                self._tray.show()
-            else:
-                self.toolbar.tray_set_show()
-                self._tray.hide()
                 
     def _show_source(self):
         self._browser.get_source()

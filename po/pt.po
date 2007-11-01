@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 15:06+0100\n"
+"POT-Creation-Date: 2007-11-01 22:55+0100\n"
 "PO-Revision-Date: 2007-03-23 15:04+0100\n"
 "Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: activity/activity.info:2 webactivity.py:82
+#: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
 msgstr ""
 
-#: browser.py:131
+#: browser.py:133
 msgid "Source"
 msgstr ""
 
@@ -63,49 +63,45 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: webactivity.py:107 webactivity.py:108
+#: webactivity.py:91
+msgid "View"
+msgstr ""
+
+#: webactivity.py:109 webactivity.py:110
 msgid "blank"
 msgstr ""
 
-#: webactivity.py:415
+#: webactivity.py:407
 msgid "Download in progress"
 msgstr ""
 
-#: webactivity.py:416
+#: webactivity.py:408
 msgid "Stopping now will cancel your download"
 msgstr ""
 
-#: webactivity.py:418
+#: webactivity.py:410
 msgid "Cancel"
 msgstr ""
 
-#: webactivity.py:420 webtoolbar.py:178
+#: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
 msgstr "Interromper"
 
-#: webtoolbar.py:54
+#: webtoolbar.py:51
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:61
+#: webtoolbar.py:58
 msgid "Forward"
 msgstr "Avançar"
 
-#: webtoolbar.py:84
+#: webtoolbar.py:81
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:181
+#: webtoolbar.py:172
 msgid "Reload"
 msgstr "Recarregar"
-
-#: webtoolbar.py:231
-msgid "Show Tray"
-msgstr ""
-
-#: webtoolbar.py:236
-msgid "Hide Tray"
-msgstr ""
 
 #~ msgid "Web Activity"
 #~ msgstr "Actividade Web"

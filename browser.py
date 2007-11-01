@@ -37,6 +37,8 @@ from sugar.activity import activity
 
 import sessionstore
 
+_ZOOM_AMOUNT = 0.1
+
 class GetSourceListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
     
@@ -92,7 +94,7 @@ class Browser(WebView):
                     None, None)
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
-
+        
     def get_session(self):
         return sessionstore.get_session(self)
 
@@ -157,3 +159,15 @@ class Browser(WebView):
                 os.remove(self._jobject.file_path)            
             self._jobject.destroy()
             self._jobject = None
+
+    def zoom_in(self):
+        contentViewer = self.doc_shell.queryInterface(interfaces.nsIDocShell).contentViewer
+        if contentViewer is not None:
+            markupDocumentViewer = contentViewer.queryInterface(interfaces.nsIMarkupDocumentViewer)
+            markupDocumentViewer.fullZoom += _ZOOM_AMOUNT
+
+    def zoom_out(self):
+        contentViewer = self.doc_shell.queryInterface(interfaces.nsIDocShell).contentViewer
+        if contentViewer is not None:
+            markupDocumentViewer = contentViewer.queryInterface(interfaces.nsIMarkupDocumentViewer)
+            markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
