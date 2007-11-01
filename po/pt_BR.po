@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-30 21:25+0100\n"
+"POT-Creation-Date: 2007-11-01 15:06+0100\n"
 "PO-Revision-Date: 2007-07-03 10:43-0300\n"
 "Last-Translator: Diego Búrigo Zacarão <diegobz@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
@@ -99,7 +99,7 @@ msgid "Forward"
 msgstr "Ir adiante"
 
 #: webtoolbar.py:84
-msgid "Add Link"
+msgid "Bookmark"
 msgstr ""
 
 #: webtoolbar.py:181

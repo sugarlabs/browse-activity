@@ -1,3 +1,5 @@
+* Use favorite icon for session bookmark and call it Bookmark #3741 (erikos)
+
 70
 
 * Moved the handling from hide/show of the tray to activity window (erikos)

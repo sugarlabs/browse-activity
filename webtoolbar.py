@@ -80,8 +80,8 @@ class WebToolbar(gtk.Toolbar):
         self.insert(entry_item, -1)
         entry_item.show()
 
-        self._link_add = ToolButton('add-link')
-        self._link_add.set_tooltip(_('Add Link'))
+        self._link_add = ToolButton('emblem-favorite')
+        self._link_add.set_tooltip(_('Bookmark'))
         self._link_add.connect('clicked', self._link_add_clicked_cb)
         self.insert(self._link_add, -1)
         self._link_add.show()

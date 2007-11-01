@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-30 21:25+0100\n"
+"POT-Creation-Date: 2007-11-01 15:06+0100\n"
 "PO-Revision-Date: 2007-07-31 09:48+0200\n"
 "Last-Translator: Samuel Bizien <samuel@bizien.info>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
@@ -98,7 +98,7 @@ msgid "Forward"
 msgstr "Suivant"
 
 #: webtoolbar.py:84
-msgid "Add Link"
+msgid "Bookmark"
 msgstr ""
 
 #: webtoolbar.py:181
