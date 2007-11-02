@@ -307,13 +307,13 @@ class WebActivity(activity.Activity):
                 self._show_source()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "minus":
-                _logger.debug('keyboard: Zoom in')
-                self._browser.zoom_in()
+                _logger.debug('keyboard: Zoom out')
+                self._browser.zoom_out()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "plus" \
                      or gtk.gdk.keyval_name(event.keyval) == "equal" :
-                _logger.debug('keyboard: Zoom out')
-                self._browser.zoom_out()
+                _logger.debug('keyboard: Zoom in')
+                self._browser.zoom_in()
                 return True
         elif event.keyval == _VIEW_SOURCE_KEY_CODE:
             _logger.debug('keyboard: Show source of the current page SHOW_KEY')
