@@ -136,7 +136,7 @@ class Browser(WebView):
         self._jobject.metadata['buddies'] = ''
         self._jobject.metadata['preview'] = ''
         self._jobject.metadata['icon-color'] = profile.get_color().to_string()
-        self._jobject.metadata['mime_type'] = 'text/plain'
+        self._jobject.metadata['mime_type'] = 'text/html'
         self._jobject.metadata['source'] = '1'
         self._jobject.file_path = ''
         datastore.write(self._jobject)
