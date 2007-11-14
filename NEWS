@@ -1,3 +1,5 @@
+73
+
 * #4909: added a dbus call to open the source data by the journal (marco)
 * #4889: use the window's fullscreen method to get to fullscreen mode,
 this does not mess up the state the window manager has (erikos)
