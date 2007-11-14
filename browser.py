@@ -18,6 +18,7 @@
 import logging
 from gettext import gettext as _
 
+import dbus
 import gobject
 import gtk
 import tempfile
@@ -143,10 +144,15 @@ class Browser(WebView):
 
     def _internal_save_cb(self):
         logging.debug("Saved source object to datastore.")
-        id = self._jobject.object_id
+        object_id = self._jobject.object_id
         service_name = 'org.laptop.AbiWordActivity'
-        self._cleanup_jobject()        
-        activityfactory.create_with_object_id(service_name, id)
+        self._cleanup_jobject()
+
+        bus = dbus.SessionBus()
+        bus_object = bus.get_object('org.laptop.Journal',
+                                    '/org/laptop/Journal')
+        journal = dbus.Interface(bus_object, 'org.laptop.Journal')
+        journal.Resume(service_name, object_id)
             
     def _internal_save_error_cb(self, err):
         logging.debug("Error saving source object to datastore: %s" % err)
