@@ -1,3 +1,5 @@
+* #4904: Save downloads to the instance dir, not tmp. (tomeu)
+
 72
 
 * Save the page source with mime type text/html (erikos)

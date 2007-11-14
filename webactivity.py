@@ -71,7 +71,7 @@ class WebActivity(activity.Activity):
 
         self._browser = Browser()
 
-        temp_path = os.path.join(self.get_activity_root(), 'tmp')
+        temp_path = os.path.join(self.get_activity_root(), 'instance')
         downloadmanager.init(self._browser, self, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
