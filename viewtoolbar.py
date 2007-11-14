@@ -66,10 +66,7 @@ class ViewToolbar(gtk.Toolbar):
         self._browser.zoom_out()
                 
     def __fullscreen_clicked_cb(self, button):
-        if self._activity.tray is not None:
-            self._activity.tray.hide()
-        if self._activity.toolbox is not None:
-            self._activity.toolbox.hide()
+        self._activity.fullscreen()
 
     def __tray_clicked_cb(self, button):        
         if self._activity.tray.props.visible is False:

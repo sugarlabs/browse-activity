@@ -1,3 +1,6 @@
+* use the window's fullscreen method to get to fullscreen mode,
+this does not mess up the state the window manager has (erikos)
+
 72
 
 * Save the page source with mime type text/html (erikos)
