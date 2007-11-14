@@ -1,3 +1,4 @@
+* #4870: Add onStatusChange method to Download. (tomeu)
 * #4904: Save downloads to the instance dir, not tmp. (tomeu)
 
 72

@@ -124,6 +124,10 @@ class Download:
         
         return NS_OK
 
+    def onStatusChange(self, web_progress, request, status, message):
+        logging.info('Download.onStatusChange(%r, %r, %r, %r)' % \
+            (web_progress, request, status, message))
+
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags == interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
