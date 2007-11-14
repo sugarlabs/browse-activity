@@ -1,5 +1,7 @@
-* use the window's fullscreen method to get to fullscreen mode,
+* #4889: use the window's fullscreen method to get to fullscreen mode,
 this does not mess up the state the window manager has (erikos)
+* #4870: Add onStatusChange method to Download. (tomeu)
+* #4904: Save downloads to the instance dir, not tmp. (tomeu)
 
 72
 
