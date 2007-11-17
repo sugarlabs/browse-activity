@@ -47,7 +47,7 @@ import filepicker
 import sessionhistory 
 import progresslistener
 
-_LIBRARY_PATH = '/home/olpc/Library/index.html'
+_LIBRARY_PATH = '/usr/share/library-common/index.html'
 
 from model import Model
 from sugar.presence.tubeconn import TubeConnection

@@ -1,3 +1,6 @@
+* change the LIBRARY_PATH to point to 
+  /usr/share/library-common/index.html (erikos)
+
 73
 
 * #4909: added a dbus call to open the source data by the journal (marco)
