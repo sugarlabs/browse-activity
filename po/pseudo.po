@@ -18,87 +18,84 @@ msgstr ""
 
 #: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
-msgstr ""
+msgstr "[Գяモ ६яڧ в]Ъяօաیڿ"
 
 #: browser.py:133
 msgid "Source"
-msgstr ""
+msgstr "[ՈЈ یјբչप ڃ]ङօսբҫչ"
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr ""
+msgstr "[سЈЩڃچАцфФ Đѵ  ѕթ چբآ մճѕҕժҘ ъ ]ĐօաйӀօдԃ ﯽҭەբтڿԺ"
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "[ЖբК ]%s"
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr ""
+msgstr "[Ќ Пչ ոЊѕﻠՈ ՉѕԿӀ  Ішٮ иڿжխ ႧӨ Ө ڃҲ ӞТ]Đюﺳղاօձժ ۦօмuӀڿтڿԺ"
 
 #: downloadmanager.py:151
 msgid "Open"
-msgstr ""
+msgstr "[Пҟ КЊ ƶТՉԃ]Оمڿդ"
 
 #: downloadmanager.py:154
 msgid "Ok"
-msgstr ""
+msgstr "[Չш کҾ]Օк"
 
 #: downloadmanager.py:162
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
+msgid "File %s downloaded from\n%s."
+msgstr "[ک مکГЄں  Ѝ م Ӵкձ ТўЖڑЄթ цҲ ४ ҭշ գ  ЁҴप ڃڑՄБդԸеТङ є ڈح]ऊւӀе %s ԺօшդاօձԺڿժ քҕօм\n%s."
 
 #: downloadmanager.py:250
 #, python-format
-msgid ""
-"Downloading %s from \n"
-"%s."
-msgstr ""
+msgid "Downloading %s from \n%s."
+msgstr "[أ ԳӞڑطБ ѕڑڃЯ ђﻻՏ օڈا  яآ  ԳႧ ս ワմ  ڧ ҁЊچ ۦЎҾ ]Đօщйاօдԃւйց %s ғҕюм \n%s."
 
 #: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "[Տ آҕҒՓЮխІ]Яемօմэ"
 
 #: webactivity.py:91
 msgid "View"
-msgstr ""
+msgstr "[Ż ՍՕјմ ӀЯ]Ѵﻨչш"
 
 #: webactivity.py:109 webactivity.py:110
 msgid "blank"
-msgstr ""
+msgstr "[ժ ६ ա ҰӨﻠ ]ъӀаиҟ"
 
 #: webactivity.py:407
 msgid "Download in progress"
-msgstr ""
+msgstr "[ङऊ ғНձ३ӨНӳﻨﻨЯ Тաոҏ  м ऊ  ѫ Ҳ խд ՄҤ ќՉ ҧ քԴ ]ႧюшղӀօдժ ւո مҕюԍҕєﯽی"
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "[ワ ԺЪ Ż Мモ Ժ є Їحд  Іа キuۦ  ワ Э Й ԃ  Иङﯽ żワ ﺫ ԍІڧո ДӊВ кЎ Ժ ڿऊЩ ƶКҶҁ ж կڿО թ ]Ѕէюҏթآոց ռюш աآاӀ ҁձиҁչا ўюця ժюﺳդاօەԃ"
 
 #: webactivity.py:410
 msgid "Cancel"
-msgstr ""
+msgstr "[ҲキճҪչҶէ Ђк]Ըձոۦڿլ"
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
-msgstr ""
+msgstr "[آї ҒԸ ғЈ ]Տեօթ"
 
 #: webtoolbar.py:51
 msgid "Back"
-msgstr ""
+msgstr "[ҭڿ ҢВ ղ аЅ]Ъەۦխ"
 
 #: webtoolbar.py:58
 msgid "Forward"
-msgstr ""
+msgstr "[キҴ Тآ३Ӵтѓ]ԲюѓﺳەҕԺ"
 
 #: webtoolbar.py:81
 msgid "Bookmark"
-msgstr ""
+msgstr "[ҤҧՍЭЯաа ठբ ДҴ ﯕﻻ шА ]Вююխмەբќ"
 
 #: webtoolbar.py:172
 msgid "Reload"
-msgstr ""
+msgstr "[ﯕՀ Ժђ ԃօձԴА ՕႧ]Яәاօەԃ"
+
