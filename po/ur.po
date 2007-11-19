@@ -1,50 +1,50 @@
-# translation of web-activity.master.po to Arabic
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: web-activity.master\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: 2007-11-19 21:03+0000\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <doc@arabeyes.org>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
-"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
 
 #: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
-msgstr "تصفّح"
+msgstr ""
 
 #: browser.py:133
 msgid "Source"
-msgstr "المصدر"
+msgstr ""
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr "بدأ التنزيل"
+msgstr ""
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr "%s"
+msgstr ""
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr "اكتمل التنزيل"
+msgstr ""
 
 #: downloadmanager.py:151
 msgid "Open"
-msgstr "افتح"
+msgstr ""
 
 #: downloadmanager.py:154
 msgid "Ok"
-msgstr "حسنا"
+msgstr ""
 
 #: downloadmanager.py:162
 #, python-format
@@ -52,18 +52,13 @@ msgid ""
 "File %s downloaded from\n"
 "%s."
 msgstr ""
-"نُزِّل الملف %s من\n"
-"%s."
 
 #: downloadmanager.py:250
-#, fuzzy, python-format
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"جري تنزيل %s من\n"
-"%s."
 
 #: linkbutton.py:95
 msgid "Remove"
@@ -78,11 +73,8 @@ msgid "blank"
 msgstr ""
 
 #: webactivity.py:407
-#, fuzzy
 msgid "Download in progress"
 msgstr ""
-"جري تنزيل %s من\n"
-"%s."
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
@@ -94,15 +86,15 @@ msgstr ""
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
-msgstr "قف"
+msgstr ""
 
 #: webtoolbar.py:51
 msgid "Back"
-msgstr "للخلف"
+msgstr ""
 
 #: webtoolbar.py:58
 msgid "Forward"
-msgstr "للأمام"
+msgstr ""
 
 #: webtoolbar.py:81
 msgid "Bookmark"
@@ -110,14 +102,4 @@ msgstr ""
 
 #: webtoolbar.py:172
 msgid "Reload"
-msgstr "أعد التحميل"
-
-#~ msgid ""
-#~ "Downloading %s from\n"
-#~ "%s. Progress %i%%."
-#~ msgstr ""
-#~ "يجري تنزيل %s من\n"
-#~ "%s. التقدم %i%%."
-
-#~ msgid "Web Activity"
-#~ msgstr "نشاط الوِب"
+msgstr ""
