@@ -2,49 +2,48 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2007-11-20 09:06+0000\n"
+"Last-Translator: Pascal Scheffers <pascal@scheffers.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
-msgstr ""
+msgstr "Browse"
 
 #: browser.py:133
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr ""
+msgstr "Download gestart"
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr ""
+msgstr "Download voltooid"
 
 #: downloadmanager.py:151
 msgid "Open"
-msgstr ""
+msgstr "Openen"
 
 #: downloadmanager.py:154
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: downloadmanager.py:162
 #, python-format
@@ -52,6 +51,8 @@ msgid ""
 "File %s downloaded from\n"
 "%s."
 msgstr ""
+"Bestand %s downloaden van\n"
+"%s."
 
 #: downloadmanager.py:250
 #, python-format
@@ -59,47 +60,49 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"%s downloaden van \n"
+"%s."
 
 #: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "Verwijderen"
 
 #: webactivity.py:91
 msgid "View"
-msgstr ""
+msgstr "Beeld"
 
 #: webactivity.py:109 webactivity.py:110
 msgid "blank"
-msgstr ""
+msgstr "blanco"
 
 #: webactivity.py:407
 msgid "Download in progress"
-msgstr ""
+msgstr "Bezig met downloaden"
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Door nu te stoppen wordt het downloaden afgebroken"
 
 #: webactivity.py:410
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: webtoolbar.py:51
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 #: webtoolbar.py:58
 msgid "Forward"
-msgstr ""
+msgstr "Vooruit"
 
 #: webtoolbar.py:81
 msgid "Bookmark"
-msgstr ""
+msgstr "Bookmark"
 
 #: webtoolbar.py:172
 msgid "Reload"
-msgstr ""
+msgstr "Vernieuwen"
