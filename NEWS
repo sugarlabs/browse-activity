@@ -1,3 +1,5 @@
+* #4909 do not resume downloaded files (erikos)
+
 74
 
 * change the LIBRARY_PATH to point to 
