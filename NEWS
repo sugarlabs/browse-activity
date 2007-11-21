@@ -1,4 +1,5 @@
-* #4909 do not resume source in write (erikos)
+* fix for fn+space (erikos)
+* #4909 do not resume source with write (erikos)
 * #4909 do not resume downloaded files (erikos)
 
 74
