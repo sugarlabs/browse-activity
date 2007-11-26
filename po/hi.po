@@ -1,49 +1,49 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of web-activity.po to Hindi
+# G Karunakar <karunakar@indlinux.org>, 2007.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2007-11-22 05:02+0000\n"
+"Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
-msgstr ""
+msgstr "ब्राउज़"
 
 #: browser.py:133
 msgid "Source"
-msgstr ""
+msgstr "स्रोत"
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr ""
+msgstr "डाउनलोड चालू"
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr ""
+msgstr "डाउनलोड पूरा"
 
 #: downloadmanager.py:151
 msgid "Open"
-msgstr ""
+msgstr "खोलें"
 
 #: downloadmanager.py:154
 msgid "Ok"
-msgstr ""
+msgstr "ठीक"
 
 #: downloadmanager.py:162
 #, python-format
@@ -51,6 +51,8 @@ msgid ""
 "File %s downloaded from\n"
 "%s."
 msgstr ""
+"%s फ़ाइल डाउनलोड किया गया\n"
+"%s से."
 
 #: downloadmanager.py:250
 #, python-format
@@ -58,47 +60,49 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"%s डाउनलोड किया जा रहा है \n"
+"%s से."
 
 #: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "हटाएँ"
 
 #: webactivity.py:91
 msgid "View"
-msgstr ""
+msgstr "दृश्य"
 
 #: webactivity.py:109 webactivity.py:110
 msgid "blank"
-msgstr ""
+msgstr "खाली"
 
 #: webactivity.py:407
 msgid "Download in progress"
-msgstr ""
+msgstr "डाउनलोड जारी"
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "अभी रोकने पर डाउनलोड कट जाएगा"
 
 #: webactivity.py:410
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
-msgstr ""
+msgstr "रूकें"
 
 #: webtoolbar.py:51
 msgid "Back"
-msgstr ""
+msgstr "पीछे जाएँ"
 
 #: webtoolbar.py:58
 msgid "Forward"
-msgstr ""
+msgstr "आगे बढ़ाएँ"
 
 #: webtoolbar.py:81
 msgid "Bookmark"
-msgstr ""
+msgstr " पसंदीदा "
 
 #: webtoolbar.py:172
 msgid "Reload"
-msgstr ""
+msgstr "री-लोड"
