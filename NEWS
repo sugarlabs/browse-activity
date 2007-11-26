@@ -1,3 +1,9 @@
+75
+
+* fix for fn+space (erikos)
+* #4909 do not resume source with write (erikos)
+* #4909 do not resume downloaded files (erikos)
+
 74
 
 * change the LIBRARY_PATH to point to 

@@ -58,7 +58,6 @@ SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
-_VIEW_SOURCE_KEY_CODE = 0x1008FF1A
 _TOOLBAR_BROWSE = 1
 
 _logger = logging.getLogger('web-activity')
@@ -315,7 +314,7 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Zoom in')
                 self._browser.zoom_in()
                 return True
-        elif event.keyval == _VIEW_SOURCE_KEY_CODE:
+        elif gtk.gdk.keyval_name(event.keyval) == "XF86Start":
             _logger.debug('keyboard: Show source of the current page SHOW_KEY')
             self._show_source()
             return True

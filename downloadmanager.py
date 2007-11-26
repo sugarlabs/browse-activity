@@ -30,7 +30,7 @@ import dbus
 from sugar.datastore import datastore
 from sugar import profile
 from sugar import mime
-from sugar.graphics.alert import Alert, TimeoutAlert
+from sugar.graphics.alert import NotifyAlert, TimeoutAlert
 from sugar.graphics import style
 from sugar.graphics.icon import Icon
 
@@ -147,16 +147,10 @@ class Download:
             if NS_FAILED(status): # download cancelled
                 return
 
-            self._stop_alert = Alert()
+            self._stop_alert = NotifyAlert(9)
             self._stop_alert.props.title = _('Download completed')
             path, file_name = os.path.split(self._target_file.path)
             self._stop_alert.props.msg = _('%s'%(file_name))
-            open_icon = Icon(icon_name='zoom-activity')
-            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon)
-            open_icon.show()
-            ok_icon = Icon(icon_name='dialog-ok')
-            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
-            ok_icon.show()
             _activity.add_alert(self._stop_alert)
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
@@ -194,24 +188,7 @@ class Download:
 
         _activity.remove_alert(alert)        
 
-    def __stop_response_cb(self, alert, response_id):
-        global _active_downloads
-        if response_id is gtk.RESPONSE_APPLY:
-            logging.debug('Start application with downloaded object')
-            from sugar.activity import activityfactory
-            from sugar import activity
-            activities = activity.get_registry().get_activities_for_type(
-                self._mime_type)
-            bundle_id = None
-            if len(activities):
-                bundle_id = activities[0].bundle_id
-            if bundle_id is not None:
-                logging.debug('Found activity to open mime=%s bundle_id=%s'
-                              %(self._mime_type, bundle_id))
-                activityfactory.create_with_object_id(bundle_id, self._object_id)
-            else:
-                logging.debug('Can not open mime=%s'%(self._mime_type))
-                
+    def __stop_response_cb(self, alert, response_id):        
         _activity.remove_alert(alert)
             
     def _cleanup_datastore_write(self):
