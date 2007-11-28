@@ -7,35 +7,35 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: 2007-03-23 15:04+0100\n"
-"Last-Translator: Tomeu Vizoso <tomeu@tomeuvizoso.net>\n"
+"PO-Revision-Date: 2007-11-24 22:05+0000\n"
+"Last-Translator: Ivo Emanuel Gonçalves <justivo@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:83
 msgid "Browse"
-msgstr ""
+msgstr "Navegar"
 
 #: browser.py:133
 msgid "Source"
-msgstr ""
+msgstr "Código"
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr ""
+msgstr "Download começou"
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr ""
+msgstr "Download completo"
 
 #: downloadmanager.py:151
 msgid "Open"
@@ -43,7 +43,7 @@ msgstr "Abrir"
 
 #: downloadmanager.py:154
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: downloadmanager.py:162
 #, python-format
@@ -51,6 +51,8 @@ msgid ""
 "File %s downloaded from\n"
 "%s."
 msgstr ""
+"Ficheiro %s obtido de\n"
+"%s."
 
 #: downloadmanager.py:250
 #, python-format
@@ -58,34 +60,36 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"Obtendo %s de \n"
+"%s."
 
 #: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: webactivity.py:91
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: webactivity.py:109 webactivity.py:110
 msgid "blank"
-msgstr ""
+msgstr "vazio"
 
 #: webactivity.py:407
 msgid "Download in progress"
-msgstr ""
+msgstr "Obtendo ficheiro"
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Se parares agora vais cancelar o download"
 
 #: webactivity.py:410
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
-msgstr "Interromper"
+msgstr "Parar"
 
 #: webtoolbar.py:51
 msgid "Back"
@@ -97,7 +101,7 @@ msgstr "Avançar"
 
 #: webtoolbar.py:81
 msgid "Bookmark"
-msgstr ""
+msgstr "Marcar"
 
 #: webtoolbar.py:172
 msgid "Reload"

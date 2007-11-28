@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: 2007-11-19 20:15+0000\n"
+"PO-Revision-Date: 2007-11-24 12:02+0000\n"
 "Last-Translator: Xavier Alvarez <xavi.alvarez@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,29 +22,31 @@ msgid "Browse"
 msgstr "Navegar"
 
 #: browser.py:133
+#, fuzzy
 msgid "Source"
-msgstr ""
+msgstr "Origen"
 
 #: downloadmanager.py:133
 msgid "Download started"
-msgstr ""
+msgstr "Descarga iniciada"
 
 #: downloadmanager.py:135 downloadmanager.py:149
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:147
 msgid "Download completed"
-msgstr ""
+msgstr "Descarga terminada"
 
 #: downloadmanager.py:151
 msgid "Open"
 msgstr "Abrir"
 
 #: downloadmanager.py:154
+#, fuzzy
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: downloadmanager.py:162
 #, python-format
@@ -56,7 +58,7 @@ msgstr ""
 "%s."
 
 #: downloadmanager.py:250
-#, fuzzy, python-format
+#, python-format
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -67,15 +69,15 @@ msgstr ""
 
 #: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 #: webactivity.py:91
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: webactivity.py:109 webactivity.py:110
 msgid "blank"
-msgstr ""
+msgstr "vacío"
 
 #: webactivity.py:407
 msgid "Download in progress"
@@ -83,11 +85,11 @@ msgstr "Descarga en curso"
 
 #: webactivity.py:408
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Parar ahora cancelará la descarga"
 
 #: webactivity.py:410
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: webactivity.py:412 webtoolbar.py:169
 msgid "Stop"
@@ -103,7 +105,7 @@ msgstr "Avanzar"
 
 #: webtoolbar.py:81
 msgid "Bookmark"
-msgstr ""
+msgstr "Marcador"
 
 #: webtoolbar.py:172
 msgid "Reload"
