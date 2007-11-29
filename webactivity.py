@@ -23,6 +23,7 @@ import dbus
 import sha
 import base64
 import time
+import shutil
  
 from sugar.activity import activity
 from sugar import env
@@ -35,8 +36,14 @@ from sugar import profile
 from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
 
+_profile_path = os.path.join(env.get_profile_path(), 'gecko')
+if not os.path.exists(_profile_path):
+    os.mkdir(_profile_path)
+    shutil.copy('cert8.db', _profile_path)
+    os.chmod(os.path.join(_profile_path, 'cert8.db'), 0600)
+
 import hulahop
-hulahop.startup(os.path.join(env.get_profile_path(), 'gecko'))
+hulahop.startup(_profile_path)
 
 from browser import Browser
 from webtoolbar import WebToolbar
