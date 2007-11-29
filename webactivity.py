@@ -47,15 +47,16 @@ if os.path.exists(_version_file):
     _profile_version = int(f.read())
     f.close()
 
-if _profile_version < 1:
+if _profile_version < PROFILE_VERSION:
     if not os.path.exists(_profile_path):
         os.mkdir(_profile_path)
+
     shutil.copy('cert8.db', _profile_path)
     os.chmod(os.path.join(_profile_path, 'cert8.db'), 0600)
 
-f = open(_version_file, 'w')
-f.write(str(PROFILE_VERSION))
-f.close()
+    f = open(_version_file, 'w')
+    f.write(str(PROFILE_VERSION))
+    f.close()
 
 import hulahop
 hulahop.startup(_profile_path)
