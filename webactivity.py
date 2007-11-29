@@ -36,8 +36,18 @@ from sugar import profile
 from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
 
+PROFILE_VERSION = 1
+
+_profile_version = 0
 _profile_path = os.path.join(env.get_profile_path(), 'gecko')
-if not os.path.exists(_profile_path):
+_version_file = os.path.join(_profile_path, 'version')
+
+if os.path.exists(_version_file):
+    f = open(_version_file)
+    _profile_version = int(f.read())
+    f.close()
+
+if _profile_version < 1:
     os.mkdir(_profile_path)
     shutil.copy('cert8.db', _profile_path)
     os.chmod(os.path.join(_profile_path, 'cert8.db'), 0600)
