@@ -19,7 +19,6 @@ import logging
 from gettext import gettext as _
 
 import gobject
-import tempfile
 import os
 import time
 import xpcom
@@ -64,7 +63,7 @@ class GetSourceListener(gobject.GObject):
     def onStatusChange(self, progress, request, status, message):
         pass
 
-    def onSecurityChange(progress, request, state):
+    def onSecurityChange(self, progress, request, state):
         pass
     
 class Browser(WebView):
@@ -109,8 +108,9 @@ class Browser(WebView):
         persist.progressListener = xpcom.server.WrapObject(
             progresslistener, interfaces.nsIWebProgressListener)
         progresslistener.connect('finished', self._have_source_cb)
-            
-        file_path = os.path.join(tempfile.gettempdir(), '%i' % time.time())        
+        
+        temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        file_path = os.path.join(temp_path, '%i' % time.time())        
         cls = components.classes["@mozilla.org/file/local;1"]
         local_file = cls.createInstance(interfaces.nsILocalFile)
         local_file.initWithPath(file_path)
