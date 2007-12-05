@@ -19,14 +19,12 @@ import logging
 from gettext import gettext as _
 
 import gtk
-import dbus
 import sha
 import base64
 import time
 import shutil
  
 from sugar.activity import activity
-from sugar import env
 from sugar.graphics import style
 import telepathy
 import telepathy.client
@@ -35,6 +33,7 @@ from sugar.graphics.tray import HTray
 from sugar import profile
 from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
+from sugar import mime
 
 PROFILE_VERSION = 1
 
@@ -65,8 +64,6 @@ from browser import Browser
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
-import promptservice
-import filepicker
 import sessionhistory 
 import progresslistener
 
@@ -275,14 +272,18 @@ class WebActivity(activity.Activity):
         if embed.props.title is not '':
             _logger.debug('Title changed=%s' % embed.props.title)
             self.webtitle = embed.props.title
-            
+
+    def _get_data_from_file_path(self, file_path):
+        fd = open(file_path, 'r')
+        try:
+            data = fd.read()
+        finally:
+            fd.close()
+        return data
+
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
-            f = open(file_path, 'r')
-            try:
-                data = f.read()
-            finally:
-                f.close()
+            data = self._get_data_from_file_path(file_path)
             self.model.deserialize(data)
             
             for link in self.model.data['shared_links']:
@@ -294,6 +295,14 @@ class WebActivity(activity.Activity):
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])                                
             self._browser.set_session(self.model.data['history'])
+        elif self.metadata['mime_type'] == 'text/uri-list':
+            data = self._get_data_from_file_path(file_path)
+            uris = mime.split_uri_list(data)
+            if len(uris) == 1:
+                self._browser.load_uri(uris[0])
+            else:
+                _logger.error('Open uri-list: Does not support' 
+                              'list of multiple uris by now.') 
         else:
             self._browser.load_uri(file_path)
         
