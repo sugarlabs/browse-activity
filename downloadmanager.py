@@ -167,6 +167,7 @@ class Download:
                 self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
             datastore.write(self._dl_jobject,
+                            transfer_ownership=True,
                             reply_handler=self._internal_save_cb,
                             error_handler=self._internal_save_error_cb,
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
