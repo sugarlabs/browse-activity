@@ -1,5 +1,11 @@
+78
+
+<<<<<<< HEAD:NEWS
 77
 
+=======
+* Give to the DS the ownership of the files we hand to it #5235 (tomeu)
+>>>>>>> d347f616e9d1177aae343ac9d0d04df51c2c6078:NEWS
 * Open an uri of type text/uri-list with browse #5080 (erikos)
 * Save view source to SAR/instance #5251 (erikos)
 * Move the profile in SAR/data #5221 (erikos)
