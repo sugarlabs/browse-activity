@@ -48,6 +48,9 @@ DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
 DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
 DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 
+_MIN_TIME_UPDATE = 5        # In seconds
+_MIN_PERCENT_UPDATE = 10
+
 _browser = None
 _temp_path = '/tmp'
 def init(browser, activity, temp_path):
@@ -214,8 +217,8 @@ class Download:
         path, file_name = os.path.split(self._target_file.path)
         percent = (cur_self_progress  * 100) / max_self_progress
 
-        if (time.time() - self._last_update_time) < 5 and \
-           (percent - self._last_update_percent) < 5:
+        if (time.time() - self._last_update_time) < _MIN_TIME_UPDATE and \
+           (percent - self._last_update_percent) < _MIN_PERCENT_UPDATE:
             return
 
         self._last_update_time = time.time()
