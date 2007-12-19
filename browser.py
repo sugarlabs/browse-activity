@@ -141,6 +141,7 @@ class Browser(WebView):
 
     def _internal_save_cb(self):
         logging.debug("Saved source object to datastore.")
+        activity.show_object_in_journal(self._jobject.object_id) 
         self._cleanup_jobject()
             
     def _internal_save_error_cb(self, err):
