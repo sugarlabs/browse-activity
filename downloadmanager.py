@@ -16,7 +16,6 @@
 
 import os
 import logging
-import tempfile
 from gettext import gettext as _
 import time
 import gtk
@@ -30,9 +29,9 @@ import dbus
 from sugar.datastore import datastore
 from sugar import profile
 from sugar import mime
-from sugar.graphics.alert import NotifyAlert, TimeoutAlert
-from sugar.graphics import style
+from sugar.graphics.alert import Alert, TimeoutAlert
 from sugar.graphics.icon import Icon
+from sugar.activity import activity
 
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
 # 0.82.3 is the only version used
@@ -52,6 +51,7 @@ _MIN_TIME_UPDATE = 5        # In seconds
 _MIN_PERCENT_UPDATE = 10
 
 _browser = None
+_activity = None
 _temp_path = '/tmp'
 def init(browser, activity, temp_path):
     global _browser
@@ -150,17 +150,21 @@ class Download:
             if NS_FAILED(status): # download cancelled
                 return
 
-            self._stop_alert = NotifyAlert(9)
-            self._stop_alert.props.title = _('Download completed')
-            path, file_name = os.path.split(self._target_file.path)
-            self._stop_alert.props.msg = _('%s'%(file_name))
-            _activity.add_alert(self._stop_alert)
+            self._stop_alert = Alert()
+            self._stop_alert.props.title = _('Download completed') 
+            path, file_name = os.path.split(self._target_file.path) 
+            self._stop_alert.props.msg = _('%s'%(file_name)) 
+            open_icon = Icon(icon_name='zoom-activity') 
+            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon) 
+            open_icon.show() 
+            ok_icon = Icon(icon_name='dialog-ok') 
+            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon) 
+            ok_icon.show()            
+            _activity.add_alert(self._stop_alert) 
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
-            path, file_name = os.path.split(self._target_file.path)
-
-            self._dl_jobject.metadata['title'] = _('File %s downloaded from\n%s.') % \
+            self._dl_jobject.metadata['title'] = _('File %s from\n%s.') % \
                                                  (file_name, self._source.spec)
             self._dl_jobject.metadata['progress'] = '100'
             self._dl_jobject.file_path = self._target_file.path
@@ -193,6 +197,10 @@ class Download:
         _activity.remove_alert(alert)        
 
     def __stop_response_cb(self, alert, response_id):        
+        global _active_downloads 
+        if response_id is gtk.RESPONSE_APPLY: 
+            logging.debug('Start application with downloaded object') 
+            activity.show_object_in_journal(self._object_id) 
         _activity.remove_alert(alert)
             
     def _cleanup_datastore_write(self):
