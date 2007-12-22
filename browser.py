@@ -15,12 +15,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import os
+import time
 import logging
 from gettext import gettext as _
 
 import gobject
-import os
-import time
+import gtk
 import xpcom
 from xpcom.nsError import *
 from xpcom import components
@@ -65,7 +66,7 @@ class GetSourceListener(gobject.GObject):
 
     def onSecurityChange(self, progress, request, state):
         pass
-    
+
 class Browser(WebView):
 
     AGENT_SHEET = os.path.join(activity.get_bundle_path(), 'agent-stylesheet.css')
@@ -167,3 +168,33 @@ class Browser(WebView):
         if contentViewer is not None:
             markupDocumentViewer = contentViewer.queryInterface(interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
+
+class XULDialog(gtk.Window):
+    def __init__(self):
+        gtk.Window.__init__(self)
+
+        self.view = WebView()
+        self.add(self.view)
+
+        self.connect('realize', self.__realize_cb)
+
+    def __realize_cb(self, window):
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
+
+class WindowCreator:
+    _com_interfaces_ = interfaces.nsIWindowCreator
+
+    def createChromeWindow(self, parent, chrome_flags):
+        dialog = XULDialog()
+        browser = dialog.view.browser
+
+        dialog.view.is_chrome = True
+        item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
+        item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
+
+        return browser.containerWindow
+
+window_creator = WindowCreator()
+cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
+window_watcher = cls.getService(interfaces.nsIWindowWatcher)
+window_watcher.setWindowCreator(window_creator)
