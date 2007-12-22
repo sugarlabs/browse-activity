@@ -51,7 +51,7 @@ if _profile_version < PROFILE_VERSION:
         os.mkdir(_profile_path)
 
     shutil.copy('cert8.db', _profile_path)
-    os.chmod(os.path.join(_profile_path, 'cert8.db'), 0600)
+    os.chmod(os.path.join(_profile_path, 'cert8.db'), 0660)
 
     f = open(_version_file, 'w')
     f.write(str(PROFILE_VERSION))
