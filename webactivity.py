@@ -35,14 +35,10 @@ from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
 from sugar import mime
 
-import sharedprofile
-
-sharedprofile.create_local_profile(activity.get_activity_root())
-
 PROFILE_VERSION = 1
 
 _profile_version = 0
-_profile_path = os.path.join(activity.get_activity_root(), 'instance/profile')
+_profile_path = os.path.join(activity.get_activity_root(), 'data/gecko')
 _version_file = os.path.join(_profile_path, 'version')
 
 if os.path.exists(_version_file):
@@ -326,8 +322,6 @@ class WebActivity(activity.Activity):
                 f.write(self.model.serialize())
             finally:
                 f.close()
-        sharedprofile.update_shared_profile(activity.get_activity_root())
-        sharedprofile.garbage_collector(activity.get_activity_root())
 
     def _link_add_button_cb(self, button):
         _logger.debug('button: Add link: %s.' % self.current)                
