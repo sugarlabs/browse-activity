@@ -18,6 +18,9 @@ import os
 import logging
 from gettext import gettext as _
 
+import gobject
+gobject.threads_init()
+
 import gtk
 import sha
 import base64
