@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-23 20:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+
+#: activity/activity.info:2 webactivity.py:105
+msgid "Browse"
+msgstr ""
+
+#: browser.py:132
+msgid "Source"
+msgstr ""
+
+#: downloadmanager.py:140
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:142 downloadmanager.py:156
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:154
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:158
+msgid "Open"
+msgstr ""
+
+#: downloadmanager.py:161
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:167
+#, python-format
+msgid "File %s from %s."
+msgstr ""
+
+#: downloadmanager.py:243
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr ""
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr ""
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:113
+msgid "View"
+msgstr ""
+
+#: webactivity.py:131 webactivity.py:132
+msgid "blank"
+msgstr ""
+
+#: webactivity.py:441
+msgid "Download in progress"
+msgstr ""
+
+#: webactivity.py:442
+msgid "Stopping now will cancel your download"
+msgstr ""
+
+#: webactivity.py:444
+msgid "Cancel"
+msgstr ""
+
+#: webactivity.py:446 webtoolbar.py:169
+msgid "Stop"
+msgstr ""
+
+#: webtoolbar.py:51
+msgid "Back"
+msgstr ""
+
+#: webtoolbar.py:58
+msgid "Forward"
+msgstr ""
+
+#: webtoolbar.py:81
+msgid "Bookmark"
+msgstr ""
+
+#: webtoolbar.py:172
+msgid "Reload"
+msgstr ""
