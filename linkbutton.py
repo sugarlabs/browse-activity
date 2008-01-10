@@ -22,6 +22,7 @@ from gettext import gettext as _
 import rsvg
 import re
 import gc
+import pango
 
 from sugar.graphics.palette import Palette
 from sugar.graphics.tray import TrayButton
@@ -89,7 +90,7 @@ class LinkButton(TrayButton, gobject.GObject):
         return rsvg.Handle(data=data).get_pixbuf()
 
     def setup_rollover_options(self, info):
-        palette = Palette(info)
+        palette = Palette(info, text_maxlen=70)
         self.set_palette(palette)
 
         menu_item = gtk.MenuItem(_('Remove'))

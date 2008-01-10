@@ -25,7 +25,9 @@ from xpcom.components import interfaces
 from xpcom import components
 
 from sugar.graphics.toolbutton import ToolButton
+from sugar.graphics.menuitem import MenuItem
 from sugar._sugarext import AddressEntry
+import pango
 
 import sessionhistory
 import progresslistener
@@ -195,7 +197,7 @@ class WebToolbar(gtk.Toolbar):
                 continue
 
             entry = session_history.getEntryAtIndex(i, False)
-            menu_item = gtk.MenuItem(entry.title)
+            menu_item = MenuItem(entry.title, text_maxlen=80)
             menu_item.connect('activate', self._history_item_activated_cb, i)
 
             if i < current_page_index:
