@@ -432,11 +432,10 @@ class WebActivity(activity.Activity):
         buffer = self.get_buffer(screenshot)
         return buffer
 
-    def close(self):
+    def can_close(self):
         if downloadmanager.can_quit():
-            activity.Activity.close(self)        
+            return True
         else:
-            logging.debug('Close is called')
             alert = Alert()
             alert.props.title = _('Download in progress')
             alert.props.msg = _('Stopping now will cancel your download')
@@ -449,7 +448,7 @@ class WebActivity(activity.Activity):
             alert.connect('response', self.__inprogress_response_cb)
             alert.show()            
             self.present()
-            
+
     def __inprogress_response_cb(self, alert, response_id):
         self.remove_alert(alert)
         if response_id is gtk.RESPONSE_CANCEL:
@@ -457,5 +456,5 @@ class WebActivity(activity.Activity):
         elif response_id == gtk.RESPONSE_OK:
             logging.debug('Stop downloads and quit')
             downloadmanager.remove_all_downloads()
-            activity.Activity.close(self)        
-            
+            self.close(force=True)
+
