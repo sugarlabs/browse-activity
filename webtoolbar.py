@@ -197,7 +197,7 @@ class WebToolbar(gtk.Toolbar):
                 continue
 
             entry = session_history.getEntryAtIndex(i, False)
-            menu_item = MenuItem(entry.title, text_maxlen=80)
+            menu_item = MenuItem(entry.title, text_maxlen=60)
             menu_item.connect('activate', self._history_item_activated_cb, i)
 
             if i < current_page_index:

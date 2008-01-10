@@ -90,7 +90,7 @@ class LinkButton(TrayButton, gobject.GObject):
         return rsvg.Handle(data=data).get_pixbuf()
 
     def setup_rollover_options(self, info):
-        palette = Palette(info, text_maxlen=70)
+        palette = Palette(info, text_maxlen=50)
         self.set_palette(palette)
 
         menu_item = gtk.MenuItem(_('Remove'))
