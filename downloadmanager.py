@@ -155,7 +155,7 @@ class Download:
             path, file_name = os.path.split(self._target_file.path) 
             self._stop_alert.props.msg = _('%s'%(file_name)) 
             open_icon = Icon(icon_name='zoom-activity') 
-            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Open'), open_icon) 
+            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Show in Journal'), open_icon) 
             open_icon.show() 
             ok_icon = Icon(icon_name='dialog-ok') 
             self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon) 
