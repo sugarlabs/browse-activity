@@ -263,6 +263,8 @@ class Download:
         logging.debug('Downloaded entry has been deleted from the datastore: %r' % uid)
         # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
         self._cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
+        global _active_downloads
+        _active_downloads.remove(self)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}"',
                                      'Sugar Download',
