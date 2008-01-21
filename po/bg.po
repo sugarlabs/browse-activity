@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-01-11 14:05+0000\n"
+"PO-Revision-Date: 2008-01-21 07:45+0000\n"
 "Last-Translator: Alexander Todorov <atodorov@redhat.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,11 +78,11 @@ msgstr "Цял екран"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr ""
+msgstr "Показване на таблото"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr ""
+msgstr "Скриване на таблото"
 
 #: webactivity.py:113
 msgid "View"
