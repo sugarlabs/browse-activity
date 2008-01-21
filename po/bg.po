@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
 "PO-Revision-Date: 2008-01-11 14:05+0000\n"
 "Last-Translator: Alexander Todorov <atodorov@redhat.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,30 +16,24 @@ msgstr ""
 "X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:105
-#: webactivity.py:83
 msgid "Browse"
 msgstr "Разглеждане"
 
 #: browser.py:132
-#: browser.py:133
 #, fuzzy
 msgid "Source"
 msgstr "Източник"
 
 #: downloadmanager.py:140
-#: downloadmanager.py:133
 msgid "Download started"
 msgstr "Изтеглянето е стартирано"
 
 #: downloadmanager.py:142 downloadmanager.py:156
-#: downloadmanager.py:135
-#: downloadmanager.py:149
 #, python-format
 msgid "%s"
 msgstr "%s"
 
 #: downloadmanager.py:154
-#: downloadmanager.py:147
 msgid "Download completed"
 msgstr "Изтеглянето е завършено"
 
@@ -49,7 +43,6 @@ msgid "Open"
 msgstr "Отваряне"
 
 #: downloadmanager.py:161
-#: downloadmanager.py:154
 msgid "Ok"
 msgstr "Ок"
 
@@ -59,7 +52,6 @@ msgid "File %s from %s."
 msgstr "Файл %s от %s."
 
 #: downloadmanager.py:243
-#: downloadmanager.py:250
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -68,7 +60,7 @@ msgstr ""
 "Изтегляне на %s от\n"
 "%s."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "Премахване"
 
@@ -93,49 +85,46 @@ msgid "Hide Tray"
 msgstr ""
 
 #: webactivity.py:113
-#: webactivity.py:91
 msgid "View"
 msgstr "Изглед"
 
 #: webactivity.py:131 webactivity.py:132
-#: webactivity.py:109
-#: webactivity.py:110
 msgid "blank"
 msgstr "празно"
 
-#: webactivity.py:441
-#: webactivity.py:407
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "Изтеглянето протича"
 
-#: webactivity.py:442
-#: webactivity.py:408
+#: webactivity.py:441
 #, fuzzy
 msgid "Stopping now will cancel your download"
 msgstr "Ако спрете сега, ще прекъснете изтеглянето"
 
-#: webactivity.py:444
-#: webactivity.py:410
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "Отказ"
 
-#: webactivity.py:446 webtoolbar.py:169
-#: webactivity.py:412
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "Стоп"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "Назад"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "Напред"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "Отметка"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "Презареждане"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""
