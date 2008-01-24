@@ -22,28 +22,28 @@ msgstr ""
 
 #: browser.py:132
 msgid "Source"
-msgstr ""
+msgstr "మూలం"
 
 #: downloadmanager.py:140
 msgid "Download started"
-msgstr ""
+msgstr "దిగుమతి మొదలయింది"
 
 #: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:154
 msgid "Download completed"
-msgstr ""
+msgstr "దిగుమతి పూర్తయింది"
 
 #: downloadmanager.py:158
 msgid "Show in Journal"
-msgstr ""
+msgstr "పద్దులో చూపు"
 
 #: downloadmanager.py:161
 msgid "Ok"
-msgstr ""
+msgstr "సరి"
 
 #: downloadmanager.py:167
 #, python-format
@@ -55,63 +55,64 @@ msgstr ""
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr ""
+msgstr "%s నుండి దిగుమతి అవుతుంది\n "
+"%s."
 
 #: linkbutton.py:96
 msgid "Remove"
-msgstr ""
+msgstr "తీసివేయి"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "దూరంగా చూపు"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "దగ్గరగా చూపు"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "తెరనిండుగా"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr ""
+msgstr "ట్రే చూపు"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr ""
+msgstr "ట్రే దాచివేయి"
 
 #: webactivity.py:113
 msgid "View"
-msgstr ""
+msgstr "చూడు"
 
 #: webactivity.py:131 webactivity.py:132
 msgid "blank"
-msgstr ""
+msgstr "ఖాళీ"
 
 #: webactivity.py:440
 msgid "Download in progress"
-msgstr ""
+msgstr "దిగుమతి జరుగుతుంది"
 
 #: webactivity.py:441
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "ఇప్పుడు ఆపితే  మీ దిగుమతి ఆగిపోతుంది"
 
 #: webactivity.py:443
 msgid "Cancel"
-msgstr ""
+msgstr "రద్దుచేయి"
 
 #: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
-msgstr ""
+msgstr "ఆపు"
 
 #: webtoolbar.py:53
 msgid "Back"
-msgstr ""
+msgstr "వెనుకకు"
 
 #: webtoolbar.py:60
 msgid "Forward"
-msgstr ""
+msgstr "ముందుకు"
 
 #: webtoolbar.py:83
 msgid "Bookmark"
@@ -119,4 +120,4 @@ msgstr ""
 
 #: webtoolbar.py:174
 msgid "Reload"
-msgstr ""
+msgstr "తిరిగి లోడ్ చేయి"
