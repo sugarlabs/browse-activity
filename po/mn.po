@@ -2,44 +2,43 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2008-01-29 04:11-0500\n"
+"Last-Translator: Enkhzul <enkhzul@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:105
 msgid "Browse"
-msgstr ""
+msgstr "дуудах"
 
 #: browser.py:132
 msgid "Source"
-msgstr ""
+msgstr "үүсгүүр"
 
 #: downloadmanager.py:140
 msgid "Download started"
-msgstr ""
+msgstr "Ачаалж эхэллээ..."
 
 #: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%"
 
 #: downloadmanager.py:154
 msgid "Download completed"
-msgstr ""
+msgstr "Ачаалж дууслаа"
 
 #: downloadmanager.py:158
 msgid "Show in Journal"
-msgstr ""
+msgstr "Сэтгүүл дээр үзүүлэх"
 
 #: downloadmanager.py:161
 msgid "Ok"
@@ -48,14 +47,14 @@ msgstr ""
 #: downloadmanager.py:167
 #, python-format
 msgid "File %s from %s."
-msgstr ""
+msgstr "Файл % байхаас % нь байна."
 
 #: downloadmanager.py:243
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr ""
+msgstr "%-с % нь ачаалагдаж байна..."
 
 #: linkbutton.py:96
 msgid "Remove"
@@ -71,52 +70,52 @@ msgstr ""
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "дэлгэц дүүргэх"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr ""
+msgstr "тавиурыг харуулах"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr ""
+msgstr "тавиурыг нуух"
 
 #: webactivity.py:113
 msgid "View"
-msgstr ""
+msgstr "харагдац"
 
 #: webactivity.py:131 webactivity.py:132
 msgid "blank"
-msgstr ""
+msgstr "хоосон"
 
 #: webactivity.py:440
 msgid "Download in progress"
-msgstr ""
+msgstr "Ачаалж байна..."
 
 #: webactivity.py:441
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Та буцаах товчлуурыг дарвал ачаалах нь зогсоно"
 
 #: webactivity.py:443
 msgid "Cancel"
-msgstr ""
+msgstr "Цуцлах"
 
 #: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
-msgstr ""
+msgstr "Зогсоох"
 
 #: webtoolbar.py:53
 msgid "Back"
-msgstr ""
+msgstr "Буцаах"
 
 #: webtoolbar.py:60
 msgid "Forward"
-msgstr ""
+msgstr "Дуудах"
 
 #: webtoolbar.py:83
 msgid "Bookmark"
-msgstr ""
+msgstr "Тэмдэглэх"
 
 #: webtoolbar.py:174
 msgid "Reload"
-msgstr ""
+msgstr "Дахин ачаалах"

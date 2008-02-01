@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
-"PO-Revision-Date: 2008-01-04 12:51+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"PO-Revision-Date: 2008-01-09 09:07+0000\n"
 "Last-Translator: usman mansoor ansari <jalalkut@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,6 @@ msgstr "هو"
 
 #: downloadmanager.py:167
 #, python-format
-#, fuzzy
 msgid "File %s from %s."
 msgstr "دوتنه %s له %s څخه"
 
@@ -59,7 +58,7 @@ msgstr ""
 "رالېښل %s له \n"
 "%s څخه."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "لرې كول"
 
@@ -91,35 +90,39 @@ msgstr "ليد"
 msgid "blank"
 msgstr "سپين"
 
-#: webactivity.py:441
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "رالېښل د پرمختګ په حال كې دى"
 
-#: webactivity.py:442
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "اوسمهال تمول به ستاسې رالېښل ړنګ كړي"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "ړنګول"
 
-#: webactivity.py:446 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "تمېدل"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "شا"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "مخته"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "كتابنښول"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 #, fuzzy
 msgid "Reload"
 msgstr "بيا-بارول"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""

@@ -2,53 +2,56 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"PO-Revision-Date: 2008-01-22 06:58+0000\n"
+"Last-Translator: Sankarshan Mukhopadhyay <sankarshan.mukhopadhyay@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2 webactivity.py:105
 msgid "Browse"
-msgstr ""
+msgstr "ব্রাউজ করো"
 
 #: browser.py:132
 msgid "Source"
-msgstr ""
+msgstr "সোর্স"
 
 #: downloadmanager.py:140
 msgid "Download started"
-msgstr ""
+msgstr "ডাউনলোড শুরু হয়েছে"
 
 #: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:154
 msgid "Download completed"
-msgstr ""
+msgstr "ডাউনলোড শেষ হয়েছে"
 
 #: downloadmanager.py:158
 msgid "Open"
-msgstr ""
+msgstr "খোলো"
 
 #: downloadmanager.py:161
 msgid "Ok"
-msgstr ""
+msgstr "ঠিক আছে"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:162
 #, python-format
-msgid "File %s from %s."
+msgid ""
+"File %s downloaded from\n"
+"%s."
 msgstr ""
+"%s ফাইলটি %s থেকে ডাউনলোড করা\n"
+"হয়েছে।"
 
 #: downloadmanager.py:243
 #, python-format
@@ -56,67 +59,80 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"%s টি %s থেকে ডাউনলোড করা\n"
+"হচ্ছে।"
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
-msgstr ""
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr ""
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr ""
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr ""
-
-#: viewtoolbar.py:87
-msgid "Show Tray"
-msgstr ""
-
-#: viewtoolbar.py:91
-msgid "Hide Tray"
-msgstr ""
+msgstr "মুছে ফেলো"
 
 #: webactivity.py:113
 msgid "View"
-msgstr ""
+msgstr "প্রদর্শন"
 
 #: webactivity.py:131 webactivity.py:132
 msgid "blank"
-msgstr ""
+msgstr "খালি"
+
+#: webactivity.py:440
+msgid "Download in progress"
+msgstr "ডাউনলোড চলছে"
 
 #: webactivity.py:441
-msgid "Download in progress"
-msgstr ""
-
-#: webactivity.py:442
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "এখন থামালে আপনার ডাউনলোড বন্ধ হয়ে যাবে"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল করো"
 
-#: webactivity.py:446 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
-msgstr ""
+msgstr "থামাও"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
-msgstr ""
+msgstr "পেছনে"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
-msgstr ""
+msgstr "সামনে"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
-msgstr ""
+msgstr "বুকমার্ক"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
-msgstr ""
+msgstr "আবার লোড করো"
+
+#: downloadmanager.py:167
+#, python-format
+msgid "File %s from %s."
+msgstr "%s ফাইল, %s থেকে।"
+
+#: viewtoolbar.py:34
+#, fuzzy
+msgid "Zoom out"
+msgstr "ছোট করো"
+
+#: viewtoolbar.py:40
+#, fuzzy
+msgid "Zoom in"
+msgstr "বড় করো"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "সম্পুর্ন স্ক্রিনজুড়ে"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "ট্রে প্রদর্শন করো"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "ট্রে আড়াল করো"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr "জার্নালে প্রদর্শন কর"

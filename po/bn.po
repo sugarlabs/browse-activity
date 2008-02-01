@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
 "PO-Revision-Date: 2007-12-30 17:50+0000\n"
 "Last-Translator: Jamil Ahmed <itsjamil@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr ""
 "%s টি %s থেকে ডাউনলোড করা\n"
 "হচ্ছে।"
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "মুছে ফেলো"
 
@@ -74,35 +74,35 @@ msgstr "দেখা"
 msgid "blank"
 msgstr "খালি"
 
-#: webactivity.py:441
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "ডাউনলোড চলছে"
 
-#: webactivity.py:442
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "এখন থামালে তোমার ডাউনলোড বাতিল হয়ে যাবে।"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "বাতিল করো"
 
-#: webactivity.py:446 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "থামাও"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "পেছনে"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "সামনে"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "বুকমার্ক"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "আবার লোড করো"
 
@@ -130,3 +130,7 @@ msgstr "ট্রে প্রদর্শন করো"
 #: viewtoolbar.py:91
 msgid "Hide Tray"
 msgstr "ট্রে আড়াল করো"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""

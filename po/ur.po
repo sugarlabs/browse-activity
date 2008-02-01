@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
 "PO-Revision-Date: 2008-01-01 10:44+0500\n"
 "Last-Translator: Huda <huda.sarfraz@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,8 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2
-#: webactivity.py:105
+#: activity/activity.info:2 webactivity.py:105
 msgid "Browse"
 msgstr "براؤز"
 
@@ -28,8 +27,7 @@ msgstr "ماخذ"
 msgid "Download started"
 msgstr "ڈاؤن لوڈ شروع ہو گیا"
 
-#: downloadmanager.py:142
-#: downloadmanager.py:156
+#: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
 msgstr "s%"
@@ -64,7 +62,7 @@ msgstr ""
 "مسل %s ڈاؤن لوڈ کر رہا ہے از \n"
 "%s۔"
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "ہٹائیں"
 
@@ -72,41 +70,39 @@ msgstr "ہٹائیں"
 msgid "View"
 msgstr "نظارہ"
 
-#: webactivity.py:131
-#: webactivity.py:132
+#: webactivity.py:131 webactivity.py:132
 msgid "blank"
 msgstr "خالی"
 
-#: webactivity.py:441
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "ڈاؤن لوڈ جاری ہے"
 
-#: webactivity.py:442
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "ابھی رکنے سے آپ کا ڈاؤن لوڈ منسوخ ہو جائے گا"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "منسوخ کريں"
 
-#: webactivity.py:446
-#: webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "روکیں"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "واپس"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "آگے"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "نشانی"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "پھر لوڈ کریں"
 
@@ -134,3 +130,7 @@ msgstr "ٹرے دکھائیں"
 #: viewtoolbar.py:91
 msgid "Hide Tray"
 msgstr "ٹرے چھپائیں"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""

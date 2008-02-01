@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 22:55+0100\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
 "PO-Revision-Date: 2007-11-23 00:09+0000\n"
 "Last-Translator: Ghenciu Ciprian <g.ciprian@osn.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,32 +15,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2 webactivity.py:83
+#: activity/activity.info:2 webactivity.py:105
 msgid "Browse"
 msgstr "Navighează"
 
-#: browser.py:133
+#: browser.py:132
 msgid "Source"
 msgstr "Sursă"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:140
 msgid "Download started"
 msgstr "A început descărcarea"
 
-#: downloadmanager.py:135 downloadmanager.py:149
+#: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:147
+#: downloadmanager.py:154
 msgid "Download completed"
 msgstr "Descărcare terminată"
 
-#: downloadmanager.py:151
+#: downloadmanager.py:158
 msgid "Open"
 msgstr "Deschide"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:161
 msgid "Ok"
 msgstr "Ok"
 
@@ -53,7 +53,7 @@ msgstr ""
 "Fișierul %s descărcat de pe\n"
 "%s."
 
-#: downloadmanager.py:250
+#: downloadmanager.py:243
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -62,46 +62,75 @@ msgstr ""
 "Se descarcă %s de pe \n"
 "%s."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "Elimină"
 
-#: webactivity.py:91
+#: webactivity.py:113
 msgid "View"
 msgstr "Vizualizare"
 
-#: webactivity.py:109 webactivity.py:110
+#: webactivity.py:131 webactivity.py:132
 msgid "blank"
 msgstr "gol"
 
-#: webactivity.py:407
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "Descărcare în curs"
 
-#: webactivity.py:408
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "Oprirea acum va duce la anularea descărcării"
 
-#: webactivity.py:410
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "Anulare"
 
-#: webactivity.py:412 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "Oprește"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "Înapoi"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "Înainte"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "Marcaj"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "Reîncarcă"
+
+#: downloadmanager.py:167
+#, python-format
+msgid "File %s from %s."
+msgstr ""
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr ""
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr ""
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr ""
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""

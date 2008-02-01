@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: 2007-11-23 00:11+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"PO-Revision-Date: 2008-01-27 19:19-0500\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,34 +15,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2 webactivity.py:83
+#: activity/activity.info:2 webactivity.py:105
+#, fuzzy
 msgid "Browse"
-msgstr ""
+msgstr "Naviga"
 
-#: browser.py:133
+#: browser.py:132
 msgid "Source"
 msgstr "Sorgente"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:140
 #, fuzzy
 msgid "Download started"
-msgstr "Iniziato scaricamento"
+msgstr "Iniziato trasferimento"
 
-#: downloadmanager.py:135 downloadmanager.py:149
+#: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:147
+#: downloadmanager.py:154
 #, fuzzy
 msgid "Download completed"
-msgstr "Scaricamento terminato"
+msgstr "Trasferimento terminato"
 
-#: downloadmanager.py:151
+#: downloadmanager.py:158
 msgid "Open"
 msgstr "Aperto"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:161
 msgid "Ok"
 msgstr "Ok"
 
@@ -57,7 +58,7 @@ msgstr ""
 "File %s scaricato da\n"
 "%s."
 
-#: downloadmanager.py:250
+#: downloadmanager.py:243
 #, python-format
 #, fuzzy
 msgid ""
@@ -67,48 +68,77 @@ msgstr ""
 "Scaricamento %s da \n"
 "%s."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "Elimina"
 
-#: webactivity.py:91
+#: webactivity.py:113
 msgid "View"
 msgstr "Vista"
 
-#: webactivity.py:109 webactivity.py:110
+#: webactivity.py:131 webactivity.py:132
 #, fuzzy
 msgid "blank"
 msgstr "spazio"
 
-#: webactivity.py:407
+#: webactivity.py:440
 #, fuzzy
 msgid "Download in progress"
 msgstr "Scaricamento in corso"
 
-#: webactivity.py:408
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "Bloccare adesso annullerà il trasferimento"
 
-#: webactivity.py:410
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "Annulla"
 
-#: webactivity.py:412 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "Indietro"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "Avanti"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "Segnalibro"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "Ricarica"
+
+#: downloadmanager.py:167
+#, python-format
+msgid "File %s from %s."
+msgstr "File %s da %s."
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Zoom indietro"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Zoom avanti"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Mostra cestino"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Nascondi cestino"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr "Mostra nel Diario"

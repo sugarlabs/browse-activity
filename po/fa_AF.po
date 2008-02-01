@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
-"PO-Revision-Date: 2008-01-09 09:03+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"PO-Revision-Date: 2008-01-28 06:22-0500\n"
 "Last-Translator: Sohaib Obaidi <ebtihaj_obaidi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: activity/activity.info:2 webactivity.py:105
 msgid "Browse"
-msgstr "مرور"
+msgstr "جستجو"
 
 #: browser.py:132
 msgid "Source"
@@ -26,90 +26,87 @@ msgstr "منبع"
 
 #: downloadmanager.py:140
 msgid "Download started"
-msgstr "دریافت آغاز شد"
+msgstr "بارگيرى پايين شروع شد"
 
 #: downloadmanager.py:142 downloadmanager.py:156
 #, python-format
 msgid "%s"
-msgstr "%s"
+msgstr "%"
 
 #: downloadmanager.py:154
 msgid "Download completed"
-msgstr "دریافت کامل شد"
+msgstr "بارگيرى پايين تکمیل شد"
 
 #: downloadmanager.py:158
 msgid "Open"
-msgstr "باز"
+msgstr "باز کن"
 
 #: downloadmanager.py:161
 msgid "Ok"
-msgstr "صحیح"
+msgstr "درست است"
 
 #: downloadmanager.py:162
 #, python-format
 msgid ""
 "File %s downloaded from\n"
 "%s."
-msgstr "پرونده %s از/n %s دریافت شد"
+msgstr "فایل % بارگيرى پايين شداز%."
 
 #: downloadmanager.py:243
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr ""
-"در حال دریافت %s از\n"
-" %s"
+msgstr "در حال بارگيرى پايين % از%."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
-msgstr "برداشتن"
+msgstr "حذف کردن"
 
 #: webactivity.py:113
 msgid "View"
-msgstr "نمایش"
+msgstr "نما"
 
 #: webactivity.py:131 webactivity.py:132
 msgid "blank"
-msgstr "نانوشته"
+msgstr "خالی"
+
+#: webactivity.py:440
+msgid "Download in progress"
+msgstr "در حال بارگیری پائین"
 
 #: webactivity.py:441
-msgid "Download in progress"
-msgstr "در حال دریافت"
-
-#: webactivity.py:442
 msgid "Stopping now will cancel your download"
-msgstr "توقف در این لحظه دریافتی شما را لغو خواهد کرد"
+msgstr "توقف در این لحظه بارگیری پائین شما را لغو خواهد کرد"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "لغو"
 
-#: webactivity.py:446 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "توقف"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "عقب"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "جلو"
 
-#: webtoolbar.py:81
-#, fuzzy
+#: webtoolbar.py:83
 msgid "Bookmark"
-msgstr "نشان"
+msgstr "نشانک"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "بارگذاری دوباره"
 
 #: downloadmanager.py:167
 #, python-format
 msgid "File %s from %s."
-msgstr "( ) % پرونده از ( ) %"
+msgstr "پرونده % از%."
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -125,8 +122,12 @@ msgstr "همه صفحه"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr "طبق را نشان بده"
+msgstr "سینی را نشان بده"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr "طبق را نشان نده"
+msgstr "سینی را پنهان کن"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr "در یادداشت نشان بده"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 20:36+0000\n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
 "PO-Revision-Date: 2008-01-08 19:20+0000\n"
 "Last-Translator: Jaume <jaume@nualart.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgid ""
 "%s."
 msgstr "Descarregant %s des de %s."
 
-#: linkbutton.py:95
+#: linkbutton.py:96
 msgid "Remove"
 msgstr "Suprimir"
 
@@ -90,34 +90,38 @@ msgstr "Veure"
 msgid "blank"
 msgstr "en blanc"
 
-#: webactivity.py:441
+#: webactivity.py:440
 msgid "Download in progress"
 msgstr "Descàrrega en procés"
 
-#: webactivity.py:442
+#: webactivity.py:441
 msgid "Stopping now will cancel your download"
 msgstr "Si l'atures ara, la descàrrega serà cancel·lada"
 
-#: webactivity.py:444
+#: webactivity.py:443
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: webactivity.py:446 webtoolbar.py:169
+#: webactivity.py:445 webtoolbar.py:171
 msgid "Stop"
 msgstr "Atura"
 
-#: webtoolbar.py:51
+#: webtoolbar.py:53
 msgid "Back"
 msgstr "Enrere"
 
-#: webtoolbar.py:58
+#: webtoolbar.py:60
 msgid "Forward"
 msgstr "Endavant"
 
-#: webtoolbar.py:81
+#: webtoolbar.py:83
 msgid "Bookmark"
 msgstr "Adreça d'interès"
 
-#: webtoolbar.py:172
+#: webtoolbar.py:174
 msgid "Reload"
 msgstr "Recarrega"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""
