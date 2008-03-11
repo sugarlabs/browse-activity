@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"PO-Revision-Date: 2008-02-14 04:25-0500\n"
+"Last-Translator: Ruwan Asanka Wasala <wasala@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
+
+#: activity/activity.info:2 webactivity.py:105
+msgid "Browse"
+msgstr "සැරිසරන්න"
+
+#: browser.py:132
+msgid "Source"
+msgstr "මූලාශ්‍රය"
+
+#: downloadmanager.py:140
+msgid "Download started"
+msgstr "භාගතවීම ආරම්භ විය"
+
+#: downloadmanager.py:142 downloadmanager.py:156
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:154
+msgid "Download completed"
+msgstr "භාගතවීම ආරම්භ විය"
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr "ජර්නලයේ පෙන්වන්න "
+
+#: downloadmanager.py:161
+msgid "Ok"
+msgstr "හරි"
+
+#: downloadmanager.py:167
+#, python-format
+msgid "File %s from %s."
+msgstr "%s සිට %s ගොනු."
+
+#: downloadmanager.py:243
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"භාගතවෙමන් පවතී: %s සිට \n"
+"%s."
+
+#: linkbutton.py:96
+msgid "Remove"
+msgstr "ඉවත් කරන්න"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "කුඩා කරන්න"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "විශාල කරන්න"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "මුලු තිරයම"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:113
+msgid "View"
+msgstr "දර්ශනය කරන්න"
+
+#: webactivity.py:131 webactivity.py:132
+msgid "blank"
+msgstr "හිස්"
+
+#: webactivity.py:440
+msgid "Download in progress"
+msgstr "බාගත වෙමින් පවතී"
+
+#: webactivity.py:441
+msgid "Stopping now will cancel your download"
+msgstr "නැවැත්වීම මගින් ඔබේ බාගතවීම අවලංගුවේ"
+
+#: webactivity.py:443
+msgid "Cancel"
+msgstr "අවලංගු කරන්න"
+
+#: webactivity.py:445 webtoolbar.py:171
+msgid "Stop"
+msgstr "නවත්වන්න"
+
+#: webtoolbar.py:53
+msgid "Back"
+msgstr "පසුපසට"
+
+#: webtoolbar.py:60
+msgid "Forward"
+msgstr "ඉදිරියට"
+
+#: webtoolbar.py:83
+msgid "Bookmark"
+msgstr "පොත් සලකුණක් යොදන්න"
+
+#: webtoolbar.py:174
+msgid "Reload"
+msgstr "යළි ලබාගන්න"
