@@ -36,24 +36,19 @@ msgid "Download completed"
 msgstr "Herunterladen vollendet"
 
 #: downloadmanager.py:158
-msgid "Open"
-msgstr "Öffnen"
+msgid "Show in Journal"
+msgstr "Im Journal zeigen"
 
 #: downloadmanager.py:161
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:167
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"Datei %s heruntergeladen von\n"
-"%s."
+msgid "File %s from %s."
+msgstr "Datei %s von %s."
 
 #: downloadmanager.py:243
-#, python-format
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -65,6 +60,26 @@ msgstr ""
 #: linkbutton.py:96
 msgid "Remove"
 msgstr "Entfernen"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Verkleinern"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Vergrößern"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Ablage anzeigen"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Ablage verbergen"
 
 #: webactivity.py:113
 msgid "View"
@@ -106,6 +121,17 @@ msgstr "Lesezeichen"
 msgid "Reload"
 msgstr "Neu laden"
 
+#~ msgid "Open"
+#~ msgstr "Öffnen"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "Datei %s heruntergeladen von\n"
+#~ "%s."
+
 #~ msgid ""
 #~ "Downloading %s from\n"
 #~ "%s. Progress %i%%."
@@ -116,32 +142,3 @@ msgstr "Neu laden"
 #, python-format
 #~ msgid "Web Activity"
 #~ msgstr "Web-Aktivität"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr "Datei %s von %s."
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr "Verkleinern"
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr "Vergrößern"
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr "Vollbild"
-
-#: viewtoolbar.py:87
-msgid "Show Tray"
-msgstr "Ablage anzeigen"
-
-#: viewtoolbar.py:91
-msgid "Hide Tray"
-msgstr "Ablage verbergen"
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr "Im Journal zeigen"
