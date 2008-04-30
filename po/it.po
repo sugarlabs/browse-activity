@@ -40,23 +40,17 @@ msgid "Download completed"
 msgstr "Trasferimento terminato"
 
 #: downloadmanager.py:158
-msgid "Open"
-msgstr "Aperto"
+msgid "Show in Journal"
+msgstr "Mostra nel Diario"
 
 #: downloadmanager.py:161
 msgid "Ok"
 msgstr "Ok"
 
-# Scaricare ? Copiare?
-#: downloadmanager.py:162
+#: downloadmanager.py:167
 #, python-format
-#, fuzzy
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"File %s scaricato da\n"
-"%s."
+msgid "File %s from %s."
+msgstr "File %s da %s."
 
 #: downloadmanager.py:243
 #, python-format
@@ -71,6 +65,26 @@ msgstr ""
 #: linkbutton.py:96
 msgid "Remove"
 msgstr "Elimina"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Zoom indietro"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Zoom avanti"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Mostra cestino"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Nascondi cestino"
 
 #: webactivity.py:113
 msgid "View"
@@ -114,31 +128,15 @@ msgstr "Segnalibro"
 msgid "Reload"
 msgstr "Ricarica"
 
-#: downloadmanager.py:167
+#~ msgid "Open"
+#~ msgstr "Aperto"
+
+# Scaricare ? Copiare?
 #, python-format
-msgid "File %s from %s."
-msgstr "File %s da %s."
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr "Zoom indietro"
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr "Zoom avanti"
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr "Schermo intero"
-
-#: viewtoolbar.py:87
-msgid "Show Tray"
-msgstr "Mostra cestino"
-
-#: viewtoolbar.py:91
-msgid "Hide Tray"
-msgstr "Nascondi cestino"
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr "Mostra nel Diario"
+#, fuzzy
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "File %s scaricato da\n"
+#~ "%s."
