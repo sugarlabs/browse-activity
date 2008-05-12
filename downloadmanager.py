@@ -132,7 +132,7 @@ class Download:
             (web_progress, request, status, message))
 
     def onStateChange(self, web_progress, request, state_flags, status):
-        if state_flags == interfaces.nsIWebProgressListener.STATE_START:
+        if state_flags & interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
             self._object_id = self._dl_jobject.object_id
             
@@ -146,7 +146,7 @@ class Download:
             global _active_downloads
             _active_downloads.append(self)
             
-        elif state_flags == interfaces.nsIWebProgressListener.STATE_STOP:
+        elif state_flags & interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
                 return
 
