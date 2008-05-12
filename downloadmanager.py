@@ -103,7 +103,7 @@ class DownloadManager:
         launcher.saveToDisk(None, False)
         return NS_OK
 
-components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}"',
+components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}',
                                      'Sugar Download Manager',
                                      '@mozilla.org/helperapplauncherdialog;1',
                                      Factory(DownloadManager))
@@ -266,7 +266,7 @@ class Download:
         global _active_downloads
         _active_downloads.remove(self)
 
-components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}"',
+components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
                                      'Sugar Download',
                                      '@mozilla.org/transfer;1',
                                      Factory(Download))
