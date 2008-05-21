@@ -1,6 +1,47 @@
+* First round of pylint fixes (erikos)
+* Fix typo #6962 (DanKrejsa)
+* Fix onStateChange for downloads #6962 (DanKrejsa)
+* Added AUTHORS file (erikos)
+* s/Open/Show in Journal #5958 (erikos)
+* A lot of new translations
+
+86
+
+* Translations release
+
+85
+
+* Remove canceled download from active downloads list #6018 (erikos)
+
+84
+
+* Use ellipsis, #5765 (rwh)
+* Implement can_close(), #5493 (rwh)
+
+82
+
+* Enable gobject threads, fix #5639 (marco)
+
+81
+
+* Use the new show_object_in_journal API of the base activity class
+  to show a downladed object or the view source one in the journal
+  #4909 (cscott)
+
+80
+
 * Update the progress of downloads less often #5449 (tomeu)
 
+79
+* Missing file for: Open an uri of type text/uri-list with browse #5080 
+(erikos)
+
 78
+
+* Give to the DS the ownership of the files we hand to it #5235 (tomeu)
+* Open an uri of type text/uri-list with browse #5080 (erikos)
+* Save view source to SAR/instance #5251 (erikos)
+* Move the profile in SAR/data #5221 (erikos)
 
 77
 
