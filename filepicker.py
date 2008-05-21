@@ -72,7 +72,8 @@ class FilePicker:
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
-                logging.debug('FilePicker.show: %r' % chooser.get_selected_object())
+                logging.debug('FilePicker.show: %r' % 
+                              chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
                     ext = os.path.splitext(jobject.file_path)[1]

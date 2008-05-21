@@ -50,20 +50,22 @@ def _get_history(history):
     return entries_dest
 
 def _set_history(history, history_data):
-    history_internal = history.queryInterface(interfaces.nsISHistoryInternal);
+    history_internal = history.queryInterface(interfaces.nsISHistoryInternal)
     
     if history_internal.count > 0:
-        history_internal.purgeHistory(history_internal.count);
+        history_internal.purgeHistory(history_internal.count)
 
     for entry_dict in history_data:
         logging.debug('entry_dict: %r' % entry_dict)
-        entry_class = components.classes["@mozilla.org/browser/session-history-entry;1"]
+        entry_class = components.classes[ \
+                "@mozilla.org/browser/session-history-entry;1"]
         entry = entry_class.createInstance(interfaces.nsISHEntry)
                   
-        io_service_class = components.classes["@mozilla.org/network/io-service;1"]
+        io_service_class = components.classes[ \
+                "@mozilla.org/network/io-service;1"]
         io_service = io_service_class.getService(interfaces.nsIIOService)
-        entry.setURI(io_service.newURI(entry_dict['url'], None, None));
-        entry.setTitle(entry_dict['title']);
+        entry.setURI(io_service.newURI(entry_dict['url'], None, None))
+        entry.setTitle(entry_dict['title'])
 
         history_internal.addEntry(entry, True)
 

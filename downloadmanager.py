@@ -24,7 +24,6 @@ from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
-import dbus
 
 from sugar.datastore import datastore
 from sugar import profile
@@ -53,12 +52,12 @@ _MIN_PERCENT_UPDATE = 10
 _browser = None
 _activity = None
 _temp_path = '/tmp'
-def init(browser, activity, temp_path):
+def init(browser, activity_instance, temp_path):
     global _browser
     _browser = browser
 
     global _activity
-    _activity = activity
+    _activity = activity_instance
     
     global _temp_path
     _temp_path = temp_path
@@ -70,11 +69,11 @@ def can_quit():
 
 def remove_all_downloads():
     for download in _active_downloads:
-        download._cancelable.cancel(NS_ERROR_FAILURE) 
-        if download._dl_jobject is not None:
-            download._datastore_deleted_handler.remove()
-            datastore.delete(download._dl_jobject.object_id)
-            download._cleanup_datastore_write()        
+        download.cancelable.cancel(NS_ERROR_FAILURE) 
+        if download.dl_jobject is not None:
+            download.datastore_deleted_handler.remove()
+            datastore.delete(download.dl_jobject.object_id)
+            download.cleanup_datastore_write()        
 
 class DownloadManager:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
@@ -87,7 +86,8 @@ class DownloadManager:
         if not default_file:
             default_file = time.time()
             if suggested_file_extension:
-                default_file = '%s.%s' % (default_file, suggested_file_extension)
+                default_file = '%s.%s' % (default_file, 
+                                          suggested_file_extension)
 
         global _temp_path
         if not os.path.exists(_temp_path):
@@ -117,9 +117,10 @@ class Download:
         self._mime_type = mime_info.MIMEType
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
-        self._cancelable = cancelable
-        
-        self._dl_jobject = None
+        self.cancelable = cancelable
+        self.datastore_deleted_handler = None
+
+        self.dl_jobject = None
         self._object_id = None
         self._last_update_time = 0
         self._last_update_percent = 0
@@ -134,11 +135,11 @@ class Download:
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags & interfaces.nsIWebProgressListener.STATE_START:
             self._create_journal_object()            
-            self._object_id = self._dl_jobject.object_id
+            self._object_id = self.dl_jobject.object_id
             
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
-            path, file_name = os.path.split(self._target_file.path)
+            path_, file_name = os.path.split(self._target_file.path)
             alert.props.msg = _('%s'%(file_name)) 
             _activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
@@ -152,10 +153,11 @@ class Download:
 
             self._stop_alert = Alert()
             self._stop_alert.props.title = _('Download completed') 
-            path, file_name = os.path.split(self._target_file.path) 
+            path_, file_name = os.path.split(self._target_file.path) 
             self._stop_alert.props.msg = _('%s'%(file_name)) 
             open_icon = Icon(icon_name='zoom-activity') 
-            self._stop_alert.add_button(gtk.RESPONSE_APPLY, _('Show in Journal'), open_icon) 
+            self._stop_alert.add_button(gtk.RESPONSE_APPLY, 
+                                        _('Show in Journal'), open_icon) 
             open_icon.show() 
             ok_icon = Icon(icon_name='dialog-ok') 
             self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon) 
@@ -164,16 +166,16 @@ class Download:
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
-            self._dl_jobject.metadata['title'] = _('File %s from %s.') % \
+            self.dl_jobject.metadata['title'] = _('File %s from %s.') % \
                                                  (file_name, self._source.spec)
-            self._dl_jobject.metadata['progress'] = '100'
-            self._dl_jobject.file_path = self._target_file.path
+            self.dl_jobject.metadata['progress'] = '100'
+            self.dl_jobject.file_path = self._target_file.path
 
             if self._mime_type == 'application/octet-stream':
                 sniffed_mime_type = mime.get_for_file(self._target_file.path)
-                self._dl_jobject.metadata['mime_type'] = sniffed_mime_type
+                self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
-            datastore.write(self._dl_jobject,
+            datastore.write(self.dl_jobject,
                             transfer_ownership=True,
                             reply_handler=self._internal_save_cb,
                             error_handler=self._internal_save_error_cb,
@@ -183,14 +185,14 @@ class Download:
         global _active_downloads
         if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Download Canceled')
-            self._cancelable.cancel(NS_ERROR_FAILURE) 
+            self.cancelable.cancel(NS_ERROR_FAILURE) 
             try:
-                self._datastore_deleted_handler.remove()
+                self.datastore_deleted_handler.remove()
                 datastore.delete(self._object_id)
-            except:
-                logging.warning('Object has been deleted already')
-            if self._dl_jobject is not None:
-                self._cleanup_datastore_write()
+            except Exception, e:
+                logging.warning('Object has been deleted already %s' % e)
+            if self.dl_jobject is not None:
+                self.cleanup_datastore_write()
             if self._stop_alert is not None:
                 _activity.remove_alert(self._stop_alert)
 
@@ -203,26 +205,26 @@ class Download:
             activity.show_object_in_journal(self._object_id) 
         _activity.remove_alert(alert)
             
-    def _cleanup_datastore_write(self):
+    def cleanup_datastore_write(self):
         global _active_downloads        
         _active_downloads.remove(self)
 
-        if os.path.isfile(self._dl_jobject.file_path):
-            os.remove(self._dl_jobject.file_path)
-        self._dl_jobject.destroy()
-        self._dl_jobject = None
+        if os.path.isfile(self.dl_jobject.file_path):
+            os.remove(self.dl_jobject.file_path)
+        self.dl_jobject.destroy()
+        self.dl_jobject = None
 
     def _internal_save_cb(self):
-        self._cleanup_datastore_write()
+        self.cleanup_datastore_write()
 
     def _internal_save_error_cb(self, err):
         logging.debug("Error saving activity object to datastore: %s" % err)
-        self._cleanup_datastore_write()
+        self.cleanup_datastore_write()
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
                            max_total_progress):
-        path, file_name = os.path.split(self._target_file.path)
+        path_, file_name = os.path.split(self._target_file.path)
         percent = (cur_self_progress  * 100) / max_self_progress
 
         if (time.time() - self._last_update_time) < _MIN_TIME_UPDATE and \
@@ -233,36 +235,38 @@ class Download:
         self._last_update_percent = percent
 
         if percent < 100:
-            self._dl_jobject.metadata['progress'] = str(percent)
-            datastore.write(self._dl_jobject)
+            self.dl_jobject.metadata['progress'] = str(percent)
+            datastore.write(self.dl_jobject)
 
     def _create_journal_object(self):
-        path, file_name = os.path.split(self._target_file.path)
+        path_, file_name = os.path.split(self._target_file.path)
 
-        self._dl_jobject = datastore.create()
-        self._dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') \
+        self.dl_jobject = datastore.create()
+        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') \
                                              %(file_name, self._source.spec)
 
-        self._dl_jobject.metadata['progress'] = '0'
-        self._dl_jobject.metadata['keep'] = '0'
-        self._dl_jobject.metadata['buddies'] = ''
-        self._dl_jobject.metadata['preview'] = ''
-        self._dl_jobject.metadata['icon-color'] = profile.get_color().to_string()
-        self._dl_jobject.metadata['mime_type'] = self._mime_type
-        self._dl_jobject.file_path = ''
-        datastore.write(self._dl_jobject)
+        self.dl_jobject.metadata['progress'] = '0'
+        self.dl_jobject.metadata['keep'] = '0'
+        self.dl_jobject.metadata['buddies'] = ''
+        self.dl_jobject.metadata['preview'] = ''
+        self.dl_jobject.metadata['icon-color'] = \
+                profile.get_color().to_string()
+        self.dl_jobject.metadata['mime_type'] = self._mime_type
+        self.dl_jobject.file_path = ''
+        datastore.write(self.dl_jobject)
 
         bus = dbus.SessionBus()
         obj = bus.get_object(DS_DBUS_SERVICE, DS_DBUS_PATH)
         datastore_dbus = dbus.Interface(obj, DS_DBUS_INTERFACE)
-        self._datastore_deleted_handler = datastore_dbus.connect_to_signal(
+        self.datastore_deleted_handler = datastore_dbus.connect_to_signal(
             'Deleted', self.__datastore_deleted_cb,
-            arg0=self._dl_jobject.object_id)
+            arg0=self.dl_jobject.object_id)
 
     def __datastore_deleted_cb(self, uid):
-        logging.debug('Downloaded entry has been deleted from the datastore: %r' % uid)
+        logging.debug('Downloaded entry has been deleted from the datastore: %r'
+                      % uid)
         # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
-        self._cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
+        self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
         global _active_downloads
         _active_downloads.remove(self)
 

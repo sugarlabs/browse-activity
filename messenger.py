@@ -17,7 +17,6 @@
 #
 
 import logging
-import os
 import dbus
 from dbus.gobject_service import ExportedGObject
 import base64
@@ -36,6 +35,7 @@ class Messenger(ExportedGObject):
         self.members = []
         self.entered = False
         self.model = model
+        self.bus_name = None
         self.tube.watch_participants(self.participant_change_cb)
 
     def participant_change_cb(self, added, removed):
@@ -51,8 +51,7 @@ class Messenger(ExportedGObject):
             try:
                 self.members.remove(self.tube.participants[handle])
             except ValueError:
-                # already absent
-                pass
+                _logger.debug('Remove member %r - already absent', handle)
                         
         if not self.entered:
             self.tube.add_signal_receiver(self._add_link_receiver, '_add_link',
@@ -80,9 +79,9 @@ class Messenger(ExportedGObject):
         a_ids.pop()                    
         for link in self.model.data['shared_links']:
             if link['hash'] not in a_ids:
-                    self.tube.get_object(sender, PATH).send_link(
-                        link['hash'], link['url'], link['title'], link['color'],
-                        link['owner'], link['thumb'], link['timestamp'])
+                self.tube.get_object(sender, PATH).send_link(
+                    link['hash'], link['url'], link['title'], link['color'],
+                    link['owner'], link['thumb'], link['timestamp'])
             
     def error_sync(self, e, when):    
         _logger.error('Error %s: %s'%(when, e))
@@ -95,20 +94,21 @@ class Messenger(ExportedGObject):
         # links the caller wants from me
         for link in self.model.data['shared_links']:
             if link['hash'] not in b_ids:
-                    self.tube.get_object(sender, PATH).send_link(
-                        link['hash'], link['url'], link['title'], link['color'],
-                        link['owner'], link['thumb'], link['timestamp'])
+                self.tube.get_object(sender, PATH).send_link(
+                    link['hash'], link['url'], link['title'], link['color'],
+                    link['owner'], link['thumb'], link['timestamp'])
         a_ids = self.model.get_links_ids()
         a_ids.append('')
         # links I want from the caller
         return (a_ids, self.bus_name)               
         
-    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssssd', out_signature='')
-    def send_link(self, id, url, title, color, owner, buffer, timestamp):
+    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssssd', 
+                         out_signature='')
+    def send_link(self, identifier, url, title, color, owner, buf, timestamp):
         '''Send link'''
         a_ids = self.model.get_links_ids()
-        if id not in a_ids:
-            thumb = base64.b64decode(buffer)
+        if identifier not in a_ids:
+            thumb = base64.b64decode(buf)
             self.model.add_link(url, title, thumb, owner, color, timestamp)
                     
     @dbus.service.signal(IFACE, signature='sssssd')
@@ -116,11 +116,12 @@ class Messenger(ExportedGObject):
         '''Signal to send the link information (add)'''
         _logger.debug('Add Link: %s '%url)
         
-    def _add_link_receiver(self, url, title, color, owner, buffer, timestamp, sender=None):
+    def _add_link_receiver(self, url, title, color, owner, buf, timestamp, 
+                           sender=None):
         '''Member sent a link'''
         handle = self.tube.bus_name_to_handle[sender]            
         if self.tube.self_handle != handle:
-            thumb = base64.b64decode(buffer)
-            self.model.add_link(url, title, thumb, owner, color, timestamp)            
+            thumb = base64.b64decode(buf)
+            self.model.add_link(url, title, thumb, owner, color, timestamp) 
             _logger.debug('Added link: %s to linkbar.'%(url))
     

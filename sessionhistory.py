@@ -24,7 +24,8 @@ class HistoryListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsISHistoryListener
 
     __gsignals__ = {
-        'session-history-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+        'session-history-changed': (gobject.SIGNAL_RUN_FIRST, 
+                                    gobject.TYPE_NONE,
                                     ([int])),
         'session-link-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
                                     ([str]))
@@ -33,7 +34,8 @@ class HistoryListener(gobject.GObject):
     def __init__(self, browser):
         gobject.GObject.__init__(self)
 
-        self._wrapped_self = xpcom.server.WrapObject(self, interfaces.nsISHistoryListener)
+        self._wrapped_self = xpcom.server.WrapObject( \
+                self, interfaces.nsISHistoryListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
 
         self._session_history = browser.web_navigation.sessionHistory

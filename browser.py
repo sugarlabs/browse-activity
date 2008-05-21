@@ -69,27 +69,33 @@ class GetSourceListener(gobject.GObject):
 
 class Browser(WebView):
 
-    AGENT_SHEET = os.path.join(activity.get_bundle_path(), 'agent-stylesheet.css')
-    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko', 'user-stylesheet.css')
+    AGENT_SHEET = os.path.join(activity.get_bundle_path(), 
+                               'agent-stylesheet.css')
+    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko', 
+                              'user-stylesheet.css')
 
     def __init__(self):
         WebView.__init__(self)
 
-        io_service_class = components.classes["@mozilla.org/network/io-service;1"]
+        self._jobject = None
+
+        io_service_class = components.classes[ \
+                "@mozilla.org/network/io-service;1"]
         io_service = io_service_class.getService(interfaces.nsIIOService)
 
         cls = components.classes['@mozilla.org/content/style-sheet-service;1']
         style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
 
         if os.path.exists(Browser.AGENT_SHEET):
-            agent_sheet_uri = io_service.newURI('file:///' + Browser.AGENT_SHEET,
-                    None, None)
+            agent_sheet_uri = io_service.newURI('file:///' + 
+                                                Browser.AGENT_SHEET,
+                                                None, None)
             style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
                     interfaces.nsIStyleSheetService.AGENT_SHEET)
 
         if os.path.exists(Browser.USER_SHEET):
             user_sheet_uri = io_service.newURI('file:///' + Browser.USER_SHEET,
-                    None, None)
+                                               None, None)
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
         
@@ -100,10 +106,12 @@ class Browser(WebView):
         return sessionstore.set_session(self, data)
 
     def get_source(self):
-        cls = components.classes['@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
+        cls = components.classes[ \
+                '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
         persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
         # get the source from the cache
-        persist.persistFlags = interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
+        persist.persistFlags = \
+                interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
 
         progresslistener = GetSourceListener(persist)
         persist.progressListener = xpcom.server.WrapObject(
@@ -122,7 +130,7 @@ class Browser(WebView):
         self._jobject.file_path = file_path
         
     def _have_source_cb(self, progress_listener):
-        logging.debug("Finished getting source - writing to datastore")                    
+        logging.debug("Finished getting source - writing to datastore")      
         datastore.write(self._jobject,
                         reply_handler=self._internal_save_cb,
                         error_handler=self._internal_save_error_cb)
@@ -152,21 +160,26 @@ class Browser(WebView):
     def _cleanup_jobject(self):
         if self._jobject:
             if os.path.isfile(self._jobject.file_path):
-                logging.debug('_cleanup_jobject: removing %r' % self._jobject.file_path)
+                logging.debug('_cleanup_jobject: removing %r' % 
+                              self._jobject.file_path)
                 os.remove(self._jobject.file_path)            
             self._jobject.destroy()
             self._jobject = None
 
     def zoom_in(self):
-        contentViewer = self.doc_shell.queryInterface(interfaces.nsIDocShell).contentViewer
+        contentViewer = self.doc_shell.queryInterface( \
+                interfaces.nsIDocShell).contentViewer
         if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface(interfaces.nsIMarkupDocumentViewer)
+            markupDocumentViewer = contentViewer.queryInterface( \
+                    interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom += _ZOOM_AMOUNT
 
     def zoom_out(self):
-        contentViewer = self.doc_shell.queryInterface(interfaces.nsIDocShell).contentViewer
+        contentViewer = self.doc_shell.queryInterface( \
+                interfaces.nsIDocShell).contentViewer
         if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface(interfaces.nsIMarkupDocumentViewer)
+            markupDocumentViewer = contentViewer.queryInterface( \
+                    interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
 
 class XULDialog(gtk.Window):

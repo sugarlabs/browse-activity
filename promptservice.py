@@ -54,10 +54,11 @@ class PromptService:
         logging.debug('nsIPromptService.promptPassword()')
     
     def promptUsernameAndPassword(self, parent, dialogTitle, text, username,
-            password, checkMsg, checkState):
+                                  password, checkMsg, checkState):
         logging.debug('nsIPromptService.promptUsernameAndPassword()')
     
-    def select(self, parent, dialogTitle, text, count, selectList, outSelection):
+    def select(self, parent, dialogTitle, text, count, selectList, 
+               outSelection):
         logging.debug('nsIPromptService.select()')
 
 

@@ -16,7 +16,6 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
-import os
 import json
 import sha
 import gobject
@@ -48,8 +47,9 @@ class Model(gobject.GObject):
                                          {'hash':sha.new(str(url)).hexdigest(),
                                           'url':str(url), 'title':str(title),
                                           'thumb':base64.b64encode(thumb),
-                                          'owner':str(owner), 'color':str(color),
-                                          'timestamp':float(timestamp)} )        
+                                          'owner':str(owner), 
+                                          'color':str(color),
+                                          'timestamp':float(timestamp)})
         self.emit('add_link', index)
 
     def remove_link(self, hash):

@@ -15,8 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import os
-import logging
 from gettext import gettext as _
 
 import gobject
@@ -27,7 +25,6 @@ from xpcom import components
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
 from sugar._sugarext import AddressEntry
-import pango
 
 import sessionhistory
 import progresslistener
@@ -48,6 +45,8 @@ class WebToolbar(gtk.Toolbar):
         gtk.Toolbar.__init__(self)
 
         self._browser = browser
+        
+        self._loading = False
 
         self._back = ToolButton('go-previous-paired')
         self._back.set_tooltip(_('Back'))
@@ -86,13 +85,16 @@ class WebToolbar(gtk.Toolbar):
         self._link_add.show()
         
         progress_listener = progresslistener.get_instance()
-        progress_listener.connect('location-changed', self._location_changed_cb)
+        progress_listener.connect('location-changed', 
+                                  self._location_changed_cb)
         progress_listener.connect('loading-start', self._loading_start_cb)
         progress_listener.connect('loading-stop', self._loading_stop_cb)
-        progress_listener.connect('loading-progress', self._loading_progress_cb)
+        progress_listener.connect('loading-progress', 
+                                  self._loading_progress_cb)
 
         session_history = sessionhistory.get_instance()
-        session_history.connect('session-history-changed', self._session_history_changed_cb)
+        session_history.connect('session-history-changed', 
+                                self._session_history_changed_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -158,7 +160,8 @@ class WebToolbar(gtk.Toolbar):
 
     def _stop_and_reload_cb(self, button):
         if self._loading:
-            self._browser.web_navigation.stop(interfaces.nsIWebNavigation.STOP_ALL)
+            self._browser.web_navigation.stop( \
+                    interfaces.nsIWebNavigation.STOP_ALL)
         else:
             flags = interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
             self._browser.web_navigation.reload(flags)
@@ -174,6 +177,7 @@ class WebToolbar(gtk.Toolbar):
             self._stop_and_reload.set_tooltip(_('Reload'))
 
     def _reload_session_history(self, current_page_index=None):
+        session_history = self._browser.web_navigation.sessionHistory
         if current_page_index is None:
             current_page_index = session_history.index
 
@@ -181,7 +185,6 @@ class WebToolbar(gtk.Toolbar):
             for menu_item in palette.menu.get_children():
                 palette.menu.remove(menu_item)
 
-        session_history = self._browser.web_navigation.sessionHistory
         if current_page_index > _MAX_HISTORY_ENTRIES:
             bottom = current_page_index - _MAX_HISTORY_ENTRIES
         else:

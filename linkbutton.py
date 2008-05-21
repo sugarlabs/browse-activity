@@ -22,11 +22,9 @@ from gettext import gettext as _
 import rsvg
 import re
 import gc
-import pango
 
 from sugar.graphics.palette import Palette
 from sugar.graphics.tray import TrayButton
-from sugar.graphics.icon import Icon
 from sugar.graphics import style
 
 
@@ -36,18 +34,18 @@ class LinkButton(TrayButton, gobject.GObject):
         'remove_link': (gobject.SIGNAL_RUN_FIRST,
                         gobject.TYPE_NONE, ([str]))
         }
-    def __init__(self, url, buffer, color, title, owner, index, hash):
+    def __init__(self, url, buf, color, title, owner, index, hash):
         TrayButton.__init__(self)
-        self.set_image(buffer, color.split(',')[1], color.split(',')[0])
+        self.set_image(buf, color.split(',')[1], color.split(',')[0])
 
         self.hash = hash
         info = title +'\n'+ owner     
         self.setup_rollover_options(info)        
         
-    def set_image(self, buffer, fill='#0000ff', stroke='#4d4c4f'):
+    def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):
         img = gtk.Image()                    
         loader = gtk.gdk.PixbufLoader()
-        loader.write(buffer)
+        loader.write(buf)
         loader.close()
         pixbuf = loader.get_pixbuf()
         del loader            

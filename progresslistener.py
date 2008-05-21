@@ -36,7 +36,11 @@ class ProgressListener(gobject.GObject):
     def __init__(self, browser):
         gobject.GObject.__init__(self)
 
-        self._wrapped_self = xpcom.server.WrapObject(self, interfaces.nsIWebProgressListener)
+        self.total_requests = 0
+        self.completed_requests = 0
+
+        self._wrapped_self = xpcom.server.WrapObject( \
+                self, interfaces.nsIWebProgressListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
 
         mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
