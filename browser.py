@@ -34,6 +34,7 @@ from sugar import env
 from sugar.activity import activity
 
 import sessionstore
+from palettes import ContentInvoker
 
 _ZOOM_AMOUNT = 0.1
 
@@ -41,8 +42,7 @@ class GetSourceListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
     
     __gsignals__ = {    
-        'finished':     (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([]))
+        'finished':     (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ([]))
     }
     
     def __init__(self, persist):
@@ -98,7 +98,11 @@ class Browser(WebView):
                                                None, None)
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
-        
+
+        listener = xpcom.server.WrapObject(ContentInvoker(),
+                                           interfaces.nsIDOMEventListener)
+        self.get_window_root().addEventListener('click', listener, False)
+
     def get_session(self):
         return sessionstore.get_session(self)
 
