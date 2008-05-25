@@ -14,12 +14,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import logging
+import os
+import tempfile
+import urlparse
 from gettext import gettext as _
 
 import gtk
-import xpcom
-from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 
@@ -54,9 +54,21 @@ class ContentInvoker(Invoker):
             if target.firstChild:
                 title = target.firstChild.nodeValue
             else:
-                title = ''
+                title = None
 
             self.palette = LinkPalette(title, target.href)
+            self.notify_right_click()
+        elif target.tagName.lower() == 'img':
+            if target.title:
+                title = target.title
+            elif target.title:
+                title = target.alt
+            elif target.name:
+                title = target.name
+            else:
+                title = os.path.basename(urlparse.urlparse(target.src).path)
+
+            self.palette = ImagePalette(title, target.src)
             self.notify_right_click()
 
 class LinkPalette(Palette):
@@ -65,8 +77,11 @@ class LinkPalette(Palette):
 
         self._url = url
 
-        self.props.primary_text = title
-        self.props.secondary_text = url
+        if title is not None:
+            self.props.primary_text = title
+            self.props.secondary_text = url
+        else:
+            self.props.primary_text = url
 
         menu_item = MenuItem(_('Copy'))
         icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
@@ -101,4 +116,56 @@ class LinkPalette(Palette):
 
     def __clipboard_clear_func_cb(self, clipboard, data):
         pass
+
+class ImagePalette(Palette):
+    def __init__(self, title, url):
+        Palette.__init__(self)
+
+        self._url = url
+        self._temp_file = None
+
+        self.props.primary_text = title
+        self.props.secondary_text = url
+
+        menu_item = MenuItem(_('Copy'))
+        icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
+                    icon_size=gtk.ICON_SIZE_MENU)
+        menu_item.set_image(icon)
+        menu_item.connect('activate', self.__copy_activate_cb)
+        self.menu.append(menu_item)
+        menu_item.show()
+
+    def __copy_activate_cb(self, menu_item):
+        clipboard = gtk.Clipboard()
+        clipboard.set_with_data([('text/uri-list', 0, 0)],
+                                self.__clipboard_get_func_cb,
+                                self.__clipboard_clear_func_cb)
+
+    def __clipboard_get_func_cb(self, clipboard, selection_data, info, data):
+        file_name = urlparse.urlparse(self._url).path
+        extension = None
+        if '.' in file_name:
+            extension = file_name.split('.')[1]
+        fd, self._temp_file = tempfile.mkstemp(suffix='.' + extension)
+        del fd
+
+        cls = components.classes['@mozilla.org/network/io-service;1']
+        io_service = cls.getService(interfaces.nsIIOService)
+        uri = io_service.newURI(self._url, None, None)
+
+        cls = components.classes['@mozilla.org/file/local;1']
+        target_file = cls.createInstance(interfaces.nsILocalFile);
+        target_file.initWithPath(self._temp_file)
+		
+        cls = components.classes[ \
+                '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
+        persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
+        persist.persistFlags = 1 # PERSIST_FLAGS_FROM_CACHE
+        persist.saveURI(uri, None, None, None, None, target_file)
+
+        selection_data.set_uris(['file://' + self._temp_file])
+
+    def __clipboard_clear_func_cb(self, clipboard, data):
+        if os.path.exists(self._temp_file):
+            os.remove(self._temp_file)
 
