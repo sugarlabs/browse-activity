@@ -31,9 +31,10 @@ from sugar import profile
 class ContentInvoker(Invoker):
     _com_interfaces_ = interfaces.nsIDOMEventListener
 
-    def __init__(self):
+    def __init__(self, browser):
         Invoker.__init__(self)
         self._position_hint = self.AT_CURSOR
+        self._browser = browser
 
     def get_default_position(self):
         return self.AT_CURSOR
@@ -56,7 +57,7 @@ class ContentInvoker(Invoker):
             else:
                 title = None
 
-            self.palette = LinkPalette(title, target.href)
+            self.palette = LinkPalette(self._browser, title, target.href)
             self.notify_right_click()
         elif target.tagName.lower() == 'img':
             if target.title:
@@ -72,16 +73,22 @@ class ContentInvoker(Invoker):
             self.notify_right_click()
 
 class LinkPalette(Palette):
-    def __init__(self, title, url):
+    def __init__(self, browser, title, url):
         Palette.__init__(self)
 
         self._url = url
+        self._browser = browser
 
         if title is not None:
             self.props.primary_text = title
             self.props.secondary_text = url
         else:
             self.props.primary_text = url
+
+        menu_item = MenuItem(_('Follow link'), 'edit-copy')
+        menu_item.connect('activate', self.__follow_activate_cb)
+        self.menu.append(menu_item)
+        menu_item.show()
 
         menu_item = MenuItem(_('Copy'))
         icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
@@ -90,6 +97,10 @@ class LinkPalette(Palette):
         menu_item.connect('activate', self.__copy_activate_cb)
         self.menu.append(menu_item)
         menu_item.show()
+
+    def __follow_activate_cb(self, menu_item):
+        self._browser.load_uri(self._url)
+        self._browser.grab_focus()
 
     def __copy_activate_cb(self, menu_item):
         clipboard = gtk.Clipboard()

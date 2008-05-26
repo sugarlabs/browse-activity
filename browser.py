@@ -99,7 +99,7 @@ class Browser(WebView):
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
 
-        listener = xpcom.server.WrapObject(ContentInvoker(),
+        listener = xpcom.server.WrapObject(ContentInvoker(self),
                                            interfaces.nsIDOMEventListener)
         self.get_window_root().addEventListener('click', listener, False)
 
