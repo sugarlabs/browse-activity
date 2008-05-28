@@ -64,6 +64,7 @@ import hulahop
 hulahop.startup(_profile_path)
 
 from browser import Browser
+from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
@@ -81,7 +82,7 @@ SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
-_TOOLBAR_BROWSE = 1
+_TOOLBAR_BROWSE = 2
 
 _logger = logging.getLogger('web-activity')
 
@@ -99,7 +100,10 @@ class WebActivity(activity.Activity):
         progresslistener.init(self._browser)
 
         toolbox = activity.ActivityToolbox(self)
-        activity_toolbar = toolbox.get_activity_toolbar()
+
+        self._edit_toolbar = EditToolbar(self._browser)
+        toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
+        self._edit_toolbar.show()
 
         self.toolbar = WebToolbar(self._browser)
         toolbox.add_toolbar(_('Browse'), self.toolbar)
