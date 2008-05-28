@@ -158,14 +158,14 @@ class ImagePalette(Palette):
         if '.' in file_name:
             extension = file_name.split('.')[1]
         fd, self._temp_file = tempfile.mkstemp(suffix='.' + extension)
-        del fd
+        os.close(fd)
 
         cls = components.classes['@mozilla.org/network/io-service;1']
         io_service = cls.getService(interfaces.nsIIOService)
         uri = io_service.newURI(self._url, None, None)
 
         cls = components.classes['@mozilla.org/file/local;1']
-        target_file = cls.createInstance(interfaces.nsILocalFile);
+        target_file = cls.createInstance(interfaces.nsILocalFile)
         target_file.initWithPath(self._temp_file)
 		
         cls = components.classes[ \
