@@ -70,6 +70,7 @@ from viewtoolbar import ViewToolbar
 import downloadmanager
 import sessionhistory 
 import progresslistener
+import filepicker
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
@@ -98,6 +99,7 @@ class WebActivity(activity.Activity):
         downloadmanager.init(self._browser, self, temp_path)
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
+        filepicker.init(self)
 
         toolbox = activity.ActivityToolbox(self)
 

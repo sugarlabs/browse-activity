@@ -29,6 +29,7 @@ from xpcom.server.factory import Factory
 from sugar.graphics.objectchooser import ObjectChooser
 
 _temp_files_to_clean = []
+_browser_window = None
 
 def cleanup_temp_files():
     for temp_file in _temp_files_to_clean:
@@ -55,20 +56,23 @@ class FilePicker:
     def init(self, parent, title, mode):
         self._title = title
         self._file = None
+
         """
+        Would be nice to get the window xid with something like this, but
+        couldn't find how.
+        
         cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
         window_watcher = cls.getService(interfaces.nsIWindowWatcher)
         chrome = window_watcher.getChromeForWindow(parent)
         self._parent = chrome.web_view.get_toplevel()
         """
-        self._parent = None
+        self._parent = _browser_window
         
         if mode != interfaces.nsIFilePicker.modeOpen:
             raise xpcom.COMException(NS_ERROR_NOT_IMPLEMENTED)
 
     def show(self):
-        chooser = ObjectChooser(self._title, self._parent,
-                                gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT)
+        chooser = ObjectChooser(parent=self._parent)
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
@@ -144,4 +148,8 @@ components.registrar.registerFactory(FilePicker.cid,
                                      FilePicker.description,
                                      '@mozilla.org/filepicker;1',
                                      Factory(FilePicker))
+
+def init(main_window):
+    global _browser_window
+    _browser_window = main_window.get_toplevel()
 
