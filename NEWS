@@ -1,4 +1,13 @@
+89
+
+* Make the object chooser transient on the activity window. (tomeu)
+
 88
+
+* Add Edit toolbar (tomeu)
+* Add Follow link item to link palette (tomeu)
+* Add palette for images (tomeu)
+* Add a simple palette for links with an option to copy to the clipboard (tomeu)
 
 87
 
