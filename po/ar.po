@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-03-11 12:10-0400\n"
+"POT-Creation-Date: 2008-05-29 00:30-0400\n"
+"PO-Revision-Date: 2008-06-06 09:29-0400\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,46 +17,41 @@ msgstr ""
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:109
 msgid "Browse"
 msgstr "تصفّح"
 
-#: browser.py:132
+#: browser.py:144
 msgid "Source"
 msgstr "المصدر"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
 msgstr "بدأ التنزيل"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
 msgstr "اكتمل التنزيل"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "افتح"
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "اعرض في اليوميات"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
 msgstr "حسنا"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:169
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"نُزِّل الملف %s من\n"
-"%s."
+msgid "File %s from %s."
+msgstr "ملف %s مِن %s."
 
-#: downloadmanager.py:243
-#, python-format
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -65,65 +60,17 @@ msgstr ""
 "يُنزِّل %s من\n"
 "%s."
 
-#: linkbutton.py:96
+#: linkbutton.py:94
 msgid "Remove"
 msgstr "أزِل"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "عرض"
+#: palettes.py:88
+msgid "Follow link"
+msgstr "اتبع الوصلة"
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "فارغ"
-
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr "يجري التزيل"
-
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr "التوقف الآن سيلغي تنزيلك"
-
-#: webactivity.py:443
-msgid "Cancel"
-msgstr "ألغِ"
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr "قف"
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr "للخلف"
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr "للأمام"
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr "علِّم"
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr "أعد التحميل"
-
-#~ msgid ""
-#~ "Downloading %s from\n"
-#~ "%s. Progress %i%%."
-#~ msgstr ""
-#~ "يجري تنزيل %s من\n"
-#~ "%s. التقدم %i%%."
-
-#, python-format
-#~ msgid "Web Activity"
-#~ msgstr "نشاط الوِب"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr "ملف %s مِن %s."
+#: palettes.py:93 palettes.py:141
+msgid "Copy"
+msgstr "انسخ"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -145,6 +92,68 @@ msgstr "أظهر الطبق"
 msgid "Hide Tray"
 msgstr "اخفِ الطبق"
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr "اعرض في اليوميات"
+#: webactivity.py:105
+msgid "Edit"
+msgstr "تحرير"
+
+#: webactivity.py:117
+msgid "View"
+msgstr "عرض"
+
+#: webactivity.py:136 webactivity.py:137
+msgid "blank"
+msgstr "فارغ"
+
+#: webactivity.py:449
+msgid "Download in progress"
+msgstr "يجري التزيل"
+
+#: webactivity.py:450
+msgid "Stopping now will cancel your download"
+msgstr "التوقف الآن سيلغي تنزيلك"
+
+#: webactivity.py:452
+msgid "Cancel"
+msgstr "ألغِ"
+
+#: webactivity.py:454 webtoolbar.py:174
+msgid "Stop"
+msgstr "قف"
+
+#: webtoolbar.py:52
+msgid "Back"
+msgstr "للخلف"
+
+#: webtoolbar.py:59
+msgid "Forward"
+msgstr "للأمام"
+
+#: webtoolbar.py:82
+msgid "Bookmark"
+msgstr "علِّم"
+
+#: webtoolbar.py:177
+msgid "Reload"
+msgstr "أعد التحميل"
+
+#~ msgid "Open"
+#~ msgstr "افتح"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "نُزِّل الملف %s من\n"
+#~ "%s."
+
+#~ msgid ""
+#~ "Downloading %s from\n"
+#~ "%s. Progress %i%%."
+#~ msgstr ""
+#~ "يجري تنزيل %s من\n"
+#~ "%s. التقدم %i%%."
+
+#, python-format
+#~ msgid "Web Activity"
+#~ msgstr "نشاط الوِب"
