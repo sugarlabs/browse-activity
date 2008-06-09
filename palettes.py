@@ -27,6 +27,7 @@ from sugar.graphics.palette import Palette, Invoker
 from sugar.graphics.menuitem import MenuItem
 from sugar.graphics.icon import Icon
 from sugar import profile
+from sugar.activity import activity
 
 class ContentInvoker(Invoker):
     _com_interfaces_ = interfaces.nsIDOMEventListener
@@ -153,12 +154,19 @@ class ImagePalette(Palette):
                                 self.__clipboard_clear_func_cb)
 
     def __clipboard_get_func_cb(self, clipboard, selection_data, info, data):
-        file_name = urlparse.urlparse(self._url).path
-        extension = None
+        file_name = os.path.basename(urlparse.urlparse(self._url).path)
         if '.' in file_name:
-            extension = file_name.split('.')[1]
-        fd, self._temp_file = tempfile.mkstemp(suffix='.' + extension)
+            base_name, extension = file_name.split('.')
+            extension = '.' + extension
+        else:
+            base_name = file_name
+            extension = ''
+
+        temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        fd, self._temp_file = tempfile.mkstemp(dir=temp_path, prefix=base_name,
+                                               suffix=extension)
         os.close(fd)
+        os.chmod(self._temp_file, 0664)
 
         cls = components.classes['@mozilla.org/network/io-service;1']
         io_service = cls.getService(interfaces.nsIIOService)
