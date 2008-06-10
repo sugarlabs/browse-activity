@@ -83,6 +83,11 @@ class Browser(WebView):
                 "@mozilla.org/network/io-service;1"]
         io_service = io_service_class.getService(interfaces.nsIIOService)
 
+        # Use xpcom to turn off "offline mode" detection, which disables
+        # access to localhost for no good reason.  (Trac #6250.)
+        io_service2 = io_service_class.getService(interfaces.nsIIOService2)
+        io_service2.manageOfflineStatus = False
+
         cls = components.classes['@mozilla.org/content/style-sheet-service;1']
         style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
 
