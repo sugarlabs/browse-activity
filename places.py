@@ -16,7 +16,7 @@
 
 import os
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from sugar.activity import activity
 
@@ -31,6 +31,9 @@ class Place(object):
         self.last_visit = datetime.now()
 
 class SqliteStore(object):
+    MAX_SEARCH_MATCHES = 20
+    EXPIRE_DAYS = 30
+    
     def __init__(self):
         db_path = os.path.join(activity.get_activity_root(),
                                'data', 'places.db')
@@ -48,13 +51,16 @@ class SqliteStore(object):
                              last_visit  timestamp
                            );
                         """)
+        else:
+            self._cleanup()
 
     def search(self, text):
         cur = self._con.cursor()
 
         text = '%' + text + '%'
         cur.execute('select * from places where uri like ? or title like ? ' \
-                    'order by visits desc limit 0, 30', (text, text))
+                    'order by visits desc limit 0, ?',
+                    (text, text, self.MAX_SEARCH_MATCHES))
 
         result = [self._place_from_row(row) for row in cur]
 
@@ -97,9 +103,20 @@ class SqliteStore(object):
 
     def _place_from_row(self, row):
         place = Place()
+
         place.uri, place.title, place.gecko_flags, \
             place.visits, place.last_visit = row
+
         return place
+
+    def _cleanup(self):
+        cur = self._con.cursor()
+
+        date = datetime.now() - timedelta(days=self.EXPIRE_DAYS)
+        cur.execute('delete from places where last_visit < ?', (date,))
+
+        self._con.commit()
+        cur.close()
 
 def get_store():
     global _store
