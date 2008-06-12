@@ -26,6 +26,7 @@ class Place(object):
     def __init__(self, uri=None):
         self.uri = uri
         self.title = None
+        self.bookmark = False
         self.gecko_flags = 0
         self.visits = 0
         self.last_visit = datetime.now()
@@ -46,6 +47,7 @@ class SqliteStore(object):
             cur.execute("""create table places (
                              uri         text,
                              title       text,
+                             bookmark    boolean,
                              gecko_flags integer,
                              visits      integer,
                              last_visit  timestamp
@@ -71,9 +73,9 @@ class SqliteStore(object):
     def add_place(self, place):
         cur = self._con.cursor()
 
-        cur.execute('insert into places values (?, ?, ?, ?, ?)', \
-                    (place.uri, place.title, place.gecko_flags,
-                     place.visits, place.last_visit))
+        cur.execute('insert into places values (?, ?, ?, ?, ?, ?)', \
+                    (place.uri, place.title, place.bookmark,
+                     place.gecko_flags, place.visits, place.last_visit))
 
         self._con.commit()
         cur.close()
@@ -94,9 +96,9 @@ class SqliteStore(object):
         cur = self._con.cursor()
 
         cur.execute('update places set title=?, gecko_flags=?, '
-                    'visits=?, last_visit=? where uri=?',
+                    'visits=?, last_visit=?, bookmark=? where uri=?',
                     (place.title, place.gecko_flags, place.visits,
-                     place.last_visit, place.uri))
+                     place.last_visit, place.bookmark, place.uri))
 
         self._con.commit()
         cur.close()
@@ -104,7 +106,7 @@ class SqliteStore(object):
     def _place_from_row(self, row):
         place = Place()
 
-        place.uri, place.title, place.gecko_flags, \
+        place.uri, place.title, place.bookmark, place.gecko_flags, \
             place.visits, place.last_visit = row
 
         return place
