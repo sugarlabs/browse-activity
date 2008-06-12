@@ -20,8 +20,6 @@ from xpcom.server.factory import Factory
 
 import places
 
-_global_history = None
-
 class GlobalHistory:
     _com_interfaces_ = interfaces.nsIGlobalHistory, \
                        interfaces.nsIGlobalHistory2, \
