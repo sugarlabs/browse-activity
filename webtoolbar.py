@@ -159,7 +159,6 @@ class WebEntry(AddressEntry):
 
     def __key_press_event_cb(self, entry, event):
         keyname = gtk.gdk.keyval_name(event.keyval)
-        logging.info(keyname)
 
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()

@@ -41,13 +41,13 @@ class GlobalHistory:
         return place != None
 
     def addURI(self, uri, redirect, toplevel, referrer):
-        place = places.Place(uri.spec)
-
-        place.redirect = redirect
-        place.toplevel = toplevel
-        place.referrer = referrer
-
-        self._store.add_place(place)        
+        place = self._store.lookup_place(uri.spec)
+        if place:
+            place.visits += 1
+            self._store.update_place(place)            
+        else:
+            place = places.Place(uri.spec)
+            self._store.add_place(place)
 
     def setPageTitle(self, uri, title):
         place = self._store.lookup_place(uri.spec)
@@ -70,10 +70,6 @@ class GlobalHistory:
         if place:
             place.gecko_flags = flags
             self._store.update_place(place)        
-
-def init():
-    global _global_history
-    _global_history = GlobalHistory()
 
 components.registrar.registerFactory(GlobalHistory.cid,
                                      GlobalHistory.description,

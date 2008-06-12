@@ -14,59 +14,81 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import os
+import sqlite3
+
+from sugar.activity import activity
+
 _store = None
 
 class Place(object):
-    def __init__(self, uri):
+    def __init__(self, uri=None):
         self.uri = uri
-        self.redirect = False
-        self.toplevel = True
-        self.referrer = None
         self.title = None
         self.gecko_flags = 0
         self.visits = 0
 
-class MemoryStore(object):
+class SqliteStore(object):
     def __init__(self):
-        self._places = {}
+        db_path = os.path.join(activity.get_activity_root(),
+                               'data', 'places.db')
+
+        self._con = sqlite3.connect(db_path)
+        cur = self._con.cursor()
+
+        cur.execute('select * from sqlite_master where name == "places"')
+        if cur.fetchone() == None:
+            cur.execute("""create table places (
+                             uri         TEXT,
+                             title       TEXT,
+                             gecko_flags INTEGER,
+                             visits      INTEGER
+                           );
+                        """)
 
     def search(self, text):
-        result = []
-        for place in self._places.values():
-            if text in place.uri or text in place.title:
-                result.append(place)
-        return result
+        cur = self._con.cursor()
+
+        text = '%' + text + '%'
+        cur.execute('select * from places where uri like ? or title like ? ' \
+                    'order by visits desc limit 0, 30', (text, text))
+
+        return [_place_from_row(row) for row in cur]
 
     def add_place(self, place):
-        self._places[place.uri] = place
+        cur = self._con.cursor()
+
+        cur.execute('insert into places values (?, ?, ?, ?)', \
+                    (place.uri, place.title, place.gecko_flags, place.visits))
+
+        self._con.commit()
 
     def lookup_place(self, uri):
-        try:
-            return self._places[uri]
-        except KeyError:
+        cur = self._con.cursor()
+        cur.execute('select * from places where uri=?', (uri,))
+
+        row = cur.fetchone()
+        if row:
+            return _place_from_row(row)
+        else:
             return None
 
     def update_place(self, place):
-        self._places[place.uri] = place
+        cur = self._con.cursor()
 
-class SQliteStore(object):
-    def __init__(self):
-        pass
+        cur.execute('update places set title=?, gecko_flags=?, visits=? ' \
+                    'where uri=?', (place.title, place.gecko_flags,
+                    place.visits, place.uri))
 
-    def search(self, text):
-        pass
+        self._con.commit()
 
-    def add_place(self, place):
-        pass
-
-    def lookup_place(self, uri):
-        pass
-
-    def update_place(self, place):
-        pass
+def _place_from_row(row):
+    place = Place()
+    place.uri, place.title, place.gecko_flags, place.visits = row
+    return place
 
 def get_store():
     global _store
     if _store == None:
-        _store = MemoryStore()
+        _store = SqliteStore()
     return _store
