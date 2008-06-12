@@ -51,9 +51,18 @@ class WebEntry(AddressEntry):
 
         self.connect('focus-in-event', self.__focus_in_event_cb)
         self.connect('populate-popup', self.__populate_popup_cb)
+        self.connect('key-press-event', self.__key_press_event_cb)
         self._focus_out_hid = self.connect(
                     'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
+
+    def activate(self, uri):
+        self.handler_block(self._change_hid)
+        self.props.text = uri 
+        self.handler_unblock(self._change_hid)
+
+        self._search_popdown()
+        self.emit('activate')
 
     def _set_address(self, address):
         self.handler_block(self._change_hid)
@@ -72,6 +81,8 @@ class WebEntry(AddressEntry):
     def _search_create_view(self):
         view = gtk.TreeView()
         view.props.headers_visible=False
+
+        view.connect('button-press-event', self.__view_button_press_event_cb)
 
         column = gtk.TreeViewColumn()
         view.append_column(column)
@@ -113,6 +124,9 @@ class WebEntry(AddressEntry):
         width = self.allocation.width
         height = gtk.gdk.screen_height() / 3
 
+        i = self._search_view.get_model().get_iter_first()
+        self._search_view.get_selection().select_iter(i)
+
         self._search_window.move(x, y)
         self._search_window.resize(width, height)
         self._search_window.show()
@@ -133,6 +147,41 @@ class WebEntry(AddressEntry):
         self.handler_unblock(self._change_hid)
 
         self._search_popdown()
+
+    def __view_button_press_event_cb(self, view, event):
+        model = view.get_model()
+
+        path, col_dummy, x_dummy, y_dummy = \
+                    view.get_path_at_pos(event.x, event.y)
+        if path:
+            uri = model[path][self.COL_ADDRESS]
+            self.activate(uri)
+
+    def __key_press_event_cb(self, entry, event):
+        keyname = gtk.gdk.keyval_name(event.keyval)
+        logging.info(keyname)
+
+        selection = self._search_view.get_selection()
+        model, selected = selection.get_selected()
+        if selected == None:
+            return False
+
+        if keyname == 'Up':
+            index = model.get_path(selected)[0]
+            if index > 0:
+                selection.select_path(index - 1)
+            return True
+        elif keyname == 'Down':
+            next = model.iter_next(selected)
+            if next:
+                selection.select_iter(next)
+            return True
+        elif keyname == 'Return':
+            uri = model[model.get_path(selected)][self.COL_ADDRESS]
+            self.activate(uri)
+            return True
+
+        return False
 
     def __popup_unmap_cb(self, entry):
         self.handler_unblock(self._focus_out_hid)
