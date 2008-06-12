@@ -14,6 +14,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+from datetime import datetime
+
 from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
@@ -42,6 +44,7 @@ class GlobalHistory:
         place = self._store.lookup_place(uri.spec)
         if place:
             place.visits += 1
+            place.last_visit = datetime.now()
             self._store.update_place(place)            
         else:
             place = places.Place(uri.spec)
