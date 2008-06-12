@@ -71,6 +71,7 @@ import downloadmanager
 import sessionhistory 
 import progresslistener
 import filepicker
+import globalhistory
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
@@ -100,6 +101,7 @@ class WebActivity(activity.Activity):
         sessionhistory.init(self._browser)
         progresslistener.init(self._browser)
         filepicker.init(self)
+        globalhistory.init()
 
         toolbox = activity.ActivityToolbox(self)
 

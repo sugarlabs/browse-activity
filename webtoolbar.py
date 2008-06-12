@@ -16,9 +16,11 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from gettext import gettext as _
+import logging
 
 import gobject
 import gtk
+import pango
 from xpcom.components import interfaces
 from xpcom import components
 
@@ -29,8 +31,123 @@ from sugar._sugarext import AddressEntry
 import sessionhistory
 import progresslistener
 import filepicker
+import places
 
 _MAX_HISTORY_ENTRIES = 15
+
+class WebEntry(AddressEntry):
+    COL_ADDRESS = 0
+    COL_TITLE = 1
+
+    def __init__(self):
+        gobject.GObject.__init__(self)
+
+        self._popup_hid = None
+        self._search_view = self._search_create_view()
+
+        self._search_window = gtk.Window(gtk.WINDOW_POPUP)
+        self._search_window.add(self._search_view)
+        self._search_view.show()
+
+        self.connect('focus-in-event', self.__focus_in_event_cb)
+        self.connect('populate-popup', self.__populate_popup_cb)
+        self._focus_out_hid = self.connect(
+                    'focus-out-event', self.__focus_out_event_cb)
+        self._change_hid = self.connect('changed', self.__changed_cb)
+
+    def _set_address(self, address):
+        self.handler_block(self._change_hid)
+        self._address = address
+        self.handler_unblock(self._change_hid)
+
+    address = gobject.property(type=str, setter=_set_address)
+
+    def _set_title(self, title):
+        self.handler_block(self._change_hid)
+        self._title = title
+        self.handler_unblock(self._change_hid)
+
+    title = gobject.property(type=str, setter=_set_title)
+
+    def _search_create_view(self):
+        view = gtk.TreeView()
+        view.props.headers_visible=False
+
+        column = gtk.TreeViewColumn()
+        view.append_column(column)
+
+        cell = gtk.CellRendererText()
+        cell.props.ellipsize = pango.ELLIPSIZE_END
+        cell.props.ellipsize_set = True
+        column.pack_start(cell, True)
+
+        column.set_attributes(cell, text=self.COL_ADDRESS)
+
+        cell = gtk.CellRendererText()
+        cell.props.ellipsize = pango.ELLIPSIZE_END
+        cell.props.ellipsize_set = True
+        cell.props.alignment = pango.ALIGN_LEFT
+        cell.props.font = 'Bold'
+        column.pack_start(cell)
+
+        column.set_attributes(cell, text=self.COL_TITLE)
+
+        return view
+
+    def _search_update(self):
+        list_store = gtk.ListStore(str, str)
+
+        for place in places.get_store().search(self.props.text):
+            list_store.append([place.uri, place.title])
+
+        self._search_view.set_model(list_store)
+
+        return len(list_store) > 0
+
+    def _search_popup(self):
+        entry_x, entry_y = self.window.get_origin()
+        entry_w, entry_h = self.size_request()
+
+        x = entry_x
+        y = entry_y + entry_h
+        width = self.allocation.width
+        height = gtk.gdk.screen_height() / 3
+
+        self._search_window.move(x, y)
+        self._search_window.resize(width, height)
+        self._search_window.show()
+
+    def _search_popdown(self):
+        self._search_window.hide()
+
+    def __focus_in_event_cb(self, entry, event):
+        self.handler_block(self._change_hid)
+        self.props.text = self._address
+        self.handler_unblock(self._change_hid)
+
+        self._search_popdown()
+
+    def __focus_out_event_cb(self, entry, event):
+        self.handler_block(self._change_hid)
+        self.props.text = self._title
+        self.handler_unblock(self._change_hid)
+
+        self._search_popdown()
+
+    def __popup_unmap_cb(self, entry):
+        self.handler_unblock(self._focus_out_hid)
+
+    def __populate_popup_cb(self, entry, menu):
+        self.handler_block(self._focus_out_hid)
+        self.__popup_hid = menu.connect('unmap', self.__popup_unmap_cb)
+
+    def __changed_cb(self, entry):
+        self._address = self.props.text
+
+        if not self.props.text or not self._search_update():
+            self._search_popdown()
+        else:
+            self._search_popup()
 
 class WebToolbar(gtk.Toolbar):
     __gtype_name__ = 'WebToolbar'
@@ -67,7 +184,7 @@ class WebToolbar(gtk.Toolbar):
         self.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
 
-        self._entry = AddressEntry()
+        self._entry = WebEntry()
         self._entry.connect('activate', self._entry_activate_cb)
 
         entry_item = gtk.ToolItem()
