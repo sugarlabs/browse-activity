@@ -39,69 +39,79 @@ class SqliteStore(object):
         db_path = os.path.join(activity.get_activity_root(),
                                'data', 'places.db')
 
-        self._con = sqlite3.connect(db_path)
-        cur = self._con.cursor()
+        self._connection = sqlite3.connect(db_path)
+        cursor = self._connection.cursor()
 
-        cur.execute('select * from sqlite_master where name == "places"')
-        if cur.fetchone() == None:
-            cur.execute("""create table places (
-                             uri         text,
-                             title       text,
-                             bookmark    boolean,
-                             gecko_flags integer,
-                             visits      integer,
-                             last_visit  timestamp
-                           );
-                        """)
+        cursor.execute('select * from sqlite_master where name == "places"')
+        if cursor.fetchone() == None:
+            cursor.execute("""create table places (
+                                uri         text,
+                                title       text,
+                                bookmark    boolean,
+                                gecko_flags integer,
+                                visits      integer,
+                                last_visit  timestamp
+                              );
+                           """)
         else:
             self._cleanup()
 
     def search(self, text):
-        cur = self._con.cursor()
+        cursor = self._connection.cursor()
 
-        text = '%' + text + '%'
-        cur.execute('select * from places where uri like ? or title like ? ' \
-                    'order by visits desc limit 0, ?',
-                    (text, text, self.MAX_SEARCH_MATCHES))
+        try:
+            text = '%' + text + '%'
+            cursor.execute('select uri, title, bookmark, gecko_flags, ' \
+                           'visits, last_visit from places ' \
+                           'where uri like ? or title like ? ' \
+                           'order by visits desc limit 0, ?',
+                           (text, text, self.MAX_SEARCH_MATCHES))
 
-        result = [self._place_from_row(row) for row in cur]
-
-        cur.close()
+            result = [self._place_from_row(row) for row in cursor]
+        finally:
+            cursor.close()
 
         return result
 
     def add_place(self, place):
-        cur = self._con.cursor()
+        cursor = self._connection.cursor()
 
-        cur.execute('insert into places values (?, ?, ?, ?, ?, ?)', \
-                    (place.uri, place.title, place.bookmark,
-                     place.gecko_flags, place.visits, place.last_visit))
-
-        self._con.commit()
-        cur.close()
+        try:
+            cursor.execute('insert into places (uri, title, bookmark, ' \
+                           'gecko_flags, visits, last_visit) ' \
+                           'values (?, ?, ?, ?, ?, ?)', \
+                           (place.uri, place.title, place.bookmark,
+                            place.gecko_flags, place.visits, place.last_visit))
+            self._connection.commit()
+        finally:
+            cursor.close()
 
     def lookup_place(self, uri):
-        cur = self._con.cursor()
-        cur.execute('select * from places where uri=?', (uri,))
+        cursor = self._connection.cursor()
 
-        row = cur.fetchone()
-        if row:
-            return self._place_from_row(row)
-        else:
-            return None
+        try:
+            cursor.execute('select uri, title, bookmark, gecko_flags,visits, ' \
+                           'last_visit from places where uri=?', (uri,))
 
-        cur.close()
+            row = cursor.fetchone()
+            if row:
+                return self._place_from_row(row)
+            else:
+                return None
+        finally:
+            cursor.close()
 
     def update_place(self, place):
-        cur = self._con.cursor()
+        cursor = self._connection.cursor()
 
-        cur.execute('update places set title=?, gecko_flags=?, '
-                    'visits=?, last_visit=?, bookmark=? where uri=?',
-                    (place.title, place.gecko_flags, place.visits,
-                     place.last_visit, place.bookmark, place.uri))
-
-        self._con.commit()
-        cur.close()
+        try:
+            cursor.execute('update places set title=?, gecko_flags=?, '
+                           'visits=?, last_visit=?, bookmark=? where uri=?',
+                           (place.title, place.gecko_flags, place.visits,
+                            place.last_visit, place.bookmark, place.uri))
+            self._connection.commit()
+        finally:
+            cursor.close()
 
     def _place_from_row(self, row):
         place = Place()
@@ -112,13 +122,14 @@ class SqliteStore(object):
         return place
 
     def _cleanup(self):
-        cur = self._con.cursor()
+        cursor = self._connection.cursor()
 
-        date = datetime.now() - timedelta(days=self.EXPIRE_DAYS)
-        cur.execute('delete from places where last_visit < ?', (date,))
-
-        self._con.commit()
-        cur.close()
+        try:
+            date = datetime.now() - timedelta(days=self.EXPIRE_DAYS)
+            cursor.execute('delete from places where last_visit < ?', (date,))
+            self._connection.commit()
+        finally:
+            cursor.close()
 
 def get_store():
     global _store

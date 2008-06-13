@@ -16,7 +16,6 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from gettext import gettext as _
-import logging
 
 import gobject
 import gtk
@@ -36,13 +35,14 @@ import places
 _MAX_HISTORY_ENTRIES = 15
 
 class WebEntry(AddressEntry):
-    COL_ADDRESS = 0
-    COL_TITLE = 1
+    _COL_ADDRESS = 0
+    _COL_TITLE = 1
 
     def __init__(self):
         gobject.GObject.__init__(self)
 
-        self._popup_hid = None
+        self._address = None
+        self._title = None
         self._search_view = self._search_create_view()
 
         self._search_window = gtk.Window(gtk.WINDOW_POPUP)
@@ -56,31 +56,33 @@ class WebEntry(AddressEntry):
                     'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
 
-    def activate(self, uri):
+    def _set_text(self, text):
+        """Set the text but block changes notification, so that we can
+           recognize changes caused directly by user actions"""
         self.handler_block(self._change_hid)
-        self.props.text = uri 
-        self.handler_unblock(self._change_hid)
+        try:
+            self.props.text = text
+        finally:
+            self.handler_unblock(self._change_hid)
 
+    def activate(self, uri):
+        self._set_text(uri)
         self._search_popdown()
         self.emit('activate')
 
     def _set_address(self, address):
-        self.handler_block(self._change_hid)
         self._address = address
-        self.handler_unblock(self._change_hid)
 
     address = gobject.property(type=str, setter=_set_address)
 
     def _set_title(self, title):
-        self.handler_block(self._change_hid)
         self._title = title
-        self.handler_unblock(self._change_hid)
 
     title = gobject.property(type=str, setter=_set_title)
 
     def _search_create_view(self):
         view = gtk.TreeView()
-        view.props.headers_visible=False
+        view.props.headers_visible = False
 
         view.connect('button-press-event', self.__view_button_press_event_cb)
 
@@ -92,7 +94,7 @@ class WebEntry(AddressEntry):
         cell.props.ellipsize_set = True
         column.pack_start(cell, True)
 
-        column.set_attributes(cell, text=self.COL_ADDRESS)
+        column.set_attributes(cell, text=self._COL_ADDRESS)
 
         cell = gtk.CellRendererText()
         cell.props.ellipsize = pango.ELLIPSIZE_END
@@ -101,7 +103,7 @@ class WebEntry(AddressEntry):
         cell.props.font = 'Bold'
         column.pack_start(cell)
 
-        column.set_attributes(cell, text=self.COL_TITLE)
+        column.set_attributes(cell, text=self._COL_TITLE)
 
         return view
 
@@ -135,26 +137,19 @@ class WebEntry(AddressEntry):
         self._search_window.hide()
 
     def __focus_in_event_cb(self, entry, event):
-        self.handler_block(self._change_hid)
-        self.props.text = self._address
-        self.handler_unblock(self._change_hid)
-
+        self._set_text(self._address)
         self._search_popdown()
 
     def __focus_out_event_cb(self, entry, event):
-        self.handler_block(self._change_hid)
-        self.props.text = self._title
-        self.handler_unblock(self._change_hid)
-
+        self._set_text(self._title)
         self._search_popdown()
 
     def __view_button_press_event_cb(self, view, event):
         model = view.get_model()
 
-        path, col_dummy, x_dummy, y_dummy = \
-                    view.get_path_at_pos(event.x, event.y)
+        path, col_, x_, y_ = view.get_path_at_pos(event.x, event.y)
         if path:
-            uri = model[path][self.COL_ADDRESS]
+            uri = model[path][self._COL_ADDRESS]
             self.activate(uri)
 
     def __key_press_event_cb(self, entry, event):
@@ -176,7 +171,7 @@ class WebEntry(AddressEntry):
                 selection.select_iter(next)
             return True
         elif keyname == 'Return':
-            uri = model[model.get_path(selected)][self.COL_ADDRESS]
+            uri = model[model.get_path(selected)][self._COL_ADDRESS]
             self.activate(uri)
             return True
 
@@ -187,7 +182,7 @@ class WebEntry(AddressEntry):
 
     def __populate_popup_cb(self, entry, menu):
         self.handler_block(self._focus_out_hid)
-        self.__popup_hid = menu.connect('unmap', self.__popup_unmap_cb)
+        menu.connect('unmap', self.__popup_unmap_cb)
 
     def __changed_cb(self, entry):
         self._address = self.props.text
