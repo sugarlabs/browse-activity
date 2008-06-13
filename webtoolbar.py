@@ -227,13 +227,13 @@ class WebToolbar(gtk.Toolbar):
         self.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
 
-        self._entry = WebEntry()
-        self._entry.connect('activate', self._entry_activate_cb)
+        self.entry = WebEntry()
+        self.entry.connect('activate', self._entry_activate_cb)
 
         entry_item = gtk.ToolItem()
         entry_item.set_expand(True)
-        entry_item.add(self._entry)
-        self._entry.show()
+        entry_item.add(self.entry)
+        self.entry.show()
         
         self.insert(entry_item, -1)
         entry_item.show()
@@ -284,13 +284,13 @@ class WebToolbar(gtk.Toolbar):
         self._set_progress(progress)
 
     def _set_progress(self, progress):
-        self._entry.props.progress = progress
+        self.entry.props.progress = progress
 
     def _set_address(self, address):
-        self._entry.props.address = address
+        self.entry.props.address = address
 
     def _set_title(self, title):
-        self._entry.props.title = title
+        self.entry.props.title = title
 
     def _show_stop_icon(self):
         self._stop_and_reload.set_icon('media-playback-stop')

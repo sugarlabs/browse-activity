@@ -84,6 +84,7 @@ SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
+_TOOLBAR_EDIT = 1
 _TOOLBAR_BROWSE = 2
 
 _logger = logging.getLogger('web-activity')
@@ -108,17 +109,17 @@ class WebActivity(activity.Activity):
         toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
         self._edit_toolbar.show()
 
-        self.toolbar = WebToolbar(self._browser)
-        toolbox.add_toolbar(_('Browse'), self.toolbar)
-        self.toolbar.show()
+        self._web_toolbar = WebToolbar(self._browser)
+        toolbox.add_toolbar(_('Browse'), self._web_toolbar)
+        self._web_toolbar.show()
        
         self._tray = HTray()
         self.set_tray(self._tray, gtk.POS_BOTTOM)
         self._tray.show()
         
-        self.viewtoolbar = ViewToolbar(self)
-        toolbox.add_toolbar(_('View'), self.viewtoolbar)
-        self.viewtoolbar.show()
+        self._view_toolbar = ViewToolbar(self)
+        toolbox.add_toolbar(_('View'), self._view_toolbar)
+        self._view_toolbar.show()
 
         self.set_toolbox(toolbox)
         toolbox.show()
@@ -129,7 +130,7 @@ class WebActivity(activity.Activity):
         self.session_history = sessionhistory.get_instance()
         self.session_history.connect('session-link-changed', 
                                      self._session_history_changed_cb)
-        self.toolbar.connect('add-link', self._link_add_button_cb)
+        self._web_toolbar.connect('add-link', self._link_add_button_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -344,9 +345,19 @@ class WebActivity(activity.Activity):
             
     def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
-            if gtk.gdk.keyval_name(event.keyval) == "l":
+            if gtk.gdk.keyval_name(event.keyval) == "d":
                 _logger.debug('keyboard: Add link: %s.' % self.current)     
                 self._add_link()                
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "f":
+                _logger.debug('keyboard: Find')
+                self.toolbox.set_current_toolbar(_TOOLBAR_EDIT)
+                self._edit_toolbar.search_entry.grab_focus()
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "l":
+                _logger.debug('keyboard: Focus url entry')
+                self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
+                self._web_toolbar.entry.grab_focus()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "u":
                 _logger.debug('keyboard: Show source of the current page')
@@ -402,14 +413,14 @@ class WebActivity(activity.Activity):
         item.show()
         if self._tray.props.visible is False:
             self._tray.show()        
-        self.viewtoolbar.traybutton.props.sensitive = True
+        self._view_toolbar.traybutton.props.sensitive = True
         
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
         self._tray.remove_item(button)
         if len(self._tray.get_children()) == 0:
-            self.viewtoolbar.traybutton.props.sensitive = False
+            self._view_toolbar.traybutton.props.sensitive = False
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
