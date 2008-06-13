@@ -83,6 +83,7 @@ SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
+_TOOLBAR_EDIT = 1
 _TOOLBAR_BROWSE = 2
 
 _logger = logging.getLogger('web-activity')
@@ -346,6 +347,11 @@ class WebActivity(activity.Activity):
             if gtk.gdk.keyval_name(event.keyval) == "l":
                 _logger.debug('keyboard: Add link: %s.' % self.current)     
                 self._add_link()                
+                return True
+            elif gtk.gdk.keyval_name(event.keyval) == "f":
+                _logger.debug('keyboard: Find')
+                self.toolbox.set_current_toolbar(_TOOLBAR_EDIT)
+                self._edit_toolbar.search_entry.grab_focus()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "u":
                 _logger.debug('keyboard: Show source of the current page')

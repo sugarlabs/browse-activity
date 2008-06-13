@@ -14,9 +14,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import gtk
+from gettext import gettext as _
+
+from xpcom import components
 from xpcom.components import interfaces
 
 from sugar.activity import activity
+from sugar.graphics import iconentry
+from sugar.graphics.toolbutton import ToolButton
+from sugar.graphics import style
 
 class EditToolbar(activity.EditToolbar):
 
@@ -32,7 +39,7 @@ class EditToolbar(activity.EditToolbar):
         self.copy.connect('clicked', self.__copy_cb)
         self.paste.connect('clicked', self.__paste_cb)
 
-    """
+        """
         Notifications are not working right now:
         https://bugzilla.mozilla.org/show_bug.cgi?id=207339
 
@@ -54,7 +61,48 @@ class EditToolbar(activity.EditToolbar):
 
     def observe(self, subject, topic, data):
         logging.debug('observe: %r %r %r' % (subject, topic, data))
-    """
+        """
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(True)
+        self.insert(separator, -1)
+        separator.show()
+
+        cls = components.classes["@mozilla.org/typeaheadfind;1"]
+        self._typeahead = cls.createInstance(interfaces.nsITypeAheadFind)
+        self._typeahead.init(self._browser.doc_shell)
+
+        search_item = gtk.ToolItem()
+        self.search_entry = iconentry.IconEntry()
+        self.search_entry.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
+                                             'system-search')
+        self.search_entry.add_clear_button()
+        self.search_entry.connect('activate', self.__search_entry_activate_cb)
+        self.search_entry.connect('changed', self.__search_entry_changed_cb)
+
+        width = int(gtk.gdk.screen_width() / 3)
+        self.search_entry.set_size_request(width, -1)
+
+        search_item.add(self.search_entry)
+        self.search_entry.show()
+
+        self.insert(search_item, -1)
+        search_item.show()
+
+        self._prev = ToolButton('go-previous-paired')
+        self._prev.set_tooltip(_('Previous'))        
+        self._prev.props.sensitive = False
+        self._prev.connect('clicked', self.__find_previous_cb)
+        self.insert(self._prev, -1)
+        self._prev.show()
+
+        self._next = ToolButton('go-next-paired')
+        self._next.set_tooltip(_('Next'))
+        self._next.props.sensitive = False
+        self._next.connect('clicked', self.__find_next_cb)
+        self.insert(self._next, -1)
+        self._next.show()
 
     def __undo_cb(self, button):
         command_manager = self._get_command_manager()
@@ -77,3 +125,24 @@ class EditToolbar(activity.EditToolbar):
         requestor = web_browser.queryInterface(interfaces.nsIInterfaceRequestor)
         return requestor.getInterface(interfaces.nsICommandManager)
 
+    def __search_entry_activate_cb(self, entry):
+        self._typeahead.findAgain(False, False)
+
+    def __search_entry_changed_cb(self, entry):        
+        found = self._typeahead.find(entry.props.text, False)
+        if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
+            self._prev.props.sensitive = False
+            self._next.props.sensitive = False
+            entry.modify_text(gtk.STATE_NORMAL, 
+                              style.COLOR_BUTTON_GREY.get_gdk_color())
+        else:
+            self._prev.props.sensitive = True
+            self._next.props.sensitive = True
+            entry.modify_text(gtk.STATE_NORMAL, 
+                              style.COLOR_BLACK.get_gdk_color())
+
+    def __find_previous_cb(self, button):
+        self._typeahead.findAgain(True, False)
+
+    def __find_next_cb(self, button):
+        self._typeahead.findAgain(False, False)
