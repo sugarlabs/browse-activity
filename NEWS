@@ -1,3 +1,10 @@
+* Add address entry focus with ctrl+l (erikos)
+* Add find in context functionality (erikos)
+* History and bookmarks autocompletion (marco)
+* To resolve trac 6250, we disable browser detection of offline mode 
+  using xpcom. (erikg)
+* Fix copy Image to clipboard under rainbow (tomeu/erikos)
+
 89
 
 * Make the object chooser transient on the activity window. (tomeu)
