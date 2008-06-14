@@ -52,6 +52,8 @@ class WebEntry(AddressEntry):
         self.connect('focus-in-event', self.__focus_in_event_cb)
         self.connect('populate-popup', self.__populate_popup_cb)
         self.connect('key-press-event', self.__key_press_event_cb)
+        self.connect('enter-notify-event', self.__enter_notify_event_cb)
+        self.connect('leave-notify-event', self.__leave_notify_event_cb)
         self._focus_out_hid = self.connect(
                     'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
@@ -143,6 +145,14 @@ class WebEntry(AddressEntry):
     def __focus_out_event_cb(self, entry, event):
         self._set_text(self._title)
         self._search_popdown()
+
+    def __enter_notify_event_cb(self, entry, event):
+        if not entry.props.has_focus:
+            self._set_text(self._address)
+
+    def __leave_notify_event_cb(self, entry, event):
+        if not entry.props.has_focus:
+            self._set_text(self._title)
 
     def __view_button_press_event_cb(self, view, event):
         model = view.get_model()
