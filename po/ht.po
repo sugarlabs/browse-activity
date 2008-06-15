@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"POT-Creation-Date: 2008-05-29 00:30-0400\n"
 "PO-Revision-Date: 2008-03-10 10:48-0400\n"
 "Last-Translator: masterches <chesmaster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,41 +15,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:109
 msgid "Browse"
 msgstr "Navige"
 
-#: browser.py:132
+#: browser.py:144
 msgid "Source"
 msgstr "Sous, kòd paj an"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
 msgstr "Telechajman an koumanse"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
 msgstr "Telechajman an konplè, li fini"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Show in Journal"
 msgstr "Montre nan jounal an"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
 msgstr "Ok, tout bagay bon"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 #, python-format
 msgid "File %s from %s."
 msgstr "Yon fichye %s depi %s."
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,9 +58,17 @@ msgstr ""
 "Ap telechaje %s depi \n"
 "%s"
 
-#: linkbutton.py:96
+#: linkbutton.py:94
 msgid "Remove"
 msgstr "Retire, anlve"
+
+#: palettes.py:88
+msgid "Follow link"
+msgstr ""
+
+#: palettes.py:93 palettes.py:141
+msgid "Copy"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -82,42 +90,46 @@ msgstr "Montre meni an, plato an"
 msgid "Hide Tray"
 msgstr "Kache meni an, plato an"
 
-#: webactivity.py:113
+#: webactivity.py:105
+msgid "Edit"
+msgstr ""
+
+#: webactivity.py:117
 msgid "View"
 msgstr "wè, gade"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:136 webactivity.py:137
 msgid "blank"
 msgstr "Blan, vid, pa gen anyen anlè bagay sa"
 
-#: webactivity.py:440
+#: webactivity.py:449
 msgid "Download in progress"
 msgstr "Telechajman an ap fèt kounye a"
 
-#: webactivity.py:441
+#: webactivity.py:450
 msgid "Stopping now will cancel your download"
 msgstr "Si ou rete aplikasyon an kounye a, li ap tèmine telechajman ou an"
 
-#: webactivity.py:443
+#: webactivity.py:452
 msgid "Cancel"
 msgstr "Anile, vire do"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:454 webtoolbar.py:174
 msgid "Stop"
 msgstr "Stope, rete"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:52
 msgid "Back"
 msgstr "Ritounen"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:59
 msgid "Forward"
 msgstr "Ale pli douvan, swivan"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:82
 msgid "Bookmark"
 msgstr "Favori, paj ou prefere yo"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:177
 msgid "Reload"
 msgstr "Chaje paj an"
