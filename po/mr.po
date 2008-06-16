@@ -2,121 +2,134 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-05-29 00:30-0400\n"
+"PO-Revision-Date: 2008-04-28 02:56-0400\n"
+"Last-Translator: Sandip Gawas <sandip.gawas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:109
 msgid "Browse"
-msgstr ""
+msgstr "वेब भटकंती"
 
-#: browser.py:132
+#: browser.py:144
 msgid "Source"
-msgstr ""
+msgstr "स्तोत्र"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
-msgstr ""
+msgstr "डाउनलोड सुरू झाली"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
-msgstr ""
+msgstr "डाउनलोड पूणॅ झाली"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Show in Journal"
-msgstr ""
+msgstr "नियतकालीकामधे दाखवा"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
-msgstr ""
+msgstr "ठीक"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 #, python-format
 msgid "File %s from %s."
-msgstr ""
+msgstr "फाईल %s पासून %s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"डाउनलोड %s पासून \n"
+" %s."
 
-#: linkbutton.py:96
+#: linkbutton.py:94
 msgid "Remove"
+msgstr "काढून टाकणे"
+
+#: palettes.py:88
+msgid "Follow link"
+msgstr ""
+
+#: palettes.py:93 palettes.py:141
+msgid "Copy"
 msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "झूम आउट"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "झूम ईन"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "पूर्ण पडदा"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr ""
+msgstr "तबक दाखवा"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
+msgstr "तबक लपवा"
+
+#: webactivity.py:105
+msgid "Edit"
 msgstr ""
 
-#: webactivity.py:113
+#: webactivity.py:117
 msgid "View"
-msgstr ""
+msgstr "पाहा "
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:136 webactivity.py:137
 msgid "blank"
-msgstr ""
+msgstr "रिकामा"
 
-#: webactivity.py:440
+#: webactivity.py:449
 msgid "Download in progress"
-msgstr ""
+msgstr "डाऊनलोड सुरू आहे"
 
-#: webactivity.py:441
+#: webactivity.py:450
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "थांबवल्यास डाऊनलोड रद् होईल"
 
-#: webactivity.py:443
+#: webactivity.py:452
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करणे"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:454 webtoolbar.py:174
 msgid "Stop"
-msgstr ""
+msgstr "थांबा"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:52
 msgid "Back"
-msgstr ""
+msgstr "मागे"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:59
 msgid "Forward"
-msgstr ""
+msgstr "पुढे पाठविणे "
 
-#: webtoolbar.py:83
+#: webtoolbar.py:82
 msgid "Bookmark"
-msgstr ""
+msgstr "रिकामी जागा"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:177
 msgid "Reload"
-msgstr ""
+msgstr "पुन्हा चालू करा"
