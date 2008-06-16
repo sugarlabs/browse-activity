@@ -94,18 +94,18 @@ class WebEntry(AddressEntry):
         cell = gtk.CellRendererText()
         cell.props.ellipsize = pango.ELLIPSIZE_END
         cell.props.ellipsize_set = True
+        cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
-        column.set_attributes(cell, text=self._COL_ADDRESS)
+        column.set_attributes(cell, text=self._COL_TITLE)
 
         cell = gtk.CellRendererText()
         cell.props.ellipsize = pango.ELLIPSIZE_END
         cell.props.ellipsize_set = True
         cell.props.alignment = pango.ALIGN_LEFT
-        cell.props.font = 'Bold'
         column.pack_start(cell)
 
-        column.set_attributes(cell, text=self._COL_TITLE)
+        column.set_attributes(cell, text=self._COL_ADDRESS)
 
         return view
 
@@ -123,9 +123,9 @@ class WebEntry(AddressEntry):
         entry_x, entry_y = self.window.get_origin()
         entry_w, entry_h = self.size_request()
 
-        x = entry_x
+        x = entry_x + entry_h / 2
         y = entry_y + entry_h
-        width = self.allocation.width
+        width = self.allocation.width - entry_h
         height = gtk.gdk.screen_height() / 3
 
         i = self._search_view.get_model().get_iter_first()
