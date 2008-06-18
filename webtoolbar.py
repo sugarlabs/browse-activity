@@ -79,6 +79,8 @@ class WebEntry(AddressEntry):
 
     def _set_title(self, title):
         self._title = title
+        if title is not None and not self.props.has_focus:
+            self._set_text(title)
 
     title = gobject.property(type=str, setter=_set_title)
 
