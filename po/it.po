@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-06-02 17:32-0400\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-06-18 04:29-0400\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,17 +15,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:109
-#, fuzzy
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "Naviga"
 
-#: browser.py:144
+#: browser.py:149
 msgid "Source"
 msgstr "Sorgente"
 
 #: downloadmanager.py:141
-#, fuzzy
 msgid "Download started"
 msgstr "Iniziato trasferimento"
 
@@ -35,7 +33,6 @@ msgid "%s"
 msgstr "%s"
 
 #: downloadmanager.py:155
-#, fuzzy
 msgid "Download completed"
 msgstr "Trasferimento terminato"
 
@@ -54,7 +51,6 @@ msgstr "File %s da %s."
 
 #: downloadmanager.py:245
 #, python-format
-#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -62,15 +58,23 @@ msgstr ""
 "Scaricamento %s da \n"
 "%s."
 
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Precendente"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Successivo"
+
 #: linkbutton.py:94
 msgid "Remove"
 msgstr "Elimina"
 
-#: palettes.py:88
+#: palettes.py:89
 msgid "Follow link"
 msgstr "Segui il collegamento"
 
-#: palettes.py:93 palettes.py:141
+#: palettes.py:94 palettes.py:142
 msgid "Copy"
 msgstr "Copia"
 
@@ -94,49 +98,47 @@ msgstr "Mostra cestino"
 msgid "Hide Tray"
 msgstr "Nascondi cestino"
 
-#: webactivity.py:105
+#: webactivity.py:109
 msgid "Edit"
 msgstr "Modifica"
 
-#: webactivity.py:117
+#: webactivity.py:121
 msgid "View"
 msgstr "Visualizza"
 
-#: webactivity.py:136 webactivity.py:137
-#, fuzzy
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "spazio"
 
-#: webactivity.py:449
-#, fuzzy
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "Scaricamento in corso"
 
-#: webactivity.py:450
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "Bloccare adesso annullerà il trasferimento"
 
-#: webactivity.py:452
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "Annulla"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "Indietro"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "Avanti"
 
-#: webtoolbar.py:82
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "Segnalibro"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "Ricarica"
 
