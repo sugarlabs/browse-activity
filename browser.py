@@ -67,6 +67,23 @@ class GetSourceListener(gobject.GObject):
     def onSecurityChange(self, progress, request, state):
         pass
 
+class CommandListener(object):
+    _com_interfaces_ = interfaces.nsIDOMEventListener
+    def __init__(self, window):
+        self._window = window
+
+    def handleEvent(self, event):
+        if not event.isTrusted:
+            return
+
+        uri = event.originalTarget.ownerDocument.documentURI
+        if not uri.startswith('about:neterror?e=nssBadCert'):
+            return
+
+        cls = components.classes['@sugarlabs.org/add-cert-exception;1']
+        cert_exception = cls.createInstance(interfaces.hulahopAddCertException)
+        cert_exception.showDialog(self._window)
+
 class Browser(WebView):
 
     AGENT_SHEET = os.path.join(activity.get_bundle_path(), 
@@ -106,7 +123,11 @@ class Browser(WebView):
 
         listener = xpcom.server.WrapObject(ContentInvoker(self),
                                            interfaces.nsIDOMEventListener)
-        self.get_window_root().addEventListener('click', listener, False)
+        self.window_root.addEventListener('click', listener, False)
+
+        listener = xpcom.server.WrapObject(CommandListener(self.dom_window),
+                                           interfaces.nsIDOMEventListener)
+        self.window_root.addEventListener('command', listener, False)
 
     def get_session(self):
         return sessionstore.get_session(self)
