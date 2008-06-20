@@ -1,3 +1,15 @@
+91
+
+* Translation update for Italian (Carlo Falciola)
+* Update page title when a new URI is loaded (eben)
+* Clean up appearance of URI auto-completion popup (eben)
+* Support certificate exceptions (marco)
+* Translation update for Khmer (Rit Lim)
+* Translation update for Haitian Creole (masterches)
+* Reveal URI on rollover of the location bar (eben)
+* Translation update for German (Markus Schlager)
+* Translation update for Marathi (Sandip Gawas)
+
 90
 
 * Add address entry focus with ctrl+l (erikos)
