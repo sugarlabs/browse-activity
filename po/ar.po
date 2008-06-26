@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-06-06 09:29-0400\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-06-26 10:37-0400\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:109
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "تصفّح"
 
-#: browser.py:144
+#: browser.py:149
 msgid "Source"
 msgstr "المصدر"
 
@@ -60,15 +60,23 @@ msgstr ""
 "يُنزِّل %s من\n"
 "%s."
 
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "السابق"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "التالي"
+
 #: linkbutton.py:94
 msgid "Remove"
 msgstr "أزِل"
 
-#: palettes.py:88
+#: palettes.py:89
 msgid "Follow link"
 msgstr "اتبع الوصلة"
 
-#: palettes.py:93 palettes.py:141
+#: palettes.py:94 palettes.py:142
 msgid "Copy"
 msgstr "انسخ"
 
@@ -92,47 +100,47 @@ msgstr "أظهر الطبق"
 msgid "Hide Tray"
 msgstr "اخفِ الطبق"
 
-#: webactivity.py:105
+#: webactivity.py:109
 msgid "Edit"
 msgstr "تحرير"
 
-#: webactivity.py:117
+#: webactivity.py:121
 msgid "View"
 msgstr "عرض"
 
-#: webactivity.py:136 webactivity.py:137
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "فارغ"
 
-#: webactivity.py:449
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "يجري التزيل"
 
-#: webactivity.py:450
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "التوقف الآن سيلغي تنزيلك"
 
-#: webactivity.py:452
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "ألغِ"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:82
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "علِّم"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "أعد التحميل"
 
