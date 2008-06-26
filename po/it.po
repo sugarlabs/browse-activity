@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-06-18 04:29-0400\n"
+"PO-Revision-Date: 2008-06-26 06:06-0400\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,9 +122,10 @@ msgstr "Bloccare adesso annullerà il trasferimento"
 msgid "Cancel"
 msgstr "Annulla"
 
+# Alligned to ather act.
 #: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
-msgstr "Stop"
+msgstr "Chiudi"
 
 #: webtoolbar.py:212
 msgid "Back"
