@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-06-14 18:06-0400\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-06-28 10:17-0400\n"
 "Last-Translator: Markus Schlager <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,11 @@ msgstr ""
 "X-Generator: Pootle 1.1.0rc2\n"
 "X-Poedit-Language: German\n"
 
-#: activity/activity.info:2 webactivity.py:109
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "Durchsuchen"
 
-#: browser.py:144
+#: browser.py:149
 msgid "Source"
 msgstr "Quelle"
 
@@ -57,15 +57,23 @@ msgstr ""
 "Herunterladen %s von \n"
 "%s."
 
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Vorheriges"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Nächstes"
+
 #: linkbutton.py:94
 msgid "Remove"
 msgstr "Entfernen"
 
-#: palettes.py:88
+#: palettes.py:89
 msgid "Follow link"
 msgstr "Link verfolgen"
 
-#: palettes.py:93 palettes.py:141
+#: palettes.py:94 palettes.py:142
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -89,47 +97,47 @@ msgstr "Ablage anzeigen"
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:105
+#: webactivity.py:109
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: webactivity.py:117
+#: webactivity.py:121
 msgid "View"
 msgstr "Ansicht"
 
-#: webactivity.py:136 webactivity.py:137
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "leer"
 
-#: webactivity.py:449
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "Herunterladen erfolgt gerade"
 
-#: webactivity.py:450
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "Jetzt stoppen wird das Herunterladen abbrechen"
 
-#: webactivity.py:452
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "Stopp"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "Vorwärts"
 
-#: webtoolbar.py:82
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "Neu laden"
 
