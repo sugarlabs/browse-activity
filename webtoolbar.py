@@ -130,9 +130,6 @@ class WebEntry(AddressEntry):
         width = self.allocation.width - entry_h
         height = gtk.gdk.screen_height() / 3
 
-        i = self._search_view.get_model().get_iter_first()
-        self._search_view.get_selection().select_iter(i)
-
         self._search_window.move(x, y)
         self._search_window.resize(width, height)
         self._search_window.show()
@@ -169,20 +166,26 @@ class WebEntry(AddressEntry):
 
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()
-        if selected == None:
-            return False
 
         if keyname == 'Up':
-            index = model.get_path(selected)[0]
-            if index > 0:
-                selection.select_path(index - 1)
+            if selected is None:
+                selection.select_path(model[-1].path)
+            else:    
+                index = model.get_path(selected)[0]
+                if index > 0:
+                    selection.select_path(index - 1)
             return True
         elif keyname == 'Down':
-            next = model.iter_next(selected)
-            if next:
-                selection.select_iter(next)
+            if selected is None:
+                down_iter = model.get_iter_first()
+            else:    
+                down_iter = model.iter_next(selected)
+            if down_iter:
+                selection.select_iter(down_iter)
             return True
         elif keyname == 'Return':
+            if selected is None:
+                return False
             uri = model[model.get_path(selected)][self._COL_ADDRESS]
             self.activate(uri)
             return True
