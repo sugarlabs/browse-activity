@@ -79,7 +79,8 @@ class DownloadManager:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
 
     def promptForSaveToFile(self, launcher, window_context,
-                            default_file, suggested_file_extension):
+                            default_file, suggested_file_extension,
+                            force_prompt=False):
         file_class = components.classes["@mozilla.org/file/local;1"]
         dest_file = file_class.createInstance(interfaces.nsILocalFile)
 
