@@ -18,5 +18,5 @@
 
 from sugar.activity import bundlebuilder
 
-bundlebuilder.start('Web')
+bundlebuilder.start()
 
