@@ -63,9 +63,10 @@ class WebEntry(AddressEntry):
            recognize changes caused directly by user actions"""
         self.handler_block(self._change_hid)
         try:
-            self.props.text = text
+            self.props.text = text            
         finally:
             self.handler_unblock(self._change_hid)
+        self.set_position(-1)
 
     def activate(self, uri):
         self._set_text(uri)
@@ -169,11 +170,13 @@ class WebEntry(AddressEntry):
 
         if keyname == 'Up':
             if selected is None:
-                selection.select_path(model[-1].path)
-            else:    
+                selection.select_iter(model[-1].iter)
+                self._set_text(model[-1][0])
+            else:                    
                 index = model.get_path(selected)[0]
                 if index > 0:
                     selection.select_path(index - 1)
+                    self._set_text(model[index - 1][0])
             return True
         elif keyname == 'Down':
             if selected is None:
@@ -181,7 +184,8 @@ class WebEntry(AddressEntry):
             else:    
                 down_iter = model.iter_next(selected)
             if down_iter:
-                selection.select_iter(down_iter)
+                selection.select_iter(down_iter)                
+                self._set_text(model.get(down_iter, 0)[0])
             return True
         elif keyname == 'Return':
             if selected is None:
@@ -189,7 +193,9 @@ class WebEntry(AddressEntry):
             uri = model[model.get_path(selected)][self._COL_ADDRESS]
             self.activate(uri)
             return True
-
+        elif keyname == 'Escape':
+            self._search_window.hide()
+            return True
         return False
 
     def __popup_unmap_cb(self, entry):
