@@ -2,54 +2,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-01-27 11:16-0500\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-07-18 19:12-0400\n"
 "Last-Translator: Yuan Chao <yuanchao@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "瀏覽"
 
-#: browser.py:132
+#: browser.py:149
 msgid "Source"
 msgstr "原始碼"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
 msgstr "開始下載"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
 msgstr "下載完成"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "開啟"
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "增加到日誌"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
 msgstr "確定"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:169
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"檔案 %s 下載自\n"
-"%s."
+msgid "File %s from %s."
+msgstr "檔案 %s 來自 %s."
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,54 +54,25 @@ msgstr ""
 "下載 %s 自\n"
 "%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "上一個"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "下一個"
+
+#: linkbutton.py:94
 msgid "Remove"
 msgstr "移除"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "檢視"
+#: palettes.py:89
+msgid "Follow link"
+msgstr "跟隨連結"
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "空白"
-
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr "下載中"
-
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr "停止本活動將取消下載中檔案"
-
-#: webactivity.py:443
-msgid "Cancel"
-msgstr "取消"
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr "停止"
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr "上一頁"
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr "下一頁"
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr "書籤"
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr "重新整理"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr "檔案 %s 來自 %s."
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "複製"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -127,6 +94,57 @@ msgstr "顯示收藏匣"
 msgid "Hide Tray"
 msgstr "隱藏收藏匣"
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr "增加到日誌"
+#: webactivity.py:109
+msgid "Edit"
+msgstr "編輯"
+
+#: webactivity.py:121
+msgid "View"
+msgstr "檢視"
+
+#: webactivity.py:140 webactivity.py:141
+msgid "blank"
+msgstr "空白"
+
+#: webactivity.py:463
+msgid "Download in progress"
+msgstr "下載中"
+
+#: webactivity.py:464
+msgid "Stopping now will cancel your download"
+msgstr "停止本活動將取消下載中檔案"
+
+#: webactivity.py:466
+msgid "Cancel"
+msgstr "取消"
+
+#: webactivity.py:468 webtoolbar.py:334
+msgid "Stop"
+msgstr "停止"
+
+#: webtoolbar.py:212
+msgid "Back"
+msgstr "上一頁"
+
+#: webtoolbar.py:219
+msgid "Forward"
+msgstr "下一頁"
+
+#: webtoolbar.py:242
+msgid "Bookmark"
+msgstr "加入書籤"
+
+#: webtoolbar.py:337
+msgid "Reload"
+msgstr "重新整理"
+
+#~ msgid "Open"
+#~ msgstr "開啟"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "檔案 %s 下載自\n"
+#~ "%s."
