@@ -33,8 +33,12 @@ _browser_window = None
 
 def cleanup_temp_files():
     for temp_file in _temp_files_to_clean:
-        logging.debug('filepicker.cleanup_temp_files: %r' % temp_file)
-        os.remove(temp_file)
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
+            _temp_files_to_clean.remove(temp_file)
+        else:
+            logging.debug('filepicker.cleanup_temp_files: no file %r' 
+                          % temp_file)
 
 class FilePicker:
     _com_interfaces_ = interfaces.nsIFilePicker
