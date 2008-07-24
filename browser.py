@@ -27,11 +27,13 @@ from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 from hulahop.webview import WebView
+from hulahop.webview import lookup_view
 
 from sugar.datastore import datastore
 from sugar import profile
 from sugar import env
 from sugar.activity import activity
+from sugar.graphics import style
 
 import sessionstore
 from palettes import ContentInvoker
@@ -212,28 +214,36 @@ class Browser(WebView):
                     interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
 
-class XULDialog(gtk.Window):
+class PopupDialog(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
+
+        self.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
+
+        border = style.GRID_CELL_SIZE
+        self.set_default_size(gtk.gdk.screen_width() - border * 2,
+                              gtk.gdk.screen_height() - border * 2)
 
         self.view = WebView()
         self.add(self.view)
 
-        self.connect('realize', self.__realize_cb)
-
-    def __realize_cb(self, window):
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
-
 class WindowCreator:
     _com_interfaces_ = interfaces.nsIWindowCreator
 
-    def createChromeWindow(self, parent, chrome_flags):
-        dialog = XULDialog()
+    def createChromeWindow(self, parent, flags):
+        dialog = PopupDialog()
+
+        parent_view = lookup_view(parent)
+        if parent_view:
+            dialog.set_transient_for(parent_view.get_toplevel())
+
         browser = dialog.view.browser
 
-        dialog.view.is_chrome = True
-        item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
-        item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
+        if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
+            dialog.view.is_chrome = True
+
+            item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
+            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
 
         return browser.containerWindow
 
