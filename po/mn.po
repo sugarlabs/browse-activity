@@ -6,116 +6,136 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-01-29 04:11-0500\n"
-"Last-Translator: Enkhzul <enkhzul@gmail.com>\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-06-27 02:57-0400\n"
+"Last-Translator: Odontsetseg Bat-Erdene <obat-erdene@suffolk.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
-msgstr "дуудах"
+msgstr "Вебээр аялах"
 
-#: browser.py:132
+#: browser.py:149
 msgid "Source"
-msgstr "үүсгүүр"
+msgstr "Эх үүсвэр"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
-msgstr "Ачаалж эхэллээ..."
+msgstr "Татаж эхэллээ..."
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
-msgstr "%"
+msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
-msgstr "Ачаалж дууслаа"
+msgstr "Татаж дууслаа"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Show in Journal"
-msgstr "Сэтгүүл дээр үзүүлэх"
+msgstr "Бүртгэл дээр үзүүлэх"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
-msgstr ""
+msgstr "Тийм"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 #, python-format
 msgid "File %s from %s."
-msgstr "Файл % байхаас % нь байна."
+msgstr "Нийт %s-аас %s файл байна."
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr "%-с % нь ачаалагдаж байна..."
+msgstr "%s-с % нь татаж байна."
 
-#: linkbutton.py:96
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Өмнөх"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Дараах"
+
+#: linkbutton.py:94
 msgid "Remove"
-msgstr ""
+msgstr "Устгах"
+
+#: palettes.py:89
+msgid "Follow link"
+msgstr "Холбоог дагах"
+
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "Хуулах"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "Холдуулах"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "Ойртуулах"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr "дэлгэц дүүргэх"
+msgstr "Бүтэц дэлгэц"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr "тавиурыг харуулах"
+msgstr "Туслах мөрийг харуулах"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr "тавиурыг нуух"
+msgstr "Туслах мөрийг нуух"
 
-#: webactivity.py:113
+#: webactivity.py:109
+msgid "Edit"
+msgstr "Засварлах"
+
+#: webactivity.py:121
 msgid "View"
-msgstr "харагдац"
+msgstr "Харагдац"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "хоосон"
 
-#: webactivity.py:440
+#: webactivity.py:463
 msgid "Download in progress"
-msgstr "Ачаалж байна..."
+msgstr "Татаж байна..."
 
-#: webactivity.py:441
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
-msgstr "Та буцаах товчлуурыг дарвал ачаалах нь зогсоно"
+msgstr "Программыг зогсоовол татаж байгаа юмнууд арилна"
 
-#: webactivity.py:443
+#: webactivity.py:466
 msgid "Cancel"
-msgstr "Цуцлах"
+msgstr "Болих"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "Зогсоох"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:212
 msgid "Back"
-msgstr "Буцаах"
+msgstr "Буцах"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:219
 msgid "Forward"
-msgstr "Дуудах"
+msgstr "Урагшлах"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "Тэмдэглэх"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "Дахин ачаалах"
