@@ -18,6 +18,9 @@ import os
 import logging
 from gettext import gettext as _
 
+os.environ['NSPR_LOG_MODULES'] = 'nsDragService:5,sync'
+#import time; time.sleep(10)
+
 import gobject
 gobject.threads_init()
 

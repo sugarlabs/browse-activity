@@ -18,8 +18,9 @@ import os
 import logging
 from gettext import gettext as _
 import time
-import gtk
+import tempfile
 
+import gtk
 from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
@@ -75,27 +76,29 @@ def remove_all_downloads():
             datastore.delete(download.dl_jobject.object_id)
             download.cleanup_datastore_write()        
 
-class DownloadManager:
+class HelperAppLauncherDialog:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
 
     def promptForSaveToFile(self, launcher, window_context,
                             default_file, suggested_file_extension,
                             force_prompt=False):
-        file_class = components.classes["@mozilla.org/file/local;1"]
+        file_class = components.classes['@mozilla.org/file/local;1']
         dest_file = file_class.createInstance(interfaces.nsILocalFile)
 
-        if not default_file:
-            default_file = time.time()
+        if default_file:
+            base_name, extension = os.path.splitext(default_file)
+        else:
+            base_name = ''
             if suggested_file_extension:
-                default_file = '%s.%s' % (default_file, 
-                                          suggested_file_extension)
+                extension = '.' + suggested_file_extension
+            else:
+                extension = ''
 
-        global _temp_path
         if not os.path.exists(_temp_path):
             os.makedirs(_temp_path)
-        file_path = os.path.join(_temp_path, default_file)
-
-        print file_path
+        fd, file_path = tempfile.mkstemp(dir=_temp_path, prefix=base_name, suffix=extension)
+        os.close(fd)
+        os.chmod(file_path, 0644)
         dest_file.initWithPath(file_path)
         
         return dest_file
@@ -107,7 +110,7 @@ class DownloadManager:
 components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}',
                                      'Sugar Download Manager',
                                      '@mozilla.org/helperapplauncherdialog;1',
-                                     Factory(DownloadManager))
+                                     Factory(HelperAppLauncherDialog))
 
 class Download:
     _com_interfaces_ = interfaces.nsITransfer
@@ -266,10 +269,11 @@ class Download:
     def __datastore_deleted_cb(self, uid):
         logging.debug('Downloaded entry has been deleted from the datastore: %r'
                       % uid)
-        # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
-        self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
-        global _active_downloads
-        _active_downloads.remove(self)
+        if self in _active_downloads:
+            # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
+            self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
+            global _active_downloads
+            _active_downloads.remove(self)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
                                      'Sugar Download',
