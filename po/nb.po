@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-07-23 17:28+0100\n"
+"Last-Translator: Kent Dahl <kentda@pvv.org>\n"
+"Language-Team: Norwegian <i18n-no@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.1.1rc4\n"
+
+#: activity/activity.info:2
+#: webactivity.py:113
+#, fuzzy
+msgid "Browse"
+msgstr "Surfe"
+
+#: browser.py:149
+msgid "Source"
+msgstr "Kildekode"
+
+#: downloadmanager.py:141
+msgid "Download started"
+msgstr "Nedlasting startet"
+
+#: downloadmanager.py:143
+#: downloadmanager.py:157
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:155
+msgid "Download completed"
+msgstr "Nedlasting ferdig"
+
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "Vis i dagbok"
+
+#: downloadmanager.py:163
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:169
+#, python-format
+msgid "File %s from %s."
+msgstr "Fil %s fra %s."
+
+#: downloadmanager.py:245
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Laster %s fra\n"
+"%s."
+
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Forrige"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Neste"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Fjern"
+
+#: palettes.py:89
+msgid "Follow link"
+msgstr "Følg lenke"
+
+#: palettes.py:94
+#: palettes.py:142
+msgid "Copy"
+msgstr "Kopier"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Forminsk"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Forstørr"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Fullskjerm"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:109
+msgid "Edit"
+msgstr "Endre"
+
+#: webactivity.py:121
+msgid "View"
+msgstr "Visning"
+
+#: webactivity.py:140
+#: webactivity.py:141
+msgid "blank"
+msgstr ""
+
+#: webactivity.py:463
+msgid "Download in progress"
+msgstr "Nedlasting underveis"
+
+#: webactivity.py:464
+#, fuzzy
+msgid "Stopping now will cancel your download"
+msgstr "Stopper du nå vil det avbryte nedlastingen din"
+
+#: webactivity.py:466
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: webactivity.py:468
+#: webtoolbar.py:334
+msgid "Stop"
+msgstr "Stans"
+
+#: webtoolbar.py:212
+msgid "Back"
+msgstr "Tilbake"
+
+#: webtoolbar.py:219
+msgid "Forward"
+msgstr "Framover"
+
+#: webtoolbar.py:242
+msgid "Bookmark"
+msgstr "Bokmerke"
+
+#: webtoolbar.py:337
+msgid "Reload"
+msgstr "Last på nytt"
