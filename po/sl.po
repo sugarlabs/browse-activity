@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-07-11 01:20-0400\n"
+"Last-Translator: Denis Oštir <denis.ostir@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.1.0rc2\n"
+
+#: activity/activity.info:2 webactivity.py:113
+msgid "Browse"
+msgstr "Prebrskaj"
+
+#: browser.py:149
+msgid "Source"
+msgstr "Izvor"
+
+#: downloadmanager.py:141
+msgid "Download started"
+msgstr "Prenos začet"
+
+#: downloadmanager.py:143 downloadmanager.py:157
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:155
+msgid "Download completed"
+msgstr "Prenos končan"
+
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "Pokaži v dnevniku"
+
+#: downloadmanager.py:163
+msgid "Ok"
+msgstr "V redu"
+
+#: downloadmanager.py:169
+#, python-format
+msgid "File %s from %s."
+msgstr "Datoteka %s od %s."
+
+#: downloadmanager.py:245
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Prenašam %s z \n"
+"%s."
+
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Prejšnji"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Naslednji"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Odstrani"
+
+#: palettes.py:89
+msgid "Follow link"
+msgstr "Sledi povezavi"
+
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Oddalji"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Približaj"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Cel zaslon"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Prikaži opravilno vrstico"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Skrij opravilno vrstico"
+
+#: webactivity.py:109
+msgid "Edit"
+msgstr "Urejanje"
+
+#: webactivity.py:121
+msgid "View"
+msgstr "Pogled"
+
+#: webactivity.py:140 webactivity.py:141
+msgid "blank"
+msgstr "prazno"
+
+#: webactivity.py:463
+msgid "Download in progress"
+msgstr "Prenos v teku"
+
+#: webactivity.py:464
+msgid "Stopping now will cancel your download"
+msgstr "Če ustaviš zdaj, bo prenos prekinjen."
+
+#: webactivity.py:466
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: webactivity.py:468 webtoolbar.py:334
+msgid "Stop"
+msgstr "Ustavi"
+
+#: webtoolbar.py:212
+msgid "Back"
+msgstr "Nazaj"
+
+#: webtoolbar.py:219
+msgid "Forward"
+msgstr "Naprej"
+
+#: webtoolbar.py:242
+msgid "Bookmark"
+msgstr "Zaznamek"
+
+#: webtoolbar.py:337
+msgid "Reload"
+msgstr "Ponovno naloži"
