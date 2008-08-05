@@ -6,20 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-04-28 02:56-0400\n"
-"Last-Translator: Sandip Gawas <sandip.gawas@gmail.com>\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-06-21 00:36-0400\n"
+"Last-Translator: Rupali Sarode <rups23in@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:109
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#: browser.py:144
+#: browser.py:149
 msgid "Source"
 msgstr "स्तोत्र"
 
@@ -58,17 +58,25 @@ msgstr ""
 "डाउनलोड %s पासून \n"
 " %s."
 
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "अगोदरचा"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "यानंतर"
+
 #: linkbutton.py:94
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:88
+#: palettes.py:89
 msgid "Follow link"
-msgstr ""
+msgstr "लिंक वर जा"
 
-#: palettes.py:93 palettes.py:141
+#: palettes.py:94 palettes.py:142
 msgid "Copy"
-msgstr ""
+msgstr "नक्कल "
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -90,46 +98,46 @@ msgstr "तबक दाखवा"
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:105
+#: webactivity.py:109
 msgid "Edit"
-msgstr ""
+msgstr "संपादन करणे"
 
-#: webactivity.py:117
+#: webactivity.py:121
 msgid "View"
 msgstr "पाहा "
 
-#: webactivity.py:136 webactivity.py:137
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "रिकामा"
 
-#: webactivity.py:449
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "डाऊनलोड सुरू आहे"
 
-#: webactivity.py:450
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "थांबवल्यास डाऊनलोड रद् होईल"
 
-#: webactivity.py:452
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "रद्द करणे"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "थांबा"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "मागे"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "पुढे पाठविणे "
 
-#: webtoolbar.py:82
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "रिकामी जागा"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "पुन्हा चालू करा"
