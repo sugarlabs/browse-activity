@@ -6,56 +6,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Web activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2007-11-20 15:44+0000\n"
-"Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-07-05 05:27-0400\n"
+"Last-Translator: Γιάννης Κασκαμανίδης <ttnfy17@yahoo.gr>\n"
 "Language-Team: Greek <olpc@grnet.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "Περιήγηση"
 
-#: browser.py:132
+#: browser.py:149
 msgid "Source"
 msgstr "Πηγή"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
 msgstr "Η λήψη ξεκίνησε"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
 msgstr "Η λήψη ολοκληρώθηκε"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "Άνοιγμα"
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "Εμφάνιση στο Ημερολόγιο"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
-msgstr "ΟΚ"
+msgstr "Εντάξει"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:169
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"Το αρχείο %s έχει ληφθεί\n"
-"από %s."
+msgid "File %s from %s."
+msgstr "Αρχείο %s από %s."
 
-#: downloadmanager.py:243
-#, python-format
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -64,49 +59,102 @@ msgstr ""
 "Γίνεται λήψη του %s από \n"
 "%s."
 
-#: linkbutton.py:96
-msgid "Remove"
-msgstr "Απομάκρυνση"
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Προηγούμενο"
 
-#: webactivity.py:113
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Επόμενο"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: palettes.py:89
+#, fuzzy
+msgid "Follow link"
+msgstr "Επιλογή συνδέσμου"
+
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Σμίκρυνση"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Μεγέθυνση"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Πλήρης Οθόνη"
+
+#: viewtoolbar.py:87
+#, fuzzy
+msgid "Show Tray"
+msgstr "Προβολή τροφοδότη"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Απόκρυψη τροφοδότη"
+
+#: webactivity.py:109
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: webactivity.py:121
 msgid "View"
 msgstr "Προβολή"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "κενό"
 
-#: webactivity.py:440
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "Λήψη αρχείων σε εξέλιξη"
 
-#: webactivity.py:441
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "Αν διακόψετε τώρα θα ακυρωθούν και οι λήψεις αρχείων"
 
-#: webactivity.py:443
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "Διακοπή"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "Πίσω"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "Σελιδοδείκτης"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "Ανανέωση"
+
+#~ msgid "Open"
+#~ msgstr "Άνοιγμα"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "Το αρχείο %s έχει ληφθεί\n"
+#~ "από %s."
 
 #~ msgid ""
 #~ "Downloading %s from\n"
@@ -118,32 +166,3 @@ msgstr "Ανανέωση"
 #, python-format
 #~ msgid "Web Activity"
 #~ msgstr "Δραστηριότητα στον Ιστό"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr ""
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr ""
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr ""
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr ""
-
-#: viewtoolbar.py:87
-msgid "Show Tray"
-msgstr ""
-
-#: viewtoolbar.py:91
-msgid "Hide Tray"
-msgstr ""
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr ""
