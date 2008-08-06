@@ -6,50 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-03-21 16:33-0400\n"
-"Last-Translator: Shankar Pokharel <memshankar@gmail.com>\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-08-01 03:24-0400\n"
+"Last-Translator: Bibek Kafle <oxese.eax@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "खोज"
 
-#: browser.py:132
+#: browser.py:149
 msgid "Source"
 msgstr "मुल"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
 msgstr "डाउनलोड सुरु भयो"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
 msgstr "डाउनलोड सकियो"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Show in Journal"
 msgstr "खातामा देखाऊ"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
 msgstr "हुन्छ"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 #, python-format
 msgid "File %s from %s."
 msgstr "फाईल %s बाट %s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,9 +58,25 @@ msgstr ""
 "%s डाउनलोड हुँदैछ \n"
 "%s बाट।"
 
-#: linkbutton.py:96
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "पहिलाको"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "अरु"
+
+#: linkbutton.py:94
 msgid "Remove"
 msgstr "हटाऊ"
+
+#: palettes.py:89
+msgid "Follow link"
+msgstr "लिङ्क खोल्ने"
+
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "प्रतिलिपि बनाउने"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -82,42 +98,46 @@ msgstr "ट्रे देखाऊ"
 msgid "Hide Tray"
 msgstr "ट्रे लुकाऊ"
 
-#: webactivity.py:113
+#: webactivity.py:109
+msgid "Edit"
+msgstr "सम्पादन"
+
+#: webactivity.py:121
 msgid "View"
 msgstr "दृश्य"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "सादा"
 
-#: webactivity.py:440
+#: webactivity.py:463
 msgid "Download in progress"
 msgstr "डाउनलोड हुदै छ"
 
-#: webactivity.py:441
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
 msgstr "अहिले रोकेमा डाउनलोड रद्द हुने छ"
 
-#: webactivity.py:443
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "रद्द गर"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "बन्द गर"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "पहिलाको पन्ना"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "अगाडीको पन्ना"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "चिनो"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "फेरि सुरु गर"
