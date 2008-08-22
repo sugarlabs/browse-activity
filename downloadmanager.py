@@ -19,6 +19,7 @@ import logging
 from gettext import gettext as _
 import time
 import tempfile
+import urlparse
 
 import gtk
 from xpcom.nsError import *
@@ -121,6 +122,7 @@ class Download:
         self._mime_type = mime_info.MIMEType
         self._temp_file = temp_file
         self._target_file = target.queryInterface(interfaces.nsIFileURL).file
+        self._display_name = display_name
         self.cancelable = cancelable
         self.datastore_deleted_handler = None
 
@@ -143,8 +145,7 @@ class Download:
             
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
-            path_, file_name = os.path.split(self._target_file.path)
-            alert.props.msg = _('%s'%(file_name)) 
+            alert.props.msg = _('%s' % self._get_file_name()) 
             _activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
             alert.show()
@@ -157,8 +158,7 @@ class Download:
 
             self._stop_alert = Alert()
             self._stop_alert.props.title = _('Download completed') 
-            path_, file_name = os.path.split(self._target_file.path) 
-            self._stop_alert.props.msg = _('%s'%(file_name)) 
+            self._stop_alert.props.msg = _('%s' % self._get_file_name()) 
             open_icon = Icon(icon_name='zoom-activity') 
             self._stop_alert.add_button(gtk.RESPONSE_APPLY, 
                                         _('Show in Journal'), open_icon) 
@@ -171,7 +171,7 @@ class Download:
             self._stop_alert.show()
 
             self.dl_jobject.metadata['title'] = _('File %s from %s.') % \
-                                                 (file_name, self._source.spec)
+                    (self._get_file_name(), self._source.spec)
             self.dl_jobject.metadata['progress'] = '100'
             self.dl_jobject.file_path = self._target_file.path
 
@@ -228,7 +228,6 @@ class Download:
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
                            max_total_progress):
-        path_, file_name = os.path.split(self._target_file.path)
         percent = (cur_self_progress  * 100) / max_self_progress
 
         if (time.time() - self._last_update_time) < _MIN_TIME_UPDATE and \
@@ -242,12 +241,18 @@ class Download:
             self.dl_jobject.metadata['progress'] = str(percent)
             datastore.write(self.dl_jobject)
 
-    def _create_journal_object(self):
-        path_, file_name = os.path.split(self._target_file.path)
+    def _get_file_name(self):
+        if self._display_name:
+            return self._display_name
+        else:
+            path = urlparse.urlparse(self._source.spec).path
+            location, file_name = os.path.split(path)
+            return file_name
 
+    def _create_journal_object(self):
         self.dl_jobject = datastore.create()
-        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') \
-                                             %(file_name, self._source.spec)
+        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
+                (self._get_file_name(), self._source.spec)
 
         self.dl_jobject.metadata['progress'] = '0'
         self.dl_jobject.metadata['keep'] = '0'
