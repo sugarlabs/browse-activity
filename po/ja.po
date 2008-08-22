@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-07-19 10:23-0400\n"
+"PO-Revision-Date: 2008-08-22 11:17-0400\n"
 "Last-Translator: korakurider <korakurider@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,6 @@ msgstr ""
 "X-Generator: Pootle 1.1.0rc2\n"
 
 #: activity/activity.info:2 webactivity.py:113
-#, fuzzy
 msgid "Browse"
 msgstr "ブラウズ"
 
