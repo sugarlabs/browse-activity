@@ -269,10 +269,10 @@ class Download:
     def __datastore_deleted_cb(self, uid):
         logging.debug('Downloaded entry has been deleted from the datastore: %r'
                       % uid)
+        global _active_downloads
         if self in _active_downloads:
             # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
             self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
-            global _active_downloads
             _active_downloads.remove(self)
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
