@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-08-27 06:00-0400\n"
+"PO-Revision-Date: 2008-08-27 06:12-0400\n"
 "Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -61,11 +61,11 @@ msgstr ""
 
 #: edittoolbar.py:94
 msgid "Previous"
-msgstr "Anterior"
+msgstr "Encontrar anterior"
 
 #: edittoolbar.py:101
 msgid "Next"
-msgstr "Seguinte"
+msgstr "Encontrar próximo"
 
 #: linkbutton.py:94
 msgid "Remove"
