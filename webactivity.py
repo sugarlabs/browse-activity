@@ -61,6 +61,7 @@ if _profile_version < PROFILE_VERSION:
     f.close()
 
 import hulahop
+hulahop.set_app_version(os.environ['SUGAR_BUNDLE_VERSION'])
 hulahop.startup(_profile_path)
 
 from browser import Browser
