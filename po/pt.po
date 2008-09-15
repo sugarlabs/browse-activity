@@ -6,106 +6,153 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2007-12-30 14:21+0000\n"
-"Last-Translator: Ivo Emanuel Gonçalves <justivo@gmail.com>\n"
+"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"PO-Revision-Date: 2008-08-27 06:12-0400\n"
+"Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:113
 msgid "Browse"
 msgstr "Navegar"
 
-#: browser.py:132
+#: browser.py:149
 msgid "Source"
 msgstr "Código"
 
-#: downloadmanager.py:140
+#: downloadmanager.py:141
 msgid "Download started"
-msgstr "Download começou"
+msgstr "Transferência iniciada"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:143 downloadmanager.py:157
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:155
 msgid "Download completed"
-msgstr "Download completo"
+msgstr "Transferência completa"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "Abrir"
+#: downloadmanager.py:160
+msgid "Show in Journal"
+msgstr "Mostrar no Diário"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:163
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:169
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
-"Ficheiro %s obtido de\n"
-"%s."
+msgid "File %s from %s."
+msgstr "Ficheiro %s de %s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:245
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"Obtendo %s de \n"
+"Transferindo %s de \n"
 "%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:94
+msgid "Previous"
+msgstr "Encontrar anterior"
+
+#: edittoolbar.py:101
+msgid "Next"
+msgstr "Encontrar próximo"
+
+#: linkbutton.py:94
 msgid "Remove"
 msgstr "Remover"
 
-#: webactivity.py:113
+#: palettes.py:89
+msgid "Follow link"
+msgstr "Seguir hiperligação"
+
+#: palettes.py:94 palettes.py:142
+msgid "Copy"
+msgstr "Copiar"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Afastar Zoom"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Aproximar Zoom"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Ecrã Completo"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Mostrar Bandeja"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Esconder Bandeja"
+
+#: webactivity.py:109
+msgid "Edit"
+msgstr "Editar"
+
+#: webactivity.py:121
 msgid "View"
 msgstr "Ver"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:140 webactivity.py:141
 msgid "blank"
 msgstr "vazio"
 
-#: webactivity.py:440
+#: webactivity.py:463
 msgid "Download in progress"
-msgstr "Obtendo ficheiro"
+msgstr "Transferência em curso"
 
-#: webactivity.py:441
+#: webactivity.py:464
 msgid "Stopping now will cancel your download"
-msgstr "Se parares agora vais cancelar o download"
+msgstr "Parar agora irá cancelar a tua transferência"
 
-#: webactivity.py:443
+#: webactivity.py:466
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:468 webtoolbar.py:334
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:212
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:219
 msgid "Forward"
 msgstr "Avançar"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:242
 msgid "Bookmark"
 msgstr "Marcar"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:337
 msgid "Reload"
 msgstr "Recarregar"
+
+#~ msgid "Open"
+#~ msgstr "Abrir"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "Ficheiro %s obtido de\n"
+#~ "%s."
 
 #~ msgid "Web Activity"
 #~ msgstr "Actividade Web"
@@ -125,32 +172,3 @@ msgstr "Recarregar"
 #, python-format
 #~ msgid "All files"
 #~ msgstr "Tudos os ficheiros"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr "Ficheiro %s de %s."
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr "Afastar zoom"
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr "Aproximar zoom"
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr "Ecrã completo"
-
-#: viewtoolbar.py:87
-msgid "Show Tray"
-msgstr "Mostrar Barra"
-
-#: viewtoolbar.py:91
-msgid "Hide Tray"
-msgstr "Esconder Barra"
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr ""
