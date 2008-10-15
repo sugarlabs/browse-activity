@@ -22,6 +22,7 @@ from gettext import gettext as _
 
 import gobject
 import gtk
+import hulahop
 import xpcom
 from xpcom.nsError import *
 from xpcom import components
@@ -242,6 +243,7 @@ class PopupDialog(gtk.Window):
 
         self.view = WebView()
         self.add(self.view)
+        self.view.realize()
 
 class WindowCreator:
     _com_interfaces_ = interfaces.nsIWindowCreator
