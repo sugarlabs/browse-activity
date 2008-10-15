@@ -27,8 +27,6 @@ from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
 from sugar._sugarext import AddressEntry
 
-import sessionhistory
-import progresslistener
 import filepicker
 import places
 
@@ -265,7 +263,7 @@ class WebToolbar(gtk.Toolbar):
         self.insert(self._link_add, -1)
         self._link_add.show()
         
-        progress_listener = progresslistener.get_instance()
+        progress_listener = browser.progress
         progress_listener.connect('location-changed', 
                                   self._location_changed_cb)
         progress_listener.connect('loading-start', self._loading_start_cb)
@@ -273,9 +271,8 @@ class WebToolbar(gtk.Toolbar):
         progress_listener.connect('loading-progress', 
                                   self._loading_progress_cb)
 
-        session_history = sessionhistory.get_instance()
-        session_history.connect('session-history-changed', 
-                                self._session_history_changed_cb)
+        self._browser.history.connect('session-history-changed', 
+                                      self._session_history_changed_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
 

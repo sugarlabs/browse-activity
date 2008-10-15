@@ -27,7 +27,6 @@ from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
 from hulahop.webview import WebView
-from hulahop.webview import lookup_view
 
 from sugar.datastore import datastore
 from sugar import profile
@@ -37,6 +36,8 @@ from sugar.graphics import style
 
 import sessionstore
 from palettes import ContentInvoker
+from sessionhistory import HistoryListener
+from progresslistener import ProgressListener
 
 _ZOOM_AMOUNT = 0.1
 
@@ -96,6 +97,12 @@ class Browser(WebView):
     def __init__(self):
         WebView.__init__(self)
 
+        self.history = HistoryListener()
+        self.progress = ProgressListener()
+
+        cls = components.classes["@mozilla.org/typeaheadfind;1"]
+        self.typeahead = cls.createInstance(interfaces.nsITypeAheadFind)
+
         self._jobject = None
 
         io_service_class = components.classes[ \
@@ -123,6 +130,9 @@ class Browser(WebView):
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
 
+    def do_setup(self):
+        WebView.do_setup(self)
+
         listener = xpcom.server.WrapObject(ContentInvoker(self),
                                            interfaces.nsIDOMEventListener)
         self.window_root.addEventListener('click', listener, False)
@@ -130,6 +140,12 @@ class Browser(WebView):
         listener = xpcom.server.WrapObject(CommandListener(self.dom_window),
                                            interfaces.nsIDOMEventListener)
         self.window_root.addEventListener('command', listener, False)
+
+        self.progress.setup(self)
+
+        self.history.setup(self.web_navigation)
+
+        self.typeahead.init(self.doc_shell)
 
     def get_session(self):
         return sessionstore.get_session(self)
@@ -233,7 +249,8 @@ class WindowCreator:
     def createChromeWindow(self, parent, flags):
         dialog = PopupDialog()
 
-        parent_view = lookup_view(parent)
+        parent_dom_window = parent.webBrowser.contentDOMWindow
+        parent_view = hulahop.get_view_for_window(parent_dom_window)
         if parent_view:
             dialog.set_transient_for(parent_view.get_toplevel())
 

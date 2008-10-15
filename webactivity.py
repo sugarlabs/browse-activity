@@ -69,8 +69,6 @@ from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
-import sessionhistory 
-import progresslistener
 import filepicker
 import globalhistory
 
@@ -100,8 +98,6 @@ class WebActivity(activity.Activity):
 
         temp_path = os.path.join(self.get_activity_root(), 'instance')
         downloadmanager.init(self._browser, self, temp_path)
-        sessionhistory.init(self._browser)
-        progresslistener.init(self._browser)
         filepicker.init(self)
 
         toolbox = activity.ActivityToolbox(self)
@@ -128,9 +124,8 @@ class WebActivity(activity.Activity):
         self.set_canvas(self._browser)
         self._browser.show()
                  
-        self.session_history = sessionhistory.get_instance()
-        self.session_history.connect('session-link-changed', 
-                                     self._session_history_changed_cb)
+        self._browser.history.connect('session-link-changed', 
+                                      self._session_history_changed_cb)
         self._web_toolbar.connect('add-link', self._link_add_button_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)

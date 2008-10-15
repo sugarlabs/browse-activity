@@ -69,10 +69,6 @@ class EditToolbar(activity.EditToolbar):
         self.insert(separator, -1)
         separator.show()
 
-        cls = components.classes["@mozilla.org/typeaheadfind;1"]
-        self._typeahead = cls.createInstance(interfaces.nsITypeAheadFind)
-        self._typeahead.init(self._browser.doc_shell)
-
         search_item = gtk.ToolItem()
         self.search_entry = iconentry.IconEntry()
         self.search_entry.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
@@ -126,10 +122,10 @@ class EditToolbar(activity.EditToolbar):
         return requestor.getInterface(interfaces.nsICommandManager)
 
     def __search_entry_activate_cb(self, entry):
-        self._typeahead.findAgain(False, False)
+        self._browser.typeahead.findAgain(False, False)
 
     def __search_entry_changed_cb(self, entry):        
-        found = self._typeahead.find(entry.props.text, False)
+        found = self._browser.typeahead.find(entry.props.text, False)
         if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False
@@ -142,7 +138,7 @@ class EditToolbar(activity.EditToolbar):
                               style.COLOR_BLACK.get_gdk_color())
 
     def __find_previous_cb(self, button):
-        self._typeahead.findAgain(True, False)
+        self._browser.typeahead.findAgain(True, False)
 
     def __find_next_cb(self, button):
-        self._typeahead.findAgain(False, False)
+        self._browser.typeahead.findAgain(False, False)

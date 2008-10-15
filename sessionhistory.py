@@ -31,14 +31,15 @@ class HistoryListener(gobject.GObject):
                                     ([str]))
     }
 
-    def __init__(self, browser):
+    def __init__(self):
         gobject.GObject.__init__(self)
 
         self._wrapped_self = xpcom.server.WrapObject( \
                 self, interfaces.nsISHistoryListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
 
-        self._session_history = browser.web_navigation.sessionHistory
+    def setup(self, web_navigation):
+        self._session_history = web_navigation.sessionHistory
         self._session_history.addSHistoryListener(self._wrapped_self)
 
     def OnHistoryGoBack(self, back_uri):
@@ -73,13 +74,3 @@ class HistoryListener(gobject.GObject):
         self.emit('session-link-changed', reload_uri.spec)
         logging.debug("OnHistoryReload: %s" % reload_uri.spec)
         return True
-
-_session_history_listener = None
-
-def init(browser):
-    global _session_history_listener
-    _session_history_listener = HistoryListener(browser)
-
-def get_instance():
-    global _session_history_listener
-    return _session_history_listener

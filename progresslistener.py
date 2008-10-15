@@ -33,7 +33,7 @@ class ProgressListener(gobject.GObject):
                              ([float]))
     }
 
-    def __init__(self, browser):
+    def __init__(self):
         gobject.GObject.__init__(self)
 
         self.total_requests = 0
@@ -43,12 +43,14 @@ class ProgressListener(gobject.GObject):
                 self, interfaces.nsIWebProgressListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
 
+        self._reset_requests_count()
+
+    def setup(self, browser):
         mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
                interfaces.nsIWebProgress.NOTIFY_STATE_REQUEST | \
                interfaces.nsIWebProgress.NOTIFY_LOCATION
-        browser.web_progress.addProgressListener(self._wrapped_self, mask)
 
-        self._reset_requests_count()
+        browser.web_progress.addProgressListener(self._wrapped_self, mask)
     
     def _reset_requests_count(self):
         self.total_requests = 0
@@ -88,13 +90,3 @@ class ProgressListener(gobject.GObject):
 
     def onStatusChange(self, webProgress, request, status, message):
         pass
-
-_progress_listener = None
-
-def init(browser):
-    global _progress_listener
-    _progress_listener = ProgressListener(browser)
-
-def get_instance():
-    global _progress_listener
-    return _progress_listener
