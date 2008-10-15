@@ -96,9 +96,6 @@ class WebActivity(activity.Activity):
 
         self._browser = Browser()
 
-        temp_path = os.path.join(self.get_activity_root(), 'instance')
-        downloadmanager.init(self._browser, self, temp_path)
-
         toolbox = activity.ActivityToolbox(self)
 
         self._edit_toolbar = EditToolbar(self._browser)

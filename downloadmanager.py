@@ -22,6 +22,7 @@ import tempfile
 import urlparse
 
 import gtk
+import hulahop
 from xpcom.nsError import *
 from xpcom import components
 from xpcom.components import interfaces
@@ -51,20 +52,8 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _MIN_TIME_UPDATE = 5        # In seconds
 _MIN_PERCENT_UPDATE = 10
 
-_browser = None
-_activity = None
-_temp_path = '/tmp'
-def init(browser, activity_instance, temp_path):
-    global _browser
-    _browser = browser
-
-    global _activity
-    _activity = activity_instance
-    
-    global _temp_path
-    _temp_path = temp_path
-
 _active_downloads = []
+_dest_to_window = {}
 
 def can_quit():
     return len(_active_downloads) == 0
@@ -95,12 +84,17 @@ class HelperAppLauncherDialog:
             else:
                 extension = ''
 
-        if not os.path.exists(_temp_path):
-            os.makedirs(_temp_path)
-        fd, file_path = tempfile.mkstemp(dir=_temp_path, prefix=base_name, suffix=extension)
+        temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        if not os.path.exists(temp_path):
+            os.makedirs(temp_path)
+        fd, file_path = tempfile.mkstemp(dir=temp_path, prefix=base_name, suffix=extension)
         os.close(fd)
         os.chmod(file_path, 0644)
         dest_file.initWithPath(file_path)
+
+        requestor = window_context.queryInterface(interfaces.nsIInterfaceRequestor)
+        dom_window = requestor.getInterface(interfaces.nsIDOMWindow)
+        _dest_to_window[file_path] = dom_window
         
         return dest_file
                             
@@ -131,6 +125,13 @@ class Download:
         self._last_update_time = 0
         self._last_update_percent = 0
         self._stop_alert = None
+
+        dom_window = _dest_to_window[self._target_file.path]
+        del _dest_to_window[self._target_file.path]
+
+        view = hulahop.get_view_for_window(dom_window)
+        print dom_window
+        self._activity = view.get_toplevel()
         
         return NS_OK
 
@@ -146,7 +147,7 @@ class Download:
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
             alert.props.msg = _('%s' % self._get_file_name()) 
-            _activity.add_alert(alert)
+            self._activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
             alert.show()
             global _active_downloads
@@ -166,7 +167,7 @@ class Download:
             ok_icon = Icon(icon_name='dialog-ok') 
             self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon) 
             ok_icon.show()            
-            _activity.add_alert(self._stop_alert) 
+            self._activity.add_alert(self._stop_alert) 
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
@@ -198,16 +199,16 @@ class Download:
             if self.dl_jobject is not None:
                 self.cleanup_datastore_write()
             if self._stop_alert is not None:
-                _activity.remove_alert(self._stop_alert)
+                self._activity.remove_alert(self._stop_alert)
 
-        _activity.remove_alert(alert)        
+        self._activity.remove_alert(alert)        
 
     def __stop_response_cb(self, alert, response_id):        
         global _active_downloads 
         if response_id is gtk.RESPONSE_APPLY: 
             logging.debug('Start application with downloaded object') 
             activity.show_object_in_journal(self._object_id) 
-        _activity.remove_alert(alert)
+        self._activity.remove_alert(alert)
             
     def cleanup_datastore_write(self):
         global _active_downloads        
@@ -284,4 +285,3 @@ components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
                                      'Sugar Download',
                                      '@mozilla.org/transfer;1',
                                      Factory(Download))
-
