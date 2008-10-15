@@ -68,8 +68,8 @@ from browser import Browser
 from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
-import downloadmanager
 import filepicker
+import downloadmanager
 import globalhistory
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
@@ -98,7 +98,6 @@ class WebActivity(activity.Activity):
 
         temp_path = os.path.join(self.get_activity_root(), 'instance')
         downloadmanager.init(self._browser, self, temp_path)
-        filepicker.init(self)
 
         toolbox = activity.ActivityToolbox(self)
 
