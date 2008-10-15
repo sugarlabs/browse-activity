@@ -74,7 +74,7 @@ class ContentInvoker(Invoker):
             else:
                 title = os.path.basename(urlparse.urlparse(target.src).path)
 
-            self.palette = ImagePalette(title, target.src)
+            self.palette = ImagePalette(title, target.src, target.ownerDocument)
             self.notify_right_click()
 
 class LinkPalette(Palette):
@@ -144,10 +144,12 @@ class LinkPalette(Palette):
         downloadmanager.save_link(self._url, self._title, self._owner_document)
 
 class ImagePalette(Palette):
-    def __init__(self, title, url):
+    def __init__(self, title, url, owner_document):
         Palette.__init__(self)
 
+        self._title = title
         self._url = url
+        self._owner_document = owner_document
 
         self.props.primary_text = title
         self.props.secondary_text = url
@@ -157,6 +159,11 @@ class ImagePalette(Palette):
                     icon_size=gtk.ICON_SIZE_MENU)
         menu_item.set_image(icon)
         menu_item.connect('activate', self.__copy_activate_cb)
+        self.menu.append(menu_item)
+        menu_item.show()
+
+        menu_item = MenuItem(_('Download image'))
+        menu_item.connect('activate', self.__download_activate_cb)
         self.menu.append(menu_item)
         menu_item.show()
 
@@ -191,6 +198,9 @@ class ImagePalette(Palette):
                                            interfaces.nsIWebProgressListener)
         persist.progressListener = listener
         persist.saveURI(uri, None, None, None, None, target_file)
+
+    def __download_activate_cb(self, menu_item):
+        downloadmanager.save_link(self._url, self._title, self._owner_document)
 
 class _ImageProgressListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
