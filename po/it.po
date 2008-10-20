@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-06-26 06:06-0400\n"
+"POT-Creation-Date: 2008-10-16 00:30-0400\n"
+"PO-Revision-Date: 2008-10-20 04:28-0400\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,41 +15,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "Naviga"
 
-#: browser.py:149
+#: browser.py:189
 msgid "Source"
 msgstr "Sorgente"
 
-#: downloadmanager.py:141
+#: downloadmanager.py:150
 msgid "Download started"
 msgstr "Iniziato trasferimento"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:151 downloadmanager.py:164
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:163
 msgid "Download completed"
 msgstr "Trasferimento terminato"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:167
 msgid "Show in Journal"
 msgstr "Mostra nel Diario"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:170
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:176
 #, python-format
 msgid "File %s from %s."
 msgstr "File %s da %s."
 
-#: downloadmanager.py:245
+#: downloadmanager.py:257
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,11 +58,11 @@ msgstr ""
 "Scaricamento %s da \n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "Precendente"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "Successivo"
 
@@ -70,13 +70,21 @@ msgstr "Successivo"
 msgid "Remove"
 msgstr "Elimina"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "Segui il collegamento"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "Copia"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Scarica dal collegamento"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Scarica immagine"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -98,48 +106,48 @@ msgstr "Mostra cestino"
 msgid "Hide Tray"
 msgstr "Nascondi cestino"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "Modifica"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "Visualizza"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "spazio"
 
-#: webactivity.py:463
+#: webactivity.py:455
 msgid "Download in progress"
 msgstr "Scaricamento in corso"
 
-#: webactivity.py:464
+#: webactivity.py:456
 msgid "Stopping now will cancel your download"
 msgstr "Bloccare adesso annullerà il trasferimento"
 
-#: webactivity.py:466
+#: webactivity.py:458
 msgid "Cancel"
 msgstr "Annulla"
 
 # Alligned to ather act.
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:460 webtoolbar.py:352
 msgid "Stop"
 msgstr "Chiudi"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "Indietro"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "Avanti"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "Segnalibro"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "Ricarica"
 
