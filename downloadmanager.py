@@ -20,6 +20,7 @@ from gettext import gettext as _
 import time
 import tempfile
 import urlparse
+import urllib
 
 import gtk
 import hulahop
@@ -78,6 +79,7 @@ class HelperAppLauncherDialog:
         dest_file = file_class.createInstance(interfaces.nsILocalFile)
 
         if default_file:
+            default_file = default_file.encode('utf-8', 'replace')
             base_name, extension = os.path.splitext(default_file)
         else:
             base_name = ''
@@ -250,6 +252,7 @@ class Download:
         else:
             path = urlparse.urlparse(self._source.spec).path
             location, file_name = os.path.split(path)
+            file_name = urllib.unquote(file_name.encode('utf-8', 'replace'))
             return file_name
 
     def _create_journal_object(self):
