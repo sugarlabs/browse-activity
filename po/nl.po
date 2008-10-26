@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-07-07 10:37-0400\n"
+"POT-Creation-Date: 2008-10-16 00:30-0400\n"
+"PO-Revision-Date: 2008-10-26 04:00-0400\n"
 "Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,41 +16,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "Surfen"
 
-#: browser.py:149
+#: browser.py:189
 msgid "Source"
 msgstr "Bron"
 
-#: downloadmanager.py:141
+#: downloadmanager.py:150
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:151 downloadmanager.py:164
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:163
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:167
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:170
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:176
 #, python-format
 msgid "File %s from %s."
 msgstr "Bestand %s van %s."
 
-#: downloadmanager.py:245
+#: downloadmanager.py:257
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -59,11 +59,11 @@ msgstr ""
 "%s downloaden van \n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "Vorige"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "Volgende"
 
@@ -71,13 +71,21 @@ msgstr "Volgende"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "Koppeling volgen"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "Kopiëren"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Koppeling opslaan"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Afbeelding opslaan"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -99,47 +107,47 @@ msgstr "Toon lade"
 msgid "Hide Tray"
 msgstr "Verberg lade"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "Bewerken"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "Beeld"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "blanco"
 
-#: webactivity.py:463
+#: webactivity.py:455
 msgid "Download in progress"
 msgstr "Bezig met downloaden"
 
-#: webactivity.py:464
+#: webactivity.py:456
 msgid "Stopping now will cancel your download"
 msgstr "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:466
+#: webactivity.py:458
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:460 webtoolbar.py:352
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "Terug"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "Vooruit"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "Bladwijzer"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "Vernieuwen"
 
