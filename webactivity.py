@@ -351,10 +351,6 @@ class WebActivity(activity.Activity):
                 self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
                 self._web_toolbar.entry.grab_focus()
                 return True
-            elif gtk.gdk.keyval_name(event.keyval) == "u":
-                _logger.debug('keyboard: Show source of the current page')
-                self._show_source()
-                return True
             elif gtk.gdk.keyval_name(event.keyval) == "minus":
                 _logger.debug('keyboard: Zoom out')
                 self._browser.zoom_out()
@@ -364,10 +360,6 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Zoom in')
                 self._browser.zoom_in()
                 return True
-        elif gtk.gdk.keyval_name(event.keyval) == "XF86Start":
-            _logger.debug('keyboard: Show source of the current page SHOW_KEY')
-            self._show_source()
-            return True
         return False
 
     def _add_link(self):
@@ -417,9 +409,6 @@ class WebActivity(activity.Activity):
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
         self._browser.load_uri(url)
-                
-    def _show_source(self):
-        self._browser.get_source()
 
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
@@ -472,4 +461,7 @@ class WebActivity(activity.Activity):
             logging.debug('Stop downloads and quit')
             downloadmanager.remove_all_downloads()
             self.close(force=True)
+
+    def get_document_path(self, async_cb, async_err_cb):
+        self._browser.get_source(async_cb, async_err_cb)
 

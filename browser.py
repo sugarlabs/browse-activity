@@ -42,21 +42,18 @@ from progresslistener import ProgressListener
 
 _ZOOM_AMOUNT = 0.1
 
-class GetSourceListener(gobject.GObject):
+class GetSourceListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
     
-    __gsignals__ = {    
-        'finished':     (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ([]))
-    }
-    
-    def __init__(self, persist):
-        gobject.GObject.__init__(self)
-        self._persist = persist
+    def __init__(self, file_path, async_cb, async_err_cb):
+        self._file_path = file_path
+        self._async_cb = async_cb
+        self._async_err_cb = async_err_cb
 
-    def onStateChange(self, progress, request, flags, status):
-        finished = interfaces.nsIWebBrowserPersist.PERSIST_STATE_FINISHED
-        if self._persist.currentState == finished:
-            self.emit('finished')
+    def onStateChange(self, webProgress, request, stateFlags, status):
+        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and \
+                stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+            self._async_cb(self._file_path)
 
     def onProgressChange(self, progress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
@@ -154,7 +151,7 @@ class Browser(WebView):
     def set_session(self, data):
         return sessionstore.set_session(self, data)
 
-    def get_source(self):
+    def get_source(self, async_cb, async_err_cb):
         cls = components.classes[ \
                 '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
         persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
@@ -162,58 +159,18 @@ class Browser(WebView):
         persist.persistFlags = \
                 interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
 
-        progresslistener = GetSourceListener(persist)
-        persist.progressListener = xpcom.server.WrapObject(
-            progresslistener, interfaces.nsIWebProgressListener)
-        progresslistener.connect('finished', self._have_source_cb)
-        
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         file_path = os.path.join(temp_path, '%i' % time.time())        
         cls = components.classes["@mozilla.org/file/local;1"]
         local_file = cls.createInstance(interfaces.nsILocalFile)
         local_file.initWithPath(file_path)
 
+        progresslistener = GetSourceListener(file_path, async_cb, async_err_cb)
+        persist.progressListener = xpcom.server.WrapObject(
+            progresslistener, interfaces.nsIWebProgressListener)
+
         uri = self.web_navigation.currentURI            
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
-        self._create_journal_object(file_path)
-        self._jobject.file_path = file_path
-        
-    def _have_source_cb(self, progress_listener):
-        logging.debug("Finished getting source - writing to datastore")      
-        datastore.write(self._jobject,
-                        reply_handler=self._internal_save_cb,
-                        error_handler=self._internal_save_error_cb)
-
-    def _create_journal_object(self, file_path):        
-        self._jobject = datastore.create()        
-        title = _('Source') + ': ' + self.props.title 
-        self._jobject.metadata['title'] = title
-        self._jobject.metadata['keep'] = '0'
-        self._jobject.metadata['buddies'] = ''
-        self._jobject.metadata['preview'] = ''
-        self._jobject.metadata['icon-color'] = profile.get_color().to_string()
-        self._jobject.metadata['mime_type'] = 'text/html'
-        self._jobject.metadata['source'] = '1'
-        self._jobject.file_path = ''
-        datastore.write(self._jobject)
-
-    def _internal_save_cb(self):
-        logging.debug("Saved source object to datastore.")
-        activity.show_object_in_journal(self._jobject.object_id) 
-        self._cleanup_jobject()
-            
-    def _internal_save_error_cb(self, err):
-        logging.debug("Error saving source object to datastore: %s" % err)
-        self._cleanup_jobject()
-
-    def _cleanup_jobject(self):
-        if self._jobject:
-            if os.path.isfile(self._jobject.file_path):
-                logging.debug('_cleanup_jobject: removing %r' % 
-                              self._jobject.file_path)
-                os.remove(self._jobject.file_path)            
-            self._jobject.destroy()
-            self._jobject = None
 
     def zoom_in(self):
         contentViewer = self.doc_shell.queryInterface( \
