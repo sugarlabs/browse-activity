@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-07-11 01:20-0400\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2008-12-08 08:48-0500\n"
 "Last-Translator: Denis Oštir <denis.ostir@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,41 +15,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "Prebrskaj"
 
-#: browser.py:149
-msgid "Source"
-msgstr "Izvor"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "Prenos začet"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "Prenos končan"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "Pokaži v dnevniku"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "V redu"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
 msgstr "Datoteka %s od %s."
 
-#: downloadmanager.py:245
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,11 +54,11 @@ msgstr ""
 "Prenašam %s z \n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "Prejšnji"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "Naslednji"
 
@@ -70,13 +66,21 @@ msgstr "Naslednji"
 msgid "Remove"
 msgstr "Odstrani"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "Sledi povezavi"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "Kopiraj"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Prenesi vsebino povezave"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Prenesi sliko"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -88,7 +92,7 @@ msgstr "Približaj"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr "Cel zaslon"
+msgstr "Celozaslonsko"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
@@ -98,46 +102,49 @@ msgstr "Prikaži opravilno vrstico"
 msgid "Hide Tray"
 msgstr "Skrij opravilno vrstico"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "Urejanje"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "Pogled"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "prazno"
 
-#: webactivity.py:463
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "Prenos v teku"
 
-#: webactivity.py:464
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "Če ustaviš zdaj, bo prenos prekinjen."
 
-#: webactivity.py:466
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "Ustavi"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "Nazaj"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "Naprej"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "Zaznamek"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "Ponovno naloži"
+
+#~ msgid "Source"
+#~ msgstr "Izvor"
