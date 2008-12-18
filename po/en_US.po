@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2008-11-03 01:17-0500\n"
+"Last-Translator: Desiree M Durham <desireemarie7@yahoo.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.1.0rc2\n"
+
+#: activity/activity.info:2 webactivity.py:106
+msgid "Browse"
+msgstr "Browse"
+
+#: downloadmanager.py:152
+msgid "Download started"
+msgstr "Download started"
+
+#: downloadmanager.py:153 downloadmanager.py:166
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:165
+msgid "Download completed"
+msgstr "Download completed"
+
+#: downloadmanager.py:169
+msgid "Show in Journal"
+msgstr "Show in Journal"
+
+#: downloadmanager.py:172
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:178
+#, python-format
+msgid "File %s from %s."
+msgstr "File %s from %s."
+
+#: downloadmanager.py:260
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Downloading %s from \n"
+"%s."
+
+#: edittoolbar.py:90
+msgid "Previous"
+msgstr "Previous"
+
+#: edittoolbar.py:97
+msgid "Next"
+msgstr "Next"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Remove"
+
+#: palettes.py:95
+msgid "Follow link"
+msgstr "Follow link"
+
+#: palettes.py:100 palettes.py:157
+msgid "Copy"
+msgstr "Copy"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Download link"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Download image"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Zoom out"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Zoom in"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr "Show Tray"
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr "Hide Tray"
+
+#: webactivity.py:102
+msgid "Edit"
+msgstr "Edit"
+
+#: webactivity.py:114
+msgid "View"
+msgstr "View"
+
+#: webactivity.py:132 webactivity.py:133
+msgid "blank"
+msgstr "blank"
+
+#: webactivity.py:444
+msgid "Download in progress"
+msgstr "Download in progress"
+
+#: webactivity.py:445
+msgid "Stopping now will cancel your download"
+msgstr "Stopping now will cancel your download"
+
+#: webactivity.py:447
+msgid "Cancel"
+msgstr "Cancel"
+
+#: webactivity.py:449 webtoolbar.py:352
+msgid "Stop"
+msgstr "Stop"
+
+#: webtoolbar.py:231
+msgid "Back"
+msgstr "Back"
+
+#: webtoolbar.py:238
+msgid "Forward"
+msgstr "Forward"
+
+#: webtoolbar.py:261
+msgid "Bookmark"
+msgstr "Bookmark"
+
+#: webtoolbar.py:355
+msgid "Reload"
+msgstr "Reload"
+
+#~ msgid "Source"
+#~ msgstr "Source"
