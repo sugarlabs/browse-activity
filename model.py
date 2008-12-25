@@ -16,7 +16,7 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
-import json
+import cjson
 import sha
 import gobject
 import base64
@@ -60,10 +60,10 @@ class Model(gobject.GObject):
                 break                
         
     def serialize(self):
-        return json.write(self.data)
+        return cjson.encode(self.data)
 
     def deserialize(self, data):
-        self.data = json.read(data)
+        self.data = cjson.decode(data)
         if not self.data.has_key('shared_links'):
             self.data['shared_links'] = []
         if not self.data.has_key('deleted'):
