@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-07-31 04:08-0400\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2008-12-29 00:37-0500\n"
 "Last-Translator: Odontsetseg Bat-Erdene <obat-erdene@suffolk.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,52 +15,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "Интэрнэт"
 
-#: browser.py:149
-msgid "Source"
-msgstr "Эх үүсвэр"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "Татаж эхэллээ"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "Татаж дууслаа"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "Бүртгэл дээр үзүүлэх"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "Тийм"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
 msgstr "Нийт %s-аас %s файл байна."
 
-#: downloadmanager.py:245
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr "%s-с % нь татаж байна."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "Өмнөх"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "Дараах"
 
@@ -68,13 +64,21 @@ msgstr "Дараах"
 msgid "Remove"
 msgstr "Устгах"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "Холбоог дагах"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "Хуулах"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Холбоос татаж авах"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Зураг татаж авах"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -96,46 +100,49 @@ msgstr "Туслах мөрийг харуулах"
 msgid "Hide Tray"
 msgstr "Туслах мөрийг нуух"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "Засварлах"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "Харагдац"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "хоосон"
 
-#: webactivity.py:463
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "Татаж байна..."
 
-#: webactivity.py:464
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "Программыг зогсоовол татаж байгаа юмнууд арилна"
 
-#: webactivity.py:466
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "Болих"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "Зогсоох"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "Буцах"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "Урагшлах"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "Хуудасны хаягийг хадгал"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "Дахин дууд"
+
+#~ msgid "Source"
+#~ msgstr "Эх үүсвэр"
