@@ -2,121 +2,149 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2009-02-13 08:35-0500\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
-msgstr ""
+msgstr "Duyệt"
 
-#: browser.py:132
-msgid "Source"
-msgstr ""
-
-#: downloadmanager.py:140
+#: downloadmanager.py:152
 msgid "Download started"
-msgstr ""
+msgstr "Đã bắt đầu tải về"
 
-#: downloadmanager.py:142 downloadmanager.py:156
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
-#: downloadmanager.py:154
+#: downloadmanager.py:165
 msgid "Download completed"
-msgstr ""
+msgstr "Đã kết thúc tải về"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:169
 msgid "Show in Journal"
-msgstr ""
+msgstr "Hiện trong Nhật ký"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:172
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
-msgstr ""
+msgstr "Tập tin %s từ %s."
 
-#: downloadmanager.py:243
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"Đang tải %s xuống \n"
+"%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:90
+msgid "Previous"
+msgstr "Lùi"
+
+#: edittoolbar.py:97
+msgid "Next"
+msgstr "Tiếp"
+
+#: linkbutton.py:94
 msgid "Remove"
-msgstr ""
+msgstr "Bỏ"
+
+#: palettes.py:95
+msgid "Follow link"
+msgstr "Theo liên kết"
+
+#: palettes.py:100 palettes.py:157
+msgid "Copy"
+msgstr "Chép"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Tải về liên kết"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Tải về ảnh"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "Thu nhỏ"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "Phóng to"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "Toàn màn hình"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr ""
+msgstr "Hiện khay"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr ""
+msgstr "Ẩn khay"
 
-#: webactivity.py:113
+#: webactivity.py:102
+msgid "Edit"
+msgstr "Sửa"
+
+#: webactivity.py:114
 msgid "View"
-msgstr ""
+msgstr "Xem"
 
-#: webactivity.py:131 webactivity.py:132
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
-msgstr ""
+msgstr "trắng"
 
-#: webactivity.py:440
+#: webactivity.py:444
 msgid "Download in progress"
-msgstr ""
+msgstr "Đang tải về"
 
-#: webactivity.py:441
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Dừng ngay bây giờ thì cũng thôi tải về"
 
-#: webactivity.py:443
+#: webactivity.py:447
 msgid "Cancel"
-msgstr ""
+msgstr "Thôi"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
-msgstr ""
+msgstr "Dừng"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:231
 msgid "Back"
-msgstr ""
+msgstr "Lùi"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:238
 msgid "Forward"
-msgstr ""
+msgstr "Tiếp"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:261
 msgid "Bookmark"
-msgstr ""
+msgstr "Liên kết lưu"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:355
 msgid "Reload"
-msgstr ""
+msgstr "Nạp lại"
+
+#~ msgid "Source"
+#~ msgstr "Nguồn"
