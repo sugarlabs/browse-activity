@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-08-27 06:12-0400\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2009-02-15 16:05-0500\n"
 "Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,41 +16,37 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "Navegar"
 
-#: browser.py:149
-msgid "Source"
-msgstr "Código"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "Transferência iniciada"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "Transferência completa"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "Mostrar no Diário"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
 msgstr "Ficheiro %s de %s"
 
-#: downloadmanager.py:245
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -59,11 +55,11 @@ msgstr ""
 "Transferindo %s de \n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "Encontrar anterior"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "Encontrar próximo"
 
@@ -71,13 +67,21 @@ msgstr "Encontrar próximo"
 msgid "Remove"
 msgstr "Remover"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "Seguir hiperligação"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "Copiar"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "Transferir hiperligação"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "Transferir imagem"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -99,49 +103,52 @@ msgstr "Mostrar Bandeja"
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "Editar"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "Ver"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "vazio"
 
-#: webactivity.py:463
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "Transferência em curso"
 
-#: webactivity.py:464
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "Parar agora irá cancelar a tua transferência"
 
-#: webactivity.py:466
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "Avançar"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "Marcar"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "Recarregar"
+
+#~ msgid "Source"
+#~ msgstr "Código"
 
 #~ msgid "Open"
 #~ msgstr "Abrir"
