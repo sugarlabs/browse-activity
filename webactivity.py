@@ -129,9 +129,7 @@ from browser import Browser
 from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
-import filepicker
 import downloadmanager
-import globalhistory
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
