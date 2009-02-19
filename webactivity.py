@@ -1,4 +1,5 @@
 # Copyright (C) 2006, Red Hat, Inc.
+# Copyright (C) 2009 Martin Langhoff, Simon Schampijer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +27,10 @@ import sha
 import base64
 import time
 import shutil
- 
+import sqlite3
+import cjson
+import gconf
+  
 from sugar.activity import activity
 from sugar.graphics import style
 import telepathy
@@ -59,6 +63,63 @@ if _profile_version < PROFILE_VERSION:
     f = open(_version_file, 'w')
     f.write(str(PROFILE_VERSION))
     f.close()
+
+def _seed_xs_cookie():
+    ''' Create a HTTP Cookie to authenticate with the Schoolserver
+    '''
+    client = gconf.client_get_default()
+    backup_url = client.get_string('/desktop/sugar/backup_url')
+    if not backup_url:
+        _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
+        return
+
+    jabber_server = client.get_string(
+        '/desktop/sugar/collaboration/jabber_server')
+
+    pubkey = profile.get_profile().pubkey
+    cookie_data = {'color': profile.get_color().to_string(),
+                   'pkey_hash': sha.new(pubkey).hexdigest()}
+
+    db_path = os.path.join(_profile_path, 'cookies.sqlite')
+    try:
+        cookies_db = sqlite3.connect(db_path)
+        c = cookies_db.cursor()
+
+        c.execute('''CREATE TABLE IF NOT EXISTS
+                     moz_cookies 
+                     (id INTEGER PRIMARY KEY,
+                      name TEXT,
+                      value TEXT,
+                      host TEXT,
+                      path TEXT,
+                      expiry INTEGER,
+                      lastAccessed INTEGER,
+                      isSecure INTEGER,
+                      isHttpOnly INTEGER)''')
+
+        c.execute('''SELECT id
+                     FROM moz_cookies
+                     WHERE name=? AND host=? AND path=?''',
+                  ('xoid', jabber_server, '/'))
+        
+        if c.fetchone():
+            _logger.debug('seed_xs_cookie: Cookie exists already')
+            return
+
+        expire = int(time.time()) + 10*365*24*60*60
+        c.execute('''INSERT INTO moz_cookies (name, value, host, 
+                                              path, expiry, lastAccessed,
+                                              isSecure, isHttpOnly)
+                     VALUES(?,?,?,?,?,?,?,?)''',
+                  ('xoid', cjson.encode(cookie_data), jabber_server,
+                   '/', expire, 0, 0, 0 ))
+        cookies_db.commit()
+        cookies_db.close()
+    except sqlite3.Error, e:
+        _logger.error('seed_xs_cookie: %s' % e)
+    else:
+        _logger.debug('seed_xs_cookie: Updated cookie successfully')
+
 
 import hulahop
 hulahop.set_app_version(os.environ['SUGAR_BUNDLE_VERSION'])
@@ -95,6 +156,8 @@ class WebActivity(activity.Activity):
         _logger.debug('Starting the web activity')
 
         self._browser = Browser()
+
+        _seed_xs_cookie()
 
         toolbox = activity.ActivityToolbox(self)
 
@@ -464,4 +527,3 @@ class WebActivity(activity.Activity):
 
     def get_document_path(self, async_cb, async_err_cb):
         self._browser.get_source(async_cb, async_err_cb)
-
