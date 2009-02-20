@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2009-02-15 16:05-0500\n"
+"PO-Revision-Date: 2009-02-20 14:04-0500\n"
 "Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "Navegar"
 
 #: downloadmanager.py:152
 msgid "Download started"
-msgstr "Transferência iniciada"
+msgstr "A transferência iniciou"
 
 #: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
@@ -31,11 +31,11 @@ msgstr "%s"
 
 #: downloadmanager.py:165
 msgid "Download completed"
-msgstr "Transferência completa"
+msgstr "A transferência completou"
 
 #: downloadmanager.py:169
 msgid "Show in Journal"
-msgstr "Mostrar no Diário"
+msgstr "Mostrar no diário"
 
 #: downloadmanager.py:172
 msgid "Ok"
@@ -93,15 +93,15 @@ msgstr "Aproximar Zoom"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr "Ecrã Completo"
+msgstr "Ecrã completo"
 
 #: viewtoolbar.py:87
 msgid "Show Tray"
-msgstr "Mostrar Bandeja"
+msgstr "Mostrar bandeja"
 
 #: viewtoolbar.py:91
 msgid "Hide Tray"
-msgstr "Esconder Bandeja"
+msgstr "Esconder bandeja"
 
 #: webactivity.py:102
 msgid "Edit"
