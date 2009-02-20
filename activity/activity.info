@@ -1,7 +1,7 @@
 [Activity]
 name = Browse
 activity_version = 103
-service_name = org.laptop.WebActivity
+bundle_id = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
 mime_types = image/png;image/gif;image/jpeg;text/html;text/uri-list;application/xhtml+xml;application/rss+xml;application/xml;text/css;application/ogg;audio/x-wav;audio/ogg;video/ogg;audio/x-vorbis+ogg;audio/x-flac+ogg;audio/x-speex+ogg;video/x-theora+ogg;video/x-ogm+ogg
