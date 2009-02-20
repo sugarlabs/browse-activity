@@ -1,5 +1,5 @@
 # Copyright (C) 2006, Red Hat, Inc.
-# Copyright (C) 2009 Martin Langhoff, Simon Schampijer
+# Copyright (C) 2009 Martin Langhoff, Simon Schampijer, Daniel Drake
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import shutil
 import sqlite3
 import cjson
 import gconf
-  
+
 from sugar.activity import activity
 from sugar.graphics import style
 import telepathy
@@ -125,6 +125,29 @@ import hulahop
 hulahop.set_app_version(os.environ['SUGAR_BUNDLE_VERSION'])
 hulahop.startup(_profile_path)
 
+from xpcom import components
+
+def _set_accept_languages():
+    ''' Set intl.accept_languages based on the locale
+    '''
+    try:
+        lang = os.environ['LANG'].strip('\n') # e.g. es_UY.UTF-8 
+    except KeyError:
+        return
+
+    if (not lang.endswith(".utf8") or not lang.endswith(".UTF-8")) \
+            and lang[2] != "_":
+        _logger.debug("Set_Accept_language: unrecognised LANG format")
+        return 
+
+    # e.g. es-uy, es
+    pref = lang[0:2] + "-" + lang[3:5].lower()  + ", " + lang[0:2]
+    cls = components.classes["@mozilla.org/preferences-service;1"]
+    prefService = cls.getService(components.interfaces.nsIPrefService)
+    branch = prefService.getBranch('')
+    branch.setCharPref('intl.accept_languages', pref)
+    logging.debug('LANG set')
+
 from browser import Browser
 from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
@@ -155,6 +178,7 @@ class WebActivity(activity.Activity):
 
         self._browser = Browser()
 
+        _set_accept_languages()
         _seed_xs_cookie()
 
         toolbox = activity.ActivityToolbox(self)
