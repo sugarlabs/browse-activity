@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-16 00:30-0400\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
 "PO-Revision-Date: 2008-10-20 04:34-0400\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
@@ -20,37 +20,33 @@ msgstr ""
 msgid "Browse"
 msgstr "Naviguer"
 
-#: browser.py:189
-msgid "Source"
-msgstr "Source"
-
-#: downloadmanager.py:150
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "Téléchargement amorcé"
 
-#: downloadmanager.py:151 downloadmanager.py:164
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "Téléchargement terminé"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "Accepter"
 
-#: downloadmanager.py:176
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
 msgstr "Fichier %s de %s."
 
-#: downloadmanager.py:257
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -119,19 +115,19 @@ msgstr "Afficher"
 msgid "blank"
 msgstr "vide"
 
-#: webactivity.py:455
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "Téléchargement en cours"
 
-#: webactivity.py:456
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "Si vous arrêtez maintenant, votre téléchargement sera annulé"
 
-#: webactivity.py:458
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "Annuler"
 
-#: webactivity.py:460 webtoolbar.py:352
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "Arrêter"
 
@@ -150,6 +146,9 @@ msgstr "Signet"
 #: webtoolbar.py:355
 msgid "Reload"
 msgstr "Recharger"
+
+#~ msgid "Source"
+#~ msgstr "Source"
 
 #~ msgid "Open"
 #~ msgstr "Ouvrir"
