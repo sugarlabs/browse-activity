@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-16 00:30-0400\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
 "PO-Revision-Date: 2008-10-26 04:00-0400\n"
 "Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,37 +20,33 @@ msgstr ""
 msgid "Browse"
 msgstr "Surfen"
 
-#: browser.py:189
-msgid "Source"
-msgstr "Bron"
-
-#: downloadmanager.py:150
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:151 downloadmanager.py:164
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:176
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
 msgstr "Bestand %s van %s."
 
-#: downloadmanager.py:257
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -119,19 +115,19 @@ msgstr "Beeld"
 msgid "blank"
 msgstr "blanco"
 
-#: webactivity.py:455
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "Bezig met downloaden"
 
-#: webactivity.py:456
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:458
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: webactivity.py:460 webtoolbar.py:352
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "Stop"
 
@@ -150,6 +146,9 @@ msgstr "Bladwijzer"
 #: webtoolbar.py:355
 msgid "Reload"
 msgstr "Vernieuwen"
+
+#~ msgid "Source"
+#~ msgstr "Bron"
 
 #~ msgid "Open"
 #~ msgstr "Openen"
