@@ -6,63 +6,59 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-08-01 03:24-0400\n"
-"Last-Translator: Bibek Kafle <oxese.eax@gmail.com>\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: 2009-02-26 00:03-0500\n"
+"Last-Translator: Shaksham Thapa <shaksham@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
 msgstr "खोज"
 
-#: browser.py:149
-msgid "Source"
-msgstr "मुल"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:152
 msgid "Download started"
 msgstr "डाउनलोड सुरु भयो"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:165
 msgid "Download completed"
 msgstr "डाउनलोड सकियो"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:169
 msgid "Show in Journal"
 msgstr "खातामा देखाऊ"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:172
 msgid "Ok"
 msgstr "हुन्छ"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:178
 #, python-format
 msgid "File %s from %s."
-msgstr "फाईल %s बाट %s"
+msgstr "फाईल %s बाट %s।"
 
-#: downloadmanager.py:245
+#: downloadmanager.py:260
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 "%s डाउनलोड हुँदैछ \n"
-"%s बाट।"
+" %s बाट।"
 
-#: edittoolbar.py:94
+#: edittoolbar.py:90
 msgid "Previous"
 msgstr "पहिलाको"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:97
 msgid "Next"
 msgstr "अरु"
 
@@ -70,13 +66,21 @@ msgstr "अरु"
 msgid "Remove"
 msgstr "हटाऊ"
 
-#: palettes.py:89
+#: palettes.py:95
 msgid "Follow link"
 msgstr "लिङ्क खोल्ने"
 
-#: palettes.py:94 palettes.py:142
+#: palettes.py:100 palettes.py:157
 msgid "Copy"
 msgstr "प्रतिलिपि बनाउने"
+
+#: palettes.py:108
+msgid "Download link"
+msgstr "यो लिकँ डाउनलोड गर"
+
+#: palettes.py:165
+msgid "Download image"
+msgstr "यो फोटो डाउनलोड गर"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -98,46 +102,49 @@ msgstr "ट्रे देखाऊ"
 msgid "Hide Tray"
 msgstr "ट्रे लुकाऊ"
 
-#: webactivity.py:109
+#: webactivity.py:102
 msgid "Edit"
 msgstr "सम्पादन"
 
-#: webactivity.py:121
+#: webactivity.py:114
 msgid "View"
 msgstr "दृश्य"
 
-#: webactivity.py:140 webactivity.py:141
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
 msgstr "सादा"
 
-#: webactivity.py:463
+#: webactivity.py:444
 msgid "Download in progress"
 msgstr "डाउनलोड हुदै छ"
 
-#: webactivity.py:464
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
 msgstr "अहिले रोकेमा डाउनलोड रद्द हुने छ"
 
-#: webactivity.py:466
+#: webactivity.py:447
 msgid "Cancel"
 msgstr "रद्द गर"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
 msgstr "बन्द गर"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:231
 msgid "Back"
 msgstr "पहिलाको पन्ना"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:238
 msgid "Forward"
 msgstr "अगाडीको पन्ना"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:261
 msgid "Bookmark"
 msgstr "चिनो"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:355
 msgid "Reload"
 msgstr "फेरि सुरु गर"
+
+#~ msgid "Source"
+#~ msgstr "मुल"
