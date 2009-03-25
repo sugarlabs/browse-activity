@@ -355,7 +355,7 @@ class WebActivity(activity.Activity):
         if os.path.isfile(_LIBRARY_PATH):
             self._browser.load_uri('file://' + _LIBRARY_PATH)
         else:
-            self._browser.load_uri('about:blank')
+            self._browser.load_uri('http://sugarlabs.org')
 
     def _session_history_changed_cb(self, session_history, link):
         _logger.debug('NewPage: %s.' %link)
