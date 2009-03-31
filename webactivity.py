@@ -153,6 +153,8 @@ from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
+import globalhistory
+import filepicker
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
