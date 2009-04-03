@@ -182,6 +182,12 @@ class WebActivity(activity.Activity):
 
         _set_accept_languages()
         _seed_xs_cookie()
+        
+        # don't pick up the sugar theme - use the native mozilla one instead
+        cls = components.classes['@mozilla.org/preferences-service;1']
+        pref_service = cls.getService(components.interfaces.nsIPrefService)
+        branch = pref_service.getBranch("mozilla.widget.")
+        branch.setBoolPref("disable-native-theme", True)
 
         toolbox = activity.ActivityToolbox(self)
 
