@@ -31,6 +31,10 @@ import sqlite3
 import cjson
 import gconf
 
+# HACK: Needed by http://dev.sugarlabs.org/ticket/456
+import gnome
+gnome.init('Hulahop', '1.0')
+
 from sugar.activity import activity
 from sugar.graphics import style
 import telepathy
