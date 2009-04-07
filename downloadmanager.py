@@ -180,7 +180,8 @@ class Download:
             self.dl_jobject.metadata['progress'] = '100'
             self.dl_jobject.file_path = self._target_file.path
 
-            if self._mime_type == 'application/octet-stream':
+            if self._mime_type in ['application/octet-stream',
+                                   'application/x-zip']:
                 sniffed_mime_type = mime.get_for_file(self._target_file.path)
                 self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
