@@ -1,5 +1,5 @@
 # Copyright (C) 2006, Red Hat, Inc.
-# Copyright (C) 2009 Martin Langhoff, Simon Schampijer, Daniel Drake
+# Copyright (C) 2009 Martin Langhoff, Simon Schampijer, Daniel Drake, Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -152,7 +152,7 @@ def _set_accept_languages():
     branch.setCharPref('intl.accept_languages', pref)
     logging.debug('LANG set')
 
-from browser import Browser
+from browser import TabbedView
 from edittoolbar import EditToolbar
 from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
@@ -182,7 +182,7 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
-        self._browser = Browser()
+        self._tabbed_view = TabbedView()
 
         _set_accept_languages()
         _seed_xs_cookie()
@@ -195,11 +195,12 @@ class WebActivity(activity.Activity):
 
         toolbox = activity.ActivityToolbox(self)
 
-        self._edit_toolbar = EditToolbar(self._browser)
+        self._edit_toolbar = EditToolbar(self._tabbed_view)
         toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
         self._edit_toolbar.show()
 
-        self._web_toolbar = WebToolbar(self._browser)
+        self._web_toolbar = WebToolbar(self._tabbed_view)
+        self._web_toolbar.connect('add-link', self._link_add_button_cb)
         toolbox.add_toolbar(_('Browse'), self._web_toolbar)
         self._web_toolbar.show()
        
@@ -214,26 +215,18 @@ class WebActivity(activity.Activity):
         self.set_toolbox(toolbox)
         toolbox.show()
 
-        self.set_canvas(self._browser)
-        self._browser.show()
-                 
-        self._browser.history.connect('session-link-changed', 
-                                      self._session_history_changed_cb)
-        self._web_toolbar.connect('add-link', self._link_add_button_cb)
-
-        self._browser.connect("notify::title", self._title_changed_cb)
+        self.set_canvas(self._tabbed_view)
+        self._tabbed_view.show()
 
         self.model = Model()
         self.model.connect('add_link', self._add_link_model_cb)
 
-        self.current = _('blank')
-        self.webtitle = _('blank')
         self.connect('key-press-event', self._key_press_cb)
                      
         self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
         
         if handle.uri:
-            self._browser.load_uri(handle.uri)        
+            self._tabbed_view.current_browser.load_uri(handle.uri)        
         elif not self._jobject.file_path:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
@@ -362,23 +355,14 @@ class WebActivity(activity.Activity):
             self.messenger = Messenger(self.tube_conn, self.initiating, 
                                        self.model)         
 
-             
     def _load_homepage(self):
+        browser = self._tabbed_view.current_browser
         if os.path.isfile(_LIBRARY_PATH):
-            self._browser.load_uri('file://' + _LIBRARY_PATH)
+            browser.load_uri('file://' + _LIBRARY_PATH)
         else:
             default_page = os.path.join(activity.get_bundle_path(), 
                                         "data/index.html")
-            self._browser.load_uri(default_page)
-
-    def _session_history_changed_cb(self, session_history, link):
-        _logger.debug('NewPage: %s.' %link)
-        self.current = link
-        
-    def _title_changed_cb(self, embed, pspec):
-        if embed.props.title is not '':
-            _logger.debug('Title changed=%s' % embed.props.title)
-            self.webtitle = embed.props.title
+            browser.load_uri(default_page)
 
     def _get_data_from_file_path(self, file_path):
         fd = open(file_path, 'r')
@@ -401,43 +385,46 @@ class WebActivity(activity.Activity):
                                       base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])      
-            self._browser.set_session(self.model.data['history'])
+            logging.debug('########## reading %s' % data)
+            self._tabbed_view.set_session(self.model.data['history'])
         elif self.metadata['mime_type'] == 'text/uri-list':
             data = self._get_data_from_file_path(file_path)
             uris = mime.split_uri_list(data)
             if len(uris) == 1:
-                self._browser.load_uri(uris[0])
+                self._tabbed_view.props.current_browser.load_uri(uris[0])
             else:
                 _logger.error('Open uri-list: Does not support' 
                               'list of multiple uris by now.') 
         else:
-            self._browser.load_uri(file_path)
+            self._tabbed_view.props.current_browser.load_uri(file_path)
         
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
-        
-        if self.metadata['mime_type'] == 'text/plain':
-            if not self._jobject.metadata['title_set_by_user'] == '1':
-                if self._browser.props.title:
-                    self.metadata['title'] = self._browser.props.title
 
-            self.model.data['history'] = self._browser.get_session()
+        if self.metadata['mime_type'] == 'text/plain':
+
+            browser = self._tabbed_view.current_browser
+
+            if not self._jobject.metadata['title_set_by_user'] == '1':
+                if browser.props.title:
+                    self.metadata['title'] = browser.props.title
+
+            self.model.data['history'] = self._tabbed_view.get_session()
 
             f = open(file_path, 'w')
             try:
+                logging.debug('########## writing %s' % self.model.serialize())
                 f.write(self.model.serialize())
             finally:
                 f.close()
 
     def _link_add_button_cb(self, button):
-        _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
             
     def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "d":
-                _logger.debug('keyboard: Add link: %s.' % self.current)     
                 self._add_link()                
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "f":
@@ -452,30 +439,37 @@ class WebActivity(activity.Activity):
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "minus":
                 _logger.debug('keyboard: Zoom out')
-                self._browser.zoom_out()
+                self._tabbed_view.props.current_browser.zoom_out()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "plus" \
                      or gtk.gdk.keyval_name(event.keyval) == "equal" :
                 _logger.debug('keyboard: Zoom in')
-                self._browser.zoom_in()
+                self._tabbed_view.props.current_browser.zoom_in()
                 return True
         return False
 
     def _add_link(self):
         ''' take screenshot and add link info to the model '''
+
+        browser = self._tabbed_view.props.current_browser
+        uri = browser.progress_listener.location
+        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+
         for link in self.model.data['shared_links']:
-            if link['hash'] == sha.new(self.current).hexdigest():
+            if link['hash'] == sha.new(ui_uri).hexdigest():
                 _logger.debug('_add_link: link exist already a=%s b=%s' %(
-                    link['hash'], sha.new(self.current).hexdigest()))
+                    link['hash'], sha.new(ui_uri).hexdigest()))
                 return
         buf = self._get_screenshot()
         timestamp = time.time()
-        self.model.add_link(self.current, self.webtitle, buf,
+        self.model.add_link(ui_uri, browser.props.title, buf,
                             profile.get_nick_name(),
                             profile.get_color().to_string(), timestamp)
 
         if self.messenger is not None:
-            self.messenger._add_link(self.current, self.webtitle,       
+            self.messenger._add_link(ui_uri, browser.props.title,       
                                      profile.get_color().to_string(),
                                      profile.get_nick_name(),
                                      base64.b64encode(buf), timestamp)
@@ -507,7 +501,7 @@ class WebActivity(activity.Activity):
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
-        self._browser.load_uri(url)
+        self._tabbed_view.props.current_browser.load_uri(url)
 
     def _pixbuf_save_cb(self, buf, data):
         data[0] += buf
@@ -519,7 +513,7 @@ class WebActivity(activity.Activity):
         return str(data[0])
 
     def _get_screenshot(self):
-        window = self._browser.window
+        window = self._tabbed_view.props.current_browser.window
         width, height = window.get_size()
 
         screenshot = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, has_alpha=False,
@@ -562,4 +556,6 @@ class WebActivity(activity.Activity):
             self.close(force=True)
 
     def get_document_path(self, async_cb, async_err_cb):
-        self._browser.get_source(async_cb, async_err_cb)
+        browser = self._tabbed_view.props.current_browser
+        browser.get_source(async_cb, async_err_cb)
+

@@ -1,4 +1,5 @@
 # Copyright (C) 2007, One Laptop Per Child
+# Copyright (C) 2009, Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -113,7 +114,7 @@ components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}',
 
 class Download:
     _com_interfaces_ = interfaces.nsITransfer
-    
+
     def init(self, source, target, display_name, mime_info, start_time,
              temp_file, cancelable):
         self._source = source
@@ -134,7 +135,7 @@ class Download:
         del _dest_to_window[self._target_file.path]
 
         view = hulahop.get_view_for_window(dom_window)
-        print dom_window
+        logging.debug('Download.init dom_window: %r' % dom_window)
         self._activity = view.get_toplevel()
         
         return NS_OK

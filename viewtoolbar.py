@@ -1,4 +1,5 @@
 # Copyright (C) 2007, One Laptop Per Child
+# Copyright (C) 2009, Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,8 +28,6 @@ class ViewToolbar(gtk.Toolbar):
         self._activity = activity        
         self._activity.tray.connect('unmap', self.__unmap_cb)
         self._activity.tray.connect('map', self.__map_cb)
-
-        self._browser = self._activity._browser
                 
         self.zoomout = ToolButton('zoom-out')
         self.zoomout.set_tooltip(_('Zoom out'))
@@ -60,11 +59,13 @@ class ViewToolbar(gtk.Toolbar):
         self.traybutton.show()
                 
     def __zoomin_clicked_cb(self, button):
-        self._browser.zoom_in()
-        
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.zoom_in()
+
     def __zoomout_clicked_cb(self, button):
-        self._browser.zoom_out()
-                
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.zoom_out()
+
     def __fullscreen_clicked_cb(self, button):
         self._activity.fullscreen()
 

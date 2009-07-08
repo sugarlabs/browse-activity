@@ -1,5 +1,6 @@
 # Copyright (C) 2006, Red Hat, Inc.
 # Copyright (C) 2007, One Laptop Per Child
+# Copyright (C) 2009, Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,7 +86,10 @@ class CommandListener(object):
         cert_exception = cls.createInstance(interfaces.hulahopAddCertException)
         cert_exception.showDialog(self._window)
 
-class Browser(WebView):
+class TabbedView(gtk.Notebook):
+    __gtype_name__ = 'TabbedView'
+
+    _com_interfaces_ = interfaces.nsIWindowCreator
 
     AGENT_SHEET = os.path.join(activity.get_bundle_path(), 
                                'agent-stylesheet.css')
@@ -93,15 +97,10 @@ class Browser(WebView):
                               'user-stylesheet.css')
 
     def __init__(self):
-        WebView.__init__(self)
+        gobject.GObject.__init__(self)
 
-        self.history = HistoryListener()
-        self.progress = ProgressListener()
-
-        cls = components.classes["@mozilla.org/typeaheadfind;1"]
-        self.typeahead = cls.createInstance(interfaces.nsITypeAheadFind)
-
-        self._jobject = None
+        self.props.show_border = False
+        self.props.scrollable = True
 
         io_service_class = components.classes[ \
                 "@mozilla.org/network/io-service;1"]
@@ -115,18 +114,164 @@ class Browser(WebView):
         cls = components.classes['@mozilla.org/content/style-sheet-service;1']
         style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
 
-        if os.path.exists(Browser.AGENT_SHEET):
+        if os.path.exists(TabbedView.AGENT_SHEET):
             agent_sheet_uri = io_service.newURI('file:///' + 
-                                                Browser.AGENT_SHEET,
+                                                TabbedView.AGENT_SHEET,
                                                 None, None)
             style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
                     interfaces.nsIStyleSheetService.AGENT_SHEET)
 
-        if os.path.exists(Browser.USER_SHEET):
-            user_sheet_uri = io_service.newURI('file:///' + Browser.USER_SHEET,
+        if os.path.exists(TabbedView.USER_SHEET):
+            user_sheet_uri = io_service.newURI('file:///' + TabbedView.USER_SHEET,
                                                None, None)
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
+
+        cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
+        window_watcher = cls.getService(interfaces.nsIWindowWatcher)
+        window_creator = xpcom.server.WrapObject(self,
+                                                 interfaces.nsIWindowCreator)
+        window_watcher.setWindowCreator(window_creator)
+
+        browser = Browser()
+        self._append_tab(browser)
+
+    def createChromeWindow(self, parent, flags):
+        if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
+            dialog = PopupDialog()
+            dialog.view.is_chrome = True
+
+            parent_dom_window = parent.webBrowser.contentDOMWindow
+            parent_view = hulahop.get_view_for_window(parent_dom_window)
+            if parent_view:
+                dialog.set_transient_for(parent_view.get_toplevel())
+
+            browser = dialog.view.browser
+            
+            item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
+            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
+
+            return browser.containerWindow
+        else:
+            browser = Browser()
+            self._append_tab(browser)
+
+            return browser.browser.containerWindow
+
+    def _append_tab(self, browser):
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb)
+
+        self.append_page(browser, label)
+        browser.show()
+
+        self.set_current_page(-1)
+        self.props.show_tabs = self.get_n_pages() > 1
+
+    def __tab_close_cb(self, label, browser):
+        self.remove_page(self.page_num(browser))
+        browser.destroy()
+        self.props.show_tabs = self.get_n_pages() > 1
+
+    def _get_current_browser(self):
+        return self.get_nth_page(self.get_current_page())
+
+    current_browser = gobject.property(type=object, getter=_get_current_browser)
+
+    def get_session(self):
+        tab_sessions = []
+        for index in xrange(-1, self.get_n_pages() - 1):
+            browser = self.get_nth_page(index)
+            tab_sessions.append(sessionstore.get_session(browser))
+        return tab_sessions
+
+    def set_session(self, tab_sessions):
+        if tab_sessions and isinstance(tab_sessions[0], dict):
+            # Old format, no tabs
+            tab_sessions = [tab_sessions]
+            
+        while self.get_n_pages():
+            self.remove_page(self.get_n_pages() - 1)
+
+        for tab_session in tab_sessions:
+            browser = Browser()
+            self._append_tab(browser)
+            sessionstore.set_session(browser, tab_session)
+
+gtk.rc_parse_string('''
+    style "browse-tab-close" {
+        xthickness = 0
+        ythickness = 0
+    }
+    widget "*browse-tab-close" style "browse-tab-close"''')
+
+class TabLabel(gtk.HBox):
+    __gtype_name__ = 'TabLabel'
+
+    __gsignals__ = {
+        'tab-close': (gobject.SIGNAL_RUN_FIRST,
+                      gobject.TYPE_NONE,
+                      ([object]))
+    }
+
+    def __init__(self, browser):
+        gobject.GObject.__init__(self)
+        
+        self._browser = browser
+        self._browser.connect('is-setup', self.__browser_is_setup_cb)
+
+        self._label = gtk.Label('')
+        self.pack_start(self._label)
+        self._label.show()
+
+        button = gtk.Button()
+        button.connect('clicked', self.__button_clicked_cb)
+        button.set_name('browse-tab-close')
+        button.props.relief = gtk.RELIEF_NONE
+        button.props.focus_on_click = False
+        self.pack_start(button)
+        button.show()
+
+        close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE,
+                                               gtk.ICON_SIZE_MENU)
+        button.add(close_image)
+        close_image.show()
+
+    def __button_clicked_cb(self, button):
+        self.emit('tab-close', self._browser)
+
+    def __browser_is_setup_cb(self, browser):
+        browser.progress.connect('notify::location', self.__location_changed_cb)
+        browser.connect('notify::title', self.__title_changed_cb)
+
+    def __location_changed_cb(self, progress_listener, pspec):
+        uri = progress_listener.location
+        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+
+        self._label.set_text(ui_uri)
+
+    def __title_changed_cb(self, browser, pspec):
+        self._label.set_text(browser.props.title)
+
+class Browser(WebView):
+    __gtype_name__ = 'Browser'
+
+    __gsignals__ = {
+        'is-setup': (gobject.SIGNAL_RUN_FIRST,
+                  gobject.TYPE_NONE,
+                  ([]))
+    }
+
+    def __init__(self):
+        WebView.__init__(self)
+
+        self.history = HistoryListener()
+        self.progress = ProgressListener()
+
+        cls = components.classes["@mozilla.org/typeaheadfind;1"]
+        self.typeahead = cls.createInstance(interfaces.nsITypeAheadFind)
 
     def do_setup(self):
         WebView.do_setup(self)
@@ -144,6 +289,8 @@ class Browser(WebView):
         self.history.setup(self.web_navigation)
 
         self.typeahead.init(self.doc_shell)
+
+        self.emit('is-setup')
 
     def get_session(self):
         return sessionstore.get_session(self)
@@ -199,31 +346,12 @@ class PopupDialog(gtk.Window):
                               gtk.gdk.screen_height() - border * 2)
 
         self.view = WebView()
+        self.view.connect('notify::visibility', self.__notify_visibility_cb)
         self.add(self.view)
         self.view.realize()
 
-class WindowCreator:
-    _com_interfaces_ = interfaces.nsIWindowCreator
+    def __notify_visibility_cb(self, web_view, pspec):
+        if self.view.props.visibility:
+            self.view.show()
+            self.show()
 
-    def createChromeWindow(self, parent, flags):
-        dialog = PopupDialog()
-
-        parent_dom_window = parent.webBrowser.contentDOMWindow
-        parent_view = hulahop.get_view_for_window(parent_dom_window)
-        if parent_view:
-            dialog.set_transient_for(parent_view.get_toplevel())
-
-        browser = dialog.view.browser
-
-        if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
-            dialog.view.is_chrome = True
-
-            item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
-            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
-
-        return browser.containerWindow
-
-window_creator = WindowCreator()
-cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
-window_watcher = cls.getService(interfaces.nsIWindowWatcher)
-window_watcher.setWindowCreator(window_creator)

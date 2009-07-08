@@ -1,5 +1,6 @@
 # Copyright (C) 2006, Red Hat, Inc.
 # Copyright (C) 2007, One Laptop Per Child
+# Copyright (C) 2009, Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,28 +23,18 @@ from xpcom.components import interfaces
 class ProgressListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
-    __gsignals__ = {
-        'location-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([object])),
-        'loading-start':    (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([])),
-        'loading-stop':     (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([])),
-        'loading-progress': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                             ([float]))
-    }
-
     def __init__(self):
         gobject.GObject.__init__(self)
 
-        self.total_requests = 0
-        self.completed_requests = 0
+        self._location = None
+        self._loading = False
+        self._progress = 0.0
+        self._total_requests = 0
+        self._completed_requests = 0
 
         self._wrapped_self = xpcom.server.WrapObject( \
                 self, interfaces.nsIWebProgressListener)
         weak_ref = xpcom.client.WeakReference(self._wrapped_self)
-
-        self._reset_requests_count()
 
     def setup(self, browser):
         mask = interfaces.nsIWebProgress.NOTIFY_STATE_NETWORK | \
@@ -53,12 +44,13 @@ class ProgressListener(gobject.GObject):
         browser.web_progress.addProgressListener(self._wrapped_self, mask)
     
     def _reset_requests_count(self):
-        self.total_requests = 0
-        self.completed_requests = 0
+        self._total_requests = 0
+        self._completed_requests = 0
     
     def onLocationChange(self, webProgress, request, location):
-        self.emit('location-changed', location)
-        
+        self._location = location
+        self.notify('location')
+
     def onProgressChange(self, webProgress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
         pass
@@ -69,24 +61,43 @@ class ProgressListener(gobject.GObject):
     def onStateChange(self, webProgress, request, stateFlags, status):
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-                self.total_requests += 1
+                self._total_requests += 1
             elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-                self.completed_requests += 1
+                self._completed_requests += 1
 
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
-                self.emit('loading-start')
+                self._loading = True
                 self._reset_requests_count()                
+                self.notify('loading')
             elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
-                self.emit('loading-stop')
+                self._loading = False
+                self.notify('loading')
 
-        if self.total_requests < self.completed_requests:
-            self.emit('loading-progress', 1.0)
-        elif self.total_requests > 0:
-            self.emit('loading-progress', float(self.completed_requests) /
-                                          float(self.total_requests))
+        if self._total_requests < self._completed_requests:
+            self._progress = 1.0
+        elif self._total_requests > 0:
+            self._progress = \
+                    self._completed_requests / float(self._total_requests)
         else:
-            self.emit('loading-progress', 0.0)
+            self._progress = 0.0
+        self.notify('progress')
 
     def onStatusChange(self, webProgress, request, status, message):
         pass
+
+    def _get_location(self):
+        return self._location
+
+    location = gobject.property(type=object, getter=_get_location)
+
+    def _get_loading(self):
+        return self._loading
+
+    loading = gobject.property(type=bool, default=False, getter=_get_loading)
+
+    def _get_progress(self):
+        return self._progress
+
+    progress = gobject.property(type=float, getter=_get_progress)
+
