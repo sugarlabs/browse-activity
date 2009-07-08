@@ -195,7 +195,7 @@ class WebActivity(activity.Activity):
 
         toolbox = activity.ActivityToolbox(self)
 
-        self._edit_toolbar = EditToolbar(self._tabbed_view)
+        self._edit_toolbar = EditToolbar(self)
         toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
         self._edit_toolbar.show()
 

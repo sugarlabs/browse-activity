@@ -1,4 +1,5 @@
 # Copyright (C) 2008, One Laptop Per Child
+# Copyright (C) 2009 Simon Schampijer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,10 +30,10 @@ class EditToolbar(activity.EditToolbar):
 
     _com_interfaces_ = interfaces.nsIObserver
 
-    def __init__(self, browser):
+    def __init__(self, act):
         activity.EditToolbar.__init__(self)
 
-        self._browser = browser
+        self._activity = act
 
         self.undo.connect('clicked', self.__undo_cb)
         self.redo.connect('clicked', self.__redo_cb)
@@ -117,15 +118,19 @@ class EditToolbar(activity.EditToolbar):
         command_manager.doCommand('cmd_paste', None, None)
 
     def _get_command_manager(self):
-        web_browser = self._browser.browser
+        tabbed_view = self._activity.get_canvas()
+        web_browser = tabbed_view.props.current_browser.browser
         requestor = web_browser.queryInterface(interfaces.nsIInterfaceRequestor)
         return requestor.getInterface(interfaces.nsICommandManager)
 
     def __search_entry_activate_cb(self, entry):
-        self._browser.typeahead.findAgain(False, False)
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.typeahead.findAgain(False, False)
 
-    def __search_entry_changed_cb(self, entry):        
-        found = self._browser.typeahead.find(entry.props.text, False)
+    def __search_entry_changed_cb(self, entry):
+        tabbed_view = self._activity.get_canvas()
+        found = tabbed_view.props.current_browser.typeahead.find( \
+            entry.props.text, False)
         if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False
@@ -138,7 +143,9 @@ class EditToolbar(activity.EditToolbar):
                               style.COLOR_BLACK.get_gdk_color())
 
     def __find_previous_cb(self, button):
-        self._browser.typeahead.findAgain(True, False)
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.typeahead.findAgain(True, False)
 
     def __find_next_cb(self, button):
-        self._browser.typeahead.findAgain(False, False)
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.typeahead.findAgain(False, False)
