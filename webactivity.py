@@ -387,6 +387,7 @@ class WebActivity(activity.Activity):
                                       link['owner'], -1, link['hash'])      
             logging.debug('########## reading %s' % data)
             self._tabbed_view.set_session(self.model.data['history'])
+            self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
             data = self._get_data_from_file_path(file_path)
             uris = mime.split_uri_list(data)
@@ -411,6 +412,7 @@ class WebActivity(activity.Activity):
                     self.metadata['title'] = browser.props.title
 
             self.model.data['history'] = self._tabbed_view.get_session()
+            self.model.data['current_tab'] = self._tabbed_view.get_current_page()
 
             f = open(file_path, 'w')
             try:
