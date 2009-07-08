@@ -176,8 +176,9 @@ class Download:
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
-            self.dl_jobject.metadata['title'] = _('File %s from %s.') % \
-                    (self._get_file_name(), self._source.spec)
+            self.dl_jobject.metadata['title'] = self._get_file_name()
+            self.dl_jobject.metadata['description'] = _('From: %s') \
+                % self._source.spec
             self.dl_jobject.metadata['progress'] = '100'
             self.dl_jobject.file_path = self._target_file.path
 
