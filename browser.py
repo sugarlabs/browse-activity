@@ -1,6 +1,6 @@
 # Copyright (C) 2006, Red Hat, Inc.
 # Copyright (C) 2007, One Laptop Per Child
-# Copyright (C) 2009, Tomeu Vizoso
+# Copyright (C) 2009, Tomeu Vizoso, Simon Schampijer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@ class TabbedView(gtk.Notebook):
 
     def get_session(self):
         tab_sessions = []
-        for index in xrange(-1, self.get_n_pages() - 1):
+        for index in xrange(0, self.get_n_pages()):
             browser = self.get_nth_page(index)
             tab_sessions.append(sessionstore.get_session(browser))
         return tab_sessions
