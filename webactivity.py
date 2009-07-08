@@ -454,9 +454,9 @@ class WebActivity(activity.Activity):
         ''' take screenshot and add link info to the model '''
 
         browser = self._tabbed_view.props.current_browser
-        uri = browser.progress_listener.location
+        uri = browser.progress.location
         cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        texttosuburi = cls.getService(components.interfaces.nsITextToSubURI)
         ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
 
         for link in self.model.data['shared_links']:
