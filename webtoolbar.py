@@ -27,6 +27,10 @@ from xpcom import components
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
 from sugar._sugarext import AddressEntry
+from sugar.graphics.toolbarbox import ToolbarBox
+from sugar.activity.widgets import ActivityToolbarButton
+from sugar.activity.widgets import StopButton
+from sugar.activity import activity
 
 import filepicker
 import places
@@ -212,8 +216,8 @@ class WebEntry(AddressEntry):
         else:
             self._search_popup()
 
-class WebToolbar(gtk.Toolbar):
-    __gtype_name__ = 'WebToolbar'
+class PrimaryToolbar(ToolbarBox):
+    __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
         'add-link': (gobject.SIGNAL_RUN_FIRST,
@@ -221,30 +225,35 @@ class WebToolbar(gtk.Toolbar):
                      ([]))
     }
 
-    def __init__(self, tabbed_view):
-        gtk.Toolbar.__init__(self)
+    def __init__(self, tabbed_view, act):
+        ToolbarBox.__init__(self)
+
+        self._activity = act
 
         self._tabbed_view = tabbed_view
         
         self._loading = False
 
+        activity_button = ActivityToolbarButton(self._activity)
+        self.toolbar.insert(activity_button, 0)
+
         self._back = ToolButton('go-previous-paired')
         self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
-        self.insert(self._back, -1)
+        self.toolbar.insert(self._back, -1)
         self._back.show()
-
+        
         self._forward = ToolButton('go-next-paired')
         self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
-        self.insert(self._forward, -1)
+        self.toolbar.insert(self._forward, -1)
         self._forward.show()
 
         self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
-        self.insert(self._stop_and_reload, -1)
+        self.toolbar.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
 
         self.entry = WebEntry()
@@ -255,14 +264,17 @@ class WebToolbar(gtk.Toolbar):
         entry_item.add(self.entry)
         self.entry.show()
         
-        self.insert(entry_item, -1)
+        self.toolbar.insert(entry_item, -1)
         entry_item.show()
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
         self._link_add.connect('clicked', self._link_add_clicked_cb)
-        self.insert(self._link_add, -1)
+        self.toolbar.insert(self._link_add, -1)
         self._link_add.show()
+
+        stop_button = StopButton(self._activity)
+        self.toolbar.insert(stop_button, -1)
 
         self._progress_listener = None
         self._history = None

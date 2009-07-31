@@ -44,6 +44,7 @@ from sugar.graphics.tray import HTray
 from sugar import profile
 from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
+from sugar.graphics.toolbarbox import ToolbarButton
 from sugar import mime
 
 PROFILE_VERSION = 1
@@ -153,8 +154,8 @@ def _set_accept_languages():
     logging.debug('LANG set')
 
 from browser import TabbedView
+from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
-from webtoolbar import WebToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
 import globalhistory
@@ -170,9 +171,6 @@ from linkbutton import LinkButton
 SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
-
-_TOOLBAR_EDIT = 1
-_TOOLBAR_BROWSE = 2
 
 _logger = logging.getLogger('web-activity')
 
@@ -193,27 +191,30 @@ class WebActivity(activity.Activity):
         branch = pref_service.getBranch("mozilla.widget.")
         branch.setBoolPref("disable-native-theme", True)
 
-        toolbox = activity.ActivityToolbox(self)
+        self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
 
         self._edit_toolbar = EditToolbar(self)
-        toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
-        self._edit_toolbar.show()
+        self._edit_toolbar_button = ToolbarButton(
+                page=self._edit_toolbar,
+                icon_name='toolbar-edit')
+        self._primary_toolbar.toolbar.insert(
+                self._edit_toolbar_button, 
+                self._primary_toolbar.toolbar.get_n_items() - 1)
 
-        self._web_toolbar = WebToolbar(self._tabbed_view)
-        self._web_toolbar.connect('add-link', self._link_add_button_cb)
-        toolbox.add_toolbar(_('Browse'), self._web_toolbar)
-        self._web_toolbar.show()
-       
         self._tray = HTray()
         self.set_tray(self._tray, gtk.POS_BOTTOM)
         self._tray.show()
         
         self._view_toolbar = ViewToolbar(self)
-        toolbox.add_toolbar(_('View'), self._view_toolbar)
-        self._view_toolbar.show()
+        view_toolbar_button = ToolbarButton(
+                page=self._view_toolbar,
+                icon_name='toolbar-view')
+        self._primary_toolbar.toolbar.insert(
+                view_toolbar_button, 
+                self._primary_toolbar.toolbar.get_n_items() - 1)
 
-        self.set_toolbox(toolbox)
-        toolbox.show()
+        self._primary_toolbar.show_all()
+        self.set_toolbar_box(self._primary_toolbar)
 
         self.set_canvas(self._tabbed_view)
         self._tabbed_view.show()
@@ -222,9 +223,7 @@ class WebActivity(activity.Activity):
         self.model.connect('add_link', self._add_link_model_cb)
 
         self.connect('key-press-event', self._key_press_cb)
-                     
-        self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
-        
+
         if handle.uri:
             self._tabbed_view.current_browser.load_uri(handle.uri)        
         elif not self._jobject.file_path:
@@ -431,13 +430,12 @@ class WebActivity(activity.Activity):
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "f":
                 _logger.debug('keyboard: Find')
-                self.toolbox.set_current_toolbar(_TOOLBAR_EDIT)
-                self._edit_toolbar.search_entry.grab_focus()
+                self._edit_toolbar_button.expanded = True
+                self._edit_toolbar.search_entry.grab_focus()                
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "l":
                 _logger.debug('keyboard: Focus url entry')
-                self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
-                self._web_toolbar.entry.grab_focus()
+                self._primary_toolbar.entry.grab_focus()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "minus":
                 _logger.debug('keyboard: Zoom out')
