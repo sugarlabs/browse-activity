@@ -30,6 +30,7 @@ import shutil
 import sqlite3
 import cjson
 import gconf
+import locale
 
 # HACK: Needed by http://dev.sugarlabs.org/ticket/456
 import gnome
@@ -135,18 +136,15 @@ from xpcom import components
 def _set_accept_languages():
     ''' Set intl.accept_languages based on the locale
     '''
-    try:
-        lang = os.environ['LANG'].strip('\n') # e.g. es_UY.UTF-8 
-    except KeyError:
-        return
 
-    if (not lang.endswith(".utf8") or not lang.endswith(".UTF-8")) \
-            and lang[2] != "_":
+    lang = locale.getdefaultlocale()[0]
+    if not lang:
         _logger.debug("Set_Accept_language: unrecognised LANG format")
-        return 
+        return
+    lang = lang.split('_')
 
     # e.g. es-uy, es
-    pref = lang[0:2] + "-" + lang[3:5].lower()  + ", " + lang[0:2]
+    pref = lang[0] + "-" + lang[1].lower()  + ", " + lang[0]
     cls = components.classes["@mozilla.org/preferences-service;1"]
     prefService = cls.getService(components.interfaces.nsIPrefService)
     branch = prefService.getBranch('')
