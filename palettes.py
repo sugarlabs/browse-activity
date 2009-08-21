@@ -1,4 +1,5 @@
 # Copyright (C) 2008, One Laptop Per Child
+# Copyright (C) 2009, Tomeu Vizoso, Simon Schampijer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -92,12 +93,15 @@ class LinkPalette(Palette):
         else:
             self.props.primary_text = url
 
-        menu_item = MenuItem(_('Follow link'), 'edit-copy')
-        menu_item.connect('activate', self.__follow_activate_cb)
+        menu_item = MenuItem(_('Keep link'))
+        icon = Icon(icon_name='document-save', xo_color=profile.get_color(),
+                    icon_size=gtk.ICON_SIZE_MENU)
+        menu_item.set_image(icon)
+        menu_item.connect('activate', self.__download_activate_cb)
         self.menu.append(menu_item)
         menu_item.show()
 
-        menu_item = MenuItem(_('Copy'))
+        menu_item = MenuItem(_('Copy link'))
         icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
                     icon_size=gtk.ICON_SIZE_MENU)
         menu_item.set_image(icon)
@@ -105,8 +109,8 @@ class LinkPalette(Palette):
         self.menu.append(menu_item)
         menu_item.show()
 
-        menu_item = MenuItem(_('Download link'))
-        menu_item.connect('activate', self.__download_activate_cb)
+        menu_item = MenuItem(_('Follow link'), 'edit-copy')
+        menu_item.connect('activate', self.__follow_activate_cb)
         self.menu.append(menu_item)
         menu_item.show()
 
@@ -154,16 +158,19 @@ class ImagePalette(Palette):
         self.props.primary_text = title
         self.props.secondary_text = url
 
-        menu_item = MenuItem(_('Copy'))
+        menu_item = MenuItem(_('Keep image'))
+        icon = Icon(icon_name='document-save', xo_color=profile.get_color(),
+                    icon_size=gtk.ICON_SIZE_MENU)
+        menu_item.set_image(icon)
+        menu_item.connect('activate', self.__download_activate_cb)
+        self.menu.append(menu_item)
+        menu_item.show()
+
+        menu_item = MenuItem(_('Copy image'))
         icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
                     icon_size=gtk.ICON_SIZE_MENU)
         menu_item.set_image(icon)
         menu_item.connect('activate', self.__copy_activate_cb)
-        self.menu.append(menu_item)
-        menu_item.show()
-
-        menu_item = MenuItem(_('Download image'))
-        menu_item.connect('activate', self.__download_activate_cb)
         self.menu.append(menu_item)
         menu_item.show()
 
