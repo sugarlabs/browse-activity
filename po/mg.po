@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-08-29 04:39-0400\n"
+"Last-Translator: Zafimamy Gabriella Ralaivao <gabriella@intnet.mu>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: activity/activity.info:2
+msgid "Browse"
+msgstr "Zahao"
+
+#: downloadmanager.py:153
+msgid "Download started"
+msgstr "Manomboka ny fampidinana"
+
+#: downloadmanager.py:154 downloadmanager.py:167
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:166
+msgid "Download completed"
+msgstr "Vita ny Fampidinana"
+
+#: downloadmanager.py:170
+msgid "Show in Journal"
+msgstr "Asehoy ny firaiketana"
+
+#: downloadmanager.py:173
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:180
+#, python-format
+msgid "From: %s"
+msgstr "Avy amin'ny: %s"
+
+#: downloadmanager.py:265
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"mampidina %s amin'ny \n"
+"%s"
+
+#: edittoolbar.py:91
+msgid "Previous"
+msgstr "Teo aloha"
+
+#: edittoolbar.py:98
+msgid "Next"
+msgstr "Manaraka"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Fafao"
+
+#: palettes.py:96
+msgid "Keep link"
+msgstr "Tazomy ny rohy"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "Adikao ny rohy"
+
+#: palettes.py:112
+msgid "Follow link"
+msgstr "Araho ny rohy"
+
+#: palettes.py:161
+msgid "Keep image"
+msgstr "Tazomy ny sary"
+
+#: palettes.py:169
+msgid "Copy image"
+msgstr "Adikao ny sary"
+
+#: viewtoolbar.py:33
+msgid "Zoom out"
+msgstr "Tomory lavitra"
+
+#: viewtoolbar.py:39
+msgid "Zoom in"
+msgstr "Tomory akaiky"
+
+#: viewtoolbar.py:50
+msgid "Fullscreen"
+msgstr "Itaro hameno efajery"
+
+#: viewtoolbar.py:88
+msgid "Show Tray"
+msgstr "Asehoy ny lahatahiry"
+
+#: viewtoolbar.py:92
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:535
+msgid "Download in progress"
+msgstr "eo ampanaovana ny fampidinana"
+
+#: webactivity.py:536
+msgid "Stopping now will cancel your download"
+msgstr "Hanafoana ny fampidinana ny fanajanonana izao"
+
+#: webactivity.py:538
+msgid "Cancel"
+msgstr "Foano"
+
+#: webactivity.py:540 webtoolbar.py:412
+msgid "Stop"
+msgstr "Ajanony"
+
+#: webtoolbar.py:241
+msgid "Back"
+msgstr "Mihemotra"
+
+#: webtoolbar.py:248
+msgid "Forward"
+msgstr "Mandroso"
+
+#: webtoolbar.py:271
+msgid "Bookmark"
+msgstr "famantarana"
+
+#: webtoolbar.py:415
+msgid "Reload"
+msgstr "avereno ampidirina"
+
+#~ msgid "Copy"
+#~ msgstr "Adikao"
+
+#~ msgid "View"
+#~ msgstr "Jereo"
