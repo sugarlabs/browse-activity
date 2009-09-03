@@ -191,25 +191,23 @@ class WebActivity(activity.Activity):
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
 
+        self._tray = HTray()
+        self.set_tray(self._tray, gtk.POS_BOTTOM)
+        self._tray.show()
+
         self._edit_toolbar = EditToolbar(self)
         self._edit_toolbar_button = ToolbarButton(
                 page=self._edit_toolbar,
                 icon_name='toolbar-edit')
         self._primary_toolbar.toolbar.insert(
-                self._edit_toolbar_button, 
-                self._primary_toolbar.toolbar.get_n_items() - 1)
-
-        self._tray = HTray()
-        self.set_tray(self._tray, gtk.POS_BOTTOM)
-        self._tray.show()
+                self._edit_toolbar_button, 1)
         
         self._view_toolbar = ViewToolbar(self)
         view_toolbar_button = ToolbarButton(
                 page=self._view_toolbar,
                 icon_name='toolbar-view')
         self._primary_toolbar.toolbar.insert(
-                view_toolbar_button, 
-                self._primary_toolbar.toolbar.get_n_items() - 1)
+                view_toolbar_button, 2)
 
         self._primary_toolbar.show_all()
         self.set_toolbar_box(self._primary_toolbar)
