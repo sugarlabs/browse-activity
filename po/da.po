@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-08-17 21:15-0400\n"
+"Last-Translator: Chris Leonard <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: activity/activity.info:2
+msgid "Browse"
+msgstr "Bladr"
+
+#: downloadmanager.py:153
+msgid "Download started"
+msgstr "Nedlastning startet"
+
+#: downloadmanager.py:154 downloadmanager.py:167
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:166
+msgid "Download completed"
+msgstr "Nedlastning færdig"
+
+#: downloadmanager.py:170
+msgid "Show in Journal"
+msgstr "Vis i logbog"
+
+#: downloadmanager.py:173
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:180
+#, python-format
+msgid "From: %s"
+msgstr "Fra: %s"
+
+#: downloadmanager.py:265
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Henter %s fra \n"
+"%s."
+
+#: edittoolbar.py:91
+msgid "Previous"
+msgstr "Forrige"
+
+#: edittoolbar.py:98
+msgid "Next"
+msgstr "Næste"
+
+#: linkbutton.py:94
+msgid "Remove"
+msgstr "Fjern"
+
+#: palettes.py:96
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:112
+msgid "Follow link"
+msgstr "Følg henvisning"
+
+#: palettes.py:161
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:169
+msgid "Copy image"
+msgstr ""
+
+#: viewtoolbar.py:33
+msgid "Zoom out"
+msgstr "Formindsk"
+
+#: viewtoolbar.py:39
+msgid "Zoom in"
+msgstr "Forstør"
+
+#: viewtoolbar.py:50
+msgid "Fullscreen"
+msgstr "Fuldskærm"
+
+#: viewtoolbar.py:88
+msgid "Show Tray"
+msgstr "Vis skuffe"
+
+#: viewtoolbar.py:92
+msgid "Hide Tray"
+msgstr "Skjul skuffe"
+
+#: webactivity.py:535
+msgid "Download in progress"
+msgstr "Nedlastning igang"
+
+#: webactivity.py:536
+msgid "Stopping now will cancel your download"
+msgstr "Hvis du stopper nu vil din nedlastning blive afbrudt"
+
+#: webactivity.py:538
+msgid "Cancel"
+msgstr "Afbryd"
+
+#: webactivity.py:540 webtoolbar.py:412
+#, fuzzy
+msgid "Stop"
+msgstr "Stop"
+
+#: webtoolbar.py:241
+msgid "Back"
+msgstr "Tilbage"
+
+#: webtoolbar.py:248
+msgid "Forward"
+msgstr "Frem"
+
+#: webtoolbar.py:271
+msgid "Bookmark"
+msgstr "Bogmærke"
+
+#: webtoolbar.py:415
+msgid "Reload"
+msgstr "Genindlæs"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiér"
