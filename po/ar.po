@@ -1,57 +1,55 @@
-# translation of web-activity.master.po to Arabic
+# translation of web-activity.po to Arabic
+# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# Ahmed Mansour <atphalix@users.arabeyes.org>, 2008.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: web-activity.master\n"
+"Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-06-26 10:37-0400\n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-08-28 15:33-0400\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language-Team: Arabic <en@li.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "تصفّح"
 
-#: browser.py:149
-msgid "Source"
-msgstr "المصدر"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:153
 msgid "Download started"
 msgstr "بدأ التنزيل"
 
-#: downloadmanager.py:143 downloadmanager.py:157
+#: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:155
+#: downloadmanager.py:166
 msgid "Download completed"
 msgstr "اكتمل التنزيل"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:170
 msgid "Show in Journal"
 msgstr "اعرض في اليوميات"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:173
 msgid "Ok"
 msgstr "حسنا"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:180
 #, python-format
-msgid "File %s from %s."
-msgstr "ملف %s مِن %s."
+msgid "From: %s"
+msgstr "من: %s"
 
-#: downloadmanager.py:245
+#: downloadmanager.py:265
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -60,11 +58,11 @@ msgstr ""
 "يُنزِّل %s من\n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "السابق"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "التالي"
 
@@ -72,77 +70,102 @@ msgstr "التالي"
 msgid "Remove"
 msgstr "أزِل"
 
-#: palettes.py:89
+#: palettes.py:96
+msgid "Keep link"
+msgstr "احفظ الوصلة"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "انسخ الوصلة"
+
+#: palettes.py:112
 msgid "Follow link"
 msgstr "اتبع الوصلة"
 
-#: palettes.py:94 palettes.py:142
-msgid "Copy"
-msgstr "انسخ"
+#: palettes.py:161
+msgid "Keep image"
+msgstr "احفظ الصورة"
 
-#: viewtoolbar.py:34
+#: palettes.py:169
+msgid "Copy image"
+msgstr "انسخ الصورة"
+
+#: viewtoolbar.py:33
 msgid "Zoom out"
 msgstr "بعّد"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:39
 msgid "Zoom in"
 msgstr "قرّب"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:50
 msgid "Fullscreen"
 msgstr "ملء الشاشة"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:88
 msgid "Show Tray"
 msgstr "أظهر الطبق"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:92
 msgid "Hide Tray"
 msgstr "اخفِ الطبق"
 
-#: webactivity.py:109
-msgid "Edit"
-msgstr "تحرير"
-
-#: webactivity.py:121
-msgid "View"
-msgstr "عرض"
-
-#: webactivity.py:140 webactivity.py:141
-msgid "blank"
-msgstr "فارغ"
-
-#: webactivity.py:463
+#: webactivity.py:535
 msgid "Download in progress"
 msgstr "يجري التزيل"
 
-#: webactivity.py:464
+#: webactivity.py:536
 msgid "Stopping now will cancel your download"
 msgstr "التوقف الآن سيلغي تنزيلك"
 
-#: webactivity.py:466
+#: webactivity.py:538
 msgid "Cancel"
 msgstr "ألغِ"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:241
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:248
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:271
 msgid "Bookmark"
 msgstr "علِّم"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:415
 msgid "Reload"
 msgstr "أعد التحميل"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "ملف %s مِن %s."
+
+#~ msgid "Copy"
+#~ msgstr "انسخ"
+
+#~ msgid "Download link"
+#~ msgstr "تحميل الوصلة"
+
+#~ msgid "Download image"
+#~ msgstr "تحميل الصورة"
+
+#~ msgid "Edit"
+#~ msgstr "تحرير"
+
+#~ msgid "View"
+#~ msgstr "عرض"
+
+#~ msgid "blank"
+#~ msgstr "فارغ"
+
+#~ msgid "Source"
+#~ msgstr "المصدر"
 
 #~ msgid "Open"
 #~ msgstr "افتح"

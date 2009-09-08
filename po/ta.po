@@ -7,10 +7,11 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2009-09-04 01:48-0400\n"
-"Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
+"PO-Revision-Date: 2009-08-28 03:35-0400\n"
+"Last-Translator: Emilianuspillai Amirthanathan Gnanaseelan "
+"<gnanaseelan2001@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: nl\n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,33 +20,33 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Surfen"
+msgstr "தேடு"
 
 #: downloadmanager.py:153
 msgid "Download started"
-msgstr "Download gestart"
+msgstr "பதிவிறக்கம் ஆரம்பம்"
 
 #: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
-msgstr "%s"
+msgstr "%கள்"
 
 #: downloadmanager.py:166
 msgid "Download completed"
-msgstr "Download voltooid"
+msgstr "பதிவிறக்கம்  முடிவு"
 
 #: downloadmanager.py:170
 msgid "Show in Journal"
-msgstr "In dagboek weergeven"
+msgstr "நாட்குறிப்பேட்டில்  காட்டுக"
 
 #: downloadmanager.py:173
 msgid "Ok"
-msgstr "Ok"
+msgstr "சரி"
 
 #: downloadmanager.py:180
 #, python-format
 msgid "From: %s"
-msgstr "Van: %s"
+msgstr "%கள் இருந்து"
 
 #: downloadmanager.py:265
 #, python-format
@@ -53,125 +54,111 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"%s downloaden van \n"
-"%s."
+"%த்தில் இருந்து பதிவிறக்கப்படுகிறது\n"
+"%கள்"
 
 #: edittoolbar.py:91
 msgid "Previous"
-msgstr "Vorige"
+msgstr "முன்னைய"
 
 #: edittoolbar.py:98
 msgid "Next"
-msgstr "Volgende"
+msgstr "அடுத்தது"
 
 #: linkbutton.py:94
 msgid "Remove"
-msgstr "Verwijderen"
+msgstr "அகற்று"
 
 #: palettes.py:96
 msgid "Keep link"
-msgstr "Koppeling bewaren"
+msgstr "இணைப்பை வைத்திரு"
 
 #: palettes.py:104
 msgid "Copy link"
-msgstr "Koppeling kopiëren"
+msgstr "இணைப்பை பிரதி செய்"
 
 #: palettes.py:112
 msgid "Follow link"
-msgstr "Koppeling volgen"
+msgstr "இணைப்பை தொடர்க"
 
 #: palettes.py:161
 msgid "Keep image"
-msgstr "Afbeelding bewaren"
+msgstr "படத்தை வைத்திரு "
 
 #: palettes.py:169
 msgid "Copy image"
-msgstr "Afbeelding kopiëren"
+msgstr "படத்தைப் பிரதி செய்"
 
 #: viewtoolbar.py:33
 msgid "Zoom out"
-msgstr "Zoom uit"
+msgstr "சிறிதாக்கு"
 
 #: viewtoolbar.py:39
 msgid "Zoom in"
-msgstr "Zoom in"
+msgstr "பெரிதாக்கு"
 
 #: viewtoolbar.py:50
 msgid "Fullscreen"
-msgstr "Volledig scherm"
+msgstr "முழுத்திரை"
 
 #: viewtoolbar.py:88
 msgid "Show Tray"
-msgstr "Toon lade"
+msgstr "தட்டைக் காட்டு"
 
 #: viewtoolbar.py:92
 msgid "Hide Tray"
-msgstr "Verberg lade"
+msgstr "தட்டை மறை"
 
 #: webactivity.py:535
 msgid "Download in progress"
-msgstr "Bezig met downloaden"
+msgstr "பதிவிறக்கம் நடைபெறுகிறது"
 
 #: webactivity.py:536
 msgid "Stopping now will cancel your download"
-msgstr "Door nu te stoppen wordt het downloaden afgebroken"
+msgstr "உங்கள்பதிவிறக்கத்தினை நிறுத்தி இரத்துசெய்க"
 
 #: webactivity.py:538
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr "இரத்துசெய்க"
 
 #: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
-msgstr "Stop"
+msgstr "நிறுத்துக"
 
 #: webtoolbar.py:241
 msgid "Back"
-msgstr "Terug"
+msgstr "பின்"
 
 #: webtoolbar.py:248
 msgid "Forward"
-msgstr "Vooruit"
+msgstr "முன்னேறு"
 
 #: webtoolbar.py:271
 msgid "Bookmark"
-msgstr "Bladwijzer"
+msgstr "புத்தகஅடையாளம்"
 
 #: webtoolbar.py:415
 msgid "Reload"
-msgstr "Vernieuwen"
+msgstr "மீள் ஏற்று"
 
 #, python-format
 #~ msgid "File %s from %s."
-#~ msgstr "Bestand %s van %s."
+#~ msgstr "கோவை"
 
 #~ msgid "Copy"
-#~ msgstr "Kopiëren"
+#~ msgstr "பிரதி"
 
 #~ msgid "Download link"
-#~ msgstr "Koppeling opslaan"
+#~ msgstr "இணைப்பு பதிவிறக்கம்"
 
 #~ msgid "Download image"
-#~ msgstr "Afbeelding opslaan"
+#~ msgstr "படம் பதிவிறக்கம்"
 
 #~ msgid "Edit"
-#~ msgstr "Bewerken"
+#~ msgstr "திருத்து"
 
 #~ msgid "View"
-#~ msgstr "Beeld"
+#~ msgstr "நோக்கு"
 
 #~ msgid "blank"
-#~ msgstr "blanco"
-
-#~ msgid "Source"
-#~ msgstr "Bron"
-
-#~ msgid "Open"
-#~ msgstr "Openen"
-
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr ""
-#~ "Bestand %s downloaden van\n"
-#~ "%s."
+#~ msgstr "இடைவெளி"

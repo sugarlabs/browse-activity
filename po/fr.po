@@ -6,47 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2008-10-20 04:34-0400\n"
-"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-08-25 08:14-0400\n"
+"Last-Translator: Camille Robert <camille.robert@gmail.com>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Naviguer"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:153
 msgid "Download started"
 msgstr "Téléchargement amorcé"
 
-#: downloadmanager.py:153 downloadmanager.py:166
+#: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:165
+#: downloadmanager.py:166
 msgid "Download completed"
 msgstr "Téléchargement terminé"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:170
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:173
 msgid "Ok"
 msgstr "Accepter"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 #, python-format
-msgid "File %s from %s."
-msgstr "Fichier %s de %s."
+msgid "From: %s"
+msgstr "De : %s"
 
-#: downloadmanager.py:260
+#: downloadmanager.py:265
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -55,11 +56,11 @@ msgstr ""
 "Téléchargement de %s depuis \n"
 "%s."
 
-#: edittoolbar.py:90
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "Précédent"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "Suivant"
 
@@ -67,85 +68,99 @@ msgstr "Suivant"
 msgid "Remove"
 msgstr "Retirer"
 
-#: palettes.py:95
+#: palettes.py:96
+msgid "Keep link"
+msgstr "Conserver le lien"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "Copier le lien"
+
+#: palettes.py:112
 msgid "Follow link"
 msgstr "Suivre le lien"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr "Copier"
+#: palettes.py:161
+msgid "Keep image"
+msgstr "Conserver l'image"
 
-#: palettes.py:108
-msgid "Download link"
-msgstr "Télécharger le lien"
+#: palettes.py:169
+msgid "Copy image"
+msgstr "Copier l'image"
 
-#: palettes.py:165
-msgid "Download image"
-msgstr "Télécharger l'image"
-
-#: viewtoolbar.py:34
+#: viewtoolbar.py:33
 msgid "Zoom out"
 msgstr "Zoom arrière"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:39
 msgid "Zoom in"
 msgstr "Zoom avant"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:50
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:88
 msgid "Show Tray"
 msgstr "Afficher la barre"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:92
 msgid "Hide Tray"
 msgstr "Masquer la barre"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr "Éditer"
-
-#: webactivity.py:114
-msgid "View"
-msgstr "Afficher"
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr "vide"
-
-#: webactivity.py:444
+#: webactivity.py:535
 msgid "Download in progress"
 msgstr "Téléchargement en cours"
 
-#: webactivity.py:445
+#: webactivity.py:536
 msgid "Stopping now will cancel your download"
 msgstr "Si vous arrêtez maintenant, votre téléchargement sera annulé"
 
-#: webactivity.py:447
+#: webactivity.py:538
 msgid "Cancel"
 msgstr "Annuler"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
 msgstr "Arrêter"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:241
 msgid "Back"
 msgstr "Précédent"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:248
 msgid "Forward"
 msgstr "Suivant"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:271
 msgid "Bookmark"
 msgstr "Signet"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:415
 msgid "Reload"
 msgstr "Recharger"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Fichier %s de %s."
+
+#~ msgid "Copy"
+#~ msgstr "Copier"
+
+#~ msgid "Download link"
+#~ msgstr "Télécharger le lien"
+
+#~ msgid "Download image"
+#~ msgstr "Télécharger l'image"
+
+#~ msgid "Edit"
+#~ msgstr "Éditer"
+
+#~ msgid "View"
+#~ msgstr "Afficher"
+
+#~ msgid "blank"
+#~ msgstr "vide"
 
 #~ msgid "Source"
 #~ msgstr "Source"
