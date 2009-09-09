@@ -237,20 +237,6 @@ class PrimaryToolbar(ToolbarBox):
         activity_button = ActivityToolbarButton(self._activity)
         self.toolbar.insert(activity_button, 0)
 
-        self._back = ToolButton('go-previous-paired')
-        self._back.set_tooltip(_('Back'))
-        self._back.props.sensitive = False
-        self._back.connect('clicked', self._go_back_cb)
-        self.toolbar.insert(self._back, -1)
-        self._back.show()
-        
-        self._forward = ToolButton('go-next-paired')
-        self._forward.set_tooltip(_('Forward'))
-        self._forward.props.sensitive = False
-        self._forward.connect('clicked', self._go_forward_cb)
-        self.toolbar.insert(self._forward, -1)
-        self._forward.show()
-
         self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
         self.toolbar.insert(self._stop_and_reload, -1)
@@ -266,6 +252,20 @@ class PrimaryToolbar(ToolbarBox):
         
         self.toolbar.insert(entry_item, -1)
         entry_item.show()
+
+        self._back = ToolButton('go-previous-paired')
+        self._back.set_tooltip(_('Back'))
+        self._back.props.sensitive = False
+        self._back.connect('clicked', self._go_back_cb)
+        self.toolbar.insert(self._back, -1)
+        self._back.show()
+        
+        self._forward = ToolButton('go-next-paired')
+        self._forward.set_tooltip(_('Forward'))
+        self._forward.props.sensitive = False
+        self._forward.connect('clicked', self._go_forward_cb)
+        self.toolbar.insert(self._forward, -1)
+        self._forward.show()
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
