@@ -190,6 +190,7 @@ class WebActivity(activity.Activity):
         branch.setBoolPref("disable-native-theme", True)
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
+        self._primary_toolbar.connect('add-link', self._link_add_button_cb)
 
         self._tray = HTray()
         self.set_tray(self._tray, gtk.POS_BOTTOM)
