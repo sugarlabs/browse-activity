@@ -37,7 +37,7 @@ def cleanup_temp_files():
             os.remove(temp_file)
             _temp_files_to_clean.remove(temp_file)
         else:
-            logging.debug('filepicker.cleanup_temp_files: no file %r' 
+            logging.debug('filepicker.cleanup_temp_files: no file %r'
                           % temp_file)
 
 class FilePicker:
@@ -60,7 +60,7 @@ class FilePicker:
     def init(self, parent, title, mode):
         self._title = title
         self._file = None
-        self._parent = hulahop.get_view_for_window(parent)
+        self._parent = hulahop.get_view_for_window(parent).get_toplevel()
         
         if mode != interfaces.nsIFilePicker.modeOpen:
             raise xpcom.COMException(NS_ERROR_NOT_IMPLEMENTED)
