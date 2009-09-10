@@ -427,7 +427,7 @@ class WebActivity(activity.Activity):
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "f":
                 _logger.debug('keyboard: Find')
-                self._edit_toolbar_button.expanded = True
+                self._edit_toolbar_button.set_expanded(True)
                 self._edit_toolbar.search_entry.grab_focus()                
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "l":
