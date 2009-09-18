@@ -6,46 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2008-11-14 11:04-0500\n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-09-13 11:30-0400\n"
 "Last-Translator: korakurider <korakurider@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "ブラウズ"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:153
 msgid "Download started"
 msgstr "ダウンロードを開始しました"
 
-#: downloadmanager.py:153 downloadmanager.py:166
+#: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:165
+#: downloadmanager.py:166
 msgid "Download completed"
 msgstr "ダウンロード完了"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:170
 msgid "Show in Journal"
 msgstr "ジャーナルで表示"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:173
 msgid "Ok"
 msgstr "了解"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 #, python-format
-msgid "File %s from %s."
-msgstr "ファイル　%s, ダウンロード元: %s"
+msgid "From: %s"
+msgstr "From: %s"
 
-#: downloadmanager.py:260
+#: downloadmanager.py:265
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -54,11 +56,11 @@ msgstr ""
 "ファイル %s を以下よりダウンロード中\n"
 "%s"
 
-#: edittoolbar.py:90
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "前へ"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "次へ"
 
@@ -66,85 +68,99 @@ msgstr "次へ"
 msgid "Remove"
 msgstr "削除"
 
-#: palettes.py:95
+#: palettes.py:96
+msgid "Keep link"
+msgstr "リンクを保存"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+#: palettes.py:112
 msgid "Follow link"
 msgstr "リンクをたどる"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr "コピー"
-
-#: palettes.py:108
-msgid "Download link"
-msgstr "リンク先を保存"
-
-#: palettes.py:165
-msgid "Download image"
+#: palettes.py:161
+msgid "Keep image"
 msgstr "画像を保存"
 
-#: viewtoolbar.py:34
+#: palettes.py:169
+msgid "Copy image"
+msgstr "画像をコピー"
+
+#: viewtoolbar.py:33
 msgid "Zoom out"
 msgstr "縮小"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:39
 msgid "Zoom in"
 msgstr "拡大"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:50
 msgid "Fullscreen"
 msgstr "全画面で表示"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:88
 msgid "Show Tray"
 msgstr "トレイを表示"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:92
 msgid "Hide Tray"
 msgstr "トレイを隠す"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr "編集"
-
-#: webactivity.py:114
-msgid "View"
-msgstr "ビュー"
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr "空白"
-
-#: webactivity.py:444
+#: webactivity.py:535
 msgid "Download in progress"
 msgstr "ダウンロードしています"
 
-#: webactivity.py:445
+#: webactivity.py:536
 msgid "Stopping now will cancel your download"
 msgstr "いま停止するとダウンロードが中止されます"
 
-#: webactivity.py:447
+#: webactivity.py:538
 msgid "Cancel"
 msgstr "中止"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:241
 msgid "Back"
 msgstr "戻る"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:248
 msgid "Forward"
 msgstr "進む"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:271
 msgid "Bookmark"
 msgstr "ブックマーク"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:415
 msgid "Reload"
 msgstr "再読み込み"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "ファイル　%s, ダウンロード元: %s"
+
+#~ msgid "Copy"
+#~ msgstr "コピー"
+
+#~ msgid "Download link"
+#~ msgstr "リンク先を保存"
+
+#~ msgid "Download image"
+#~ msgstr "画像を保存"
+
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#~ msgid "View"
+#~ msgstr "ビュー"
+
+#~ msgid "blank"
+#~ msgstr "空白"
 
 #~ msgid "Source"
 #~ msgstr "ソース"
