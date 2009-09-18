@@ -21,6 +21,7 @@ import urlparse
 from gettext import gettext as _
 
 import gtk
+import gobject
 import xpcom
 from xpcom import components
 from xpcom.components import interfaces
@@ -33,6 +34,23 @@ from sugar.activity import activity
 
 import downloadmanager
 
+class MouseOutListener(gobject.GObject):
+    _com_interfaces_ = interfaces.nsIDOMEventListener
+
+    __gsignals__ = {
+        'mouse-out': (gobject.SIGNAL_RUN_FIRST,
+                      gobject.TYPE_NONE,
+                      ([]))
+    }
+
+    def __init__(self, target):
+        gobject.GObject.__init__(self)
+        self.target = target
+
+    def handleEvent(self, event):
+        self.emit('mouse-out')
+
+
 class ContentInvoker(Invoker):
     _com_interfaces_ = interfaces.nsIDOMEventListener
 
@@ -40,6 +58,8 @@ class ContentInvoker(Invoker):
         Invoker.__init__(self)
         self._position_hint = self.AT_CURSOR
         self._browser = browser
+        self._mouseout_listener = None
+        self._popdown_handler_id = None
 
     def get_default_position(self):
         return self.AT_CURSOR
@@ -55,6 +75,7 @@ class ContentInvoker(Invoker):
             return
 
         target = event.target
+
         if target.tagName.lower() == 'a':
 
             if target.firstChild:
@@ -77,6 +98,30 @@ class ContentInvoker(Invoker):
 
             self.palette = ImagePalette(title, target.src, target.ownerDocument)
             self.notify_right_click()
+        else:
+            return
+        
+        if self._popdown_handler_id is not None: 
+            self._popdown_handler_id = self.palette.connect( \
+                'popdown', self.__palette_popdown_cb)
+
+        self._mouseout_listener = MouseOutListener(target)
+        wrapper = xpcom.server.WrapObject(self._mouseout_listener, 
+                                          interfaces.nsIDOMEventListener)
+        target.addEventListener('mouseout', wrapper, False)
+        self._mouseout_listener.connect('mouse-out', self.__moved_out_cb)
+
+    def __moved_out_cb(self, listener):
+        self.palette.popdown()
+
+    def __palette_popdown_cb(self, palette):
+        if self._mouseout_listener is not None:
+            wrapper = xpcom.server.WrapObject(self._mouseout_listener, 
+                                              interfaces.nsIDOMEventListener)
+            self._mouseout_listener.target.removeEventListener('mouseout',
+                                                               wrapper, False)
+            del self._mouseout_listener
+
 
 class LinkPalette(Palette):
     def __init__(self, browser, title, url, owner_document):
