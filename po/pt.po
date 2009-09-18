@@ -6,47 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2009-02-20 14:04-0500\n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-09-18 12:03-0400\n"
 "Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Navegar"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:153
 msgid "Download started"
 msgstr "A transferência iniciou"
 
-#: downloadmanager.py:153 downloadmanager.py:166
+#: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:165
+#: downloadmanager.py:166
 msgid "Download completed"
 msgstr "A transferência completou"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:170
 msgid "Show in Journal"
 msgstr "Mostrar no diário"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:173
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 #, python-format
-msgid "File %s from %s."
-msgstr "Ficheiro %s de %s"
+msgid "From: %s"
+msgstr "De: %s"
 
-#: downloadmanager.py:260
+#: downloadmanager.py:265
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -55,11 +56,11 @@ msgstr ""
 "Transferindo %s de \n"
 "%s."
 
-#: edittoolbar.py:90
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "Encontrar anterior"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "Encontrar próximo"
 
@@ -67,85 +68,99 @@ msgstr "Encontrar próximo"
 msgid "Remove"
 msgstr "Remover"
 
-#: palettes.py:95
+#: palettes.py:96
+msgid "Keep link"
+msgstr "Guardar hiperligação"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "Copiar hiperligação"
+
+#: palettes.py:112
 msgid "Follow link"
 msgstr "Seguir hiperligação"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr "Copiar"
+#: palettes.py:161
+msgid "Keep image"
+msgstr "Guardar imagem"
 
-#: palettes.py:108
-msgid "Download link"
-msgstr "Transferir hiperligação"
+#: palettes.py:169
+msgid "Copy image"
+msgstr "Copiar imagem"
 
-#: palettes.py:165
-msgid "Download image"
-msgstr "Transferir imagem"
-
-#: viewtoolbar.py:34
+#: viewtoolbar.py:33
 msgid "Zoom out"
 msgstr "Afastar Zoom"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:39
 msgid "Zoom in"
 msgstr "Aproximar Zoom"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:50
 msgid "Fullscreen"
 msgstr "Ecrã completo"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:88
 msgid "Show Tray"
 msgstr "Mostrar bandeja"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:92
 msgid "Hide Tray"
 msgstr "Esconder bandeja"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr "Editar"
-
-#: webactivity.py:114
-msgid "View"
-msgstr "Ver"
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr "vazio"
-
-#: webactivity.py:444
+#: webactivity.py:535
 msgid "Download in progress"
 msgstr "Transferência em curso"
 
-#: webactivity.py:445
+#: webactivity.py:536
 msgid "Stopping now will cancel your download"
 msgstr "Parar agora irá cancelar a tua transferência"
 
-#: webactivity.py:447
+#: webactivity.py:538
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:241
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:248
 msgid "Forward"
 msgstr "Avançar"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:271
 msgid "Bookmark"
 msgstr "Marcar"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:415
 msgid "Reload"
 msgstr "Recarregar"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Ficheiro %s de %s"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Download link"
+#~ msgstr "Transferir hiperligação"
+
+#~ msgid "Download image"
+#~ msgstr "Transferir imagem"
+
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgid "View"
+#~ msgstr "Ver"
+
+#~ msgid "blank"
+#~ msgstr "vazio"
 
 #~ msgid "Source"
 #~ msgstr "Código"
