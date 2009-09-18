@@ -18,6 +18,7 @@ import logging
 import os
 import tempfile
 import shutil
+import re
 
 import gtk
 import hulahop
@@ -28,17 +29,18 @@ from xpcom.components import interfaces
 from xpcom.server.factory import Factory
 
 from sugar.graphics.objectchooser import ObjectChooser
+from sugar.activity.activity import get_activity_root
 
-_temp_files_to_clean = []
+_temp_dirs_to_clean = []
 
 def cleanup_temp_files():
-    for temp_file in _temp_files_to_clean:
-        if os.path.exists(temp_file):
-            os.remove(temp_file)
-            _temp_files_to_clean.remove(temp_file)
+    while _temp_dirs_to_clean:
+        temp_dir = _temp_dirs_to_clean.pop()
+        if os.path.isdir(temp_dir):
+            shutil.rmtree(temp_dir, ignore_errors=True)
         else:
             logging.debug('filepicker.cleanup_temp_files: no file %r'
-                          % temp_file)
+                          % temp_dir)
 
 class FilePicker:
     _com_interfaces_ = interfaces.nsIFilePicker
@@ -67,23 +69,28 @@ class FilePicker:
 
     def show(self):
         chooser = ObjectChooser(parent=self._parent)
+        jobject = None
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
-                logging.debug('FilePicker.show: %r' % 
-                              chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
+                logging.debug('FilePicker.show: %r', jobject)
+
                 if jobject and jobject.file_path:
-                    ext = os.path.splitext(jobject.file_path)[1]
-                    f, new_temp = tempfile.mkstemp(ext)
-                    del f
+                    tmp_dir = tempfile.mkdtemp(prefix='', \
+                            dir=os.path.join(get_activity_root(), 'tmp'))
+                    self._file = os.path.join(tmp_dir,
+                            _basename_strip(jobject))
 
-                    global _temp_files_to_clean
-                    _temp_files_to_clean.append(new_temp)
-                    shutil.copy(jobject.file_path, new_temp)
+                    os.rename(jobject.file_path, self._file)
 
-                    self._file = new_temp
+                    global _temp_dirs_to_clean
+                    _temp_dirs_to_clean.append(tmp_dir)
+
+                    logging.debug('FilePicker.show: file=%r', self._file)
         finally:
+            if jobject is not None:
+                jobject.destroy()
             chooser.destroy()
             del chooser
 
@@ -142,3 +149,17 @@ components.registrar.registerFactory(FilePicker.cid,
                                         FilePicker.description,
                                         '@mozilla.org/filepicker;1',
                                         Factory(FilePicker))
+
+def _basename_strip(jobject):
+    name = jobject.metadata.get('title', 'untitled')
+    name = name.replace(os.sep, ' ').strip()
+
+    root_, mime_extension = os.path.splitext(jobject.file_path)
+
+    if not name.endswith(mime_extension):
+        if re.search('\.\S+$', name) is None:
+            # add mime_type extension only
+            # if 'title' doesn't have any extensions
+            name += mime_extension
+
+    return name
