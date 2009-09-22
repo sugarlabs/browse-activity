@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2009-09-21 19:59-0400\n"
-"Last-Translator: Bulgantamir <ar_uul_us@yahoo.com>\n"
+"PO-Revision-Date: 2009-09-22 13:46-0400\n"
+"Last-Translator: Odontsetseg Bat-Erdene <obat-erdene@suffolk.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,9 @@ msgstr "Нийт %s-аас %s файл байна."
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr "%s-с % нь татаж байна."
+msgstr ""
+"%s-с %s нь татаж \n"
+" байна."
 
 #: edittoolbar.py:91
 msgid "Previous"
@@ -116,7 +118,7 @@ msgstr "хоосон"
 
 #: webactivity.py:535
 msgid "Download in progress"
-msgstr "Татаж байна..."
+msgstr "Татаж байна"
 
 #: webactivity.py:536
 msgid "Stopping now will cancel your download"
