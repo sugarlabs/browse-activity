@@ -6,46 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2009-02-13 08:35-0500\n"
+"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"PO-Revision-Date: 2009-09-25 08:22-0400\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Duyệt"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:153
 msgid "Download started"
 msgstr "Đã bắt đầu tải về"
 
-#: downloadmanager.py:153 downloadmanager.py:166
+#: downloadmanager.py:154 downloadmanager.py:167
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:165
+#: downloadmanager.py:166
 msgid "Download completed"
 msgstr "Đã kết thúc tải về"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:170
 msgid "Show in Journal"
 msgstr "Hiện trong Nhật ký"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:173
 msgid "Ok"
 msgstr "OK"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 #, python-format
-msgid "File %s from %s."
-msgstr "Tập tin %s từ %s."
+msgid "From: %s"
+msgstr "Từ : %s"
 
-#: downloadmanager.py:260
+#: downloadmanager.py:265
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -54,11 +56,11 @@ msgstr ""
 "Đang tải %s xuống \n"
 "%s."
 
-#: edittoolbar.py:90
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "Lùi"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "Tiếp"
 
@@ -66,85 +68,99 @@ msgstr "Tiếp"
 msgid "Remove"
 msgstr "Bỏ"
 
-#: palettes.py:95
+#: palettes.py:96
+msgid "Keep link"
+msgstr "Giữ liên kết"
+
+#: palettes.py:104
+msgid "Copy link"
+msgstr "Chép liên kết"
+
+#: palettes.py:112
 msgid "Follow link"
 msgstr "Theo liên kết"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr "Chép"
+#: palettes.py:161
+msgid "Keep image"
+msgstr "Giữ ảnh"
 
-#: palettes.py:108
-msgid "Download link"
-msgstr "Tải về liên kết"
+#: palettes.py:169
+msgid "Copy image"
+msgstr "Chép ảnh"
 
-#: palettes.py:165
-msgid "Download image"
-msgstr "Tải về ảnh"
-
-#: viewtoolbar.py:34
+#: viewtoolbar.py:33
 msgid "Zoom out"
 msgstr "Thu nhỏ"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:39
 msgid "Zoom in"
 msgstr "Phóng to"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:50
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:88
 msgid "Show Tray"
 msgstr "Hiện khay"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:92
 msgid "Hide Tray"
 msgstr "Ẩn khay"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr "Sửa"
-
-#: webactivity.py:114
-msgid "View"
-msgstr "Xem"
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr "trắng"
-
-#: webactivity.py:444
+#: webactivity.py:535
 msgid "Download in progress"
 msgstr "Đang tải về"
 
-#: webactivity.py:445
+#: webactivity.py:536
 msgid "Stopping now will cancel your download"
 msgstr "Dừng ngay bây giờ thì cũng thôi tải về"
 
-#: webactivity.py:447
+#: webactivity.py:538
 msgid "Cancel"
 msgstr "Thôi"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:540 webtoolbar.py:412
 msgid "Stop"
 msgstr "Dừng"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:241
 msgid "Back"
 msgstr "Lùi"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:248
 msgid "Forward"
 msgstr "Tiếp"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:271
 msgid "Bookmark"
 msgstr "Liên kết lưu"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:415
 msgid "Reload"
 msgstr "Nạp lại"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Tập tin %s từ %s."
+
+#~ msgid "Copy"
+#~ msgstr "Chép"
+
+#~ msgid "Download link"
+#~ msgstr "Tải về liên kết"
+
+#~ msgid "Download image"
+#~ msgstr "Tải về ảnh"
+
+#~ msgid "Edit"
+#~ msgstr "Sửa"
+
+#~ msgid "View"
+#~ msgstr "Xem"
+
+#~ msgid "blank"
+#~ msgstr "trắng"
 
 #~ msgid "Source"
 #~ msgstr "Nguồn"
