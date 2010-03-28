@@ -1,3 +1,7 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # This file is distributed under the same license as the PACKAGE package.
 # Fabian Affolter <fab@fedoraproject.org>, 2007.
 msgid ""
@@ -5,20 +9,20 @@ msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2009-10-16 07:51-0400\n"
-"Last-Translator: Simon Schampijer <simon@laptop.org>\n"
+"PO-Revision-Date: 2010-03-28 23:02+0200\n"
+"Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: German\n"
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Durchsuchen"
+msgstr "Browser"
 
 #: downloadmanager.py:153
 msgid "Download started"
@@ -52,7 +56,7 @@ msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"Herunterladen %s von \n"
+"%s heruntergeladen von \n"
 "%s."
 
 #: edittoolbar.py:91
@@ -77,7 +81,7 @@ msgstr "Link kopieren"
 
 #: palettes.py:112
 msgid "Follow link"
-msgstr "Link verfolgen"
+msgstr "Link folgen"
 
 #: palettes.py:161
 msgid "Keep image"
@@ -129,7 +133,7 @@ msgstr "Zurück"
 
 #: webtoolbar.py:248
 msgid "Forward"
-msgstr "Vorwärts"
+msgstr "Vor"
 
 #: webtoolbar.py:271
 msgid "Bookmark"
