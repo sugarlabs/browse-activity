@@ -48,7 +48,7 @@ from sugar.graphics.icon import Icon
 from sugar.graphics.toolbarbox import ToolbarButton
 from sugar import mime
 
-PROFILE_VERSION = 1
+PROFILE_VERSION = 2
 
 _profile_version = 0
 _profile_path = os.path.join(activity.get_activity_root(), 'data/gecko')
