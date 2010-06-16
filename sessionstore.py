@@ -22,12 +22,14 @@ import logging
 from xpcom import components
 from xpcom.components import interfaces
 
+
 def get_session(browser):
     session_history = browser.web_navigation.sessionHistory
 
     if session_history.count == 0:
         return ''
     return _get_history(session_history)
+
 
 def set_session(browser, data):
     _set_history(browser.web_navigation.sessionHistory, data)
@@ -36,6 +38,7 @@ def set_session(browser, data):
         browser.web_navigation.gotoIndex(len(data) - 1)
     else:
         browser.load_uri('about:blank')
+
 
 def _get_history(history):
     logging.debug('%r' % history.count)
@@ -48,6 +51,7 @@ def _get_history(history):
         entries_dest.append(entry_dest)
 
     return entries_dest
+
 
 def _set_history(history, history_data):
     history_internal = history.queryInterface(interfaces.nsISHistoryInternal)
@@ -68,4 +72,3 @@ def _set_history(history, history_data):
         entry.setTitle(entry_dict['title'])
 
         history_internal.addEntry(entry, True)
-

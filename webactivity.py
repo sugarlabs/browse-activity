@@ -70,6 +70,7 @@ if _profile_version < PROFILE_VERSION:
     f.write(str(PROFILE_VERSION))
     f.close()
 
+
 def _seed_xs_cookie():
     ''' Create a HTTP Cookie to authenticate with the Schoolserver
     '''
@@ -133,6 +134,7 @@ hulahop.startup(_profile_path)
 
 from xpcom import components
 
+
 def _set_accept_languages():
     ''' Set intl.accept_languages based on the locale
     '''
@@ -171,6 +173,7 @@ IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
 _logger = logging.getLogger('web-activity')
+
 
 class WebActivity(activity.Activity):
     def __init__(self, handle):
@@ -555,4 +558,3 @@ class WebActivity(activity.Activity):
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser
         browser.get_source(async_cb, async_err_cb)
-

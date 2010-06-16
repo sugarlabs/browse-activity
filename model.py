@@ -21,6 +21,7 @@ import sha
 import gobject
 import base64
 
+
 class Model(gobject.GObject):
     ''' The model of web-activity which uses json to serialize its data
     to a file and deserealize from it.
@@ -76,4 +77,3 @@ class Model(gobject.GObject):
         ids.extend(self.data['deleted'])
         ids.append('')
         return ids
-

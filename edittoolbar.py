@@ -26,6 +26,7 @@ from sugar.graphics import iconentry
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics import style
 
+
 class EditToolbar(activity.EditToolbar):
 
     _com_interfaces_ = interfaces.nsIObserver

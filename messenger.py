@@ -21,11 +21,13 @@ import dbus
 from dbus.gobject_service import ExportedGObject
 import base64
 
+
 SERVICE = "org.laptop.WebActivity"
 IFACE = SERVICE
 PATH = "/org/laptop/WebActivity"
 
 _logger = logging.getLogger('messenger')
+
 
 class Messenger(ExportedGObject):
     def __init__(self, tube, is_initiator, model):
@@ -124,4 +126,3 @@ class Messenger(ExportedGObject):
             thumb = base64.b64decode(buf)
             self.model.add_link(url, title, thumb, owner, color, timestamp)
             _logger.debug('Added link: %s to linkbar.'%(url))
-

@@ -22,6 +22,7 @@ from xpcom.server.factory import Factory
 
 import places
 
+
 class GlobalHistory:
     _com_interfaces_ = interfaces.nsIGlobalHistory, \
                        interfaces.nsIGlobalHistory2, \
@@ -71,6 +72,7 @@ class GlobalHistory:
         if place:
             place.gecko_flags = flags
             self._store.update_place(place)
+
 
 components.registrar.registerFactory(GlobalHistory.cid,
                                      GlobalHistory.description,

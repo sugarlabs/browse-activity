@@ -20,6 +20,7 @@ import gobject
 import xpcom
 from xpcom.components import interfaces
 
+
 class HistoryListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsISHistoryListener
 

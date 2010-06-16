@@ -34,6 +34,7 @@ class LinkButton(TrayButton, gobject.GObject):
         'remove_link': (gobject.SIGNAL_RUN_FIRST,
                         gobject.TYPE_NONE, ([str]))
         }
+
     def __init__(self, url, buf, color, title, owner, index, hash):
         TrayButton.__init__(self)
         self.set_image(buf, color.split(',')[1], color.split(',')[0])

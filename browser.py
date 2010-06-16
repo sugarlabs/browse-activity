@@ -43,6 +43,7 @@ from progresslistener import ProgressListener
 
 _ZOOM_AMOUNT = 0.1
 
+
 class GetSourceListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
@@ -69,8 +70,11 @@ class GetSourceListener(object):
     def onSecurityChange(self, progress, request, state):
         pass
 
+
 class CommandListener(object):
+
     _com_interfaces_ = interfaces.nsIDOMEventListener
+
     def __init__(self, window):
         self._window = window
 
@@ -85,6 +89,7 @@ class CommandListener(object):
         cls = components.classes['@sugarlabs.org/add-cert-exception;1']
         cert_exception = cls.createInstance(interfaces.hulahopAddCertException)
         cert_exception.showDialog(self._window)
+
 
 class TabbedView(gtk.Notebook):
     __gtype_name__ = 'TabbedView'
@@ -198,12 +203,14 @@ class TabbedView(gtk.Notebook):
             self._append_tab(browser)
             sessionstore.set_session(browser, tab_session)
 
+
 gtk.rc_parse_string('''
     style "browse-tab-close" {
         xthickness = 0
         ythickness = 0
     }
     widget "*browse-tab-close" style "browse-tab-close"''')
+
 
 class TabLabel(gtk.HBox):
     __gtype_name__ = 'TabLabel'
@@ -254,6 +261,7 @@ class TabLabel(gtk.HBox):
 
     def __title_changed_cb(self, browser, pspec):
         self._label.set_text(browser.props.title)
+
 
 class Browser(WebView):
     __gtype_name__ = 'Browser'
@@ -335,6 +343,7 @@ class Browser(WebView):
                     interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
 
+
 class PopupDialog(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
@@ -354,4 +363,3 @@ class PopupDialog(gtk.Window):
         if self.view.props.visibility:
             self.view.show()
             self.show()
-

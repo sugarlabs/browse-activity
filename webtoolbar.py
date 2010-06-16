@@ -35,7 +35,9 @@ from sugar.activity import activity
 import filepicker
 import places
 
+
 _MAX_HISTORY_ENTRIES = 15
+
 
 class WebEntry(AddressEntry):
     _COL_ADDRESS = 0
@@ -215,6 +217,7 @@ class WebEntry(AddressEntry):
             self._search_popdown()
         else:
             self._search_popup()
+
 
 class PrimaryToolbar(ToolbarBox):
     __gtype_name__ = 'PrimaryToolbar'
@@ -457,4 +460,3 @@ class PrimaryToolbar(ToolbarBox):
 
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
-

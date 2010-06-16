@@ -59,8 +59,10 @@ _MIN_PERCENT_UPDATE = 10
 _active_downloads = []
 _dest_to_window = {}
 
+
 def can_quit():
     return len(_active_downloads) == 0
+
 
 def remove_all_downloads():
     for download in _active_downloads:
@@ -69,6 +71,7 @@ def remove_all_downloads():
             download.datastore_deleted_handler.remove()
             datastore.delete(download.dl_jobject.object_id)
             download.cleanup_datastore_write()
+
 
 class HelperAppLauncherDialog:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
@@ -107,10 +110,12 @@ class HelperAppLauncherDialog:
         launcher.saveToDisk(None, False)
         return NS_OK
 
+
 components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}',
                                      'Sugar Download Manager',
                                      '@mozilla.org/helperapplauncherdialog;1',
                                      Factory(HelperAppLauncherDialog))
+
 
 class Download:
     _com_interfaces_ = interfaces.nsITransfer
@@ -291,10 +296,12 @@ class Download:
             self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
             _active_downloads.remove(self)
 
+
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
                                      'Sugar Download',
                                      '@mozilla.org/transfer;1',
                                      Factory(Download))
+
 
 def save_link(url, text, owner_document):
     # Inspired on Firefox' browser/base/content/nsContextMenu.js:saveLink()
@@ -326,6 +333,7 @@ def save_link(url, text, owner_document):
             interfaces.nsIStreamListener)
     channel.asyncOpen(listener, None)
 
+
 def _implements_interface(obj, interface):
     try:
         obj.QueryInterface(interface)
@@ -335,6 +343,7 @@ def _implements_interface(obj, interface):
             return False
         else:
             raise
+
 
 class _AuthPromptCallback(object):
     _com_interfaces_ = interfaces.nsIInterfaceRequestor
@@ -348,6 +357,7 @@ class _AuthPromptCallback(object):
             window_watcher = cls.getService(interfaces.nsIPromptFactory)
             return window_watcher.getPrompt(self._dom_window, uuid)
         return None
+
 
 class _SaveLinkProgressListener(object):
     _com_interfaces_ = interfaces.nsIStreamListener
@@ -383,4 +393,3 @@ class _SaveLinkProgressListener(object):
     def onDataAvailable(self, request, context, inputStream, offset, count):
         self._external_listener.onDataAvailable(request, context, inputStream,
                                                 offset, count);
-

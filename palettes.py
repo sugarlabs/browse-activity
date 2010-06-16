@@ -34,6 +34,7 @@ from sugar.activity import activity
 
 import downloadmanager
 
+
 class MouseOutListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIDOMEventListener
 
@@ -192,6 +193,7 @@ class LinkPalette(Palette):
     def __download_activate_cb(self, menu_item):
         downloadmanager.save_link(self._url, self._title, self._owner_document)
 
+
 class ImagePalette(Palette):
     def __init__(self, title, url, owner_document):
         Palette.__init__(self)
@@ -254,6 +256,7 @@ class ImagePalette(Palette):
     def __download_activate_cb(self, menu_item):
         downloadmanager.save_link(self._url, self._title, self._owner_document)
 
+
 class _ImageProgressListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
@@ -282,10 +285,11 @@ class _ImageProgressListener(object):
                                     _clipboard_clear_func_cb,
                                     self._temp_file)
 
+
 def _clipboard_get_func_cb(clipboard, selection_data, info, temp_file):
     selection_data.set_uris(['file://' + temp_file])
+
 
 def _clipboard_clear_func_cb(clipboard, temp_file):
     if os.path.exists(temp_file):
         os.remove(temp_file)
-

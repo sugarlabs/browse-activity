@@ -21,6 +21,7 @@ import gtk
 
 from sugar.graphics.toolbutton import ToolButton
 
+
 class ViewToolbar(gtk.Toolbar):
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
@@ -90,4 +91,3 @@ class ViewToolbar(gtk.Toolbar):
     def tray_set_hide(self):
         self.traybutton.set_icon('tray-hide')
         self.traybutton.set_tooltip(_('Hide Tray'))
-

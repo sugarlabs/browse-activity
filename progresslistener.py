@@ -20,6 +20,7 @@ import gobject
 import xpcom
 from xpcom.components import interfaces
 
+
 class ProgressListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
@@ -100,4 +101,3 @@ class ProgressListener(gobject.GObject):
         return self._progress
 
     progress = gobject.property(type=float, getter=_get_progress)
-

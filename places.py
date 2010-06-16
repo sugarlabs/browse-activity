@@ -22,6 +22,7 @@ from sugar.activity import activity
 
 _store = None
 
+
 class Place(object):
     def __init__(self, uri=None):
         self.uri = uri
@@ -30,6 +31,7 @@ class Place(object):
         self.gecko_flags = 0
         self.visits = 0
         self.last_visit = datetime.now()
+
 
 class SqliteStore(object):
     MAX_SEARCH_MATCHES = 20
@@ -130,6 +132,7 @@ class SqliteStore(object):
             self._connection.commit()
         finally:
             cursor.close()
+
 
 def get_store():
     global _store

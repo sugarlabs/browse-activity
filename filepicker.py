@@ -31,7 +31,9 @@ from xpcom.server.factory import Factory
 from sugar.graphics.objectchooser import ObjectChooser
 from sugar.activity.activity import get_activity_root
 
+
 _temp_dirs_to_clean = []
+
 
 def cleanup_temp_files():
     while _temp_dirs_to_clean:
@@ -41,6 +43,7 @@ def cleanup_temp_files():
         else:
             logging.debug('filepicker.cleanup_temp_files: no file %r'
                           % temp_dir)
+
 
 class FilePicker:
     _com_interfaces_ = interfaces.nsIFilePicker
@@ -145,10 +148,12 @@ class FilePicker:
         logging.warning('FilePicker.get_FileURL: UNIMPLEMENTED')
         return None
 
+
 components.registrar.registerFactory(FilePicker.cid,
                                         FilePicker.description,
                                         '@mozilla.org/filepicker;1',
                                         Factory(FilePicker))
+
 
 def _basename_strip(jobject):
     name = jobject.metadata.get('title', 'untitled')
