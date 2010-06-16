@@ -29,19 +29,19 @@ class SecurityDialogs:
 
     def __init__(self):
         pass
-    
+
     def confirmCertExpired(socketInfo, cert):
         logging.debug('UNIMPLEMENTED: SecurityDialogs.confirmCertExpired()')
         return interfaces.nsIBadCertListener.ADD_TRUSTED_FOR_SESSION, True
-    
+
     def confirmMismatchDomain(socketInfo, targetURL, cert):
         logging.debug('UNIMPLEMENTED: SecurityDialogs.confirmMismatchDomain()')
         return interfaces.nsIBadCertListener.ADD_TRUSTED_FOR_SESSION, True
-    
+
     def confirmUnknownIssuer(socketInfo, cert, certAddType):
         logging.debug('UNIMPLEMENTED: SecurityDialogs.confirmUnknownIssuer()')
         return interfaces.nsIBadCertListener.ADD_TRUSTED_FOR_SESSION, True
-    
+
     def notifyCrlNextupdate(socketInfo, targetURL, cert):
         logging.debug('UNIMPLEMENTED: SecurityDialogs.notifyCrlNextupdate()')
 

@@ -45,14 +45,14 @@ class Messenger(ExportedGObject):
             _logger.debug('Add member handle=%s  bus_name=%s'
                           %(str(handle), str(bus_name)))
             self.members.append(bus_name)
-            
+
         for handle in removed:
             _logger.debug('Remove member %r', handle)
             try:
                 self.members.remove(self.tube.participants[handle])
             except ValueError:
                 _logger.debug('Remove member %r - already absent', handle)
-                        
+
         if not self.entered:
             self.tube.add_signal_receiver(self._add_link_receiver, '_add_link',
                                           IFACE, path=PATH,
@@ -61,10 +61,10 @@ class Messenger(ExportedGObject):
             self.bus_name = self.tube.get_unique_name()
             if self.is_initiator:
                 _logger.debug('Initialising a new shared browser, I am %s .'
-                              %self.tube.get_unique_name())                
-            else:               
+                              %self.tube.get_unique_name())
+            else:
                 # sync with other members
-                _logger.debug('Joined I am %s .'%self.bus_name)                
+                _logger.debug('Joined I am %s .'%self.bus_name)
                 for member in self.members:
                     if member != self.bus_name:
                         _logger.debug('Get info from %s' %member)
@@ -72,18 +72,18 @@ class Messenger(ExportedGObject):
                             self.model.get_links_ids(), dbus_interface=IFACE,
                             reply_handler=self.reply_sync, error_handler=lambda
                             e:self.error_sync(e, 'transfering file'))
-                                                                         
+
         self.entered = True
-        
+
     def reply_sync(self, a_ids, sender):
-        a_ids.pop()                    
+        a_ids.pop()
         for link in self.model.data['shared_links']:
             if link['hash'] not in a_ids:
                 self.tube.get_object(sender, PATH).send_link(
                     link['hash'], link['url'], link['title'], link['color'],
                     link['owner'], link['thumb'], link['timestamp'])
-            
-    def error_sync(self, e, when):    
+
+    def error_sync(self, e, when):
         _logger.error('Error %s: %s'%(when, e))
 
     @dbus.service.method(dbus_interface=IFACE, in_signature='as',
@@ -100,9 +100,9 @@ class Messenger(ExportedGObject):
         a_ids = self.model.get_links_ids()
         a_ids.append('')
         # links I want from the caller
-        return (a_ids, self.bus_name)               
-        
-    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssssd', 
+        return (a_ids, self.bus_name)
+
+    @dbus.service.method(dbus_interface=IFACE, in_signature='ssssssd',
                          out_signature='')
     def send_link(self, identifier, url, title, color, owner, buf, timestamp):
         '''Send link'''
@@ -110,18 +110,18 @@ class Messenger(ExportedGObject):
         if identifier not in a_ids:
             thumb = base64.b64decode(buf)
             self.model.add_link(url, title, thumb, owner, color, timestamp)
-                    
+
     @dbus.service.signal(IFACE, signature='sssssd')
-    def _add_link(self, url, title, color, owner, thumb, timestamp):        
+    def _add_link(self, url, title, color, owner, thumb, timestamp):
         '''Signal to send the link information (add)'''
         _logger.debug('Add Link: %s '%url)
-        
-    def _add_link_receiver(self, url, title, color, owner, buf, timestamp, 
+
+    def _add_link_receiver(self, url, title, color, owner, buf, timestamp,
                            sender=None):
         '''Member sent a link'''
-        handle = self.tube.bus_name_to_handle[sender]            
+        handle = self.tube.bus_name_to_handle[sender]
         if self.tube.self_handle != handle:
             thumb = base64.b64decode(buf)
-            self.model.add_link(url, title, thumb, owner, color, timestamp) 
+            self.model.add_link(url, title, thumb, owner, color, timestamp)
             _logger.debug('Added link: %s to linkbar.'%(url))
-    
+

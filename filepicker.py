@@ -52,7 +52,7 @@ class FilePicker:
         self._title = None
         self._parent = None
         self._file = None
-    
+
     def appendFilter(self, title, filter):
         logging.warning('FilePicker.appendFilter: UNIMPLEMENTED')
 
@@ -63,7 +63,7 @@ class FilePicker:
         self._title = title
         self._file = None
         self._parent = hulahop.get_view_for_window(parent).get_toplevel()
-        
+
         if mode != interfaces.nsIFilePicker.modeOpen:
             raise xpcom.COMException(NS_ERROR_NOT_IMPLEMENTED)
 

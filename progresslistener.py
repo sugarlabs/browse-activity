@@ -42,11 +42,11 @@ class ProgressListener(gobject.GObject):
                interfaces.nsIWebProgress.NOTIFY_LOCATION
 
         browser.web_progress.addProgressListener(self._wrapped_self, mask)
-    
+
     def _reset_requests_count(self):
         self._total_requests = 0
         self._completed_requests = 0
-    
+
     def onLocationChange(self, webProgress, request, location):
         self._location = location
         self.notify('location')
@@ -54,10 +54,10 @@ class ProgressListener(gobject.GObject):
     def onProgressChange(self, webProgress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
         pass
-    
+
     def onSecurityChange(self, webProgress, request, state):
         pass
-        
+
     def onStateChange(self, webProgress, request, stateFlags, status):
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
@@ -68,7 +68,7 @@ class ProgressListener(gobject.GObject):
         if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_NETWORK:
             if stateFlags & interfaces.nsIWebProgressListener.STATE_START:
                 self._loading = True
-                self._reset_requests_count()                
+                self._reset_requests_count()
                 self.notify('loading')
             elif stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
                 self._loading = False

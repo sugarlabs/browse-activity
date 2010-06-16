@@ -64,11 +64,11 @@ def can_quit():
 
 def remove_all_downloads():
     for download in _active_downloads:
-        download.cancelable.cancel(NS_ERROR_FAILURE) 
+        download.cancelable.cancel(NS_ERROR_FAILURE)
         if download.dl_jobject is not None:
             download.datastore_deleted_handler.remove()
             datastore.delete(download.dl_jobject.object_id)
-            download.cleanup_datastore_write()        
+            download.cleanup_datastore_write()
 
 class HelperAppLauncherDialog:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
@@ -100,9 +100,9 @@ class HelperAppLauncherDialog:
         requestor = window_context.queryInterface(interfaces.nsIInterfaceRequestor)
         dom_window = requestor.getInterface(interfaces.nsIDOMWindow)
         _dest_to_window[file_path] = dom_window
-        
+
         return dest_file
-                            
+
     def show(self, launcher, context, reason):
         launcher.saveToDisk(None, False)
         return NS_OK
@@ -137,7 +137,7 @@ class Download:
         view = hulahop.get_view_for_window(dom_window)
         logging.debug('Download.init dom_window: %r' % dom_window)
         self._activity = view.get_toplevel()
-        
+
         return NS_OK
 
     def onStatusChange(self, web_progress, request, status, message):
@@ -146,33 +146,33 @@ class Download:
 
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags & interfaces.nsIWebProgressListener.STATE_START:
-            self._create_journal_object()            
+            self._create_journal_object()
             self._object_id = self.dl_jobject.object_id
-            
+
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
-            alert.props.msg = _('%s' % self._get_file_name()) 
+            alert.props.msg = _('%s' % self._get_file_name())
             self._activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
             alert.show()
             global _active_downloads
             _active_downloads.append(self)
-            
+
         elif state_flags & interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status): # download cancelled
                 return
 
             self._stop_alert = Alert()
-            self._stop_alert.props.title = _('Download completed') 
-            self._stop_alert.props.msg = _('%s' % self._get_file_name()) 
-            open_icon = Icon(icon_name='zoom-activity') 
-            self._stop_alert.add_button(gtk.RESPONSE_APPLY, 
-                                        _('Show in Journal'), open_icon) 
-            open_icon.show() 
-            ok_icon = Icon(icon_name='dialog-ok') 
-            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon) 
-            ok_icon.show()            
-            self._activity.add_alert(self._stop_alert) 
+            self._stop_alert.props.title = _('Download completed')
+            self._stop_alert.props.msg = _('%s' % self._get_file_name())
+            open_icon = Icon(icon_name='zoom-activity')
+            self._stop_alert.add_button(gtk.RESPONSE_APPLY,
+                                        _('Show in Journal'), open_icon)
+            open_icon.show()
+            ok_icon = Icon(icon_name='dialog-ok')
+            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            ok_icon.show()
+            self._activity.add_alert(self._stop_alert)
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
@@ -197,7 +197,7 @@ class Download:
         global _active_downloads
         if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Download Canceled')
-            self.cancelable.cancel(NS_ERROR_FAILURE) 
+            self.cancelable.cancel(NS_ERROR_FAILURE)
             try:
                 self.datastore_deleted_handler.remove()
                 datastore.delete(self._object_id)
@@ -208,17 +208,17 @@ class Download:
             if self._stop_alert is not None:
                 self._activity.remove_alert(self._stop_alert)
 
-        self._activity.remove_alert(alert)        
-
-    def __stop_response_cb(self, alert, response_id):        
-        global _active_downloads 
-        if response_id is gtk.RESPONSE_APPLY: 
-            logging.debug('Start application with downloaded object') 
-            activity.show_object_in_journal(self._object_id) 
         self._activity.remove_alert(alert)
-            
+
+    def __stop_response_cb(self, alert, response_id):
+        global _active_downloads
+        if response_id is gtk.RESPONSE_APPLY:
+            logging.debug('Start application with downloaded object')
+            activity.show_object_in_journal(self._object_id)
+        self._activity.remove_alert(alert)
+
     def cleanup_datastore_write(self):
-        global _active_downloads        
+        global _active_downloads
         _active_downloads.remove(self)
 
         if os.path.isfile(self.dl_jobject.file_path):
@@ -373,7 +373,7 @@ class _SaveLinkProgressListener(object):
         channel = request.QueryInterface(interfaces.nsIChannel)
 
         self._external_listener = \
-            external_helper.doContent(channel.contentType, request, 
+            external_helper.doContent(channel.contentType, request,
                                       self._owner_document.defaultView, True)
         self._external_listener.onStartRequest(request, context)
 

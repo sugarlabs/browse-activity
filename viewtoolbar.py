@@ -25,10 +25,10 @@ class ViewToolbar(gtk.Toolbar):
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
-        self._activity = activity        
+        self._activity = activity
         self._activity.tray.connect('unmap', self.__unmap_cb)
         self._activity.tray.connect('map', self.__map_cb)
-                
+
         self.zoomout = ToolButton('zoom-out')
         self.zoomout.set_tooltip(_('Zoom out'))
         self.zoomout.connect('clicked', self.__zoomout_clicked_cb)
@@ -57,7 +57,7 @@ class ViewToolbar(gtk.Toolbar):
         self.traybutton.props.sensitive = False
         self.insert(self.traybutton, -1)
         self.traybutton.show()
-                
+
     def __zoomin_clicked_cb(self, button):
         tabbed_view = self._activity.get_canvas()
         tabbed_view.props.current_browser.zoom_in()
@@ -69,7 +69,7 @@ class ViewToolbar(gtk.Toolbar):
     def __fullscreen_clicked_cb(self, button):
         self._activity.fullscreen()
 
-    def __tray_clicked_cb(self, button):        
+    def __tray_clicked_cb(self, button):
         if self._activity.tray.props.visible is False:
             self._activity.tray.show()
         else:
@@ -78,16 +78,16 @@ class ViewToolbar(gtk.Toolbar):
     def __map_cb(self, tray):
         if len(self._activity.tray.get_children()) > 0:
             self.tray_set_hide()
-            
+
     def __unmap_cb(self, tray):
         if len(self._activity.tray.get_children()) > 0:
             self.tray_set_show()
-        
-    def tray_set_show(self):     
+
+    def tray_set_show(self):
         self.traybutton.set_icon('tray-show')
         self.traybutton.set_tooltip(_('Show Tray'))
-        
+
     def tray_set_hide(self):
         self.traybutton.set_icon('tray-hide')
         self.traybutton.set_tooltip(_('Hide Tray'))
-        
+

@@ -45,7 +45,7 @@ class GlobalHistory:
         if place:
             place.visits += 1
             place.last_visit = datetime.now()
-            self._store.update_place(place)            
+            self._store.update_place(place)
         else:
             place = places.Place(uri.spec)
             self._store.add_place(place)
@@ -54,7 +54,7 @@ class GlobalHistory:
         place = self._store.lookup_place(uri.spec)
         if place:
             place.title = title
-            self._store.update_place(place)        
+            self._store.update_place(place)
 
     def addDocumentRedirect(self, old_channel, new_channel, flags, toplevel):
         pass
@@ -70,7 +70,7 @@ class GlobalHistory:
         place = self._store.lookup_place(uri.spec)
         if place:
             place.gecko_flags = flags
-            self._store.update_place(place)        
+            self._store.update_place(place)
 
 components.registrar.registerFactory(GlobalHistory.cid,
                                      GlobalHistory.description,

@@ -45,7 +45,7 @@ _ZOOM_AMOUNT = 0.1
 
 class GetSourceListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
-    
+
     def __init__(self, file_path, async_cb, async_err_cb):
         self._file_path = file_path
         self._async_cb = async_cb
@@ -91,9 +91,9 @@ class TabbedView(gtk.Notebook):
 
     _com_interfaces_ = interfaces.nsIWindowCreator
 
-    AGENT_SHEET = os.path.join(activity.get_bundle_path(), 
+    AGENT_SHEET = os.path.join(activity.get_bundle_path(),
                                'agent-stylesheet.css')
-    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko', 
+    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko',
                               'user-stylesheet.css')
 
     def __init__(self):
@@ -115,7 +115,7 @@ class TabbedView(gtk.Notebook):
         style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
 
         if os.path.exists(TabbedView.AGENT_SHEET):
-            agent_sheet_uri = io_service.newURI('file:///' + 
+            agent_sheet_uri = io_service.newURI('file:///' +
                                                 TabbedView.AGENT_SHEET,
                                                 None, None)
             style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
@@ -147,7 +147,7 @@ class TabbedView(gtk.Notebook):
                 dialog.set_transient_for(parent_view.get_toplevel())
 
             browser = dialog.view.browser
-            
+
             item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
             item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
 
@@ -189,7 +189,7 @@ class TabbedView(gtk.Notebook):
         if tab_sessions and isinstance(tab_sessions[0], dict):
             # Old format, no tabs
             tab_sessions = [tab_sessions]
-            
+
         while self.get_n_pages():
             self.remove_page(self.get_n_pages() - 1)
 
@@ -216,7 +216,7 @@ class TabLabel(gtk.HBox):
 
     def __init__(self, browser):
         gobject.GObject.__init__(self)
-        
+
         self._browser = browser
         self._browser.connect('is-setup', self.__browser_is_setup_cb)
 
@@ -307,7 +307,7 @@ class Browser(WebView):
                 interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
 
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
-        file_path = os.path.join(temp_path, '%i' % time.time())        
+        file_path = os.path.join(temp_path, '%i' % time.time())
         cls = components.classes["@mozilla.org/file/local;1"]
         local_file = cls.createInstance(interfaces.nsILocalFile)
         local_file.initWithPath(file_path)
@@ -316,7 +316,7 @@ class Browser(WebView):
         persist.progressListener = xpcom.server.WrapObject(
             progresslistener, interfaces.nsIWebProgressListener)
 
-        uri = self.web_navigation.currentURI            
+        uri = self.web_navigation.currentURI
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
 
     def zoom_in(self):

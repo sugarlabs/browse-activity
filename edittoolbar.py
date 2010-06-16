@@ -88,7 +88,7 @@ class EditToolbar(activity.EditToolbar):
         search_item.show()
 
         self._prev = ToolButton('go-previous-paired')
-        self._prev.set_tooltip(_('Previous'))        
+        self._prev.set_tooltip(_('Previous'))
         self._prev.props.sensitive = False
         self._prev.connect('clicked', self.__find_previous_cb)
         self.insert(self._prev, -1)
@@ -134,12 +134,12 @@ class EditToolbar(activity.EditToolbar):
         if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False
-            entry.modify_text(gtk.STATE_NORMAL, 
+            entry.modify_text(gtk.STATE_NORMAL,
                               style.COLOR_BUTTON_GREY.get_gdk_color())
         else:
             self._prev.props.sensitive = True
             self._next.props.sensitive = True
-            entry.modify_text(gtk.STATE_NORMAL, 
+            entry.modify_text(gtk.STATE_NORMAL,
                               style.COLOR_BLACK.get_gdk_color())
 
     def __find_previous_cb(self, button):

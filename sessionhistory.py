@@ -24,7 +24,7 @@ class HistoryListener(gobject.GObject):
     _com_interfaces_ = interfaces.nsISHistoryListener
 
     __gsignals__ = {
-        'session-history-changed': (gobject.SIGNAL_RUN_FIRST, 
+        'session-history-changed': (gobject.SIGNAL_RUN_FIRST,
                                     gobject.TYPE_NONE,
                                     ([int])),
         'session-link-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,

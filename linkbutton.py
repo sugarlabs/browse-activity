@@ -39,29 +39,29 @@ class LinkButton(TrayButton, gobject.GObject):
         self.set_image(buf, color.split(',')[1], color.split(',')[0])
 
         self.hash = hash
-        info = title +'\n'+ owner     
-        self.setup_rollover_options(info)        
-        
+        info = title +'\n'+ owner
+        self.setup_rollover_options(info)
+
     def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):
-        img = gtk.Image()                    
+        img = gtk.Image()
         loader = gtk.gdk.PixbufLoader()
         loader.write(buf)
         loader.close()
         pixbuf = loader.get_pixbuf()
-        del loader            
+        del loader
 
         xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
         pixbuf_bg = self._read_link_background(xo_buddy, fill, stroke)
         pixbuf_bg = pixbuf_bg.scale_simple(style.zoom(120),
                                            style.zoom(110),
-                                           gtk.gdk.INTERP_BILINEAR)        
-        dest_x = style.zoom(10) 
-        dest_y = style.zoom(20) 
+                                           gtk.gdk.INTERP_BILINEAR)
+        dest_x = style.zoom(10)
+        dest_y = style.zoom(20)
         w = pixbuf.get_width()
-        h = pixbuf.get_height() 
+        h = pixbuf.get_height()
         scale_x = 1
         scale_y = 1
-        
+
         pixbuf.composite(pixbuf_bg, dest_x, dest_y, w, h, dest_x, dest_y,
                          scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
         img.set_from_pixbuf(pixbuf_bg)
@@ -75,11 +75,11 @@ class LinkButton(TrayButton, gobject.GObject):
         icon_file = open(filename, 'r')
         data = icon_file.read()
         icon_file.close()
-    
+
         if fill_color:
             entity = '<!ENTITY fill_color "%s">' % fill_color
             data = re.sub('<!ENTITY fill_color .*>', entity, data)
-        
+
         if stroke_color:
             entity = '<!ENTITY stroke_color "%s">' % stroke_color
             data = re.sub('<!ENTITY stroke_color .*>', entity, data)

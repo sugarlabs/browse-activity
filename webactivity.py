@@ -92,7 +92,7 @@ def _seed_xs_cookie():
         c = cookies_db.cursor()
 
         c.execute('''CREATE TABLE IF NOT EXISTS
-                     moz_cookies 
+                     moz_cookies
                      (id INTEGER PRIMARY KEY,
                       name TEXT,
                       value TEXT,
@@ -107,13 +107,13 @@ def _seed_xs_cookie():
                      FROM moz_cookies
                      WHERE name=? AND host=? AND path=?''',
                   ('xoid', jabber_server, '/'))
-        
+
         if c.fetchone():
             _logger.debug('seed_xs_cookie: Cookie exists already')
             return
 
         expire = int(time.time()) + 10*365*24*60*60
-        c.execute('''INSERT INTO moz_cookies (name, value, host, 
+        c.execute('''INSERT INTO moz_cookies (name, value, host,
                                               path, expiry, lastAccessed,
                                               isSecure, isHttpOnly)
                      VALUES(?,?,?,?,?,?,?,?)''',
@@ -182,7 +182,7 @@ class WebActivity(activity.Activity):
 
         _set_accept_languages()
         _seed_xs_cookie()
-        
+
         # don't pick up the sugar theme - use the native mozilla one instead
         cls = components.classes['@mozilla.org/preferences-service;1']
         pref_service = cls.getService(components.interfaces.nsIPrefService)
@@ -202,7 +202,7 @@ class WebActivity(activity.Activity):
                 icon_name='toolbar-edit')
         self._primary_toolbar.toolbar.insert(
                 self._edit_toolbar_button, 1)
-        
+
         self._view_toolbar = ViewToolbar(self)
         view_toolbar_button = ToolbarButton(
                 page=self._view_toolbar,
@@ -222,7 +222,7 @@ class WebActivity(activity.Activity):
         self.connect('key-press-event', self._key_press_cb)
 
         if handle.uri:
-            self._tabbed_view.current_browser.load_uri(handle.uri)        
+            self._tabbed_view.current_browser.load_uri(handle.uri)
         elif not self._jobject.file_path:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
@@ -231,7 +231,7 @@ class WebActivity(activity.Activity):
         self.messenger = None
         self.connect('shared', self._shared_cb)
 
-        # Get the Presence Service        
+        # Get the Presence Service
         self.pservice = presenceservice.get_instance()
         try:
             name, path = self.pservice.get_preferred_connection()
@@ -241,28 +241,28 @@ class WebActivity(activity.Activity):
         except TypeError:
             _logger.debug('Offline')
         self.initiating = None
-            
+
         if self._shared_activity is not None:
             _logger.debug('shared:  %s' %self._shared_activity.props.joined)
 
         if self._shared_activity is not None:
             # We are joining the activity
-            _logger.debug('Joined activity')                      
+            _logger.debug('Joined activity')
             self.connect('joined', self._joined_cb)
             if self.get_shared():
                 # We've already joined
                 self._joined_cb()
-        else:   
+        else:
             _logger.debug('Created activity')
-    
+
     def _shared_cb(self, activity_):
-        _logger.debug('My activity was shared')        
-        self.initiating = True                        
+        _logger.debug('My activity was shared')
+        self.initiating = True
         self._setup()
 
         _logger.debug('This is my activity: making a tube...')
         self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(SERVICE, {})
-                
+
     def _setup(self):
         if self._shared_activity is None:
             _logger.debug('Failed to share or join activity')
@@ -279,7 +279,7 @@ class WebActivity(activity.Activity):
             channel = telepathy.client.Channel(bus_name, channel_path)
             htype, handle = channel.GetHandle()
             if htype == telepathy.HANDLE_TYPE_ROOM:
-                _logger.debug('Found our room: it has handle#%d "%s"' 
+                _logger.debug('Found our room: it has handle#%d "%s"'
                     %(handle, self.conn.InspectHandles(htype, [handle])[0]))
                 room = handle
                 ctype = channel.GetChannelType()
@@ -301,7 +301,7 @@ class WebActivity(activity.Activity):
         if tubes_chan is None:
             _logger.debug("Didn't find our Tubes channel, requesting one...")
             tubes_chan = self.conn.request_channel(telepathy.CHANNEL_TYPE_TUBES,
-                                                   telepathy.HANDLE_TYPE_ROOM, 
+                                                   telepathy.HANDLE_TYPE_ROOM,
                                                    room, True)
 
         self.tubes_chan = tubes_chan
@@ -322,18 +322,18 @@ class WebActivity(activity.Activity):
             return
 
         _logger.debug('Joined an existing shared activity')
-        
+
         self.initiating = False
         self._setup()
-                
+
         _logger.debug('This is not my activity: waiting for a tube...')
         self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].ListTubes(
-            reply_handler=self._list_tubes_reply_cb, 
+            reply_handler=self._list_tubes_reply_cb,
             error_handler=self._list_tubes_error_cb)
 
     def _new_tube_cb(self, identifier, initiator, type, service, params, state):
         _logger.debug('New tube: ID=%d initator=%d type=%d service=%s '
-                      'params=%r state=%d' %(identifier, initiator, type, 
+                      'params=%r state=%d' %(identifier, initiator, type,
                                              service, params, state))
 
         if (type == telepathy.TUBE_TYPE_DBUS and
@@ -342,21 +342,21 @@ class WebActivity(activity.Activity):
                 self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptDBusTube(
                         identifier)
 
-            self.tube_conn = TubeConnection(self.conn, 
-                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES], 
+            self.tube_conn = TubeConnection(self.conn,
+                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES],
                 identifier, group_iface = self.text_chan[
                     telepathy.CHANNEL_INTERFACE_GROUP])
-            
+
             _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating, 
-                                       self.model)         
+            self.messenger = Messenger(self.tube_conn, self.initiating,
+                                       self.model)
 
     def _load_homepage(self):
         browser = self._tabbed_view.current_browser
         if os.path.isfile(_LIBRARY_PATH):
             browser.load_uri('file://' + _LIBRARY_PATH)
         else:
-            default_page = os.path.join(activity.get_bundle_path(), 
+            default_page = os.path.join(activity.get_bundle_path(),
                                         "data/index.html")
             browser.load_uri(default_page)
 
@@ -372,7 +372,7 @@ class WebActivity(activity.Activity):
         if self.metadata['mime_type'] == 'text/plain':
             data = self._get_data_from_file_path(file_path)
             self.model.deserialize(data)
-            
+
             for link in self.model.data['shared_links']:
                 _logger.debug('read: url=%s title=%s d=%s' % (link['url'],
                                                               link['title'],
@@ -380,7 +380,7 @@ class WebActivity(activity.Activity):
                 self._add_link_totray(link['url'],
                                       base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
-                                      link['owner'], -1, link['hash'])      
+                                      link['owner'], -1, link['hash'])
             logging.debug('########## reading %s' % data)
             self._tabbed_view.set_session(self.model.data['history'])
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
@@ -390,11 +390,11 @@ class WebActivity(activity.Activity):
             if len(uris) == 1:
                 self._tabbed_view.props.current_browser.load_uri(uris[0])
             else:
-                _logger.error('Open uri-list: Does not support' 
-                              'list of multiple uris by now.') 
+                _logger.error('Open uri-list: Does not support'
+                              'list of multiple uris by now.')
         else:
             self._tabbed_view.props.current_browser.load_uri(file_path)
-        
+
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
@@ -419,16 +419,16 @@ class WebActivity(activity.Activity):
 
     def _link_add_button_cb(self, button):
         self._add_link()
-            
+
     def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
             if gtk.gdk.keyval_name(event.keyval) == "d":
-                self._add_link()                
+                self._add_link()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "f":
                 _logger.debug('keyboard: Find')
                 self._edit_toolbar_button.set_expanded(True)
-                self._edit_toolbar.search_entry.grab_focus()                
+                self._edit_toolbar.search_entry.grab_focus()
                 return True
             elif gtk.gdk.keyval_name(event.keyval) == "l":
                 _logger.debug('keyboard: Focus url entry')
@@ -466,7 +466,7 @@ class WebActivity(activity.Activity):
                             profile.get_color().to_string(), timestamp)
 
         if self.messenger is not None:
-            self.messenger._add_link(ui_uri, browser.props.title,       
+            self.messenger._add_link(ui_uri, browser.props.title,
                                      profile.get_color().to_string(),
                                      profile.get_nick_name(),
                                      base64.b64encode(buf), timestamp)
@@ -486,9 +486,9 @@ class WebActivity(activity.Activity):
         self._tray.add_item(item, index) # use index to add to the tray
         item.show()
         if self._tray.props.visible is False:
-            self._tray.show()        
+            self._tray.show()
         self._view_toolbar.traybutton.props.sensitive = True
-        
+
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
@@ -540,7 +540,7 @@ class WebActivity(activity.Activity):
             stop_icon.show()
             self.add_alert(alert)
             alert.connect('response', self.__inprogress_response_cb)
-            alert.show()            
+            alert.show()
             self.present()
 
     def __inprogress_response_cb(self, alert, response_id):
