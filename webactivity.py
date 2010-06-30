@@ -424,28 +424,38 @@ class WebActivity(activity.Activity):
         self._add_link()
 
     def _key_press_cb(self, widget, event):
+        key_name = gtk.gdk.keyval_name(event.keyval)
+        browser = self._tabbed_view.props.current_browser
+
         if event.state & gtk.gdk.CONTROL_MASK:
-            key_name = gtk.gdk.keyval_name(event.keyval)
+
             if key_name == 'd':
                 self._add_link()
-                return True
             elif key_name == 'f':
                 _logger.debug('keyboard: Find')
                 self._edit_toolbar_button.set_expanded(True)
                 self._edit_toolbar.search_entry.grab_focus()
-                return True
             elif key_name == 'l':
                 _logger.debug('keyboard: Focus url entry')
                 self._primary_toolbar.entry.grab_focus()
-                return True
             elif key_name == 'minus':
                 _logger.debug('keyboard: Zoom out')
-                self._tabbed_view.props.current_browser.zoom_out()
-                return True
+                browser.zoom_out()
             elif key_name in ['plus', 'equal']:
                 _logger.debug('keyboard: Zoom in')
-                self._tabbed_view.props.current_browser.zoom_in()
-                return True
+                browser.zoom_in()
+            elif key_name == 'Left':
+                browser.web_navigation.goBack()
+            elif key_name == 'Right':
+                browser.web_navigation.goForward()
+            elif key_name == 'r':
+                flags = components.interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
+                browser.web_navigation.reload(flags)
+            else:
+                return False
+
+            return True
+
         return False
 
     def _add_link(self):
