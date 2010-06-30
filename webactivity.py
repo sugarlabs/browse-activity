@@ -425,24 +425,24 @@ class WebActivity(activity.Activity):
 
     def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
-            if gtk.gdk.keyval_name(event.keyval) == "d":
+            key_name = gtk.gdk.keyval_name(event.keyval)
+            if key_name == 'd':
                 self._add_link()
                 return True
-            elif gtk.gdk.keyval_name(event.keyval) == "f":
+            elif key_name == 'f':
                 _logger.debug('keyboard: Find')
                 self._edit_toolbar_button.set_expanded(True)
                 self._edit_toolbar.search_entry.grab_focus()
                 return True
-            elif gtk.gdk.keyval_name(event.keyval) == "l":
+            elif key_name == 'l':
                 _logger.debug('keyboard: Focus url entry')
                 self._primary_toolbar.entry.grab_focus()
                 return True
-            elif gtk.gdk.keyval_name(event.keyval) == "minus":
+            elif key_name == 'minus':
                 _logger.debug('keyboard: Zoom out')
                 self._tabbed_view.props.current_browser.zoom_out()
                 return True
-            elif gtk.gdk.keyval_name(event.keyval) == "plus" \
-                     or gtk.gdk.keyval_name(event.keyval) == "equal" :
+            elif key_name in ['plus', 'equal']:
                 _logger.debug('keyboard: Zoom in')
                 self._tabbed_view.props.current_browser.zoom_in()
                 return True
