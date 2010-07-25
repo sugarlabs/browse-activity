@@ -35,9 +35,7 @@ from sugar.activity import activity
 import filepicker
 import places
 
-
 _MAX_HISTORY_ENTRIES = 15
-
 
 class WebEntry(AddressEntry):
     _COL_ADDRESS = 0
@@ -218,17 +216,19 @@ class WebEntry(AddressEntry):
         else:
             self._search_popup()
 
-
 class PrimaryToolbar(ToolbarBox):
     __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
         'add-link': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
+                     ([])),
+        'add-tab': (gobject.SIGNAL_RUN_FIRST,
+                     gobject.TYPE_NONE,
                      ([]))
     }
 
-    def __init__(self, tabbed_view, act):
+    def __init__(self, tabbed_view, act, disable_multiple_tabs):
         ToolbarBox.__init__(self)
 
         self._activity = act
@@ -269,6 +269,14 @@ class PrimaryToolbar(ToolbarBox):
         self._forward.connect('clicked', self._go_forward_cb)
         self.toolbar.insert(self._forward, -1)
         self._forward.show()
+
+        if not disable_multiple_tabs:
+            self._add_tab = ToolButton('tab-add')
+            self._add_tab.set_tooltip(_('Add a tab'))
+            self._add_tab.props.sensitive = True
+            self._add_tab.connect('clicked', self._add_tab_cb)
+            self.toolbar.insert(self._add_tab, -1)
+            self._add_tab.show()
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
@@ -387,6 +395,9 @@ class PrimaryToolbar(ToolbarBox):
         browser = self._tabbed_view.props.current_browser
         browser.load_uri(entry.props.text)
         browser.grab_focus()
+
+    def _add_tab_cb(self, button):
+        self.emit('add-tab')
 
     def _go_back_cb(self, button):
         browser = self._tabbed_view.props.current_browser

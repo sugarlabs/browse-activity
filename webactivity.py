@@ -31,6 +31,7 @@ import sqlite3
 import cjson
 import gconf
 import locale
+import cairo
 
 # HACK: Needed by http://dev.sugarlabs.org/ticket/456
 import gnome
@@ -154,6 +155,7 @@ def _set_accept_languages():
     logging.debug('LANG set')
 
 from browser import TabbedView
+from browser import Browser
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
@@ -192,8 +194,23 @@ class WebActivity(activity.Activity):
         branch = pref_service.getBranch("mozilla.widget.")
         branch.setBoolPref("disable-native-theme", True)
 
-        self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
+        # HACK
+        # Currently, the multiple tabs feature crashes the Browse activity
+        # on cairo versions 1.8.10 or later. The exact cause for this
+        # isn't exactly known. Thus, disable the multiple tabs feature
+        # if we come across cairo versions >= 1.08.10
+        # More information can be found here:
+        # [1] http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
+        self._disable_multiple_tabs = cairo.cairo_version() >= 10810
+        if self._disable_multiple_tabs:
+            logging.warning('Not enabling the multiple tabs feature due'
+                ' to a bug in cairo/mozilla')
+
+        self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self,
+                self._disable_multiple_tabs)
         self._primary_toolbar.connect('add-link', self._link_add_button_cb)
+
+        self._primary_toolbar.connect('add-tab', self._new_tab_cb)
 
         self._tray = HTray()
         self.set_tray(self._tray, gtk.POS_BOTTOM)
@@ -257,6 +274,9 @@ class WebActivity(activity.Activity):
                 self._joined_cb()
         else:
             _logger.debug('Created activity')
+
+    def _new_tab_cb(self, gobject):
+        self._load_homepage(new_tab=True)
 
     def _shared_cb(self, activity_):
         _logger.debug('My activity was shared')
@@ -354,8 +374,14 @@ class WebActivity(activity.Activity):
             self.messenger = Messenger(self.tube_conn, self.initiating,
                                        self.model)
 
-    def _load_homepage(self):
-        browser = self._tabbed_view.current_browser
+    def _load_homepage(self, new_tab=False):
+        # If new_tab is True, open the homepage in a new tab.
+        if new_tab:
+            browser = Browser()
+            self._tabbed_view._append_tab(browser)
+        else:
+            browser = self._tabbed_view.current_browser
+
         if os.path.isfile(_LIBRARY_PATH):
             browser.load_uri('file://' + _LIBRARY_PATH)
         else:
@@ -451,6 +477,9 @@ class WebActivity(activity.Activity):
             elif key_name == 'r':
                 flags = components.interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
                 browser.web_navigation.reload(flags)
+            elif gtk.gdk.keyval_name(event.keyval) == "t":
+                if not self._disable_multiple_tabs:
+                    self._load_homepage(new_tab=True)
             else:
                 return False
 
