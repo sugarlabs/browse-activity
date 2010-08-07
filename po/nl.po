@@ -2,12 +2,16 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2009-09-04 01:48-0400\n"
+"POT-Creation-Date: 2010-07-26 00:31-0400\n"
+"PO-Revision-Date: 2010-08-07 21:58+0200\n"
 "Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -15,128 +19,132 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "Surfen"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:154 downloadmanager.py:167
+#: downloadmanager.py:159 downloadmanager.py:172
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:166
+#: downloadmanager.py:171
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:175
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:178
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:185
 #, python-format
 msgid "From: %s"
 msgstr "Van: %s"
 
-#: downloadmanager.py:265
+#: downloadmanager.py:270
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
-"%s downloaden van \n"
+"Downloaden %s van \n"
 "%s."
 
-#: edittoolbar.py:91
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "Vorige"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "Volgende"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: palettes.py:96
+#: palettes.py:142
 msgid "Keep link"
 msgstr "Koppeling bewaren"
 
-#: palettes.py:104
+#: palettes.py:150
 msgid "Copy link"
 msgstr "Koppeling kopiëren"
 
-#: palettes.py:112
+#: palettes.py:158
 msgid "Follow link"
 msgstr "Koppeling volgen"
 
-#: palettes.py:161
+#: palettes.py:208
 msgid "Keep image"
 msgstr "Afbeelding bewaren"
 
-#: palettes.py:169
+#: palettes.py:216
 msgid "Copy image"
 msgstr "Afbeelding kopiëren"
 
-#: viewtoolbar.py:33
+#: viewtoolbar.py:34
 msgid "Zoom out"
 msgstr "Zoom uit"
 
-#: viewtoolbar.py:39
+#: viewtoolbar.py:40
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: viewtoolbar.py:50
+#: viewtoolbar.py:51
 msgid "Fullscreen"
 msgstr "Volledig scherm"
 
-#: viewtoolbar.py:88
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Toon lade"
 
-#: viewtoolbar.py:92
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Verberg lade"
 
-#: webactivity.py:535
+#: webactivity.py:576
 msgid "Download in progress"
 msgstr "Bezig met downloaden"
 
-#: webactivity.py:536
+#: webactivity.py:577
 msgid "Stopping now will cancel your download"
 msgstr "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:538
+#: webactivity.py:579
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: webactivity.py:540 webtoolbar.py:412
+#: webactivity.py:581 webtoolbar.py:426
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:241
+#: webtoolbar.py:260
 msgid "Back"
 msgstr "Terug"
 
-#: webtoolbar.py:248
+#: webtoolbar.py:267
 msgid "Forward"
 msgstr "Vooruit"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:275
+msgid "Add a tab"
+msgstr "Een tabblad toevoegen"
+
+#: webtoolbar.py:282
 msgid "Bookmark"
 msgstr "Bladwijzer"
 
-#: webtoolbar.py:415
+#: webtoolbar.py:429
 msgid "Reload"
 msgstr "Vernieuwen"
 
