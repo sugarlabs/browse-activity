@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-03-27 15:11-0300\n"
-"Last-Translator: Juliano Bittencourt <juliano@lec.ufrgs.br>\n"
+"PO-Revision-Date: 2010-02-13 02:49+0200\n"
+"Last-Translator: Robson Mendonça <robsonmwoc@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 #: webactivity.py:105
@@ -27,7 +29,7 @@ msgstr "Fonte"
 # "Download" is a term which generally it's not translated to Portuguese
 #: downloadmanager.py:140
 msgid "Download started"
-msgstr "Transferência  iniciada"
+msgstr "Transferência iniciada"
 
 #: downloadmanager.py:142
 #: downloadmanager.py:156
@@ -50,7 +52,7 @@ msgstr "Ok"
 #: downloadmanager.py:167
 #, python-format
 msgid "File %s from %s."
-msgstr "Arquivo %s de %s"
+msgstr "Arquivo %s de %s."
 
 #: downloadmanager.py:243
 #, python-format
@@ -102,7 +104,7 @@ msgstr "Transferência em progresso"
 
 #: webactivity.py:441
 msgid "Stopping now will cancel your download"
-msgstr "Parar agora irá cancelar a sua transferência "
+msgstr "Parar agora irá cancelar a sua transferência"
 
 #: webactivity.py:443
 msgid "Cancel"
@@ -124,7 +126,7 @@ msgstr "Avançar"
 # Favorito?
 #: webtoolbar.py:83
 msgid "Bookmark"
-msgstr "Marcar"
+msgstr "Marcador"
 
 #: webtoolbar.py:174
 msgid "Reload"
@@ -140,6 +142,7 @@ msgstr "Recarregar"
 #~ msgstr ""
 #~ "Arquivo %s foi baixado de \n"
 #~ "%s."
+
 #~ msgid ""
 #~ "Downloading %s from\n"
 #~ "%s. Progress %i%%."
@@ -150,4 +153,3 @@ msgstr "Recarregar"
 #, python-format
 #~ msgid "Web Activity"
 #~ msgstr "Atividade Web"
-
