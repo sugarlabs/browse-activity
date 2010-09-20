@@ -6,14 +6,18 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # This file is distributed under the same license as the PACKAGE package.
 # Fabian Affolter <fab@fedoraproject.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2010-03-28 23:02+0200\n"
+"POT-Creation-Date: 2010-07-26 00:31-0400\n"
+"PO-Revision-Date: 2010-09-20 21:34+0200\n"
 "Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "Language: de\n"
@@ -28,33 +32,33 @@ msgstr ""
 msgid "Browse"
 msgstr "Browser"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Download started"
 msgstr "Herunterladen gestartet"
 
-#: downloadmanager.py:154 downloadmanager.py:167
+#: downloadmanager.py:159 downloadmanager.py:172
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:166
+#: downloadmanager.py:171
 msgid "Download completed"
 msgstr "Herunterladen abgeschlossen"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:175
 msgid "Show in Journal"
 msgstr "Im Tagebuch zeigen"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:178
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:185
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:265
+#: downloadmanager.py:270
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -63,87 +67,91 @@ msgstr ""
 "%s heruntergeladen von \n"
 "%s."
 
-#: edittoolbar.py:91
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "Nächstes"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Entfernen"
 
-#: palettes.py:96
+#: palettes.py:142
 msgid "Keep link"
 msgstr "Link speichern"
 
-#: palettes.py:104
+#: palettes.py:150
 msgid "Copy link"
 msgstr "Link kopieren"
 
-#: palettes.py:112
+#: palettes.py:158
 msgid "Follow link"
 msgstr "Link folgen"
 
-#: palettes.py:161
+#: palettes.py:208
 msgid "Keep image"
 msgstr "Bild speichern"
 
-#: palettes.py:169
+#: palettes.py:216
 msgid "Copy image"
 msgstr "Bild kopieren"
 
-#: viewtoolbar.py:33
+#: viewtoolbar.py:34
 msgid "Zoom out"
 msgstr "Verkleinern"
 
-#: viewtoolbar.py:39
+#: viewtoolbar.py:40
 msgid "Zoom in"
 msgstr "Vergrößern"
 
-#: viewtoolbar.py:50
+#: viewtoolbar.py:51
 msgid "Fullscreen"
 msgstr "Vollbild"
 
-#: viewtoolbar.py:88
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Ablage anzeigen"
 
-#: viewtoolbar.py:92
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:535
+#: webactivity.py:576
 msgid "Download in progress"
 msgstr "Herunterladen erfolgt gerade"
 
-#: webactivity.py:536
+#: webactivity.py:577
 msgid "Stopping now will cancel your download"
 msgstr "Jetzt stoppen wird das Herunterladen abbrechen"
 
-#: webactivity.py:538
+#: webactivity.py:579
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: webactivity.py:540 webtoolbar.py:412
+#: webactivity.py:581 webtoolbar.py:426
 msgid "Stop"
 msgstr "Stopp"
 
-#: webtoolbar.py:241
+#: webtoolbar.py:260
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:248
+#: webtoolbar.py:267
 msgid "Forward"
 msgstr "Vor"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:275
+msgid "Add a tab"
+msgstr "Reiter hinzufügen"
+
+#: webtoolbar.py:282
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: webtoolbar.py:415
+#: webtoolbar.py:429
 msgid "Reload"
 msgstr "Neu laden"
 
