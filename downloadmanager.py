@@ -36,6 +36,7 @@ from sugar import profile
 from sugar import mime
 from sugar.graphics.alert import Alert, TimeoutAlert
 from sugar.graphics.icon import Icon
+from sugar.graphics import style
 from sugar.activity import activity
 
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
@@ -192,11 +193,45 @@ class Download:
                 sniffed_mime_type = mime.get_for_file(self._target_file.path)
                 self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
+            if self._mime_type in ('image/bmp','image/gif','image/jpeg','image/png','image/tiff'):
+                self.dl_jobject.metadata['preview'] = self.__get_preview_image()
+            else:
+                self.dl_jobject.metadata['preview'] = ''
+
             datastore.write(self.dl_jobject,
                             transfer_ownership=True,
                             reply_handler=self._internal_save_cb,
                             error_handler=self._internal_save_error_cb,
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
+
+    def __get_preview_image(self):
+        pixbuf = gtk.gdk.pixbuf_new_from_file(self._target_file.path)
+        width, height = pixbuf.get_width(), pixbuf.get_height()
+
+        preview_width = style.zoom(300)
+        preview_height =  style.zoom(225)
+
+        if (width > preview_width) or (height > preview_height):
+            scale_x = float(width) / preview_width
+            scale_y = float(height) / preview_height
+            scale = max(scale_x,scale_y)
+       
+            pixbuf = pixbuf.scale_simple(float(width) / scale, height / scale,
+                                     gtk.gdk.INTERP_BILINEAR)
+        pixbuf2 = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,pixbuf.get_has_alpha(),8,preview_width,preview_height)
+        pixbuf2.fill(0xffffffff)
+        margin_x = (preview_width - pixbuf.get_width()) / 2
+        margin_y = (preview_height - pixbuf.get_height()) / 2
+
+        pixbuf.copy_area(0,0,pixbuf.get_width(),pixbuf.get_height(),pixbuf2,margin_x,margin_y)
+
+        preview_data = []
+        def save_func(buf, data):
+            data.append(buf)
+
+        pixbuf2.save_to_callback(save_func, 'png', user_data=preview_data)
+        preview_data = ''.join(preview_data)
+        return dbus.ByteArray(preview_data)
 
     def __start_response_cb(self, alert, response_id):
         global _active_downloads
