@@ -308,9 +308,12 @@ def save_link(url, text, owner_document):
         interfaces.nsIRequest.LOAD_BYPASS_CACHE | \
         interfaces.nsIChannel.LOAD_CALL_CONTENT_SNIFFERS
 
-    if _implements_interface(channel, interfaces.nsIHttpChannel):
-        channel.referrer = io_service.newURI(owner_document.documentURI, None,
-                                             None)
+    # HACK: when we QI for nsIHttpChannel on objects that implement
+    # just nsIChannel, pyxpcom gets confused trac #1029
+    if uri.scheme == 'http':
+        if _implements_interface(channel, interfaces.nsIHttpChannel):
+            channel.referrer = io_service.newURI(owner_document.documentURI, 
+                                             None, None)
 
     # kick off the channel with our proxy object as the listener
     listener = xpcom.server.WrapObject(
