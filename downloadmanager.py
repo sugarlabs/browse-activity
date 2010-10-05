@@ -130,8 +130,9 @@ class Download:
         self._last_update_percent = 0
         self._stop_alert = None
 
-        dom_window = _dest_to_window[self._target_file.path]
-        del _dest_to_window[self._target_file.path]
+        file_path = self._target_file.path.encode('utf-8', 'replace')
+        dom_window = _dest_to_window[file_path]
+        del _dest_to_window[file_path]
 
         view = hulahop.get_view_for_window(dom_window)
         print dom_window
