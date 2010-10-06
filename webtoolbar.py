@@ -160,7 +160,7 @@ class WebEntry(AddressEntry):
     def __view_button_press_event_cb(self, view, event):
         model = view.get_model()
 
-        path, col_, x_, y_ = view.get_path_at_pos(event.x, event.y)
+        path, col_, x_, y_ = view.get_path_at_pos(int(event.x), int(event.y))
         if path:
             uri = model[path][self._COL_ADDRESS]
             self.activate(uri)
