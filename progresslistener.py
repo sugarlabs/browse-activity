@@ -36,6 +36,7 @@ class ProgressListener(gobject.GObject):
     def __init__(self):
         gobject.GObject.__init__(self)
 
+        self._location = None
         self.total_requests = 0
         self.completed_requests = 0
 
@@ -57,6 +58,7 @@ class ProgressListener(gobject.GObject):
         self.completed_requests = 0
     
     def onLocationChange(self, webProgress, request, location):
+        self._location = location
         self.emit('location-changed', location)
         
     def onProgressChange(self, webProgress, request, curSelfProgress,
@@ -90,3 +92,8 @@ class ProgressListener(gobject.GObject):
 
     def onStatusChange(self, webProgress, request, status, message):
         pass
+
+    def _get_location(self):
+        return self._location
+
+    location = gobject.property(type=object, getter=_get_location)

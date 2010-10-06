@@ -172,6 +172,14 @@ class Browser(WebView):
         uri = self.web_navigation.currentURI            
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
 
+    def get_url_from_nsiuri(self, uri):
+        """
+        get a nsIURI object and return a string with the url
+        """
+        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+
     def zoom_in(self):
         contentViewer = self.doc_shell.queryInterface( \
                 interfaces.nsIDocShell).contentViewer

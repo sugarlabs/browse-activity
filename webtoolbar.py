@@ -281,11 +281,7 @@ class WebToolbar(gtk.Toolbar):
         gobject.idle_add(self._reload_session_history, current_page_index)
 
     def _location_changed_cb(self, progress_listener, uri):
-        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
-
-        self._set_address(ui_uri)
+        self._set_address(self._browser.get_url_from_nsiuri(uri))
         self._update_navigation_buttons()
         filepicker.cleanup_temp_files()
 
