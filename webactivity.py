@@ -423,6 +423,19 @@ class WebActivity(activity.Activity):
                               'list of multiple uris by now.')
         else:
             self._tabbed_view.props.current_browser.load_uri(file_path)
+        self._load_urls()
+
+    def _load_urls(self):
+        if self.model.data['currents'] != None:
+            first = True
+            for current_tab in self.model.data['currents']:
+                if first:
+                    browser = self._tabbed_view.current_browser
+                    first = False
+                else:
+                    browser = Browser()
+                    self._tabbed_view._append_tab(browser)
+                browser.load_uri(current_tab['url'])
 
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
@@ -438,6 +451,13 @@ class WebActivity(activity.Activity):
 
             self.model.data['history'] = self._tabbed_view.get_session()
             self.model.data['current_tab'] = self._tabbed_view.get_current_page()
+
+            self.model.data['currents'] = []
+            for n in range(0, self._tabbed_view.get_n_pages()):
+                n_browser = self._tabbed_view.get_nth_page(n)
+                if n_browser != None:
+                    ui_uri = browser.get_url_from_nsiuri(browser.progress.location)
+                    self.model.data['currents'].append({'title':browser.props.title,'url':ui_uri})
 
             f = open(file_path, 'w')
             try:
@@ -491,10 +511,7 @@ class WebActivity(activity.Activity):
         ''' take screenshot and add link info to the model '''
 
         browser = self._tabbed_view.props.current_browser
-        uri = browser.progress.location
-        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(components.interfaces.nsITextToSubURI)
-        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+        ui_uri = browser.get_url_from_nsiuri(browser.progress.location)
 
         for link in self.model.data['shared_links']:
             if link['hash'] == sha.new(ui_uri).hexdigest():

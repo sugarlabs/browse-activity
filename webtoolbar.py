@@ -366,9 +366,7 @@ class PrimaryToolbar(ToolbarBox):
 
     def _set_address(self, uri):
         if uri is not None:
-            cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-            texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-            ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
+            ui_uri = self._browser.get_url_from_nsiuri(uri)
         else:
             ui_uri = None
         self.entry.props.address = ui_uri

@@ -252,12 +252,7 @@ class TabLabel(gtk.HBox):
         browser.connect('notify::title', self.__title_changed_cb)
 
     def __location_changed_cb(self, progress_listener, pspec):
-        uri = progress_listener.location
-        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-        ui_uri = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
-
-        self._label.set_text(ui_uri)
+        self._label.set_text(self._browser.get_url_from_nsiuri(progress_listener.location))
 
     def __title_changed_cb(self, browser, pspec):
         self._label.set_text(browser.props.title)
@@ -299,6 +294,15 @@ class Browser(WebView):
         self.typeahead.init(self.doc_shell)
 
         self.emit('is-setup')
+
+
+    def get_url_from_nsiuri(self, uri):
+        """
+        get a nsIURI object and return a string with the url
+        """
+        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+        return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
 
     def get_session(self):
         return sessionstore.get_session(self)
