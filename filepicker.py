@@ -162,9 +162,6 @@ def _basename_strip(jobject):
     root_, mime_extension = os.path.splitext(jobject.file_path)
 
     if not name.endswith(mime_extension):
-        if re.search('\.\S+$', name) is None:
-            # add mime_type extension only
-            # if 'title' doesn't have any extensions
-            name += mime_extension
+        name += mime_extension
 
     return name
