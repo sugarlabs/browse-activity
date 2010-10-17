@@ -23,7 +23,6 @@ import gobject
 gobject.threads_init()
 
 import gtk
-import sha
 import base64
 import time
 import shutil
@@ -32,6 +31,7 @@ import cjson
 import gconf
 import locale
 import cairo
+from hashlib import sha1
 
 # HACK: Needed by http://dev.sugarlabs.org/ticket/456
 import gnome
@@ -86,7 +86,7 @@ def _seed_xs_cookie():
 
     pubkey = profile.get_profile().pubkey
     cookie_data = {'color': profile.get_color().to_string(),
-                   'pkey_hash': sha.new(pubkey).hexdigest()}
+                   'pkey_hash': sha1(pubkey).hexdigest()}
 
     db_path = os.path.join(_profile_path, 'cookies.sqlite')
     try:
@@ -514,9 +514,9 @@ class WebActivity(activity.Activity):
         ui_uri = browser.get_url_from_nsiuri(browser.progress.location)
 
         for link in self.model.data['shared_links']:
-            if link['hash'] == sha.new(ui_uri).hexdigest():
+            if link['hash'] == sha1(ui_uri).hexdigest():
                 _logger.debug('_add_link: link exist already a=%s b=%s' %(
-                    link['hash'], sha.new(ui_uri).hexdigest()))
+                    link['hash'], sha1(ui_uri).hexdigest()))
                 return
         buf = self._get_screenshot()
         timestamp = time.time()
