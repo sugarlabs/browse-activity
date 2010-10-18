@@ -158,7 +158,7 @@ class Download:
 
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
-            alert.props.msg = _('%s' % self._get_file_name())
+            alert.props.msg = self._get_file_name()
             self._activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
             alert.show()
@@ -171,7 +171,7 @@ class Download:
 
             self._stop_alert = Alert()
             self._stop_alert.props.title = _('Download completed')
-            self._stop_alert.props.msg = _('%s' % self._get_file_name())
+            self._stop_alert.props.msg = self._get_file_name()
             open_icon = Icon(icon_name='zoom-activity')
             self._stop_alert.add_button(gtk.RESPONSE_APPLY,
                                         _('Show in Journal'), open_icon)
