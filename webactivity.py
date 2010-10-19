@@ -220,6 +220,7 @@ class WebActivity(activity.Activity):
         self._browser.history.connect('session-link-changed', 
                                       self._session_history_changed_cb)
         self._web_toolbar.connect('add-link', self._link_add_button_cb)
+        self._web_toolbar.connect('go-home', self._go_home_button_cb)
 
         self._browser.connect("notify::title", self._title_changed_cb)
 
@@ -443,6 +444,9 @@ class WebActivity(activity.Activity):
     def _link_add_button_cb(self, button):
         _logger.debug('button: Add link: %s.' % self.current)                
         self._add_link()
+
+    def _go_home_button_cb(self, button):
+        self._load_homepage()
             
     def _key_press_cb(self, widget, event):
         if event.state & gtk.gdk.CONTROL_MASK:
