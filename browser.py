@@ -300,6 +300,8 @@ class Browser(WebView):
         """
         get a nsIURI object and return a string with the url
         """
+        if uri == None:
+            return ''
         cls = components.classes['@mozilla.org/intl/texttosuburi;1']
         texttosuburi = cls.getService(interfaces.nsITextToSubURI)
         return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
