@@ -212,6 +212,8 @@ class WebActivity(activity.Activity):
 
         self._primary_toolbar.connect('add-tab', self._new_tab_cb)
 
+        self._primary_toolbar.connect('go-home', self._go_home_button_cb)
+
         self._tray = HTray()
         self.set_tray(self._tray, gtk.POS_BOTTOM)
         self._tray.show()
@@ -468,6 +470,9 @@ class WebActivity(activity.Activity):
 
     def _link_add_button_cb(self, button):
         self._add_link()
+
+    def _go_home_button_cb(self, button):
+        self._load_homepage()
 
     def _key_press_cb(self, widget, event):
         key_name = gtk.gdk.keyval_name(event.keyval)

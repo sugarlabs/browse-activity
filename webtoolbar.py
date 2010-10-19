@@ -225,6 +225,9 @@ class PrimaryToolbar(ToolbarBox):
                      ([])),
         'add-tab': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
+                     ([])),
+        'go-home': (gobject.SIGNAL_RUN_FIRST,
+                     gobject.TYPE_NONE,
                      ([]))
     }
 
@@ -239,6 +242,12 @@ class PrimaryToolbar(ToolbarBox):
 
         activity_button = ActivityToolbarButton(self._activity)
         self.toolbar.insert(activity_button, 0)
+
+        self._go_home = ToolButton('go-home')
+        self._go_home.set_tooltip(_('Home page'))
+        self._go_home.connect('clicked', self._go_home_cb)
+        self.toolbar.insert(self._go_home, -1)
+        self._go_home.show()
 
         self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
@@ -396,6 +405,10 @@ class PrimaryToolbar(ToolbarBox):
 
     def _add_tab_cb(self, button):
         self.emit('add-tab')
+
+    def _go_home_cb(self, button):
+        self.emit('go-home')
+        self._activity.load_homepage()
 
     def _go_back_cb(self, button):
         browser = self._tabbed_view.props.current_browser
