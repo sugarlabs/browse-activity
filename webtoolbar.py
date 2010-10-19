@@ -217,6 +217,9 @@ class WebToolbar(gtk.Toolbar):
     __gsignals__ = {
         'add-link': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
+                     ([])),
+        'go-home': (gobject.SIGNAL_RUN_FIRST,
+                     gobject.TYPE_NONE,
                      ([]))
     }
 
@@ -240,6 +243,12 @@ class WebToolbar(gtk.Toolbar):
         self._forward.connect('clicked', self._go_forward_cb)
         self.insert(self._forward, -1)
         self._forward.show()
+
+        self._go_home = ToolButton('go-home')
+        self._go_home.set_tooltip(_('Home page'))
+        self._go_home.connect('clicked', self._go_home_cb)
+        self.insert(self._go_home, -1)
+        self._go_home.show()
 
         self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
@@ -328,6 +337,10 @@ class WebToolbar(gtk.Toolbar):
     
     def _go_forward_cb(self, button):
         self._browser.web_navigation.goForward()
+
+    def _go_home_cb(self, button):
+        self.emit('go-home')
+        self._activity.load_homepage()
 
     def _title_changed_cb(self, embed, spec):
         self._set_title(embed.props.title)
