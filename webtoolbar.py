@@ -340,7 +340,6 @@ class WebToolbar(gtk.Toolbar):
 
     def _go_home_cb(self, button):
         self.emit('go-home')
-        self._activity.load_homepage()
 
     def _title_changed_cb(self, embed, spec):
         self._set_title(embed.props.title)
