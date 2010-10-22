@@ -417,8 +417,8 @@ class WebActivity(activity.Activity):
 
     def _load_urls(self):
         if self.model.data['currents'] != None:
-             for current in self.model.data['currents']:
-                 self._browser.load_uri(current['url'])
+            for current in self.model.data['currents']:
+                self._browser.load_uri(current['url'])
         
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
@@ -433,7 +433,8 @@ class WebActivity(activity.Activity):
 
             self.model.data['currents'] = []
             ui_uri = self._browser.get_url_from_nsiuri(self._browser.progress.location)
-            self.model.data['currents'].append({'title':self._browser.props.title,'url':ui_uri})
+            self.model.data['currents'].append({'title':self._browser.props.title,
+                'url':ui_uri})
             logging.error(self.model.data)
             f = open(file_path, 'w')
             try:
