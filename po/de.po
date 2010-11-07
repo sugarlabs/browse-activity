@@ -10,14 +10,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # This file is distributed under the same license as the PACKAGE package.
 # Fabian Affolter <fab@fedoraproject.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-26 00:31-0400\n"
-"PO-Revision-Date: 2010-09-20 21:34+0200\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2010-11-07 20:31+0200\n"
 "Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "Language: de\n"
@@ -32,33 +40,28 @@ msgstr ""
 msgid "Browse"
 msgstr "Browser"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Herunterladen gestartet"
 
-#: downloadmanager.py:159 downloadmanager.py:172
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:171
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Herunterladen abgeschlossen"
 
-#: downloadmanager.py:175
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "Im Tagebuch zeigen"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:185
+#: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:270
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -119,41 +122,49 @@ msgstr "Ablage anzeigen"
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:576
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Herunterladen erfolgt gerade"
 
-#: webactivity.py:577
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Jetzt stoppen wird das Herunterladen abbrechen"
 
-#: webactivity.py:579
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: webactivity.py:581 webtoolbar.py:426
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Stopp"
 
-#: webtoolbar.py:260
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Startseite"
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "Vor"
 
-#: webtoolbar.py:275
+#: webtoolbar.py:284
 msgid "Add a tab"
 msgstr "Reiter hinzufügen"
 
-#: webtoolbar.py:282
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: webtoolbar.py:429
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Neu laden"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."
