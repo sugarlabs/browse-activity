@@ -296,7 +296,12 @@ class Download:
         if self._display_name:
             return self._display_name
         else:
-            path = urlparse.urlparse(self._source.spec).path
+            uri = self._source
+            if uri == None:
+                return ''
+            cls = components.classes['@mozilla.org/intl/texttosuburi;1']
+            texttosuburi = cls.getService(interfaces.nsITextToSubURI)
+            path = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
             location, file_name = os.path.split(path)
             file_name = urllib.unquote(file_name.encode('utf-8', 'replace'))
             return file_name
