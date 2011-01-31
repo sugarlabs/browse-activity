@@ -148,6 +148,13 @@ hulahop.startup(_profile_path)
 from xpcom import components
 
 
+def _set_char_preference(name, value):
+    cls = components.classes["@mozilla.org/preferences-service;1"]
+    prefService = cls.getService(components.interfaces.nsIPrefService)
+    branch = prefService.getBranch('')
+    branch.setCharPref(name, value)
+
+
 def _set_accept_languages():
     ''' Set intl.accept_languages based on the locale
     '''
@@ -160,10 +167,7 @@ def _set_accept_languages():
 
     # e.g. es-uy, es
     pref = lang[0] + "-" + lang[1].lower() + ", " + lang[0]
-    cls = components.classes["@mozilla.org/preferences-service;1"]
-    prefService = cls.getService(components.interfaces.nsIPrefService)
-    branch = prefService.getBranch('')
-    branch.setCharPref('intl.accept_languages', pref)
+    _set_char_preference('intl.accept_languages', pref)
     logging.debug('LANG set')
 
 from browser import TabbedView
