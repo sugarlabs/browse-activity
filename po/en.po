@@ -2,12 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,118 +24,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
-msgstr ""
+msgstr "Browse"
 
-#: browser.py:132
-msgid "Source"
-msgstr ""
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
-msgstr ""
+msgstr "Download started"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
-msgstr ""
+msgstr "Download completed"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr ""
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr "Show in Journal"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr ""
+msgid "From: %s"
+msgstr "From: %s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"Downloading %s from \n"
+"%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "Previous"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "Next"
+
+#: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
-#: webactivity.py:113
-msgid "View"
-msgstr ""
+#: palettes.py:142
+msgid "Keep link"
+msgstr "Keep link"
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr ""
+#: palettes.py:150
+msgid "Copy link"
+msgstr "Copy link"
 
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr ""
+#: palettes.py:158
+msgid "Follow link"
+msgstr "Follow link"
 
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr ""
+#: palettes.py:208
+msgid "Keep image"
+msgstr "Keep image"
 
-#: webactivity.py:443
-msgid "Cancel"
-msgstr ""
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr ""
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr ""
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr ""
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr ""
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr ""
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr ""
+#: palettes.py:216
+msgid "Copy image"
+msgstr "Copy image"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "Zoom out"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "Zoom in"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "Fullscreen"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr ""
+msgstr "Show Tray"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr ""
+msgstr "Hide Tray"
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr ""
+#: webactivity.py:598
+msgid "Download in progress"
+msgstr "Download in progress"
+
+#: webactivity.py:599
+msgid "Stopping now will cancel your download"
+msgstr "Stopping now will cancel your download"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "Cancel"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "Stop"
+
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Home page"
+
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "Back"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "Forward"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr "Add a tab"
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "Bookmark"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "Reload"
