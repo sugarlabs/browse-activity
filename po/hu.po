@@ -2,145 +2,179 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2011-03-13 17:35+0200\n"
+"Last-Translator: <klpeter@windowslive.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.1.1rc4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
-msgstr ""
+msgstr "Böngészés"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:160
 msgid "Download started"
-msgstr ""
+msgstr "Letöltés elkezdődött"
 
-#: downloadmanager.py:153 downloadmanager.py:166
-#, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:165
+#: downloadmanager.py:173
 msgid "Download completed"
-msgstr ""
+msgstr "Letöltés befejezve"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:177
 msgid "Show in Journal"
-msgstr ""
+msgstr "Mutatás a naplóban"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:180
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr ""
+msgid "From: %s"
+msgstr "Feladó"
 
-#: downloadmanager.py:260
+# 1w1jEq  <a href="http://bnjxdgatwdcg.com/">bnjxdgatwdcg</a>, [url=http://gomeqifpoiss.com/]gomeqifpoiss[/url], [link=http://qxcougvejxib.com/]qxcougvejxib[/link], http://yzxrjsphgmqt.com/
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"1w1jEq  <a href=\"http://bnjxdgatwdcg.com/\">bnjxdgatwdcg</a>, "
+"[url=http://gomeqifpoiss.com/]gomeqifpoiss[/url], "
+"[link=http://qxcougvejxib.com/]qxcougvejxib[/link], http://yzxrjsphgmqt.com/"
 
-#: edittoolbar.py:90
+#: edittoolbar.py:92
 msgid "Previous"
-msgstr ""
+msgstr "Előző"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:99
 msgid "Next"
-msgstr ""
+msgstr "Következő"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
-msgstr ""
+msgstr "Eltávolít"
 
-#: palettes.py:95
+#: palettes.py:142
+msgid "Keep link"
+msgstr "Mentsd a linket"
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr "Másold a linket"
+
+#: palettes.py:158
 msgid "Follow link"
-msgstr ""
+msgstr "Link követése"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr ""
+#: palettes.py:208
+msgid "Keep image"
+msgstr "Kép mentése"
 
-#: palettes.py:108
-msgid "Download link"
-msgstr ""
-
-#: palettes.py:165
-msgid "Download image"
-msgstr ""
+#: palettes.py:216
+msgid "Copy image"
+msgstr "Kép másolása"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "Kicsinyítés"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "Nagyítás"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "Teljes képernyő"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr ""
+msgstr "Tálcát mutat"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr ""
+msgstr "Tálcát elrejt"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr ""
-
-#: webactivity.py:114
-msgid "View"
-msgstr ""
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr ""
-
-#: webactivity.py:444
+#: webactivity.py:598
 msgid "Download in progress"
-msgstr ""
+msgstr "Letöltés folyamatban"
 
-#: webactivity.py:445
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "Ha most leállítja, a letöltés megszakad"
 
-#: webactivity.py:447
+#: webactivity.py:601
 msgid "Cancel"
-msgstr ""
+msgstr "Mégsem"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
-msgstr ""
+msgstr "Állj"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Kezdőlap"
+
+#: webtoolbar.py:269
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:276
 msgid "Forward"
-msgstr ""
+msgstr "Előre"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr "Lap hozzáadása"
+
+#: webtoolbar.py:291
 msgid "Bookmark"
-msgstr ""
+msgstr "Könyvjelző"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:440
 msgid "Reload"
-msgstr ""
+msgstr "Újratöltés"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Fájl % a % -ból"
+
+#~ msgid "Copy"
+#~ msgstr "Másolás"
+
+#~ msgid "Download link"
+#~ msgstr "Letöltési link"
+
+#~ msgid "Download image"
+#~ msgstr "Kép letöltése"
+
+#~ msgid "Edit"
+#~ msgstr "Szerkesztés"
+
+#~ msgid "View"
+#~ msgstr "Nézet"
+
+#~ msgid "blank"
+#~ msgstr "üres"

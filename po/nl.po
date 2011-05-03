@@ -6,11 +6,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-26 00:31-0400\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: 2010-08-07 21:58+0200\n"
 "Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,33 +33,28 @@ msgstr ""
 msgid "Browse"
 msgstr "Surfen"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:159 downloadmanager.py:172
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:171
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:175
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:185
+#: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
 msgstr "Van: %s"
 
-#: downloadmanager.py:270
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -112,41 +115,49 @@ msgstr "Toon lade"
 msgid "Hide Tray"
 msgstr "Verberg lade"
 
-#: webactivity.py:576
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Bezig met downloaden"
 
-#: webactivity.py:577
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:579
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: webactivity.py:581 webtoolbar.py:426
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:260
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Terug"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "Vooruit"
 
-#: webtoolbar.py:275
+#: webtoolbar.py:284
 msgid "Add a tab"
 msgstr "Een tabblad toevoegen"
 
-#: webtoolbar.py:282
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Bladwijzer"
 
-#: webtoolbar.py:429
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Vernieuwen"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

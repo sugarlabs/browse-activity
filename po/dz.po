@@ -2,110 +2,91 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2008-08-11 07:38-0400\n"
+"Last-Translator: Tenzin Dendup <tenzin.dendup@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
-msgstr ""
+msgstr "ཕབ་ལེན།"
 
-#: browser.py:132
-msgid "Source"
-msgstr ""
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
-msgstr ""
+msgstr "ཕབ་ལེན་འགོ་བཙུགས་ཡོདཔ།"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
+msgstr "ཕབ་ལེན་མཇུག་བསྡུ་ཡོདཔ།"
+
+#: downloadmanager.py:177
+msgid "Show in Journal"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr ""
-
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
-msgstr ""
+msgstr "བཏུབ།"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
+msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
+"%s ཕབ་ལེན་འབད་དོ \n"
+"%s ལས།"
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "ཧེ་མམ།"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "ཤུལ་མམ།"
+
+#: linkbutton.py:95
 msgid "Remove"
+msgstr "རྩ་བསྐྲད་གཏང་།"
+
+#: palettes.py:142
+msgid "Keep link"
 msgstr ""
 
-#: webactivity.py:113
-msgid "View"
+#: palettes.py:150
+msgid "Copy link"
 msgstr ""
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
+#: palettes.py:158
+msgid "Follow link"
 msgstr ""
 
-#: webactivity.py:440
-msgid "Download in progress"
+#: palettes.py:208
+msgid "Keep image"
 msgstr ""
 
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr ""
-
-#: webactivity.py:443
-msgid "Cancel"
-msgstr ""
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr ""
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr ""
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr ""
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr ""
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr ""
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
@@ -118,16 +99,75 @@ msgstr ""
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "གསལ་གཞི་གངམ།"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr ""
+msgstr "ཤོག་སྣོད་སྟོན།"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
+msgstr "ཤོག་སྣོད་སྦ།"
+
+#: webactivity.py:598
+msgid "Download in progress"
+msgstr "ཕབ་ལེན་འབད་དོ།"
+
+#: webactivity.py:599
+msgid "Stopping now will cancel your download"
+msgstr "ད་ལྟོ་བཀག་བཞག་པ་ཅིན་ཁྱོད་ཀྱི་ཕབ་ལེན་འདི་ཆ་མེད་འགྱོ་འོང་།"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "ཆ་མེད་གཏང་།"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "བཀག"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "རྒྱབ།"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "གདོང་བསྐྱོད།"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
 msgstr ""
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "དེབ་རྟགས།"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "ཡང་བསྐྱར་མངོན་གསལ།"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "ཡིག་སྣོད་ %s %s ལས།"
+
+#~ msgid "Copy"
+#~ msgstr "འདྲ་བཤུས།"
+
+#~ msgid "Edit"
+#~ msgstr "ཞུན་དག"
+
+#~ msgid "View"
+#~ msgstr "མཐོང་སྣང་།"
+
+#~ msgid "blank"
+#~ msgstr "སྟོངམ།"
+
+#~ msgid "Source"
+#~ msgstr "འབྱུང་ཁུངས།"

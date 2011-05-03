@@ -2,83 +2,92 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: 2009-01-03 18:42-0500\n"
-"Last-Translator: Nicci Manns <nicci@saunalahti.fi>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2011-02-26 19:51+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Surfa"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Nedladdning startad"
 
-#: downloadmanager.py:153 downloadmanager.py:166
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:165
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Klar med nedladdningen"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "Visa i Dagboken"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "Fil %s av %s."
+msgid "From: %s"
+msgstr "Från: %s"
 
-#: downloadmanager.py:260
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr "Laddar ned %s från%s."
 
-#: edittoolbar.py:90
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "Föregående"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "Nästa"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Ta bort"
 
-#: palettes.py:95
+#: palettes.py:142
+msgid "Keep link"
+msgstr "Spara länk"
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr "Kopiera länkadress"
+
+#: palettes.py:158
 msgid "Follow link"
 msgstr "Öppna länk"
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr "Kopiera"
+#: palettes.py:208
+msgid "Keep image"
+msgstr "Spara bild"
 
-#: palettes.py:108
-msgid "Download link"
-msgstr "Ladda ned länk"
-
-#: palettes.py:165
-msgid "Download image"
-msgstr "Ladda ned bild"
+#: palettes.py:216
+msgid "Copy image"
+msgstr "Kopiera bild"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -92,57 +101,79 @@ msgstr "Zoom in"
 msgid "Fullscreen"
 msgstr "Helskärm"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Visa list"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Dölj list"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr "Redigera"
-
-#: webactivity.py:114
-msgid "View"
-msgstr "Visa"
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr "blank"
-
-#: webactivity.py:444
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Håller på och laddar ned"
 
-#: webactivity.py:445
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Avslutar du nu kommer nedladdnignen att avbrytas"
 
-#: webactivity.py:447
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Avbryt"
 
-#: webtoolbar.py:231
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Hemsida"
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Tillbaka"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "Framåt"
 
-#: webtoolbar.py:261
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Lägg till som bokmärke"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Läs om"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Fil %s av %s."
+
+#~ msgid "Copy"
+#~ msgstr "Kopiera"
+
+#~ msgid "Download link"
+#~ msgstr "Ladda ned länk"
+
+#~ msgid "Download image"
+#~ msgstr "Ladda ned bild"
+
+#~ msgid "Edit"
+#~ msgstr "Redigera"
+
+#~ msgid "View"
+#~ msgstr "Visa"
+
+#~ msgid "blank"
+#~ msgstr "blank"
 
 #~ msgid "Source"
 #~ msgstr "Källkod"

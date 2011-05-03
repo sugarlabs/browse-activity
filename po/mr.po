@@ -2,54 +2,55 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-06-21 00:36-0400\n"
-"Last-Translator: Rupali Sarode <rups23in@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2010-03-27 08:27+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.3\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#: browser.py:149
-msgid "Source"
-msgstr "स्तोत्र"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "डाउनलोड सुरू झाली"
 
-#: downloadmanager.py:143 downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "डाउनलोड पूणॅ झाली"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "नियतकालीकामधे दाखवा"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "ठीक"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "फाईल %s पासून %s"
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:245
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,25 +59,37 @@ msgstr ""
 "डाउनलोड %s पासून \n"
 " %s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "अगोदरचा"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "यानंतर"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:89
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
 msgid "Follow link"
 msgstr "लिंक वर जा"
 
-#: palettes.py:94 palettes.py:142
-msgid "Copy"
-msgstr "नक्कल "
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -90,54 +103,73 @@ msgstr "झूम ईन"
 msgid "Fullscreen"
 msgstr "पूर्ण पडदा"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "तबक दाखवा"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:109
-msgid "Edit"
-msgstr "संपादन करणे"
-
-#: webactivity.py:121
-msgid "View"
-msgstr "पाहा "
-
-#: webactivity.py:140 webactivity.py:141
-msgid "blank"
-msgstr "रिकामा"
-
-#: webactivity.py:463
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "डाऊनलोड सुरू आहे"
 
-#: webactivity.py:464
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "थांबवल्यास डाऊनलोड रद् होईल"
 
-#: webactivity.py:466
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "रद्द करणे"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "थांबा"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "मागे"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:276
 msgid "Forward"
-msgstr "पुढे पाठविणे "
+msgstr "पुढे पाठविणे"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "रिकामी जागा"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "पुन्हा चालू करा"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "फाईल %s पासून %s"
+
+#~ msgid "Copy"
+#~ msgstr "नक्कल "
+
+#~ msgid "Edit"
+#~ msgstr "संपादन करणे"
+
+#~ msgid "View"
+#~ msgstr "पाहा "
+
+#~ msgid "blank"
+#~ msgstr "रिकामा"
+
+#~ msgid "Source"
+#~ msgstr "स्तोत्र"

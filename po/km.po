@@ -2,55 +2,56 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-03-18 17:45-0400\n"
-"Last-Translator: Rit Lim <rit.lim@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2011-04-28 14:32+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:109
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "រក​មើល"
 
-#: browser.py:144
-msgid "Source"
-msgstr "ប្រពភ"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "ចាប់​ផ្ដើម​ទាញហើយ"
 
-#: downloadmanager.py:143 downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "ទាញ​រួច​ហើយ"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "បង្ហាញ​ក្នុង​កំណត់​ប្រចាំ​ថ្ងៃ"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "យល់​ព្រម"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "ឯកសារ %s មក​ពី %s."
+msgid "From: %s"
+msgstr "ពី ៖ %s"
 
-#: downloadmanager.py:245
-#, python-format
+#: downloadmanager.py:316
+#, python-format, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -58,78 +59,111 @@ msgstr ""
 "កំពុង​ទាញ​មក​ពី \n"
 "%s"
 
-#: linkbutton.py:94
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "ទៅ​ក្រោយ"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "បន្ទាប់"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "យកចេញ"
 
-#: palettes.py:88
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
 msgid "Follow link"
 msgstr ""
 
-#: palettes.py:93 palettes.py:141
-msgid "Copy"
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr "ពង្រីក"
+msgstr "បង្រួម"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr "បង្រួម"
+msgstr "ពង្រីក"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
 msgstr "ពេញ​អេក្រង់"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "បង្ហាញ​ថាស"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "លាក់ថាស"
 
-#: webactivity.py:105
-msgid "Edit"
-msgstr ""
-
-#: webactivity.py:117
-msgid "View"
-msgstr "មើល"
-
-#: webactivity.py:136 webactivity.py:137
-msgid "blank"
-msgstr "ទទេ"
-
-#: webactivity.py:449
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "កំពុង​ទាញ"
 
-#: webactivity.py:450
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "ការ​ទាញនេះនឹង​បាត់​បើបញ្ឈប់នៅ​ពេល​នេះ"
 
-#: webactivity.py:452
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "បោះបង់"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "បញ្ឈប់"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "គេហ​ទំព័រ"
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "ថយ​ទៅ​​ក្រោយ"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "ថយ​ទៅ​មុខ"
 
-#: webtoolbar.py:82
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "គូចំណាំ"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "ទាញ​សាឡើង​វិញ"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "ឯកសារ %s មក​ពី %s."
+
+#~ msgid "View"
+#~ msgstr "មើល"
+
+#~ msgid "blank"
+#~ msgstr "ទទេ"
+
+#~ msgid "Source"
+#~ msgstr "ប្រពភ"

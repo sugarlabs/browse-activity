@@ -2,54 +2,55 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-02-14 04:25-0500\n"
-"Last-Translator: Ruwan Asanka Wasala <wasala@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2009-07-04 06:59-0400\n"
+"Last-Translator: Waruna Perera <warunakanishka@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "සැරිසරන්න"
 
-#: browser.py:132
-msgid "Source"
-msgstr "මූලාශ්‍රය"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "ජර්නලයේ පෙන්වන්න "
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "හරි"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "%s සිට %s ගොනු."
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,9 +59,37 @@ msgstr ""
 "භාගතවෙමන් පවතී: %s සිට \n"
 "%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "පෙර"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "ඊලඟ"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
+
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
+msgid "Follow link"
+msgstr "සබැඳිය ලුහුබඳින්න"
+
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -74,50 +103,79 @@ msgstr "විශාල කරන්න"
 msgid "Fullscreen"
 msgstr "මුලු තිරයම"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr ""
+msgstr "බන්දේසිය පෙන්වන්න"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr ""
+msgstr "බන්දේසිය සඟවන්න"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "දර්ශනය කරන්න"
-
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "හිස්"
-
-#: webactivity.py:440
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "බාගත වෙමින් පවතී"
 
-#: webactivity.py:441
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "නැවැත්වීම මගින් ඔබේ බාගතවීම අවලංගුවේ"
 
-#: webactivity.py:443
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "අවලංගු කරන්න"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "නවත්වන්න"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "පසුපසට"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "ඉදිරියට"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "පොත් සලකුණක් යොදන්න"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "යළි ලබාගන්න"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "%s සිට %s ගොනු."
+
+#~ msgid "Copy"
+#~ msgstr "පිටපත් කරන්න"
+
+#~ msgid "Download link"
+#~ msgstr "බාගත කිරිමේ සබැඳීය"
+
+#~ msgid "Download image"
+#~ msgstr "පින්තූරය බාගත කරන්න"
+
+#~ msgid "Edit"
+#~ msgstr "සකසන්න"
+
+#~ msgid "View"
+#~ msgstr "දර්ශනය කරන්න"
+
+#~ msgid "blank"
+#~ msgstr "හිස්"
+
+#~ msgid "Source"
+#~ msgstr "මූලාශ්‍රය"

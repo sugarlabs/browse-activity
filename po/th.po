@@ -2,11 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: 2007-12-10 04:43+0000\n"
 "Last-Translator: Manatsawin <manatsawin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,45 +23,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "เรียกดู"
 
-#: browser.py:132
-msgid "Source"
-msgstr "ซอร์ส"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "เริ่มการดาวน์โหลด"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "ดาวน์โหลดเสร็จสิ้นแล้ว"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "เปิด"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr ""
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "ตกลง"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
+msgid "From: %s"
 msgstr ""
-"ไฟล์ %s ดาวน์โหลดมาจาก\n"
-"%s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -62,54 +57,36 @@ msgstr ""
 "กำลังดาวน์โหลด %s จาก\n"
 "%s"
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr ""
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "ลบ"
 
-# มุมมอง หรือ ดู ไม่แน่ใจครับ
-#: webactivity.py:113
-msgid "View"
-msgstr "มุมมอง"
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "ว่างเปล่า"
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
 
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr "กำลังดาวน์โหลด"
+#: palettes.py:158
+msgid "Follow link"
+msgstr ""
 
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr "หากหยุดตอนนี้จะเป็นการยกเลิกการดาวน์โหลด"
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
 
-#: webactivity.py:443
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr "หยุด"
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr "ย้อนกลับ"
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr "ไปข้างหน้า"
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr "ที่คั่นหน้า"
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr "เรียกใหม่"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
@@ -124,14 +101,75 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr ""
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webactivity.py:598
+msgid "Download in progress"
+msgstr "กำลังดาวน์โหลด"
+
+#: webactivity.py:599
+msgid "Stopping now will cancel your download"
+msgstr "หากหยุดตอนนี้จะเป็นการยกเลิกการดาวน์โหลด"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "หยุด"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
+
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "ย้อนกลับ"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "ไปข้างหน้า"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "ที่คั่นหน้า"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "เรียกใหม่"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+# มุมมอง หรือ ดู ไม่แน่ใจครับ
+#~ msgid "View"
+#~ msgstr "มุมมอง"
+
+#~ msgid "blank"
+#~ msgstr "ว่างเปล่า"
+
+#~ msgid "Source"
+#~ msgstr "ซอร์ส"
+
+#~ msgid "Open"
+#~ msgstr "เปิด"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "ไฟล์ %s ดาวน์โหลดมาจาก\n"
+#~ "%s"

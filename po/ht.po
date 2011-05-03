@@ -2,72 +2,93 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 00:30-0400\n"
-"PO-Revision-Date: 2008-03-10 10:48-0400\n"
-"Last-Translator: masterches <chesmaster@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2010-02-03 05:35+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ht\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n !=1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:109
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Navige"
 
-#: browser.py:144
-msgid "Source"
-msgstr "Sous, kòd paj an"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Telechajman an koumanse"
 
-#: downloadmanager.py:143 downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Telechajman an konplè, li fini"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "Montre nan jounal an"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
-msgstr "Ok, tout bagay bon"
+msgstr "Ok"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "Yon fichye %s depi %s."
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:245
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 "Ap telechaje %s depi \n"
-"%s"
+"%s."
 
-#: linkbutton.py:94
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "Presedan"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "Pwochen"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Retire, anlve"
 
-#: palettes.py:88
-msgid "Follow link"
+#: palettes.py:142
+msgid "Keep link"
 msgstr ""
 
-#: palettes.py:93 palettes.py:141
-msgid "Copy"
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
+msgid "Follow link"
+msgstr "Swiv lyen"
+
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
@@ -82,54 +103,79 @@ msgstr "Zoume"
 msgid "Fullscreen"
 msgstr "Afiche nan tout ekran an"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Montre meni an, plato an"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Kache meni an, plato an"
 
-#: webactivity.py:105
-msgid "Edit"
-msgstr ""
-
-#: webactivity.py:117
-msgid "View"
-msgstr "wè, gade"
-
-#: webactivity.py:136 webactivity.py:137
-msgid "blank"
-msgstr "Blan, vid, pa gen anyen anlè bagay sa"
-
-#: webactivity.py:449
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Telechajman an ap fèt kounye a"
 
-#: webactivity.py:450
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Si ou rete aplikasyon an kounye a, li ap tèmine telechajman ou an"
 
-#: webactivity.py:452
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Anile, vire do"
 
-#: webactivity.py:454 webtoolbar.py:174
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Stope, rete"
 
-#: webtoolbar.py:52
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
-msgstr "Ritounen"
+msgstr "Retounen"
 
-#: webtoolbar.py:59
+#: webtoolbar.py:276
 msgid "Forward"
-msgstr "Ale pli douvan, swivan"
+msgstr "Avanse"
 
-#: webtoolbar.py:82
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Favori, paj ou prefere yo"
 
-#: webtoolbar.py:177
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Chaje paj an"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Yon fichye %s depi %s."
+
+#~ msgid "Copy"
+#~ msgstr "Kopye"
+
+#~ msgid "Download link"
+#~ msgstr "Telechaje lyen"
+
+#~ msgid "Download image"
+#~ msgstr "Telechaje imaj"
+
+#~ msgid "Edit"
+#~ msgstr "Korije"
+
+#~ msgid "View"
+#~ msgstr "wè, gade"
+
+#~ msgid "blank"
+#~ msgstr "Blan, vid, pa gen anyen anlè bagay sa"
+
+#~ msgid "Source"
+#~ msgstr "Sous, kòd paj an"

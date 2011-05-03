@@ -2,132 +2,177 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2009-05-13 12:10-0400\n"
+"Last-Translator: Donghee Park <i4u_4ever@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr ""
 
-#: browser.py:132
-msgid "Source"
-msgstr ""
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
-msgstr ""
+msgstr "다운로드 시작"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
-msgstr ""
+msgstr "다운로드 완료"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr ""
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr "일지 보기"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
-msgstr ""
+msgstr "완료"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
+msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr ""
+msgstr "%s 다운로드중 %s로 부터."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "이전"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "다음"
+
+#: linkbutton.py:95
 msgid "Remove"
+msgstr "제거"
+
+#: palettes.py:142
+msgid "Keep link"
 msgstr ""
 
-#: webactivity.py:113
-msgid "View"
+#: palettes.py:150
+msgid "Copy link"
 msgstr ""
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
+#: palettes.py:158
+msgid "Follow link"
+msgstr "링크 가기"
+
+#: palettes.py:208
+msgid "Keep image"
 msgstr ""
 
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr ""
-
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr ""
-
-#: webactivity.py:443
-msgid "Cancel"
-msgstr ""
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr ""
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr ""
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr ""
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr ""
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr ""
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr ""
+msgstr "축소"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr ""
+msgstr "확대"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr ""
+msgstr "전체화면"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr ""
+msgstr "트레이 보이기"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
+msgstr "트레이 감추기"
+
+#: webactivity.py:598
+#, fuzzy
+msgid "Download in progress"
+msgstr "Download in progress"
+
+#: webactivity.py:599
+#, fuzzy
+msgid "Stopping now will cancel your download"
+msgstr "다운로드를 멈추기"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "취소"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "멈춤"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "뒤로"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "앞으로"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
 msgstr ""
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "책갈피"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "다시읽기"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "화일 %s는 %s로 부터"
+
+#~ msgid "Copy"
+#~ msgstr "복사"
+
+#~ msgid "Download link"
+#~ msgstr "링크 다운로드"
+
+#~ msgid "Download image"
+#~ msgstr "이미지 다운로드"
+
+#~ msgid "Edit"
+#~ msgstr "편집"
+
+#~ msgid "View"
+#~ msgstr "보기"
+
+#~ msgid "blank"
+#~ msgstr "빈화면"

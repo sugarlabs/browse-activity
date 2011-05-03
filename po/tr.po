@@ -2,12 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-08-26 10:49-0400\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2008-10-21 07:28-0400\n"
 "Last-Translator: abdullah kocabas <abdullah.kocabas@abcdizustu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,66 +23,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "göz atmak"
 
-#: browser.py:149
-msgid "Source"
-msgstr "kaynak"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "indirme başlamıştır."
 
-#: downloadmanager.py:143 downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "indirme tamamlanmıştır."
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "makalede gösteriniz."
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "tamam"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "%s'den %s dosyası"
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:245
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr "%s %s'ten yükleniyor."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "önceki"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "ileri"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "kaldırınız."
 
-#: palettes.py:89
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
 msgid "Follow link"
 msgstr "bağlantıyı takip ediniz."
 
-#: palettes.py:94 palettes.py:142
-msgid "Copy"
-msgstr "kopya"
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -88,54 +99,79 @@ msgstr "yakınlaştırınız."
 msgid "Fullscreen"
 msgstr "tam ekran"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "tablayı gösteriniz."
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "tablayı gizleyiniz."
 
-#: webactivity.py:109
-msgid "Edit"
-msgstr "düzenleyiniz."
-
-#: webactivity.py:121
-msgid "View"
-msgstr "görünüm"
-
-#: webactivity.py:140 webactivity.py:141
-msgid "blank"
-msgstr "boşluk"
-
-#: webactivity.py:463
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "indirme ilerliyor."
 
-#: webactivity.py:464
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "şimdi durmak yüklemenizi iptal eder."
 
-#: webactivity.py:466
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "iptal ediniz."
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "durunuz."
 
-#: webtoolbar.py:212
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "geri"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "ilerletiniz."
 
-#: webtoolbar.py:242
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "sayfa işareti"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "yeniden yükleyiniz."
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "%s'den %s dosyası"
+
+#~ msgid "Copy"
+#~ msgstr "kopya"
+
+#~ msgid "Download link"
+#~ msgstr "bağlantıyı yükleyiniz"
+
+#~ msgid "Download image"
+#~ msgstr "görüntüyü yükleyiniz"
+
+#~ msgid "Edit"
+#~ msgstr "düzenleyiniz."
+
+#~ msgid "View"
+#~ msgstr "görünüm"
+
+#~ msgid "blank"
+#~ msgstr "boşluk"
+
+#~ msgid "Source"
+#~ msgstr "kaynak"

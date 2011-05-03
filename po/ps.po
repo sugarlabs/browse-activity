@@ -2,65 +2,94 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-01-09 09:07+0000\n"
-"Last-Translator: usman mansoor ansari <jalalkut@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2009-07-01 03:59-0400\n"
+"Last-Translator: Abdulhadi Hairan <abdulhadi@paiwastoon.com.af>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ps\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "لټول"
 
-#: browser.py:132
-msgid "Source"
-msgstr "سرچينه"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "رالېښل پيل شول"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "رالېښل بشپړل شول"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "پرانستل"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr "په ورځپاڼه كۍ ښودل"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "هو"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "دوتنه %s له %s څخه"
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 "رالېښل %s له \n"
-"%s څخه."
+"\n"
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "مخكنى"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "بل"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "لرې كول"
+
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
+msgid "Follow link"
+msgstr "پیوند تعقیبول"
+
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -72,57 +101,84 @@ msgstr "لوډېرول"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr "ټوله پرده"
+msgstr "بشپړه پرده"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr "ټرې ښودل"
+msgstr "مجمه ښودل"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr "ټرې پټول"
+msgstr "مجمه پټول"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "ليد"
-
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "سپين"
-
-#: webactivity.py:440
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "رالېښل د پرمختګ په حال كې دى"
 
-#: webactivity.py:441
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
-msgstr "اوسمهال تمول به ستاسې رالېښل ړنګ كړي"
+msgstr "اوس تمول به ستاسې رالېښل لغوه كړي"
 
-#: webactivity.py:443
+#: webactivity.py:601
 msgid "Cancel"
-msgstr "ړنګول"
+msgstr "لغوه"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
-msgstr "تمېدل"
+msgstr "بندول"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
-msgstr "شا"
+msgstr "شاته"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "مخته"
 
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr "كتابنښول"
-
-#: webtoolbar.py:174
-#, fuzzy
-msgid "Reload"
-msgstr "بيا-بارول"
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webtoolbar.py:284
+msgid "Add a tab"
 msgstr ""
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "یادنښه"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "بياپورته کول"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "دوتنه %s له %s څخه"
+
+#~ msgid "Copy"
+#~ msgstr "لمېسل"
+
+#~ msgid "Download link"
+#~ msgstr "لینک کښته کړه"
+
+#~ msgid "Download image"
+#~ msgstr "انځور کښته کړه"
+
+#~ msgid "Edit"
+#~ msgstr "سمون"
+
+#~ msgid "View"
+#~ msgstr "ليد"
+
+#~ msgid "blank"
+#~ msgstr "سپين"
+
+#~ msgid "Source"
+#~ msgstr "سرچينه"
+
+#~ msgid "Open"
+#~ msgstr "پرانستل"

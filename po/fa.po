@@ -2,11 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: 2008-01-09 09:03+0000\n"
 "Last-Translator: Sohaib Obaidi <ebtihaj_obaidi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,43 +24,32 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 1.0.2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "مرور"
 
-#: browser.py:132
-msgid "Source"
-msgstr "منبع"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "دریافت آغاز شد"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "دریافت کامل شد"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "باز"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr ""
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "صحیح"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
-msgstr "پرونده %s از/n %s دریافت شد"
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -61,55 +58,37 @@ msgstr ""
 "در حال دریافت %s از\n"
 " %s"
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr ""
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "برداشتن"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "نمایش"
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "نانوشته"
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
 
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr "در حال دریافت"
+#: palettes.py:158
+msgid "Follow link"
+msgstr ""
 
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr "توقف در این لحظه دریافتی شما را لغو خواهد کرد"
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
 
-#: webactivity.py:443
-msgid "Cancel"
-msgstr "لغو"
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr "توقف"
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr "عقب"
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr "جلو"
-
-#: webtoolbar.py:83
-#, fuzzy
-msgid "Bookmark"
-msgstr "نشان"
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr "بارگذاری دوباره"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
-msgstr "( ) % پرونده از ( ) %"
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -123,14 +102,77 @@ msgstr "قریب نمایی"
 msgid "Fullscreen"
 msgstr "همه صفحه"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "طبق را نشان بده"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "طبق را نشان نده"
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webactivity.py:598
+msgid "Download in progress"
+msgstr "در حال دریافت"
+
+#: webactivity.py:599
+msgid "Stopping now will cancel your download"
+msgstr "توقف در این لحظه دریافتی شما را لغو خواهد کرد"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "لغو"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "توقف"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
+
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "عقب"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "جلو"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
+#, fuzzy
+msgid "Bookmark"
+msgstr "نشان"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "بارگذاری دوباره"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "%s پرونده از %s"
+
+#~ msgid "View"
+#~ msgstr "نمایش"
+
+#~ msgid "blank"
+#~ msgstr "نانوشته"
+
+#~ msgid "Source"
+#~ msgstr "منبع"
+
+#~ msgid "Open"
+#~ msgstr "باز"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr "پرونده %s از/n %s دریافت شد"

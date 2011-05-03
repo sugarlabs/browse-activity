@@ -2,145 +2,190 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-08 00:30-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2008-12-20 00:00-0500\n"
+"Last-Translator: Chris Leonard <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.1.1rc4\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:106
+#: activity/activity.info:2
+#, fuzzy
 msgid "Browse"
-msgstr ""
+msgstr "דִּיפְדּוּף"
 
-#: downloadmanager.py:152
+#: downloadmanager.py:160
+#, fuzzy
 msgid "Download started"
-msgstr ""
+msgstr "הורדה החלה"
 
-#: downloadmanager.py:153 downloadmanager.py:166
-#, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:165
+#: downloadmanager.py:173
+#, fuzzy
 msgid "Download completed"
-msgstr ""
+msgstr "הורדה הושלמה"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:177
+#, fuzzy
 msgid "Show in Journal"
-msgstr ""
+msgstr "הצג ביומן"
 
-#: downloadmanager.py:172
+#: downloadmanager.py:180
+#, fuzzy
 msgid "Ok"
-msgstr ""
+msgstr "אישור"
 
-#: downloadmanager.py:178
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
+msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:260
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 
-#: edittoolbar.py:90
+#: edittoolbar.py:92
+#, fuzzy
 msgid "Previous"
-msgstr ""
+msgstr "קודם"
 
-#: edittoolbar.py:97
+#: edittoolbar.py:99
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
+#, fuzzy
 msgid "Remove"
+msgstr "הסר"
+
+#: palettes.py:142
+msgid "Keep link"
 msgstr ""
 
-#: palettes.py:95
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
+#, fuzzy
 msgid "Follow link"
+msgstr "עקוב אחר קישור"
+
+#: palettes.py:208
+msgid "Keep image"
 msgstr ""
 
-#: palettes.py:100 palettes.py:157
-msgid "Copy"
-msgstr ""
-
-#: palettes.py:108
-msgid "Download link"
-msgstr ""
-
-#: palettes.py:165
-msgid "Download image"
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
+#, fuzzy
 msgid "Zoom out"
-msgstr ""
+msgstr "הגדל"
 
 #: viewtoolbar.py:40
+#, fuzzy
 msgid "Zoom in"
-msgstr ""
+msgstr "הקטן"
 
 #: viewtoolbar.py:51
+#, fuzzy
 msgid "Fullscreen"
-msgstr ""
+msgstr "מסך מלא"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
+#, fuzzy
 msgid "Show Tray"
-msgstr ""
+msgstr "הצג מגש"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
+#, fuzzy
 msgid "Hide Tray"
-msgstr ""
+msgstr "הסתר מגש"
 
-#: webactivity.py:102
-msgid "Edit"
-msgstr ""
-
-#: webactivity.py:114
-msgid "View"
-msgstr ""
-
-#: webactivity.py:132 webactivity.py:133
-msgid "blank"
-msgstr ""
-
-#: webactivity.py:444
+#: webactivity.py:598
+#, fuzzy
 msgid "Download in progress"
-msgstr ""
+msgstr "ההורדה בתהליך"
 
-#: webactivity.py:445
+#: webactivity.py:599
+#, fuzzy
 msgid "Stopping now will cancel your download"
-msgstr ""
+msgstr "עצירה עכשיו תבטל את ההורדה שלך"
 
-#: webactivity.py:447
+#: webactivity.py:601
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "ביטול"
 
-#: webactivity.py:449 webtoolbar.py:352
+#: webactivity.py:603 webtoolbar.py:437
+#, fuzzy
 msgid "Stop"
+msgstr "עצור"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:231
+#: webtoolbar.py:269
+#, fuzzy
 msgid "Back"
-msgstr ""
+msgstr "חזרה"
 
-#: webtoolbar.py:238
+#: webtoolbar.py:276
+#, fuzzy
 msgid "Forward"
+msgstr "קדימה"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
 msgstr ""
 
-#: webtoolbar.py:261
+#: webtoolbar.py:291
+#, fuzzy
 msgid "Bookmark"
-msgstr ""
+msgstr "מועדפים"
 
-#: webtoolbar.py:355
+#: webtoolbar.py:440
+#, fuzzy
 msgid "Reload"
-msgstr ""
+msgstr "טעינה מחדש"
+
+#, python-format
+#, fuzzy
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, fuzzy
+#~ msgid "Copy"
+#~ msgstr "העתק"
+
+#, fuzzy
+#~ msgid "Edit"
+#~ msgstr "עריכה"
+
+#, fuzzy
+#~ msgid "View"
+#~ msgstr "תצוגה"
+
+#, fuzzy
+#~ msgid "blank"
+#~ msgstr "רייק"

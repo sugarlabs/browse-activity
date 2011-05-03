@@ -2,12 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,45 +24,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Flakka"
 
-#: browser.py:132
-msgid "Source"
-msgstr ""
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Byrjaður að sækja"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Búinn að sækja"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "Opna"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr ""
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Í lagi"
 
-#: downloadmanager.py:162
+#: downloadmanager.py:187
 #, python-format
-msgid ""
-"File %s downloaded from\n"
-"%s."
+msgid "From: %s"
 msgstr ""
-"Skrá % sótt frá\n"
-"%s."
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -63,53 +58,36 @@ msgstr ""
 "Sæki %s frá \n"
 "%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr ""
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Fjarlægja"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "Sýna"
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
 
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "tóm"
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
 
-#: webactivity.py:440
-msgid "Download in progress"
-msgstr "Er að sækja"
+#: palettes.py:158
+msgid "Follow link"
+msgstr ""
 
-#: webactivity.py:441
-msgid "Stopping now will cancel your download"
-msgstr "Að stoppa núna þýðir að þú hættir við að sækja"
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
 
-#: webactivity.py:443
-msgid "Cancel"
-msgstr "Hætta við"
-
-#: webactivity.py:445 webtoolbar.py:171
-msgid "Stop"
-msgstr "Stopp"
-
-#: webtoolbar.py:53
-msgid "Back"
-msgstr "Aftur"
-
-#: webtoolbar.py:60
-msgid "Forward"
-msgstr "Áfram"
-
-#: webtoolbar.py:83
-msgid "Bookmark"
-msgstr "Bókmerki"
-
-#: webtoolbar.py:174
-msgid "Reload"
-msgstr "Endurhlaða"
-
-#: downloadmanager.py:167
-#, python-format
-msgid "File %s from %s."
+#: palettes.py:216
+msgid "Copy image"
 msgstr ""
 
 #: viewtoolbar.py:34
@@ -124,14 +102,71 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr ""
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: webactivity.py:598
+msgid "Download in progress"
+msgstr "Er að sækja"
+
+#: webactivity.py:599
+msgid "Stopping now will cancel your download"
+msgstr "Að stoppa núna þýðir að þú hættir við að sækja"
+
+#: webactivity.py:601
+msgid "Cancel"
+msgstr "Hætta við"
+
+#: webactivity.py:603 webtoolbar.py:437
+msgid "Stop"
+msgstr "Stopp"
+
+#: webtoolbar.py:247
+msgid "Home page"
 msgstr ""
+
+#: webtoolbar.py:269
+msgid "Back"
+msgstr "Aftur"
+
+#: webtoolbar.py:276
+msgid "Forward"
+msgstr "Áfram"
+
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
+msgid "Bookmark"
+msgstr "Bókmerki"
+
+#: webtoolbar.py:440
+msgid "Reload"
+msgstr "Endurhlaða"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "View"
+#~ msgstr "Sýna"
+
+#~ msgid "blank"
+#~ msgstr "tóm"
+
+#~ msgid "Open"
+#~ msgstr "Opna"
+
+#, python-format
+#~ msgid ""
+#~ "File %s downloaded from\n"
+#~ "%s."
+#~ msgstr ""
+#~ "Skrá % sótt frá\n"
+#~ "%s."

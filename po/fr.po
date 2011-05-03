@@ -1,3 +1,11 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # French file for web activity, for OLPC.
 # Copyright (C) 2007 The package's copyright holder
 # This file is distributed under the same license as the web package.
@@ -6,48 +14,43 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 00:33-0400\n"
-"PO-Revision-Date: 2009-08-25 08:14-0400\n"
-"Last-Translator: Camille Robert <camille.robert@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2010-12-12 10:54+0200\n"
+"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "Naviguer"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Téléchargement amorcé"
 
-#: downloadmanager.py:154 downloadmanager.py:167
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:166
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Téléchargement terminé"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Accepter"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
 msgstr "De : %s"
 
-#: downloadmanager.py:265
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -56,89 +59,101 @@ msgstr ""
 "Téléchargement de %s depuis \n"
 "%s."
 
-#: edittoolbar.py:91
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "Précédent"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "Suivant"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Retirer"
 
-#: palettes.py:96
+#: palettes.py:142
 msgid "Keep link"
 msgstr "Conserver le lien"
 
-#: palettes.py:104
+#: palettes.py:150
 msgid "Copy link"
 msgstr "Copier le lien"
 
-#: palettes.py:112
+#: palettes.py:158
 msgid "Follow link"
 msgstr "Suivre le lien"
 
-#: palettes.py:161
+#: palettes.py:208
 msgid "Keep image"
 msgstr "Conserver l'image"
 
-#: palettes.py:169
+#: palettes.py:216
 msgid "Copy image"
 msgstr "Copier l'image"
 
-#: viewtoolbar.py:33
+#: viewtoolbar.py:34
 msgid "Zoom out"
 msgstr "Zoom arrière"
 
-#: viewtoolbar.py:39
+#: viewtoolbar.py:40
 msgid "Zoom in"
 msgstr "Zoom avant"
 
-#: viewtoolbar.py:50
+#: viewtoolbar.py:51
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: viewtoolbar.py:88
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Afficher la barre"
 
-#: viewtoolbar.py:92
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Masquer la barre"
 
-#: webactivity.py:535
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Téléchargement en cours"
 
-#: webactivity.py:536
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Si vous arrêtez maintenant, votre téléchargement sera annulé"
 
-#: webactivity.py:538
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Annuler"
 
-#: webactivity.py:540 webtoolbar.py:412
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Arrêter"
 
-#: webtoolbar.py:241
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Page d'accueil"
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Précédent"
 
-#: webtoolbar.py:248
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "Suivant"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr "Ajouter un onglet"
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Signet"
 
-#: webtoolbar.py:415
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Recharger"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

@@ -2,11 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: 2008-07-24 13:49+0100\n"
 "Last-Translator: Satyanarayana Murthy Saladi <saladism@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,42 +24,31 @@ msgstr ""
 "X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2
-#: webactivity.py:113
 msgid "Browse"
 msgstr "వెబ్ చూడు"
 
-#: browser.py:149
-msgid "Source"
-msgstr "మూలం"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "దిగుమతి మొదలయింది"
 
-#: downloadmanager.py:143
-#: downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "దిగుమతి పూర్తయింది"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "పద్దులో చూపు"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "సరి"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "ఫైలు %s నుండి %s."
+msgid "From: %s"
+msgstr " %s :నుండి "
 
-#: downloadmanager.py:245
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -60,26 +57,37 @@ msgstr ""
 "%s నుండి దిగుమతి అవుతుంది\n"
 " %s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "ముందుది"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "తర్వాతది"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "తీసివేయి"
 
-#: palettes.py:89
+#: palettes.py:142
+msgid "Keep link"
+msgstr "జోడింపును ఉంచు"
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr "జోడింపును  నకలు తీయు "
+
+#: palettes.py:158
 msgid "Follow link"
 msgstr "జోడికను తెరువుము"
 
-#: palettes.py:94
-#: palettes.py:142
-msgid "Copy"
-msgstr "నకలు"
+#: palettes.py:208
+msgid "Keep image"
+msgstr "ప్రతిరూపాన్ని ఉంచు "
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr "ప్రతి రూపాన్ని నకలు తీయు "
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -93,56 +101,73 @@ msgstr "దగ్గరగా చూపు"
 msgid "Fullscreen"
 msgstr "తెరనిండుగా"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "ట్రే చూపు"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "ట్రే దాచివేయి"
 
-#: webactivity.py:109
-msgid "Edit"
-msgstr "కూర్చు"
-
-#: webactivity.py:121
-msgid "View"
-msgstr "చూడు"
-
-#: webactivity.py:140
-#: webactivity.py:141
-msgid "blank"
-msgstr "ఖాళీ"
-
-#: webactivity.py:463
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "దిగుమతి జరుగుతుంది"
 
-#: webactivity.py:464
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "ఇప్పుడు ఆపితే మీ దిగుమతి రద్దవుతుంది"
 
-#: webactivity.py:466
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "రద్దుచేయి"
 
-#: webactivity.py:468
-#: webtoolbar.py:334
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "ఆపు"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "వెనుకకు"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "ముందుకు"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "గుర్తు"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "తిరిగి లోడ్ చేయి"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "ఫైలు %s నుండి %s."
+
+#~ msgid "Copy"
+#~ msgstr "నకలు"
+
+#~ msgid "Edit"
+#~ msgstr "కూర్చు"
+
+#~ msgid "View"
+#~ msgstr "చూడు"
+
+#~ msgid "blank"
+#~ msgstr "ఖాళీ"
+
+#~ msgid "Source"
+#~ msgstr "మూలం"

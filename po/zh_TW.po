@@ -1,8 +1,16 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 00:33-0400\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
 "PO-Revision-Date: 2009-10-11 20:04-0400\n"
 "Last-Translator: Yuan Chao <yuanchao@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
@@ -17,33 +25,28 @@ msgstr ""
 msgid "Browse"
 msgstr "瀏覽"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "開始下載"
 
-#: downloadmanager.py:154 downloadmanager.py:167
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:166
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "下載完成"
 
-#: downloadmanager.py:170
+#: downloadmanager.py:177
 msgid "Show in Journal"
 msgstr "增加到日誌"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "確定"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
 msgstr "自：%s"
 
-#: downloadmanager.py:265
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -52,89 +55,101 @@ msgstr ""
 "下載 %s 自\n"
 "%s."
 
-#: edittoolbar.py:91
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "上一個"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:99
 msgid "Next"
 msgstr "下一個"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "移除"
 
-#: palettes.py:96
+#: palettes.py:142
 msgid "Keep link"
 msgstr "保存連結"
 
-#: palettes.py:104
+#: palettes.py:150
 msgid "Copy link"
 msgstr "複製連結"
 
-#: palettes.py:112
+#: palettes.py:158
 msgid "Follow link"
 msgstr "跟隨連結"
 
-#: palettes.py:161
+#: palettes.py:208
 msgid "Keep image"
 msgstr "保存圖片"
 
-#: palettes.py:169
+#: palettes.py:216
 msgid "Copy image"
 msgstr "複製圖片"
 
-#: viewtoolbar.py:33
+#: viewtoolbar.py:34
 msgid "Zoom out"
 msgstr "縮小"
 
-#: viewtoolbar.py:39
+#: viewtoolbar.py:40
 msgid "Zoom in"
 msgstr "放大"
 
-#: viewtoolbar.py:50
+#: viewtoolbar.py:51
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: viewtoolbar.py:88
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "顯示收藏匣"
 
-#: viewtoolbar.py:92
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "隱藏收藏匣"
 
-#: webactivity.py:535
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "下載中"
 
-#: webactivity.py:536
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "停止本活動將取消下載中檔案"
 
-#: webactivity.py:538
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "取消"
 
-#: webactivity.py:540 webtoolbar.py:412
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:241
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "上一頁"
 
-#: webtoolbar.py:248
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "下一頁"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "加入書籤"
 
-#: webtoolbar.py:415
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "重新整理"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

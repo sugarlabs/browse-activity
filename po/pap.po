@@ -2,54 +2,55 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 00:30-0400\n"
-"PO-Revision-Date: 2008-06-19 08:15-0400\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2010-02-25 00:17+0200\n"
 "Last-Translator: Urso Wieske <uwieske@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:113
+#: activity/activity.info:2
 msgid "Browse"
-msgstr "Nabega"
+msgstr "Nabegá"
 
-#: browser.py:149
-msgid "Source"
-msgstr "Fuente"
-
-#: downloadmanager.py:141
+#: downloadmanager.py:160
 msgid "Download started"
-msgstr "Download a kuminsa"
+msgstr "Download a kuminsá"
 
-#: downloadmanager.py:143 downloadmanager.py:157
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:155
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Download kompletá"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:177
 msgid "Show in Journal"
-msgstr "Mustra den e Diario"
+msgstr "Mustra den e Zjurnal"
 
-#: downloadmanager.py:163
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:169
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "File %s di %s."
+msgid "From: %s"
+msgstr "Di: %s"
 
-#: downloadmanager.py:245
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -58,25 +59,37 @@ msgstr ""
 "Downloading %s di \n"
 "%s."
 
-#: edittoolbar.py:94
+#: edittoolbar.py:92
 msgid "Previous"
 msgstr "Anterior"
 
-#: edittoolbar.py:101
+#: edittoolbar.py:99
 msgid "Next"
-msgstr "Sigiente"
+msgstr "Siguiente"
 
-#: linkbutton.py:94
+#: linkbutton.py:95
 msgid "Remove"
-msgstr "Elimina"
+msgstr "Eliminá"
 
-#: palettes.py:89
+#: palettes.py:142
+msgid "Keep link"
+msgstr "Mantené e lenk/link"
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr "Kopia lenk/link"
+
+#: palettes.py:158
 msgid "Follow link"
-msgstr "Sigi e link"
+msgstr "Sigui e link"
 
-#: palettes.py:94 palettes.py:142
-msgid "Copy"
-msgstr "Kopia"
+#: palettes.py:208
+msgid "Keep image"
+msgstr "Mantené e imagen"
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr "Kopia e imagen"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -90,56 +103,73 @@ msgstr "Zoom in"
 msgid "Fullscreen"
 msgstr "Pantaya kompleto"
 
-#: viewtoolbar.py:87
-#, fuzzy
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Mustra bandeha"
 
-#: viewtoolbar.py:91
-#, fuzzy
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Skonde bandeha"
 
-#: webactivity.py:109
-msgid "Edit"
-msgstr "Edita"
-
-#: webactivity.py:121
-msgid "View"
-msgstr "Mira"
-
-#: webactivity.py:140 webactivity.py:141
-msgid "blank"
-msgstr "bashí"
-
-#: webactivity.py:463
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Download den progreso"
 
-#: webactivity.py:464
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
-msgstr "Stop aworaki lo kansela bo download"
+msgstr "Stòp aworaki lo kansela bo download"
 
-#: webactivity.py:466
+#: webactivity.py:601
 msgid "Cancel"
-msgstr "Kansela"
+msgstr "Kanselá"
 
-#: webactivity.py:468 webtoolbar.py:334
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
-msgstr "Stop"
+msgstr "Stòp"
 
-#: webtoolbar.py:212
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Bèk"
 
-#: webtoolbar.py:219
+#: webtoolbar.py:276
 msgid "Forward"
-msgstr "Avansa"
+msgstr "Avansá"
 
-#: webtoolbar.py:242
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
-msgstr "Markador"
+msgstr "Markadó"
 
-#: webtoolbar.py:337
+#: webtoolbar.py:440
 msgid "Reload"
-msgstr "Rekarga"
+msgstr "Rekargá"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "File %s di %s."
+
+#~ msgid "Copy"
+#~ msgstr "Kopia"
+
+#~ msgid "Edit"
+#~ msgstr "Edita"
+
+#~ msgid "View"
+#~ msgstr "Mira"
+
+#~ msgid "blank"
+#~ msgstr "bashí"
+
+#~ msgid "Source"
+#~ msgstr "Fuente"

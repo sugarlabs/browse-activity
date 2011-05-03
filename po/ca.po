@@ -2,65 +2,94 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2008-01-08 19:20+0000\n"
-"Last-Translator: Jaume <jaume@nualart.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2009-08-24 12:14-0400\n"
+"Last-Translator: Camille Robert <camille.robert@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Navegar"
 
-# codi font o font
-#: browser.py:132
-msgid "Source"
-msgstr "Codi font"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "Descàrrega començada"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "Descàrrega completa"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "Obert"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr "Mostra al Diari"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "D'acord"
 
-# cal veure el context
-#: downloadmanager.py:167
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "Fitxer %s des de %s."
+msgid "From: %s"
+msgstr "De: %s"
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr "Descarregant %s des de %s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "Anterior"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "Següent"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "Suprimir"
+
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr "Copiar l'enllaç"
+
+#: palettes.py:158
+msgid "Follow link"
+msgstr "Seguir l'enllaç"
+
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+# "la imatge" o "l'imatge" ??
+#: palettes.py:216
+#, fuzzy
+msgid "Copy image"
+msgstr "Copiar la imatge"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -74,54 +103,72 @@ msgstr "Ampliar"
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
 msgstr "Mostrar safata"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
 msgstr "Ocultar safata"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "Veure"
-
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "en blanc"
-
-#: webactivity.py:440
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "Descàrrega en procés"
 
-#: webactivity.py:441
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "Si l'atures ara, la descàrrega serà cancel·lada"
 
-#: webactivity.py:443
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "Atura"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "Enrere"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "Endavant"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "Adreça d'interès"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "Recarrega"
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr ""
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+# cal veure el context
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "Fitxer %s des de %s."
+
+#~ msgid "View"
+#~ msgstr "Veure"
+
+#~ msgid "blank"
+#~ msgstr "en blanc"
+
+# codi font o font
+#~ msgid "Source"
+#~ msgstr "Codi font"
+
+#~ msgid "Open"
+#~ msgstr "Obert"

@@ -2,100 +2,145 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 22:55+0100\n"
-"PO-Revision-Date: 2007-11-21 03:27+0000\n"
+"POT-Creation-Date: 2008-11-08 00:30-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:83
+#: activity/activity.info:2 webactivity.py:106
 msgid "Browse"
-msgstr "[ҳﯽ Сیपżل Ƶ Հҟ]Вҕօաیэ"
+msgstr ""
 
-#: browser.py:133
-msgid "Source"
-msgstr "[ոڃ юխ ڧբ Њ а ]Տօٮҕҫչ"
-
-#: downloadmanager.py:133
+#: downloadmanager.py:152
 msgid "Download started"
-msgstr "[ﺳҤթв Ъ բٮ ՀќपкՄ  Һङ ۦй ҵ३ Ƶ اԃ キ ٲՕ]Ⴇюﺳҧاюەժ یтձяէәԃ"
+msgstr ""
 
-#: downloadmanager.py:135 downloadmanager.py:149
+#: downloadmanager.py:153 downloadmanager.py:166
 #, python-format
 msgid "%s"
-msgstr "[چﻻՍЯ]%s"
+msgstr ""
 
-#: downloadmanager.py:147
+#: downloadmanager.py:165
 msgid "Download completed"
-msgstr "[لոշ ՈЩќ६әշНП ԍ ҍﻠ  Ժ ДЇڈѫ ђキӀ йԺ ҍԹۉ]ワюﺳйاօдԃ ۦօмمլэтչԺ"
+msgstr ""
 
-#: downloadmanager.py:151
-msgid "Open"
-msgstr "[لЍ Ҏ Ёհ ў ]Юمչռ"
+#: downloadmanager.py:169
+msgid "Show in Journal"
+msgstr ""
 
-#: downloadmanager.py:154
+#: downloadmanager.py:172
 msgid "Ok"
-msgstr "[սФ ۉ]Өҟ"
+msgstr ""
 
-#: downloadmanager.py:162
+#: downloadmanager.py:178
 #, python-format
-msgid "File %s downloaded from\n%s."
-msgstr "[լ ӨղҪ Գی モسԃ ﻠРщձ СچжҕҏƵҴеզъՅդ ճЦФЌ ӨƵ Ъѓ фՑ اч ]Բآլэ %s Ժօաиլօаժڿԃ ғҕюм\n%s."
+msgid "File %s from %s."
+msgstr ""
 
-#: downloadmanager.py:250
+#: downloadmanager.py:260
 #, python-format
-msgid "Downloading %s from \n%s."
-msgstr "[գƶԲգ օ u キՄ ҎО ЩԳ گՕ Пۦ ш б  ەդօ ђمƶ ҏ օ४й ﺫاЪ]ワюաиӀօەԃւղڧ %s քѓюм \n%s."
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
 
-#: linkbutton.py:95
+#: edittoolbar.py:90
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:97
+msgid "Next"
+msgstr ""
+
+#: linkbutton.py:94
 msgid "Remove"
-msgstr "[սЖ Ƶ Ⴇ щﺳЙ ڃӨ ]Яємюմє"
+msgstr ""
 
-#: webactivity.py:91
+#: palettes.py:95
+msgid "Follow link"
+msgstr ""
+
+#: palettes.py:100 palettes.py:157
+msgid "Copy"
+msgstr ""
+
+#: palettes.py:108
+msgid "Download link"
+msgstr ""
+
+#: palettes.py:165
+msgid "Download image"
+msgstr ""
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr ""
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr ""
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:87
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:91
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:102
+msgid "Edit"
+msgstr ""
+
+#: webactivity.py:114
 msgid "View"
-msgstr "[ﻨ ЦҺ Յ ш]Ѵւэш"
+msgstr ""
 
-#: webactivity.py:109 webactivity.py:110
+#: webactivity.py:132 webactivity.py:133
 msgid "blank"
-msgstr "[ВяЮШՉԺ ҧЙ]ҍاձйќ"
+msgstr ""
 
-#: webactivity.py:407
+#: webactivity.py:444
 msgid "Download in progress"
-msgstr "[јкэ ъթ Вк ङҒ Ұ ҧжۉ  т զ  مа կԲﺫżحՈچ Һ ҧю]ワօщҧӀюдժ ւռ թҕюցѓэѕی"
+msgstr ""
 
-#: webactivity.py:408
+#: webactivity.py:445
 msgid "Stopping now will cancel your download"
-msgstr "[Мأ Ц բЯ४Пﺳ МԴкҬ Ңи Н ﺫքթҢ ﻨ  бӴԃ ӞчҲ ҕ Ҫո Ќ ѓФթ اՑՑҘӴ яЈѕ Ⴇ ङ ڿ]Ѕէօمթآҧց ոюﺳ աїاӀ ҁдղҫәլ ӳюҵҕ ԃющйլюەԺ"
+msgstr ""
 
-#: webactivity.py:410
+#: webactivity.py:447
 msgid "Cancel"
-msgstr "[юП սキ ҤШ ђЖ Հ]Ըەйҁչլ"
+msgstr ""
 
-#: webactivity.py:412 webtoolbar.py:169
+#: webactivity.py:449 webtoolbar.py:352
 msgid "Stop"
-msgstr "[لﺳ ժҪѓэ ]کҭюu"
+msgstr ""
 
-#: webtoolbar.py:51
+#: webtoolbar.py:231
 msgid "Back"
-msgstr "[ғ тў یЪ Аﻼ]Ъەҁҟ"
+msgstr ""
 
-#: webtoolbar.py:58
+#: webtoolbar.py:238
 msgid "Forward"
-msgstr "[еհ ԸႧ цդ є أЅՅЇ]ऊօѓաەѓԃ"
+msgstr ""
 
-#: webtoolbar.py:81
+#: webtoolbar.py:261
 msgid "Bookmark"
-msgstr "[Я Ҫ ҵङщђ ﺳ ҎҍМչ ]Вօօкмдҕк"
+msgstr ""
 
-#: webtoolbar.py:172
+#: webtoolbar.py:355
 msgid "Reload"
-msgstr "[չШ ԳИւА६ҰՉАК]ЯչӀօەժ"
-
+msgstr ""

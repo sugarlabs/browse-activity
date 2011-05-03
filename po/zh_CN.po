@@ -1,51 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 00:30+0000\n"
-"PO-Revision-Date: 2007-12-22 07:04+0000\n"
-"Last-Translator: Yuan Chao <yuanchao@gmail.com>\n"
+"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"PO-Revision-Date: 2008-11-25 05:07-0500\n"
+"Last-Translator: Alice Zhang <zhl924505@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
-#: activity/activity.info:2 webactivity.py:105
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "浏览"
 
-#: browser.py:132
-msgid "Source"
-msgstr "源码"
-
-#: downloadmanager.py:140
+#: downloadmanager.py:160
 msgid "Download started"
 msgstr "开始下载"
 
-#: downloadmanager.py:142 downloadmanager.py:156
-#, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:154
+#: downloadmanager.py:173
 msgid "Download completed"
 msgstr "下载完成"
 
-#: downloadmanager.py:158
-msgid "Open"
-msgstr "打开"
+#: downloadmanager.py:177
+msgid "Show in Journal"
+msgstr "在日志中显示"
 
-#: downloadmanager.py:161
+#: downloadmanager.py:180
 msgid "Ok"
 msgstr "确定"
 
-#: downloadmanager.py:167
+#: downloadmanager.py:187
 #, python-format
-msgid "File %s from %s."
-msgstr "文件 %s 自 %s."
+msgid "From: %s"
+msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:316
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -54,9 +53,37 @@ msgstr ""
 "下载 %s 自\n"
 "%s."
 
-#: linkbutton.py:96
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "上一个"
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "下一个"
+
+#: linkbutton.py:95
 msgid "Remove"
 msgstr "删除"
+
+#: palettes.py:142
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:150
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:158
+msgid "Follow link"
+msgstr "跟随链接"
+
+#: palettes.py:208
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:216
+msgid "Copy image"
+msgstr ""
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -70,53 +97,85 @@ msgstr "放大"
 msgid "Fullscreen"
 msgstr "全屏显示"
 
-#: viewtoolbar.py:87
+#: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr "显示书签"
+msgstr "显示系统托盘"
 
-#: viewtoolbar.py:91
+#: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr "隐藏书签"
+msgstr "隐藏系统托盘"
 
-#: webactivity.py:113
-msgid "View"
-msgstr "查看"
-
-#: webactivity.py:131 webactivity.py:132
-msgid "blank"
-msgstr "空白"
-
-#: webactivity.py:440
+#: webactivity.py:598
 msgid "Download in progress"
 msgstr "下载中"
 
-#: webactivity.py:441
+#: webactivity.py:599
 msgid "Stopping now will cancel your download"
 msgstr "停止本活动将取消下载中文件"
 
-#: webactivity.py:443
+#: webactivity.py:601
 msgid "Cancel"
 msgstr "取消"
 
-#: webactivity.py:445 webtoolbar.py:171
+#: webactivity.py:603 webtoolbar.py:437
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:53
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:269
 msgid "Back"
 msgstr "上一页"
 
-#: webtoolbar.py:60
+#: webtoolbar.py:276
 msgid "Forward"
 msgstr "下一页"
 
-#: webtoolbar.py:83
+#: webtoolbar.py:284
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:291
 msgid "Bookmark"
 msgstr "书签"
 
-#: webtoolbar.py:174
+#: webtoolbar.py:440
 msgid "Reload"
 msgstr "刷新"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "File %s from %s."
+#~ msgstr "文件 %s 自 %s."
+
+#~ msgid "Copy"
+#~ msgstr "复制"
+
+#~ msgid "Download link"
+#~ msgstr "下载链接"
+
+#~ msgid "Download image"
+#~ msgstr "下载图片"
+
+#~ msgid "Edit"
+#~ msgstr "编辑"
+
+#~ msgid "View"
+#~ msgstr "查看"
+
+#~ msgid "blank"
+#~ msgstr "空白"
+
+#~ msgid "Source"
+#~ msgstr "源码"
+
+#~ msgid "Open"
+#~ msgstr "打开"
 
 #~ msgid ""
 #~ "File %s downloaded from\n"
@@ -124,7 +183,3 @@ msgstr "刷新"
 #~ msgstr ""
 #~ "文件 %s 下载自\n"
 #~ "%s."
-
-#: downloadmanager.py:158
-msgid "Show in Journal"
-msgstr ""
