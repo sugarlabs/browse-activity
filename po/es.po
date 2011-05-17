@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2011-04-15 15:45+0200\n"
-"Last-Translator: Gustavo S <ibarrags@gmail.com>\n"
+"PO-Revision-Date: 2011-05-17 16:31+0200\n"
+"Last-Translator: Gonzalo <godiard@sugarlabs.org>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Copiar la imagen"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
-msgstr "Alejarse"
+msgstr "Reducir"
 
 #: viewtoolbar.py:40
 msgid "Zoom in"
-msgstr "Acercarse"
+msgstr "Ampliar"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
