@@ -199,6 +199,3 @@ msgstr "اجرای دوباره"
 #~ "File %s downloaded from\n"
 #~ "%s."
 #~ msgstr "فایل %s بارگيرى پايين شد از/n%s."
-
-#~ msgid "Source"
-#~ msgstr "منبع"
