@@ -410,7 +410,6 @@ class PrimaryToolbar(ToolbarBox):
 
     def _go_home_cb(self, button):
         self.emit('go-home')
-        self._activity.load_homepage()
 
     def _go_back_cb(self, button):
         browser = self._tabbed_view.props.current_browser
