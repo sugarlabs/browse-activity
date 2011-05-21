@@ -73,7 +73,7 @@ class Messenger(ExportedGObject):
                         self.tube.get_object(member, PATH).sync_with_members(
                             self.model.get_links_ids(), dbus_interface=IFACE,
                             reply_handler=self.reply_sync, error_handler=lambda
-                            e:self.error_sync(e, 'transfering file'))
+                            e: self.error_sync(e, 'transfering file'))
 
         self.entered = True
 

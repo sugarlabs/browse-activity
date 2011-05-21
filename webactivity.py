@@ -114,13 +114,13 @@ def _seed_xs_cookie():
             _logger.debug('seed_xs_cookie: Cookie exists already')
             return
 
-        expire = int(time.time()) + 10*365*24*60*60
+        expire = int(time.time()) + 10 * 365 * 24 * 60 * 60
         c.execute('''INSERT INTO moz_cookies (name, value, host,
                                               path, expiry, lastAccessed,
                                               isSecure, isHttpOnly)
                      VALUES(?,?,?,?,?,?,?,?)''',
                   ('xoid', cjson.encode(cookie_data), jabber_server,
-                   '/', expire, 0, 0, 0 ))
+                   '/', expire, 0, 0, 0))
         cookies_db.commit()
         cookies_db.close()
     except sqlite3.Error, e:
@@ -147,7 +147,7 @@ def _set_accept_languages():
     lang = lang.split('_')
 
     # e.g. es-uy, es
-    pref = lang[0] + "-" + lang[1].lower()  + ", " + lang[0]
+    pref = lang[0] + "-" + lang[1].lower() + ", " + lang[0]
     cls = components.classes["@mozilla.org/preferences-service;1"]
     prefService = cls.getService(components.interfaces.nsIPrefService)
     branch = prefService.getBranch('')
@@ -369,7 +369,7 @@ class WebActivity(activity.Activity):
 
             self.tube_conn = TubeConnection(self.conn,
                 self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES],
-                identifier, group_iface = self.text_chan[
+                identifier, group_iface=self.text_chan[
                     telepathy.CHANNEL_INTERFACE_GROUP])
 
             _logger.debug('Tube created')
@@ -547,7 +547,8 @@ class WebActivity(activity.Activity):
         item = LinkButton(url, buf, color, title, owner, index, hash)
         item.connect('clicked', self._link_clicked_cb, url)
         item.connect('remove_link', self._link_removed_cb)
-        self._tray.add_item(item, index) # use index to add to the tray
+        # use index to add to the tray
+        self._tray.add_item(item, index)
         item.show()
         if self._tray.props.visible is False:
             self._tray.show()

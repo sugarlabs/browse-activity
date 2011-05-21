@@ -41,7 +41,7 @@ class MouseOutListener(gobject.GObject):
     __gsignals__ = {
         'mouse-out': (gobject.SIGNAL_RUN_FIRST,
                       gobject.TYPE_NONE,
-                      ([]))
+                      ([])),
     }
 
     def __init__(self, target):
@@ -247,7 +247,7 @@ class ImagePalette(Palette):
         cls = components.classes[ \
                 '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
         persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
-        persist.persistFlags = 1 # PERSIST_FLAGS_FROM_CACHE
+        persist.persistFlags = 1  # PERSIST_FLAGS_FROM_CACHE
         listener = xpcom.server.WrapObject(_ImageProgressListener(temp_file),
                                            interfaces.nsIWebProgressListener)
         persist.progressListener = listener

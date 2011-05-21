@@ -218,7 +218,7 @@ class TabLabel(gtk.HBox):
     __gsignals__ = {
         'tab-close': (gobject.SIGNAL_RUN_FIRST,
                       gobject.TYPE_NONE,
-                      ([object]))
+                      ([object])),
     }
 
     def __init__(self, browser):
@@ -263,8 +263,8 @@ class Browser(WebView):
 
     __gsignals__ = {
         'is-setup': (gobject.SIGNAL_RUN_FIRST,
-                  gobject.TYPE_NONE,
-                  ([]))
+                     gobject.TYPE_NONE,
+                     ([])),
     }
 
     def __init__(self):
@@ -294,7 +294,6 @@ class Browser(WebView):
         self.typeahead.init(self.doc_shell)
 
         self.emit('is-setup')
-
 
     def get_url_from_nsiuri(self, uri):
         """

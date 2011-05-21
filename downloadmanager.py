@@ -166,7 +166,8 @@ class Download:
             _active_downloads.append(self)
 
         elif state_flags & interfaces.nsIWebProgressListener.STATE_STOP:
-            if NS_FAILED(status): # download cancelled
+            if NS_FAILED(status):
+                # download cancelled
                 return
 
             self._stop_alert = Alert()
@@ -237,6 +238,7 @@ class Download:
                             gtk.gdk.INTERP_BILINEAR)
 
         preview_data = []
+
         def save_func(buf, data):
             data.append(buf)
 
@@ -287,7 +289,7 @@ class Download:
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
                            max_total_progress):
-        percent = (cur_self_progress  * 100) / max_self_progress
+        percent = (cur_self_progress * 100) / max_self_progress
 
         if (time.time() - self._last_update_time) < _MIN_TIME_UPDATE and \
            (percent - self._last_update_percent) < _MIN_PERCENT_UPDATE:
@@ -343,7 +345,7 @@ class Download:
         global _active_downloads
         if self in _active_downloads:
             # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
-            self.cancelable.cancel(NS_ERROR_FAILURE) #NS_BINDING_ABORTED)
+            self.cancelable.cancel(NS_ERROR_FAILURE)
             _active_downloads.remove(self)
 
 
@@ -442,4 +444,4 @@ class _SaveLinkProgressListener(object):
 
     def onDataAvailable(self, request, context, inputStream, offset, count):
         self._external_listener.onDataAvailable(request, context, inputStream,
-                                                offset, count);
+                                                offset, count)

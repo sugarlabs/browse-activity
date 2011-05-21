@@ -32,7 +32,7 @@ class LinkButton(TrayButton, gobject.GObject):
     __gtype_name__ = 'LinkButton'
     __gsignals__ = {
         'remove_link': (gobject.SIGNAL_RUN_FIRST,
-                        gobject.TYPE_NONE, ([str]))
+                        gobject.TYPE_NONE, ([str])),
         }
 
     def __init__(self, url, buf, color, title, owner, index, hash):
@@ -40,7 +40,7 @@ class LinkButton(TrayButton, gobject.GObject):
         self.set_image(buf, color.split(',')[1], color.split(',')[0])
 
         self.hash = hash
-        info = title +'\n'+ owner
+        info = title + '\n' + owner
         self.setup_rollover_options(info)
 
     def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):

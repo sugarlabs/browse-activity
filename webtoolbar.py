@@ -37,6 +37,7 @@ import places
 
 _MAX_HISTORY_ENTRIES = 15
 
+
 class WebEntry(AddressEntry):
     _COL_ADDRESS = 0
     _COL_TITLE = 1
@@ -216,6 +217,7 @@ class WebEntry(AddressEntry):
         else:
             self._search_popup()
 
+
 class PrimaryToolbar(ToolbarBox):
     __gtype_name__ = 'PrimaryToolbar'
 
@@ -228,7 +230,7 @@ class PrimaryToolbar(ToolbarBox):
                      ([])),
         'go-home': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
-                     ([]))
+                     ([])),
     }
 
     def __init__(self, tabbed_view, act, disable_multiple_tabs):

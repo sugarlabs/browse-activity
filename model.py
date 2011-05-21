@@ -28,7 +28,7 @@ class Model(gobject.GObject):
     '''
     __gsignals__ = {
         'add_link': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE, ([int]))
+                     gobject.TYPE_NONE, ([int])),
         }
 
     def __init__(self):
@@ -45,12 +45,12 @@ class Model(gobject.GObject):
                 break
 
         self.data['shared_links'].insert(index,
-                                         {'hash':sha.new(str(url)).hexdigest(),
-                                          'url':str(url), 'title':str(title),
-                                          'thumb':base64.b64encode(thumb),
-                                          'owner':str(owner),
-                                          'color':str(color),
-                                          'timestamp':float(timestamp)})
+                                         {'hash': sha.new(str(url)).hexdigest(),
+                                          'url': str(url), 'title': str(title),
+                                          'thumb': base64.b64encode(thumb),
+                                          'owner': str(owner),
+                                          'color': str(color),
+                                          'timestamp': float(timestamp)})
         self.emit('add_link', index)
 
     def remove_link(self, hash):

@@ -29,7 +29,7 @@ class HistoryListener(gobject.GObject):
                                     gobject.TYPE_NONE,
                                     ([int])),
         'session-link-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                                    ([str]))
+                                 ([str])),
     }
 
     def __init__(self):
