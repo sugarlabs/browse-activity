@@ -92,7 +92,7 @@ class SqliteStore(object):
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute('select uri, title, bookmark, gecko_flags,visits, ' \
+            cursor.execute('select uri, title, bookmark, gecko_flags,visits, '
                            'last_visit from places where uri=?', (uri,))
 
             row = cursor.fetchone()

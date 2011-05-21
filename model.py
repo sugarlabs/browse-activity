@@ -44,13 +44,11 @@ class Model(gobject.GObject):
                 index = self.data['shared_links'].index(item)
                 break
 
-        self.data['shared_links'].insert(index,
-                                         {'hash': sha.new(str(url)).hexdigest(),
-                                          'url': str(url), 'title': str(title),
-                                          'thumb': base64.b64encode(thumb),
-                                          'owner': str(owner),
-                                          'color': str(color),
-                                          'timestamp': float(timestamp)})
+        info = {'hash': sha.new(str(url)).hexdigest(), 'url': str(url),
+                'title': str(title), 'thumb': base64.b64encode(thumb),
+                'owner': str(owner), 'color': str(color),
+                'timestamp': float(timestamp)}
+        self.data['shared_links'].insert(index, info)
         self.emit('add_link', index)
 
     def remove_link(self, hash):

@@ -1,5 +1,6 @@
 # Copyright (C) 2006, Red Hat, Inc.
-# Copyright (C) 2009 Martin Langhoff, Simon Schampijer, Daniel Drake, Tomeu Vizoso
+# Copyright (C) 2009 Martin Langhoff, Simon Schampijer, Daniel Drake,
+#                    Tomeu Vizoso
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -200,7 +201,7 @@ class WebActivity(activity.Activity):
         # isn't exactly known. Thus, disable the multiple tabs feature
         # if we come across cairo versions >= 1.08.10
         # More information can be found here:
-        # [1] http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
+        # http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
         self._disable_multiple_tabs = cairo.cairo_version() >= 10810
         if self._disable_multiple_tabs:
             logging.warning('Not enabling the multiple tabs feature due'
@@ -286,7 +287,8 @@ class WebActivity(activity.Activity):
         self._setup()
 
         _logger.debug('This is my activity: making a tube...')
-        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(SERVICE, {})
+        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(SERVICE,
+                                                                    {})
 
     def _setup(self):
         if self._shared_activity is None:
@@ -310,10 +312,12 @@ class WebActivity(activity.Activity):
                 room = handle
                 ctype = channel.GetChannelType()
                 if ctype == telepathy.CHANNEL_TYPE_TUBES:
-                    _logger.debug('Found our Tubes channel at %s', channel_path)
+                    _logger.debug('Found our Tubes channel at %s',
+                                  channel_path)
                     tubes_chan = channel
                 elif ctype == telepathy.CHANNEL_TYPE_TEXT:
-                    _logger.debug('Found our Text channel at %s', channel_path)
+                    _logger.debug('Found our Text channel at %s',
+                                  channel_path)
                     text_chan = channel
 
         if room is None:
@@ -326,9 +330,9 @@ class WebActivity(activity.Activity):
         # Make sure we have a Tubes channel - PS doesn't yet provide one
         if tubes_chan is None:
             _logger.debug("Didn't find our Tubes channel, requesting one...")
-            tubes_chan = self.conn.request_channel(telepathy.CHANNEL_TYPE_TUBES,
-                                                   telepathy.HANDLE_TYPE_ROOM,
-                                                   room, True)
+            tubes_chan = self.conn.request_channel(
+                telepathy.CHANNEL_TYPE_TUBES, telepathy.HANDLE_TYPE_ROOM,
+                room, True)
 
         self.tubes_chan = tubes_chan
         self.text_chan = text_chan
@@ -357,7 +361,8 @@ class WebActivity(activity.Activity):
             reply_handler=self._list_tubes_reply_cb,
             error_handler=self._list_tubes_error_cb)
 
-    def _new_tube_cb(self, identifier, initiator, type, service, params, state):
+    def _new_tube_cb(self, identifier, initiator, type, service, params,
+                     state):
         _logger.debug('New tube: ID=%d initator=%d type=%d service=%s '
                       'params=%r state=%d', identifier, initiator, type,
                       service, params, state)
@@ -453,14 +458,17 @@ class WebActivity(activity.Activity):
                     self.metadata['title'] = browser.props.title
 
             self.model.data['history'] = self._tabbed_view.get_session()
-            self.model.data['current_tab'] = self._tabbed_view.get_current_page()
+            current_tab = self._tabbed_view.get_current_page()
+            self.model.data['current_tab'] = current_tab
 
             self.model.data['currents'] = []
             for n in range(0, self._tabbed_view.get_n_pages()):
                 n_browser = self._tabbed_view.get_nth_page(n)
                 if n_browser != None:
-                    ui_uri = browser.get_url_from_nsiuri(browser.progress.location)
-                    self.model.data['currents'].append({'title':browser.props.title,'url':ui_uri})
+                    nsiuri = browser.progress.location
+                    ui_uri = browser.get_url_from_nsiuri(nsiuri)
+                    info = {'title': browser.props.title, 'url': ui_uri}
+                    self.model.data['currents'].append(info)
 
             f = open(file_path, 'w')
             try:

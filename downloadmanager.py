@@ -96,12 +96,14 @@ class HelperAppLauncherDialog:
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         if not os.path.exists(temp_path):
             os.makedirs(temp_path)
-        fd, file_path = tempfile.mkstemp(dir=temp_path, prefix=base_name, suffix=extension)
+        fd, file_path = tempfile.mkstemp(dir=temp_path, prefix=base_name,
+                                         suffix=extension)
         os.close(fd)
         os.chmod(file_path, 0644)
         dest_file.initWithPath(file_path)
 
-        requestor = window_context.queryInterface(interfaces.nsIInterfaceRequestor)
+        interface_id = interfaces.nsIInterfaceRequestor
+        requestor = window_context.queryInterface(interface_id)
         dom_window = requestor.getInterface(interfaces.nsIDOMWindow)
         _dest_to_window[file_path] = dom_window
 
@@ -428,9 +430,10 @@ class _SaveLinkProgressListener(object):
             logging.error("Error downloading link")
             return
 
-        cls = components.classes[
-                "@mozilla.org/uriloader/external-helper-app-service;1"]
-        external_helper = cls.getService(interfaces.nsIExternalHelperAppService)
+        class_name = '@mozilla.org/uriloader/external-helper-app-service;1'
+        cls = components.classes[class_name]
+        interface_id = interfaces.nsIExternalHelperAppService
+        external_helper = cls.getService(interface_id)
 
         channel = request.QueryInterface(interfaces.nsIChannel)
 

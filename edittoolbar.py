@@ -121,7 +121,8 @@ class EditToolbar(activity.EditToolbar):
     def _get_command_manager(self):
         tabbed_view = self._activity.get_canvas()
         web_browser = tabbed_view.props.current_browser.browser
-        requestor = web_browser.queryInterface(interfaces.nsIInterfaceRequestor)
+        interface_id = interfaces.nsIInterfaceRequestor
+        requestor = web_browser.queryInterface(interface_id)
         return requestor.getInterface(interfaces.nsICommandManager)
 
     def __search_entry_activate_cb(self, entry):

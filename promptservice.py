@@ -63,7 +63,8 @@ class PromptService:
         logging.debug('nsIPromptService.select()')
 
 
-#components.registrar.registerFactory(PromptService.cid,
-#                                     PromptService.description,
-#                                     '@mozilla.org/embedcomp/prompt-service;1',
-#                                     Factory(PromptService))
+#components.registrar.registerFactory(
+#    PromptService.cid,
+#    PromptService.description,
+#    '@mozilla.org/embedcomp/prompt-service;1',
+#    Factory(PromptService))

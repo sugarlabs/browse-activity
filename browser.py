@@ -53,8 +53,8 @@ class GetSourceListener(object):
         self._async_err_cb = async_err_cb
 
     def onStateChange(self, webProgress, request, stateFlags, status):
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and \
-                stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+        if (stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and
+            stateFlags & interfaces.nsIWebProgressListener.STATE_STOP):
             self._async_cb(self._file_path)
 
     def onProgressChange(self, progress, request, curSelfProgress,
@@ -127,8 +127,8 @@ class TabbedView(gtk.Notebook):
                     interfaces.nsIStyleSheetService.AGENT_SHEET)
 
         if os.path.exists(TabbedView.USER_SHEET):
-            user_sheet_uri = io_service.newURI('file:///' + TabbedView.USER_SHEET,
-                                               None, None)
+            url = 'file:///' + TabbedView.USER_SHEET
+            user_sheet_uri = io_service.newURI(url, None, None)
             style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
                     interfaces.nsIStyleSheetService.USER_SHEET)
 
@@ -181,7 +181,8 @@ class TabbedView(gtk.Notebook):
     def _get_current_browser(self):
         return self.get_nth_page(self.get_current_page())
 
-    current_browser = gobject.property(type=object, getter=_get_current_browser)
+    current_browser = gobject.property(type=object,
+                                       getter=_get_current_browser)
 
     def get_session(self):
         tab_sessions = []
@@ -248,11 +249,13 @@ class TabLabel(gtk.HBox):
         self.emit('tab-close', self._browser)
 
     def __browser_is_setup_cb(self, browser):
-        browser.progress.connect('notify::location', self.__location_changed_cb)
+        browser.progress.connect('notify::location',
+                                 self.__location_changed_cb)
         browser.connect('notify::title', self.__title_changed_cb)
 
     def __location_changed_cb(self, progress_listener, pspec):
-        self._label.set_text(self._browser.get_url_from_nsiuri(progress_listener.location))
+        url = self._browser.get_url_from_nsiuri(progress_listener.location)
+        self._label.set_text(url)
 
     def __title_changed_cb(self, browser, pspec):
         self._label.set_text(browser.props.title)

@@ -97,7 +97,8 @@ class ContentInvoker(Invoker):
             else:
                 title = os.path.basename(urlparse.urlparse(target.src).path)
 
-            self.palette = ImagePalette(title, target.src, target.ownerDocument)
+            self.palette = ImagePalette(title, target.src,
+                                        target.ownerDocument)
             self.notify_right_click()
         else:
             return
@@ -277,8 +278,8 @@ class _ImageProgressListener(object):
         pass
 
     def onStateChange(self, webProgress, request, stateFlags, status):
-        if stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and \
-                stateFlags & interfaces.nsIWebProgressListener.STATE_STOP:
+        if (stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and
+            stateFlags & interfaces.nsIWebProgressListener.STATE_STOP):
             clipboard = gtk.Clipboard()
             clipboard.set_with_data([('text/uri-list', 0, 0)],
                                     _clipboard_get_func_cb,
