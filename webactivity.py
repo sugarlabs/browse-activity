@@ -123,8 +123,8 @@ def _seed_xs_cookie():
                    '/', expire, 0, 0, 0))
         cookies_db.commit()
         cookies_db.close()
-    except sqlite3.Error, e:
-        _logger.error('seed_xs_cookie: %s' % e)
+    except sqlite3.Error:
+        _logger.exception('seed_xs_cookie: could not write cookie')
     else:
         _logger.debug('seed_xs_cookie: Updated cookie successfully')
 
@@ -265,7 +265,7 @@ class WebActivity(activity.Activity):
         self.initiating = None
 
         if self._shared_activity is not None:
-            _logger.debug('shared:  %s' %self._shared_activity.props.joined)
+            _logger.debug('shared: %s', self._shared_activity.props.joined)
 
         if self._shared_activity is not None:
             # We are joining the activity
@@ -304,15 +304,16 @@ class WebActivity(activity.Activity):
             channel = telepathy.client.Channel(bus_name, channel_path)
             htype, handle = channel.GetHandle()
             if htype == telepathy.HANDLE_TYPE_ROOM:
-                _logger.debug('Found our room: it has handle#%d "%s"'
-                    %(handle, self.conn.InspectHandles(htype, [handle])[0]))
+                _logger.debug('Found our room: it has handle#%d "%s"',
+                              handle,
+                              self.conn.InspectHandles(htype, [handle])[0])
                 room = handle
                 ctype = channel.GetChannelType()
                 if ctype == telepathy.CHANNEL_TYPE_TUBES:
-                    _logger.debug('Found our Tubes channel at %s'%channel_path)
+                    _logger.debug('Found our Tubes channel at %s', channel_path)
                     tubes_chan = channel
                 elif ctype == telepathy.CHANNEL_TYPE_TEXT:
-                    _logger.debug('Found our Text channel at %s'%channel_path)
+                    _logger.debug('Found our Text channel at %s', channel_path)
                     text_chan = channel
 
         if room is None:
@@ -340,7 +341,7 @@ class WebActivity(activity.Activity):
             self._new_tube_cb(*tube_info)
 
     def _list_tubes_error_cb(self, e):
-        _logger.debug('ListTubes() failed: %s'%e)
+        _logger.debug('ListTubes() failed: %s', e)
 
     def _joined_cb(self, activity_):
         if not self._shared_activity:
@@ -358,8 +359,8 @@ class WebActivity(activity.Activity):
 
     def _new_tube_cb(self, identifier, initiator, type, service, params, state):
         _logger.debug('New tube: ID=%d initator=%d type=%d service=%s '
-                      'params=%r state=%d' %(identifier, initiator, type,
-                                             service, params, state))
+                      'params=%r state=%d', identifier, initiator, type,
+                      service, params, state)
 
         if (type == telepathy.TUBE_TYPE_DBUS and
             service == SERVICE):
@@ -412,7 +413,7 @@ class WebActivity(activity.Activity):
                                       base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])
-            logging.debug('########## reading %s' % data)
+            logging.debug('########## reading %s', data)
             self._tabbed_view.set_session(self.model.data['history'])
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
@@ -463,7 +464,7 @@ class WebActivity(activity.Activity):
 
             f = open(file_path, 'w')
             try:
-                logging.debug('########## writing %s' % self.model.serialize())
+                logging.debug('########## writing %s', self.model.serialize())
                 f.write(self.model.serialize())
             finally:
                 f.close()
@@ -520,8 +521,8 @@ class WebActivity(activity.Activity):
 
         for link in self.model.data['shared_links']:
             if link['hash'] == sha1(ui_uri).hexdigest():
-                _logger.debug('_add_link: link exist already a=%s b=%s' %(
-                    link['hash'], sha1(ui_uri).hexdigest()))
+                _logger.debug('_add_link: link exist already a=%s b=%s',
+                              link['hash'], sha1(ui_uri).hexdigest())
                 return
         buf = self._get_screenshot()
         timestamp = time.time()

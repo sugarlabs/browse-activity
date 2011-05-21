@@ -142,14 +142,14 @@ class Download:
         del _dest_to_window[file_path]
 
         view = hulahop.get_view_for_window(dom_window)
-        logging.debug('Download.init dom_window: %r' % dom_window)
+        logging.debug('Download.init dom_window: %r', dom_window)
         self._activity = view.get_toplevel()
 
         return NS_OK
 
     def onStatusChange(self, web_progress, request, status, message):
-        logging.info('Download.onStatusChange(%r, %r, %r, %r)' % \
-            (web_progress, request, status, message))
+        logging.info('Download.onStatusChange(%r, %r, %r, %r)',
+                     web_progress, request, status, message)
 
     def onStateChange(self, web_progress, request, state_flags, status):
         if state_flags & interfaces.nsIWebProgressListener.STATE_START:
@@ -254,8 +254,8 @@ class Download:
             try:
                 self.datastore_deleted_handler.remove()
                 datastore.delete(self._object_id)
-            except Exception, e:
-                logging.warning('Object has been deleted already %s' % e)
+            except Exception:
+                logging.exception('Object has been deleted already')
             if self.dl_jobject is not None:
                 self.cleanup_datastore_write()
             if self._stop_alert is not None:
@@ -283,7 +283,7 @@ class Download:
         self.cleanup_datastore_write()
 
     def _internal_save_error_cb(self, err):
-        logging.debug("Error saving activity object to datastore: %s" % err)
+        logging.error('Error saving activity object to datastore: %s', err)
         self.cleanup_datastore_write()
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
@@ -340,8 +340,8 @@ class Download:
             arg0=self.dl_jobject.object_id)
 
     def __datastore_deleted_cb(self, uid):
-        logging.debug('Downloaded entry has been deleted from the datastore: %r'
-                      % uid)
+        logging.debug('Downloaded entry has been deleted from the data'
+                      ' store: %r', uid)
         global _active_downloads
         if self in _active_downloads:
             # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.

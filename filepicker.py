@@ -41,8 +41,8 @@ def cleanup_temp_files():
         if os.path.isdir(temp_dir):
             shutil.rmtree(temp_dir, ignore_errors=True)
         else:
-            logging.debug('filepicker.cleanup_temp_files: no file %r'
-                          % temp_dir)
+            logging.debug('filepicker.cleanup_temp_files: no file %r',
+                          temp_dir)
 
 
 class FilePicker:
@@ -131,7 +131,7 @@ class FilePicker:
         return None
 
     def get_file(self):
-        logging.debug('FilePicker.get_file: %r' % self._file)
+        logging.debug('FilePicker.get_file: %r', self._file)
         if self._file:
             cls = components.classes["@mozilla.org/file/local;1"]
             local_file = cls.createInstance(interfaces.nsILocalFile)

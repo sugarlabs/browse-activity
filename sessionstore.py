@@ -41,7 +41,7 @@ def set_session(browser, data):
 
 
 def _get_history(history):
-    logging.debug('%r' % history.count)
+    logging.debug('%r', history.count)
     entries_dest = []
     for i in range(0, history.count):
         entry_orig = history.getEntryAtIndex(i, False)
@@ -60,7 +60,7 @@ def _set_history(history, history_data):
         history_internal.purgeHistory(history_internal.count)
 
     for entry_dict in history_data:
-        logging.debug('entry_dict: %r' % entry_dict)
+        logging.debug('entry_dict: %r', entry_dict)
         entry_class = components.classes[ \
                 "@mozilla.org/browser/session-history-entry;1"]
         entry = entry_class.createInstance(interfaces.nsISHEntry)
