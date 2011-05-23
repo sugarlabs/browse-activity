@@ -38,7 +38,6 @@ from sugar.graphics.alert import Alert, TimeoutAlert
 from sugar.graphics.icon import Icon
 from sugar.graphics import style
 from sugar.activity import activity
-
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
 # 0.82.3 is the only version used
 import dbus
@@ -69,9 +68,8 @@ def remove_all_downloads():
     for download in _active_downloads:
         download.cancelable.cancel(NS_ERROR_FAILURE)
         if download.dl_jobject is not None:
-            download.datastore_deleted_handler.remove()
             datastore.delete(download.dl_jobject.object_id)
-            download.cleanup_datastore_write()
+        download.cleanup()
 
 
 class HelperAppLauncherDialog:
@@ -170,6 +168,7 @@ class Download:
         elif state_flags & interfaces.nsIWebProgressListener.STATE_STOP:
             if NS_FAILED(status):
                 # download cancelled
+                self.cleanup()
                 return
 
             self._stop_alert = Alert()
@@ -252,14 +251,13 @@ class Download:
         global _active_downloads
         if response_id is gtk.RESPONSE_CANCEL:
             logging.debug('Download Canceled')
+            logging.debug('target_path=%r', self._target_file.path)
             self.cancelable.cancel(NS_ERROR_FAILURE)
             try:
-                self.datastore_deleted_handler.remove()
                 datastore.delete(self._object_id)
             except Exception:
                 logging.exception('Object has been deleted already')
-            if self.dl_jobject is not None:
-                self.cleanup_datastore_write()
+            self.cleanup()
             if self._stop_alert is not None:
                 self._activity.remove_alert(self._stop_alert)
 
@@ -272,21 +270,30 @@ class Download:
             activity.show_object_in_journal(self._object_id)
         self._activity.remove_alert(alert)
 
-    def cleanup_datastore_write(self):
+    def cleanup(self):
         global _active_downloads
-        _active_downloads.remove(self)
+        if self in _active_downloads:
+            _active_downloads.remove(self)
 
-        if os.path.isfile(self.dl_jobject.file_path):
-            os.remove(self.dl_jobject.file_path)
-        self.dl_jobject.destroy()
-        self.dl_jobject = None
+        if self.datastore_deleted_handler is not None:
+            self.datastore_deleted_handler.remove()
+            self.datastore_deleted_handler = None
+
+        if os.path.isfile(self._target_file.path):
+            os.remove(self._target_file.path)
+        if os.path.isfile(self._target_file.path + '.part'):
+            os.remove(self._target_file.path + '.part')
+
+        if self.dl_jobject is not None:
+            self.dl_jobject.destroy()
+            self.dl_jobject = None
 
     def _internal_save_cb(self):
-        self.cleanup_datastore_write()
+        self.cleanup()
 
     def _internal_save_error_cb(self, err):
         logging.error('Error saving activity object to datastore: %s', err)
-        self.cleanup_datastore_write()
+        self.cleanup()
 
     def onProgressChange64(self, web_progress, request, cur_self_progress,
                            max_self_progress, cur_total_progress,
@@ -348,7 +355,7 @@ class Download:
         if self in _active_downloads:
             # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
             self.cancelable.cancel(NS_ERROR_FAILURE)
-            _active_downloads.remove(self)
+            self.cleanup()
 
 
 components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
