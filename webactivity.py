@@ -184,6 +184,7 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
+        self._force_close = False
         self._tabbed_view = TabbedView()
 
         _set_accept_languages()
@@ -601,7 +602,9 @@ class WebActivity(activity.Activity):
         return buf
 
     def can_close(self):
-        if downloadmanager.can_quit():
+        if self._force_close:
+            return True
+        elif downloadmanager.can_quit():
             return True
         else:
             alert = Alert()
@@ -616,6 +619,7 @@ class WebActivity(activity.Activity):
             alert.connect('response', self.__inprogress_response_cb)
             alert.show()
             self.present()
+            return False
 
     def __inprogress_response_cb(self, alert, response_id):
         self.remove_alert(alert)
@@ -623,8 +627,9 @@ class WebActivity(activity.Activity):
             logging.debug('Keep on')
         elif response_id == gtk.RESPONSE_OK:
             logging.debug('Stop downloads and quit')
+            self._force_close = True
             downloadmanager.remove_all_downloads()
-            self.close(force=True)
+            self.close()
 
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser
