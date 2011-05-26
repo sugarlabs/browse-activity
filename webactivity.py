@@ -47,14 +47,25 @@ from sugar.graphics.tray import HTray
 from sugar import profile
 from sugar.graphics.alert import Alert
 from sugar.graphics.icon import Icon
-from sugar.graphics.toolbarbox import ToolbarButton
 from sugar import mime
+
+# Attempt to import the new toolbar classes.  If the import fails,
+# fall back to the old toolbar style.
+try:
+    from sugar.graphics.toolbarbox import ToolbarButton
+    NEW_TOOLBARS = True
+except ImportError:
+    NEW_TOOLBARS = False
 
 PROFILE_VERSION = 2
 
 _profile_version = 0
 _profile_path = os.path.join(activity.get_activity_root(), 'data/gecko')
 _version_file = os.path.join(_profile_path, 'version')
+
+if not NEW_TOOLBARS:
+    _TOOLBAR_EDIT = 1
+    _TOOLBAR_BROWSE = 2
 
 if os.path.exists(_version_file):
     f = open(_version_file)
@@ -208,34 +219,56 @@ class WebActivity(activity.Activity):
             logging.warning('Not enabling the multiple tabs feature due'
                 ' to a bug in cairo/mozilla')
 
+        self._tray = HTray()
+        self.set_tray(self._tray, gtk.POS_BOTTOM)
+        self._tray.show()
+
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self,
-                self._disable_multiple_tabs)
+                    self._disable_multiple_tabs)
+        self._edit_toolbar = EditToolbar(self)
+        self._view_toolbar = ViewToolbar(self)
+
         self._primary_toolbar.connect('add-link', self._link_add_button_cb)
 
         self._primary_toolbar.connect('add-tab', self._new_tab_cb)
 
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
 
-        self._tray = HTray()
-        self.set_tray(self._tray, gtk.POS_BOTTOM)
-        self._tray.show()
+        if NEW_TOOLBARS:
+            logging.debug('Using new toolbars')
+            
+            self._edit_toolbar_button = ToolbarButton(
+                    page=self._edit_toolbar,
+                    icon_name='toolbar-edit')
+            self._primary_toolbar.toolbar.insert(
+                    self._edit_toolbar_button, 1)
 
-        self._edit_toolbar = EditToolbar(self)
-        self._edit_toolbar_button = ToolbarButton(
-                page=self._edit_toolbar,
-                icon_name='toolbar-edit')
-        self._primary_toolbar.toolbar.insert(
-                self._edit_toolbar_button, 1)
+            view_toolbar_button = ToolbarButton(
+                    page=self._view_toolbar,
+                    icon_name='toolbar-view')
+            self._primary_toolbar.toolbar.insert(
+                    view_toolbar_button, 2)
 
-        self._view_toolbar = ViewToolbar(self)
-        view_toolbar_button = ToolbarButton(
-                page=self._view_toolbar,
-                icon_name='toolbar-view')
-        self._primary_toolbar.toolbar.insert(
-                view_toolbar_button, 2)
+            self._primary_toolbar.show_all()
+            self.set_toolbar_box(self._primary_toolbar)
+        else:
+            _logger.debug('Using old toolbars')
+            
+            toolbox = activity.ActivityToolbox(self)
 
-        self._primary_toolbar.show_all()
-        self.set_toolbar_box(self._primary_toolbar)
+            toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
+            self._edit_toolbar.show()
+    
+            toolbox.add_toolbar(_('Browse'), self._primary_toolbar)
+            self._primary_toolbar.show()
+       
+            toolbox.add_toolbar(_('View'), self._view_toolbar)
+            self._view_toolbar.show()       
+
+            self.set_toolbox(toolbox)
+            toolbox.show()
+            
+            self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
 
         self.set_canvas(self._tabbed_view)
         self._tabbed_view.show()
@@ -494,10 +527,15 @@ class WebActivity(activity.Activity):
                 self._add_link()
             elif key_name == 'f':
                 _logger.debug('keyboard: Find')
-                self._edit_toolbar_button.set_expanded(True)
+                if NEW_TOOLBARS:
+                    self._edit_toolbar_button.set_expanded(True)
+                else:
+                    self.toolbox.set_current_toolbar(_TOOLBAR_EDIT)
                 self._edit_toolbar.search_entry.grab_focus()
             elif key_name == 'l':
                 _logger.debug('keyboard: Focus url entry')
+                if not NEW_TOOLBARS:
+                    self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
                 self._primary_toolbar.entry.grab_focus()
             elif key_name == 'minus':
                 _logger.debug('keyboard: Zoom out')
@@ -634,3 +672,6 @@ class WebActivity(activity.Activity):
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser
         browser.get_source(async_cb, async_err_cb)
+
+    def get_canvas(self):
+        return self._tabbed_view

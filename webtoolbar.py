@@ -27,16 +27,20 @@ from xpcom import components
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
 from sugar._sugarext import AddressEntry
-from sugar.graphics.toolbarbox import ToolbarBox
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
-from sugar.activity import activity
+try:
+    from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
+    from sugar.activity.widgets import ActivityToolbarButton
+    from sugar.activity.widgets import StopButton
+    from sugar.activity import activity
+    NEW_TOOLBARS = True
+except ImportError:
+    from gtk import Toolbar as ToolbarBase
+    NEW_TOOLBARS = False
 
 import filepicker
 import places
 
 _MAX_HISTORY_ENTRIES = 15
-
 
 class WebEntry(AddressEntry):
     _COL_ADDRESS = 0
@@ -218,7 +222,7 @@ class WebEntry(AddressEntry):
             self._search_popup()
 
 
-class PrimaryToolbar(ToolbarBox):
+class PrimaryToolbar(ToolbarBase):
     __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
@@ -234,7 +238,7 @@ class PrimaryToolbar(ToolbarBox):
     }
 
     def __init__(self, tabbed_view, act, disable_multiple_tabs):
-        ToolbarBox.__init__(self)
+        ToolbarBase.__init__(self)
 
         self._activity = act
 
@@ -242,18 +246,22 @@ class PrimaryToolbar(ToolbarBox):
 
         self._loading = False
 
-        activity_button = ActivityToolbarButton(self._activity)
-        self.toolbar.insert(activity_button, 0)
+        if NEW_TOOLBARS:
+            toolbar = self.toolbar
+            activity_button = ActivityToolbarButton(self._activity)
+            toolbar.insert(activity_button, 0)
+        else:
+            toolbar = self
 
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
         self._go_home.connect('clicked', self._go_home_cb)
-        self.toolbar.insert(self._go_home, -1)
+        toolbar.insert(self._go_home, -1)
         self._go_home.show()
 
         self._stop_and_reload = ToolButton('media-playback-stop')
         self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
-        self.toolbar.insert(self._stop_and_reload, -1)
+        toolbar.insert(self._stop_and_reload, -1)
         self._stop_and_reload.show()
 
         self.entry = WebEntry()
@@ -264,21 +272,21 @@ class PrimaryToolbar(ToolbarBox):
         entry_item.add(self.entry)
         self.entry.show()
 
-        self.toolbar.insert(entry_item, -1)
+        toolbar.insert(entry_item, -1)
         entry_item.show()
 
         self._back = ToolButton('go-previous-paired')
         self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
-        self.toolbar.insert(self._back, -1)
+        toolbar.insert(self._back, -1)
         self._back.show()
 
         self._forward = ToolButton('go-next-paired')
         self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
-        self.toolbar.insert(self._forward, -1)
+        toolbar.insert(self._forward, -1)
         self._forward.show()
 
         if not disable_multiple_tabs:
@@ -286,17 +294,18 @@ class PrimaryToolbar(ToolbarBox):
             self._add_tab.set_tooltip(_('Add a tab'))
             self._add_tab.props.sensitive = True
             self._add_tab.connect('clicked', self._add_tab_cb)
-            self.toolbar.insert(self._add_tab, -1)
+            toolbar.insert(self._add_tab, -1)
             self._add_tab.show()
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
         self._link_add.connect('clicked', self._link_add_clicked_cb)
-        self.toolbar.insert(self._link_add, -1)
+        toolbar.insert(self._link_add, -1)
         self._link_add.show()
 
-        stop_button = StopButton(self._activity)
-        self.toolbar.insert(stop_button, -1)
+        if NEW_TOOLBARS:
+            stop_button = StopButton(self._activity)
+            toolbar.insert(stop_button, -1)
 
         self._progress_listener = None
         self._history = None
@@ -376,7 +385,7 @@ class PrimaryToolbar(ToolbarBox):
         self.entry.props.progress = progress
 
     def _set_address(self, uri):
-        if uri is not None:
+        if uri and self._browser is not None:
             ui_uri = self._browser.get_url_from_nsiuri(uri)
         else:
             ui_uri = None
