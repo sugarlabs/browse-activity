@@ -40,7 +40,9 @@ except ImportError:
 import filepicker
 import places
 
+
 _MAX_HISTORY_ENTRIES = 15
+
 
 class WebEntry(AddressEntry):
     _COL_ADDRESS = 0
