@@ -156,8 +156,7 @@ def _set_char_preference(name, value):
 
 
 def _set_accept_languages():
-    ''' Set intl.accept_languages based on the locale
-    '''
+    """Set intl.accept_languages preference based on the locale"""
 
     lang = locale.getdefaultlocale()[0]
     if not lang:
