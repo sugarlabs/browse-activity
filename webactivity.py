@@ -236,7 +236,7 @@ class WebActivity(activity.Activity):
 
         if NEW_TOOLBARS:
             logging.debug('Using new toolbars')
-            
+
             self._edit_toolbar_button = ToolbarButton(
                     page=self._edit_toolbar,
                     icon_name='toolbar-edit')
@@ -253,21 +253,21 @@ class WebActivity(activity.Activity):
             self.set_toolbar_box(self._primary_toolbar)
         else:
             _logger.debug('Using old toolbars')
-            
+
             toolbox = activity.ActivityToolbox(self)
 
             toolbox.add_toolbar(_('Edit'), self._edit_toolbar)
             self._edit_toolbar.show()
-    
+
             toolbox.add_toolbar(_('Browse'), self._primary_toolbar)
             self._primary_toolbar.show()
-       
+
             toolbox.add_toolbar(_('View'), self._view_toolbar)
-            self._view_toolbar.show()       
+            self._view_toolbar.show()
 
             self.set_toolbox(toolbox)
             toolbox.show()
-            
+
             self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
 
         self.set_canvas(self._tabbed_view)
