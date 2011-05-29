@@ -44,18 +44,24 @@ from progresslistener import ProgressListener
 _ZOOM_AMOUNT = 0.1
 
 
-class GetSourceListener(object):
+class SaveListener(object):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
-    def __init__(self, file_path, async_cb, async_err_cb):
-        self._file_path = file_path
-        self._async_cb = async_cb
-        self._async_err_cb = async_err_cb
+    def __init__(self, user_data, callback):
+        self._user_data = user_data
+        self._callback = callback
 
     def onStateChange(self, webProgress, request, stateFlags, status):
-        if (stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and
-            stateFlags & interfaces.nsIWebProgressListener.STATE_STOP):
-            self._async_cb(self._file_path)
+        listener_class = interfaces.nsIWebProgressListener
+        if (stateFlags & listener_class.STATE_IS_REQUEST and
+            stateFlags & listener_class.STATE_STOP):
+            self._callback(self._user_data)
+
+        # Contrary to the documentation, STATE_IS_REQUEST is _not_ always set
+        # if STATE_IS_DOCUMENT is set.
+        if (stateFlags & listener_class.STATE_IS_DOCUMENT and
+            stateFlags & listener_class.STATE_STOP):
+            self._callback(self._user_data)
 
     def onProgressChange(self, progress, request, curSelfProgress,
                          maxSelfProgress, curTotalProgress, maxTotalProgress):
@@ -328,7 +334,7 @@ class Browser(WebView):
         local_file = cls.createInstance(interfaces.nsILocalFile)
         local_file.initWithPath(file_path)
 
-        progresslistener = GetSourceListener(file_path, async_cb, async_err_cb)
+        progresslistener = SaveListener(file_path, async_cb)
         persist.progressListener = xpcom.server.WrapObject(
             progresslistener, interfaces.nsIWebProgressListener)
 
