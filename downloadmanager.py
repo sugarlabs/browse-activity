@@ -64,6 +64,10 @@ def can_quit():
     return len(_active_downloads) == 0
 
 
+def num_downloads():
+    return len(_active_downloads)
+
+
 def remove_all_downloads():
     for download in _active_downloads:
         download.cancelable.cancel(NS_ERROR_FAILURE)

@@ -18,6 +18,7 @@
 
 import logging
 from gettext import gettext as _
+from gettext import ngettext
 import os
 import subprocess
 
@@ -650,10 +651,17 @@ class WebActivity(activity.Activity):
             return True
         else:
             alert = Alert()
-            alert.props.title = _('Download in progress')
-            alert.props.msg = _('Stopping now will cancel your download')
+            alert.props.title = ngettext('Download in progress',
+                                         'Downloads in progress',
+                                         downloadmanager.num_downloads())
+            message = ngettext('Stopping now will erase your download',
+                               'Stopping now will erase your downloads',
+                               downloadmanager.num_downloads())
+            alert.props.msg = message
             cancel_icon = Icon(icon_name='dialog-cancel')
-            alert.add_button(gtk.RESPONSE_CANCEL, _('Cancel'), cancel_icon)
+            cancel_label = ngettext('Continue download', 'Continue downloads',
+                                    downloadmanager.num_downloads())
+            alert.add_button(gtk.RESPONSE_CANCEL, cancel_label, cancel_icon)
             stop_icon = Icon(icon_name='dialog-ok')
             alert.add_button(gtk.RESPONSE_OK, _('Stop'), stop_icon)
             stop_icon.show()
