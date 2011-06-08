@@ -355,6 +355,7 @@ class PrimaryToolbar(ToolbarBase):
         self._history = browser.history
         self._session_history_changed_hid = self._history.connect(
                 'session-history-changed', self._session_history_changed_cb)
+        self._reload_session_history()
 
         if self._browser is not None:
             self._browser.disconnect(self._title_changed_hid)
