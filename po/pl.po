@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-05-27 00:31-0400\n"
 "PO-Revision-Date: 2010-03-22 22:36+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.0.3\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:262
 msgid "Browse"
 msgstr "Przeglądaj"
 
@@ -34,24 +34,25 @@ msgstr "Przeglądaj"
 msgid "Download started"
 msgstr "Pobieranie rozpoczęte"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:175
 msgid "Download completed"
 msgstr "Pobieranie zakończone"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:179
 msgid "Show in Journal"
 msgstr "Pokaż w dzienniku"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:182
 msgid "Ok"
 msgstr "Ok"
 
+#: downloadmanager.py:189
 #: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "Z: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:331
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -72,25 +73,30 @@ msgstr "Następny"
 msgid "Remove"
 msgstr "Usuń"
 
+#: palettes.py:143
 #: palettes.py:142
 msgid "Keep link"
-msgstr ""
+msgstr "Zatrzymaj odnośnik"
 
+#: palettes.py:151
 #: palettes.py:150
 msgid "Copy link"
-msgstr ""
+msgstr "Kopiuj odnośnik"
 
+#: palettes.py:159
 #: palettes.py:158
 msgid "Follow link"
-msgstr ""
+msgstr "Idź za odnośnikiem"
 
+#: palettes.py:209
 #: palettes.py:208
 msgid "Keep image"
-msgstr ""
+msgstr "Zatrzymaj obrazek"
 
+#: palettes.py:217
 #: palettes.py:216
 msgid "Copy image"
-msgstr ""
+msgstr "Kopiuj obrazek"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -112,43 +118,51 @@ msgstr "Pokaż zasobnik"
 msgid "Hide Tray"
 msgstr "Ukryj zasobnik"
 
-#: webactivity.py:598
+#~ msgid "Edit"
+#~ msgstr ""
+
+#~ msgid "View"
+#~ msgstr "Widok"
+
+#: webactivity.py:649
 msgid "Download in progress"
 msgstr "Pobieranie w trakcie"
 
-#: webactivity.py:599
+#: webactivity.py:650
 msgid "Stopping now will cancel your download"
 msgstr "Zatrzymanie spowoduje przerwanie pobierania."
 
-#: webactivity.py:601
+#: webactivity.py:652
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:654 webtoolbar.py:447
 msgid "Stop"
 msgstr "Zatrzymaj"
 
+#: webtoolbar.py:257
 #: webtoolbar.py:247
 msgid "Home page"
-msgstr ""
+msgstr "Strona domowa"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:279
 msgid "Back"
 msgstr "Wstecz"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:286
 msgid "Forward"
 msgstr "Dalej"
 
+#: webtoolbar.py:294
 #: webtoolbar.py:284
 msgid "Add a tab"
-msgstr ""
+msgstr "Dodaj zakładkę"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:301
 msgid "Bookmark"
 msgstr "Zakładka"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:450
 msgid "Reload"
 msgstr "Odśwież"
 
@@ -159,9 +173,6 @@ msgstr "Odśwież"
 #, python-format
 #~ msgid "File %s from %s."
 #~ msgstr "Plik %s z %s."
-
-#~ msgid "View"
-#~ msgstr "Widok"
 
 #~ msgid "blank"
 #~ msgstr "Pusty"
