@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-27 00:31-0400\n"
-"PO-Revision-Date: 2010-03-22 22:36+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2011-06-11 11:11+0200\n"
+"Last-Translator:  <jamarat@o2.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2 webactivity.py:262
 msgid "Browse"
@@ -47,7 +47,6 @@ msgid "Ok"
 msgstr "Ok"
 
 #: downloadmanager.py:189
-#: downloadmanager.py:187
 #, python-format
 msgid "From: %s"
 msgstr "Z: %s"
@@ -74,27 +73,22 @@ msgid "Remove"
 msgstr "Usuń"
 
 #: palettes.py:143
-#: palettes.py:142
 msgid "Keep link"
 msgstr "Zatrzymaj odnośnik"
 
 #: palettes.py:151
-#: palettes.py:150
 msgid "Copy link"
 msgstr "Kopiuj odnośnik"
 
 #: palettes.py:159
-#: palettes.py:158
 msgid "Follow link"
 msgstr "Idź za odnośnikiem"
 
 #: palettes.py:209
-#: palettes.py:208
 msgid "Keep image"
 msgstr "Zatrzymaj obrazek"
 
 #: palettes.py:217
-#: palettes.py:216
 msgid "Copy image"
 msgstr "Kopiuj obrazek"
 
@@ -118,11 +112,13 @@ msgstr "Pokaż zasobnik"
 msgid "Hide Tray"
 msgstr "Ukryj zasobnik"
 
-#~ msgid "Edit"
-#~ msgstr ""
+#: webactivity.py:259
+msgid "Edit"
+msgstr "Edytuj"
 
-#~ msgid "View"
-#~ msgstr "Widok"
+#: webactivity.py:265
+msgid "View"
+msgstr "Widok"
 
 #: webactivity.py:649
 msgid "Download in progress"
@@ -141,7 +137,6 @@ msgid "Stop"
 msgstr "Zatrzymaj"
 
 #: webtoolbar.py:257
-#: webtoolbar.py:247
 msgid "Home page"
 msgstr "Strona domowa"
 
@@ -154,7 +149,6 @@ msgid "Forward"
 msgstr "Dalej"
 
 #: webtoolbar.py:294
-#: webtoolbar.py:284
 msgid "Add a tab"
 msgstr "Dodaj zakładkę"
 
