@@ -56,7 +56,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-05-27 00:31-0400\n"
 "PO-Revision-Date: 2011-05-03 00:27+0200\n"
 "Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
@@ -68,7 +68,7 @@ msgstr ""
 "X-Generator: Pootle 2.0.1\n"
 "X-Poedit-Language: German\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:262
 msgid "Browse"
 msgstr "Browser"
 
@@ -76,24 +76,24 @@ msgstr "Browser"
 msgid "Download started"
 msgstr "Herunterladen gestartet"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:175
 msgid "Download completed"
 msgstr "Herunterladen abgeschlossen"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:179
 msgid "Show in Journal"
 msgstr "Im Tagebuch anzeigen"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:182
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:189
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:331
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -114,23 +114,23 @@ msgstr "Nächstes"
 msgid "Remove"
 msgstr "Entfernen"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "Link speichern"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "Link kopieren"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "Link folgen"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "Bild speichern"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "Bild kopieren"
 
@@ -154,43 +154,51 @@ msgstr "Ablage anzeigen"
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:598
+#: webactivity.py:259
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: webactivity.py:265
+msgid "View"
+msgstr "Ansicht"
+
+#: webactivity.py:649
 msgid "Download in progress"
 msgstr "Herunterladen erfolgt gerade"
 
-#: webactivity.py:599
+#: webactivity.py:650
 msgid "Stopping now will cancel your download"
 msgstr "Jetzt anhalten wird das Herunterladen abbrechen"
 
-#: webactivity.py:601
+#: webactivity.py:652
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:654 webtoolbar.py:447
 msgid "Stop"
 msgstr "Anhalten"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:257
 msgid "Home page"
 msgstr "Startseite"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:279
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:286
 msgid "Forward"
 msgstr "Vor"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:294
 msgid "Add a tab"
 msgstr "Reiter hinzufügen"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:301
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:450
 msgid "Reload"
 msgstr "Neu laden"
 
@@ -210,12 +218,6 @@ msgstr "Neu laden"
 
 #~ msgid "Download image"
 #~ msgstr "Bild herunterladen"
-
-#~ msgid "Edit"
-#~ msgstr "Bearbeiten"
-
-#~ msgid "View"
-#~ msgstr "Ansicht"
 
 #~ msgid "blank"
 #~ msgstr "leer"
