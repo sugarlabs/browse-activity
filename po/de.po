@@ -56,8 +56,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 00:31-0400\n"
-"PO-Revision-Date: 2011-05-03 00:27+0200\n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
+"PO-Revision-Date: 2011-06-14 11:05+0200\n"
 "Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "Language: de\n"
@@ -68,32 +68,32 @@ msgstr ""
 "X-Generator: Pootle 2.0.1\n"
 "X-Poedit-Language: German\n"
 
-#: activity/activity.info:2 webactivity.py:262
+#: activity/activity.info:2 webactivity.py:267
 msgid "Browse"
 msgstr "Browser"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:164
 msgid "Download started"
 msgstr "Herunterladen gestartet"
 
-#: downloadmanager.py:175
+#: downloadmanager.py:179
 msgid "Download completed"
 msgstr "Herunterladen abgeschlossen"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:183
 msgid "Show in Journal"
 msgstr "Im Tagebuch anzeigen"
 
-#: downloadmanager.py:182
+#: downloadmanager.py:186
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:189
+#: downloadmanager.py:193
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:331
+#: downloadmanager.py:335
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -154,53 +154,62 @@ msgstr "Ablage anzeigen"
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:259
+#: webactivity.py:264
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: webactivity.py:265
+#: webactivity.py:270
 msgid "View"
 msgstr "Ansicht"
 
-#: webactivity.py:649
+#: webactivity.py:654
 msgid "Download in progress"
-msgstr "Herunterladen erfolgt gerade"
+msgid_plural "Downloads in progress"
+msgstr[0] "Datei wird heruntergeladen"
+msgstr[1] "Dateien werden heruntergeladen"
 
-#: webactivity.py:650
-msgid "Stopping now will cancel your download"
-msgstr "Jetzt anhalten wird das Herunterladen abbrechen"
+#: webactivity.py:657
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Jetzt anhalten wird das Herunterladen einer Datei abbrechen"
+msgstr[1] "Jetzt anhalten wird das Herunterladen mehrerer Dateien abbrechen"
 
-#: webactivity.py:652
-msgid "Cancel"
-msgstr "Abbrechen"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Herunterladen der Datei fortsetzen"
+msgstr[1] "Herunterladen der Dateien fortsetzen"
 
-#: webactivity.py:654 webtoolbar.py:447
+#: webactivity.py:666 webtoolbar.py:449
 msgid "Stop"
 msgstr "Anhalten"
 
-#: webtoolbar.py:257
+#: webtoolbar.py:259
 msgid "Home page"
 msgstr "Startseite"
 
-#: webtoolbar.py:279
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:286
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "Vor"
 
-#: webtoolbar.py:294
+#: webtoolbar.py:296
 msgid "Add a tab"
 msgstr "Reiter hinzufügen"
 
-#: webtoolbar.py:301
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: webtoolbar.py:450
+#: webtoolbar.py:452
 msgid "Reload"
 msgstr "Neu laden"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
 
 #, python-format
 #~ msgid "%s"
