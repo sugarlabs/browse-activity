@@ -357,12 +357,6 @@ class Browser(WebView):
                     interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
 
-    def get_history_index(self):
-        return self.web_navigation.sessionHistory.index
-
-    def set_history_index(self, index):
-        self.web_navigation.gotoIndex(index)
-
 
 class PopupDialog(gtk.Window):
     def __init__(self):
