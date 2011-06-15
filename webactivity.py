@@ -219,7 +219,8 @@ class WebActivity(activity.Activity):
         # if we come across cairo versions >= 1.08.10
         # More information can be found here:
         # http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
-        self._disable_multiple_tabs = cairo.cairo_version() >= 10810
+        self._disable_multiple_tabs = cairo.cairo_version() >= 10810 \
+             and cairo.cairo_version() < 11002
         if self._disable_multiple_tabs:
             logging.warning('Not enabling the multiple tabs feature due'
                 ' to a bug in cairo/mozilla')
@@ -459,6 +460,12 @@ class WebActivity(activity.Activity):
                                       link['owner'], -1, link['hash'])
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_session(self.model.data['history'])
+            tab_number = 0
+            for current in self.model.data['currents']:
+                browser = self._tabbed_view.get_nth_page(tab_number)
+                browser.set_history_index(current['index'])
+                tab_number = tab_number + 1
+
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
             data = self._get_data_from_file_path(file_path)
@@ -470,19 +477,6 @@ class WebActivity(activity.Activity):
                               'list of multiple uris by now.')
         else:
             self._tabbed_view.props.current_browser.load_uri(file_path)
-        self._load_urls()
-
-    def _load_urls(self):
-        if self.model.data['currents'] != None:
-            first = True
-            for current_tab in self.model.data['currents']:
-                if first:
-                    browser = self._tabbed_view.current_browser
-                    first = False
-                else:
-                    browser = Browser()
-                    self._tabbed_view._append_tab(browser)
-                browser.load_uri(current_tab['url'])
 
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
@@ -506,7 +500,10 @@ class WebActivity(activity.Activity):
                 if n_browser != None:
                     nsiuri = browser.progress.location
                     ui_uri = browser.get_url_from_nsiuri(nsiuri)
-                    info = {'title': browser.props.title, 'url': ui_uri}
+                    index = browser.get_history_index()
+                    info = {'title': browser.props.title, 'url': ui_uri,
+                            'index': index}
+
                     self.model.data['currents'].append(info)
 
             f = open(file_path, 'w')
