@@ -287,7 +287,6 @@ class Browser(WebView):
 
     def do_setup(self):
         WebView.do_setup(self)
-
         listener = xpcom.server.WrapObject(ContentInvoker(self),
                                            interfaces.nsIDOMEventListener)
         self.window_root.addEventListener('click', listener, False)
@@ -356,6 +355,12 @@ class Browser(WebView):
             markupDocumentViewer = contentViewer.queryInterface( \
                     interfaces.nsIMarkupDocumentViewer)
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
+
+    def get_history_index(self):
+        return self.web_navigation.sessionHistory.index
+
+    def set_history_index(self, index):
+        self.web_navigation.gotoIndex(index)
 
 
 class PopupDialog(gtk.Window):

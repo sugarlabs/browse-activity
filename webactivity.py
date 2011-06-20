@@ -459,6 +459,10 @@ class WebActivity(activity.Activity):
                                       link['owner'], -1, link['hash'])
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_session(self.model.data['history'])
+            for number, tab in enumerate(self.model.data['currents']):
+                browser = self._tabbed_view.get_nth_page(number)
+                browser.set_history_index(tab['history_index'])
+
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
             data = self._get_data_from_file_path(file_path)
@@ -470,19 +474,6 @@ class WebActivity(activity.Activity):
                               'list of multiple uris by now.')
         else:
             self._tabbed_view.props.current_browser.load_uri(file_path)
-        self._load_urls()
-
-    def _load_urls(self):
-        if self.model.data['currents'] != None:
-            first = True
-            for current_tab in self.model.data['currents']:
-                if first:
-                    browser = self._tabbed_view.current_browser
-                    first = False
-                else:
-                    browser = Browser()
-                    self._tabbed_view._append_tab(browser)
-                browser.load_uri(current_tab['url'])
 
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
@@ -504,9 +495,12 @@ class WebActivity(activity.Activity):
             for n in range(0, self._tabbed_view.get_n_pages()):
                 n_browser = self._tabbed_view.get_nth_page(n)
                 if n_browser != None:
-                    nsiuri = browser.progress.location
-                    ui_uri = browser.get_url_from_nsiuri(nsiuri)
-                    info = {'title': browser.props.title, 'url': ui_uri}
+                    nsiuri = n_browser.progress.location
+                    ui_uri = n_browser.get_url_from_nsiuri(nsiuri)
+                    history_index = n_browser.get_history_index()
+                    info = {'title': n_browser.props.title, 'url': ui_uri,
+                            'history_index': history_index}
+
                     self.model.data['currents'].append(info)
 
             f = open(file_path, 'w')
