@@ -212,6 +212,10 @@ class WebActivity(activity.Activity):
         branch = pref_service.getBranch("mozilla.widget.")
         branch.setBoolPref("disable-native-theme", True)
 
+        # Start password manager
+        cls = components.classes["@mozilla.org/login-manager;1"]
+        login_manager = cls.getService(components.interfaces.nsILoginManager)
+
         # HACK
         # Currently, the multiple tabs feature crashes the Browse activity
         # on cairo versions 1.8.10 or later. The exact cause for this
