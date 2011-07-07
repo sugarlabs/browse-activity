@@ -220,7 +220,7 @@ class WebActivity(activity.Activity):
         # Currently, the multiple tabs feature crashes the Browse activity
         # on cairo versions 1.8.10 or later. The exact cause for this
         # isn't exactly known. Thus, disable the multiple tabs feature
-        # if we come across cairo versions >= 1.08.10
+        # if we come across cairo versions >= 1.08.10 and < 11000
         # More information can be found here:
         # http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
         self._disable_multiple_tabs = cairo.cairo_version() >= 10810\
