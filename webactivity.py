@@ -200,6 +200,8 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
+        downloadmanager.remove_old_parts()
+        
         self._force_close = False
         self._tabbed_view = TabbedView()
 

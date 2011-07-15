@@ -56,6 +56,8 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _MIN_TIME_UPDATE = 5        # In seconds
 _MIN_PERCENT_UPDATE = 10
 
+_MAX_DELTA_CACHE_TIME = 86400 # In seconds
+
 _active_downloads = []
 _dest_to_window = {}
 
@@ -75,6 +77,15 @@ def remove_all_downloads():
             datastore.delete(download.dl_jobject.object_id)
         download.cleanup()
 
+def remove_old_parts():
+    temp_path = os.path.join(activity.get_activity_root(), 'instance')
+    if os.path.exists(temp_path):
+        for file in os.listdir(temp_path):
+            file_full_path = os.path.join(temp_path, file)
+            modification_time = os.path.getmtime(file_full_path)
+            if(time.time() - modification_time > _MAX_DELTA_CACHE_TIME):
+                logging.debug('removing %s' % file_full_path)
+                os.remove(file_full_path)
 
 class HelperAppLauncherDialog:
     _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
