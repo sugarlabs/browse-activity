@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-08 11:21-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: activity/activity.info:2 webactivity.py:274
+msgid "Browse"
+msgstr ""
+
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
+
+#: webactivity.py:271
+msgid "Edit"
+msgstr ""
+
+#: webactivity.py:277
+msgid "View"
+msgstr ""
+
+#: webactivity.py:655
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] ""
+msgstr[1] ""
+
+#: webactivity.py:658
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#: webactivity.py:663
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#: webactivity.py:667 webtoolbar.py:450
+msgid "Stop"
+msgstr ""
+
+#: webtoolbar.py:259
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:281
+msgid "Back"
+msgstr ""
+
+#: webtoolbar.py:288
+msgid "Forward"
+msgstr ""
+
+#: webtoolbar.py:296
+msgid "Add a tab"
+msgstr ""
+
+#: webtoolbar.py:303
+msgid "Bookmark"
+msgstr ""
+
+#: webtoolbar.py:453
+msgid "Reload"
+msgstr ""
+
+#: palettes.py:143
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:151
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:159
+msgid "Follow link"
+msgstr ""
+
+#: palettes.py:209
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:217
+msgid "Copy image"
+msgstr ""
+
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:99
+msgid "Next"
+msgstr ""
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr ""
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr ""
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:89
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:93
+msgid "Hide Tray"
+msgstr ""
+
+#: downloadmanager.py:175
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:190
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:194
+msgid "Show in Journal"
+msgstr ""
+
+#: downloadmanager.py:197
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:204
+#, python-format
+msgid "From: %s"
+msgstr ""
+
+#: downloadmanager.py:346
+msgid ""
+"Downloading %2$s from \n"
+"%1$s."
+msgstr ""
