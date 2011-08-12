@@ -26,7 +26,6 @@ from xpcom import components
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
-from sugar._sugarext import AddressEntry
 try:
     from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
     from sugar.activity.widgets import ActivityToolbarButton
@@ -44,7 +43,7 @@ import places
 _MAX_HISTORY_ENTRIES = 15
 
 
-class WebEntry(AddressEntry):
+class WebEntry(gtk.Entry):
     _COL_ADDRESS = 0
     _COL_TITLE = 1
 
@@ -385,7 +384,10 @@ class PrimaryToolbar(ToolbarBase):
         self._set_progress(progress_listener.progress)
 
     def _set_progress(self, progress):
-        self.entry.props.progress = progress
+        if progress == 1.0:
+            self.entry.set_progress_fraction(0.0)
+        else:
+            self.entry.set_progress_fraction(progress)
 
     def _set_address(self, uri):
         if uri and self._browser is not None:
