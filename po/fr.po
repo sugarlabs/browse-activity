@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2010-12-12 10:54+0200\n"
+"POT-Creation-Date: 2011-08-09 00:31-0400\n"
+"PO-Revision-Date: 2011-08-16 18:41+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -23,41 +23,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:274
 msgid "Browse"
 msgstr "Naviguer"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:175
 msgid "Download started"
 msgstr "Téléchargement amorcé"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:190
 msgid "Download completed"
 msgstr "Téléchargement terminé"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:194
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:197
 msgid "Ok"
 msgstr "Accepter"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:204
 #, python-format
 msgid "From: %s"
 msgstr "De : %s"
 
-#: downloadmanager.py:316
-#, python-format
+#: downloadmanager.py:346
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %2$s from \n"
+"%1$s."
 msgstr ""
-"Téléchargement de %s depuis \n"
-"%s."
+"Téléchargement de %2$s depuis \n"
+"%1$s."
 
 #: edittoolbar.py:92
 msgid "Previous"
@@ -71,23 +70,23 @@ msgstr "Suivant"
 msgid "Remove"
 msgstr "Retirer"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "Conserver le lien"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "Copier le lien"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "Suivre le lien"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "Conserver l'image"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "Copier l'image"
 
@@ -111,45 +110,62 @@ msgstr "Afficher la barre"
 msgid "Hide Tray"
 msgstr "Masquer la barre"
 
-#: webactivity.py:598
+#: webactivity.py:271
+msgid "Edit"
+msgstr "Éditer"
+
+#: webactivity.py:277
+msgid "View"
+msgstr "Afficher"
+
+#: webactivity.py:655
 msgid "Download in progress"
-msgstr "Téléchargement en cours"
+msgid_plural "Downloads in progress"
+msgstr[0] "Téléchargement en cours"
+msgstr[1] "Téléchargements en cours"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Si vous arrêtez maintenant, votre téléchargement sera annulé"
+#: webactivity.py:658
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Si vous arrêtez maintenant, votre téléchargement sera annulé"
+msgstr[1] "Si vous arrêtez maintenant, vos téléchargements seront annulés"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Annuler"
+#: webactivity.py:663
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Continuer le téléchargement"
+msgstr[1] "Continuer les téléchargements"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:667 webtoolbar.py:450
 msgid "Stop"
 msgstr "Arrêter"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:259
 msgid "Home page"
 msgstr "Page d'accueil"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "Précédent"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "Suivant"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:296
 msgid "Add a tab"
 msgstr "Ajouter un onglet"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "Signet"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:453
 msgid "Reload"
 msgstr "Recharger"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
 
 #, python-format
 #~ msgid "%s"
@@ -167,12 +183,6 @@ msgstr "Recharger"
 
 #~ msgid "Download image"
 #~ msgstr "Télécharger l'image"
-
-#~ msgid "Edit"
-#~ msgstr "Éditer"
-
-#~ msgid "View"
-#~ msgstr "Afficher"
 
 #~ msgid "blank"
 #~ msgstr "vide"
