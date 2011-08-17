@@ -56,7 +56,7 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _MIN_TIME_UPDATE = 5        # In seconds
 _MIN_PERCENT_UPDATE = 10
 
-_MAX_DELTA_CACHE_TIME = 86400 # In seconds
+_MAX_DELTA_CACHE_TIME = 86400  # In seconds
 
 _active_downloads = []
 _dest_to_window = {}
