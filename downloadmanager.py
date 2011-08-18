@@ -56,7 +56,7 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _MIN_TIME_UPDATE = 5        # In seconds
 _MIN_PERCENT_UPDATE = 10
 
-_MAX_DELTA_CACHE_TIME = 86400 # In seconds
+_MAX_DELTA_CACHE_TIME = 86400  # In seconds
 
 _active_downloads = []
 _dest_to_window = {}
@@ -343,7 +343,7 @@ class Download:
 
     def _create_journal_object(self):
         self.dl_jobject = datastore.create()
-        self.dl_jobject.metadata['title'] = _('Downloading %2$s from \n%1$s.') % \
+        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
                 (self._get_file_name(), self._source.spec)
 
         self.dl_jobject.metadata['progress'] = '0'
