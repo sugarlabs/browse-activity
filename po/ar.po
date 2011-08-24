@@ -1,9 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # translation of web-activity.po to Arabic
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# Khaled Hosny <khaledhosny@eglug.org>, 2007, 2011.
 # Ahmed Mansour <atphalix@users.arabeyes.org>, 2008.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -11,51 +10,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2009-08-28 15:33-0400\n"
+"POT-Creation-Date: 2011-08-09 00:31-0400\n"
+"PO-Revision-Date: 2011-08-24 08:27+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <en@li.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
-"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 1.2.1\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.0\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:274
 msgid "Browse"
 msgstr "تصفّح"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:175
 msgid "Download started"
 msgstr "بدأ التنزيل"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:190
 msgid "Download completed"
 msgstr "اكتمل التنزيل"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:194
 msgid "Show in Journal"
 msgstr "اعرض في اليوميات"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:197
 msgid "Ok"
 msgstr "حسنا"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:204
 #, python-format
 msgid "From: %s"
 msgstr "من: %s"
 
-#: downloadmanager.py:316
-#, python-format
+#: downloadmanager.py:346
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %2$s from \n"
+"%1$s."
 msgstr ""
-"يُنزِّل %s من\n"
-"%s."
+"يُنزِّل %2$s من \n"
+"%1$s."
 
 #: edittoolbar.py:92
 msgid "Previous"
@@ -69,23 +67,23 @@ msgstr "التالي"
 msgid "Remove"
 msgstr "أزِل"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "احفظ الوصلة"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "انسخ الوصلة"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "اتبع الوصلة"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "احفظ الصورة"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "انسخ الصورة"
 
@@ -109,45 +107,74 @@ msgstr "أظهر الطبق"
 msgid "Hide Tray"
 msgstr "اخفِ الطبق"
 
-#: webactivity.py:598
+#: webactivity.py:271
+msgid "Edit"
+msgstr "تحرير"
+
+#: webactivity.py:277
+msgid "View"
+msgstr "عرض"
+
+#: webactivity.py:655
 msgid "Download in progress"
-msgstr "يجري التزيل"
+msgid_plural "Downloads in progress"
+msgstr[0] "يجري التنزيل"
+msgstr[1] "يجري التنزيل"
+msgstr[2] "يجري التنزيل"
+msgstr[3] "يجري التنزيل"
+msgstr[4] "يجري التنزيل"
+msgstr[5] "يجري التنزيل"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "التوقف الآن سيلغي تنزيلك"
+#: webactivity.py:658
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "التوقف الآن سيلغي تنزيلك"
+msgstr[1] "التوقف الآن سيلغي تنزيلك"
+msgstr[2] "التوقف الآن سيلغي تنزيلاتك"
+msgstr[3] "التوقف الآن سيلغي تنزيلاتك"
+msgstr[4] "التوقف الآن سيلغي تنزيلاتك"
+msgstr[5] "التوقف الآن سيلغي تنزيلاتك"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "ألغِ"
+#: webactivity.py:663
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "أكمِل التنزيل"
+msgstr[1] "أكمِل التنزيل"
+msgstr[2] "أكمِل التنزيلات"
+msgstr[3] "أكمِل التنزيلات"
+msgstr[4] "أكمِل التنزيلات"
+msgstr[5] "أكمِل التنزيلات"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:667 webtoolbar.py:450
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:259
 msgid "Home page"
-msgstr ""
+msgstr "الصفحة الرئيسية"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:296
 msgid "Add a tab"
-msgstr ""
+msgstr "أضِف لسانا"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "علِّم"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:453
 msgid "Reload"
 msgstr "أعد التحميل"
+
+#~ msgid "Cancel"
+#~ msgstr "ألغِ"
 
 #, python-format
 #~ msgid "%s"
@@ -165,12 +192,6 @@ msgstr "أعد التحميل"
 
 #~ msgid "Download image"
 #~ msgstr "تحميل الصورة"
-
-#~ msgid "Edit"
-#~ msgstr "تحرير"
-
-#~ msgid "View"
-#~ msgstr "عرض"
 
 #~ msgid "blank"
 #~ msgstr "فارغ"
