@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 00:32-0400\n"
-"PO-Revision-Date: 2011-06-15 17:24+0200\n"
-"Last-Translator: Aputsiaq <aj@isit.gl>\n"
+"POT-Creation-Date: 2011-08-09 00:31-0400\n"
+"PO-Revision-Date: 2011-08-16 01:57+0200\n"
+"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -25,39 +25,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:267
+#: activity/activity.info:2 webactivity.py:274
 msgid "Browse"
 msgstr "Bladr"
 
-#: downloadmanager.py:164
+#: downloadmanager.py:175
 msgid "Download started"
 msgstr "Nedlastning startet"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:190
 msgid "Download completed"
 msgstr "Nedlastning færdig"
 
-#: downloadmanager.py:183
+#: downloadmanager.py:194
 msgid "Show in Journal"
 msgstr "Vis i logbog"
 
-#: downloadmanager.py:186
+#: downloadmanager.py:197
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:193
+#: downloadmanager.py:204
 #, python-format
 msgid "From: %s"
 msgstr "Fra: %s"
 
-#: downloadmanager.py:335
-#, python-format
+#: downloadmanager.py:346
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %2$s from \n"
+"%1$s."
 msgstr ""
-"Henter %s fra \n"
-"%s."
+"Henter %2$s fra \n"
+"%1$s."
 
 #: edittoolbar.py:92
 msgid "Previous"
@@ -111,33 +110,33 @@ msgstr "Vis skuffe"
 msgid "Hide Tray"
 msgstr "Skjul skuffe"
 
-#: webactivity.py:264
+#: webactivity.py:271
 msgid "Edit"
 msgstr "Redigér"
 
-#: webactivity.py:270
+#: webactivity.py:277
 msgid "View"
 msgstr "Vis"
 
-#: webactivity.py:654
+#: webactivity.py:655
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Overførsel i gang"
 msgstr[1] "Overførsler i gang"
 
-#: webactivity.py:657
+#: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Stopper du nu vil du slette overførslen"
 msgstr[1] "Stopper du nu vil du slette overførslerne"
 
-#: webactivity.py:662
+#: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Fortsæt overførsel"
 msgstr[1] "Fortsæt overførsler"
 
-#: webactivity.py:666 webtoolbar.py:449
+#: webactivity.py:667 webtoolbar.py:450
 msgid "Stop"
 msgstr "Stop"
 
@@ -161,7 +160,7 @@ msgstr "Tilføj en fane"
 msgid "Bookmark"
 msgstr "Bogmærke"
 
-#: webtoolbar.py:452
+#: webtoolbar.py:453
 msgid "Reload"
 msgstr "Genindlæs"
 
