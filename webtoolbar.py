@@ -26,6 +26,7 @@ from xpcom import components
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
+from sugar.graphics.iconentry import IconEntry
 try:
     from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
     from sugar.activity.widgets import ActivityToolbarButton
@@ -43,7 +44,7 @@ import places
 _MAX_HISTORY_ENTRIES = 15
 
 
-class WebEntry(gtk.Entry):
+class WebEntry(IconEntry):
     _COL_ADDRESS = 0
     _COL_TITLE = 1
 
@@ -260,12 +261,10 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(self._go_home, -1)
         self._go_home.show()
 
-        self._stop_and_reload = ToolButton('media-playback-stop')
-        self._stop_and_reload.connect('clicked', self._stop_and_reload_cb)
-        toolbar.insert(self._stop_and_reload, -1)
-        self._stop_and_reload.show()
-
         self.entry = WebEntry()
+        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+                                      'browse-dialog-cancel')
+        self.entry.connect('icon-press', self._stop_and_reload_cb)
         self.entry.connect('activate', self._entry_activate_cb)
 
         entry_item = gtk.ToolItem()
@@ -400,10 +399,12 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.props.title = title
 
     def _show_stop_icon(self):
-        self._stop_and_reload.set_icon('media-playback-stop')
+        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+                                      'browse-dialog-cancel')
 
     def _show_reload_icon(self):
-        self._stop_and_reload.set_icon('view-refresh')
+        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+                                      'browse-view-refresh')
 
     def _update_navigation_buttons(self):
         browser = self._tabbed_view.props.current_browser
@@ -436,7 +437,7 @@ class PrimaryToolbar(ToolbarBase):
     def _title_changed_cb(self, embed, spec):
         self._set_title(embed.props.title)
 
-    def _stop_and_reload_cb(self, button):
+    def _stop_and_reload_cb(self, entry, icon_pos, button):
         browser = self._tabbed_view.props.current_browser
         if self._loading:
             browser.web_navigation.stop(interfaces.nsIWebNavigation.STOP_ALL)
@@ -449,10 +450,8 @@ class PrimaryToolbar(ToolbarBase):
 
         if self._loading:
             self._show_stop_icon()
-            self._stop_and_reload.set_tooltip(_('Stop'))
         else:
             self._show_reload_icon()
-            self._stop_and_reload.set_tooltip(_('Reload'))
 
     def _reload_session_history(self, current_page_index=None):
         browser = self._tabbed_view.props.current_browser
