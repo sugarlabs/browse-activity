@@ -22,7 +22,6 @@ import gobject
 import gtk
 import pango
 from xpcom.components import interfaces
-from xpcom import components
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
@@ -31,7 +30,6 @@ try:
     from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
     from sugar.activity.widgets import ActivityToolbarButton
     from sugar.activity.widgets import StopButton
-    from sugar.activity import activity
     NEW_TOOLBARS = True
 except ImportError:
     from gtk import Toolbar as ToolbarBase
