@@ -16,10 +16,7 @@
 
 import logging
 
-import xpcom
-from xpcom import components
 from xpcom.components import interfaces
-from xpcom.server.factory import Factory
 
 
 class SecurityDialogs:

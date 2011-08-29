@@ -20,8 +20,6 @@ import logging
 from gettext import gettext as _
 import time
 import tempfile
-import urlparse
-import urllib
 
 import gtk
 import hulahop

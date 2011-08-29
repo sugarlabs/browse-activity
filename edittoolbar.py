@@ -18,7 +18,6 @@
 import gtk
 from gettext import gettext as _
 
-from xpcom import components
 from xpcom.components import interfaces
 
 from sugar.activity import activity

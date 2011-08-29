@@ -18,8 +18,6 @@
 
 import os
 import time
-import logging
-from gettext import gettext as _
 
 import gobject
 import gtk
@@ -30,8 +28,6 @@ from xpcom import components
 from xpcom.components import interfaces
 from hulahop.webview import WebView
 
-from sugar.datastore import datastore
-from sugar import profile
 from sugar import env
 from sugar.activity import activity
 from sugar.graphics import style
