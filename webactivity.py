@@ -20,7 +20,6 @@ import logging
 from gettext import gettext as _
 from gettext import ngettext
 import os
-import subprocess
 
 import gobject
 gobject.threads_init()
@@ -177,8 +176,6 @@ from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
-import globalhistory
-import filepicker
 
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
