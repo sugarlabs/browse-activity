@@ -25,7 +25,7 @@ from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
-from sugar.graphics.iconentry import IconEntry
+from sugar.graphics import iconentry
 try:
     from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
     from sugar.activity.widgets import ActivityToolbarButton
@@ -42,7 +42,7 @@ import places
 _MAX_HISTORY_ENTRIES = 15
 
 
-class WebEntry(IconEntry):
+class WebEntry(iconentry.IconEntry):
     _COL_ADDRESS = 0
     _COL_TITLE = 1
 
@@ -260,7 +260,7 @@ class PrimaryToolbar(ToolbarBase):
         self._go_home.show()
 
         self.entry = WebEntry()
-        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+        self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
                                       'browse-dialog-cancel')
         self.entry.connect('icon-press', self._stop_and_reload_cb)
         self.entry.connect('activate', self._entry_activate_cb)
@@ -397,11 +397,11 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.props.title = title
 
     def _show_stop_icon(self):
-        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+        self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
                                       'browse-dialog-cancel')
 
     def _show_reload_icon(self):
-        self.entry.set_icon_from_name(gtk.ENTRY_ICON_SECONDARY,
+        self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
                                       'browse-view-refresh')
 
     def _update_navigation_buttons(self):
