@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-08-18 00:31-0400\n"
 "PO-Revision-Date: 2009-07-01 03:59-0400\n"
 "Last-Translator: Abdulhadi Hairan <abdulhadi@paiwastoon.com.af>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,39 +25,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:274
 msgid "Browse"
 msgstr "لټول"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:175
 msgid "Download started"
 msgstr "رالېښل پيل شول"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:190
 msgid "Download completed"
 msgstr "رالېښل بشپړل شول"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:194
 msgid "Show in Journal"
 msgstr "په ورځپاڼه كۍ ښودل"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:197
 msgid "Ok"
 msgstr "هو"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:204
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:316
+#: downloadmanager.py:346
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 "رالېښل %s له \n"
-"\n"
+"%s"
 
 #: edittoolbar.py:92
 msgid "Previous"
@@ -71,23 +71,23 @@ msgstr "بل"
 msgid "Remove"
 msgstr "لرې كول"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr ""
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr ""
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "پیوند تعقیبول"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr ""
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr ""
 
@@ -111,45 +111,62 @@ msgstr "مجمه ښودل"
 msgid "Hide Tray"
 msgstr "مجمه پټول"
 
-#: webactivity.py:598
+#: webactivity.py:271
+msgid "Edit"
+msgstr "سمون"
+
+#: webactivity.py:277
+msgid "View"
+msgstr "ليد"
+
+#: webactivity.py:655
+#, fuzzy
 msgid "Download in progress"
-msgstr "رالېښل د پرمختګ په حال كې دى"
+msgid_plural "Downloads in progress"
+msgstr[0] "رالېښل د پرمختګ په حال كې دى"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "اوس تمول به ستاسې رالېښل لغوه كړي"
+#: webactivity.py:658
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "اوس تمول به ستاسې رالېښل لغوه كړي"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "لغوه"
+#: webactivity.py:663
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:667 webtoolbar.py:452
 msgid "Stop"
 msgstr "بندول"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:258
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:280
 msgid "Back"
 msgstr "شاته"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:287
 msgid "Forward"
 msgstr "مخته"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:295
 msgid "Add a tab"
 msgstr ""
 
-#: webtoolbar.py:291
+#: webtoolbar.py:302
 msgid "Bookmark"
 msgstr "یادنښه"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:455
 msgid "Reload"
 msgstr "بياپورته کول"
+
+#~ msgid "Cancel"
+#~ msgstr "لغوه"
 
 #, python-format
 #~ msgid "%s"
@@ -167,12 +184,6 @@ msgstr "بياپورته کول"
 
 #~ msgid "Download image"
 #~ msgstr "انځور کښته کړه"
-
-#~ msgid "Edit"
-#~ msgstr "سمون"
-
-#~ msgid "View"
-#~ msgstr "ليد"
 
 #~ msgid "blank"
 #~ msgstr "سپين"
