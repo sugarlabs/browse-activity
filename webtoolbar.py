@@ -74,7 +74,6 @@ class WebEntry(iconentry.IconEntry):
             self.props.text = text
         finally:
             self.handler_unblock(self._change_hid)
-        self.set_position(-1)
 
     def activate(self, uri):
         self._set_text(uri)
