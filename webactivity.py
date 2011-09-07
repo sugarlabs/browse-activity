@@ -177,6 +177,10 @@ from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
 
+# TODO: make the registration clearer SL #3087
+import globalhistory # pylint: disable=W0611
+import filepicker # pylint: disable=W0611
+
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
 from model import Model
