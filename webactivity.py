@@ -181,8 +181,6 @@ import downloadmanager
 import globalhistory # pylint: disable=W0611
 import filepicker # pylint: disable=W0611
 
-_LIBRARY_PATH = '/usr/share/library-common/index.html'
-
 from model import Model
 from sugar.presence.tubeconn import TubeConnection
 from messenger import Messenger
@@ -205,6 +203,7 @@ class WebActivity(activity.Activity):
         
         self._force_close = False
         self._tabbed_view = TabbedView()
+        self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
 
         _set_accept_languages()
         _seed_xs_cookie()
@@ -236,14 +235,11 @@ class WebActivity(activity.Activity):
         self.set_tray(self._tray, gtk.POS_BOTTOM)
         self._tray.show()
 
-        self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self,
-                    self._disable_multiple_tabs)
+        self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
         self._edit_toolbar = EditToolbar(self)
         self._view_toolbar = ViewToolbar(self)
 
         self._primary_toolbar.connect('add-link', self._link_add_button_cb)
-
-        self._primary_toolbar.connect('add-tab', self._new_tab_cb)
 
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
 
@@ -296,7 +292,7 @@ class WebActivity(activity.Activity):
         elif not self._jobject.file_path:
             # TODO: we need this hack until we extend the activity API for
             # opening URIs and default docs.
-            self._load_homepage()
+            self._tabbed_view.load_homepage()
 
         self.messenger = None
         self.connect('shared', self._shared_cb)
@@ -325,8 +321,10 @@ class WebActivity(activity.Activity):
         else:
             _logger.debug('Created activity')
 
-    def _new_tab_cb(self, gobject):
-        self._load_homepage(new_tab=True)
+    def _on_focus_url_entry(self, gobject):
+        if not NEW_TOOLBARS:
+            self.toolbox.set_current_toolbar(_TOOLBAR_BROWSE)
+        self._primary_toolbar.entry.grab_focus()
 
     def _shared_cb(self, activity_):
         _logger.debug('My activity was shared')
@@ -429,21 +427,6 @@ class WebActivity(activity.Activity):
             self.messenger = Messenger(self.tube_conn, self.initiating,
                                        self.model)
 
-    def _load_homepage(self, new_tab=False):
-        # If new_tab is True, open the homepage in a new tab.
-        if new_tab:
-            browser = Browser()
-            self._tabbed_view._append_tab(browser)
-        else:
-            browser = self._tabbed_view.current_browser
-
-        if os.path.isfile(_LIBRARY_PATH):
-            browser.load_uri('file://' + _LIBRARY_PATH)
-        else:
-            default_page = os.path.join(activity.get_bundle_path(),
-                                        "data/index.html")
-            browser.load_uri(default_page)
-
     def _get_data_from_file_path(self, file_path):
         fd = open(file_path, 'r')
         try:
@@ -492,7 +475,9 @@ class WebActivity(activity.Activity):
             browser = self._tabbed_view.current_browser
 
             if not self._jobject.metadata['title_set_by_user'] == '1':
-                if browser.props.title:
+                if browser.props.title == '':
+                    self.metadata['title'] = _('Untitled')
+                else:
                     self.metadata['title'] = browser.props.title
 
             self.model.data['history'] = self._tabbed_view.get_session()
@@ -522,7 +507,7 @@ class WebActivity(activity.Activity):
         self._add_link()
 
     def _go_home_button_cb(self, button):
-        self._load_homepage()
+        self._tabbed_view.load_homepage()
 
     def _key_press_cb(self, widget, event):
         key_name = gtk.gdk.keyval_name(event.keyval)
@@ -559,7 +544,7 @@ class WebActivity(activity.Activity):
                 browser.web_navigation.reload(flags)
             elif gtk.gdk.keyval_name(event.keyval) == "t":
                 if not self._disable_multiple_tabs:
-                    self._load_homepage(new_tab=True)
+                    self._tabbed_view.add_tab()
             else:
                 return False
 

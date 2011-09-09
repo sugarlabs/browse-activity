@@ -140,6 +140,17 @@ class LinkPalette(Palette):
         else:
             self.props.primary_text = url
 
+        menu_item = MenuItem(_('Follow link'), 'browse-follow-link')
+        menu_item.connect('activate', self.__follow_activate_cb)
+        self.menu.append(menu_item)
+        menu_item.show()
+
+        menu_item = MenuItem(_('Follow link in new tab'),
+                             'browse-follow-link-new-tab')
+        menu_item.connect('activate', self.__follow_activate_cb, True)
+        self.menu.append(menu_item)
+        menu_item.show()
+
         menu_item = MenuItem(_('Keep link'))
         icon = Icon(icon_name='document-save', xo_color=profile.get_color(),
                     icon_size=gtk.ICON_SIZE_MENU)
@@ -156,14 +167,14 @@ class LinkPalette(Palette):
         self.menu.append(menu_item)
         menu_item.show()
 
-        menu_item = MenuItem(_('Follow link'), 'edit-copy')
-        menu_item.connect('activate', self.__follow_activate_cb)
-        self.menu.append(menu_item)
-        menu_item.show()
-
-    def __follow_activate_cb(self, menu_item):
-        self._browser.load_uri(self._url)
-        self._browser.grab_focus()
+    def __follow_activate_cb(self, menu_item, new_tab=False):
+        if new_tab:
+            new_browser = self._browser.tabbed_view.add_tab(next_to_current=True)
+            new_browser.load_uri(self._url)
+            new_browser.grab_focus()
+        else:
+            self._browser.load_uri(self._url)
+            self._browser.grab_focus()
 
     def __copy_activate_cb(self, menu_item):
         clipboard = gtk.Clipboard()

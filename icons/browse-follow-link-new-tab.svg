@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+  <!ENTITY fill_color "#FFFFFF">
+  <!ENTITY stroke_color "#010101">
+]>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="55.125"
+   height="55"
+   viewBox="0 0 55.125 55"
+   id="browse-follow-link-new-tab"
+   xml:space="preserve">
+<g
+   transform="matrix(0.72828114,0,0,0.72828114,7.3907532,18.617266)"
+   id="tab-add"
+   style="display:block">
+    <g
+   transform="scale(0.8,0.8)"
+   id="g5">
+    <g
+   transform="translate(6.5,6.5)"
+   id="g7">
+	<path
+   d="m 0,50 55,0 0,-15 -5,0 0,-25 Q 50,5 45,5 L 10,5 Q 5,5 5,10 L 5,35 0,35 z M 30.768,38.767 c -0.002,1.774 -1.438,3.216 -3.214,3.214 -0.889,10e-4 -1.693,-0.359 -2.275,-0.941 -0.582,-0.581 -0.94,-1.385 -0.94,-2.27 l 0,-8.146 h -8.146 c -0.886,-10e-4 -1.689,-0.359 -2.271,-0.94 -0.582,-0.583 -0.942,-1.388 -0.942,-2.276 0,-1.773 1.439,-3.213 3.217,-3.211 h 8.143 v -8.143 c -0.003,-1.776 1.438,-3.217 3.212,-3.217 1.774,0 3.218,1.438 3.215,3.215 l 0.001,8.145 8.146,0.001 c 1.775,-0.005 3.212,1.438 3.213,3.213 0.002,1.775 -1.441,3.214 -3.215,3.215 h -8.143 v 8.141 z"
+   id="path9"
+   style="fill:&fill_color;" />
+    </g>
+    </g>
+</g>
+<g
+   transform="translate(0,0.55369128)"
+   id="g3868"><line
+     style="fill:none;stroke:&fill_color;;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"
+     x1="36.448467"
+     x2="19.418867"
+     y1="11.934766"
+     y2="11.934766"
+     id="line15" /><polyline
+     transform="matrix(1.4,0,0,1.4,-2.8453325,2.1725664)"
+     style="fill:none;stroke:&fill_color;;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"
+     points="     21.983,1.843 28.067,6.973 21.983,12.104    "
+     id="polyline17" /></g></svg>

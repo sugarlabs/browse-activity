@@ -228,15 +228,12 @@ class PrimaryToolbar(ToolbarBase):
         'add-link': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
                      ([])),
-        'add-tab': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE,
-                     ([])),
         'go-home': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
                      ([])),
     }
 
-    def __init__(self, tabbed_view, act, disable_multiple_tabs):
+    def __init__(self, tabbed_view, act):
         ToolbarBase.__init__(self)
 
         self._activity = act
@@ -285,14 +282,6 @@ class PrimaryToolbar(ToolbarBase):
         self._forward.connect('clicked', self._go_forward_cb)
         toolbar.insert(self._forward, -1)
         self._forward.show()
-
-        if not disable_multiple_tabs:
-            self._add_tab = ToolButton('tab-add')
-            self._add_tab.set_tooltip(_('Add a tab'))
-            self._add_tab.props.sensitive = True
-            self._add_tab.connect('clicked', self._add_tab_cb)
-            toolbar.insert(self._add_tab, -1)
-            self._add_tab.show()
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
@@ -416,9 +405,6 @@ class PrimaryToolbar(ToolbarBase):
         browser = self._tabbed_view.props.current_browser
         browser.load_uri(entry.props.text)
         browser.grab_focus()
-
-    def _add_tab_cb(self, button):
-        self.emit('add-tab')
 
     def _go_home_cb(self, button):
         self.emit('go-home')

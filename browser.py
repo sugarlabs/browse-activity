@@ -18,9 +18,11 @@
 
 import os
 import time
+from gettext import gettext as _
 
 import gobject
 import gtk
+import pango
 import hulahop
 import xpcom
 from xpcom.nsError import *
@@ -31,13 +33,16 @@ from hulahop.webview import WebView
 from sugar import env
 from sugar.activity import activity
 from sugar.graphics import style
+from sugar.graphics.icon import Icon
 
 import sessionstore
 from palettes import ContentInvoker
 from sessionhistory import HistoryListener
 from progresslistener import ProgressListener
+from widgets import BrowserNotebook
 
 _ZOOM_AMOUNT = 0.1
+_LIBRARY_PATH = '/usr/share/library-common/index.html'
 
 
 class SaveListener(object):
@@ -93,8 +98,14 @@ class CommandListener(object):
         cert_exception.showDialog(self._window)
 
 
-class TabbedView(gtk.Notebook):
+class TabbedView(BrowserNotebook):
     __gtype_name__ = 'TabbedView'
+
+    __gsignals__ = {
+        'focus-url-entry': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            ([])),
+    }
 
     _com_interfaces_ = interfaces.nsIWindowCreator
 
@@ -104,7 +115,7 @@ class TabbedView(gtk.Notebook):
                               'user-stylesheet.css')
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        BrowserNotebook.__init__(self)
 
         self.props.show_border = False
         self.props.scrollable = True
@@ -140,8 +151,13 @@ class TabbedView(gtk.Notebook):
                                                  interfaces.nsIWindowCreator)
         window_watcher.setWindowCreator(window_creator)
 
-        browser = Browser()
-        self._append_tab(browser)
+        self.connect('size-allocate', self.__size_allocate_cb)
+        self.connect('page-added', self.__page_added_cb)
+        self.connect('page-removed', self.__page_removed_cb)
+
+        self.add_tab()
+        self._update_closing_buttons()
+        self._update_tab_sizes()
 
     def createChromeWindow(self, parent, flags):
         if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
@@ -160,10 +176,44 @@ class TabbedView(gtk.Notebook):
 
             return browser.containerWindow
         else:
-            browser = Browser()
+            browser = Browser(self)
             self._append_tab(browser)
 
             return browser.browser.containerWindow
+
+    def __size_allocate_cb(self, widget, allocation):
+        self._update_tab_sizes()
+
+    def __page_added_cb(self, notebook, child, pagenum):
+        self._update_closing_buttons()
+        self._update_tab_sizes()
+
+    def __page_removed_cb(self, notebook, child, pagenum):
+        self._update_closing_buttons()
+        self._update_tab_sizes()
+
+    def add_tab(self, next_to_current=False):
+        browser = Browser(self)
+
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb)
+
+        if next_to_current:
+            self._insert_tab_next(browser)
+        else:
+            self._append_tab(browser)
+        self.emit('focus-url-entry')
+        browser.load_uri('about:blank')
+        return browser
+
+    def _insert_tab_next(self, browser):
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb)
+
+        next_index = self.get_current_page() + 1
+        self.insert_page(browser, label, next_index)
+        browser.show()
+        self.set_current_page(next_index)
 
     def _append_tab(self, browser):
         label = TabLabel(browser)
@@ -171,14 +221,59 @@ class TabbedView(gtk.Notebook):
 
         self.append_page(browser, label)
         browser.show()
-
         self.set_current_page(-1)
-        self.props.show_tabs = self.get_n_pages() > 1
+
+    def on_add_tab(self, gobject):
+        self.add_tab()
 
     def __tab_close_cb(self, label, browser):
         self.remove_page(self.page_num(browser))
         browser.destroy()
-        self.props.show_tabs = self.get_n_pages() > 1
+
+    def _update_tab_sizes(self):
+        """Update ta widths based in the amount of tabs."""
+
+        n_pages = self.get_n_pages()
+        canvas_size = self.get_allocation()
+        overlap_size = self.style_get_property('tab-overlap') * n_pages - 1
+        allowed_size = canvas_size.width - overlap_size
+
+        tab_new_size = int(allowed_size * 1.0 / (n_pages + 1))
+        # Four tabs ensured:
+        tab_max_size = int(allowed_size * 1.0 / (5))
+        # Eight tabs ensured:
+        tab_min_size = int(allowed_size * 1.0 / (9))
+
+        if tab_new_size < tab_min_size:
+            tab_new_size = tab_min_size
+        elif tab_new_size > tab_max_size:
+            tab_new_size = tab_max_size
+
+        for page_idx in range(n_pages):
+            page = self.get_nth_page(page_idx)
+            label = self.get_tab_label(page)
+            label.update_size(tab_new_size)
+
+    def _update_closing_buttons(self):
+        """Prevent closing the last tab."""
+        first_page = self.get_nth_page(0)
+        first_label = self.get_tab_label(first_page)
+        if self.get_n_pages() == 0:
+            return
+        elif self.get_n_pages() == 1:
+            first_label.hide_close_button()
+        else:
+            first_label.show_close_button()
+
+    def load_homepage(self):
+        browser = self.current_browser
+
+        if os.path.isfile(_LIBRARY_PATH):
+            browser.load_uri('file://' + _LIBRARY_PATH)
+        else:
+            default_page = os.path.join(activity.get_bundle_path(),
+                                        "data/index.html")
+            browser.load_uri(default_page)
 
     def _get_current_browser(self):
         return self.get_nth_page(self.get_current_page())
@@ -202,7 +297,7 @@ class TabbedView(gtk.Notebook):
             self.remove_page(self.get_n_pages() - 1)
 
         for tab_session in tab_sessions:
-            browser = Browser()
+            browser = Browser(self)
             self._append_tab(browser)
             sessionstore.set_session(browser, tab_session)
 
@@ -230,22 +325,35 @@ class TabLabel(gtk.HBox):
         self._browser = browser
         self._browser.connect('is-setup', self.__browser_is_setup_cb)
 
-        self._label = gtk.Label('')
+        self._label = gtk.Label(_('Untitled'))
+        self._label.set_ellipsize(pango.ELLIPSIZE_END)
+        self._label.set_alignment(0, 0.5)
         self.pack_start(self._label)
         self._label.show()
 
+        close_tab_icon = Icon(icon_name='browse-close-tab')
         button = gtk.Button()
-        button.connect('clicked', self.__button_clicked_cb)
-        button.set_name('browse-tab-close')
         button.props.relief = gtk.RELIEF_NONE
         button.props.focus_on_click = False
-        self.pack_start(button)
+        icon_box = gtk.HBox()
+        icon_box.pack_start(close_tab_icon, True, False, 0)
+        button.add(icon_box)
+        button.connect('clicked', self.__button_clicked_cb)
+        button.set_name('browse-tab-close')
+        self.pack_start(button, expand=False)
+        close_tab_icon.show()
+        icon_box.show()
         button.show()
+        self._close_button = button
 
-        close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE,
-                                               gtk.ICON_SIZE_MENU)
-        button.add(close_image)
-        close_image.show()
+    def update_size(self, size):
+        self.set_size_request(size, -1)
+
+    def hide_close_button(self):
+        self._close_button.hide()
+
+    def show_close_button(self):
+        self._close_button.show()
 
     def __button_clicked_cb(self, button):
         self.emit('tab-close', self._browser)
@@ -257,10 +365,16 @@ class TabLabel(gtk.HBox):
 
     def __location_changed_cb(self, progress_listener, pspec):
         url = self._browser.get_url_from_nsiuri(progress_listener.location)
-        self._label.set_text(url)
+        if url == 'about:blank':
+            self._label.set_text(_('Loading...'))
+        else:
+            self._label.set_text(url)
 
     def __title_changed_cb(self, browser, pspec):
-        self._label.set_text(browser.props.title)
+        if browser.props.title == "":
+           self._label.set_text(_('Untitled'))
+        else:
+            self._label.set_text(browser.props.title)
 
 
 class Browser(WebView):
@@ -272,9 +386,10 @@ class Browser(WebView):
                      ([])),
     }
 
-    def __init__(self):
+    def __init__(self, tabbed_view):
         WebView.__init__(self)
 
+        self.tabbed_view = tabbed_view
         self.history = HistoryListener()
         self.progress = ProgressListener()
 
@@ -356,6 +471,8 @@ class Browser(WebView):
         return self.web_navigation.sessionHistory.index
 
     def set_history_index(self, index):
+        if index == -1:
+            return
         self.web_navigation.gotoIndex(index)
 
 
