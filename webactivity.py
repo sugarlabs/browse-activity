@@ -171,15 +171,14 @@ def _set_accept_languages():
     logging.debug('LANG set')
 
 from browser import TabbedView
-from browser import Browser
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
 import downloadmanager
 
 # TODO: make the registration clearer SL #3087
-import globalhistory # pylint: disable=W0611
-import filepicker # pylint: disable=W0611
+import globalhistory  # pylint: disable=W0611
+import filepicker  # pylint: disable=W0611
 
 from model import Model
 from sugar.presence.tubeconn import TubeConnection
@@ -200,7 +199,7 @@ class WebActivity(activity.Activity):
         _logger.debug('Starting the web activity')
 
         downloadmanager.remove_old_parts()
-        
+
         self._force_close = False
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)

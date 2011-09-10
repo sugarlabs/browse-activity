@@ -176,7 +176,7 @@ class TabbedView(BrowserNotebook):
 
             return browser.containerWindow
         else:
-            browser = Browser(self)
+            browser = Browser()
             self._append_tab(browser)
 
             return browser.browser.containerWindow
@@ -193,7 +193,7 @@ class TabbedView(BrowserNotebook):
         self._update_tab_sizes()
 
     def add_tab(self, next_to_current=False):
-        browser = Browser(self)
+        browser = Browser()
 
         label = TabLabel(browser)
         label.connect('tab-close', self.__tab_close_cb)
@@ -297,7 +297,7 @@ class TabbedView(BrowserNotebook):
             self.remove_page(self.get_n_pages() - 1)
 
         for tab_session in tab_sessions:
-            browser = Browser(self)
+            browser = Browser()
             self._append_tab(browser)
             sessionstore.set_session(browser, tab_session)
 
@@ -372,7 +372,7 @@ class TabLabel(gtk.HBox):
 
     def __title_changed_cb(self, browser, pspec):
         if browser.props.title == "":
-           self._label.set_text(_('Untitled'))
+            self._label.set_text(_('Untitled'))
         else:
             self._label.set_text(browser.props.title)
 
@@ -386,10 +386,9 @@ class Browser(WebView):
                      ([])),
     }
 
-    def __init__(self, tabbed_view):
+    def __init__(self):
         WebView.__init__(self)
 
-        self.tabbed_view = tabbed_view
         self.history = HistoryListener()
         self.progress = ProgressListener()
 
