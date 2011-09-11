@@ -177,6 +177,7 @@ class TabbedView(BrowserNotebook):
             return browser.containerWindow
         else:
             browser = Browser()
+            browser.connect('new-tab', self.__new_tab_cb)
             self._append_tab(browser)
 
             return browser.browser.containerWindow
@@ -192,8 +193,14 @@ class TabbedView(BrowserNotebook):
         self._update_closing_buttons()
         self._update_tab_sizes()
 
+    def __new_tab_cb(self, browser, url):
+        new_browser = self.add_tab(next_to_current=True)
+        new_browser.load_uri(url)
+        new_browser.grab_focus()
+
     def add_tab(self, next_to_current=False):
         browser = Browser()
+        browser.connect('new-tab', self.__new_tab_cb)
 
         label = TabLabel(browser)
         label.connect('tab-close', self.__tab_close_cb)
@@ -298,6 +305,7 @@ class TabbedView(BrowserNotebook):
 
         for tab_session in tab_sessions:
             browser = Browser()
+            browser.connect('new-tab', self.__new_tab_cb)
             self._append_tab(browser)
             sessionstore.set_session(browser, tab_session)
 
@@ -384,6 +392,9 @@ class Browser(WebView):
         'is-setup': (gobject.SIGNAL_RUN_FIRST,
                      gobject.TYPE_NONE,
                      ([])),
+        'new-tab': (gobject.SIGNAL_RUN_FIRST,
+                    gobject.TYPE_NONE,
+                    ([str])),
     }
 
     def __init__(self):
@@ -473,6 +484,9 @@ class Browser(WebView):
         if index == -1:
             return
         self.web_navigation.gotoIndex(index)
+
+    def open_new_tab(self, url):
+        self.emit('new-tab', url)
 
 
 class PopupDialog(gtk.Window):

@@ -169,9 +169,7 @@ class LinkPalette(Palette):
 
     def __follow_activate_cb(self, menu_item, new_tab=False):
         if new_tab:
-            new_browser = self._browser.tabbed_view.add_tab(next_to_current=True)
-            new_browser.load_uri(self._url)
-            new_browser.grab_focus()
+            new_browser = self._browser.open_new_tab(self._url)
         else:
             self._browser.load_uri(self._url)
             self._browser.grab_focus()
