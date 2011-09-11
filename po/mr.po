@@ -14,43 +14,43 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2010-03-27 08:27+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2011-08-18 00:31-0400\n"
+"PO-Revision-Date: 2011-09-11 11:31+0200\n"
+"Last-Translator:  <ganeshgajre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:274
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:175
 msgid "Download started"
-msgstr "डाउनलोड सुरू झाली"
+msgstr "डाउनलोड सुरू झाले"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:190
 msgid "Download completed"
-msgstr "डाउनलोड पूणॅ झाली"
+msgstr "डाउनलोड पूर्ण झाले"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:194
 msgid "Show in Journal"
 msgstr "नियतकालीकामधे दाखवा"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:197
 msgid "Ok"
 msgstr "ठीक"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:204
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "च्यापासुन: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:346
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -61,35 +61,35 @@ msgstr ""
 
 #: edittoolbar.py:92
 msgid "Previous"
-msgstr "अगोदरचा"
+msgstr "मागील"
 
 #: edittoolbar.py:99
 msgid "Next"
-msgstr "यानंतर"
+msgstr "पुढील"
 
 #: linkbutton.py:95
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
-msgstr ""
+msgstr "लिंक संभाळा"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
-msgstr ""
+msgstr "लिंकची नक्कल बनवा"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "लिंक वर जा"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
-msgstr ""
+msgstr "चित्र सांभाळा"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
-msgstr ""
+msgstr "चित्राची नक्कल बनवा"
 
 #: viewtoolbar.py:34
 msgid "Zoom out"
@@ -111,45 +111,62 @@ msgstr "तबक दाखवा"
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:598
+#: webactivity.py:271
+msgid "Edit"
+msgstr "संपादन करा"
+
+#: webactivity.py:277
+msgid "View"
+msgstr "पहा"
+
+#: webactivity.py:655
 msgid "Download in progress"
-msgstr "डाऊनलोड सुरू आहे"
+msgid_plural "Downloads in progress"
+msgstr[0] "डाऊनलोड सुरू आहे"
+msgstr[1] "डाऊनलोडस सुरू आहे"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "थांबवल्यास डाऊनलोड रद् होईल"
+#: webactivity.py:658
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "थांबवल्यास डाऊनलोड रद् होईल"
+msgstr[1] "थांबवल्यास डाऊनलोडस रद् होईल"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "रद्द करणे"
+#: webactivity.py:663
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "डाऊनलोड सुरु ठेवा"
+msgstr[1] "डाऊनलोडस सुरु ठेवा"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:667 webtoolbar.py:452
 msgid "Stop"
 msgstr "थांबा"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:258
 msgid "Home page"
-msgstr ""
+msgstr "मुख प्रुष्ठ"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:280
 msgid "Back"
 msgstr "मागे"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:287
 msgid "Forward"
 msgstr "पुढे पाठविणे"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:295
 msgid "Add a tab"
-msgstr ""
+msgstr "टॅब जोडा"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:302
 msgid "Bookmark"
-msgstr "रिकामी जागा"
+msgstr "वाचनखुण"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:455
 msgid "Reload"
 msgstr "पुन्हा चालू करा"
+
+#~ msgid "Cancel"
+#~ msgstr "रद्द करणे"
 
 #, python-format
 #~ msgid "%s"
@@ -161,12 +178,6 @@ msgstr "पुन्हा चालू करा"
 
 #~ msgid "Copy"
 #~ msgstr "नक्कल "
-
-#~ msgid "Edit"
-#~ msgstr "संपादन करणे"
-
-#~ msgid "View"
-#~ msgstr "पाहा "
 
 #~ msgid "blank"
 #~ msgstr "रिकामा"
