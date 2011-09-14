@@ -53,6 +53,8 @@ class TabAdd(gtk.HBox):
 
 
 class BrowserNotebook(gtk.Notebook):
+    __gtype_name__ = 'BrowserNotebook'
+
     """Handle an extra tab at the end with an Add Tab button."""
 
     def __init__(self):
