@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-09 00:31-0400\n"
-"PO-Revision-Date: 2011-08-16 01:57+0200\n"
+"POT-Creation-Date: 2011-08-18 00:31-0400\n"
+"PO-Revision-Date: 2011-08-29 16:54+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -51,12 +51,14 @@ msgid "From: %s"
 msgstr "Fra: %s"
 
 #: downloadmanager.py:346
+#, python-format
+#, python-format, 
 msgid ""
-"Downloading %2$s from \n"
-"%1$s."
+"Downloading %s from \n"
+"%s."
 msgstr ""
-"Henter %2$s fra \n"
-"%1$s."
+"Henter %s fra \n"
+"%s."
 
 #: edittoolbar.py:92
 msgid "Previous"
@@ -136,31 +138,31 @@ msgid_plural "Continue downloads"
 msgstr[0] "Fortsæt overførsel"
 msgstr[1] "Fortsæt overførsler"
 
-#: webactivity.py:667 webtoolbar.py:450
+#: webactivity.py:667 webtoolbar.py:452
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:259
+#: webtoolbar.py:258
 msgid "Home page"
 msgstr "Hjemmeside"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:280
 msgid "Back"
 msgstr "Tilbage"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:287
 msgid "Forward"
 msgstr "Frem"
 
-#: webtoolbar.py:296
+#: webtoolbar.py:295
 msgid "Add a tab"
 msgstr "Tilføj en fane"
 
-#: webtoolbar.py:303
+#: webtoolbar.py:302
 msgid "Bookmark"
 msgstr "Bogmærke"
 
-#: webtoolbar.py:453
+#: webtoolbar.py:455
 msgid "Reload"
 msgstr "Genindlæs"
 
