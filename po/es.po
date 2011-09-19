@@ -26,45 +26,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2011-05-17 16:31+0200\n"
-"Last-Translator: Gonzalo <godiard@sugarlabs.org>\n"
+"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"PO-Revision-Date: 2011-09-19 08:09+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 "X-Poedit-Language: Spanish\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:270
 msgid "Browse"
 msgstr "Navegar"
 
-#: downloadmanager.py:160
+#: browser.py:328 browser.py:375 webactivity.py:478
+msgid "Untitled"
+msgstr "Sin titulo"
+
+#: browser.py:369
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: downloadmanager.py:173
 msgid "Download started"
 msgstr "Descarga iniciada"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:188
 msgid "Download completed"
 msgstr "Descarga terminada"
 
 # Just added "el" to make it more clear.
-#: downloadmanager.py:177
+#: downloadmanager.py:192
 msgid "Show in Journal"
 msgstr "Mostrar en el Diario"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:195
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:202
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:344
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -73,11 +81,11 @@ msgstr ""
 "Bajando %s desde \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "Anterior"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "Siguiente"
 
@@ -85,23 +93,27 @@ msgstr "Siguiente"
 msgid "Remove"
 msgstr "Eliminar"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr "Mantener el enlace"
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr "Copiar el enlace"
-
-#: palettes.py:158
+#: palettes.py:143
 msgid "Follow link"
 msgstr "Seguir el enlace"
 
-#: palettes.py:208
+#: palettes.py:148
+msgid "Follow link in new tab"
+msgstr "Seguir el enlace en una nueva pestaña"
+
+#: palettes.py:154
+msgid "Keep link"
+msgstr "Mantener el enlace"
+
+#: palettes.py:162
+msgid "Copy link"
+msgstr "Copiar el enlace"
+
+#: palettes.py:220
 msgid "Keep image"
 msgstr "Mantener la imagen"
 
-#: palettes.py:216
+#: palettes.py:228
 msgid "Copy image"
 msgstr "Copiar la imagen"
 
@@ -125,46 +137,61 @@ msgstr "Mostrar Bandeja"
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:598
+#: webactivity.py:267
+msgid "Edit"
+msgstr "Editar"
+
+#: webactivity.py:273
+msgid "View"
+msgstr "Ver"
+
+#: webactivity.py:640
 msgid "Download in progress"
-msgstr "Descarga en curso"
+msgid_plural "Downloads in progress"
+msgstr[0] "Descarga en curso"
+msgstr[1] "Descargas en curso"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Parar ahora cancelará la descarga"
+#: webactivity.py:643
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Detener ahora cancelará la descarga"
+msgstr[1] "Detener ahora cancelará las descargas"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Cancelar"
+#: webactivity.py:648
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Continuar la descarga"
+msgstr[1] "Continuar las descargas"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:652
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:253
 msgid "Home page"
 msgstr "Página inicial"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:273
 msgid "Back"
 msgstr "Volver"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:280
 msgid "Forward"
 msgstr "Avanzar"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr "Añadir lengueta"
-
-#: webtoolbar.py:291
+#: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "Marcador"
 
+#~ msgid "Add a tab"
+#~ msgstr "Añadir lengueta"
+
 # Recargar is more consistent with the term "cargar" used for "download" in these menus.
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "Recargar"
+#~ msgid "Reload"
+#~ msgstr "Recargar"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
 #, python-format
 #~ msgid "%s"
@@ -182,12 +209,6 @@ msgstr "Recargar"
 
 #~ msgid "Download image"
 #~ msgstr "Descargar imagen"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgid "View"
-#~ msgstr "Ver"
 
 #~ msgid "blank"
 #~ msgstr "vacío"
