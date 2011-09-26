@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 00:31-0400\n"
-"PO-Revision-Date: 2011-06-11 11:11+0200\n"
-"Last-Translator:  <jamarat@o2.pl>\n"
+"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"PO-Revision-Date: 2011-09-19 15:08+0200\n"
+"Last-Translator: frks <frks@frks.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -24,34 +24,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 webactivity.py:262
+#: activity/activity.info:2 webactivity.py:270
 msgid "Browse"
 msgstr "Przeglądaj"
 
-#: downloadmanager.py:160
+#: browser.py:328 browser.py:375 webactivity.py:478
+msgid "Untitled"
+msgstr "Bez nazwy"
+
+#: browser.py:369
+msgid "Loading..."
+msgstr "Ładuję..."
+
+#: downloadmanager.py:173
 msgid "Download started"
 msgstr "Pobieranie rozpoczęte"
 
-#: downloadmanager.py:175
+#: downloadmanager.py:188
 msgid "Download completed"
 msgstr "Pobieranie zakończone"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:192
 msgid "Show in Journal"
-msgstr "Pokaż w dzienniku"
+msgstr "Pokaż w Dzienniku"
 
-#: downloadmanager.py:182
+#: downloadmanager.py:195
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:189
+#: downloadmanager.py:202
 #, python-format
 msgid "From: %s"
 msgstr "Z: %s"
 
-#: downloadmanager.py:331
+#: downloadmanager.py:344
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -60,11 +68,11 @@ msgstr ""
 "Pobieranie %s z \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "Poprzedni"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "Następny"
 
@@ -73,22 +81,26 @@ msgid "Remove"
 msgstr "Usuń"
 
 #: palettes.py:143
-msgid "Keep link"
-msgstr "Zatrzymaj odnośnik"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "Kopiuj odnośnik"
-
-#: palettes.py:159
 msgid "Follow link"
 msgstr "Idź za odnośnikiem"
 
-#: palettes.py:209
+#: palettes.py:148
+msgid "Follow link in new tab"
+msgstr "Idź za odnośnikiem w nowej karcie"
+
+#: palettes.py:154
+msgid "Keep link"
+msgstr "Zatrzymaj odnośnik"
+
+#: palettes.py:162
+msgid "Copy link"
+msgstr "Kopiuj odnośnik"
+
+#: palettes.py:220
 msgid "Keep image"
 msgstr "Zatrzymaj obrazek"
 
-#: palettes.py:217
+#: palettes.py:228
 msgid "Copy image"
 msgstr "Kopiuj obrazek"
 
@@ -106,59 +118,69 @@ msgstr "Pełny ekran"
 
 #: viewtoolbar.py:89
 msgid "Show Tray"
-msgstr "Pokaż zasobnik"
+msgstr "Pokaż pasek"
 
 #: viewtoolbar.py:93
 msgid "Hide Tray"
-msgstr "Ukryj zasobnik"
+msgstr "Ukryj pasek"
 
-#: webactivity.py:259
+#: webactivity.py:267
 msgid "Edit"
 msgstr "Edytuj"
 
-#: webactivity.py:265
+#: webactivity.py:273
 msgid "View"
 msgstr "Widok"
 
-#: webactivity.py:649
+#: webactivity.py:640
 msgid "Download in progress"
-msgstr "Pobieranie w trakcie"
+msgid_plural "Downloads in progress"
+msgstr[0] "Pobieranie w trakcie"
+msgstr[1] "Pobieranie w trakcie"
+msgstr[2] "Pobieranie w trakcie"
 
-#: webactivity.py:650
-msgid "Stopping now will cancel your download"
-msgstr "Zatrzymanie spowoduje przerwanie pobierania."
+#: webactivity.py:643
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Zatrzymanie spowoduje przerwanie pobierania"
+msgstr[1] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+msgstr[2] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+
+#: webactivity.py:648
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Wznów pobieranie"
+msgstr[1] "Wznów pobieranie wszystkich plików"
+msgstr[2] "Wznów pobieranie wszystkich plików"
 
 #: webactivity.py:652
-msgid "Cancel"
-msgstr "Anuluj"
-
-#: webactivity.py:654 webtoolbar.py:447
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: webtoolbar.py:257
+#: webtoolbar.py:253
 msgid "Home page"
 msgstr "Strona domowa"
 
-#: webtoolbar.py:279
+#: webtoolbar.py:273
 msgid "Back"
 msgstr "Wstecz"
 
-#: webtoolbar.py:286
+#: webtoolbar.py:280
 msgid "Forward"
 msgstr "Dalej"
 
-#: webtoolbar.py:294
-msgid "Add a tab"
-msgstr "Dodaj zakładkę"
-
-#: webtoolbar.py:301
+#: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "Zakładka"
 
-#: webtoolbar.py:450
-msgid "Reload"
-msgstr "Odśwież"
+#~ msgid "Add a tab"
+#~ msgstr "Dodaj zakładkę"
+
+#~ msgid "Reload"
+#~ msgstr "Odśwież"
+
+#~ msgid "Cancel"
+#~ msgstr "Anuluj"
 
 #, python-format
 #~ msgid "%s"
