@@ -1,0 +1,175 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"PO-Revision-Date: 2011-09-18 01:24+0200\n"
+"Last-Translator:  <zurisadai_k@hotmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hus\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
+
+# Cambié la traducción a "Aliy" porque refleja mejor la idea de explorar internet. (Zurik)
+#: activity/activity.info:2 webactivity.py:270
+msgid "Browse"
+msgstr "Aliy"
+
+#: browser.py:328 browser.py:375 webactivity.py:478
+msgid "Untitled"
+msgstr "Yab bijidh"
+
+#: browser.py:369
+msgid "Loading..."
+msgstr "K'adhbom..."
+
+#: downloadmanager.py:173
+msgid "Download started"
+msgstr "Pa'bomtaláb ts'i'kidh"
+
+#: downloadmanager.py:188
+msgid "Download completed"
+msgstr "Pa'bomtaláb putundhach"
+
+# chudhel dhuchlab
+#: downloadmanager.py:192
+msgid "Show in Journal"
+msgstr "Ka tejwa'medha' ti chudhél dhuchlab"
+
+#: downloadmanager.py:195
+msgid "Ok"
+msgstr "Ne'ets kin t'aja'"
+
+# Ju'taj ti tal., Ju'taj ti ch'enek: %s
+#: downloadmanager.py:202
+#, python-format
+msgid "From: %s"
+msgstr "Ti: %s"
+
+#: downloadmanager.py:344
+#, python-format
+#, python-format,
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Pa'bál %s ma ti \n"
+"%s."
+
+#: edittoolbar.py:91
+msgid "Previous"
+msgstr "Xi ok'xidh"
+
+#: edittoolbar.py:98
+msgid "Next"
+msgstr "Xi júnakej"
+
+#: linkbutton.py:95
+msgid "Remove"
+msgstr "Pakuw"
+
+#: palettes.py:143
+msgid "Follow link"
+msgstr "Áyna' an junkux"
+
+#: palettes.py:148
+msgid "Follow link in new tab"
+msgstr "Áyna' an junkux al juni it madhidh"
+
+#: palettes.py:154
+msgid "Keep link"
+msgstr "Dhaya' an junkux"
+
+#: palettes.py:162
+msgid "Copy link"
+msgstr "K'ot'biy an junkux"
+
+#: palettes.py:220
+msgid "Keep image"
+msgstr "Dhaya' an t'iplab"
+
+#: palettes.py:228
+msgid "Copy image"
+msgstr "K'o'tbiy an t'iplab"
+
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Tsipti'méjdha'"
+
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Puwedha'"
+
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Putat walek"
+
+#: viewtoolbar.py:89
+msgid "Show Tray"
+msgstr "Tejwa'méjdha' an jolát"
+
+#: viewtoolbar.py:93
+msgid "Hide Tray"
+msgstr "Tsina' an jolát"
+
+#: webactivity.py:267
+msgid "Edit"
+msgstr "Jalk'uy"
+
+#: webactivity.py:273
+msgid "View"
+msgstr "Tsu'uw"
+
+#: webactivity.py:640
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Exom ti pa'il"
+msgstr[1] "Exomchik ti pa'il"
+
+#: webactivity.py:643
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtaláb"
+msgstr[1] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtalabchik"
+
+#: webactivity.py:648
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Áynanchij an pa'bomtaláb"
+msgstr[1] "Áynanchij an pa'bomtalabchik"
+
+#: webactivity.py:652
+msgid "Stop"
+msgstr "Kuba'"
+
+# Ts'i'kindhom walxeklek da la idea de que es una página que hace iniciar. Para mí es ideal para la palabra Home Page del inglés. (Zurik)
+#: webtoolbar.py:253
+msgid "Home page"
+msgstr "Ts'i'kindhom walxeklek"
+
+#: webtoolbar.py:273
+msgid "Back"
+msgstr "Wichiy"
+
+#: webtoolbar.py:280
+msgid "Forward"
+msgstr "Ne'etsnanchij"
+
+#: webtoolbar.py:287
+msgid "Bookmark"
+msgstr "Pulik tejwa'medhom"
+
+# Decidí poner "It madhidh" porque literalmente significa "Nueva pestaña", que es la frase más usual encontrada en las aplicaciones que usan pestañas. (Zurik)
+#~ msgid "Add a tab"
+#~ msgstr "It madhidh"
+
+# Cambié la traducción a -Itmedha'- porque la idea de Reload es actualizar, o cargar nuevamente. la palabra -itmedha'- significa literalmente actualizar. (Zurik).
+#~ msgid "Reload"
+#~ msgstr "Itmedha'"
