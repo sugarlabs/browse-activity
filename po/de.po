@@ -56,7 +56,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"POT-Creation-Date: 2011-09-27 07:23-0400\n"
 "PO-Revision-Date: 2011-09-13 23:10+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
@@ -70,13 +70,13 @@ msgstr ""
 
 #: activity/activity.info:2 webactivity.py:270
 msgid "Browse"
-msgstr "Browser "
+msgstr "Browser"
 
-#: browser.py:328 browser.py:375 webactivity.py:478
+#: browser.py:336 browser.py:383 webactivity.py:478
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: browser.py:369
+#: browser.py:377
 msgid "Loading..."
 msgstr "Lade..."
 
@@ -139,11 +139,11 @@ msgstr "Link speichern"
 msgid "Copy link"
 msgstr "Link kopieren"
 
-#: palettes.py:220
+#: palettes.py:218
 msgid "Keep image"
 msgstr "Bild speichern"
 
-#: palettes.py:228
+#: palettes.py:226
 msgid "Copy image"
 msgstr "Bild kopieren"
 
