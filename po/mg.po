@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
 "PO-Revision-Date: 2011-02-14 19:00+0200\n"
 "Last-Translator: Zafimamy Gabriella Ralaivao <gabriella@intnet.mu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,33 +25,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:267
 msgid "Browse"
 msgstr "Tetezo"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:164
 msgid "Download started"
 msgstr "Manomboka ny fampidinana"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:179
 msgid "Download completed"
 msgstr "Vita ny Fampidinana"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:183
 msgid "Show in Journal"
 msgstr "Asehoy ny firaketana"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:186
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:193
 #, python-format
 msgid "From: %s"
 msgstr "Avy amin'ny: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:335
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -71,23 +72,23 @@ msgstr "Manaraka"
 msgid "Remove"
 msgstr "Esory"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "Tazony ny rohy"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "Adikao ny rohy"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "Araho ny rohy"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "Tazony ny sary"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "Adikao ny sary"
 
@@ -111,45 +112,62 @@ msgstr "Asehoy ny tray"
 msgid "Hide Tray"
 msgstr "Afeno ny tray"
 
-#: webactivity.py:598
+#: webactivity.py:264
+msgid "Edit"
+msgstr ""
+
+#: webactivity.py:270
+msgid "View"
+msgstr "Jereo"
+
+#: webactivity.py:654
+#, fuzzy
 msgid "Download in progress"
-msgstr "Mandroso ny fampidinana"
+msgid_plural "Downloads in progress"
+msgstr[0] "Mandroso ny fampidinana"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Raha ajanona izao dia ho foana ny fampidinana ataonao"
+#: webactivity.py:657
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Raha ajanona izao dia ho foana ny fampidinana ataonao"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Aoka ihany"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:666 webtoolbar.py:449
 msgid "Stop"
 msgstr "Ajanony"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:259
 msgid "Home page"
 msgstr "Pejy fandraisana"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "Miverina"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "Mandroso"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:296
 msgid "Add a tab"
 msgstr "Asio vakizoro"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "Ataovy mariboky"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:452
 msgid "Reload"
 msgstr "Avereno ampidirina"
+
+#~ msgid "Cancel"
+#~ msgstr "Aoka ihany"
 
 #, python-format
 #~ msgid "%s"
@@ -157,6 +175,3 @@ msgstr "Avereno ampidirina"
 
 #~ msgid "Copy"
 #~ msgstr "Adikao"
-
-#~ msgid "View"
-#~ msgstr "Jereo"
