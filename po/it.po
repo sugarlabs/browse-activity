@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
 "PO-Revision-Date: 2011-02-05 23:05+0200\n"
 "Last-Translator: matgat <matteo.gatti@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,33 +25,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:267
 msgid "Browse"
 msgstr "Naviga"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:164
 msgid "Download started"
 msgstr "Iniziato trasferimento"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:179
 msgid "Download completed"
 msgstr "Trasferimento terminato"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:183
 msgid "Show in Journal"
 msgstr "Mostra nel Diario"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:186
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:193
 #, python-format
 msgid "From: %s"
 msgstr "Da: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:335
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -71,23 +72,23 @@ msgstr "Successivo"
 msgid "Remove"
 msgstr "Elimina"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "Memorizza il collegamento"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "Copia il collegamento"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "Segui il collegamento"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "Memorizza immagine"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "Copia immagine"
 
@@ -111,46 +112,63 @@ msgstr "Mostra cestino"
 msgid "Hide Tray"
 msgstr "Nascondi cestino"
 
-#: webactivity.py:598
+#: webactivity.py:264
+msgid "Edit"
+msgstr "Modifica"
+
+#: webactivity.py:270
+msgid "View"
+msgstr "Visualizza"
+
+#: webactivity.py:654
+#, fuzzy
 msgid "Download in progress"
-msgstr "Scaricamento in corso"
+msgid_plural "Downloads in progress"
+msgstr[0] "Scaricamento in corso"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Bloccare adesso annullerà il trasferimento"
+#: webactivity.py:657
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Bloccare adesso annullerà il trasferimento"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Annulla"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
 # Alligned to ather act.
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:666 webtoolbar.py:449
 msgid "Stop"
 msgstr "Chiudi"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:259
 msgid "Home page"
 msgstr "Home Page"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "Indietro"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "Avanti"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:296
 msgid "Add a tab"
 msgstr "Aggiungi scheda"
 
-#: webtoolbar.py:291
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "Segnalibro"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:452
 msgid "Reload"
 msgstr "Ricarica"
+
+#~ msgid "Cancel"
+#~ msgstr "Annulla"
 
 #, python-format
 #~ msgid "%s"
@@ -168,12 +186,6 @@ msgstr "Ricarica"
 
 #~ msgid "Download image"
 #~ msgstr "Scarica immagine"
-
-#~ msgid "Edit"
-#~ msgstr "Modifica"
-
-#~ msgid "View"
-#~ msgstr "Visualizza"
 
 #~ msgid "blank"
 #~ msgstr "spazio"
