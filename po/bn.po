@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
 "PO-Revision-Date: 2009-08-28 20:20+0000\n"
 "Last-Translator: Nasir Khan Saikat <nasir8891@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,33 +25,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.1\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 webactivity.py:267
 msgid "Browse"
 msgstr "ব্রাউজ করো"
 
-#: downloadmanager.py:160
+#: downloadmanager.py:164
 msgid "Download started"
 msgstr "ডাউনলোড শুরু হয়েছে"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:179
 msgid "Download completed"
 msgstr "ডাউনলোড শেষ হয়েছে"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:183
 msgid "Show in Journal"
 msgstr "জার্নাল এ দেখাও"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:186
 msgid "Ok"
 msgstr "ঠিক আছে"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:193
 #, python-format
 msgid "From: %s"
 msgstr "হইতে: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:335
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -71,23 +72,23 @@ msgstr "পরবর্তী"
 msgid "Remove"
 msgstr "মুছে ফেলো"
 
-#: palettes.py:142
+#: palettes.py:143
 msgid "Keep link"
 msgstr "লিংক রাখো"
 
-#: palettes.py:150
+#: palettes.py:151
 msgid "Copy link"
 msgstr "লিংক কপি করো"
 
-#: palettes.py:158
+#: palettes.py:159
 msgid "Follow link"
 msgstr "লিংক দেখো"
 
-#: palettes.py:208
+#: palettes.py:209
 msgid "Keep image"
 msgstr "ছবি রাখো"
 
-#: palettes.py:216
+#: palettes.py:217
 msgid "Copy image"
 msgstr "ছবি কপি করো"
 
@@ -111,45 +112,62 @@ msgstr "ট্রে প্রদর্শন করো"
 msgid "Hide Tray"
 msgstr "ট্রে আড়াল করো"
 
-#: webactivity.py:598
+#: webactivity.py:264
+msgid "Edit"
+msgstr ""
+
+#: webactivity.py:270
+msgid "View"
+msgstr "দেখা"
+
+#: webactivity.py:654
+#, fuzzy
 msgid "Download in progress"
-msgstr "ডাউনলোড চলছে"
+msgid_plural "Downloads in progress"
+msgstr[0] "ডাউনলোড চলছে"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "এখন থামালে তোমার ডাউনলোড বাতিল হয়ে যাবে।"
+#: webactivity.py:657
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "এখন থামালে তোমার ডাউনলোড বাতিল হয়ে যাবে।"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "বাতিল করো"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:666 webtoolbar.py:449
 msgid "Stop"
 msgstr "থামাও"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:259
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:281
 msgid "Back"
 msgstr "পেছনে"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:288
 msgid "Forward"
 msgstr "সামনে"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:296
 msgid "Add a tab"
 msgstr ""
 
-#: webtoolbar.py:291
+#: webtoolbar.py:303
 msgid "Bookmark"
 msgstr "বুকমার্ক"
 
-#: webtoolbar.py:440
+#: webtoolbar.py:452
 msgid "Reload"
 msgstr "আবার লোড করো"
+
+#~ msgid "Cancel"
+#~ msgstr "বাতিল করো"
 
 #, python-format
 #~ msgid "%s"
@@ -158,9 +176,6 @@ msgstr "আবার লোড করো"
 #, python-format
 #~ msgid "File %s from %s."
 #~ msgstr "%s ফাইল, %s থেকে।"
-
-#~ msgid "View"
-#~ msgstr "দেখা"
 
 #~ msgid "blank"
 #~ msgstr "খালি"
