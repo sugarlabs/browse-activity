@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-09 00:31-0400\n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
 "PO-Revision-Date: 2011-08-26 06:58+0200\n"
 "Last-Translator: korakurider <korakurider@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,35 +25,37 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:274
+#: activity/activity.info:2 webactivity.py:267
 msgid "Browse"
 msgstr "ブラウズ"
 
-#: downloadmanager.py:175
+#: downloadmanager.py:164
 msgid "Download started"
 msgstr "ダウンロードを開始しました"
 
-#: downloadmanager.py:190
+#: downloadmanager.py:179
 msgid "Download completed"
 msgstr "ダウンロード完了"
 
-#: downloadmanager.py:194
+#: downloadmanager.py:183
 msgid "Show in Journal"
 msgstr "ジャーナルで表示"
 
-#: downloadmanager.py:197
+#: downloadmanager.py:186
 msgid "Ok"
 msgstr "了解"
 
-#: downloadmanager.py:204
+#: downloadmanager.py:193
 #, python-format
 msgid "From: %s"
 msgstr "From: %s"
 
-#: downloadmanager.py:346
+#: downloadmanager.py:335
+#, python-format
+#, python-format, fuzzy
 msgid ""
-"Downloading %2$s from \n"
-"%1$s."
+"Downloading %s from \n"
+"%s."
 msgstr ""
 "ファイル %2$s を以下よりダウンロード中\n"
 "%1$s"
@@ -110,30 +112,30 @@ msgstr "トレイを表示"
 msgid "Hide Tray"
 msgstr "トレイを隠す"
 
-#: webactivity.py:271
+#: webactivity.py:264
 msgid "Edit"
 msgstr "編集"
 
-#: webactivity.py:277
+#: webactivity.py:270
 msgid "View"
 msgstr "ビュー"
 
-#: webactivity.py:655
+#: webactivity.py:654
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "ダウンロードしています"
 
-#: webactivity.py:658
+#: webactivity.py:657
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "いま停止するとダウンロードが消去されます"
 
-#: webactivity.py:663
+#: webactivity.py:662
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "ダウンロードを続ける"
 
-#: webactivity.py:667 webtoolbar.py:450
+#: webactivity.py:666 webtoolbar.py:449
 msgid "Stop"
 msgstr "停止"
 
@@ -157,7 +159,7 @@ msgstr "タブを追加"
 msgid "Bookmark"
 msgstr "ブックマーク"
 
-#: webtoolbar.py:453
+#: webtoolbar.py:452
 msgid "Reload"
 msgstr "再読み込み"
 
