@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 00:32-0400\n"
-"PO-Revision-Date: 2011-09-28 08:06+0200\n"
+"POT-Creation-Date: 2011-09-27 07:23-0400\n"
+"PO-Revision-Date: 2011-09-29 16:13+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -25,43 +25,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 webactivity.py:267
+#: activity/activity.info:2 webactivity.py:270
 msgid "Browse"
 msgstr "සැරිසරන්න"
 
-#: downloadmanager.py:164
+#: browser.py:336 browser.py:383 webactivity.py:478
+msgid "Untitled"
+msgstr ""
+
+#: browser.py:377
+msgid "Loading..."
+msgstr ""
+
+#: downloadmanager.py:173
 msgid "Download started"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:188
 msgid "Download completed"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:183
+#: downloadmanager.py:192
 msgid "Show in Journal"
 msgstr "ජර්නලයේ පෙන්වන්න"
 
-#: downloadmanager.py:186
+#: downloadmanager.py:195
 msgid "Ok"
 msgstr "හරි"
 
-#: downloadmanager.py:193
+#: downloadmanager.py:202
 #, python-format
 msgid "From: %s"
 msgstr "ගෙන්: %s"
 
-#: downloadmanager.py:335
+#: downloadmanager.py:344
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr "%s ගෙන් %s බාගත කරමින්. \n"
+msgstr ""
+"%s ගෙන් %s බාගත කරමින්. \n"
+"   "
 
-#: edittoolbar.py:92
+#: edittoolbar.py:91
 msgid "Previous"
 msgstr "පෙර"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:98
 msgid "Next"
 msgstr "ඊලඟ"
 
@@ -70,22 +80,26 @@ msgid "Remove"
 msgstr "ඉවත් කරන්න"
 
 #: palettes.py:143
-msgid "Keep link"
-msgstr "සබැඳිය තබාගන්න"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "සබැඳිය පිටපත් කරන්න"
-
-#: palettes.py:159
 msgid "Follow link"
 msgstr "සබැඳිය ලුහුබඳින්න"
 
-#: palettes.py:209
+#: palettes.py:148
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:154
+msgid "Keep link"
+msgstr "සබැඳිය තබාගන්න"
+
+#: palettes.py:162
+msgid "Copy link"
+msgstr "සබැඳිය පිටපත් කරන්න"
+
+#: palettes.py:218
 msgid "Keep image"
 msgstr "පින්තූරය තබාගන්න"
 
-#: palettes.py:217
+#: palettes.py:226
 msgid "Copy image"
 msgstr "පින්තූරය පිටපත් කරන්න"
 
@@ -109,59 +123,57 @@ msgstr "බන්දේසිය පෙන්වන්න"
 msgid "Hide Tray"
 msgstr "බන්දේසිය සඟවන්න"
 
-#: webactivity.py:264
+#: webactivity.py:267
 msgid "Edit"
 msgstr "සකසන්න"
 
-#: webactivity.py:270
+#: webactivity.py:273
 msgid "View"
 msgstr "දර්ශනය කරන්න"
 
-#: webactivity.py:654
+#: webactivity.py:640
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "බාගතවීම සිදුවෙමින් පවතී"
 msgstr[1] "බාගතවීම් සිදුවෙමින් පවතී"
 
-#: webactivity.py:657
+#: webactivity.py:643
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "දැන් නැවැත්වීම ඔබගේ බාගත කිරීම මකනු ඇත"
 msgstr[1] "දැන් නැවැත්වීම ඔබගේ බාගත කිරීම් මකනු ඇත"
 
-#: webactivity.py:662
+#: webactivity.py:648
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "බාගත කිරීම දිගටම කරගෙන යන්න"
 msgstr[1] "බාගත කිරීම් දිගටම කරගෙන යන්න"
 
-#: webactivity.py:666 webtoolbar.py:449
+#: webactivity.py:652
 msgid "Stop"
 msgstr "නවත්වන්න"
 
-#: webtoolbar.py:259
+#: webtoolbar.py:253
 msgid "Home page"
 msgstr "නිවාස පිටුව"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:273
 msgid "Back"
 msgstr "පසුපසට"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:280
 msgid "Forward"
 msgstr "ඉදිරියට"
 
-#: webtoolbar.py:296
-msgid "Add a tab"
-msgstr "ටැබයක් එක් කරන්න"
-
-#: webtoolbar.py:303
+#: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "පොත් සලකුණක් යොදන්න"
 
-#: webtoolbar.py:452
-msgid "Reload"
-msgstr "යළි ලබාගන්න"
+#~ msgid "Add a tab"
+#~ msgstr "ටැබයක් එක් කරන්න"
+
+#~ msgid "Reload"
+#~ msgstr "යළි ලබාගන්න"
 
 #~ msgid "Cancel"
 #~ msgstr "අවලංගු කරන්න"
