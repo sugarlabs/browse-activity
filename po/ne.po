@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"POT-Creation-Date: 2011-09-27 07:23-0400\n"
 "PO-Revision-Date: 2011-09-19 06:17+0200\n"
 "Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Browse"
 msgstr "ब्राउज"
 
-#: browser.py:328 browser.py:375 webactivity.py:478
+#: browser.py:336 browser.py:383 webactivity.py:478
 msgid "Untitled"
 msgstr "नाम नदिइएको"
 
-#: browser.py:369
+#: browser.py:377
 msgid "Loading..."
 msgstr "लोडिङ्ग हुदैछ..."
 
@@ -96,11 +96,11 @@ msgstr "लिंक राख"
 msgid "Copy link"
 msgstr "लिंकको प्रतिलिपि बनाऊ"
 
-#: palettes.py:220
+#: palettes.py:218
 msgid "Keep image"
 msgstr "तस्विर राख"
 
-#: palettes.py:228
+#: palettes.py:226
 msgid "Copy image"
 msgstr "तस्विरको प्रतिलिपि बनाऊ"
 
