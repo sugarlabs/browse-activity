@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 00:32-0400\n"
+"POT-Creation-Date: 2011-09-27 07:23-0400\n"
 "PO-Revision-Date: 2011-09-18 00:11+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Browse"
 msgstr "Browse"
 
-#: browser.py:328 browser.py:375 webactivity.py:478
+#: browser.py:336 browser.py:383 webactivity.py:478
 msgid "Untitled"
 msgstr "Untitled"
 
-#: browser.py:369
+#: browser.py:377
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -96,11 +96,11 @@ msgstr "Keep link"
 msgid "Copy link"
 msgstr "Copy link"
 
-#: palettes.py:220
+#: palettes.py:218
 msgid "Keep image"
 msgstr "Keep image"
 
-#: palettes.py:228
+#: palettes.py:226
 msgid "Copy image"
 msgstr "Copy image"
 
