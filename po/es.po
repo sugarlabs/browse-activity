@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 07:23-0400\n"
-"PO-Revision-Date: 2011-09-19 08:09+0200\n"
+"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"PO-Revision-Date: 2011-10-11 17:40+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
@@ -72,14 +72,14 @@ msgstr "Ok"
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:344
+#: downloadmanager.py:345
 #, python-format
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(file)s from \n"
+"%(source)s."
 msgstr ""
-"Bajando %s desde \n"
-"%s."
+"Descargando %(file)s de \n"
+"%(source)s."
 
 #: edittoolbar.py:91
 msgid "Previous"
@@ -182,6 +182,14 @@ msgstr "Avanzar"
 #: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "Marcador"
+
+#, python-format
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "Bajando %s desde \n"
+#~ "%s."
 
 #~ msgid "Add a tab"
 #~ msgstr "Añadir lengueta"
