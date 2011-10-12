@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 07:23-0400\n"
-"PO-Revision-Date: 2011-09-18 00:28+0200\n"
+"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"PO-Revision-Date: 2011-10-12 04:01+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_US\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2 webactivity.py:270
 msgid "Browse"
@@ -58,15 +58,14 @@ msgstr "Ok"
 msgid "From: %s"
 msgstr "From: %s"
 
-#: downloadmanager.py:344
+#: downloadmanager.py:345
 #, python-format
-#, python-format,
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(file)s from \n"
+"%(source)s."
 msgstr ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(file)s from \n"
+"%(source)s."
 
 #: edittoolbar.py:91
 msgid "Previous"
@@ -169,6 +168,15 @@ msgstr "Forward"
 #: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "Bookmark"
+
+#, python-format
+#, python-format,
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "Downloading %s from \n"
+#~ "%s."
 
 #~ msgid "Add a tab"
 #~ msgstr "Add a tab"
