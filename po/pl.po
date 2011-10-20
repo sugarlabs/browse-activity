@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 07:23-0400\n"
-"PO-Revision-Date: 2011-09-19 15:08+0200\n"
-"Last-Translator: frks <frks@frks.pl>\n"
+"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"PO-Revision-Date: 2011-10-20 19:44+0200\n"
+"Last-Translator: Jakub <jamarat@o2.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -59,14 +59,14 @@ msgstr "Ok"
 msgid "From: %s"
 msgstr "Z: %s"
 
-#: downloadmanager.py:344
+#: downloadmanager.py:345
 #, python-format
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(file)s from \n"
+"%(source)s."
 msgstr ""
-"Pobieranie %s z \n"
-"%s."
+"Pobieram %(file)s z \n"
+"%(source)s."
 
 #: edittoolbar.py:91
 msgid "Previous"
@@ -172,6 +172,14 @@ msgstr "Dalej"
 #: webtoolbar.py:287
 msgid "Bookmark"
 msgstr "Zakładka"
+
+#, python-format
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "Pobieranie %s z \n"
+#~ "%s."
 
 #~ msgid "Add a tab"
 #~ msgstr "Dodaj zakładkę"
