@@ -26,14 +26,9 @@ from xpcom.components import interfaces
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.menuitem import MenuItem
 from sugar.graphics import iconentry
-try:
-    from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
-    from sugar.activity.widgets import ActivityToolbarButton
-    from sugar.activity.widgets import StopButton
-    NEW_TOOLBARS = True
-except ImportError:
-    from gtk import Toolbar as ToolbarBase
-    NEW_TOOLBARS = False
+from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
+from sugar.activity.widgets import ActivityToolbarButton
+from sugar.activity.widgets import StopButton
 
 import filepicker
 import places
@@ -242,12 +237,9 @@ class PrimaryToolbar(ToolbarBase):
 
         self._loading = False
 
-        if NEW_TOOLBARS:
-            toolbar = self.toolbar
-            activity_button = ActivityToolbarButton(self._activity)
-            toolbar.insert(activity_button, 0)
-        else:
-            toolbar = self
+        toolbar = self.toolbar
+        activity_button = ActivityToolbarButton(self._activity)
+        toolbar.insert(activity_button, 0)
 
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
@@ -289,9 +281,8 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(self._link_add, -1)
         self._link_add.show()
 
-        if NEW_TOOLBARS:
-            stop_button = StopButton(self._activity)
-            toolbar.insert(stop_button, -1)
+        stop_button = StopButton(self._activity)
+        toolbar.insert(stop_button, -1)
 
         self._progress_listener = None
         self._history = None
