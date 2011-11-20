@@ -1,0 +1,190 @@
+# Irma <sankaypillo@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
+"PO-Revision-Date: 2011-11-19 10:54-0500\n"
+"Last-Translator: Irma <sankaypillo@gmail.com>\n"
+"Language-Team: Voluntarios Quechua Sugar Camp\n"
+"Language: quz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Virtaal 0.7.0\n"
+
+#  "Navegar"
+#: activity/activity.info:2 webactivity.py:267
+msgid "Browse"
+msgstr "Machkay"
+
+#  "Descarga iniciada"
+#: downloadmanager.py:164
+msgid "Download started"
+msgstr "Uyarachiyqa qallarirun"
+
+#  "Descarga terminada"
+#: downloadmanager.py:179
+msgid "Download completed"
+msgstr "Urayachiyqa tukurunña"
+
+#  "Mostrar en el Diario"
+#: downloadmanager.py:183
+msgid "Show in Journal"
+msgstr "P'anqapi Rikuchiy"
+
+#  "Ok"
+#: downloadmanager.py:186
+msgid "Ok"
+msgstr "Ok"
+
+#  "De: %s"
+#: downloadmanager.py:193
+#, python-format
+msgid "From: %s"
+msgstr "Pimanta: %s"
+
+#  "Bajando %s desde \n"
+#  "%s."
+#: downloadmanager.py:335
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Urayachichkan %s kaymanta \n"
+"%s."
+
+#  "Anterior"
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr "Ñawpaq"
+
+#  "Siguiente"
+#: edittoolbar.py:99
+msgid "Next"
+msgstr "Hamuq"
+
+#  "Eliminar"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr "Chinkachiy"
+
+#  "Mantener el enlace"
+#: palettes.py:143
+msgid "Keep link"
+msgstr "Wachkanataqa hap'ipay"
+
+#  "Copiar el enlace"
+#: palettes.py:151
+msgid "Copy link"
+msgstr "Waskhanata kikinchay"
+
+#  "Seguir el enlace"
+#: palettes.py:159
+msgid "Follow link"
+msgstr "Waskhanata qatiy"
+
+#  "Mantener la imagen"
+#: palettes.py:209
+msgid "Keep image"
+msgstr "Wankita hap'iy"
+
+#  "Copiar la imagen"
+#: palettes.py:217
+msgid "Copy image"
+msgstr "Wankita kikinchay"
+
+#  "Reducir"
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr "Huch'uyachiy"
+
+#  "Ampliar"
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr "Hatunyachiy"
+
+#  "Pantalla completa"
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr "Hunt'asqa pantalla"
+
+#  "Mostrar Bandeja"
+#: viewtoolbar.py:89
+msgid "Show Tray"
+msgstr "Kaskinata Rikuchiy"
+
+#  "Esconder Bandeja"
+#: viewtoolbar.py:93
+msgid "Hide Tray"
+msgstr "Chaskinata pakay"
+
+#  "Editar"
+#: webactivity.py:264
+msgid "Edit"
+msgstr "Allinchay"
+
+#  "Ver"
+#: webactivity.py:270
+msgid "View"
+msgstr "Qhaway"
+
+#  "Descarga en curso"
+#  "Descargas en curso"
+#: webactivity.py:654
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] ""
+msgstr[1] ""
+
+#  "Detener ahora cancelará la descarga"
+#  "Detener ahora cancelará las descargas"
+#: webactivity.py:657
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#  "Continuar la descarga"
+#  "Continuar las descargas"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#  "Parar"
+#: webactivity.py:666 webtoolbar.py:449
+msgid "Stop"
+msgstr "Sayachiy"
+
+#  "Página inicial"
+#: webtoolbar.py:259
+msgid "Home page"
+msgstr "Qallarina"
+
+#  "Volver"
+#: webtoolbar.py:281
+msgid "Back"
+msgstr "Kutiy"
+
+#  "Avanzar"
+#: webtoolbar.py:288
+msgid "Forward"
+msgstr "Ñawpay"
+
+#  "Añadir lengueta"
+#: webtoolbar.py:296
+msgid "Add a tab"
+msgstr "Tab nisqata yapay"
+
+#  "Marcador"
+#: webtoolbar.py:303
+msgid "Bookmark"
+msgstr "T'upsichiq"
+
+#  "Recargar"
+#: webtoolbar.py:452
+msgid "Reload"
+msgstr "Kunanyachiy"
