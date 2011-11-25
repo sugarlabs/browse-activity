@@ -21,16 +21,16 @@ from gettext import gettext as _
 from gettext import ngettext
 import os
 
-import gobject
-gobject.threads_init()
+from gi.repository import GObject
+GObject.threads_init()
 
-import gtk
+from gi.repository import Gtk
 import base64
 import time
 import shutil
 import sqlite3
 import cjson
-import gconf
+from gi.repository import GConf
 import locale
 import cairo
 from hashlib import sha1
@@ -78,7 +78,7 @@ if _profile_version < PROFILE_VERSION:
 def _seed_xs_cookie():
     ''' Create a HTTP Cookie to authenticate with the Schoolserver
     '''
-    client = gconf.client_get_default()
+    client = GConf.Client.get_default()
     backup_url = client.get_string('/desktop/sugar/backup_url')
     if not backup_url:
         _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
@@ -221,7 +221,7 @@ class WebActivity(activity.Activity):
                 ' to a bug in cairo/mozilla')
 
         self._tray = HTray()
-        self.set_tray(self._tray, gtk.POS_BOTTOM)
+        self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
         self._tray.show()
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
@@ -476,10 +476,10 @@ class WebActivity(activity.Activity):
         self._tabbed_view.load_homepage()
 
     def _key_press_cb(self, widget, event):
-        key_name = gtk.gdk.keyval_name(event.keyval)
+        key_name = Gdk.keyval_name(event.keyval)
         browser = self._tabbed_view.props.current_browser
 
-        if event.state & gtk.gdk.CONTROL_MASK:
+        if event.get_state() & Gdk.EventMask.CONTROL_MASK:
 
             if key_name == 'd':
                 self._add_link()
@@ -503,7 +503,7 @@ class WebActivity(activity.Activity):
             elif key_name == 'r':
                 flags = components.interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
                 browser.web_navigation.reload(flags)
-            elif gtk.gdk.keyval_name(event.keyval) == "t":
+            elif Gdk.keyval_name(event.keyval) == "t":
                 if not self._disable_multiple_tabs:
                     self._tabbed_view.add_tab()
             else:
@@ -579,7 +579,7 @@ class WebActivity(activity.Activity):
         window = self._tabbed_view.props.current_browser.window
         width, height = window.get_size()
 
-        screenshot = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, has_alpha=False,
+        screenshot = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, has_alpha=False,
                                     bits_per_sample=8, width=width,
                                     height=height)
         screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
@@ -587,7 +587,7 @@ class WebActivity(activity.Activity):
 
         screenshot = screenshot.scale_simple(style.zoom(100),
                                                  style.zoom(80),
-                                                 gtk.gdk.INTERP_BILINEAR)
+                                                 GdkPixbuf.InterpType.BILINEAR)
 
         buf = self.get_buffer(screenshot)
         return buf
@@ -609,9 +609,9 @@ class WebActivity(activity.Activity):
             cancel_icon = Icon(icon_name='dialog-cancel')
             cancel_label = ngettext('Continue download', 'Continue downloads',
                                     downloadmanager.num_downloads())
-            alert.add_button(gtk.RESPONSE_CANCEL, cancel_label, cancel_icon)
+            alert.add_button(Gtk.ResponseType.CANCEL, cancel_label, cancel_icon)
             stop_icon = Icon(icon_name='dialog-ok')
-            alert.add_button(gtk.RESPONSE_OK, _('Stop'), stop_icon)
+            alert.add_button(Gtk.ResponseType.OK, _('Stop'), stop_icon)
             stop_icon.show()
             self.add_alert(alert)
             alert.connect('response', self.__inprogress_response_cb)
@@ -621,9 +621,9 @@ class WebActivity(activity.Activity):
 
     def __inprogress_response_cb(self, alert, response_id):
         self.remove_alert(alert)
-        if response_id is gtk.RESPONSE_CANCEL:
+        if response_id is Gtk.ResponseType.CANCEL:
             logging.debug('Keep on')
-        elif response_id == gtk.RESPONSE_OK:
+        elif response_id == Gtk.ResponseType.OK:
             logging.debug('Stop downloads and quit')
             self._force_close = True
             downloadmanager.remove_all_downloads()

@@ -20,9 +20,9 @@ import os
 import time
 from gettext import gettext as _
 
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
 import hulahop
 import xpcom
 from xpcom.nsError import *
@@ -102,8 +102,8 @@ class TabbedView(BrowserNotebook):
     __gtype_name__ = 'TabbedView'
 
     __gsignals__ = {
-        'focus-url-entry': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
+        'focus-url-entry': (GObject.SignalFlags.RUN_FIRST,
+                            None,
                             ([])),
     }
 
@@ -285,7 +285,7 @@ class TabbedView(BrowserNotebook):
     def _get_current_browser(self):
         return self.get_nth_page(self.get_current_page())
 
-    current_browser = gobject.property(type=object,
+    current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
 
     def get_session(self):
@@ -310,7 +310,7 @@ class TabbedView(BrowserNotebook):
             sessionstore.set_session(browser, tab_session)
 
 
-gtk.rc_parse_string('''
+Gtk.rc_parse_string('''
     style "browse-tab-close" {
         xthickness = 0
         ythickness = 0
@@ -318,37 +318,37 @@ gtk.rc_parse_string('''
     widget "*browse-tab-close" style "browse-tab-close"''')
 
 
-class TabLabel(gtk.HBox):
+class TabLabel(Gtk.HBox):
     __gtype_name__ = 'TabLabel'
 
     __gsignals__ = {
-        'tab-close': (gobject.SIGNAL_RUN_FIRST,
-                      gobject.TYPE_NONE,
+        'tab-close': (GObject.SignalFlags.RUN_FIRST,
+                      None,
                       ([object])),
     }
 
     def __init__(self, browser):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._browser = browser
         self._browser.connect('is-setup', self.__browser_is_setup_cb)
 
-        self._label = gtk.Label(_('Untitled'))
-        self._label.set_ellipsize(pango.ELLIPSIZE_END)
+        self._label = Gtk.Label(label=_('Untitled'))
+        self._label.set_ellipsize(Pango.EllipsizeMode.END)
         self._label.set_alignment(0, 0.5)
-        self.pack_start(self._label)
+        self.pack_start(self._label, True, True, 0)
         self._label.show()
 
         close_tab_icon = Icon(icon_name='browse-close-tab')
-        button = gtk.Button()
-        button.props.relief = gtk.RELIEF_NONE
+        button = Gtk.Button()
+        button.props.relief = Gtk.ReliefStyle.NONE
         button.props.focus_on_click = False
-        icon_box = gtk.HBox()
+        icon_box = Gtk.HBox()
         icon_box.pack_start(close_tab_icon, True, False, 0)
         button.add(icon_box)
         button.connect('clicked', self.__button_clicked_cb)
         button.set_name('browse-tab-close')
-        self.pack_start(button, expand=False)
+        self.pack_start(button, False, True, 0)
         close_tab_icon.show()
         icon_box.show()
         button.show()
@@ -389,11 +389,11 @@ class Browser(WebView):
     __gtype_name__ = 'Browser'
 
     __gsignals__ = {
-        'is-setup': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE,
+        'is-setup': (GObject.SignalFlags.RUN_FIRST,
+                     None,
                      ([])),
-        'new-tab': (gobject.SIGNAL_RUN_FIRST,
-                    gobject.TYPE_NONE,
+        'new-tab': (GObject.SignalFlags.RUN_FIRST,
+                    None,
                     ([str])),
     }
 
@@ -489,15 +489,15 @@ class Browser(WebView):
         self.emit('new-tab', url)
 
 
-class PopupDialog(gtk.Window):
+class PopupDialog(Gtk.Window):
     def __init__(self):
-        gtk.Window.__init__(self)
+        GObject.GObject.__init__(self)
 
-        self.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
+        self.set_type_hint(Gdk.WindowTypeHint.DIALOG)
 
         border = style.GRID_CELL_SIZE
-        self.set_default_size(gtk.gdk.screen_width() - border * 2,
-                              gtk.gdk.screen_height() - border * 2)
+        self.set_default_size(Gdk.Screen.width() - border * 2,
+                              Gdk.Screen.height() - border * 2)
 
         self.view = WebView()
         self.view.connect('notify::visibility', self.__notify_visibility_cb)

@@ -19,7 +19,7 @@ import os
 import tempfile
 import shutil
 
-import gtk
+from gi.repository import Gtk
 import hulahop
 
 import xpcom
@@ -74,7 +74,7 @@ class FilePicker:
         jobject = None
         try:
             result = chooser.run()
-            if result == gtk.RESPONSE_ACCEPT:
+            if result == Gtk.ResponseType.ACCEPT:
                 jobject = chooser.get_selected_object()
                 logging.debug('FilePicker.show: %r', jobject)
 

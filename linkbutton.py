@@ -15,9 +15,9 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-import gtk
+from gi.repository import Gtk
 import os
-import gobject
+from gi.repository import GObject
 from gettext import gettext as _
 import rsvg
 import re
@@ -28,11 +28,11 @@ from sugar.graphics.tray import TrayButton
 from sugar.graphics import style
 
 
-class LinkButton(TrayButton, gobject.GObject):
+class LinkButton(TrayButton, GObject.GObject):
     __gtype_name__ = 'LinkButton'
     __gsignals__ = {
-        'remove_link': (gobject.SIGNAL_RUN_FIRST,
-                        gobject.TYPE_NONE, ([str])),
+        'remove_link': (GObject.SignalFlags.RUN_FIRST,
+                        None, ([str])),
         }
 
     def __init__(self, url, buf, color, title, owner, index, hash):
@@ -44,8 +44,8 @@ class LinkButton(TrayButton, gobject.GObject):
         self.setup_rollover_options(info)
 
     def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):
-        img = gtk.Image()
-        loader = gtk.gdk.PixbufLoader()
+        img = Gtk.Image()
+        loader = GdkPixbuf.PixbufLoader()
         loader.write(buf)
         loader.close()
         pixbuf = loader.get_pixbuf()
@@ -55,7 +55,7 @@ class LinkButton(TrayButton, gobject.GObject):
         pixbuf_bg = self._read_link_background(xo_buddy, fill, stroke)
         pixbuf_bg = pixbuf_bg.scale_simple(style.zoom(120),
                                            style.zoom(110),
-                                           gtk.gdk.INTERP_BILINEAR)
+                                           GdkPixbuf.InterpType.BILINEAR)
         dest_x = style.zoom(10)
         dest_y = style.zoom(20)
         w = pixbuf.get_width()
@@ -64,7 +64,7 @@ class LinkButton(TrayButton, gobject.GObject):
         scale_y = 1
 
         pixbuf.composite(pixbuf_bg, dest_x, dest_y, w, h, dest_x, dest_y,
-                         scale_x, scale_y, gtk.gdk.INTERP_BILINEAR, 255)
+                         scale_x, scale_y, GdkPixbuf.InterpType.BILINEAR, 255)
         img.set_from_pixbuf(pixbuf_bg)
         self.set_icon_widget(img)
         img.show()
@@ -92,7 +92,7 @@ class LinkButton(TrayButton, gobject.GObject):
         palette = Palette(info, text_maxlen=50)
         self.set_palette(palette)
 
-        menu_item = gtk.MenuItem(_('Remove'))
+        menu_item = Gtk.MenuItem(_('Remove'))
         menu_item.connect('activate', self.item_remove_cb)
         palette.menu.append(menu_item)
         menu_item.show()

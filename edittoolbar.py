@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from xpcom.components import interfaces
@@ -64,13 +64,13 @@ class EditToolbar(activity.EditToolbar):
         logging.debug('observe: %r %r %r' % (subject, topic, data))
         """
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         self.insert(separator, -1)
         separator.show()
 
-        search_item = gtk.ToolItem()
+        search_item = Gtk.ToolItem()
         self.search_entry = iconentry.IconEntry()
         self.search_entry.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
                                              'system-search')
@@ -78,7 +78,7 @@ class EditToolbar(activity.EditToolbar):
         self.search_entry.connect('activate', self.__search_entry_activate_cb)
         self.search_entry.connect('changed', self.__search_entry_changed_cb)
 
-        width = int(gtk.gdk.screen_width() / 3)
+        width = int(Gdk.Screen.width() / 3)
         self.search_entry.set_size_request(width, -1)
 
         search_item.add(self.search_entry)
@@ -135,12 +135,12 @@ class EditToolbar(activity.EditToolbar):
         if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False
-            entry.modify_text(gtk.STATE_NORMAL,
+            entry.modify_text(Gtk.StateType.NORMAL,
                               style.COLOR_BUTTON_GREY.get_gdk_color())
         else:
             self._prev.props.sensitive = True
             self._next.props.sensitive = True
-            entry.modify_text(gtk.STATE_NORMAL,
+            entry.modify_text(Gtk.StateType.NORMAL,
                               style.COLOR_BLACK.get_gdk_color())
 
     def __find_previous_cb(self, button):

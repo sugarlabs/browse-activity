@@ -17,14 +17,14 @@
 
 from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk
 
 from sugar.graphics.toolbutton import ToolButton
 
 
-class ViewToolbar(gtk.Toolbar):
+class ViewToolbar(Gtk.Toolbar):
     def __init__(self, activity):
-        gtk.Toolbar.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._activity = activity
         self._activity.tray.connect('unmap', self.__unmap_cb)
@@ -42,7 +42,7 @@ class ViewToolbar(gtk.Toolbar):
         self.insert(self.zoomin, -1)
         self.zoomin.show()
 
-        self.separator = gtk.SeparatorToolItem()
+        self.separator = Gtk.SeparatorToolItem()
         self.separator.set_draw(True)
         self.insert(self.separator, -1)
         self.separator.show()

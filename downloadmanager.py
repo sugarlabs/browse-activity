@@ -21,7 +21,7 @@ from gettext import gettext as _
 import time
 import tempfile
 
-import gtk
+from gi.repository import Gtk
 import hulahop
 import xpcom
 from xpcom.nsError import *
@@ -188,11 +188,11 @@ class Download:
             self._stop_alert.props.title = _('Download completed')
             self._stop_alert.props.msg = self._get_file_name()
             open_icon = Icon(icon_name='zoom-activity')
-            self._stop_alert.add_button(gtk.RESPONSE_APPLY,
+            self._stop_alert.add_button(Gtk.ResponseType.APPLY,
                                         _('Show in Journal'), open_icon)
             open_icon.show()
             ok_icon = Icon(icon_name='dialog-ok')
-            self._stop_alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
             ok_icon.show()
             self._activity.add_alert(self._stop_alert)
             self._stop_alert.connect('response', self.__stop_response_cb)
@@ -219,7 +219,7 @@ class Download:
                             timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
 
     def _check_image_mime_type(self):
-        for pixbuf_format in gtk.gdk.pixbuf_get_formats():
+        for pixbuf_format in GdkPixbuf.Pixbuf.get_formats():
             if self._mime_type in pixbuf_format['mime_types']:
                 return True
         return False
@@ -227,7 +227,7 @@ class Download:
     def _get_preview_image(self):
         preview_width, preview_height = style.zoom(300), style.zoom(225)
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file(self._target_file.path)
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(self._target_file.path)
         width, height = pixbuf.get_width(), pixbuf.get_height()
 
         scale = 1
@@ -236,7 +236,7 @@ class Download:
             scale_y = preview_height / float(height)
             scale = min(scale_x, scale_y)
 
-        pixbuf2 = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, \
+        pixbuf2 = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, \
                             pixbuf.get_has_alpha(), \
                             pixbuf.get_bits_per_sample(), \
                             preview_width, preview_height)
@@ -249,7 +249,7 @@ class Download:
                             preview_width - (margin_x * 2), \
                             preview_height - (margin_y * 2), \
                             margin_x, margin_y, scale, scale, \
-                            gtk.gdk.INTERP_BILINEAR)
+                            GdkPixbuf.InterpType.BILINEAR)
 
         preview_data = []
 
@@ -262,7 +262,7 @@ class Download:
 
     def __start_response_cb(self, alert, response_id):
         global _active_downloads
-        if response_id is gtk.RESPONSE_CANCEL:
+        if response_id is Gtk.ResponseType.CANCEL:
             logging.debug('Download Canceled')
             logging.debug('target_path=%r', self._target_file.path)
             self.cancelable.cancel(NS_ERROR_FAILURE)
@@ -278,7 +278,7 @@ class Download:
 
     def __stop_response_cb(self, alert, response_id):
         global _active_downloads
-        if response_id is gtk.RESPONSE_APPLY:
+        if response_id is Gtk.ResponseType.APPLY:
             logging.debug('Start application with downloaded object')
             activity.show_object_in_journal(self._object_id)
         self._activity.remove_alert(alert)

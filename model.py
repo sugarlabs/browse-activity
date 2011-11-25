@@ -18,21 +18,21 @@
 
 import cjson
 import sha
-import gobject
+from gi.repository import GObject
 import base64
 
 
-class Model(gobject.GObject):
+class Model(GObject.GObject):
     ''' The model of web-activity which uses json to serialize its data
     to a file and deserealize from it.
     '''
     __gsignals__ = {
-        'add_link': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE, ([int])),
+        'add_link': (GObject.SignalFlags.RUN_FIRST,
+                     None, ([int])),
         }
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.data = {}
         self.data['shared_links'] = []
         self.data['deleted'] = []

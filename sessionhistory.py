@@ -16,24 +16,24 @@
 
 import logging
 
-import gobject
+from gi.repository import GObject
 import xpcom
 from xpcom.components import interfaces
 
 
-class HistoryListener(gobject.GObject):
+class HistoryListener(GObject.GObject):
     _com_interfaces_ = interfaces.nsISHistoryListener
 
     __gsignals__ = {
-        'session-history-changed': (gobject.SIGNAL_RUN_FIRST,
-                                    gobject.TYPE_NONE,
+        'session-history-changed': (GObject.SignalFlags.RUN_FIRST,
+                                    None,
                                     ([int])),
-        'session-link-changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+        'session-link-changed': (GObject.SignalFlags.RUN_FIRST, None,
                                  ([str])),
     }
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._wrapped_self = xpcom.server.WrapObject( \
                 self, interfaces.nsISHistoryListener)

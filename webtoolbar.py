@@ -18,9 +18,9 @@
 
 from gettext import gettext as _
 
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
 from xpcom.components import interfaces
 
 from sugar.graphics.toolbutton import ToolButton
@@ -42,13 +42,13 @@ class WebEntry(iconentry.IconEntry):
     _COL_TITLE = 1
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._address = None
         self._title = None
         self._search_view = self._search_create_view()
 
-        self._search_window = gtk.Window(gtk.WINDOW_POPUP)
+        self._search_window = Gtk.Window(Gtk.WindowType.POPUP)
         self._search_window.add(self._search_view)
         self._search_view.show()
 
@@ -78,44 +78,44 @@ class WebEntry(iconentry.IconEntry):
     def _set_address(self, address):
         self._address = address
 
-    address = gobject.property(type=str, setter=_set_address)
+    address = GObject.property(type=str, setter=_set_address)
 
     def _set_title(self, title):
         self._title = title
         if title is not None and not self.props.has_focus:
             self._set_text(title)
 
-    title = gobject.property(type=str, setter=_set_title)
+    title = GObject.property(type=str, setter=_set_title)
 
     def _search_create_view(self):
-        view = gtk.TreeView()
+        view = Gtk.TreeView()
         view.props.headers_visible = False
 
         view.connect('button-press-event', self.__view_button_press_event_cb)
 
-        column = gtk.TreeViewColumn()
+        column = Gtk.TreeViewColumn()
         view.append_column(column)
 
-        cell = gtk.CellRendererText()
-        cell.props.ellipsize = pango.ELLIPSIZE_END
+        cell = Gtk.CellRendererText()
+        cell.props.ellipsize = Pango.EllipsizeMode.END
         cell.props.ellipsize_set = True
         cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
         column.set_attributes(cell, text=self._COL_TITLE)
 
-        cell = gtk.CellRendererText()
-        cell.props.ellipsize = pango.ELLIPSIZE_END
+        cell = Gtk.CellRendererText()
+        cell.props.ellipsize = Pango.EllipsizeMode.END
         cell.props.ellipsize_set = True
-        cell.props.alignment = pango.ALIGN_LEFT
-        column.pack_start(cell)
+        cell.props.alignment = Pango.Alignment.LEFT
+        column.pack_start(cell, True)
 
         column.set_attributes(cell, text=self._COL_ADDRESS)
 
         return view
 
     def _search_update(self):
-        list_store = gtk.ListStore(str, str)
+        list_store = Gtk.ListStore(str, str)
 
         for place in places.get_store().search(self.props.text):
             list_store.append([place.uri, place.title])
@@ -131,7 +131,7 @@ class WebEntry(iconentry.IconEntry):
         x = entry_x + entry_h / 2
         y = entry_y + entry_h
         width = self.allocation.width - entry_h
-        height = gtk.gdk.screen_height() / 3
+        height = Gdk.Screen.height() / 3
 
         self._search_window.move(x, y)
         self._search_window.resize(width, height)
@@ -165,7 +165,7 @@ class WebEntry(iconentry.IconEntry):
             self.activate(uri)
 
     def __key_press_event_cb(self, entry, event):
-        keyname = gtk.gdk.keyval_name(event.keyval)
+        keyname = Gdk.keyval_name(event.keyval)
 
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()
@@ -220,11 +220,11 @@ class PrimaryToolbar(ToolbarBase):
     __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
-        'add-link': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE,
+        'add-link': (GObject.SignalFlags.RUN_FIRST,
+                     None,
                      ([])),
-        'go-home': (gobject.SIGNAL_RUN_FIRST,
-                     gobject.TYPE_NONE,
+        'go-home': (GObject.SignalFlags.RUN_FIRST,
+                     None,
                      ([])),
     }
 
@@ -253,7 +253,7 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.connect('icon-press', self._stop_and_reload_cb)
         self.entry.connect('activate', self._entry_activate_cb)
 
-        entry_item = gtk.ToolItem()
+        entry_item = Gtk.ToolItem()
         entry_item.set_expand(True)
         entry_item.add(self.entry)
         self.entry.show()
@@ -294,7 +294,7 @@ class PrimaryToolbar(ToolbarBase):
         self._session_history_changed_hid = None
         self._title_changed_hid = None
 
-        gobject.idle_add(lambda:
+        GObject.idle_add(lambda:
                 self._connect_to_browser(tabbed_view.props.current_browser))
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
@@ -343,7 +343,7 @@ class PrimaryToolbar(ToolbarBase):
 
     def _session_history_changed_cb(self, session_history, current_page_index):
         # We have to wait until the history info is updated.
-        gobject.idle_add(self._reload_session_history, current_page_index)
+        GObject.idle_add(self._reload_session_history, current_page_index)
 
     def __location_changed_cb(self, progress_listener, pspec):
         self._set_address(progress_listener.location)

@@ -16,16 +16,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gobject
+from gi.repository import GObject
 import xpcom
 from xpcom.components import interfaces
 
 
-class ProgressListener(gobject.GObject):
+class ProgressListener(GObject.GObject):
     _com_interfaces_ = interfaces.nsIWebProgressListener
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._location = None
         self._loading = False
@@ -90,14 +90,14 @@ class ProgressListener(gobject.GObject):
     def _get_location(self):
         return self._location
 
-    location = gobject.property(type=object, getter=_get_location)
+    location = GObject.property(type=object, getter=_get_location)
 
     def _get_loading(self):
         return self._loading
 
-    loading = gobject.property(type=bool, default=False, getter=_get_loading)
+    loading = GObject.property(type=bool, default=False, getter=_get_loading)
 
     def _get_progress(self):
         return self._progress
 
-    progress = gobject.property(type=float, getter=_get_progress)
+    progress = GObject.property(type=float, getter=_get_progress)

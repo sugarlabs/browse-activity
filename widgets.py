@@ -16,34 +16,34 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 from sugar.graphics.icon import Icon
 
 
-class TabAdd(gtk.HBox):
+class TabAdd(Gtk.HBox):
     __gtype_name__ = 'TabAdd'
 
     __gsignals__ = {
-        'tab-added': (gobject.SIGNAL_RUN_FIRST,
-                      gobject.TYPE_NONE,
+        'tab-added': (GObject.SignalFlags.RUN_FIRST,
+                      None,
                       ([])),
     }
 
     def __init__(self):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         add_tab_icon = Icon(icon_name='add')
-        button = gtk.Button()
-        button.props.relief = gtk.RELIEF_NONE
+        button = Gtk.Button()
+        button.props.relief = Gtk.ReliefStyle.NONE
         button.props.focus_on_click = False
-        icon_box = gtk.HBox()
+        icon_box = Gtk.HBox()
         icon_box.pack_start(add_tab_icon, True, False, 0)
         button.add(icon_box)
         button.connect('clicked', self.__button_clicked_cb)
         button.set_name('browse-tab-add')
-        self.pack_start(button)
+        self.pack_start(button, True, True, 0)
         add_tab_icon.show()
         icon_box.show()
         button.show()
@@ -52,19 +52,19 @@ class TabAdd(gtk.HBox):
         self.emit('tab-added')
 
 
-class BrowserNotebook(gtk.Notebook):
+class BrowserNotebook(Gtk.Notebook):
     __gtype_name__ = 'BrowserNotebook'
 
     """Handle an extra tab at the end with an Add Tab button."""
 
     def __init__(self):
-        gtk.Notebook.__init__(self)
+        GObject.GObject.__init__(self)
         self._switch_handler = self.connect('switch-page',
                                             self.__on_switch_page)
 
         tab_add = TabAdd()
         tab_add.connect('tab-added', self.on_add_tab)
-        empty_page = gtk.HBox()
+        empty_page = Gtk.HBox()
         self.append_page(empty_page, tab_add)
         empty_page.show()
 
@@ -73,7 +73,7 @@ class BrowserNotebook(gtk.Notebook):
 
     def __on_switch_page(self, notebook, page, page_num):
         """Don't switch to the extra tab at the end."""
-        if page_num == gtk.Notebook.get_n_pages(self) - 1:
+        if page_num == Gtk.Notebook.get_n_pages(self) - 1:
             self.handler_block(self._switch_handler)
             self.set_current_page(-1)
             self.handler_unblock(self._switch_handler)
@@ -82,7 +82,7 @@ class BrowserNotebook(gtk.Notebook):
 
     def get_n_pages(self):
         """Skip the extra tab at the end on the pages count."""
-        return gtk.Notebook.get_n_pages(self) - 1
+        return Gtk.Notebook.get_n_pages(self) - 1
 
     def append_page(self, page, label):
         """Append keeping the extra tab at the end."""
@@ -92,4 +92,4 @@ class BrowserNotebook(gtk.Notebook):
         """If indexing from the end, skip the extra tab."""
         if number < 0:
             number = self.get_n_pages() - 1
-        gtk.Notebook.set_current_page(self, number)
+        Gtk.Notebook.set_current_page(self, number)
