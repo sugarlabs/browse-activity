@@ -23,12 +23,12 @@ from gi.repository import Gtk
 from gi.repository import Pango
 from xpcom.components import interfaces
 
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.menuitem import MenuItem
-from sugar.graphics import iconentry
-from sugar.graphics.toolbarbox import ToolbarBox as ToolbarBase
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.menuitem import MenuItem
+from sugar3.graphics import iconentry
+from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
 
 import filepicker
 import places

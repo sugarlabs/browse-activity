@@ -30,10 +30,10 @@ from xpcom import components
 from xpcom.components import interfaces
 from hulahop.webview import WebView
 
-from sugar import env
-from sugar.activity import activity
-from sugar.graphics import style
-from sugar.graphics.icon import Icon
+from sugar3 import env
+from sugar3.activity import activity
+from sugar3.graphics import style
+from sugar3.graphics.icon import Icon
 
 import sessionstore
 from palettes import ContentInvoker

@@ -23,9 +23,9 @@ import rsvg
 import re
 import gc
 
-from sugar.graphics.palette import Palette
-from sugar.graphics.tray import TrayButton
-from sugar.graphics import style
+from sugar3.graphics.palette import Palette
+from sugar3.graphics.tray import TrayButton
+from sugar3.graphics import style
 
 
 class LinkButton(TrayButton, GObject.GObject):

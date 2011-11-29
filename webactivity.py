@@ -39,18 +39,18 @@ from hashlib import sha1
 import gnome
 gnome.init('Hulahop', '1.0')
 
-from sugar.activity import activity
-from sugar.graphics import style
+from sugar3.activity import activity
+from sugar3.graphics import style
 import telepathy
 import telepathy.client
-from sugar.presence import presenceservice
-from sugar.graphics.tray import HTray
-from sugar import profile
-from sugar.graphics.alert import Alert
-from sugar.graphics.icon import Icon
-from sugar import mime
+from sugar3.presence import presenceservice
+from sugar3.graphics.tray import HTray
+from sugar3 import profile
+from sugar3.graphics.alert import Alert
+from sugar3.graphics.icon import Icon
+from sugar3 import mime
 
-from sugar.graphics.toolbarbox import ToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarButton
 
 PROFILE_VERSION = 2
 
@@ -171,7 +171,7 @@ import globalhistory  # pylint: disable=W0611
 import filepicker  # pylint: disable=W0611
 
 from model import Model
-from sugar.presence.tubeconn import TubeConnection
+from sugar3.presence.tubeconn import TubeConnection
 from messenger import Messenger
 from linkbutton import LinkButton
 

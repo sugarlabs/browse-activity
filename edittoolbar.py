@@ -20,10 +20,10 @@ from gettext import gettext as _
 
 from xpcom.components import interfaces
 
-from sugar.activity import activity
-from sugar.graphics import iconentry
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics import style
+from sugar3.activity import activity
+from sugar3.graphics import iconentry
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics import style
 
 
 class EditToolbar(activity.EditToolbar):

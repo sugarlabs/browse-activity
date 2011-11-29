@@ -18,7 +18,7 @@ import os
 import sqlite3
 from datetime import datetime, timedelta
 
-from sugar.activity import activity
+from sugar3.activity import activity
 
 _store = None
 

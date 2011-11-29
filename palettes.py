@@ -26,11 +26,11 @@ import xpcom
 from xpcom import components
 from xpcom.components import interfaces
 
-from sugar.graphics.palette import Palette, Invoker
-from sugar.graphics.menuitem import MenuItem
-from sugar.graphics.icon import Icon
-from sugar import profile
-from sugar.activity import activity
+from sugar3.graphics.palette import Palette, Invoker
+from sugar3.graphics.menuitem import MenuItem
+from sugar3.graphics.icon import Icon
+from sugar3 import profile
+from sugar3.activity import activity
 
 import downloadmanager
 

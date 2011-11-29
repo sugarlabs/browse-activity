@@ -27,8 +27,8 @@ from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
 
-from sugar.graphics.objectchooser import ObjectChooser
-from sugar.activity.activity import get_activity_root
+from sugar3.graphics.objectchooser import ObjectChooser
+from sugar3.activity.activity import get_activity_root
 
 
 _temp_dirs_to_clean = []

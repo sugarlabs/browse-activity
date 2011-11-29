@@ -19,7 +19,7 @@
 from gi.repository import GObject
 from gi.repository import Gtk
 
-from sugar.graphics.icon import Icon
+from sugar3.graphics.icon import Icon
 
 
 class TabAdd(Gtk.HBox):

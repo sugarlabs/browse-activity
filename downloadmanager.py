@@ -29,13 +29,13 @@ from xpcom import components
 from xpcom.components import interfaces
 from xpcom.server.factory import Factory
 
-from sugar.datastore import datastore
-from sugar import profile
-from sugar import mime
-from sugar.graphics.alert import Alert, TimeoutAlert
-from sugar.graphics.icon import Icon
-from sugar.graphics import style
-from sugar.activity import activity
+from sugar3.datastore import datastore
+from sugar3 import profile
+from sugar3 import mime
+from sugar3.graphics.alert import Alert, TimeoutAlert
+from sugar3.graphics.icon import Icon
+from sugar3.graphics import style
+from sugar3.activity import activity
 # #3903 - this constant can be removed and assumed to be 1 when dbus-python
 # 0.82.3 is the only version used
 import dbus
