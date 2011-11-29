@@ -21,7 +21,6 @@ from gettext import gettext as _
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
-from xpcom.components import interfaces
 
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.menuitem import MenuItem
@@ -30,7 +29,8 @@ from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
-import filepicker
+# FIXME
+# import filepicker
 import places
 
 
@@ -48,7 +48,7 @@ class WebEntry(iconentry.IconEntry):
         self._title = None
         self._search_view = self._search_create_view()
 
-        self._search_window = Gtk.Window(Gtk.WindowType.POPUP)
+        self._search_window = Gtk.Window(type=Gtk.WindowType.POPUP)
         self._search_window.add(self._search_view)
         self._search_view.show()
 
@@ -102,7 +102,7 @@ class WebEntry(iconentry.IconEntry):
         cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
-        column.set_attributes(cell, text=self._COL_TITLE)
+        column.add_attribute(cell, 'text', self._COL_TITLE)
 
         cell = Gtk.CellRendererText()
         cell.props.ellipsize = Pango.EllipsizeMode.END
@@ -110,7 +110,7 @@ class WebEntry(iconentry.IconEntry):
         cell.props.alignment = Pango.Alignment.LEFT
         column.pack_start(cell, True)
 
-        column.set_attributes(cell, text=self._COL_ADDRESS)
+        column.add_attribute(cell, 'text', self._COL_ADDRESS)
 
         return view
 

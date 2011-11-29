@@ -25,6 +25,7 @@ from gi.repository import GObject
 GObject.threads_init()
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 import base64
 import time
 import shutil
@@ -34,10 +35,6 @@ from gi.repository import GConf
 import locale
 import cairo
 from hashlib import sha1
-
-# HACK: Needed by http://dev.sugarlabs.org/ticket/456
-import gnome
-gnome.init('Hulahop', '1.0')
 
 from sugar3.activity import activity
 from sugar3.graphics import style
@@ -132,13 +129,6 @@ def _seed_xs_cookie():
         _logger.debug('seed_xs_cookie: Updated cookie successfully')
 
 
-import hulahop
-hulahop.set_app_version(os.environ['SUGAR_BUNDLE_VERSION'])
-hulahop.startup(_profile_path)
-
-from xpcom import components
-
-
 def _set_char_preference(name, value):
     cls = components.classes["@mozilla.org/preferences-service;1"]
     prefService = cls.getService(components.interfaces.nsIPrefService)
@@ -164,11 +154,12 @@ from browser import TabbedView
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
-import downloadmanager
+# FIXME
+# import downloadmanager
 
 # TODO: make the registration clearer SL #3087
-import globalhistory  # pylint: disable=W0611
-import filepicker  # pylint: disable=W0611
+# import globalhistory  # pylint: disable=W0611
+# import filepicker  # pylint: disable=W0611
 
 from model import Model
 from sugar3.presence.tubeconn import TubeConnection
@@ -188,24 +179,16 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
-        downloadmanager.remove_old_parts()
+        # FIXME
+        # downloadmanager.remove_old_parts()
 
         self._force_close = False
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
 
-        _set_accept_languages()
+        # FIXME
+        # _set_accept_languages()
         _seed_xs_cookie()
-
-        # don't pick up the sugar theme - use the native mozilla one instead
-        cls = components.classes['@mozilla.org/preferences-service;1']
-        pref_service = cls.getService(components.interfaces.nsIPrefService)
-        branch = pref_service.getBranch("mozilla.widget.")
-        branch.setBoolPref("disable-native-theme", True)
-
-        # Start password manager
-        cls = components.classes["@mozilla.org/login-manager;1"]
-        login_manager = cls.getService(components.interfaces.nsILoginManager)
 
         # HACK
         # Currently, the multiple tabs feature crashes the Browse activity

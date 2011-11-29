@@ -16,9 +16,8 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gettext import gettext as _
-
-from xpcom.components import interfaces
 
 from sugar3.activity import activity
 from sugar3.graphics import iconentry
@@ -27,9 +26,6 @@ from sugar3.graphics import style
 
 
 class EditToolbar(activity.EditToolbar):
-
-    _com_interfaces_ = interfaces.nsIObserver
-
     def __init__(self, act):
         activity.EditToolbar.__init__(self)
 

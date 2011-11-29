@@ -22,9 +22,6 @@ from gettext import gettext as _
 
 from gi.repository import Gtk
 from gi.repository import GObject
-import xpcom
-from xpcom import components
-from xpcom.components import interfaces
 
 from sugar3.graphics.palette import Palette, Invoker
 from sugar3.graphics.menuitem import MenuItem
