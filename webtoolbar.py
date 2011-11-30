@@ -341,7 +341,7 @@ class PrimaryToolbar(ToolbarBase):
         # We have to wait until the history info is updated.
         GObject.idle_add(self._reload_session_history, current_page_index)
 
-    def __loading_changed_cb(self, progress_listener, pspec):
+    def __loading_changed_cb(self, widget, param):
         status = widget.get_load_status()
         if status <= WebKit.LoadStatus.COMMITTED:
             self._set_title(None)
