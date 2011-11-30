@@ -192,9 +192,6 @@ class TabbedView(BrowserNotebook):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
 
-        label = TabLabel(browser)
-        label.connect('tab-close', self.__tab_close_cb)
-
         if next_to_current:
             self._insert_tab_next(browser)
         else:
@@ -204,28 +201,36 @@ class TabbedView(BrowserNotebook):
         return browser
 
     def _insert_tab_next(self, browser):
-        label = TabLabel(browser)
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.add(browser)
+        browser.show()
+
+        label = TabLabel(scrolled_window)
         label.connect('tab-close', self.__tab_close_cb)
 
         next_index = self.get_current_page() + 1
-        self.insert_page(browser, label, next_index)
-        browser.show()
+        self.insert_page(scrolled_window, label, next_index)
+        scrolled_window.show()
         self.set_current_page(next_index)
 
     def _append_tab(self, browser):
-        label = TabLabel(browser)
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.add(browser)
+        browser.show()
+
+        label = TabLabel(scrolled_window)
         label.connect('tab-close', self.__tab_close_cb)
 
-        self.append_page(browser, label)
-        browser.show()
+        self.append_page(scrolled_window, label)
+        scrolled_window.show()
         self.set_current_page(-1)
 
     def on_add_tab(self, gobject):
         self.add_tab()
 
-    def __tab_close_cb(self, label, browser):
-        self.remove_page(self.page_num(browser))
-        browser.destroy()
+    def __tab_close_cb(self, label, browser_window):
+        self.remove_page(self.page_num(browser_window))
+        browser_window.destroy()
 
     def _update_tab_sizes(self):
         """Update ta widths based in the amount of tabs."""
@@ -275,7 +280,7 @@ class TabbedView(BrowserNotebook):
             browser.load_uri(default_page)
 
     def _get_current_browser(self):
-        return self.get_nth_page(self.get_current_page())
+        return self.get_nth_page(self.get_current_page()).get_child()
 
     current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
@@ -319,11 +324,12 @@ class TabLabel(Gtk.HBox):
                       ([object])),
     }
 
-    def __init__(self, browser):
+    def __init__(self, browser_window):
         GObject.GObject.__init__(self)
 
-        self._browser = browser
-        self._browser.connect('is-setup', self.__browser_is_setup_cb)
+        self._browser_window = browser_window
+        browser = browser_window.get_child()
+        browser.connect('notify::title', self.__title_changed_cb)
 
         self._label = Gtk.Label(label=_('Untitled'))
         self._label.set_ellipsize(Pango.EllipsizeMode.END)
@@ -356,25 +362,11 @@ class TabLabel(Gtk.HBox):
         self._close_button.show()
 
     def __button_clicked_cb(self, button):
-        self.emit('tab-close', self._browser)
+        self.emit('tab-close', self._browser_window)
 
-    def __browser_is_setup_cb(self, browser):
-        browser.progress.connect('notify::location',
-                                 self.__location_changed_cb)
-        browser.connect('notify::title', self.__title_changed_cb)
-
-    def __location_changed_cb(self, progress_listener, pspec):
-        url = self._browser.get_url_from_nsiuri(progress_listener.location)
-        if url == 'about:blank':
-            self._label.set_text(_('Loading...'))
-        else:
-            self._label.set_text(url)
-
-    def __title_changed_cb(self, browser, pspec):
-        if browser.props.title == "":
-            self._label.set_text(_('Untitled'))
-        else:
-            self._label.set_text(browser.props.title)
+    def __title_changed_cb(self, widget, param):
+        if widget.props.title:
+            self._label.set_text(widget.props.title)
 
 
 class Browser(WebKit.WebView):
