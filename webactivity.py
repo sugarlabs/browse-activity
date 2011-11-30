@@ -429,12 +429,16 @@ class WebActivity(activity.Activity):
                 else:
                     self.metadata['title'] = browser.props.title
 
-            self.model.data['history'] = self._tabbed_view.get_session()
+            # FIXME
+            # self.model.data['history'] = self._tabbed_view.get_session()
+            self.model.data['history'] = []
             current_tab = self._tabbed_view.get_current_page()
             self.model.data['current_tab'] = current_tab
 
             self.model.data['currents'] = []
             for n in range(0, self._tabbed_view.get_n_pages()):
+                # FIXME
+                continue
                 n_browser = self._tabbed_view.get_nth_page(n)
                 if n_browser != None:
                     nsiuri = n_browser.progress.location
@@ -578,7 +582,8 @@ class WebActivity(activity.Activity):
     def can_close(self):
         if self._force_close:
             return True
-        elif downloadmanager.can_quit():
+        # FIXME
+        elif True:  # downloadmanager.can_quit():
             return True
         else:
             alert = Alert()
