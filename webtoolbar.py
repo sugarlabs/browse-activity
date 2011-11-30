@@ -373,10 +373,10 @@ class PrimaryToolbar(ToolbarBase):
     def _update_navigation_buttons(self):
         browser = self._tabbed_view.props.current_browser
 
-        can_go_back = browser.web_navigation.canGoBack
+        can_go_back = browser.can_go_back()
         self._back.props.sensitive = can_go_back
 
-        can_go_forward = browser.web_navigation.canGoForward
+        can_go_forward = browser.can_go_forward()
         self._forward.props.sensitive = can_go_forward
 
     def _entry_activate_cb(self, entry):
@@ -389,11 +389,11 @@ class PrimaryToolbar(ToolbarBase):
 
     def _go_back_cb(self, button):
         browser = self._tabbed_view.props.current_browser
-        browser.web_navigation.goBack()
+        browser.go_back()
 
     def _go_forward_cb(self, button):
         browser = self._tabbed_view.props.current_browser
-        browser.web_navigation.goForward()
+        browser.go_forward()
 
     def _title_changed_cb(self, widget, param):
         self._set_title(widget.get_title())
