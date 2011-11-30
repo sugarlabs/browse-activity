@@ -288,11 +288,11 @@ class PrimaryToolbar(ToolbarBase):
         self._history = None
         self._browser = None
 
-        self._location_changed_hid = None
         self._loading_changed_hid = None
         self._progress_changed_hid = None
         self._session_history_changed_hid = None
         self._title_changed_hid = None
+        self._uri_changed_hid = None
 
         GObject.idle_add(lambda:
                 self._connect_to_browser(tabbed_view.props.current_browser))
@@ -303,61 +303,52 @@ class PrimaryToolbar(ToolbarBase):
         self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
-        if self._progress_listener is not None:
-            self._progress_listener.disconnect(self._location_changed_hid)
-            self._progress_listener.disconnect(self._loading_changed_hid)
-            self._progress_listener.disconnect(self._progress_changed_hid)
 
-        self._progress_listener = browser.progress
-        self._set_progress(self._progress_listener.progress)
-        if self._progress_listener.location:
-            self._set_address(self._progress_listener.location)
-        else:
-            self._set_address(None)
-        self._set_loading(self._progress_listener.loading)
-        self._update_navigation_buttons()
+        # FIXME
+        # if self._history is not None:
+        #     self._history.disconnect(self._session_history_changed_hid)
 
-        self._location_changed_hid = self._progress_listener.connect(
-                'notify::location', self.__location_changed_cb)
-        self._loading_changed_hid = self._progress_listener.connect(
-                'notify::loading', self.__loading_changed_cb)
-        self._progress_changed_hid = self._progress_listener.connect(
-                'notify::progress', self.__progress_changed_cb)
-
-        if self._history is not None:
-            self._history.disconnect(self._session_history_changed_hid)
-
-        self._history = browser.history
-        self._session_history_changed_hid = self._history.connect(
-                'session-history-changed', self._session_history_changed_cb)
-        self._reload_session_history()
+        # self._history = browser.history
+        # self._session_history_changed_hid = self._history.connect(
+        #         'session-history-changed', self._session_history_changed_cb)
+        # self._reload_session_history()
 
         if self._browser is not None:
             self._browser.disconnect(self._title_changed_hid)
+            self._browser.disconnect(self._uri_changed_hid)
+            self._browser.disconnect(self._progress_changed_hid)
 
         self._browser = browser
-        self._set_title(self._browser.props.title)
+        if self._browser.props.title:
+            self._set_title(self._browser.props.title)
+        else:
+            self._set_title(_('Untitled'))
+        self._set_address(self._browser.props.uri)
 
         self._title_changed_hid = self._browser.connect(
                 'notify::title', self._title_changed_cb)
+        self._uri_changed_hid = self._browser.connect(
+                'notify::uri', self.__uri_changed_cb)
+        self._progress_changed_hid = self._browser.connect(
+                'notify::progress', self.__progress_changed_cb)
+        self._loading_changed_hid = self._browser.connect(
+                'notify::load-status', self.__loading_changed_cb)
+
+        self._update_navigation_buttons()
 
     def _session_history_changed_cb(self, session_history, current_page_index):
         # We have to wait until the history info is updated.
         GObject.idle_add(self._reload_session_history, current_page_index)
 
-    def __location_changed_cb(self, progress_listener, pspec):
-        self._set_address(progress_listener.location)
-        self._update_navigation_buttons()
-        filepicker.cleanup_temp_files()
-
     def __loading_changed_cb(self, progress_listener, pspec):
-        if progress_listener.loading:
+        status = widget.get_load_status()
+        if status <= WebKit.LoadStatus.COMMITTED:
             self._set_title(None)
-        self._set_loading(progress_listener.loading)
+        self._set_loading(status >= WebKit.LoadStatus.FINISHED)
         self._update_navigation_buttons()
 
-    def __progress_changed_cb(self, progress_listener, pspec):
-        self._set_progress(progress_listener.progress)
+    def __progress_changed_cb(self, widget, param):
+        self._set_progress(widget.get_progress())
 
     def _set_progress(self, progress):
         if progress == 1.0:
@@ -366,11 +357,7 @@ class PrimaryToolbar(ToolbarBase):
             self.entry.set_progress_fraction(progress)
 
     def _set_address(self, uri):
-        if uri and self._browser is not None:
-            ui_uri = self._browser.get_url_from_nsiuri(uri)
-        else:
-            ui_uri = None
-        self.entry.props.address = ui_uri
+        self.entry.props.address = uri
 
     def _set_title(self, title):
         self.entry.props.title = title
@@ -408,8 +395,14 @@ class PrimaryToolbar(ToolbarBase):
         browser = self._tabbed_view.props.current_browser
         browser.web_navigation.goForward()
 
-    def _title_changed_cb(self, embed, spec):
-        self._set_title(embed.props.title)
+    def _title_changed_cb(self, widget, param):
+        self._set_title(widget.get_title())
+
+    def __uri_changed_cb(self, widget, param):
+        self._set_address(widget.get_uri())
+        self._update_navigation_buttons()
+        # FIXME
+        # filepicker.cleanup_temp_files()
 
     def _stop_and_reload_cb(self, entry, icon_pos, button):
         browser = self._tabbed_view.props.current_browser
