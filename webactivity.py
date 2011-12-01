@@ -26,6 +26,7 @@ GObject.threads_init()
 
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 import base64
 import time
 import shutil

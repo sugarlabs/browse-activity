@@ -22,6 +22,7 @@ from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit
 
@@ -389,7 +390,7 @@ class Browser(WebKit.WebView):
         # self.progress = ProgressListener()
 
     def do_setup(self):
-        WebView.do_setup(self)
+        WebKit.WebView.do_setup(self)
         listener = xpcom.server.WrapObject(ContentInvoker(self),
                                            interfaces.nsIDOMEventListener)
         self.window_root.addEventListener('click', listener, False)
@@ -481,7 +482,7 @@ class PopupDialog(Gtk.Window):
         self.set_default_size(Gdk.Screen.width() - border * 2,
                               Gdk.Screen.height() - border * 2)
 
-        self.view = WebView()
+        self.view = WebKit.WebView()
         self.view.connect('notify::visibility', self.__notify_visibility_cb)
         self.add(self.view)
         self.view.realize()
