@@ -467,7 +467,7 @@ class WebActivity(activity.Activity):
         key_name = Gdk.keyval_name(event.keyval)
         browser = self._tabbed_view.props.current_browser
 
-        if event.get_state() & Gdk.EventMask.CONTROL_MASK:
+        if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
 
             if key_name == 'd':
                 self._add_link()
@@ -485,12 +485,14 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Zoom in')
                 browser.zoom_in()
             elif key_name == 'Left':
-                browser.web_navigation.goBack()
+                _logger.debug('keyboard: Go back')
+                browser.go_back()
             elif key_name == 'Right':
-                browser.web_navigation.goForward()
+                _logger.debug('keyboard: Go forward')
+                browser.go_forward()
             elif key_name == 'r':
-                flags = components.interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
-                browser.web_navigation.reload(flags)
+                _logger.debug('keyboard: Reload')
+                browser.reload()
             elif Gdk.keyval_name(event.keyval) == "t":
                 if not self._disable_multiple_tabs:
                     self._tabbed_view.add_tab()
