@@ -296,13 +296,14 @@ class PrimaryToolbar(ToolbarBase):
         self._title_changed_hid = None
         self._uri_changed_hid = None
 
-        GObject.idle_add(lambda:
-                self._connect_to_browser(tabbed_view.props.current_browser))
+        if tabbed_view.get_n_pages():
+            self._connect_to_browser(tabbed_view.props.current_browser)
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
-        self._connect_to_browser(tabbed_view.props.current_browser)
+        if tabbed_view.get_n_pages():
+            self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
 

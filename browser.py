@@ -181,8 +181,9 @@ class TabbedView(BrowserNotebook):
         self._update_tab_sizes()
 
     def __page_removed_cb(self, notebook, child, pagenum):
-        self._update_closing_buttons()
-        self._update_tab_sizes()
+        if self.get_n_pages():
+            self._update_closing_buttons()
+            self._update_tab_sizes()
 
     def __new_tab_cb(self, browser, url):
         new_browser = self.add_tab(next_to_current=True)
@@ -263,9 +264,7 @@ class TabbedView(BrowserNotebook):
         """Prevent closing the last tab."""
         first_page = self.get_nth_page(0)
         first_label = self.get_tab_label(first_page)
-        if self.get_n_pages() == 0:
-            return
-        elif self.get_n_pages() == 1:
+        if self.get_n_pages() == 1:
             first_label.hide_close_button()
         else:
             first_label.show_close_button()
@@ -281,7 +280,10 @@ class TabbedView(BrowserNotebook):
             browser.load_uri(default_page)
 
     def _get_current_browser(self):
-        return self.get_nth_page(self.get_current_page()).get_child()
+        if self.get_n_pages():
+            return self.get_nth_page(self.get_current_page()).get_child()
+        else:
+            return None
 
     current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
