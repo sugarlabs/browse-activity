@@ -14,55 +14,60 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 00:32-0400\n"
-"PO-Revision-Date: 2011-07-28 23:21+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2011-12-01 00:32-0500\n"
+"PO-Revision-Date: 2011-12-06 22:10+0200\n"
+"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 webactivity.py:267
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Զննել"
 
-#: downloadmanager.py:164
+#: browser.py:334 webactivity.py:428 webtoolbar.py:326
+msgid "Untitled"
+msgstr "Առանց վերնագրի"
+
+#: downloadmanager.py:173
 msgid "Download started"
 msgstr "Բեռնումը մեկնարկել է"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:188
 msgid "Download completed"
 msgstr "Բեռնումը ավարտվել է"
 
-#: downloadmanager.py:183
+#: downloadmanager.py:192
 msgid "Show in Journal"
 msgstr "Ցույց տալ մատյանում"
 
-#: downloadmanager.py:186
+#: downloadmanager.py:195
 msgid "Ok"
 msgstr "OK"
 
-#: downloadmanager.py:193
+#: downloadmanager.py:202
 #, python-format
 msgid "From: %s"
 msgstr "%s -ից"
 
-#: downloadmanager.py:335
+#: downloadmanager.py:345
 #, python-format
-#, fuzzy
 msgid ""
-"Downloading %s from \n"
-"%s."
-msgstr "%s Բեռնում %s կայքից:"
+"Downloading %(file)s from \n"
+"%(source)s."
+msgstr ""
+"Ներբեռնում է %(file)s from \n"
+"%(source)s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:87
 msgid "Previous"
 msgstr "Նախորդ"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:94
 msgid "Next"
 msgstr "Հաջորդ"
 
@@ -70,99 +75,109 @@ msgstr "Հաջորդ"
 msgid "Remove"
 msgstr "Հեռացնել"
 
-#: palettes.py:143
-msgid "Keep link"
-msgstr "Պահել հղումը"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "Պատճենել հղումը"
-
-#: palettes.py:159
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Հետևել հղումին"
 
-#: palettes.py:209
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "Հետևել հղումին նոր էջում"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Պահել հղումը"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Պատճենել հղումը"
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr "Պահել պատկերը"
 
-#: palettes.py:217
+#: palettes.py:223
 msgid "Copy image"
 msgstr "Պատճենել պատկերը"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Հեռվացնել"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Մոտեցնել"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Էկրանի չափով"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "Ցույց տալ դարակը"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Թաքցնել դարակը"
 
-#: webactivity.py:264
-msgid "Edit"
-msgstr "Խմբագրել"
-
-#: webactivity.py:270
-msgid "View"
-msgstr "Տեսք"
-
-#: webactivity.py:654
+#: webactivity.py:590
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Բեռնումը ընթանում է"
+msgstr[0] "Բեռնումը ընթանում է "
+msgstr[1] "Բեռնումները ընթանում են"
 
-#: webactivity.py:657
-#, fuzzy
+#: webactivity.py:593
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Այժմյա կանգը չեղարկի Ձեր բեռնումը"
+msgstr[0] "Այժմյա կանգը կչեղարկի Ձեր բեռնումը"
+msgstr[1] "Այժմյա կանգը կչեղարկի Ձեր բեռնումներըը"
 
-#: webactivity.py:662
+#: webactivity.py:598
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-"Շարունակել բեռնումը                                        Շարունակել "
-"բեռնումները"
+msgstr[0] "Շարունակել բեռնումը                                    "
+msgstr[1] "Շարունակել բեռնումները    "
 
-#: webactivity.py:666 webtoolbar.py:449
+#: webactivity.py:602
 msgid "Stop"
 msgstr "Կանգ"
 
-#: webtoolbar.py:259
+#: webtoolbar.py:246
 msgid "Home page"
 msgstr "Հիմնաէջ"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:266
 msgid "Back"
 msgstr "Հետ"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:273
 msgid "Forward"
 msgstr "Առաջ"
 
-#: webtoolbar.py:296
-msgid "Add a tab"
-msgstr "Ավելացնել փեղկ"
-
-#: webtoolbar.py:303
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Էջանիշ"
 
-#: webtoolbar.py:452
-msgid "Reload"
-msgstr "Վերաբեռնել"
+#~ msgid "Loading..."
+#~ msgstr "Բեռնում է..."
+
+#~ msgid "Edit"
+#~ msgstr "Խմբագրել"
+
+#~ msgid "View"
+#~ msgstr "Տեսք"
+
+#, python-format
+#, fuzzy
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr "%s Բեռնում %s կայքից:"
+
+#~ msgid "Add a tab"
+#~ msgstr "Ավելացնել փեղկ"
+
+#~ msgid "Reload"
+#~ msgstr "Վերաբեռնել"
 
 #~ msgid "Cancel"
 #~ msgstr "Չեղարկել"
