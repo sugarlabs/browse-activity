@@ -31,8 +31,9 @@ from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
+import sessionstore
+
 # FIXME
-# import sessionstore
 # from palettes import ContentInvoker
 # from sessionhistory import HistoryListener
 # from progresslistener import ProgressListener
@@ -291,7 +292,8 @@ class TabbedView(BrowserNotebook):
     def get_session(self):
         tab_sessions = []
         for index in xrange(0, self.get_n_pages()):
-            browser = self.get_nth_page(index)
+            scrolled_window = self.get_nth_page(index)
+            browser = scrolled_window.get_child()
             tab_sessions.append(sessionstore.get_session(browser))
         return tab_sessions
 
@@ -463,12 +465,10 @@ class Browser(WebKit.WebView):
             markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
 
     def get_history_index(self):
-        return self.web_navigation.sessionHistory.index
+        return sessionstore.get_history_index(self)
 
     def set_history_index(self, index):
-        if index == -1:
-            return
-        self.web_navigation.gotoIndex(index)
+        return sessionstore.set_history_index(self, index)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)
