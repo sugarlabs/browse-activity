@@ -448,22 +448,6 @@ class Browser(WebKit.WebView):
         uri = self.web_navigation.currentURI
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
 
-    def zoom_in(self):
-        contentViewer = self.doc_shell.queryInterface( \
-                interfaces.nsIDocShell).contentViewer
-        if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface( \
-                    interfaces.nsIMarkupDocumentViewer)
-            markupDocumentViewer.fullZoom += _ZOOM_AMOUNT
-
-    def zoom_out(self):
-        contentViewer = self.doc_shell.queryInterface( \
-                interfaces.nsIDocShell).contentViewer
-        if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface( \
-                    interfaces.nsIMarkupDocumentViewer)
-            markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
-
     def get_history_index(self):
         return sessionstore.get_history_index(self)
 
