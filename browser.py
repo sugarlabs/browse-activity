@@ -278,7 +278,7 @@ class TabbedView(BrowserNotebook):
         else:
             default_page = os.path.join(activity.get_bundle_path(),
                                         "data/index.html")
-            browser.load_uri(default_page)
+            browser.load_uri('file://' + default_page)
 
     def _get_current_browser(self):
         if self.get_n_pages():
