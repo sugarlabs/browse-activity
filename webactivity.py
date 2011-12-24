@@ -401,7 +401,8 @@ class WebActivity(activity.Activity):
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_session(self.model.data['history'])
             for number, tab in enumerate(self.model.data['currents']):
-                browser = self._tabbed_view.get_nth_page(number)
+                scrolled_window = self._tabbed_view.get_nth_page(number)
+                browser = scrolled_window.get_child()
                 browser.set_history_index(tab['history_index'])
 
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
@@ -430,22 +431,18 @@ class WebActivity(activity.Activity):
                 else:
                     self.metadata['title'] = browser.props.title
 
-            # FIXME
-            # self.model.data['history'] = self._tabbed_view.get_session()
-            self.model.data['history'] = []
+            self.model.data['history'] = self._tabbed_view.get_session()
             current_tab = self._tabbed_view.get_current_page()
             self.model.data['current_tab'] = current_tab
 
             self.model.data['currents'] = []
             for n in range(0, self._tabbed_view.get_n_pages()):
-                # FIXME
-                continue
-                n_browser = self._tabbed_view.get_nth_page(n)
+                scrolled_window = self._tabbed_view.get_nth_page(n)
+                n_browser = scrolled_window.get_child()
                 if n_browser != None:
-                    nsiuri = n_browser.progress.location
-                    ui_uri = n_browser.get_url_from_nsiuri(nsiuri)
+                    uri = n_browser.get_uri()
                     history_index = n_browser.get_history_index()
-                    info = {'title': n_browser.props.title, 'url': ui_uri,
+                    info = {'title': n_browser.props.title, 'url': uri,
                             'history_index': history_index}
 
                     self.model.data['currents'].append(info)

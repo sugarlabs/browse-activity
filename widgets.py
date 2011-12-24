@@ -69,11 +69,11 @@ class BrowserNotebook(Gtk.Notebook):
         empty_page.show()
 
     def on_add_tab(self, obj):
-        raise NotImplementedError, "implement this in the subclass"
+        raise NotImplementedError("implement this in the subclass")
 
     def __on_switch_page(self, notebook, page, page_num):
         """Don't switch to the extra tab at the end."""
-        if page_num == Gtk.Notebook.get_n_pages(self) - 1:
+        if page_num > 0 and page_num == Gtk.Notebook.get_n_pages(self) - 1:
             self.handler_block(self._switch_handler)
             self.set_current_page(-1)
             self.handler_unblock(self._switch_handler)

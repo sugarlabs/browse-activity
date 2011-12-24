@@ -31,8 +31,9 @@ from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
+import sessionstore
+
 # FIXME
-# import sessionstore
 # from palettes import ContentInvoker
 # from sessionhistory import HistoryListener
 # from progresslistener import ProgressListener
@@ -181,8 +182,9 @@ class TabbedView(BrowserNotebook):
         self._update_tab_sizes()
 
     def __page_removed_cb(self, notebook, child, pagenum):
-        self._update_closing_buttons()
-        self._update_tab_sizes()
+        if self.get_n_pages():
+            self._update_closing_buttons()
+            self._update_tab_sizes()
 
     def __new_tab_cb(self, browser, url):
         new_browser = self.add_tab(next_to_current=True)
@@ -263,9 +265,7 @@ class TabbedView(BrowserNotebook):
         """Prevent closing the last tab."""
         first_page = self.get_nth_page(0)
         first_label = self.get_tab_label(first_page)
-        if self.get_n_pages() == 0:
-            return
-        elif self.get_n_pages() == 1:
+        if self.get_n_pages() == 1:
             first_label.hide_close_button()
         else:
             first_label.show_close_button()
@@ -278,10 +278,13 @@ class TabbedView(BrowserNotebook):
         else:
             default_page = os.path.join(activity.get_bundle_path(),
                                         "data/index.html")
-            browser.load_uri(default_page)
+            browser.load_uri('file://' + default_page)
 
     def _get_current_browser(self):
-        return self.get_nth_page(self.get_current_page()).get_child()
+        if self.get_n_pages():
+            return self.get_nth_page(self.get_current_page()).get_child()
+        else:
+            return None
 
     current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
@@ -289,7 +292,8 @@ class TabbedView(BrowserNotebook):
     def get_session(self):
         tab_sessions = []
         for index in xrange(0, self.get_n_pages()):
-            browser = self.get_nth_page(index)
+            scrolled_window = self.get_nth_page(index)
+            browser = scrolled_window.get_child()
             tab_sessions.append(sessionstore.get_session(browser))
         return tab_sessions
 
@@ -444,29 +448,11 @@ class Browser(WebKit.WebView):
         uri = self.web_navigation.currentURI
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
 
-    def zoom_in(self):
-        contentViewer = self.doc_shell.queryInterface( \
-                interfaces.nsIDocShell).contentViewer
-        if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface( \
-                    interfaces.nsIMarkupDocumentViewer)
-            markupDocumentViewer.fullZoom += _ZOOM_AMOUNT
-
-    def zoom_out(self):
-        contentViewer = self.doc_shell.queryInterface( \
-                interfaces.nsIDocShell).contentViewer
-        if contentViewer is not None:
-            markupDocumentViewer = contentViewer.queryInterface( \
-                    interfaces.nsIMarkupDocumentViewer)
-            markupDocumentViewer.fullZoom -= _ZOOM_AMOUNT
-
     def get_history_index(self):
-        return self.web_navigation.sessionHistory.index
+        return sessionstore.get_history_index(self)
 
     def set_history_index(self, index):
-        if index == -1:
-            return
-        self.web_navigation.gotoIndex(index)
+        return sessionstore.set_history_index(self, index)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)

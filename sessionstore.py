@@ -14,61 +14,76 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-# Based on
-# http://lxr.mozilla.org/seamonkey/source/browser/components/sessionstore
-
 import logging
 
-from xpcom import components
-from xpcom.components import interfaces
+from gi.repository import WebKit
 
 
 def get_session(browser):
-    session_history = browser.web_navigation.sessionHistory
-
-    if session_history.count == 0:
+    session_history = browser.get_back_forward_list()
+    if session_history.get_back_length() == 0:
         return ''
     return _get_history(session_history)
 
 
 def set_session(browser, data):
-    _set_history(browser.web_navigation.sessionHistory, data)
-
-    if data:
-        browser.web_navigation.gotoIndex(len(data) - 1)
-    else:
-        browser.load_uri('about:blank')
+    session_history = browser.get_back_forward_list()
+    _set_history(session_history, data)
 
 
 def _get_history(history):
-    logging.debug('%r', history.count)
+    items_list = _items_history_as_list(history)
+    logging.debug('history count: %r', len(items_list))
     entries_dest = []
-    for i in range(0, history.count):
-        entry_orig = history.getEntryAtIndex(i, False)
-        entry_dest = {'url':    entry_orig.URI.spec,
-                      'title':  entry_orig.title}
-
+    for item in items_list:
+        entry_dest = {'url': item.get_uri(),
+                      'title': item.get_title()}
         entries_dest.append(entry_dest)
 
     return entries_dest
 
 
 def _set_history(history, history_data):
-    history_internal = history.queryInterface(interfaces.nsISHistoryInternal)
+    history.clear()
+    for entry in history_data:
+        uri, title = entry['url'], entry['title']
+        history_item = WebKit.WebHistoryItem.new_with_data(uri, title)
+        history.add_item(history_item)
 
-    if history_internal.count > 0:
-        history_internal.purgeHistory(history_internal.count)
 
-    for entry_dict in history_data:
-        logging.debug('entry_dict: %r', entry_dict)
-        entry_class = components.classes[ \
-                "@mozilla.org/browser/session-history-entry;1"]
-        entry = entry_class.createInstance(interfaces.nsISHEntry)
+def get_history_index(browser):
+    """Return the index of the current item in the history."""
+    history = browser.get_back_forward_list()
+    history_list = _items_history_as_list(history)
+    current_item = history.get_current_item()
+    return history_list.index(current_item)
 
-        io_service_class = components.classes[ \
-                "@mozilla.org/network/io-service;1"]
-        io_service = io_service_class.getService(interfaces.nsIIOService)
-        entry.setURI(io_service.newURI(entry_dict['url'], None, None))
-        entry.setTitle(entry_dict['title'])
 
-        history_internal.addEntry(entry, True)
+def set_history_index(browser, index):
+    """Go to the item in the history specified by the index."""
+    history = browser.get_back_forward_list()
+    history_list = _items_history_as_list(history)
+    last_index = len(history_list) - 1
+    for i in range(last_index - index):
+        browser.go_back()
+    if index == last_index:
+        browser.go_back()
+        browser.go_forward()
+
+
+def _items_history_as_list(history):
+    """Return a list with the items of a WebKit.WebBackForwardList."""
+    back_items = []
+    for n in reversed(range(1, history.get_back_length() + 1)):
+        item = history.get_nth_item(n * -1)
+        back_items.append(item)
+
+    current_item = [history.get_current_item()]
+
+    forward_items = []
+    for n in range(1, history.get_forward_length() + 1):
+        item = history.get_nth_item(n)
+        forward_items.append(item)
+
+    all_items = back_items + current_item + forward_items
+    return all_items

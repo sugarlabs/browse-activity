@@ -296,13 +296,14 @@ class PrimaryToolbar(ToolbarBase):
         self._title_changed_hid = None
         self._uri_changed_hid = None
 
-        GObject.idle_add(lambda:
-                self._connect_to_browser(tabbed_view.props.current_browser))
+        if tabbed_view.get_n_pages():
+            self._connect_to_browser(tabbed_view.props.current_browser)
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
-        self._connect_to_browser(tabbed_view.props.current_browser)
+        if tabbed_view.get_n_pages():
+            self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
 
@@ -346,7 +347,7 @@ class PrimaryToolbar(ToolbarBase):
         status = widget.get_load_status()
         if status <= WebKit.LoadStatus.COMMITTED:
             self._set_title(None)
-        self._set_loading(status >= WebKit.LoadStatus.FINISHED)
+        self._set_loading(status < WebKit.LoadStatus.FINISHED)
         self._update_navigation_buttons()
 
     def __progress_changed_cb(self, widget, param):
@@ -409,10 +410,9 @@ class PrimaryToolbar(ToolbarBase):
     def _stop_and_reload_cb(self, entry, icon_pos, button):
         browser = self._tabbed_view.props.current_browser
         if self._loading:
-            browser.web_navigation.stop(interfaces.nsIWebNavigation.STOP_ALL)
+            browser.stop_loading()
         else:
-            flags = interfaces.nsIWebNavigation.LOAD_FLAGS_NONE
-            browser.web_navigation.reload(flags)
+            browser.reload()
 
     def _set_loading(self, loading):
         self._loading = loading

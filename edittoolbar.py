@@ -15,6 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gettext import gettext as _
@@ -30,35 +31,12 @@ class EditToolbar(activity.EditToolbar):
         activity.EditToolbar.__init__(self)
 
         self._activity = act
+        self._browser = None
 
         self.undo.connect('clicked', self.__undo_cb)
         self.redo.connect('clicked', self.__redo_cb)
         self.copy.connect('clicked', self.__copy_cb)
         self.paste.connect('clicked', self.__paste_cb)
-
-        """
-        Notifications are not working right now:
-        https://bugzilla.mozilla.org/show_bug.cgi?id=207339
-
-        command_manager = self._get_command_manager()
-        self.undo.set_sensitive(
-                command_manager.isCommandEnabled('cmd_undo', None))
-        self.redo.set_sensitive(
-                command_manager.isCommandEnabled('cmd_redo', None))
-        self.copy.set_sensitive(
-                command_manager.isCommandEnabled('cmd_copy', None))
-        self.paste.set_sensitive(
-                command_manager.isCommandEnabled('cmd_paste', None))
-
-        self._observer = xpcom.server.WrapObject(self, interfaces.nsIObserver)
-        command_manager.addCommandObserver(self._observer, 'cmd_undo')
-        command_manager.addCommandObserver(self._observer, 'cmd_redo')
-        command_manager.addCommandObserver(self._observer, 'cmd_copy')
-        command_manager.addCommandObserver(self._observer, 'cmd_paste')
-
-    def observe(self, subject, topic, data):
-        logging.debug('observe: %r %r %r' % (subject, topic, data))
-        """
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -97,38 +75,64 @@ class EditToolbar(activity.EditToolbar):
         self.insert(self._next, -1)
         self._next.show()
 
+        tabbed_view = self._activity.get_canvas()
+
+        GObject.idle_add(lambda:
+                self._connect_to_browser(tabbed_view.props.current_browser))
+
+        tabbed_view.connect_after('switch-page', self.__switch_page_cb)
+
+    def __switch_page_cb(self, tabbed_view, page, page_num):
+        self._connect_to_browser(tabbed_view.props.current_browser)
+
+    def _connect_to_browser(self, browser):
+        if self._browser is not None:
+            self._browser.disconnect(self._selection_changed_hid)
+
+        self._browser = browser
+
+        self._update_undoredo_buttons()
+        self._update_copypaste_buttons()
+
+        self._selection_changed_hid = self._browser.connect(
+                'selection-changed', self._selection_changed_cb)
+
+    def _selection_changed_cb(self, widget):
+        self._update_undoredo_buttons()
+        self._update_copypaste_buttons()
+
+    def _update_undoredo_buttons(self):
+        self.undo.set_sensitive(self._browser.can_undo())
+        self.redo.set_sensitive(self._browser.can_redo())
+
+    def _update_copypaste_buttons(self):
+        self.copy.set_sensitive(self._browser.can_copy_clipboard())
+        self.paste.set_sensitive(self._browser.can_paste_clipboard())
+
     def __undo_cb(self, button):
-        command_manager = self._get_command_manager()
-        command_manager.doCommand('cmd_undo', None, None)
+        self._browser.undo()
+        self._update_undoredo_buttons()
 
     def __redo_cb(self, button):
-        command_manager = self._get_command_manager()
-        command_manager.doCommand('cmd_redo', None, None)
+        self._browser.redo()
+        self._update_undoredo_buttons()
 
     def __copy_cb(self, button):
-        command_manager = self._get_command_manager()
-        command_manager.doCommand('cmd_copy', None, None)
+        self._browser.copy_clipboard()
 
     def __paste_cb(self, button):
-        command_manager = self._get_command_manager()
-        command_manager.doCommand('cmd_paste', None, None)
-
-    def _get_command_manager(self):
-        tabbed_view = self._activity.get_canvas()
-        web_browser = tabbed_view.props.current_browser.browser
-        interface_id = interfaces.nsIInterfaceRequestor
-        requestor = web_browser.queryInterface(interface_id)
-        return requestor.getInterface(interfaces.nsICommandManager)
+        self._browser.paste_clipboard()
 
     def __search_entry_activate_cb(self, entry):
-        tabbed_view = self._activity.get_canvas()
-        tabbed_view.props.current_browser.typeahead.findAgain(False, False)
+        search_text = entry.get_text()
+        self._browser.search_text(search_text, case_sensitive=False,
+                                  forward=True, wrap=True)
 
     def __search_entry_changed_cb(self, entry):
-        tabbed_view = self._activity.get_canvas()
-        found = tabbed_view.props.current_browser.typeahead.find( \
-            entry.props.text, False)
-        if found == interfaces.nsITypeAheadFind.FIND_NOTFOUND:
+        search_text = entry.get_text()
+        found = self._browser.search_text(search_text, case_sensitive=False,
+                                          forward=True, wrap=True)
+        if not found:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False
             entry.modify_text(Gtk.StateType.NORMAL,
@@ -140,9 +144,11 @@ class EditToolbar(activity.EditToolbar):
                               style.COLOR_BLACK.get_gdk_color())
 
     def __find_previous_cb(self, button):
-        tabbed_view = self._activity.get_canvas()
-        tabbed_view.props.current_browser.typeahead.findAgain(True, False)
+        search_text = self.search_entry.get_text()
+        self._browser.search_text(search_text, case_sensitive=False,
+                                  forward=False, wrap=True)
 
     def __find_next_cb(self, button):
-        tabbed_view = self._activity.get_canvas()
-        tabbed_view.props.current_browser.typeahead.findAgain(False, False)
+        search_text = self.search_entry.get_text()
+        self._browser.search_text(search_text, case_sensitive=False,
+                                  forward=True, wrap=True)
