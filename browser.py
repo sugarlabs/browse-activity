@@ -31,8 +31,6 @@ from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
-import sessionstore
-
 # FIXME
 # from palettes import ContentInvoker
 # from sessionhistory import HistoryListener
@@ -289,27 +287,27 @@ class TabbedView(BrowserNotebook):
     current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
 
-    def get_session(self):
-        tab_sessions = []
+    def get_history(self):
+        tab_histories = []
         for index in xrange(0, self.get_n_pages()):
             scrolled_window = self.get_nth_page(index)
             browser = scrolled_window.get_child()
-            tab_sessions.append(sessionstore.get_session(browser))
-        return tab_sessions
+            tab_histories.append(browser.get_history())
+        return tab_histories
 
-    def set_session(self, tab_sessions):
-        if tab_sessions and isinstance(tab_sessions[0], dict):
-            # Old format, no tabs
-            tab_sessions = [tab_sessions]
+    def set_history(self, tab_histories):
+        if tab_histories and isinstance(tab_histories[0], dict):
+           # Old format, no tabs
+            tab_histories = [tab_histories]
 
         while self.get_n_pages():
             self.remove_page(self.get_n_pages() - 1)
 
-        for tab_session in tab_sessions:
+        for tab_history in tab_histories:
             browser = Browser()
             browser.connect('new-tab', self.__new_tab_cb)
             self._append_tab(browser)
-            sessionstore.set_session(browser, tab_session)
+            browser.set_history(tab_history)
 
 
 Gtk.rc_parse_string('''
@@ -421,11 +419,61 @@ class Browser(WebKit.WebView):
         texttosuburi = cls.getService(interfaces.nsITextToSubURI)
         return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
 
-    def get_session(self):
-        return sessionstore.get_session(self)
+    def get_history(self):
+        """Return the browsing history of this browser."""
+        back_forward_list = self.get_back_forward_list()
+        if back_forward_list.get_back_length() == 0:
+            return ''
 
-    def set_session(self, data):
-        return sessionstore.set_session(self, data)
+        items_list = self._items_history_as_list(back_forward_list)
+        history = []
+        for item in items_list:
+            history.append({'url': item.get_uri(),
+                            'title': item.get_title()})
+
+        return history
+
+    def set_history(self, history):
+        """Restore the browsing history for this browser."""
+        back_forward_list = self.get_back_forward_list()
+        back_forward_list.clear()
+        for entry in history:
+            uri, title = entry['url'], entry['title']
+            history_item = WebKit.WebHistoryItem.new_with_data(uri, title)
+            back_forward_list.add_item(history_item)
+
+    def get_history_index(self):
+        """Return the index of the current item in the history."""
+        back_forward_list = self.get_back_forward_list()
+        history_list = self._items_history_as_list(back_forward_list)
+        current_item = back_forward_list.get_current_item()
+        return history_list.index(current_item)
+
+    def set_history_index(self, index):
+        """Go to the item in the history specified by the index."""
+        back_forward_list = self.get_back_forward_list()
+        if back_forward_list.get_back_length() != 0:
+            current_item = index - back_forward_list.get_back_length()
+            item = back_forward_list.get_nth_item(current_item)
+            if item is not None:
+                self.go_to_back_forward_item(item)
+
+    def _items_history_as_list(self, history):
+        """Return a list with the items of a WebKit.WebBackForwardList."""
+        back_items = []
+        for n in reversed(range(1, history.get_back_length() + 1)):
+            item = history.get_nth_item(n * -1)
+            back_items.append(item)
+
+        current_item = [history.get_current_item()]
+
+        forward_items = []
+        for n in range(1, history.get_forward_length() + 1):
+            item = history.get_nth_item(n)
+            forward_items.append(item)
+
+        all_items = back_items + current_item + forward_items
+        return all_items
 
     def get_source(self, async_cb, async_err_cb):
         cls = components.classes[ \
@@ -447,12 +495,6 @@ class Browser(WebKit.WebView):
 
         uri = self.web_navigation.currentURI
         persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
-
-    def get_history_index(self):
-        return sessionstore.get_history_index(self)
-
-    def set_history_index(self, index):
-        return sessionstore.set_history_index(self, index)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)

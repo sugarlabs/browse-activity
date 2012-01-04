@@ -399,7 +399,7 @@ class WebActivity(activity.Activity):
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])
             logging.debug('########## reading %s', data)
-            self._tabbed_view.set_session(self.model.data['history'])
+            self._tabbed_view.set_history(self.model.data['history'])
             for number, tab in enumerate(self.model.data['currents']):
                 scrolled_window = self._tabbed_view.get_nth_page(number)
                 browser = scrolled_window.get_child()
@@ -431,7 +431,7 @@ class WebActivity(activity.Activity):
                 else:
                     self.metadata['title'] = browser.props.title
 
-            self.model.data['history'] = self._tabbed_view.get_session()
+            self.model.data['history'] = self._tabbed_view.get_history()
             current_tab = self._tabbed_view.get_current_page()
             self.model.data['current_tab'] = current_tab
 
