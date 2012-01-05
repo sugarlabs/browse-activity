@@ -33,10 +33,6 @@ from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
-# FIXME
-# from palettes import ContentInvoker
-# from sessionhistory import HistoryListener
-# from progresslistener import ProgressListener
 from widgets import BrowserNotebook
 
 _ZOOM_AMOUNT = 0.1
@@ -84,48 +80,11 @@ class TabbedView(BrowserNotebook):
                             ([])),
     }
 
-    AGENT_SHEET = os.path.join(activity.get_bundle_path(),
-                               'agent-stylesheet.css')
-    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko',
-                              'user-stylesheet.css')
-
     def __init__(self):
         BrowserNotebook.__init__(self)
 
         self.props.show_border = False
         self.props.scrollable = True
-
-        # FIXME
-        # io_service_class = components.classes[ \
-        #         "@mozilla.org/network/io-service;1"]
-        # io_service = io_service_class.getService(interfaces.nsIIOService)
-
-        # # Use xpcom to turn off "offline mode" detection, which disables
-        # # access to localhost for no good reason.  (Trac #6250.)
-        # io_service2 = io_service_class.getService(interfaces.nsIIOService2)
-        # io_service2.manageOfflineStatus = False
-
-        # cls = components.classes['@mozilla.org/content/style-sheet-service;1']
-        # style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
-
-        # if os.path.exists(TabbedView.AGENT_SHEET):
-        #     agent_sheet_uri = io_service.newURI('file:///' +
-        #                                         TabbedView.AGENT_SHEET,
-        #                                         None, None)
-        #     style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
-        #             interfaces.nsIStyleSheetService.AGENT_SHEET)
-
-        # if os.path.exists(TabbedView.USER_SHEET):
-        #     url = 'file:///' + TabbedView.USER_SHEET
-        #     user_sheet_uri = io_service.newURI(url, None, None)
-        #     style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
-        #             interfaces.nsIStyleSheetService.USER_SHEET)
-
-        # cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
-        # window_watcher = cls.getService(interfaces.nsIWindowWatcher)
-        # window_creator = xpcom.server.WrapObject(self,
-        #                                          interfaces.nsIWindowCreator)
-        # window_watcher.setWindowCreator(window_creator)
 
         self.connect('size-allocate', self.__size_allocate_cb)
         self.connect('page-added', self.__page_added_cb)
@@ -185,29 +144,6 @@ class TabbedView(BrowserNotebook):
                 effective_url = 'http://' + url
 
         return effective_url
-
-    def createChromeWindow(self, parent, flags):
-        if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
-            dialog = PopupDialog()
-            dialog.view.is_chrome = True
-
-            parent_dom_window = parent.webBrowser.contentDOMWindow
-            parent_view = hulahop.get_view_for_window(parent_dom_window)
-            if parent_view:
-                dialog.set_transient_for(parent_view.get_toplevel())
-
-            browser = dialog.view.browser
-
-            item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
-            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
-
-            return browser.containerWindow
-        else:
-            browser = Browser()
-            browser.connect('new-tab', self.__new_tab_cb)
-            self._append_tab(browser)
-
-            return browser.browser.containerWindow
 
     def __size_allocate_cb(self, widget, allocation):
         self._update_tab_sizes()
@@ -413,9 +349,6 @@ class Browser(WebKit.WebView):
     __gtype_name__ = 'Browser'
 
     __gsignals__ = {
-        'is-setup': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
         'new-tab': (GObject.SignalFlags.RUN_FIRST,
                     None,
                     ([str])),
@@ -423,28 +356,6 @@ class Browser(WebKit.WebView):
 
     def __init__(self):
         WebKit.WebView.__init__(self)
-
-        # FIXME
-        # self.history = HistoryListener()
-        # self.progress = ProgressListener()
-
-    def do_setup(self):
-        WebKit.WebView.do_setup(self)
-        listener = xpcom.server.WrapObject(ContentInvoker(self),
-                                           interfaces.nsIDOMEventListener)
-        self.window_root.addEventListener('click', listener, False)
-
-        listener = xpcom.server.WrapObject(CommandListener(self.dom_window),
-                                           interfaces.nsIDOMEventListener)
-        self.window_root.addEventListener('command', listener, False)
-
-        self.progress.setup(self)
-
-        self.history.setup(self.web_navigation)
-
-        self.typeahead.init(self.doc_shell)
-
-        self.emit('is-setup')
 
     def get_url_from_nsiuri(self, uri):
         """
