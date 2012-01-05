@@ -357,16 +357,6 @@ class Browser(WebKit.WebView):
     def __init__(self):
         WebKit.WebView.__init__(self)
 
-    def get_url_from_nsiuri(self, uri):
-        """
-        get a nsIURI object and return a string with the url
-        """
-        if uri == None:
-            return ''
-        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-        return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
-
     def get_history(self):
         """Return the browsing history of this browser."""
         back_forward_list = self.get_back_forward_list()
