@@ -59,37 +59,11 @@ class BrowserNotebook(Gtk.Notebook):
 
     def __init__(self):
         GObject.GObject.__init__(self)
-        self._switch_handler = self.connect('switch-page',
-                                            self.__on_switch_page)
 
         tab_add = TabAdd()
         tab_add.connect('tab-added', self.on_add_tab)
-        empty_page = Gtk.HBox()
-        self.append_page(empty_page, tab_add)
-        empty_page.show()
+        self.set_action_widget(tab_add, Gtk.PackType.END)
+        tab_add.show()
 
     def on_add_tab(self, obj):
         raise NotImplementedError("implement this in the subclass")
-
-    def __on_switch_page(self, notebook, page, page_num):
-        """Don't switch to the extra tab at the end."""
-        if page_num > 0 and page_num == Gtk.Notebook.get_n_pages(self) - 1:
-            self.handler_block(self._switch_handler)
-            self.set_current_page(-1)
-            self.handler_unblock(self._switch_handler)
-            self.connect('switch-page', self.__on_switch_page)
-            self.stop_emission("switch-page")
-
-    def get_n_pages(self):
-        """Skip the extra tab at the end on the pages count."""
-        return Gtk.Notebook.get_n_pages(self) - 1
-
-    def append_page(self, page, label):
-        """Append keeping the extra tab at the end."""
-        return self.insert_page(page, label, self.get_n_pages())
-
-    def set_current_page(self, number):
-        """If indexing from the end, skip the extra tab."""
-        if number < 0:
-            number = self.get_n_pages() - 1
-        Gtk.Notebook.set_current_page(self, number)
