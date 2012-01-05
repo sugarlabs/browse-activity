@@ -35,6 +35,7 @@ import cjson
 from gi.repository import GConf
 import locale
 import cairo
+import StringIO
 from hashlib import sha1
 
 from sugar3.activity import activity
@@ -504,7 +505,7 @@ class WebActivity(activity.Activity):
         ''' take screenshot and add link info to the model '''
 
         browser = self._tabbed_view.props.current_browser
-        ui_uri = browser.get_url_from_nsiuri(browser.progress.location)
+        ui_uri = browser.get_uri()
 
         for link in self.model.data['shared_links']:
             if link['hash'] == sha1(ui_uri).hexdigest():
@@ -553,31 +554,26 @@ class WebActivity(activity.Activity):
         ''' an item of the link tray has been clicked '''
         self._tabbed_view.props.current_browser.load_uri(url)
 
-    def _pixbuf_save_cb(self, buf, data):
-        data[0] += buf
-        return True
-
-    def get_buffer(self, pixbuf):
-        data = [""]
-        pixbuf.save_to_callback(self._pixbuf_save_cb, "png", {}, data)
-        return str(data[0])
-
     def _get_screenshot(self):
-        window = self._tabbed_view.props.current_browser.window
-        width, height = window.get_size()
+        browser = self._tabbed_view.props.current_browser
+        window = browser.get_window()
+        width, height = window.get_width(), window.get_height()
 
-        screenshot = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, has_alpha=False,
-                                    bits_per_sample=8, width=width,
-                                    height=height)
-        screenshot.get_from_drawable(window, window.get_colormap(), 0, 0, 0, 0,
-                                     width, height)
+        thumb_width, thumb_height = style.zoom(100), style.zoom(80)
 
-        screenshot = screenshot.scale_simple(style.zoom(100),
-                                                 style.zoom(80),
-                                                 GdkPixbuf.InterpType.BILINEAR)
+        thumb_surface = Gdk.Window.create_similar_surface(window,
+            cairo.CONTENT_COLOR, thumb_width, thumb_height)
 
-        buf = self.get_buffer(screenshot)
-        return buf
+        cairo_context = cairo.Context(thumb_surface)
+        thumb_scale_w = thumb_width * 1.0 / width
+        thumb_scale_h = thumb_height * 1.0 / height
+        cairo_context.scale(thumb_scale_w, thumb_scale_h)
+        Gdk.cairo_set_source_window(cairo_context, window, 0, 0)
+        cairo_context.paint()
+
+        thumb_str = StringIO.StringIO()
+        thumb_surface.write_to_png(thumb_str)
+        return thumb_str.getvalue()
 
     def can_close(self):
         if self._force_close:
