@@ -58,37 +58,6 @@ _NON_SEARCH_REGEX = re.compile('''
     ''', re.VERBOSE)
 
 
-class SaveListener(object):
-    def __init__(self, user_data, callback):
-        self._user_data = user_data
-        self._callback = callback
-
-    def onStateChange(self, webProgress, request, stateFlags, status):
-        listener_class = interfaces.nsIWebProgressListener
-        if (stateFlags & listener_class.STATE_IS_REQUEST and
-            stateFlags & listener_class.STATE_STOP):
-            self._callback(self._user_data)
-
-        # Contrary to the documentation, STATE_IS_REQUEST is _not_ always set
-        # if STATE_IS_DOCUMENT is set.
-        if (stateFlags & listener_class.STATE_IS_DOCUMENT and
-            stateFlags & listener_class.STATE_STOP):
-            self._callback(self._user_data)
-
-    def onProgressChange(self, progress, request, curSelfProgress,
-                         maxSelfProgress, curTotalProgress, maxTotalProgress):
-        pass
-
-    def onLocationChange(self, progress, request, location):
-        pass
-
-    def onStatusChange(self, progress, request, status, message):
-        pass
-
-    def onSecurityChange(self, progress, request, state):
-        pass
-
-
 class CommandListener(object):
     def __init__(self, window):
         self._window = window
@@ -544,25 +513,17 @@ class Browser(WebKit.WebView):
         return all_items
 
     def get_source(self, async_cb, async_err_cb):
-        cls = components.classes[ \
-                '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
-        persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
-        # get the source from the cache
-        persist.persistFlags = \
-                interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
-
+        data_source = self.get_main_frame().get_data_source()
+        data = data_source.get_data()
+        if data_source.is_loading() or data is None:
+            async_err_cb()
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         file_path = os.path.join(temp_path, '%i' % time.time())
-        cls = components.classes["@mozilla.org/file/local;1"]
-        local_file = cls.createInstance(interfaces.nsILocalFile)
-        local_file.initWithPath(file_path)
 
-        progresslistener = SaveListener(file_path, async_cb)
-        persist.progressListener = xpcom.server.WrapObject(
-            progresslistener, interfaces.nsIWebProgressListener)
-
-        uri = self.web_navigation.currentURI
-        persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
+        file_handle = file(file_path, 'w')
+        file_handle.write(data.str)
+        file_handle.close()
+        async_cb(file_path)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)
