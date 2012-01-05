@@ -384,7 +384,9 @@ class PrimaryToolbar(ToolbarBase):
 
     def _entry_activate_cb(self, entry):
         browser = self._tabbed_view.props.current_browser
-        browser.load_uri(entry.props.text)
+        url = entry.props.text
+        effective_url = self._tabbed_view.normalize_or_autosearch_url(url)
+        browser.load_uri(effective_url)
         browser.grab_focus()
 
     def _go_home_cb(self, button):

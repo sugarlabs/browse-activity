@@ -18,6 +18,7 @@
 
 import os
 import time
+import re
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -25,6 +26,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit
+from gi.repository import Soup
 
 from sugar3 import env
 from sugar3.activity import activity
@@ -39,6 +41,21 @@ from widgets import BrowserNotebook
 
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
+
+_WEB_SCHEMES = ['http', 'https', 'ftp', 'file', 'javascript', 'data',
+                'about', 'gopher', 'mailto']
+
+_NON_SEARCH_REGEX = re.compile('''
+    (^localhost(\\.[^\s]+)?(:\\d+)?(/.*)?$|
+    ^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]$|
+    ^::[0-9a-f:]*$|                         # IPv6 literals
+    ^[0-9a-f:]+:[0-9a-f:]*$|                # IPv6 literals
+    ^[^\\.\s]+\\.[^\\.\s]+.*$|              # foo.bar...
+    ^https?://[^/\\.\s]+.*$|
+    ^about:.*$|
+    ^data:.*$|
+    ^file:.*$)
+    ''', re.VERBOSE)
 
 
 class SaveListener(object):
@@ -148,6 +165,57 @@ class TabbedView(BrowserNotebook):
         self.add_tab()
         self._update_closing_buttons()
         self._update_tab_sizes()
+
+    def normalize_or_autosearch_url(self, url):
+        """Normalize the url input or return a url for search.
+
+        We use SoupURI as an indication of whether the value given in url
+        is not something we want to search; we only do that, though, if
+        the address has a web scheme, because SoupURI will consider any
+        string: as a valid scheme, and we will end up prepending http://
+        to it.
+
+        This code is borrowed from Epiphany.
+
+        url -- input string that can be normalized to an url or serve
+               as search
+
+        Return: a string containing a valid url
+
+        """
+        def has_web_scheme(address):
+            if address == '':
+                return False
+
+            scheme, sep, after = address.partition(':')
+            if sep == '':
+                return False
+
+            return scheme in _WEB_SCHEMES
+
+        soup_uri = None
+        effective_url = None
+
+        if has_web_scheme(url):
+            try:
+                soup_uri = Soup.URI.new(url)
+            except TypeError:
+                pass
+
+        if soup_uri is None and not _NON_SEARCH_REGEX.match(url):
+            # If the string doesn't look like an URI, let's search it:
+            url_search = \
+                _('http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8')
+            query_param = Soup.form_encode_hash({'q': url})
+            # [2:] here is getting rid of 'q=':
+            effective_url = url_search % query_param[2:]
+        else:
+            if has_web_scheme(url):
+                effective_url = url
+            else:
+                effective_url = 'http://' + url
+
+        return effective_url
 
     def createChromeWindow(self, parent, flags):
         if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
