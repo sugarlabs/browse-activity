@@ -401,9 +401,8 @@ class WebActivity(activity.Activity):
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_history(self.model.data['history'])
             for number, tab in enumerate(self.model.data['currents']):
-                scrolled_window = self._tabbed_view.get_nth_page(number)
-                browser = scrolled_window.get_child()
-                browser.set_history_index(tab['history_index'])
+                tab_page = self._tabbed_view.get_nth_page(number)
+                tab_page.browser.set_history_index(tab['history_index'])
 
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
@@ -437,8 +436,8 @@ class WebActivity(activity.Activity):
 
             self.model.data['currents'] = []
             for n in range(0, self._tabbed_view.get_n_pages()):
-                scrolled_window = self._tabbed_view.get_nth_page(n)
-                n_browser = scrolled_window.get_child()
+                tab_page = self._tabbed_view.get_nth_page(n)
+                n_browser = tab_page.browser
                 if n_browser != None:
                     uri = n_browser.get_uri()
                     history_index = n_browser.get_history_index()
