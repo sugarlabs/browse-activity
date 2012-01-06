@@ -16,65 +16,34 @@
 
 from datetime import datetime
 
-from xpcom import components
-from xpcom.components import interfaces
-from xpcom.server.factory import Factory
-
 import places
 
+_global_history = None
 
-class GlobalHistory:
-    _com_interfaces_ = interfaces.nsIGlobalHistory, \
-                       interfaces.nsIGlobalHistory2, \
-                       interfaces.nsIGlobalHistory3
 
-    cid = '{2a53cf28-c48e-4a01-ba18-3d3fef3e2985}'
-    description = 'Sugar Global History'
-
+class GlobalHistory(object):
     def __init__(self):
         self._store = places.get_store()
 
-    def addPage(self, url):
-        self.addURI(url, False, True, None)
-
-    def isVisited(self, uri):
-        place = self._store.lookup_place(uri.spec)
-        return place != None
-
-    def addURI(self, uri, redirect, toplevel, referrer):
-        place = self._store.lookup_place(uri.spec)
+    def add_page(self, uri):
+        place = self._store.lookup_place(uri)
         if place:
             place.visits += 1
             place.last_visit = datetime.now()
             self._store.update_place(place)
         else:
-            place = places.Place(uri.spec)
+            place = places.Place(uri)
             self._store.add_place(place)
 
-    def setPageTitle(self, uri, title):
-        place = self._store.lookup_place(uri.spec)
+    def set_page_title(self, uri, title):
+        place = self._store.lookup_place(uri)
         if place:
             place.title = title
             self._store.update_place(place)
 
-    def addDocumentRedirect(self, old_channel, new_channel, flags, toplevel):
-        pass
 
-    def getURIGeckoFlags(self, uri):
-        place = self._store.lookup_place(uri.spec)
-        if place:
-            return place.gecko_flags
-        else:
-            return 0
-
-    def setURIGeckoFlags(self, uri, flags):
-        place = self._store.lookup_place(uri.spec)
-        if place:
-            place.gecko_flags = flags
-            self._store.update_place(place)
-
-
-components.registrar.registerFactory(GlobalHistory.cid,
-                                     GlobalHistory.description,
-                                     '@mozilla.org/browser/global-history;2',
-                                     Factory(GlobalHistory))
+def get_global_history():
+    global _global_history
+    if _global_history == None:
+        _global_history = GlobalHistory()
+    return _global_history

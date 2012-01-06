@@ -160,7 +160,6 @@ from viewtoolbar import ViewToolbar
 # import downloadmanager
 
 # TODO: make the registration clearer SL #3087
-# import globalhistory  # pylint: disable=W0611
 # import filepicker  # pylint: disable=W0611
 
 from model import Model
