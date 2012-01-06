@@ -18,6 +18,7 @@
 
 import os
 import time
+import re
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -25,51 +26,32 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit
+from gi.repository import Soup
 
 from sugar3 import env
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
-# FIXME
-# from palettes import ContentInvoker
-# from sessionhistory import HistoryListener
-# from progresslistener import ProgressListener
 from widgets import BrowserNotebook
 
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
+_WEB_SCHEMES = ['http', 'https', 'ftp', 'file', 'javascript', 'data',
+                'about', 'gopher', 'mailto']
 
-class SaveListener(object):
-    def __init__(self, user_data, callback):
-        self._user_data = user_data
-        self._callback = callback
-
-    def onStateChange(self, webProgress, request, stateFlags, status):
-        listener_class = interfaces.nsIWebProgressListener
-        if (stateFlags & listener_class.STATE_IS_REQUEST and
-            stateFlags & listener_class.STATE_STOP):
-            self._callback(self._user_data)
-
-        # Contrary to the documentation, STATE_IS_REQUEST is _not_ always set
-        # if STATE_IS_DOCUMENT is set.
-        if (stateFlags & listener_class.STATE_IS_DOCUMENT and
-            stateFlags & listener_class.STATE_STOP):
-            self._callback(self._user_data)
-
-    def onProgressChange(self, progress, request, curSelfProgress,
-                         maxSelfProgress, curTotalProgress, maxTotalProgress):
-        pass
-
-    def onLocationChange(self, progress, request, location):
-        pass
-
-    def onStatusChange(self, progress, request, status, message):
-        pass
-
-    def onSecurityChange(self, progress, request, state):
-        pass
+_NON_SEARCH_REGEX = re.compile('''
+    (^localhost(\\.[^\s]+)?(:\\d+)?(/.*)?$|
+    ^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]$|
+    ^::[0-9a-f:]*$|                         # IPv6 literals
+    ^[0-9a-f:]+:[0-9a-f:]*$|                # IPv6 literals
+    ^[^\\.\s]+\\.[^\\.\s]+.*$|              # foo.bar...
+    ^https?://[^/\\.\s]+.*$|
+    ^about:.*$|
+    ^data:.*$|
+    ^file:.*$)
+    ''', re.VERBOSE)
 
 
 class CommandListener(object):
@@ -98,48 +80,11 @@ class TabbedView(BrowserNotebook):
                             ([])),
     }
 
-    AGENT_SHEET = os.path.join(activity.get_bundle_path(),
-                               'agent-stylesheet.css')
-    USER_SHEET = os.path.join(env.get_profile_path(), 'gecko',
-                              'user-stylesheet.css')
-
     def __init__(self):
         BrowserNotebook.__init__(self)
 
         self.props.show_border = False
         self.props.scrollable = True
-
-        # FIXME
-        # io_service_class = components.classes[ \
-        #         "@mozilla.org/network/io-service;1"]
-        # io_service = io_service_class.getService(interfaces.nsIIOService)
-
-        # # Use xpcom to turn off "offline mode" detection, which disables
-        # # access to localhost for no good reason.  (Trac #6250.)
-        # io_service2 = io_service_class.getService(interfaces.nsIIOService2)
-        # io_service2.manageOfflineStatus = False
-
-        # cls = components.classes['@mozilla.org/content/style-sheet-service;1']
-        # style_sheet_service = cls.getService(interfaces.nsIStyleSheetService)
-
-        # if os.path.exists(TabbedView.AGENT_SHEET):
-        #     agent_sheet_uri = io_service.newURI('file:///' +
-        #                                         TabbedView.AGENT_SHEET,
-        #                                         None, None)
-        #     style_sheet_service.loadAndRegisterSheet(agent_sheet_uri,
-        #             interfaces.nsIStyleSheetService.AGENT_SHEET)
-
-        # if os.path.exists(TabbedView.USER_SHEET):
-        #     url = 'file:///' + TabbedView.USER_SHEET
-        #     user_sheet_uri = io_service.newURI(url, None, None)
-        #     style_sheet_service.loadAndRegisterSheet(user_sheet_uri,
-        #             interfaces.nsIStyleSheetService.USER_SHEET)
-
-        # cls = components.classes['@mozilla.org/embedcomp/window-watcher;1']
-        # window_watcher = cls.getService(interfaces.nsIWindowWatcher)
-        # window_creator = xpcom.server.WrapObject(self,
-        #                                          interfaces.nsIWindowCreator)
-        # window_watcher.setWindowCreator(window_creator)
 
         self.connect('size-allocate', self.__size_allocate_cb)
         self.connect('page-added', self.__page_added_cb)
@@ -149,28 +94,56 @@ class TabbedView(BrowserNotebook):
         self._update_closing_buttons()
         self._update_tab_sizes()
 
-    def createChromeWindow(self, parent, flags):
-        if flags & interfaces.nsIWebBrowserChrome.CHROME_OPENAS_CHROME:
-            dialog = PopupDialog()
-            dialog.view.is_chrome = True
+    def normalize_or_autosearch_url(self, url):
+        """Normalize the url input or return a url for search.
 
-            parent_dom_window = parent.webBrowser.contentDOMWindow
-            parent_view = hulahop.get_view_for_window(parent_dom_window)
-            if parent_view:
-                dialog.set_transient_for(parent_view.get_toplevel())
+        We use SoupURI as an indication of whether the value given in url
+        is not something we want to search; we only do that, though, if
+        the address has a web scheme, because SoupURI will consider any
+        string: as a valid scheme, and we will end up prepending http://
+        to it.
 
-            browser = dialog.view.browser
+        This code is borrowed from Epiphany.
 
-            item = browser.queryInterface(interfaces.nsIDocShellTreeItem)
-            item.itemType = interfaces.nsIDocShellTreeItem.typeChromeWrapper
+        url -- input string that can be normalized to an url or serve
+               as search
 
-            return browser.containerWindow
+        Return: a string containing a valid url
+
+        """
+        def has_web_scheme(address):
+            if address == '':
+                return False
+
+            scheme, sep, after = address.partition(':')
+            if sep == '':
+                return False
+
+            return scheme in _WEB_SCHEMES
+
+        soup_uri = None
+        effective_url = None
+
+        if has_web_scheme(url):
+            try:
+                soup_uri = Soup.URI.new(url)
+            except TypeError:
+                pass
+
+        if soup_uri is None and not _NON_SEARCH_REGEX.match(url):
+            # If the string doesn't look like an URI, let's search it:
+            url_search = \
+                _('http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8')
+            query_param = Soup.form_encode_hash({'q': url})
+            # [2:] here is getting rid of 'q=':
+            effective_url = url_search % query_param[2:]
         else:
-            browser = Browser()
-            browser.connect('new-tab', self.__new_tab_cb)
-            self._append_tab(browser)
+            if has_web_scheme(url):
+                effective_url = url
+            else:
+                effective_url = 'http://' + url
 
-            return browser.browser.containerWindow
+        return effective_url
 
     def __size_allocate_cb(self, widget, allocation):
         self._update_tab_sizes()
@@ -376,9 +349,6 @@ class Browser(WebKit.WebView):
     __gtype_name__ = 'Browser'
 
     __gsignals__ = {
-        'is-setup': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
         'new-tab': (GObject.SignalFlags.RUN_FIRST,
                     None,
                     ([str])),
@@ -386,38 +356,6 @@ class Browser(WebKit.WebView):
 
     def __init__(self):
         WebKit.WebView.__init__(self)
-
-        # FIXME
-        # self.history = HistoryListener()
-        # self.progress = ProgressListener()
-
-    def do_setup(self):
-        WebKit.WebView.do_setup(self)
-        listener = xpcom.server.WrapObject(ContentInvoker(self),
-                                           interfaces.nsIDOMEventListener)
-        self.window_root.addEventListener('click', listener, False)
-
-        listener = xpcom.server.WrapObject(CommandListener(self.dom_window),
-                                           interfaces.nsIDOMEventListener)
-        self.window_root.addEventListener('command', listener, False)
-
-        self.progress.setup(self)
-
-        self.history.setup(self.web_navigation)
-
-        self.typeahead.init(self.doc_shell)
-
-        self.emit('is-setup')
-
-    def get_url_from_nsiuri(self, uri):
-        """
-        get a nsIURI object and return a string with the url
-        """
-        if uri == None:
-            return ''
-        cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-        texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-        return texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
 
     def get_history(self):
         """Return the browsing history of this browser."""
@@ -476,25 +414,17 @@ class Browser(WebKit.WebView):
         return all_items
 
     def get_source(self, async_cb, async_err_cb):
-        cls = components.classes[ \
-                '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
-        persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
-        # get the source from the cache
-        persist.persistFlags = \
-                interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_FROM_CACHE
-
+        data_source = self.get_main_frame().get_data_source()
+        data = data_source.get_data()
+        if data_source.is_loading() or data is None:
+            async_err_cb()
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         file_path = os.path.join(temp_path, '%i' % time.time())
-        cls = components.classes["@mozilla.org/file/local;1"]
-        local_file = cls.createInstance(interfaces.nsILocalFile)
-        local_file.initWithPath(file_path)
 
-        progresslistener = SaveListener(file_path, async_cb)
-        persist.progressListener = xpcom.server.WrapObject(
-            progresslistener, interfaces.nsIWebProgressListener)
-
-        uri = self.web_navigation.currentURI
-        persist.saveURI(uri, self.doc_shell, None, None, None, local_file)
+        file_handle = file(file_path, 'w')
+        file_handle.write(data.str)
+        file_handle.close()
+        async_cb(file_path)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)

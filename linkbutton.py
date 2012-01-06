@@ -20,6 +20,9 @@ from gi.repository import GdkPixbuf
 
 import os
 from gi.repository import GObject
+from gi.repository import Gdk
+import StringIO
+import cairo
 from gettext import gettext as _
 import rsvg
 import re
@@ -47,32 +50,27 @@ class LinkButton(TrayButton, GObject.GObject):
 
     def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):
         img = Gtk.Image()
-        loader = GdkPixbuf.PixbufLoader()
-        loader.write(buf)
-        loader.close()
-        pixbuf = loader.get_pixbuf()
-        del loader
+        str_buf = StringIO.StringIO(buf)
+        thumb_surface = cairo.ImageSurface.create_from_png(str_buf)
 
         xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
-        pixbuf_bg = self._read_link_background(xo_buddy, fill, stroke)
-        pixbuf_bg = pixbuf_bg.scale_simple(style.zoom(120),
-                                           style.zoom(110),
-                                           GdkPixbuf.InterpType.BILINEAR)
+
+        bg_surface = self._read_link_background(xo_buddy, fill, stroke)
+
+        cairo_context = cairo.Context(bg_surface)
         dest_x = style.zoom(10)
         dest_y = style.zoom(20)
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-        scale_x = 1
-        scale_y = 1
+        cairo_context.set_source_surface(thumb_surface, dest_x, dest_y)
+        thumb_width, thumb_height = style.zoom(100), style.zoom(80)
+        cairo_context.rectangle(dest_x, dest_y, thumb_width, thumb_height)
+        cairo_context.fill()
 
-        pixbuf.composite(pixbuf_bg, dest_x, dest_y, w, h, dest_x, dest_y,
-                         scale_x, scale_y, GdkPixbuf.InterpType.BILINEAR, 255)
+        bg_width, bg_height = style.zoom(120), style.zoom(110)
+        pixbuf_bg = Gdk.pixbuf_get_from_surface(bg_surface, 0, 0,
+                                                bg_width, bg_height)
         img.set_from_pixbuf(pixbuf_bg)
         self.set_icon_widget(img)
         img.show()
-        del pixbuf
-        del pixbuf_bg
-        gc.collect()
 
     def _read_link_background(self, filename, fill_color, stroke_color):
         icon_file = open(filename, 'r')
@@ -87,8 +85,16 @@ class LinkButton(TrayButton, GObject.GObject):
             entity = '<!ENTITY stroke_color "%s">' % stroke_color
             data = re.sub('<!ENTITY stroke_color .*>', entity, data)
 
-        data_size = len(data)
-        return rsvg.Handle(data=data).get_pixbuf()
+        link_width, link_height = style.zoom(120), style.zoom(110)
+        link_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                          link_width, link_height)
+        link_context = cairo.Context(link_surface)
+        link_scale_w = link_width * 1.0 / 120
+        link_scale_h = link_height * 1.0 / 110
+        link_context.scale(link_scale_w, link_scale_h)
+        handler = rsvg.Handle(data=data)
+        handler.render_cairo(link_context)
+        return link_surface
 
     def setup_rollover_options(self, info):
         palette = Palette(info, text_maxlen=50)
