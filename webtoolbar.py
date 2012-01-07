@@ -287,7 +287,6 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(stop_button, -1)
 
         self._progress_listener = None
-        self._history = None
         self._browser = None
 
         self._loading_changed_hid = None
@@ -306,16 +305,6 @@ class PrimaryToolbar(ToolbarBase):
             self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
-
-        # FIXME
-        # if self._history is not None:
-        #     self._history.disconnect(self._session_history_changed_hid)
-
-        # self._history = browser.history
-        # self._session_history_changed_hid = self._history.connect(
-        #         'session-history-changed', self._session_history_changed_cb)
-        # self._reload_session_history()
-
         if self._browser is not None:
             self._browser.disconnect(self._title_changed_hid)
             self._browser.disconnect(self._uri_changed_hid)
@@ -338,10 +327,6 @@ class PrimaryToolbar(ToolbarBase):
                 'notify::load-status', self.__loading_changed_cb)
 
         self._update_navigation_buttons()
-
-    def _session_history_changed_cb(self, session_history, current_page_index):
-        # We have to wait until the history info is updated.
-        GObject.idle_add(self._reload_session_history, current_page_index)
 
     def __loading_changed_cb(self, widget, param):
         status = widget.get_load_status()
@@ -374,31 +359,26 @@ class PrimaryToolbar(ToolbarBase):
                                       'browse-view-refresh')
 
     def _update_navigation_buttons(self):
-        browser = self._tabbed_view.props.current_browser
-
-        can_go_back = browser.can_go_back()
+        can_go_back = self._browser.can_go_back()
         self._back.props.sensitive = can_go_back
 
-        can_go_forward = browser.can_go_forward()
+        can_go_forward = self._browser.can_go_forward()
         self._forward.props.sensitive = can_go_forward
 
     def _entry_activate_cb(self, entry):
-        browser = self._tabbed_view.props.current_browser
         url = entry.props.text
         effective_url = self._tabbed_view.normalize_or_autosearch_url(url)
-        browser.load_uri(effective_url)
-        browser.grab_focus()
+        self._browser.load_uri(effective_url)
+        self._browser.grab_focus()
 
     def _go_home_cb(self, button):
         self.emit('go-home')
 
     def _go_back_cb(self, button):
-        browser = self._tabbed_view.props.current_browser
-        browser.go_back()
+        self._browser.go_back()
 
     def _go_forward_cb(self, button):
-        browser = self._tabbed_view.props.current_browser
-        browser.go_forward()
+        self._browser.go_forward()
 
     def _title_changed_cb(self, widget, param):
         self._set_title(widget.get_title())
@@ -410,11 +390,10 @@ class PrimaryToolbar(ToolbarBase):
         # filepicker.cleanup_temp_files()
 
     def _stop_and_reload_cb(self, entry, icon_pos, button):
-        browser = self._tabbed_view.props.current_browser
         if self._loading:
-            browser.stop_loading()
+            self._browser.stop_loading()
         else:
-            browser.reload()
+            self._browser.reload()
 
     def _set_loading(self, loading):
         self._loading = loading
