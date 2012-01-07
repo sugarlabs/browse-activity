@@ -46,6 +46,9 @@ class SqliteStore(object):
 
         cursor.execute('select * from sqlite_master where name == "places"')
         if cursor.fetchone() == None:
+            # Create table to store the visited places.  Note that
+            # bookmark and gecko_flags fields aren't used anymore in
+            # WebKit port, but are kept for backwards compatibility.
             cursor.execute("""create table places (
                                 uri         text,
                                 title       text,

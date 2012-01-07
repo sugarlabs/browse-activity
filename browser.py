@@ -34,6 +34,7 @@ from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
 from widgets import BrowserNotebook
+import globalhistory
 
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
@@ -357,6 +358,11 @@ class Browser(WebKit.WebView):
     def __init__(self):
         WebKit.WebView.__init__(self)
 
+        # Reference to the global history and callbacks to handle it:
+        self._global_history = globalhistory.get_global_history()
+        self.connect('notify::load-status', self.__load_status_changed_cb)
+        self.connect('notify::title', self.__title_changed_cb)
+
     def get_history(self):
         """Return the browsing history of this browser."""
         back_forward_list = self.get_back_forward_list()
@@ -428,6 +434,22 @@ class Browser(WebKit.WebView):
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)
+
+    def __load_status_changed_cb(self, widget, param):
+        """Add the url to the global history or update it."""
+        status = widget.get_load_status()
+        if status <= WebKit.LoadStatus.COMMITTED:
+            uri = self.get_uri()
+            self._global_history.add_page(uri)
+
+    def __title_changed_cb(self, widget, param):
+        """Update title in global history."""
+        uri = self.get_uri()
+        if self.props.title is not None:
+            title = self.props.title
+            if not isinstance(title, unicode):
+                title = unicode(title, 'utf-8')
+            self._global_history.set_page_title(uri, title)
 
 
 class PopupDialog(Gtk.Window):

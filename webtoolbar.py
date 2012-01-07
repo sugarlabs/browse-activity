@@ -127,16 +127,16 @@ class WebEntry(iconentry.IconEntry):
         return len(list_store) > 0
 
     def _search_popup(self):
-        entry_x, entry_y = self.window.get_origin()
-        entry_w, entry_h = self.size_request()
+        miss, window_x, window_y = self.props.window.get_origin()
+        entry_allocation = self.get_allocation()
 
-        x = entry_x + entry_h / 2
-        y = entry_y + entry_h
-        width = self.allocation.width - entry_h
-        height = Gdk.Screen.height() / 3
+        search_x = window_x + entry_allocation.x
+        search_y = window_y + entry_allocation.y + entry_allocation.height
+        search_width = entry_allocation.width
+        search_height = Gdk.Screen.height() / 3
 
-        self._search_window.move(x, y)
-        self._search_window.resize(width, height)
+        self._search_window.move(search_x, search_y)
+        self._search_window.resize(search_width, search_height)
         self._search_window.show()
 
     def _search_popdown(self):
