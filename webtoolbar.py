@@ -365,6 +365,8 @@ class PrimaryToolbar(ToolbarBase):
         can_go_forward = self._browser.can_go_forward()
         self._forward.props.sensitive = can_go_forward
 
+        self._reload_session_history()
+
     def _entry_activate_cb(self, entry):
         url = entry.props.text
         effective_url = self._tabbed_view.normalize_or_autosearch_url(url)
@@ -403,46 +405,50 @@ class PrimaryToolbar(ToolbarBase):
         else:
             self._show_reload_icon()
 
-    def _reload_session_history(self, current_page_index=None):
-        browser = self._tabbed_view.props.current_browser
-        session_history = browser.web_navigation.sessionHistory
-        if current_page_index is None:
-            current_page_index = session_history.index
+    def _reload_session_history(self):
+        back_forward_list = self._browser.get_back_forward_list()
+        item_index = 0  # The index of the history item
 
+        # Clear menus in palettes:
         for palette in (self._back.get_palette(), self._forward.get_palette()):
             for menu_item in palette.menu.get_children():
                 palette.menu.remove(menu_item)
 
-        if current_page_index > _MAX_HISTORY_ENTRIES:
-            bottom = current_page_index - _MAX_HISTORY_ENTRIES
-        else:
-            bottom = 0
-        if  (session_history.count - current_page_index) > \
-               _MAX_HISTORY_ENTRIES:
-            top = current_page_index + _MAX_HISTORY_ENTRIES + 1
-        else:
-            top = session_history.count
+        def create_menu_item(history_item, item_index):
+            """Create a MenuItem for the back or forward palettes."""
+            title = history_item.get_title()
+            if not isinstance(title, unicode):
+                title = unicode(title, 'utf-8')
+            menu_item = MenuItem(title, text_maxlen=60)
+            menu_item.connect('activate', self._history_item_activated_cb,
+                              item_index)
+            return menu_item
 
-        for i in range(bottom, top):
-            if i == current_page_index:
-                continue
-
-            entry = session_history.getEntryAtIndex(i, False)
-            menu_item = MenuItem(entry.title, text_maxlen=60)
-            menu_item.connect('activate', self._history_item_activated_cb, i)
-
-            if i < current_page_index:
-                palette = self._back.get_palette()
-                palette.menu.prepend(menu_item)
-            elif i > current_page_index:
-                palette = self._forward.get_palette()
-                palette.menu.append(menu_item)
-
+        back_list = back_forward_list.get_back_list_with_limit(
+            _MAX_HISTORY_ENTRIES)
+        back_list.reverse()
+        for item in back_list:
+            menu_item = create_menu_item(item, item_index)
+            palette = self._back.get_palette()
+            palette.menu.prepend(menu_item)
             menu_item.show()
+            item_index += 1
+
+        # Increment the item index to count the current page:
+        item_index += 1
+
+        forward_list = back_forward_list.get_forward_list_with_limit(
+            _MAX_HISTORY_ENTRIES)
+        forward_list.reverse()
+        for item in forward_list:
+            menu_item = create_menu_item(item, item_index)
+            palette = self._forward.get_palette()
+            palette.menu.append(menu_item)
+            menu_item.show()
+            item_index += 1
 
     def _history_item_activated_cb(self, menu_item, index):
-        browser = self._tabbed_view.props.current_browser
-        browser.web_navigation.gotoIndex(index)
+        self._browser.set_history_index(index)
 
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
