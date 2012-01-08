@@ -176,36 +176,30 @@ class TabbedView(BrowserNotebook):
         return browser
 
     def _insert_tab_next(self, browser):
-        scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.add(browser)
-        browser.show()
-
-        label = TabLabel(scrolled_window)
-        label.connect('tab-close', self.__tab_close_cb)
+        tab_page = TabPage(browser)
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb, tab_page)
 
         next_index = self.get_current_page() + 1
-        self.insert_page(scrolled_window, label, next_index)
-        scrolled_window.show()
+        self.insert_page(tab_page, label, next_index)
+        tab_page.show()
         self.set_current_page(next_index)
 
     def _append_tab(self, browser):
-        scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.add(browser)
-        browser.show()
+        tab_page = TabPage(browser)
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb, tab_page)
 
-        label = TabLabel(scrolled_window)
-        label.connect('tab-close', self.__tab_close_cb)
-
-        self.append_page(scrolled_window, label)
-        scrolled_window.show()
+        self.append_page(tab_page, label)
+        tab_page.show()
         self.set_current_page(-1)
 
     def on_add_tab(self, gobject):
         self.add_tab()
 
-    def __tab_close_cb(self, label, browser_window):
-        self.remove_page(self.page_num(browser_window))
-        browser_window.destroy()
+    def __tab_close_cb(self, label, tab_page):
+        self.remove_page(self.page_num(tab_page))
+        tab_page.destroy()
 
     def _update_tab_sizes(self):
         """Update ta widths based in the amount of tabs."""
@@ -254,7 +248,7 @@ class TabbedView(BrowserNotebook):
 
     def _get_current_browser(self):
         if self.get_n_pages():
-            return self.get_nth_page(self.get_current_page()).get_child()
+            return self.get_nth_page(self.get_current_page()).browser
         else:
             return None
 
@@ -264,9 +258,8 @@ class TabbedView(BrowserNotebook):
     def get_history(self):
         tab_histories = []
         for index in xrange(0, self.get_n_pages()):
-            scrolled_window = self.get_nth_page(index)
-            browser = scrolled_window.get_child()
-            tab_histories.append(browser.get_history())
+            tab_page = self.get_nth_page(index)
+            tab_histories.append(tab_page.browser.get_history())
         return tab_histories
 
     def set_history(self, tab_histories):
@@ -292,6 +285,42 @@ Gtk.rc_parse_string('''
     widget "*browse-tab-close" style "browse-tab-close"''')
 
 
+class TabPage(Gtk.Overlay):
+    def __init__(self, browser):
+        GObject.GObject.__init__(self)
+
+        self._browser = browser
+
+        link_info = Gtk.Label()
+        link_info.set_halign(Gtk.Align.START)
+        link_info.set_valign(Gtk.Align.END)
+        self.add_overlay(link_info)
+        link_info.show()
+
+        scrolled_window = Gtk.ScrolledWindow()
+        self.add(scrolled_window)
+        scrolled_window.show()
+
+        scrolled_window.add(browser)
+        browser.show()
+
+        browser.connect('hovering-over-link', self.__hovering_over_link_cb,
+                        link_info)
+
+    def _get_browser(self):
+        return self._browser
+
+    browser = GObject.property(type=object,
+                               getter=_get_browser)
+
+    def __hovering_over_link_cb(self, webview, title, uri, link_info):
+        if uri is None:
+            link_info.hide()
+        else:
+            link_info.set_text(uri)
+            link_info.show()
+
+
 class TabLabel(Gtk.HBox):
     __gtype_name__ = 'TabLabel'
 
@@ -301,11 +330,9 @@ class TabLabel(Gtk.HBox):
                       ([object])),
     }
 
-    def __init__(self, browser_window):
+    def __init__(self, browser):
         GObject.GObject.__init__(self)
 
-        self._browser_window = browser_window
-        browser = browser_window.get_child()
         browser.connect('notify::title', self.__title_changed_cb)
 
         self._label = Gtk.Label(label=_('Untitled'))
@@ -339,7 +366,7 @@ class TabLabel(Gtk.HBox):
         self._close_button.show()
 
     def __button_clicked_cb(self, button):
-        self.emit('tab-close', self._browser_window)
+        self.emit('tab-close')
 
     def __title_changed_cb(self, widget, param):
         if widget.props.title:
