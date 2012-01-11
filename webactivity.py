@@ -260,10 +260,8 @@ class WebActivity(activity.Activity):
             _logger.debug('Offline')
         self.initiating = None
 
-        if self._shared_activity is not None:
-            _logger.debug('shared: %s', self._shared_activity.props.joined)
-
-        if self._shared_activity is not None:
+        if self.get_shared_activity() is not None:
+            _logger.debug('shared: %s', self.get_shared())
             # We are joining the activity
             _logger.debug('Joined activity')
             self.connect('joined', self._joined_cb)
@@ -286,12 +284,12 @@ class WebActivity(activity.Activity):
                                                                     {})
 
     def _setup(self):
-        if self._shared_activity is None:
+        if self.get_shared_activity() is None:
             _logger.debug('Failed to share or join activity')
             return
 
         bus_name, conn_path, channel_paths = \
-                self._shared_activity.get_channels()
+                self.get_shared_activity().get_channels()
 
         # Work out what our room is called and whether we have Tubes already
         room = None
@@ -343,7 +341,7 @@ class WebActivity(activity.Activity):
         _logger.debug('ListTubes() failed: %s', e)
 
     def _joined_cb(self, activity_):
-        if not self._shared_activity:
+        if not self.get_shared_activity():
             return
 
         _logger.debug('Joined an existing shared activity')
