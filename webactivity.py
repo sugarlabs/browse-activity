@@ -425,7 +425,7 @@ class WebActivity(activity.Activity):
             browser = self._tabbed_view.current_browser
 
             if not self._jobject.metadata['title_set_by_user'] == '1':
-                if browser.props.title == None:
+                if browser.props.title is None:
                     self.metadata['title'] = _('Untitled')
                 else:
                     self.metadata['title'] = browser.props.title
