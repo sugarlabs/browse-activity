@@ -20,15 +20,15 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gettext import gettext as _
 
-from sugar3.activity import activity
+from sugar3.activity.widgets import EditToolbar as BaseEditToolbar
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import style
 
 
-class EditToolbar(activity.EditToolbar):
+class EditToolbar(BaseEditToolbar):
     def __init__(self, act):
-        activity.EditToolbar.__init__(self)
+        BaseEditToolbar.__init__(self)
 
         self._activity = act
         self._browser = None
