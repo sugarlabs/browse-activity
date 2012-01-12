@@ -156,8 +156,7 @@ from browser import TabbedView
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
-# FIXME
-# import downloadmanager
+import downloadmanager
 
 # TODO: make the registration clearer SL #3087
 # import filepicker  # pylint: disable=W0611
@@ -574,8 +573,7 @@ class WebActivity(activity.Activity):
     def can_close(self):
         if self._force_close:
             return True
-        # FIXME
-        elif True:  # downloadmanager.can_quit():
+        elif downloadmanager.can_quit():
             return True
         else:
             alert = Alert()
@@ -589,7 +587,8 @@ class WebActivity(activity.Activity):
             cancel_icon = Icon(icon_name='dialog-cancel')
             cancel_label = ngettext('Continue download', 'Continue downloads',
                                     downloadmanager.num_downloads())
-            alert.add_button(Gtk.ResponseType.CANCEL, cancel_label, cancel_icon)
+            alert.add_button(Gtk.ResponseType.CANCEL, cancel_label,
+                             cancel_icon)
             stop_icon = Icon(icon_name='dialog-ok')
             alert.add_button(Gtk.ResponseType.OK, _('Stop'), stop_icon)
             stop_icon.show()
