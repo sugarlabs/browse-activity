@@ -383,8 +383,15 @@ class Browser(WebKit.WebView):
                     ([str])),
     }
 
+    CURRENT_SUGAR_VERSION = '0.96'
+
     def __init__(self):
         WebKit.WebView.__init__(self)
+
+        web_settings = self.get_settings()
+        identifier = ' Sugar Labs/' + self.CURRENT_SUGAR_VERSION
+        web_settings.props.user_agent += identifier
+        self.set_settings(web_settings)
 
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
