@@ -35,6 +35,7 @@ from sugar3.graphics.icon import Icon
 
 from widgets import BrowserNotebook
 import globalhistory
+import downloadmanager
 
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
@@ -382,13 +383,23 @@ class Browser(WebKit.WebView):
                     ([str])),
     }
 
+    CURRENT_SUGAR_VERSION = '0.96'
+
     def __init__(self):
         WebKit.WebView.__init__(self)
+
+        web_settings = self.get_settings()
+        identifier = ' Sugar Labs/' + self.CURRENT_SUGAR_VERSION
+        web_settings.props.user_agent += identifier
+        self.set_settings(web_settings)
 
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
         self.connect('notify::load-status', self.__load_status_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
+        self.connect('download-requested', self.__download_requested_cb)
+        self.connect('mime-type-policy-decision-requested',
+                     self.__mime_type_policy_cb)
 
     def get_history(self):
         """Return the browsing history of this browser."""
@@ -477,6 +488,16 @@ class Browser(WebKit.WebView):
             if not isinstance(title, unicode):
                 title = unicode(title, 'utf-8')
             self._global_history.set_page_title(uri, title)
+
+    def __mime_type_policy_cb(self, webview, frame, request, mimetype,
+                              policy_decision):
+        if not self.can_show_mime_type(mimetype):
+            policy_decision.download()
+        return True
+
+    def __download_requested_cb(self, browser, download):
+        downloadmanager.add_download(download, browser)
+        return True
 
 
 class PopupDialog(Gtk.Window):

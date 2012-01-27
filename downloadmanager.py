@@ -18,43 +18,22 @@
 import os
 import logging
 from gettext import gettext as _
-import time
 import tempfile
+import dbus
 
 from gi.repository import Gtk
-import hulahop
-import xpcom
-from xpcom.nsError import *
-from xpcom import components
-from xpcom.components import interfaces
-from xpcom.server.factory import Factory
+from gi.repository import WebKit
 
 from sugar3.datastore import datastore
 from sugar3 import profile
 from sugar3 import mime
 from sugar3.graphics.alert import Alert, TimeoutAlert
 from sugar3.graphics.icon import Icon
-from sugar3.graphics import style
 from sugar3.activity import activity
-# #3903 - this constant can be removed and assumed to be 1 when dbus-python
-# 0.82.3 is the only version used
-import dbus
-if dbus.version >= (0, 82, 3):
-    DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1
-else:
-    DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND = 1000
-
-NS_BINDING_ABORTED = 0x804b0002             # From nsNetError.h
-NS_ERROR_SAVE_LINK_AS_TIMEOUT = 0x805d0020  # From nsURILoader.h
 
 DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
 DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
 DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
-
-_MIN_TIME_UPDATE = 5        # In seconds
-_MIN_PERCENT_UPDATE = 10
-
-_MAX_DELTA_CACHE_TIME = 86400  # In seconds
 
 _active_downloads = []
 _dest_to_window = {}
@@ -70,78 +49,22 @@ def num_downloads():
 
 def remove_all_downloads():
     for download in _active_downloads:
-        download.cancelable.cancel(NS_ERROR_FAILURE)
+        download.cancel()
         if download.dl_jobject is not None:
             datastore.delete(download.dl_jobject.object_id)
         download.cleanup()
 
-def remove_old_parts():
-    temp_path = os.path.join(activity.get_activity_root(), 'instance')
-    if os.path.exists(temp_path):
-        for file in os.listdir(temp_path):
-            file_full_path = os.path.join(temp_path, file)
-            modification_time = os.path.getmtime(file_full_path)
-            if(time.time() - modification_time > _MAX_DELTA_CACHE_TIME):
-                logging.debug('removing %s' % file_full_path)
-                os.remove(file_full_path)
 
-class HelperAppLauncherDialog:
-    _com_interfaces_ = interfaces.nsIHelperAppLauncherDialog
+class Download(object):
+    def __init__(self, download, browser):
+        self._download = download
+        self._activity = browser.get_toplevel()
+        self._source = download.get_uri()
 
-    def promptForSaveToFile(self, launcher, window_context,
-                            default_file, suggested_file_extension,
-                            force_prompt=False):
-        file_class = components.classes['@mozilla.org/file/local;1']
-        dest_file = file_class.createInstance(interfaces.nsILocalFile)
+        self._download.connect('notify::progress', self.__progress_change_cb)
+        self._download.connect('notify::status', self.__state_change_cb)
+        self._download.connect('error', self.__error_cb)
 
-        if default_file:
-            default_file = default_file.encode('utf-8', 'replace')
-            base_name, extension = os.path.splitext(default_file)
-        else:
-            base_name = ''
-            if suggested_file_extension:
-                extension = '.' + suggested_file_extension
-            else:
-                extension = ''
-
-        temp_path = os.path.join(activity.get_activity_root(), 'instance')
-        if not os.path.exists(temp_path):
-            os.makedirs(temp_path)
-        fd, file_path = tempfile.mkstemp(dir=temp_path, prefix=base_name,
-                                         suffix=extension)
-        os.close(fd)
-        os.chmod(file_path, 0644)
-        dest_file.initWithPath(file_path)
-
-        interface_id = interfaces.nsIInterfaceRequestor
-        requestor = window_context.queryInterface(interface_id)
-        dom_window = requestor.getInterface(interfaces.nsIDOMWindow)
-        _dest_to_window[file_path] = dom_window
-
-        return dest_file
-
-    def show(self, launcher, context, reason):
-        launcher.saveToDisk(None, False)
-        return NS_OK
-
-
-components.registrar.registerFactory('{64355793-988d-40a5-ba8e-fcde78cac631}',
-                                     'Sugar Download Manager',
-                                     '@mozilla.org/helperapplauncherdialog;1',
-                                     Factory(HelperAppLauncherDialog))
-
-
-class Download:
-    _com_interfaces_ = interfaces.nsITransfer
-
-    def init(self, source, target, display_name, mime_info, start_time,
-             temp_file, cancelable):
-        self._source = source
-        self._mime_type = mime_info.MIMEType
-        self._temp_file = temp_file
-        self._target_file = target.queryInterface(interfaces.nsIFileURL).file
-        self._display_name = display_name
-        self.cancelable = cancelable
         self.datastore_deleted_handler = None
 
         self.dl_jobject = None
@@ -150,43 +73,45 @@ class Download:
         self._last_update_percent = 0
         self._stop_alert = None
 
-        file_path = self._target_file.path.encode('utf-8', 'replace')
-        dom_window = _dest_to_window[file_path]
-        del _dest_to_window[file_path]
+        # figure out download URI
+        temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        if not os.path.exists(temp_path):
+            os.makedirs(temp_path)
 
-        view = hulahop.get_view_for_window(dom_window)
-        logging.debug('Download.init dom_window: %r', dom_window)
-        self._activity = view.get_toplevel()
+        fd, self._dest_path = tempfile.mkstemp(dir=temp_path,
+                                    suffix=download.get_suggested_filename(),
+                                    prefix='tmp')
+        os.close(fd)
+        logging.debug('Download destination path: %s' % self._dest_path)
 
-        return NS_OK
+        self._download.set_destination_uri('file://' + self._dest_path)
+        self._download.start()
 
-    def onStatusChange(self, web_progress, request, status, message):
-        logging.info('Download.onStatusChange(%r, %r, %r, %r)',
-                     web_progress, request, status, message)
+    def __progress_change_cb(self, download, something):
+        progress = self._download.get_progress()
+        self.dl_jobject.metadata['progress'] = str(int(progress * 100))
+        datastore.write(self.dl_jobject)
 
-    def onStateChange(self, web_progress, request, state_flags, status):
-        if state_flags & interfaces.nsIWebProgressListener.STATE_START:
+    def __state_change_cb(self, download, gparamspec):
+        state = self._download.get_status()
+        if state == WebKit.DownloadStatus.STARTED:
             self._create_journal_object()
             self._object_id = self.dl_jobject.object_id
 
             alert = TimeoutAlert(9)
             alert.props.title = _('Download started')
-            alert.props.msg = self._get_file_name()
+            alert.props.msg = _('%s' % self._download.get_suggested_filename())
             self._activity.add_alert(alert)
             alert.connect('response', self.__start_response_cb)
             alert.show()
             global _active_downloads
             _active_downloads.append(self)
 
-        elif state_flags & interfaces.nsIWebProgressListener.STATE_STOP:
-            if NS_FAILED(status):
-                # download cancelled
-                self.cleanup()
-                return
-
+        elif state == WebKit.DownloadStatus.FINISHED:
             self._stop_alert = Alert()
             self._stop_alert.props.title = _('Download completed')
-            self._stop_alert.props.msg = self._get_file_name()
+            self._stop_alert.props.msg = \
+                _('%s' % self._download.get_suggested_filename())
             open_icon = Icon(icon_name='zoom-activity')
             self._stop_alert.add_button(Gtk.ResponseType.APPLY,
                                         _('Show in Journal'), open_icon)
@@ -198,78 +123,48 @@ class Download:
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
 
-            self.dl_jobject.metadata['title'] = self._get_file_name()
+            self.dl_jobject.metadata['title'] = \
+                self._download.get_suggested_filename()
             self.dl_jobject.metadata['description'] = _('From: %s') \
-                % self._source.spec
+                % self._source
             self.dl_jobject.metadata['progress'] = '100'
-            self.dl_jobject.file_path = self._target_file.path
+            self.dl_jobject.file_path = self._dest_path
 
-            if self._mime_type in ['application/octet-stream',
-                                   'application/x-zip']:
-                sniffed_mime_type = mime.get_for_file(self._target_file.path)
-                self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
-
-            if self._check_image_mime_type():
-                self.dl_jobject.metadata['preview'] = self._get_preview_image()
+            # sniff for a mime type, no way to get headers from WebKit
+            sniffed_mime_type = mime.get_for_file(self._dest_path)
+            self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
             datastore.write(self.dl_jobject,
                             transfer_ownership=True,
-                            reply_handler=self._internal_save_cb,
-                            error_handler=self._internal_save_error_cb,
-                            timeout=360 * DBUS_PYTHON_TIMEOUT_UNITS_PER_SECOND)
+                            reply_handler=self.__internal_save_cb,
+                            error_handler=self.__internal_error_cb,
+                            timeout=360)
 
-    def _check_image_mime_type(self):
-        for pixbuf_format in GdkPixbuf.Pixbuf.get_formats():
-            if self._mime_type in pixbuf_format['mime_types']:
-                return True
-        return False
+        elif state == WebKit.DownloadStatus.CANCELLED:
+            self.cleanup()
 
-    def _get_preview_image(self):
-        preview_width, preview_height = style.zoom(300), style.zoom(225)
+    def __error_cb(self, download, err_code, err_detail, reason):
+        logging.debug('Error downloading URI code %s, detail %s: %s'
+                       % (err_code, err_detail, reason))
 
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file(self._target_file.path)
-        width, height = pixbuf.get_width(), pixbuf.get_height()
+    def __internal_save_cb(self):
+        logging.debug('Object saved succesfully to the datastore.')
+        self.cleanup()
 
-        scale = 1
-        if (width > preview_width) or (height > preview_height):
-            scale_x = preview_width / float(width)
-            scale_y = preview_height / float(height)
-            scale = min(scale_x, scale_y)
-
-        pixbuf2 = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, \
-                            pixbuf.get_has_alpha(), \
-                            pixbuf.get_bits_per_sample(), \
-                            preview_width, preview_height)
-        pixbuf2.fill(style.COLOR_WHITE.get_int())
-
-        margin_x = int((preview_width - (width * scale)) / 2)
-        margin_y = int((preview_height - (height * scale)) / 2)
-
-        pixbuf.scale(pixbuf2, margin_x, margin_y, \
-                            preview_width - (margin_x * 2), \
-                            preview_height - (margin_y * 2), \
-                            margin_x, margin_y, scale, scale, \
-                            GdkPixbuf.InterpType.BILINEAR)
-
-        preview_data = []
-
-        def save_func(buf, data):
-            data.append(buf)
-
-        pixbuf2.save_to_callback(save_func, 'png', user_data=preview_data)
-        preview_data = ''.join(preview_data)
-        return dbus.ByteArray(preview_data)
+    def __internal_error_cb(self, err):
+        logging.debug('Error saving activity object to datastore: %s' % err)
+        self.cleanup()
 
     def __start_response_cb(self, alert, response_id):
         global _active_downloads
         if response_id is Gtk.ResponseType.CANCEL:
             logging.debug('Download Canceled')
-            logging.debug('target_path=%r', self._target_file.path)
-            self.cancelable.cancel(NS_ERROR_FAILURE)
+            self.cancel()
             try:
                 datastore.delete(self._object_id)
-            except Exception:
-                logging.exception('Object has been deleted already')
+            except Exception, e:
+                logging.warning('Object has been deleted already %s' % e)
+
             self.cleanup()
             if self._stop_alert is not None:
                 self._activity.remove_alert(self._stop_alert)
@@ -292,58 +187,20 @@ class Download:
             self.datastore_deleted_handler.remove()
             self.datastore_deleted_handler = None
 
-        if os.path.isfile(self._target_file.path):
-            os.remove(self._target_file.path)
-        if os.path.isfile(self._target_file.path + '.part'):
-            os.remove(self._target_file.path + '.part')
+        if os.path.isfile(self._dest_path):
+            os.remove(self._dest_path)
 
         if self.dl_jobject is not None:
             self.dl_jobject.destroy()
             self.dl_jobject = None
 
-    def _internal_save_cb(self):
-        self.cleanup()
-
-    def _internal_save_error_cb(self, err):
-        logging.error('Error saving activity object to datastore: %s', err)
-        self.cleanup()
-
-    def onProgressChange64(self, web_progress, request, cur_self_progress,
-                           max_self_progress, cur_total_progress,
-                           max_total_progress):
-        percent = (cur_self_progress * 100) / max_self_progress
-
-        if (time.time() - self._last_update_time) < _MIN_TIME_UPDATE and \
-           (percent - self._last_update_percent) < _MIN_PERCENT_UPDATE:
-            return
-
-        self._last_update_time = time.time()
-        self._last_update_percent = percent
-
-        if percent < 100:
-            self.dl_jobject.metadata['progress'] = str(percent)
-            datastore.write(self.dl_jobject)
-
-    def _get_file_name(self):
-        if self._display_name:
-            return self._display_name
-        elif self._source.scheme == 'data':
-            return 'Data URI'
-        else:
-            uri = self._source
-            if uri == None:
-                return ''
-            cls = components.classes['@mozilla.org/intl/texttosuburi;1']
-            texttosuburi = cls.getService(interfaces.nsITextToSubURI)
-            path = texttosuburi.unEscapeURIForUI(uri.originCharset, uri.spec)
-            location, file_name = os.path.split(path)
-            return file_name
+    def cancel(self):
+        self._download.cancel()
 
     def _create_journal_object(self):
         self.dl_jobject = datastore.create()
-        self.dl_jobject.metadata['title'] = \
-                _('Downloading %(file)s from \n%(source)s.') % \
-                {'file': self._get_file_name(), 'source': self._source.spec}
+        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
+            (self._download.get_suggested_filename(), self._source)
 
         self.dl_jobject.metadata['progress'] = '0'
         self.dl_jobject.metadata['keep'] = '0'
@@ -351,7 +208,7 @@ class Download:
         self.dl_jobject.metadata['preview'] = ''
         self.dl_jobject.metadata['icon-color'] = \
                 profile.get_color().to_string()
-        self.dl_jobject.metadata['mime_type'] = self._mime_type
+        self.dl_jobject.metadata['mime_type'] = ''
         self.dl_jobject.file_path = ''
         datastore.write(self.dl_jobject)
 
@@ -363,109 +220,13 @@ class Download:
             arg0=self.dl_jobject.object_id)
 
     def __datastore_deleted_cb(self, uid):
-        logging.debug('Downloaded entry has been deleted from the data'
-                      ' store: %r', uid)
+        logging.debug('Downloaded entry has been deleted' \
+                          ' from the datastore: %r', uid)
         global _active_downloads
         if self in _active_downloads:
-            # TODO: Use NS_BINDING_ABORTED instead of NS_ERROR_FAILURE.
-            self.cancelable.cancel(NS_ERROR_FAILURE)
+            self.cancel()
             self.cleanup()
 
 
-components.registrar.registerFactory('{23c51569-e9a1-4a92-adeb-3723db82ef7c}',
-                                     'Sugar Download',
-                                     '@mozilla.org/transfer;1',
-                                     Factory(Download))
-
-
-def save_link(url, text, owner_document):
-    # Inspired on Firefox' browser/base/content/nsContextMenu.js:saveLink()
-
-    cls = components.classes["@mozilla.org/network/io-service;1"]
-    io_service = cls.getService(interfaces.nsIIOService)
-    uri = io_service.newURI(url, None, None)
-    channel = io_service.newChannelFromURI(uri)
-
-    auth_prompt_callback = xpcom.server.WrapObject(
-            _AuthPromptCallback(owner_document.defaultView),
-            interfaces.nsIInterfaceRequestor)
-    channel.notificationCallbacks = auth_prompt_callback
-
-    channel.loadFlags = channel.loadFlags | \
-        interfaces.nsIRequest.LOAD_BYPASS_CACHE | \
-        interfaces.nsIChannel.LOAD_CALL_CONTENT_SNIFFERS
-
-    # HACK: when we QI for nsIHttpChannel on objects that implement
-    # just nsIChannel, pyxpcom gets confused trac #1029
-    if uri.scheme == 'http':
-        if _implements_interface(channel, interfaces.nsIHttpChannel):
-            channel.referrer = io_service.newURI(owner_document.documentURI,
-                                                 None, None)
-
-    # kick off the channel with our proxy object as the listener
-    listener = xpcom.server.WrapObject(
-            _SaveLinkProgressListener(owner_document),
-            interfaces.nsIStreamListener)
-    channel.asyncOpen(listener, None)
-
-
-def _implements_interface(obj, interface):
-    try:
-        obj.QueryInterface(interface)
-        return True
-    except xpcom.Exception, e:
-        if e.errno == NS_NOINTERFACE:
-            return False
-        else:
-            raise
-
-
-class _AuthPromptCallback(object):
-    _com_interfaces_ = interfaces.nsIInterfaceRequestor
-
-    def __init__(self, dom_window):
-        self._dom_window = dom_window
-
-    def getInterface(self, uuid):
-        if uuid in [interfaces.nsIAuthPrompt, interfaces.nsIAuthPrompt2]:
-            cls = components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-            window_watcher = cls.getService(interfaces.nsIPromptFactory)
-            return window_watcher.getPrompt(self._dom_window, uuid)
-        return None
-
-
-class _SaveLinkProgressListener(object):
-    _com_interfaces_ = interfaces.nsIStreamListener
-
-    """ an object to proxy the data through to
-    nsIExternalHelperAppService.doContent, which will wait for the appropriate
-    MIME-type headers and then prompt the user with a file picker
-    """
-
-    def __init__(self, owner_document):
-        self._owner_document = owner_document
-        self._external_listener = None
-
-    def onStartRequest(self, request, context):
-        if request.status != NS_OK:
-            logging.error("Error downloading link")
-            return
-
-        class_name = '@mozilla.org/uriloader/external-helper-app-service;1'
-        cls = components.classes[class_name]
-        interface_id = interfaces.nsIExternalHelperAppService
-        external_helper = cls.getService(interface_id)
-
-        channel = request.QueryInterface(interfaces.nsIChannel)
-
-        self._external_listener = \
-            external_helper.doContent(channel.contentType, request,
-                                      self._owner_document.defaultView, True)
-        self._external_listener.onStartRequest(request, context)
-
-    def onStopRequest(self, request, context, statusCode):
-        self._external_listener.onStopRequest(request, context, statusCode)
-
-    def onDataAvailable(self, request, context, inputStream, offset, count):
-        self._external_listener.onDataAvailable(request, context, inputStream,
-                                                offset, count)
+def add_download(download, browser):
+    download = Download(download, browser)

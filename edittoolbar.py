@@ -123,15 +123,21 @@ class EditToolbar(BaseEditToolbar):
     def __paste_cb(self, button):
         self._browser.paste_clipboard()
 
-    def __search_entry_activate_cb(self, entry):
+    def _find_and_mark_text(self, entry):
         search_text = entry.get_text()
-        self._browser.search_text(search_text, case_sensitive=False,
-                                  forward=True, wrap=True)
-
-    def __search_entry_changed_cb(self, entry):
-        search_text = entry.get_text()
+        self._browser.unmark_text_matches()
+        self._browser.mark_text_matches(search_text, case_sensitive=False,
+                                        limit=0)
+        self._browser.set_highlight_text_matches(True)
         found = self._browser.search_text(search_text, case_sensitive=False,
                                           forward=True, wrap=True)
+        return found
+
+    def __search_entry_activate_cb(self, entry):
+        self._find_and_mark_text(entry)
+
+    def __search_entry_changed_cb(self, entry):
+        found = self._find_and_mark_text(entry)
         if not found:
             self._prev.props.sensitive = False
             self._next.props.sensitive = False

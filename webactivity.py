@@ -27,6 +27,8 @@ GObject.threads_init()
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
+from gi.repository import WebKit
+
 import base64
 import time
 import shutil
@@ -138,26 +140,11 @@ def _set_char_preference(name, value):
     branch.setCharPref(name, value)
 
 
-def _set_accept_languages():
-    """Set intl.accept_languages preference based on the locale"""
-
-    lang = locale.getdefaultlocale()[0]
-    if not lang:
-        _logger.debug("Set_Accept_language: unrecognised LANG format")
-        return
-    lang = lang.split('_')
-
-    # e.g. es-uy, es
-    pref = lang[0] + "-" + lang[1].lower() + ", " + lang[0]
-    _set_char_preference('intl.accept_languages', pref)
-    logging.debug('LANG set')
-
 from browser import TabbedView
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
-# FIXME
-# import downloadmanager
+import downloadmanager
 
 # TODO: make the registration clearer SL #3087
 # import filepicker  # pylint: disable=W0611
@@ -180,6 +167,9 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
+        session = WebKit.get_default_session()
+        session.set_property('accept-language-auto', True)
+
         # FIXME
         # downloadmanager.remove_old_parts()
 
@@ -187,8 +177,6 @@ class WebActivity(activity.Activity):
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
 
-        # FIXME
-        # _set_accept_languages()
         _seed_xs_cookie()
 
         # HACK
@@ -574,8 +562,7 @@ class WebActivity(activity.Activity):
     def can_close(self):
         if self._force_close:
             return True
-        # FIXME
-        elif True:  # downloadmanager.can_quit():
+        elif downloadmanager.can_quit():
             return True
         else:
             alert = Alert()
@@ -589,7 +576,8 @@ class WebActivity(activity.Activity):
             cancel_icon = Icon(icon_name='dialog-cancel')
             cancel_label = ngettext('Continue download', 'Continue downloads',
                                     downloadmanager.num_downloads())
-            alert.add_button(Gtk.ResponseType.CANCEL, cancel_label, cancel_icon)
+            alert.add_button(Gtk.ResponseType.CANCEL, cancel_label,
+                             cancel_icon)
             stop_icon = Icon(icon_name='dialog-ok')
             alert.add_button(Gtk.ResponseType.OK, _('Stop'), stop_icon)
             stop_icon.show()
