@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-19 00:32-0500\n"
-"PO-Revision-Date: 2012-01-23 01:09+0200\n"
+"PO-Revision-Date: 2012-01-25 23:00+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -113,7 +113,7 @@ msgstr "Aproximar zoom"
 
 #: viewtoolbar.py:51
 msgid "Fullscreen"
-msgstr "Ecrã completo"
+msgstr "Ecrã inteiro"
 
 #: viewtoolbar.py:89
 msgid "Show Tray"
