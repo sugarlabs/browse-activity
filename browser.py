@@ -291,6 +291,8 @@ class TabPage(Gtk.Overlay):
         GObject.GObject.__init__(self)
 
         self._browser = browser
+        self._showing_load_status = False
+        self._requested_uri = None
 
         link_info = Gtk.Label()
         link_info.set_halign(Gtk.Align.START)
@@ -307,6 +309,10 @@ class TabPage(Gtk.Overlay):
 
         browser.connect('hovering-over-link', self.__hovering_over_link_cb,
                         link_info)
+        browser.connect('notify::load-status', self.__load_status_cb,
+                        link_info)
+        browser.connect('resource-request-starting',
+                        self.__resource_request_starting_cb)
 
     def _get_browser(self):
         return self._browser
@@ -315,11 +321,33 @@ class TabPage(Gtk.Overlay):
                                getter=_get_browser)
 
     def __hovering_over_link_cb(self, webview, title, uri, link_info):
+        if self._showing_load_status:
+            return
+
         if uri is None:
             link_info.hide()
         else:
             link_info.set_text(uri)
             link_info.show()
+
+    def __load_status_cb(self, webview, param, link_info):
+        status = webview.get_load_status()
+        if status <= WebKit.LoadStatus.COMMITTED:
+            if self._requested_uri is None:
+                link_info.set_text(_("Loading..."))
+            else:
+                link_info.set_text(_("Loading %s...") % self._requested_uri)
+            self._showing_load_status = True
+            link_info.show()
+        else:
+            self._showing_load_status = False
+            self._requested_uri = None
+            link_info.hide()
+
+    def __resource_request_starting_cb(self, webview, webframe, webresource,
+                                       request, response):
+        """Set the request uri to be shown in the label overlay."""
+        self._requested_uri = request.get_uri()
 
 
 class TabLabel(Gtk.HBox):
