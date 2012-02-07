@@ -356,7 +356,7 @@ class TabLabel(Gtk.HBox):
     __gsignals__ = {
         'tab-close': (GObject.SignalFlags.RUN_FIRST,
                       None,
-                      ([object])),
+                      ([])),
     }
 
     def __init__(self, browser):
