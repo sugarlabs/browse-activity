@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 00:33-0500\n"
-"PO-Revision-Date: 2012-01-30 02:18+0200\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2012-02-15 05:37+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -34,7 +34,16 @@ msgstr "Browse"
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 
-#: browser.py:339 webactivity.py:415 webtoolbar.py:317
+#: browser.py:337
+msgid "Loading..."
+msgstr "Loading..."
+
+#: browser.py:339
+#, python-format, 
+msgid "Loading %s..."
+msgstr "Loading %s..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
 msgid "Untitled"
 msgstr "Untitled"
 
@@ -167,9 +176,6 @@ msgstr "Forward"
 #: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Bookmark"
-
-#~ msgid "Loading..."
-#~ msgstr "Loading..."
 
 #, python-format
 #~ msgid ""
