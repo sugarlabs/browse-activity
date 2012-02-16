@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-01 00:32-0500\n"
-"PO-Revision-Date: 2011-12-24 04:45+0200\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2012-02-16 06:00+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -29,47 +29,66 @@ msgstr ""
 msgid "Browse"
 msgstr "Զննել"
 
-#: browser.py:334 webactivity.py:428 webtoolbar.py:326
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "Բեռնում է..."
+
+#: browser.py:339
+#, python-format, 
+msgid "Loading %s..."
+msgstr "Բեռնում է %s..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
 msgid "Untitled"
 msgstr "Անվերնագիր"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "Ներբեռնումը մեկնարկել է"
 
-#: downloadmanager.py:188
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "Բեռնումն ավարտվել է"
 
-#: downloadmanager.py:192
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Ցույց տալ Մատյանում"
 
-#: downloadmanager.py:195
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "OK"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "%s -ից"
 
-#: downloadmanager.py:345
-#, python-format, 
+#: downloadmanager.py:202
+#, python-format
 msgid ""
-"Downloading %(file)s from \n"
-"%(source)s."
-msgstr "Ներբեռնում է%(file)s %(source)s. - ից"
+"Downloading %s from \n"
+"%s."
+msgstr "%s Բեռնում %s կայքից:"
 
-#: edittoolbar.py:87
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "Նախորդ"
 
-#: edittoolbar.py:94
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Հաջորդ"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Հեռացնել"
 
@@ -117,59 +136,55 @@ msgstr "Ցույց տալ դարակը"
 msgid "Hide Tray"
 msgstr "Թաքցնել դարակը"
 
-#: webactivity.py:590
+#: webactivity.py:569
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Բեռնումն ընթացքի մեջ է"
 msgstr[1] "Բեռնումներն ընթացքի մեջ են"
 
-#: webactivity.py:593
+#: webactivity.py:572
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Այժմյա կանգը կչեղարկի Ձեր բեռնումը"
 msgstr[1] "Այժմյա կանգը կչեղարկի Ձեր բեռնումներըը"
 
-#: webactivity.py:598
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Շարունակել բեռնումը"
 msgstr[1] "Շարունակել բեռնումները"
 
-#: webactivity.py:602
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Կանգ"
 
-#: webtoolbar.py:246
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "Հիմնաէջ"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Հետ"
 
-#: webtoolbar.py:273
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Առաջ"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Էջանիշ"
 
-#~ msgid "Loading..."
-#~ msgstr "Բեռնում է..."
+#, python-format, 
+#~ msgid ""
+#~ "Downloading %(file)s from \n"
+#~ "%(source)s."
+#~ msgstr "Ներբեռնում է%(file)s %(source)s. - ից"
 
 #~ msgid "Edit"
 #~ msgstr "Խմբագրել"
 
 #~ msgid "View"
 #~ msgstr "Տեսք"
-
-#, python-format
-#, fuzzy
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr "%s Բեռնում %s կայքից:"
 
 #~ msgid "Add a tab"
 #~ msgstr "Ավելացնել փեղկ"
