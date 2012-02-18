@@ -14,43 +14,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Web activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 00:32-0400\n"
-"PO-Revision-Date: 2011-08-31 10:32+0200\n"
-"Last-Translator: Yannis <kiolalis@gmail.com>\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2011-12-19 17:36+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Greek <olpc@grnet.gr>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 webactivity.py:267
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Περιήγηση"
 
-#: downloadmanager.py:164
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "Φόρτωση..."
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "Φόρτωση..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "Ανώνυμο"
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "Η λήψη ξεκίνησε"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "Η λήψη ολοκληρώθηκε"
 
-#: downloadmanager.py:183
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Εμφάνιση στο Ημερολόγιο"
 
-#: downloadmanager.py:186
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "Εντάξει"
 
-#: downloadmanager.py:193
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "Από: %s"
 
-#: downloadmanager.py:335
+#: downloadmanager.py:202
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -59,118 +83,123 @@ msgstr ""
 "Γίνεται λήψη του %s από \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Επόμενο"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: palettes.py:143
-msgid "Keep link"
-msgstr "Αποθήκευση συνδέσμου"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "Αντιγραφή συνδέσμου"
-
-#: palettes.py:159
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Επιλογή συνδέσμου"
 
-#: palettes.py:209
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "Άνοιγμα συνδέσμου σε νέα καρτέλα"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Αποθήκευση συνδέσμου"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Αντιγραφή συνδέσμου"
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr "Αποθήκευση εικόνας"
 
-#: palettes.py:217
+#: palettes.py:223
 msgid "Copy image"
 msgstr "Αντιγραφή εικόνας"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Πλήρης οθόνη"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "Προβολή γραμμής συστήματος"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Απόκρυψη γραμμής συστήματος"
 
-#: webactivity.py:264
-msgid "Edit"
-msgstr "Επεξεργασία"
-
-#: webactivity.py:270
-msgid "View"
-msgstr "Προβολή"
-
-#: webactivity.py:654
+#: webactivity.py:569
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Λήψη αρχείων σε εξέλιξη"
 msgstr[1] "Λήψεις αρχείων σε εξέλιξη"
 
-#: webactivity.py:657
+#: webactivity.py:572
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Αν διακόψετε τώρα θα ακυρωθεί η λήψη αρχείου"
 msgstr[1] "Αν διακόψετε τώρα θα ακυρωθούν και οι λήψεις αρχείων"
 
-#: webactivity.py:662
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Συνέχιση λήψης"
 msgstr[1] "Συνέχιση λήψεων"
 
-#: webactivity.py:666 webtoolbar.py:449
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Κλείσιμο"
 
-#: webtoolbar.py:259
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "Αρχική σελίδα"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Πίσω"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: webtoolbar.py:296
-msgid "Add a tab"
-msgstr "Προσθήκη καρτέλας"
-
-#: webtoolbar.py:303
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Σελιδοδείκτης"
 
-#: webtoolbar.py:452
-msgid "Reload"
-msgstr "Ανανέωση"
+#, python-format
+#, python-format, 
+#~ msgid ""
+#~ "Downloading %(file)s from \n"
+#~ "%(source)s."
+#~ msgstr ""
+#~ "Λήψη %(file)s από \n"
+#~ "%(source)s."
+
+#~ msgid "Edit"
+#~ msgstr "Επεξεργασία"
+
+#~ msgid "View"
+#~ msgstr "Προβολή"
+
+#~ msgid "Add a tab"
+#~ msgstr "Προσθήκη καρτέλας"
+
+#~ msgid "Reload"
+#~ msgstr "Ανανέωση"
 
 #~ msgid "Cancel"
 #~ msgstr "Ακύρωση"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

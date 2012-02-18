@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 07:23-0400\n"
-"PO-Revision-Date: 2011-09-29 16:13+0200\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2012-02-03 22:52+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -25,149 +25,160 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 webactivity.py:270
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "සැරිසරන්න"
 
-#: browser.py:336 browser.py:383 webactivity.py:478
-msgid "Untitled"
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr ""
 
-#: browser.py:377
+#: browser.py:337
 msgid "Loading..."
 msgstr ""
 
-#: downloadmanager.py:173
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:188
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "භාගතවීම ආරම්භ විය"
 
-#: downloadmanager.py:192
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "ජර්නලයේ පෙන්වන්න"
 
-#: downloadmanager.py:195
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "හරි"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "ගෙන්: %s"
 
-#: downloadmanager.py:344
+#: downloadmanager.py:202
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
-msgstr ""
-"%s ගෙන් %s බාගත කරමින්. \n"
-"   "
+msgstr "%s ගෙන් %s බාගත කරමින්."
 
-#: edittoolbar.py:91
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "පෙර"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "ඊලඟ"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
 
-#: palettes.py:143
+#: palettes.py:140
 msgid "Follow link"
 msgstr "සබැඳිය ලුහුබඳින්න"
 
-#: palettes.py:148
+#: palettes.py:145
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:154
+#: palettes.py:151
 msgid "Keep link"
 msgstr "සබැඳිය තබාගන්න"
 
-#: palettes.py:162
+#: palettes.py:159
 msgid "Copy link"
 msgstr "සබැඳිය පිටපත් කරන්න"
 
-#: palettes.py:218
+#: palettes.py:215
 msgid "Keep image"
 msgstr "පින්තූරය තබාගන්න"
 
-#: palettes.py:226
+#: palettes.py:223
 msgid "Copy image"
 msgstr "පින්තූරය පිටපත් කරන්න"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "කුඩා කරන්න"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "විශාල කරන්න"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "මුලු තිරයම"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "බන්දේසිය පෙන්වන්න"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "බන්දේසිය සඟවන්න"
 
-#: webactivity.py:267
-msgid "Edit"
-msgstr "සකසන්න"
-
-#: webactivity.py:273
-msgid "View"
-msgstr "දර්ශනය කරන්න"
-
-#: webactivity.py:640
+#: webactivity.py:569
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "බාගතවීම සිදුවෙමින් පවතී"
 msgstr[1] "බාගතවීම් සිදුවෙමින් පවතී"
 
-#: webactivity.py:643
+#: webactivity.py:572
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "දැන් නැවැත්වීම ඔබගේ බාගත කිරීම මකනු ඇත"
 msgstr[1] "දැන් නැවැත්වීම ඔබගේ බාගත කිරීම් මකනු ඇත"
 
-#: webactivity.py:648
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "බාගත කිරීම දිගටම කරගෙන යන්න"
 msgstr[1] "බාගත කිරීම් දිගටම කරගෙන යන්න"
 
-#: webactivity.py:652
+#: webactivity.py:582
 msgid "Stop"
 msgstr "නවත්වන්න"
 
-#: webtoolbar.py:253
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "නිවාස පිටුව"
 
-#: webtoolbar.py:273
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "පසුපසට"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "ඉදිරියට"
 
-#: webtoolbar.py:287
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "පොත් සලකුණක් යොදන්න"
+
+#~ msgid "Edit"
+#~ msgstr "සකසන්න"
+
+#~ msgid "View"
+#~ msgstr "දර්ශනය කරන්න"
 
 #~ msgid "Add a tab"
 #~ msgstr "ටැබයක් එක් කරන්න"
@@ -177,10 +188,6 @@ msgstr "පොත් සලකුණක් යොදන්න"
 
 #~ msgid "Cancel"
 #~ msgstr "අවලංගු කරන්න"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

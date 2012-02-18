@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2008-12-20 00:00-0500\n"
 "Last-Translator: Chris Leonard <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,115 +28,146 @@ msgstr ""
 msgid "Browse"
 msgstr "דִּיפְדּוּף"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 #, fuzzy
 msgid "Download started"
 msgstr "הורדה החלה"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+#, fuzzy
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 #, fuzzy
 msgid "Download completed"
 msgstr "הורדה הושלמה"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 #, fuzzy
 msgid "Show in Journal"
 msgstr "הצג ביומן"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 #, fuzzy
 msgid "Ok"
 msgstr "אישור"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
 msgid ""
 "Downloading %s from \n"
 "%s."
 msgstr ""
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 #, fuzzy
 msgid "Previous"
 msgstr "קודם"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 #, fuzzy
 msgid "Next"
 msgstr "הבא"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 #, fuzzy
 msgid "Remove"
 msgstr "הסר"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:158
+#: palettes.py:140
 #, fuzzy
 msgid "Follow link"
 msgstr "עקוב אחר קישור"
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr ""
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
 msgstr ""
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 #, fuzzy
 msgid "Zoom out"
 msgstr "הגדל"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 #, fuzzy
 msgid "Zoom in"
 msgstr "הקטן"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 #, fuzzy
 msgid "Fullscreen"
 msgstr "מסך מלא"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 #, fuzzy
 msgid "Show Tray"
 msgstr "הצג מגש"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 #, fuzzy
 msgid "Hide Tray"
 msgstr "הסתר מגש"
 
-#: webactivity.py:598
+#: webactivity.py:569
 #, fuzzy
 msgid "Download in progress"
-msgstr "ההורדה בתהליך"
+msgid_plural "Downloads in progress"
+msgstr[0] "ההורדה בתהליך"
 
-#: webactivity.py:599
+#: webactivity.py:572
 #, fuzzy
-msgid "Stopping now will cancel your download"
-msgstr "עצירה עכשיו תבטל את ההורדה שלך"
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "עצירה עכשיו תבטל את ההורדה שלך"
 
-#: webactivity.py:601
-#, fuzzy
-msgid "Cancel"
-msgstr "ביטול"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 #, fuzzy
 msgid "Stop"
 msgstr "עצור"
@@ -145,38 +176,20 @@ msgstr "עצור"
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 #, fuzzy
 msgid "Back"
 msgstr "חזרה"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 #, fuzzy
 msgid "Forward"
 msgstr "קדימה"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 #, fuzzy
 msgid "Bookmark"
 msgstr "מועדפים"
-
-#: webtoolbar.py:440
-#, fuzzy
-msgid "Reload"
-msgstr "טעינה מחדש"
-
-#, python-format
-#, fuzzy
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#, fuzzy
-#~ msgid "Copy"
-#~ msgstr "העתק"
 
 #, fuzzy
 #~ msgid "Edit"
@@ -185,6 +198,18 @@ msgstr "טעינה מחדש"
 #, fuzzy
 #~ msgid "View"
 #~ msgstr "תצוגה"
+
+#, fuzzy
+#~ msgid "Reload"
+#~ msgstr "טעינה מחדש"
+
+#, fuzzy
+#~ msgid "Cancel"
+#~ msgstr "ביטול"
+
+#, fuzzy
+#~ msgid "Copy"
+#~ msgstr "העתק"
 
 #, fuzzy
 #~ msgid "blank"

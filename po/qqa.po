@@ -1,0 +1,189 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-13 00:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#  "Navegar"
+#: activity/activity.info:2 webactivity.py:267
+msgid "Browse"
+msgstr ""
+
+#  "Descarga iniciada"
+#: downloadmanager.py:164
+msgid "Download started"
+msgstr ""
+
+#  "Descarga terminada"
+#: downloadmanager.py:179
+msgid "Download completed"
+msgstr ""
+
+#  "Mostrar en el Diario"
+#: downloadmanager.py:183
+msgid "Show in Journal"
+msgstr ""
+
+#  "Ok"
+#: downloadmanager.py:186
+msgid "Ok"
+msgstr ""
+
+#  "De: %s"
+#: downloadmanager.py:193
+#, python-format
+msgid "From: %s"
+msgstr ""
+
+
+#  "Bajando %s desde \n"
+#  "%s."
+#: downloadmanager.py:335
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+
+#  "Anterior"
+#: edittoolbar.py:92
+msgid "Previous"
+msgstr ""
+
+#  "Siguiente"
+#: edittoolbar.py:99
+msgid "Next"
+msgstr ""
+
+#  "Eliminar"
+#: linkbutton.py:95
+msgid "Remove"
+msgstr ""
+
+#  "Mantener el enlace"
+#: palettes.py:143
+msgid "Keep link"
+msgstr ""
+
+#  "Copiar el enlace"
+#: palettes.py:151
+msgid "Copy link"
+msgstr ""
+
+#  "Seguir el enlace"
+#: palettes.py:159
+msgid "Follow link"
+msgstr ""
+
+#  "Mantener la imagen"
+#: palettes.py:209
+msgid "Keep image"
+msgstr ""
+
+#  "Copiar la imagen"
+#: palettes.py:217
+msgid "Copy image"
+msgstr ""
+
+#  "Reducir"
+#: viewtoolbar.py:34
+msgid "Zoom out"
+msgstr ""
+
+#  "Ampliar"
+#: viewtoolbar.py:40
+msgid "Zoom in"
+msgstr ""
+
+#  "Pantalla completa"
+#: viewtoolbar.py:51
+msgid "Fullscreen"
+msgstr ""
+
+#  "Mostrar Bandeja"
+#: viewtoolbar.py:89
+msgid "Show Tray"
+msgstr ""
+
+#  "Esconder Bandeja"
+#: viewtoolbar.py:93
+msgid "Hide Tray"
+msgstr ""
+
+#  "Editar"
+#: webactivity.py:264
+msgid "Edit"
+msgstr ""
+
+#  "Ver"
+#: webactivity.py:270
+msgid "View"
+msgstr ""
+
+#  "Descarga en curso"
+#  "Descargas en curso"
+#: webactivity.py:654
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] ""
+msgstr[1] ""
+
+
+#  "Detener ahora cancelará la descarga"
+#  "Detener ahora cancelará las descargas"
+#: webactivity.py:657
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#  "Continuar la descarga"
+#  "Continuar las descargas"
+#: webactivity.py:662
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#  "Parar"
+#: webactivity.py:666 webtoolbar.py:449
+msgid "Stop"
+msgstr ""
+
+#  "Página inicial"
+#: webtoolbar.py:259
+msgid "Home page"
+msgstr ""
+
+#  "Volver"
+#: webtoolbar.py:281
+msgid "Back"
+msgstr ""
+
+#  "Avanzar"
+#: webtoolbar.py:288
+msgid "Forward"
+msgstr ""
+
+#  "Añadir lengueta"
+#: webtoolbar.py:296
+msgid "Add a tab"
+msgstr ""
+
+#  "Marcador"
+#: webtoolbar.py:303
+msgid "Bookmark"
+msgstr ""
+
+#  "Recargar"
+#: webtoolbar.py:452
+msgid "Reload"
+msgstr ""
+

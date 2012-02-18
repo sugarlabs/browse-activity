@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2008-08-11 07:38-0400\n"
 "Last-Translator: Tenzin Dendup <tenzin.dendup@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,29 +27,53 @@ msgstr ""
 msgid "Browse"
 msgstr "ཕབ་ལེན།"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "ཕབ་ལེན་འགོ་བཙུགས་ཡོདཔ།"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "ཕབ་ལེན་མཇུག་བསྡུ་ཡོདཔ།"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr ""
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "བཏུབ།"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -57,71 +81,81 @@ msgstr ""
 "%s ཕབ་ལེན་འབད་དོ \n"
 "%s ལས།"
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "ཧེ་མམ།"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "ཤུལ་མམ།"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "རྩ་བསྐྲད་གཏང་།"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:158
+#: palettes.py:140
 msgid "Follow link"
 msgstr ""
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr ""
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
 msgstr ""
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr ""
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr ""
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "གསལ་གཞི་གངམ།"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "ཤོག་སྣོད་སྟོན།"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "ཤོག་སྣོད་སྦ།"
 
-#: webactivity.py:598
+#: webactivity.py:569
+#, fuzzy
 msgid "Download in progress"
-msgstr "ཕབ་ལེན་འབད་དོ།"
+msgid_plural "Downloads in progress"
+msgstr[0] "ཕབ་ལེན་འབད་དོ།"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "ད་ལྟོ་བཀག་བཞག་པ་ཅིན་ཁྱོད་ཀྱི་ཕབ་ལེན་འདི་ཆ་མེད་འགྱོ་འོང་།"
+#: webactivity.py:572
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "ད་ལྟོ་བཀག་བཞག་པ་ཅིན་ཁྱོད་ཀྱི་ཕབ་ལེན་འདི་ཆ་མེད་འགྱོ་འོང་།"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "ཆ་མེད་གཏང་།"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 msgid "Stop"
 msgstr "བཀག"
 
@@ -129,29 +163,29 @@ msgstr "བཀག"
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "རྒྱབ།"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "གདོང་བསྐྱོད།"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "དེབ་རྟགས།"
 
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "ཡང་བསྐྱར་མངོན་གསལ།"
+#~ msgid "Edit"
+#~ msgstr "ཞུན་དག"
 
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
+#~ msgid "View"
+#~ msgstr "མཐོང་སྣང་།"
+
+#~ msgid "Reload"
+#~ msgstr "ཡང་བསྐྱར་མངོན་གསལ།"
+
+#~ msgid "Cancel"
+#~ msgstr "ཆ་མེད་གཏང་།"
 
 #, python-format
 #~ msgid "File %s from %s."
@@ -159,12 +193,6 @@ msgstr "ཡང་བསྐྱར་མངོན་གསལ།"
 
 #~ msgid "Copy"
 #~ msgstr "འདྲ་བཤུས།"
-
-#~ msgid "Edit"
-#~ msgstr "ཞུན་དག"
-
-#~ msgid "View"
-#~ msgstr "མཐོང་སྣང་།"
 
 #~ msgid "blank"
 #~ msgstr "སྟོངམ།"

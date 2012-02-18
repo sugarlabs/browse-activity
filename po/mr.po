@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-18 00:31-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2011-09-11 11:31+0200\n"
-"Last-Translator:  <ganeshgajre@gmail.com>\n"
+"Last-Translator: <ganeshgajre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
@@ -25,32 +25,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:274
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#: downloadmanager.py:175
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "डाउनलोड सुरू झाले"
 
-#: downloadmanager.py:190
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "डाउनलोड पूर्ण झाले"
 
-#: downloadmanager.py:194
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "नियतकालीकामधे दाखवा"
 
-#: downloadmanager.py:197
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "ठीक"
 
-#: downloadmanager.py:204
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "च्यापासुन: %s"
 
-#: downloadmanager.py:346
+#: downloadmanager.py:202
 #, python-format
 msgid ""
 "Downloading %s from \n"
@@ -59,118 +82,114 @@ msgstr ""
 "डाउनलोड %s पासून \n"
 " %s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "मागील"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "पुढील"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:143
-msgid "Keep link"
-msgstr "लिंक संभाळा"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "लिंकची नक्कल बनवा"
-
-#: palettes.py:159
+#: palettes.py:140
 msgid "Follow link"
 msgstr "लिंक वर जा"
 
-#: palettes.py:209
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "लिंक संभाळा"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "लिंकची नक्कल बनवा"
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr "चित्र सांभाळा"
 
-#: palettes.py:217
+#: palettes.py:223
 msgid "Copy image"
 msgstr "चित्राची नक्कल बनवा"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "झूम आउट"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "झूम ईन"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "पूर्ण पडदा"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "तबक दाखवा"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:271
-msgid "Edit"
-msgstr "संपादन करा"
-
-#: webactivity.py:277
-msgid "View"
-msgstr "पहा"
-
-#: webactivity.py:655
+#: webactivity.py:569
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "डाऊनलोड सुरू आहे"
 msgstr[1] "डाऊनलोडस सुरू आहे"
 
-#: webactivity.py:658
+#: webactivity.py:572
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "थांबवल्यास डाऊनलोड रद् होईल"
 msgstr[1] "थांबवल्यास डाऊनलोडस रद् होईल"
 
-#: webactivity.py:663
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "डाऊनलोड सुरु ठेवा"
 msgstr[1] "डाऊनलोडस सुरु ठेवा"
 
-#: webactivity.py:667 webtoolbar.py:452
+#: webactivity.py:582
 msgid "Stop"
 msgstr "थांबा"
 
-#: webtoolbar.py:258
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "मुख प्रुष्ठ"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "मागे"
 
-#: webtoolbar.py:287
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "पुढे पाठविणे"
 
-#: webtoolbar.py:295
-msgid "Add a tab"
-msgstr "टॅब जोडा"
-
-#: webtoolbar.py:302
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "वाचनखुण"
 
-#: webtoolbar.py:455
-msgid "Reload"
-msgstr "पुन्हा चालू करा"
+#~ msgid "Edit"
+#~ msgstr "संपादन करा"
+
+#~ msgid "View"
+#~ msgstr "पहा"
+
+#~ msgid "Add a tab"
+#~ msgstr "टॅब जोडा"
+
+#~ msgid "Reload"
+#~ msgstr "पुन्हा चालू करा"
 
 #~ msgid "Cancel"
 #~ msgstr "रद्द करणे"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

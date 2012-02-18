@@ -82,7 +82,8 @@ msgid "Loading..."
 msgstr "Lade..."
 
 #: browser.py:339
-#, python-format, 
+#, python-format
+#, python-format,
 msgid "Loading %s..."
 msgstr "Lade %s..."
 

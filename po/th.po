@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 00:33-0500\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2012-02-09 03:44+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,17 @@ msgstr "เรียกดู"
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 
-#: browser.py:339 webactivity.py:415 webtoolbar.py:317
+#: browser.py:337
+msgid "Loading..."
+msgstr "กำลังทำงาน..."
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "กำลังทำงาน..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
 msgid "Untitled"
 msgstr "ไม่มีชื่อเรื่อง"
 
@@ -163,9 +173,6 @@ msgstr "ไปข้างหน้า"
 #: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "ที่คั่นหน้า"
-
-#~ msgid "Loading..."
-#~ msgstr "กำลังทำงาน..."
 
 #, python-format
 #~ msgid ""

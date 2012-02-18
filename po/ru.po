@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 00:32-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2011-07-12 21:21+0200\n"
 "Last-Translator: <alex.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,32 +26,55 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:267
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Смотреть"
 
-#: downloadmanager.py:164
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "Загрузка началась"
 
-#: downloadmanager.py:179
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "Загрузка завершена"
 
-#: downloadmanager.py:183
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Показать в журнале"
 
-#: downloadmanager.py:186
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:193
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "От: %s"
 
-#: downloadmanager.py:335
+#: downloadmanager.py:202
 #, python-format
 #, fuzzy
 msgid ""
@@ -61,121 +84,117 @@ msgstr ""
 "Загружается %s с \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Следующий"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Удалить"
 
-#: palettes.py:143
-msgid "Keep link"
-msgstr "Оставить ссылку"
-
-#: palettes.py:151
-msgid "Copy link"
-msgstr "Скопировать ссылку"
-
-#: palettes.py:159
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Перейти по ссылке"
 
-#: palettes.py:209
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Оставить ссылку"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Скопировать ссылку"
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr "Оставить изображение"
 
-#: palettes.py:217
+#: palettes.py:223
 msgid "Copy image"
 msgstr "Скопировать изображение"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Уменьшить"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Увеличить"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Полный экран"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "Показать панель"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Убрать панель"
 
-#: webactivity.py:264
-msgid "Edit"
-msgstr "Редактировать"
-
-#: webactivity.py:270
-msgid "View"
-msgstr "Просмотреть"
-
-#: webactivity.py:654
+#: webactivity.py:569
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Загрузка в процессе"
 msgstr[1] "Загрузки в процессе"
 msgstr[2] "Загрузки в процессе"
 
-#: webactivity.py:657
+#: webactivity.py:572
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Прекращение удалит ваши загрузки"
 msgstr[1] "Прекращение удалит ваши загрузки"
 msgstr[2] "Прекращение удалит ваши загрузки"
 
-#: webactivity.py:662
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Продолжить загрузки"
 msgstr[1] "Продолжить загрузки"
 msgstr[2] "Продолжить загрузки"
 
-#: webactivity.py:666 webtoolbar.py:449
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Остановить"
 
-#: webtoolbar.py:259
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "Домашняя страница"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Назад"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Вперед"
 
-#: webtoolbar.py:296
-msgid "Add a tab"
-msgstr "Добавить к вкладке"
-
-#: webtoolbar.py:303
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Закладка"
 
-#: webtoolbar.py:452
-msgid "Reload"
-msgstr "Обновить"
+#~ msgid "Edit"
+#~ msgstr "Редактировать"
+
+#~ msgid "View"
+#~ msgstr "Просмотреть"
+
+#~ msgid "Add a tab"
+#~ msgstr "Добавить к вкладке"
+
+#~ msgid "Reload"
+#~ msgstr "Обновить"
 
 #~ msgid "Cancel"
 #~ msgstr "Отменить"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
 
 #, python-format
 #~ msgid "File %s from %s."

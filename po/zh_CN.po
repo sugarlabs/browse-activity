@@ -10,42 +10,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2008-11-25 05:07-0500\n"
-"Last-Translator: Alice Zhang <zhl924505@gmail.com>\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2011-11-18 11:59+0200\n"
+"Last-Translator: YiyaoFu <yf504@nyu.edu>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "浏览"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "下载中"
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "下载中"
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "无标题的"
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "开始下载"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "下载完成"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "在日志中显示"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "确定"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -53,101 +80,109 @@ msgstr ""
 "下载 %s 自\n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "上一个"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "下一个"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "删除"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:158
+#: palettes.py:140
 msgid "Follow link"
 msgstr "跟随链接"
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "跟随在新标签的链接"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "保持链接"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "拷贝链接"
+
+#: palettes.py:215
 msgid "Keep image"
-msgstr ""
+msgstr "保留图片"
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
-msgstr ""
+msgstr "拷贝图片"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "缩小"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "放大"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "全屏显示"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "显示系统托盘"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "隐藏系统托盘"
 
-#: webactivity.py:598
+#: webactivity.py:569
+#, fuzzy
 msgid "Download in progress"
-msgstr "下载中"
+msgid_plural "Downloads in progress"
+msgstr[0] "下载中"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "停止本活动将取消下载中文件"
+#: webactivity.py:572
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "停止当前活动将删除您下载的文件"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "取消"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "继续下载"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 msgid "Stop"
 msgstr "停止"
 
 #: webtoolbar.py:247
 msgid "Home page"
-msgstr ""
+msgstr "主页"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "上一页"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "下一页"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "书签"
 
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "刷新"
+#~ msgid "Edit"
+#~ msgstr "编辑"
 
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
+#~ msgid "View"
+#~ msgstr "查看"
+
+#~ msgid "Reload"
+#~ msgstr "刷新"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
 
 #, python-format
 #~ msgid "File %s from %s."
@@ -161,12 +196,6 @@ msgstr "刷新"
 
 #~ msgid "Download image"
 #~ msgstr "下载图片"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
-
-#~ msgid "View"
-#~ msgstr "查看"
 
 #~ msgid "blank"
 #~ msgstr "空白"

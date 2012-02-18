@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2010-02-07 04:58+0200\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2011-12-18 22:49+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sl\n"
@@ -24,35 +24,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "Prebrskaj"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "Nalaganje..."
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "Nalaganje..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "Neimenovano"
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "Prenos začet"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "Prenos končan"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Pokaži v dnevniku"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "V redu"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "Od: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -60,101 +85,125 @@ msgstr ""
 "Prenašam %s z \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "Prejšnji"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Naslednji"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Odstrani"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:158
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Sledi povezavi"
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "Odpri povezavo v novem zavihku"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Ohrani povezavo"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Kopiraj povezavo"
+
+#: palettes.py:215
 msgid "Keep image"
-msgstr ""
+msgstr "Ohrani sliko"
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
-msgstr ""
+msgstr "Kopiraj sliko"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Oddalji"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Približaj"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Celozaslonsko"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "Prikaži opravilno vrstico"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Skrij opravilno vrstico"
 
-#: webactivity.py:598
+#: webactivity.py:569
 msgid "Download in progress"
-msgstr "Prenos v teku"
+msgid_plural "Downloads in progress"
+msgstr[0] "Prejemanje je v teku"
+msgstr[1] "Prejemanje je v teku"
+msgstr[2] "Prejemanje je v teku"
+msgstr[3] "Prejemanje je v teku"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Če ustaviš zdaj, bo prenos prekinjen"
+#: webactivity.py:572
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Z ustavitvijo opravila bodo prejemi izbrisani"
+msgstr[1] "Z ustavitvijo opravila bo prejem izbrisan"
+msgstr[2] "Z ustavitvijo opravila bosta prejema izbrisana"
+msgstr[3] "Z ustavitvijo opravila bodo prejemi izbrisani"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Prekliči"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Nadaljuj prejemanje"
+msgstr[1] "Nadaljuj prejemanje"
+msgstr[2] "Nadaljuj prejemanje"
+msgstr[3] "Nadaljuj prejemanje"
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Ustavi"
 
 #: webtoolbar.py:247
 msgid "Home page"
-msgstr ""
+msgstr "Domača stran"
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Nazaj"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Naprej"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Zaznamek"
 
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "Ponovno naloži"
-
 #, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
+#~ msgid ""
+#~ "Downloading %(file)s from \n"
+#~ "%(source)s."
+#~ msgstr ""
+#~ "Prejemanje %(file)s preko \n"
+#~ "%(source)s."
+
+#~ msgid "Edit"
+#~ msgstr "Urejanje"
+
+#~ msgid "View"
+#~ msgstr "Pogled"
+
+#~ msgid "Reload"
+#~ msgstr "Ponovno naloži"
+
+#~ msgid "Cancel"
+#~ msgstr "Prekliči"
 
 #, python-format
 #~ msgid "File %s from %s."
@@ -168,12 +217,6 @@ msgstr "Ponovno naloži"
 
 #~ msgid "Download image"
 #~ msgstr "Prenesi sliko"
-
-#~ msgid "Edit"
-#~ msgstr "Urejanje"
-
-#~ msgid "View"
-#~ msgstr "Pogled"
 
 #~ msgid "blank"
 #~ msgstr "prazno"

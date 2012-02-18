@@ -14,42 +14,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
-"PO-Revision-Date: 2008-07-31 12:25+0200\n"
-"Last-Translator: GASHAYIJA Guillaume <gashayija2002@yahoo.com>\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2011-10-16 23:03+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: rw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "Shakisha"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "Itangira..."
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "Itangira..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "Nta mutwe"
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "gushyira kuri mudasobwa biratangiye"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "gushyira kuri mudasobwa birarangiye"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Erekana mu Kinyamakuru"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "Nibyo"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "Bivuye: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -57,71 +84,81 @@ msgstr ""
 "Gushyira kuri mudasobwa %s kuva\n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "ibibanziriza"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Ibikurikira"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Kuraho"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:158
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Kurikira Umurongo ufite aho ukugeza"
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr ""
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
 msgstr ""
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Uburyo bwo kugabanya ingano y`ibintu"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Uburyo bwo kongera ingano y`ibintu"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Ekara yose"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "erekana Tray"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Hisha Tray"
 
-#: webactivity.py:598
+#: webactivity.py:569
+#, fuzzy
 msgid "Download in progress"
-msgstr "gushyira kuri mudasobwa briho birakorwa"
+msgid_plural "Downloads in progress"
+msgstr[0] "gushyira kuri mudasobwa briho birakorwa"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "nubihagarika nonaha uratuma gushyira kuri mudasobwa bidakunda"
+#: webactivity.py:572
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "nubihagarika nonaha uratuma gushyira kuri mudasobwa bidakunda"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Kuraho"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Hagarika"
 
@@ -129,29 +166,29 @@ msgstr "Hagarika"
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Inyuma"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Imbere"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Ububiko"
 
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "Kongera gushakisha"
+#~ msgid "Edit"
+#~ msgstr "Hindura"
 
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
+#~ msgid "View"
+#~ msgstr "Kureba"
+
+#~ msgid "Reload"
+#~ msgstr "Kongera gushakisha"
+
+#~ msgid "Cancel"
+#~ msgstr "Kuraho"
 
 #, python-format
 #~ msgid "File %s from %s."
@@ -159,12 +196,6 @@ msgstr "Kongera gushakisha"
 
 #~ msgid "Copy"
 #~ msgstr "Andukura"
-
-#~ msgid "Edit"
-#~ msgstr "Hindura"
-
-#~ msgid "View"
-#~ msgstr "Kureba"
 
 #~ msgid "blank"
 #~ msgstr "Ahatanditseho"

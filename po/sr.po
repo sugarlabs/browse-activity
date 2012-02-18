@@ -1,0 +1,190 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2012-02-13 04:05+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Browse"
+msgstr "Прегледај"
+
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+
+#: browser.py:337
+msgid "Loading..."
+msgstr "Учитавам..."
+
+#: browser.py:339
+#, python-format
+#, python-format, fuzzy
+msgid "Loading %s..."
+msgstr "Учитавам..."
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "Без наслова"
+
+#: downloadmanager.py:102
+msgid "Download started"
+msgstr "Преузимање је започето"
+
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
+msgid "Download completed"
+msgstr "Преузимање је завршено"
+
+#: downloadmanager.py:117
+msgid "Show in Journal"
+msgstr "Прикажи у Журналу"
+
+#: downloadmanager.py:120
+msgid "Ok"
+msgstr "У реду"
+
+#: downloadmanager.py:128
+#, python-format
+msgid "From: %s"
+msgstr "Са: %s"
+
+#: downloadmanager.py:202
+#, python-format
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"Преузето %s од \n"
+"%s."
+
+#: edittoolbar.py:65
+msgid "Previous"
+msgstr "Претходно"
+
+#: edittoolbar.py:72
+msgid "Next"
+msgstr "Следеће"
+
+#: linkbutton.py:103
+msgid "Remove"
+msgstr "Уклони"
+
+#: palettes.py:140
+msgid "Follow link"
+msgstr "Прати везу"
+
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "Прати везу у новом језичку"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Задржи везу"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Умножи везу"
+
+#: palettes.py:215
+msgid "Keep image"
+msgstr "Задржи слику"
+
+#: palettes.py:223
+msgid "Copy image"
+msgstr "Умножи слику"
+
+#: viewtoolbar.py:35
+msgid "Zoom out"
+msgstr "Умањи"
+
+#: viewtoolbar.py:41
+msgid "Zoom in"
+msgstr "Увећај"
+
+#: viewtoolbar.py:52
+msgid "Fullscreen"
+msgstr "Пун екран"
+
+#: viewtoolbar.py:90
+msgid "Show Tray"
+msgstr "Прикажи касету"
+
+#: viewtoolbar.py:94
+msgid "Hide Tray"
+msgstr "Сакриј касету"
+
+#: webactivity.py:569
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Преузимање у току"
+msgstr[1] "Преузимања у току"
+msgstr[2] "Преузимања у току"
+
+#: webactivity.py:572
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Ако сада зауставите обрисаћете преузимање"
+msgstr[1] "Ако сада зауставите обрисаћете преузимања"
+msgstr[2] "Ако сада зауставите обрисаћете преузимања"
+
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Настави преузимање"
+msgstr[1] "Настави преузимања"
+msgstr[2] "Настави преузимања"
+
+#: webactivity.py:582
+msgid "Stop"
+msgstr "Заустави"
+
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr "Почетна страница"
+
+#: webtoolbar.py:267
+msgid "Back"
+msgstr "Назад"
+
+#: webtoolbar.py:274
+msgid "Forward"
+msgstr "Напред"
+
+#: webtoolbar.py:281
+msgid "Bookmark"
+msgstr "Обележивач"
+
+#, python-format
+#~ msgid ""
+#~ "Downloading %(file)s from \n"
+#~ "%(source)s."
+#~ msgstr ""
+#~ "Преузимам %(file)s са \n"
+#~ "%(source)s."

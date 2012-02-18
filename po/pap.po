@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-23 00:31-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2010-02-25 00:17+0200\n"
 "Last-Translator: Urso Wieske <uwieske@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,29 +29,53 @@ msgstr ""
 msgid "Browse"
 msgstr "Nabegá"
 
-#: downloadmanager.py:160
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "Download a kuminsá"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "Download kompletá"
 
-#: downloadmanager.py:177
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "Mustra den e Zjurnal"
 
-#: downloadmanager.py:180
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:187
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "Di: %s"
 
-#: downloadmanager.py:316
+#: downloadmanager.py:202
 #, python-format
+#, fuzzy
 msgid ""
 "Downloading %s from \n"
 "%s."
@@ -59,71 +83,81 @@ msgstr ""
 "Downloading %s di \n"
 "%s."
 
-#: edittoolbar.py:92
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "Anterior"
 
-#: edittoolbar.py:99
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "Siguiente"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "Eliminá"
 
-#: palettes.py:142
-msgid "Keep link"
-msgstr "Mantené e lenk/link"
-
-#: palettes.py:150
-msgid "Copy link"
-msgstr "Kopia lenk/link"
-
-#: palettes.py:158
+#: palettes.py:140
 msgid "Follow link"
 msgstr "Sigui e link"
 
-#: palettes.py:208
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Mantené e lenk/link"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Kopia lenk/link"
+
+#: palettes.py:215
 msgid "Keep image"
 msgstr "Mantené e imagen"
 
-#: palettes.py:216
+#: palettes.py:223
 msgid "Copy image"
 msgstr "Kopia e imagen"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "Pantaya kompleto"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "Mustra bandeha"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "Skonde bandeha"
 
-#: webactivity.py:598
+#: webactivity.py:569
+#, fuzzy
 msgid "Download in progress"
-msgstr "Download den progreso"
+msgid_plural "Downloads in progress"
+msgstr[0] "Download den progreso"
 
-#: webactivity.py:599
-msgid "Stopping now will cancel your download"
-msgstr "Stòp aworaki lo kansela bo download"
+#: webactivity.py:572
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Stòp aworaki lo kansela bo download"
 
-#: webactivity.py:601
-msgid "Cancel"
-msgstr "Kanselá"
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
 
-#: webactivity.py:603 webtoolbar.py:437
+#: webactivity.py:582
 msgid "Stop"
 msgstr "Stòp"
 
@@ -131,29 +165,29 @@ msgstr "Stòp"
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:269
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "Bèk"
 
-#: webtoolbar.py:276
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "Avansá"
 
-#: webtoolbar.py:284
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:291
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "Markadó"
 
-#: webtoolbar.py:440
-msgid "Reload"
-msgstr "Rekargá"
+#~ msgid "Edit"
+#~ msgstr "Edita"
 
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
+#~ msgid "View"
+#~ msgstr "Mira"
+
+#~ msgid "Reload"
+#~ msgstr "Rekargá"
+
+#~ msgid "Cancel"
+#~ msgstr "Kanselá"
 
 #, python-format
 #~ msgid "File %s from %s."
@@ -161,12 +195,6 @@ msgstr "Rekargá"
 
 #~ msgid "Copy"
 #~ msgstr "Kopia"
-
-#~ msgid "Edit"
-#~ msgstr "Edita"
-
-#~ msgid "View"
-#~ msgstr "Mira"
 
 #~ msgid "blank"
 #~ msgstr "bashí"

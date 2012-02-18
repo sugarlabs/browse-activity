@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
 "PO-Revision-Date: 2011-04-28 14:32+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,143 +25,156 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 webactivity.py:270
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "រក​មើល"
 
-#: browser.py:336 browser.py:383 webactivity.py:478
-msgid "Untitled"
-msgstr "គ្មាន​ចំណង​ជើង"
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
 
-#: browser.py:377
+#: browser.py:337
 msgid "Loading..."
 msgstr ""
 
-#: downloadmanager.py:173
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr "គ្មាន​ចំណង​ជើង"
+
+#: downloadmanager.py:102
 msgid "Download started"
 msgstr "ចាប់​ផ្ដើម​ទាញហើយ"
 
-#: downloadmanager.py:188
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:112
 msgid "Download completed"
 msgstr "ទាញ​រួច​ហើយ"
 
-#: downloadmanager.py:192
+#: downloadmanager.py:117
 msgid "Show in Journal"
 msgstr "បង្ហាញ​ក្នុង​កំណត់​ប្រចាំ​ថ្ងៃ"
 
-#: downloadmanager.py:195
+#: downloadmanager.py:120
 msgid "Ok"
 msgstr "យល់​ព្រម"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:128
 #, python-format
 msgid "From: %s"
 msgstr "ពី ៖ %s"
 
-#: downloadmanager.py:345
+#: downloadmanager.py:202
 #, python-format
 msgid ""
-"Downloading %(file)s from \n"
-"%(source)s."
+"Downloading %s from \n"
+"%s."
 msgstr ""
 
-#: edittoolbar.py:91
+#: edittoolbar.py:65
 msgid "Previous"
 msgstr "ទៅ​ក្រោយ"
 
-#: edittoolbar.py:98
+#: edittoolbar.py:72
 msgid "Next"
 msgstr "បន្ទាប់"
 
-#: linkbutton.py:95
+#: linkbutton.py:103
 msgid "Remove"
 msgstr "យកចេញ"
 
-#: palettes.py:143
+#: palettes.py:140
 msgid "Follow link"
 msgstr "តាម​តំណ"
 
-#: palettes.py:148
+#: palettes.py:145
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:154
+#: palettes.py:151
 msgid "Keep link"
 msgstr "ទុក​តំណ"
 
-#: palettes.py:162
+#: palettes.py:159
 msgid "Copy link"
 msgstr "ចម្លង​តំណ"
 
-#: palettes.py:218
+#: palettes.py:215
 msgid "Keep image"
 msgstr ""
 
-#: palettes.py:226
+#: palettes.py:223
 msgid "Copy image"
 msgstr "ចម្លង​រូបភាព"
 
-#: viewtoolbar.py:34
+#: viewtoolbar.py:35
 msgid "Zoom out"
 msgstr "បង្រួម"
 
-#: viewtoolbar.py:40
+#: viewtoolbar.py:41
 msgid "Zoom in"
 msgstr "ពង្រីក"
 
-#: viewtoolbar.py:51
+#: viewtoolbar.py:52
 msgid "Fullscreen"
 msgstr "ពេញ​អេក្រង់"
 
-#: viewtoolbar.py:89
+#: viewtoolbar.py:90
 msgid "Show Tray"
 msgstr "បង្ហាញ​ថាស"
 
-#: viewtoolbar.py:93
+#: viewtoolbar.py:94
 msgid "Hide Tray"
 msgstr "លាក់ថាស"
 
-#: webactivity.py:267
-msgid "Edit"
-msgstr "កែសម្រួល"
-
-#: webactivity.py:273
-msgid "View"
-msgstr "មើល"
-
-#: webactivity.py:640
+#: webactivity.py:569
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "កំពុង​ទាញ"
 
-#: webactivity.py:643
+#: webactivity.py:572
 #, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "ការ​ទាញនេះនឹង​បាត់​បើបញ្ឈប់នៅ​ពេល​នេះ"
 
-#: webactivity.py:648
+#: webactivity.py:577
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 
-#: webactivity.py:652
+#: webactivity.py:582
 msgid "Stop"
 msgstr "បញ្ឈប់"
 
-#: webtoolbar.py:253
+#: webtoolbar.py:247
 msgid "Home page"
 msgstr "គេហ​ទំព័រ"
 
-#: webtoolbar.py:273
+#: webtoolbar.py:267
 msgid "Back"
 msgstr "ថយ​ទៅ​​ក្រោយ"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:274
 msgid "Forward"
 msgstr "ថយ​ទៅ​មុខ"
 
-#: webtoolbar.py:287
+#: webtoolbar.py:281
 msgid "Bookmark"
 msgstr "គូចំណាំ"
+
+#~ msgid "Edit"
+#~ msgstr "កែសម្រួល"
+
+#~ msgid "View"
+#~ msgstr "មើល"

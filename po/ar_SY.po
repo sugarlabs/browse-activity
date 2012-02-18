@@ -1,0 +1,178 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"PO-Revision-Date: 2011-02-24 06:37+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar_SY\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Pootle 2.0.1\n"
+
+#: activity/activity.info:2
+msgid "Browse"
+msgstr "تصفّح"
+
+#: browser.py:138
+#, python-format
+msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+msgstr ""
+
+#: browser.py:337
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:339
+#, python-format
+msgid "Loading %s..."
+msgstr ""
+
+#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+msgid "Untitled"
+msgstr ""
+
+#: downloadmanager.py:102
+msgid "Download started"
+msgstr "بدأ التنزيل"
+
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:112
+msgid "Download completed"
+msgstr "اكتمل التنزيل"
+
+#: downloadmanager.py:117
+msgid "Show in Journal"
+msgstr "اعرض في اليوميات"
+
+#: downloadmanager.py:120
+msgid "Ok"
+msgstr "حسنا"
+
+#: downloadmanager.py:128
+#, python-format
+msgid "From: %s"
+msgstr ""
+
+#: downloadmanager.py:202
+#, python-format
+#, fuzzy
+msgid ""
+"Downloading %s from \n"
+"%s."
+msgstr ""
+"يُنزِّل %s من\n"
+"%s."
+
+#: edittoolbar.py:65
+msgid "Previous"
+msgstr "السابق"
+
+#: edittoolbar.py:72
+msgid "Next"
+msgstr "التالي"
+
+#: linkbutton.py:103
+msgid "Remove"
+msgstr "أزِل"
+
+#: palettes.py:140
+msgid "Follow link"
+msgstr "اتبع الوصلة"
+
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr ""
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:215
+msgid "Keep image"
+msgstr ""
+
+#: palettes.py:223
+msgid "Copy image"
+msgstr ""
+
+#: viewtoolbar.py:35
+msgid "Zoom out"
+msgstr "بعّد"
+
+#: viewtoolbar.py:41
+msgid "Zoom in"
+msgstr "قرّب"
+
+#: viewtoolbar.py:52
+msgid "Fullscreen"
+msgstr "ملء الشاشة"
+
+#: viewtoolbar.py:90
+msgid "Show Tray"
+msgstr "أظهر الطبق"
+
+#: viewtoolbar.py:94
+msgid "Hide Tray"
+msgstr "اخفِ الطبق"
+
+#: webactivity.py:569
+#, fuzzy
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "يجري التزيل"
+
+#: webactivity.py:572
+#, fuzzy
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "التوقف الآن سيلغي تنزيلك"
+
+#: webactivity.py:577
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: webactivity.py:582
+msgid "Stop"
+msgstr "قف"
+
+#: webtoolbar.py:247
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:267
+msgid "Back"
+msgstr "للخلف"
+
+#: webtoolbar.py:274
+msgid "Forward"
+msgstr "للأمام"
+
+#: webtoolbar.py:281
+msgid "Bookmark"
+msgstr "علِّم"
+
+#~ msgid "Cancel"
+#~ msgstr "ألغِ"
