@@ -25,7 +25,6 @@ from gi.repository import Pango
 from gi.repository import WebKit
 
 from sugar3.graphics.toolbutton import ToolButton
-from sugar3.graphics.menuitem import MenuItem
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
 from sugar3.activity.widgets import ActivityToolbarButton
@@ -34,6 +33,7 @@ from sugar3.activity.widgets import StopButton
 # FIXME
 # import filepicker
 import places
+from sugarmenuitem import SugarMenuItem
 
 
 _MAX_HISTORY_ENTRIES = 15
@@ -270,12 +270,26 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(self._back, -1)
         self._back.show()
 
+        palette = self._back.get_palette()
+        self._back_box_menu = Gtk.VBox()
+        self._back_box_menu.show()
+        palette.set_content(self._back_box_menu)
+        # FIXME, this is a hack, should be done in the theme:
+        palette._content.set_border_width(1)
+
         self._forward = ToolButton('go-next-paired')
         self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
         toolbar.insert(self._forward, -1)
         self._forward.show()
+
+        palette = self._forward.get_palette()
+        self._forward_box_menu = Gtk.VBox()
+        self._forward_box_menu.show()
+        palette.set_content(self._forward_box_menu)
+        # FIXME, this is a hack, should be done in the theme:
+        palette._content.set_border_width(1)
 
         self._link_add = ToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
@@ -410,17 +424,18 @@ class PrimaryToolbar(ToolbarBase):
         item_index = 0  # The index of the history item
 
         # Clear menus in palettes:
-        for palette in (self._back.get_palette(), self._forward.get_palette()):
-            for menu_item in palette.menu.get_children():
-                palette.menu.remove(menu_item)
+        for box_menu in (self._back_box_menu, self._forward_box_menu):
+            for menu_item in box_menu.get_children():
+                box_menu.remove(menu_item)
 
         def create_menu_item(history_item, item_index):
             """Create a MenuItem for the back or forward palettes."""
             title = history_item.get_title()
             if not isinstance(title, unicode):
                 title = unicode(title, 'utf-8')
-            menu_item = MenuItem(title, text_maxlen=60)
-            menu_item.connect('activate', self._history_item_activated_cb,
+            # This is a fix until the Sugar MenuItem is fixed:
+            menu_item = SugarMenuItem(text_label=title)
+            menu_item.connect('clicked', self._history_item_activated_cb,
                               item_index)
             return menu_item
 
@@ -429,8 +444,7 @@ class PrimaryToolbar(ToolbarBase):
         back_list.reverse()
         for item in back_list:
             menu_item = create_menu_item(item, item_index)
-            palette = self._back.get_palette()
-            palette.menu.prepend(menu_item)
+            self._back_box_menu.pack_end(menu_item, False, False, 0)
             menu_item.show()
             item_index += 1
 
@@ -442,8 +456,7 @@ class PrimaryToolbar(ToolbarBase):
         forward_list.reverse()
         for item in forward_list:
             menu_item = create_menu_item(item, item_index)
-            palette = self._forward.get_palette()
-            palette.menu.append(menu_item)
+            self._forward_box_menu.pack_start(menu_item, False, False, 0)
             menu_item.show()
             item_index += 1
 
