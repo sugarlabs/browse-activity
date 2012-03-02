@@ -432,10 +432,12 @@ class Browser(WebKit.WebView):
     def get_history(self):
         """Return the browsing history of this browser."""
         back_forward_list = self.get_back_forward_list()
-        if back_forward_list.get_back_length() == 0:
-            return ''
-
         items_list = self._items_history_as_list(back_forward_list)
+
+        # If this is an empty tab, return an empty history:
+        if len(items_list) == 1 and items_list[0] is None:
+            return []
+
         history = []
         for item in items_list:
             history.append({'url': item.get_uri(),
@@ -462,11 +464,10 @@ class Browser(WebKit.WebView):
     def set_history_index(self, index):
         """Go to the item in the history specified by the index."""
         back_forward_list = self.get_back_forward_list()
-        if back_forward_list.get_back_length() != 0:
-            current_item = index - back_forward_list.get_back_length()
-            item = back_forward_list.get_nth_item(current_item)
-            if item is not None:
-                self.go_to_back_forward_item(item)
+        current_item = index - back_forward_list.get_back_length()
+        item = back_forward_list.get_nth_item(current_item)
+        if item is not None:
+            self.go_to_back_forward_item(item)
 
     def _items_history_as_list(self, history):
         """Return a list with the items of a WebKit.WebBackForwardList."""
