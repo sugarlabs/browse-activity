@@ -23,7 +23,7 @@ from sugar3.graphics.icon import Icon
 
 
 class TabAdd(Gtk.HBox):
-    __gtype_name__ = 'TabAdd'
+    __gtype_name__ = 'BrowseTabAdd'
 
     __gsignals__ = {
         'tab-added': (GObject.SignalFlags.RUN_FIRST,
@@ -53,7 +53,7 @@ class TabAdd(Gtk.HBox):
 
 
 class BrowserNotebook(Gtk.Notebook):
-    __gtype_name__ = 'BrowserNotebook'
+    __gtype_name__ = 'BrowseNotebook'
 
     """Handle an extra tab at the end with an Add Tab button."""
 

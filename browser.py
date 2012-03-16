@@ -286,7 +286,18 @@ Gtk.rc_parse_string('''
     widget "*browse-tab-close" style "browse-tab-close"''')
 
 
+class LinkInfo(Gtk.Label):
+    __gtype_name__ = 'BrowseLinkInfo'
+
+    def __init__(self):
+        GObject.GObject.__init__(self)
+        self.set_halign(Gtk.Align.START)
+        self.set_valign(Gtk.Align.END)
+
+
 class TabPage(Gtk.Overlay):
+    __gtype_name__ = 'BrowseTabPage'
+
     def __init__(self, browser):
         GObject.GObject.__init__(self)
 
@@ -294,9 +305,7 @@ class TabPage(Gtk.Overlay):
         self._showing_load_status = False
         self._requested_uri = None
 
-        link_info = Gtk.Label()
-        link_info.set_halign(Gtk.Align.START)
-        link_info.set_valign(Gtk.Align.END)
+        link_info = LinkInfo()
         self.add_overlay(link_info)
         link_info.show()
 
@@ -351,7 +360,7 @@ class TabPage(Gtk.Overlay):
 
 
 class TabLabel(Gtk.HBox):
-    __gtype_name__ = 'TabLabel'
+    __gtype_name__ = 'BrowseTabLabel'
 
     __gsignals__ = {
         'tab-close': (GObject.SignalFlags.RUN_FIRST,
