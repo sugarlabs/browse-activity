@@ -199,8 +199,10 @@ class Download(object):
 
     def _create_journal_object(self):
         self.dl_jobject = datastore.create()
-        self.dl_jobject.metadata['title'] = _('Downloading %s from \n%s.') % \
-            (self._download.get_suggested_filename(), self._source)
+        self.dl_jobject.metadata['title'] = \
+            _('Downloading %(filename)s from \n%(source)s.') % \
+            {'filename': self._download.get_suggested_filename(),
+             'source': self._source}
 
         self.dl_jobject.metadata['progress'] = '0'
         self.dl_jobject.metadata['keep'] = '0'
