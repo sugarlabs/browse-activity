@@ -16,15 +16,15 @@
 # Boston, MA 02111-1307, USA.
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GdkPixbuf
+from gi.repository import GObject
+from gi.repository import Rsvg
 
 import os
-from gi.repository import GObject
-from gi.repository import Gdk
 import StringIO
 import cairo
 from gettext import gettext as _
-import rsvg
 import re
 import gc
 
@@ -92,7 +92,7 @@ class LinkButton(TrayButton, GObject.GObject):
         link_scale_w = link_width * 1.0 / 120
         link_scale_h = link_height * 1.0 / 110
         link_context.scale(link_scale_w, link_scale_h)
-        handler = rsvg.Handle(data=data)
+        handler = Rsvg.Handle.new_from_data(data)
         handler.render_cairo(link_context)
         return link_surface
 
