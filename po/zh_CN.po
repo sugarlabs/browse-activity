@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2011-11-18 11:59+0200\n"
-"Last-Translator: YiyaoFu <yf504@nyu.edu>\n"
+"PO-Revision-Date: 2012-03-22 00:48+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -32,13 +32,13 @@ msgstr ""
 
 #: browser.py:337
 msgid "Loading..."
-msgstr "下载中"
+msgstr "下载中..."
 
 #: browser.py:339
 #, python-format
-#, python-format, fuzzy
+#, python-format, 
 msgid "Loading %s..."
-msgstr "下载中"
+msgstr "下载中 %s..."
 
 #: browser.py:367 webactivity.py:415 webtoolbar.py:317
 msgid "Untitled"
@@ -78,7 +78,7 @@ msgid ""
 "%s."
 msgstr ""
 "下载 %s 自\n"
-"%s."
+"%s。"
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -126,7 +126,7 @@ msgstr "放大"
 
 #: viewtoolbar.py:52
 msgid "Fullscreen"
-msgstr "全屏显示"
+msgstr "全屏"
 
 #: viewtoolbar.py:90
 msgid "Show Tray"
