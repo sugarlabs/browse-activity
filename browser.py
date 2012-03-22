@@ -36,6 +36,7 @@ from sugar3.graphics.icon import Icon
 from widgets import BrowserNotebook
 import globalhistory
 import downloadmanager
+from pdfviewer import PDFTabPage
 
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
@@ -164,9 +165,25 @@ class TabbedView(BrowserNotebook):
         new_browser.load_uri(url)
         new_browser.grab_focus()
 
+    def __open_pdf_in_new_tab_cb(self, browser, url):
+        tab_page = PDFTabPage()
+        tab_page.browser.connect('new-tab', self.__new_tab_cb)
+        tab_page.browser.connect('tab-close', self.__tab_close_cb)
+
+        label = TabLabel(tab_page.browser)
+        label.connect('tab-close', self.__tab_close_cb, tab_page)
+
+        next_index = self.get_current_page() + 1
+        self.insert_page(tab_page, label, next_index)
+        tab_page.show()
+        label.show()
+        self.set_current_page(next_index)
+        tab_page.setup(url)
+
     def add_tab(self, next_to_current=False):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
+        browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
@@ -271,11 +288,31 @@ class TabbedView(BrowserNotebook):
         while self.get_n_pages():
             self.remove_page(self.get_n_pages() - 1)
 
+        def is_pdf_history(tab_history):
+            return (len(tab_history) == 1 and
+                    tab_history[0]['url'].lower().endswith('pdf'))
+
         for tab_history in tab_histories:
-            browser = Browser()
-            browser.connect('new-tab', self.__new_tab_cb)
-            self._append_tab(browser)
-            browser.set_history(tab_history)
+            if is_pdf_history(tab_history):
+                url = tab_history[0]['url']
+                tab_page = PDFTabPage()
+                tab_page.browser.connect('new-tab', self.__new_tab_cb)
+                tab_page.browser.connect('tab-close', self.__tab_close_cb)
+
+                label = TabLabel(tab_page.browser)
+                label.connect('tab-close', self.__tab_close_cb, tab_page)
+
+                self.append_page(tab_page, label)
+                tab_page.show()
+                label.show()
+                tab_page.setup(url, title=tab_history[0]['title'])
+
+            else:
+                browser = Browser()
+                browser.connect('new-tab', self.__new_tab_cb)
+                browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+                self._append_tab(browser)
+                browser.set_history(tab_history)
 
 
 Gtk.rc_parse_string('''
@@ -418,6 +455,9 @@ class Browser(WebKit.WebView):
         'new-tab': (GObject.SignalFlags.RUN_FIRST,
                     None,
                     ([str])),
+        'open-pdf': (GObject.SignalFlags.RUN_FIRST,
+                     None,
+                     ([str])),
     }
 
     CURRENT_SUGAR_VERSION = '0.96'
@@ -529,7 +569,12 @@ class Browser(WebKit.WebView):
 
     def __mime_type_policy_cb(self, webview, frame, request, mimetype,
                               policy_decision):
-        if not self.can_show_mime_type(mimetype):
+        if mimetype == 'application/pdf':
+            self.emit('open-pdf', request.get_uri())
+            return False
+        elif self.can_show_mime_type(mimetype):
+            return True
+        else:
             policy_decision.download()
         return True
 

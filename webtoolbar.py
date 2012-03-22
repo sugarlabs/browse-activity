@@ -34,6 +34,7 @@ from sugar3.activity.widgets import StopButton
 # import filepicker
 import places
 from sugarmenuitem import SugarMenuItem
+from browser import Browser
 
 
 _MAX_HISTORY_ENTRIES = 15
@@ -331,6 +332,11 @@ class PrimaryToolbar(ToolbarBase):
             self._set_title(_('Untitled'))
         self._set_address(self._browser.props.uri)
 
+        if isinstance(self._browser, Browser):
+            self.entry.props.editable = True
+        else:
+            self.entry.props.editable = False
+
         self._title_changed_hid = self._browser.connect(
                 'notify::title', self._title_changed_cb)
         self._uri_changed_hid = self._browser.connect(
@@ -379,7 +385,11 @@ class PrimaryToolbar(ToolbarBase):
         can_go_forward = self._browser.can_go_forward()
         self._forward.props.sensitive = can_go_forward
 
-        self._reload_session_history()
+        is_webkit_browser = isinstance(self._browser, Browser)
+        self._link_add.props.sensitive = is_webkit_browser
+        self._go_home.props.sensitive = is_webkit_browser
+        if is_webkit_browser:
+            self._reload_session_history()
 
     def _entry_activate_cb(self, entry):
         url = entry.props.text
