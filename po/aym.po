@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"POT-Creation-Date: 2012-03-23 00:34-0400\n"
 "PO-Revision-Date: 2011-11-23 09:36+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,21 +22,21 @@ msgstr ""
 msgid "Browse"
 msgstr "Internet taypita yatiña"
 
-#: browser.py:138
+#: browser.py:139
 #, python-format
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr ""
 
-#: browser.py:337
+#: browser.py:383
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:339
+#: browser.py:385
 #, python-format
 msgid "Loading %s..."
 msgstr ""
 
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:413 webactivity.py:415 webtoolbar.py:332
 msgid "Untitled"
 msgstr ""
 
@@ -66,21 +66,17 @@ msgid "Ok"
 msgstr "Ukhamawa"
 
 #  "De: %s"
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:409
 #, python-format
 msgid "From: %s"
 msgstr "%s ... ukata"
 
-#  "Bajando %s desde \n"
-#  "%s."
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
-"%s ... talliqaña \n"
-"%s ... chanikama."
 
 #  "Anterior"
 #: edittoolbar.py:65
@@ -127,27 +123,39 @@ msgid "Copy image"
 msgstr "Uñtasïwi talliqaña"
 
 #  "Reducir"
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Chhaqtayaña"
 
 #  "Ampliar"
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Uñstayaña"
 
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr ""
+
 #  "Pantalla completa"
-#: viewtoolbar.py:52
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Maypacha uñtawi"
 
 #  "Mostrar Bandeja"
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Luräwinaka qhanstayaña"
 
 #  "Esconder Bandeja"
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Luräwinaka chhaqtayaña"
 
@@ -181,24 +189,34 @@ msgid "Stop"
 msgstr "Sayt'ayaña"
 
 #  "Página inicial"
-#: webtoolbar.py:247
+#: webtoolbar.py:248
 msgid "Home page"
 msgstr "Qallta laphi"
 
 #  "Volver"
-#: webtoolbar.py:267
+#: webtoolbar.py:268
 msgid "Back"
 msgstr "Kutt'aña"
 
 #  "Avanzar"
-#: webtoolbar.py:274
+#: webtoolbar.py:282
 msgid "Forward"
 msgstr "Nayrtaña"
 
 #  "Marcador"
-#: webtoolbar.py:281
+#: webtoolbar.py:296
 msgid "Bookmark"
 msgstr "Chimpuña"
+
+#  "Bajando %s desde \n"
+#  "%s."
+#, python-format
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "%s ... talliqaña \n"
+#~ "%s ... chanikama."
 
 #  "Editar"
 #~ msgid "Edit"
