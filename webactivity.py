@@ -33,7 +33,7 @@ import base64
 import time
 import shutil
 import sqlite3
-import cjson
+import json
 from gi.repository import GConf
 import locale
 import cairo
@@ -123,7 +123,7 @@ def _seed_xs_cookie():
                                               path, expiry, lastAccessed,
                                               isSecure, isHttpOnly)
                      VALUES(?,?,?,?,?,?,?,?)''',
-                  ('xoid', cjson.encode(cookie_data), jabber_server,
+                  ('xoid', json.loads(cookie_data), jabber_server,
                    '/', expire, 0, 0, 0))
         cookies_db.commit()
         cookies_db.close()
