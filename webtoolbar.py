@@ -324,6 +324,7 @@ class PrimaryToolbar(ToolbarBase):
             self._browser.disconnect(self._title_changed_hid)
             self._browser.disconnect(self._uri_changed_hid)
             self._browser.disconnect(self._progress_changed_hid)
+            self._browser.disconnect(self._loading_changed_hid)
 
         self._browser = browser
         if self._browser.props.title:
@@ -331,11 +332,11 @@ class PrimaryToolbar(ToolbarBase):
         else:
             self._set_title(_('Untitled'))
         self._set_address(self._browser.props.uri)
+        self._set_progress(self._browser.props.progress)
+        self._set_status(self._browser.props.load_status)
 
-        if isinstance(self._browser, Browser):
-            self.entry.props.editable = True
-        else:
-            self.entry.props.editable = False
+        is_webkit_browser = isinstance(self._browser, Browser)
+        self.entry.props.editable = is_webkit_browser
 
         self._title_changed_hid = self._browser.connect(
                 'notify::title', self._title_changed_cb)
@@ -349,14 +350,13 @@ class PrimaryToolbar(ToolbarBase):
         self._update_navigation_buttons()
 
     def __loading_changed_cb(self, widget, param):
-        status = widget.get_load_status()
-        if status <= WebKit.LoadStatus.COMMITTED:
-            self._set_title(None)
-        self._set_loading(status < WebKit.LoadStatus.FINISHED)
-        self._update_navigation_buttons()
+        self._set_status(widget.get_load_status())
 
     def __progress_changed_cb(self, widget, param):
         self._set_progress(widget.get_progress())
+
+    def _set_status(self, status):
+        self._set_loading(status < WebKit.LoadStatus.FINISHED)
 
     def _set_progress(self, progress):
         if progress == 1.0:

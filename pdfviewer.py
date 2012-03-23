@@ -366,7 +366,6 @@ class PDFTabPage(Gtk.HBox):
 
     def __download_progress_cb(self, download, data):
         progress = download.get_progress()
-        self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
         self._browser.props.progress = progress
 
     def __download_status_cb(self, download, data):
