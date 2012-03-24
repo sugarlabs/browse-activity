@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2012-03-22 00:48+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-03-23 00:34-0400\n"
+"PO-Revision-Date: 2012-03-24 05:12+0200\n"
+"Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -25,22 +25,22 @@ msgstr ""
 msgid "Browse"
 msgstr "浏览"
 
-#: browser.py:138
+#: browser.py:139
 #, python-format
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr ""
+msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 
-#: browser.py:337
+#: browser.py:383
 msgid "Loading..."
 msgstr "下载中..."
 
-#: browser.py:339
+#: browser.py:385
 #, python-format
-#, python-format, 
+#, python-format,
 msgid "Loading %s..."
 msgstr "下载中 %s..."
 
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:413 webactivity.py:415 webtoolbar.py:332
 msgid "Untitled"
 msgstr "无标题的"
 
@@ -65,20 +65,17 @@ msgstr "在日志中显示"
 msgid "Ok"
 msgstr "确定"
 
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:409
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "来自：%s"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
-#, fuzzy
 msgid ""
-"Downloading %s from \n"
-"%s."
-msgstr ""
-"下载 %s 自\n"
-"%s。"
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr "正在从 %(source)s 下载 %(filename)s 。"
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -116,28 +113,39 @@ msgstr "保留图片"
 msgid "Copy image"
 msgstr "拷贝图片"
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "缩小"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "放大"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr "上一页"
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr "下一页"
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr "保存PDF到日志"
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "显示系统托盘"
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "隐藏系统托盘"
 
 #: webactivity.py:569
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "下载中"
@@ -156,21 +164,30 @@ msgstr[0] "继续下载"
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:248
 msgid "Home page"
 msgstr "主页"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:268
 msgid "Back"
 msgstr "上一页"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:282
 msgid "Forward"
 msgstr "下一页"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:296
 msgid "Bookmark"
 msgstr "书签"
+
+#, python-format
+#, fuzzy
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "下载 %s 自\n"
+#~ "%s。"
 
 #~ msgid "Edit"
 #~ msgstr "编辑"
