@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2011-10-16 23:03+0200\n"
+"POT-Creation-Date: 2012-03-23 00:34-0400\n"
+"PO-Revision-Date: 2012-03-24 10:00+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: rw\n"
@@ -29,22 +29,22 @@ msgstr ""
 msgid "Browse"
 msgstr "Shakisha"
 
-#: browser.py:138
+#: browser.py:139
 #, python-format
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr ""
 
-#: browser.py:337
+#: browser.py:383
 msgid "Loading..."
 msgstr "Itangira..."
 
-#: browser.py:339
+#: browser.py:385
 #, python-format
-#, python-format, fuzzy
+#, python-format, 
 msgid "Loading %s..."
-msgstr "Itangira..."
+msgstr "Itangira %s..."
 
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:413 webactivity.py:415 webtoolbar.py:332
 msgid "Untitled"
 msgstr "Nta mutwe"
 
@@ -69,20 +69,17 @@ msgstr "Erekana mu Kinyamakuru"
 msgid "Ok"
 msgstr "Nibyo"
 
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:409
 #, python-format
 msgid "From: %s"
 msgstr "Bivuye: %s"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
-#, fuzzy
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
-"Gushyira kuri mudasobwa %s kuva\n"
-"%s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -120,23 +117,35 @@ msgstr ""
 msgid "Copy image"
 msgstr ""
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Uburyo bwo kugabanya ingano y`ibintu"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Uburyo bwo kongera ingano y`ibintu"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr ""
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Ekara yose"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "erekana Tray"
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Hisha Tray"
 
@@ -162,21 +171,30 @@ msgstr[1] ""
 msgid "Stop"
 msgstr "Hagarika"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:248
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:267
+#: webtoolbar.py:268
 msgid "Back"
 msgstr "Inyuma"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:282
 msgid "Forward"
 msgstr "Imbere"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:296
 msgid "Bookmark"
 msgstr "Ububiko"
+
+#, python-format
+#, fuzzy
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "Gushyira kuri mudasobwa %s kuva\n"
+#~ "%s."
 
 #~ msgid "Edit"
 #~ msgstr "Hindura"
