@@ -56,9 +56,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2012-02-11 21:52+0200\n"
-"Last-Translator: Markus <m.slg@gmx.de>\n"
+"POT-Creation-Date: 2012-03-23 00:34-0400\n"
+"PO-Revision-Date: 2012-03-23 21:28+0100\n"
+"Last-Translator: Markus Schlager <m.slg@gmx.de>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -72,22 +72,21 @@ msgstr ""
 msgid "Browse"
 msgstr "Browser"
 
-#: browser.py:138
+#: browser.py:139
 #, python-format
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
 
-#: browser.py:337
+#: browser.py:383
 msgid "Loading..."
 msgstr "Lade..."
 
-#: browser.py:339
+#: browser.py:385
 #, python-format
-#, python-format,
 msgid "Loading %s..."
 msgstr "Lade %s..."
 
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:413 webactivity.py:415 webtoolbar.py:332
 msgid "Untitled"
 msgstr "Unbenannt"
 
@@ -112,20 +111,19 @@ msgstr "Im Tagebuch anzeigen"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:409
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
-#, python-format,
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
-"Lade %s von \n"
-"%s herunter."
+"Lade %(filename)s von \n"
+"%(source)s herunter."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -163,23 +161,35 @@ msgstr "Bild speichern"
 msgid "Copy image"
 msgstr "Bild kopieren"
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Verkleinern"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Vergrößern"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr "Vorige Seite"
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr "Nächste Seite"
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr "Als PDF ins Tagebuch speichern"
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Vollbild"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Ablage anzeigen"
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
@@ -205,29 +215,29 @@ msgstr[1] "Herunterladen der Dateien fortsetzen"
 msgid "Stop"
 msgstr "Anhalten"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:248
 msgid "Home page"
 msgstr "Startseite"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:268
 msgid "Back"
 msgstr "Zurück"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:282
 msgid "Forward"
 msgstr "Vor"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:296
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
 #, python-format
 #~ msgid ""
-#~ "Downloading %(file)s from \n"
-#~ "%(source)s."
+#~ "Downloading %s from \n"
+#~ "%s."
 #~ msgstr ""
-#~ "Lade %(file)s von \n"
-#~ "%(source)s herunter."
+#~ "Lade %s von \n"
+#~ "%s herunter."
 
 #~ msgid "Edit"
 #~ msgstr "Bearbeiten"
