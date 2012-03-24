@@ -75,7 +75,8 @@ msgid "From: %s"
 msgstr "Fra: %s"
 
 #: downloadmanager.py:203
-#, python-format, 
+#, python-format
+#, python-format,
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
