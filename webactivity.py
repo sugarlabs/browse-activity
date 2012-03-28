@@ -400,7 +400,8 @@ class WebActivity(activity.Activity):
                 _logger.error('Open uri-list: Does not support'
                               'list of multiple uris by now.')
         else:
-            self._tabbed_view.props.current_browser.load_uri(file_path)
+            file_uri = 'file://' + file_path
+            self._tabbed_view.props.current_browser.load_uri(file_uri)
 
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
