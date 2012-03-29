@@ -40,8 +40,13 @@ class LinkButton(TrayButton, GObject.GObject):
                         None, ([str])),
         }
 
-    def __init__(self, url, buf, color, title, owner, index, hash):
+    def __init__(self, buf, color, title, owner, hash):
         TrayButton.__init__(self)
+
+        # Color read from the Journal may be Unicode, but Rsvg needs
+        # it as single byte string:
+        if isinstance(color, unicode):
+            color = str(color)
         self.set_image(buf, color.split(',')[1], color.split(',')[0])
 
         self.hash = hash

@@ -518,7 +518,7 @@ class WebActivity(activity.Activity):
 
     def _add_link_totray(self, url, buf, color, title, owner, index, hash):
         ''' add a link to the tray '''
-        item = LinkButton(url, buf, color, title, owner, index, hash)
+        item = LinkButton(buf, color, title, owner, hash)
         item.connect('clicked', self._link_clicked_cb, url)
         item.connect('remove_link', self._link_removed_cb)
         # use index to add to the tray
