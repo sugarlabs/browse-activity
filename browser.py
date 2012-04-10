@@ -466,8 +466,21 @@ class Browser(WebKit.WebView):
         WebKit.WebView.__init__(self)
 
         web_settings = self.get_settings()
+
+        # Add SugarLabs user agent:
         identifier = ' Sugar Labs/' + self.CURRENT_SUGAR_VERSION
         web_settings.props.user_agent += identifier
+
+        # Change font size based in the GtkSettings font size.  The
+        # gtk-font-name property is a string with format '[font name]
+        # [font size]' like 'Sans Serif 10'.
+        gtk_settings = Gtk.Settings.get_default()
+        gtk_font_name = gtk_settings.get_property('gtk-font-name')
+        gtk_font_size = float(gtk_font_name.split()[-1])
+        web_settings.props.default_font_size = gtk_font_size * 1.2
+        web_settings.props.default_monospace_font_size = \
+            gtk_font_size * 1.2 - 2
+
         self.set_settings(web_settings)
 
         # Reference to the global history and callbacks to handle it:
