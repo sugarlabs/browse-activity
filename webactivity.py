@@ -28,6 +28,8 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import WebKit
+from gi.repository import Soup
+from gi.repository import SoupGNOME
 
 import base64
 import time
@@ -58,6 +60,7 @@ PROFILE_VERSION = 2
 _profile_version = 0
 _profile_path = os.path.join(activity.get_activity_root(), 'data/gecko')
 _version_file = os.path.join(_profile_path, 'version')
+_cookies_db_path = os.path.join(_profile_path, 'cookies.sqlite')
 
 if os.path.exists(_version_file):
     f = open(_version_file)
@@ -76,13 +79,25 @@ if _profile_version < PROFILE_VERSION:
     f.close()
 
 
-def _seed_xs_cookie():
-    ''' Create a HTTP Cookie to authenticate with the Schoolserver
-    '''
+def _seed_xs_cookie(cookie_jar):
+    """Create a HTTP Cookie to authenticate with the Schoolserver.
+
+    Do nothing if the laptop is not registered with Schoolserver, or
+    if the cookie already exists.
+
+    """
     client = GConf.Client.get_default()
     backup_url = client.get_string('/desktop/sugar/backup_url')
-    if not backup_url:
+    if backup_url == '':
         _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
+        return
+
+    # Using new() here because the GObject constructor can't be used
+    # in this case.  The code we need is locked up behind .new().
+    soup_uri = Soup.URI.new(uri_string=backup_url)
+    xs_cookie = cookie_jar.get_cookies(soup_uri, for_http=False)
+    if xs_cookie is not None:
+        _logger.debug('seed_xs_cookie: Cookie exists already')
         return
 
     jabber_server = client.get_string(
@@ -92,45 +107,16 @@ def _seed_xs_cookie():
     cookie_data = {'color': profile.get_color().to_string(),
                    'pkey_hash': sha1(pubkey).hexdigest()}
 
-    db_path = os.path.join(_profile_path, 'cookies.sqlite')
-    try:
-        cookies_db = sqlite3.connect(db_path)
-        c = cookies_db.cursor()
+    expire = int(time.time()) + 10 * 365 * 24 * 60 * 60
 
-        c.execute('''CREATE TABLE IF NOT EXISTS
-                     moz_cookies
-                     (id INTEGER PRIMARY KEY,
-                      name TEXT,
-                      value TEXT,
-                      host TEXT,
-                      path TEXT,
-                      expiry INTEGER,
-                      lastAccessed INTEGER,
-                      isSecure INTEGER,
-                      isHttpOnly INTEGER)''')
-
-        c.execute('''SELECT id
-                     FROM moz_cookies
-                     WHERE name=? AND host=? AND path=?''',
-                  ('xoid', jabber_server, '/'))
-
-        if c.fetchone():
-            _logger.debug('seed_xs_cookie: Cookie exists already')
-            return
-
-        expire = int(time.time()) + 10 * 365 * 24 * 60 * 60
-        c.execute('''INSERT INTO moz_cookies (name, value, host,
-                                              path, expiry, lastAccessed,
-                                              isSecure, isHttpOnly)
-                     VALUES(?,?,?,?,?,?,?,?)''',
-                  ('xoid', json.loads(cookie_data), jabber_server,
-                   '/', expire, 0, 0, 0))
-        cookies_db.commit()
-        cookies_db.close()
-    except sqlite3.Error:
-        _logger.exception('seed_xs_cookie: could not write cookie')
-    else:
-        _logger.debug('seed_xs_cookie: Updated cookie successfully')
+    xs_cookie = Soup.Cookie()
+    xs_cookie.set_name('xoid')
+    xs_cookie.set_value(json.loads(cookie_data))
+    xs_cookie.set_domain(jabber_server)
+    xs_cookie.set_path('/')
+    xs_cookie.set_max_age(expire)
+    cookie_jar.add_cookie(xs_cookie)
+    _logger.debug('seed_xs_cookie: Updated cookie successfully')
 
 
 def _set_char_preference(name, value):
@@ -170,14 +156,21 @@ class WebActivity(activity.Activity):
         session = WebKit.get_default_session()
         session.set_property('accept-language-auto', True)
 
+        # By default, cookies are not stored persistently, we have to
+        # add a cookie jar so that they get saved to disk.  We use one
+        # with a SQlite database:
+        cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
+                                               read_only=False)
+        session.add_feature(cookie_jar)
+
+        _seed_xs_cookie(cookie_jar)
+
         # FIXME
         # downloadmanager.remove_old_parts()
 
         self._force_close = False
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
-
-        _seed_xs_cookie()
 
         # HACK
         # Currently, the multiple tabs feature crashes the Browse activity
