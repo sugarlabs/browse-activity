@@ -172,19 +172,6 @@ class WebActivity(activity.Activity):
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
 
-        # HACK
-        # Currently, the multiple tabs feature crashes the Browse activity
-        # on cairo versions 1.8.10 or later. The exact cause for this
-        # isn't exactly known. Thus, disable the multiple tabs feature
-        # if we come across cairo versions >= 1.08.10 and < 11000
-        # More information can be found here:
-        # http://lists.sugarlabs.org/archive/sugar-devel/2010-July/025187.html
-        self._disable_multiple_tabs = cairo.cairo_version() >= 10810\
-                        and cairo.cairo_version() < 11000
-        if self._disable_multiple_tabs:
-            logging.warning('Not enabling the multiple tabs feature due'
-                ' to a bug in cairo/mozilla')
-
         self._tray = HTray()
         self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
         self._tray.show()
@@ -470,8 +457,7 @@ class WebActivity(activity.Activity):
                 _logger.debug('keyboard: Reload')
                 browser.reload()
             elif Gdk.keyval_name(event.keyval) == "t":
-                if not self._disable_multiple_tabs:
-                    self._tabbed_view.add_tab()
+                self._tabbed_view.add_tab()
             else:
                 return False
 
