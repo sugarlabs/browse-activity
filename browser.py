@@ -490,6 +490,8 @@ class Browser(WebKit.WebView):
         self.connect('download-requested', self.__download_requested_cb)
         self.connect('mime-type-policy-decision-requested',
                      self.__mime_type_policy_cb)
+        self.connect('new-window-policy-decision-requested',
+                     self.__new_window_policy_cb)
 
     def get_history(self):
         """Return the browsing history of this browser."""
@@ -589,6 +591,21 @@ class Browser(WebKit.WebView):
             return True
         else:
             policy_decision.download()
+        return True
+
+    def __new_window_policy_cb(self, webview, webframe, request,
+                               navigation_action, policy_decision):
+        """Open new tab instead of a new window.
+
+        Browse doesn't support many windows, as any Sugar activity.
+        So we will handle the request, ignoring it and returning True
+        to inform WebKit that a decision was made.  And we will open a
+        new tab instead.
+
+        """
+        policy_decision.ignore()
+        uri = request.get_uri()
+        self.open_new_tab(uri)
         return True
 
     def __download_requested_cb(self, browser, download):
