@@ -92,16 +92,17 @@ def _seed_xs_cookie(cookie_jar):
         _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
         return
 
-    # Using new() here because the GObject constructor can't be used
-    # in this case.  The code we need is locked up behind .new().
-    soup_uri = Soup.URI.new(uri_string=backup_url)
+    jabber_server = client.get_string(
+        '/desktop/sugar/collaboration/jabber_server')
+
+    soup_uri = Soup.URI()
+    soup_uri.set_scheme('xmpp')
+    soup_uri.set_host(jabber_server)
+    soup_uri.set_path('/')
     xs_cookie = cookie_jar.get_cookies(soup_uri, for_http=False)
     if xs_cookie is not None:
         _logger.debug('seed_xs_cookie: Cookie exists already')
         return
-
-    jabber_server = client.get_string(
-        '/desktop/sugar/collaboration/jabber_server')
 
     pubkey = profile.get_profile().pubkey
     cookie_data = {'color': profile.get_color().to_string(),
@@ -111,7 +112,7 @@ def _seed_xs_cookie(cookie_jar):
 
     xs_cookie = Soup.Cookie()
     xs_cookie.set_name('xoid')
-    xs_cookie.set_value(json.loads(cookie_data))
+    xs_cookie.set_value(json.dumps(cookie_data))
     xs_cookie.set_domain(jabber_server)
     xs_cookie.set_path('/')
     xs_cookie.set_max_age(expire)
