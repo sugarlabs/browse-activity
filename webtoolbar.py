@@ -365,7 +365,10 @@ class PrimaryToolbar(ToolbarBase):
             self.entry.set_progress_fraction(progress)
 
     def _set_address(self, uri):
-        self.entry.props.address = uri
+        if uri is None:
+            self.entry.props.address = ''
+        else:
+            self.entry.props.address = uri
 
     def _set_title(self, title):
         self.entry.props.title = title
