@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-23 00:34-0400\n"
-"PO-Revision-Date: 2012-04-13 20:04+0200\n"
+"PO-Revision-Date: 2012-04-28 14:57+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -32,7 +32,7 @@ msgstr "Navegar"
 #: browser.py:139
 #, python-format
 msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr "http://www.google.com/search?hl=pt&q=%s&ie=UTF-8&oe=UTF-8"
+msgstr "http://www.google.com/search?hl=pt-PT&q=%s&ie=UTF-8&oe=UTF-8"
 
 #: browser.py:383
 msgid "Loading..."
