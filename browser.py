@@ -483,6 +483,9 @@ class Browser(WebKit.WebView):
 
         self.set_settings(web_settings)
 
+        # Scale text and graphics:
+        self.set_full_content_zoom(True)
+
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
         self.connect('notify::load-status', self.__load_status_changed_cb)
