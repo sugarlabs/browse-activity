@@ -125,6 +125,7 @@ def _set_char_preference(name, value):
 
 
 from browser import TabbedView
+from browser import ZOOM_ORIGINAL
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar
@@ -445,6 +446,9 @@ class WebActivity(activity.Activity):
             elif key_name in ['plus', 'equal']:
                 _logger.debug('keyboard: Zoom in')
                 browser.zoom_in()
+            elif key_name == '0':
+                _logger.debug('keyboard: Actual size')
+                browser.set_zoom_level(ZOOM_ORIGINAL)
             elif key_name == 'Left':
                 _logger.debug('keyboard: Go back')
                 browser.go_back()

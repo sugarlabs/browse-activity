@@ -23,6 +23,7 @@ from gi.repository import GObject
 from sugar3.graphics.toolbutton import ToolButton
 
 from browser import Browser
+from browser import ZOOM_ORIGINAL
 
 
 class ViewToolbar(Gtk.Toolbar):
@@ -46,6 +47,12 @@ class ViewToolbar(Gtk.Toolbar):
         self.zoomin.connect('clicked', self.__zoomin_clicked_cb)
         self.insert(self.zoomin, -1)
         self.zoomin.show()
+
+        self.zoom_original = ToolButton('zoom-original')
+        self.zoom_original.set_tooltip(_('Actual size'))
+        self.zoom_original.connect('clicked', self.__zoom_original_clicked_cb)
+        self.insert(self.zoom_original, -1)
+        self.zoom_original.show()
 
         self.separator = Gtk.SeparatorToolItem()
         self.separator.set_draw(True)
@@ -82,6 +89,10 @@ class ViewToolbar(Gtk.Toolbar):
         is_webkit_browser = isinstance(self._browser, Browser)
         self.zoomin.set_sensitive(is_webkit_browser)
         self.zoomout.set_sensitive(is_webkit_browser)
+
+    def __zoom_original_clicked_cb(self, button):
+        tabbed_view = self._activity.get_canvas()
+        tabbed_view.props.current_browser.set_zoom_level(ZOOM_ORIGINAL)
 
     def __zoomin_clicked_cb(self, button):
         tabbed_view = self._activity.get_canvas()

@@ -39,6 +39,7 @@ import globalhistory
 import downloadmanager
 from pdfviewer import PDFTabPage
 
+ZOOM_ORIGINAL = 1.0
 _ZOOM_AMOUNT = 0.1
 _LIBRARY_PATH = '/usr/share/library-common/index.html'
 
