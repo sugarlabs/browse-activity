@@ -178,10 +178,10 @@ class WebEntry(iconentry.IconEntry):
                 selection.select_iter(model[-1].iter)
                 self._set_text(model[-1][0])
             else:
-                index = model.get_path(selected)[0]
-                if index > 0:
-                    selection.select_path(index - 1)
-                    self._set_text(model[index - 1][0])
+                up_iter = model.iter_previous(selected)
+                if up_iter:
+                    selection.select_iter(up_iter)
+                    self._set_text(model.get(up_iter, 0)[0])
             return True
         elif keyname == 'Down':
             if selected is None:
