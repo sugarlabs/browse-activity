@@ -1,6 +1,6 @@
 [Activity]
 name = Browse
-activity_version = 135
+activity_version = 136
 bundle_id = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
