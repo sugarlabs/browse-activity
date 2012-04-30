@@ -464,6 +464,23 @@ class WebActivity(activity.Activity):
 
             return True
 
+        elif key_name in ('KP_Up', 'KP_Down', 'KP_Left', 'KP_Right'):
+            scrolled_window = browser.get_parent()
+
+            if key_name in ('KP_Up', 'KP_Down'):
+                adjustment = scrolled_window.get_vadjustment()
+            elif key_name in ('KP_Left', 'KP_Right'):
+                adjustment = scrolled_window.get_hadjustment()
+            value = adjustment.get_value()
+            step = adjustment.get_step_increment()
+
+            if key_name in ('KP_Up', 'KP_Left'):
+                adjustment.set_value(value - step)
+            elif key_name in ('KP_Down', 'KP_Right'):
+                adjustment.set_value(value + step)
+
+            return True
+
         return False
 
     def _add_link(self):
