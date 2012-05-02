@@ -121,7 +121,8 @@ class WebEntry(iconentry.IconEntry):
     def _search_update(self):
         list_store = Gtk.ListStore(str, str)
 
-        for place in places.get_store().search(self.props.text):
+        search_text = self.props.text.decode('utf-8')
+        for place in places.get_store().search(search_text):
             list_store.append([place.uri, place.title])
 
         self._search_view.set_model(list_store)
