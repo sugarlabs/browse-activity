@@ -80,6 +80,8 @@ class WebEntry(iconentry.IconEntry):
 
     def _set_address(self, address):
         self._address = address
+        if address is not None and self.props.has_focus:
+            self._set_text(address)
 
     address = GObject.property(type=str, setter=_set_address)
 
