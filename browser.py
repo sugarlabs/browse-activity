@@ -532,14 +532,17 @@ class Browser(WebKit.WebView):
 
     def __mime_type_policy_cb(self, webview, frame, request, mimetype,
                               policy_decision):
+        """Handle downloads and PDF files."""
         if mimetype == 'application/pdf':
             self.emit('open-pdf', request.get_uri())
-            return False
-        elif self.can_show_mime_type(mimetype):
+            policy_decision.ignore()
             return True
-        else:
+
+        elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
-        return True
+            return True
+
+        return False
 
     def __new_window_policy_cb(self, webview, webframe, request,
                                navigation_action, policy_decision):
