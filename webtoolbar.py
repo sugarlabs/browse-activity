@@ -352,6 +352,13 @@ class PrimaryToolbar(ToolbarBase):
         self._update_navigation_buttons()
 
     def __loading_changed_cb(self, widget, param):
+        status = widget.get_load_status()
+        if WebKit.LoadStatus.PROVISIONAL <= status \
+                < WebKit.LoadStatus.FINISHED:
+            self.entry._set_title(_('Loading...'))
+        elif status == WebKit.LoadStatus.FINISHED:
+            if widget.props.title == None:
+                self.entry._set_title(_('Loading...'))
         self._set_status(widget.get_load_status())
 
     def __progress_changed_cb(self, widget, param):
