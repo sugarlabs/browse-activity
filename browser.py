@@ -134,12 +134,18 @@ class TabbedView(BrowserNotebook):
                 pass
 
         if soup_uri is None and not _NON_SEARCH_REGEX.match(url):
+            # Get the user's LANG to use as default language of
+            # the results
+            locale = os.environ.get('LANG', '')
+            language_location = locale.split('.', 1)[0].lower()
+            language = language_location.split('_')[0]
             # If the string doesn't look like an URI, let's search it:
-            url_search = \
-                _('http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8')
+            url_search = 'http://www.google.com/search?' \
+                'q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'
             query_param = Soup.form_encode_hash({'q': url})
             # [2:] here is getting rid of 'q=':
-            effective_url = url_search % query_param[2:]
+            effective_url = url_search % {'query': query_param[2:],
+                                          'language': language}
         else:
             if has_web_scheme(url):
                 effective_url = url
