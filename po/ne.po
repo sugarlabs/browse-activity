@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-05-07 08:39+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-05-07 10:53+0200\n"
+"Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "%s:बाट"
 
 #: downloadmanager.py:203
 #, python-format
-#, python-format, 
+#, python-format,
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
@@ -120,15 +120,15 @@ msgstr "ठूलो बनाऊ"
 
 #: pdfviewer.py:104
 msgid "Previous page"
-msgstr ""
+msgstr "पहिलाको पाना"
 
 #: pdfviewer.py:111
 msgid "Next page"
-msgstr ""
+msgstr "यसपछिको पाना"
 
 #: pdfviewer.py:123
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "PDF लाई पंजिकामा सेभ गर"
 
 #: viewtoolbar.py:56
 msgid "Fullscreen"
