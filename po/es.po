@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2012-02-15 03:23+0200\n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"PO-Revision-Date: 2012-03-23 17:59+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
@@ -42,24 +42,13 @@ msgstr ""
 msgid "Browse"
 msgstr "Navegar"
 
-#: browser.py:138
-#, python-format
-msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-
-#: browser.py:337
-msgid "Loading..."
-msgstr "Cargando..."
-
-#: browser.py:339
-#, python-format
-#, python-format,
-msgid "Loading %s..."
-msgstr "Cargando %s..."
-
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
 msgstr "Sin titulo"
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
+msgstr "Cargando..."
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -83,19 +72,20 @@ msgstr "Mostrar en el Diario"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:408
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
+#, python-format,
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
-"Bajando %s desde \n"
-"%s."
+"Descargando %(filename)s de \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -105,7 +95,7 @@ msgstr "Anterior"
 msgid "Next"
 msgstr "Siguiente"
 
-#: linkbutton.py:103
+#: linkbutton.py:108
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -133,71 +123,92 @@ msgstr "Mantener la imagen"
 msgid "Copy image"
 msgstr "Copiar la imagen"
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Reducir"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr "Página anterior"
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr "Página siguiente"
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr "Guardar PDF al Diario"
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Mostrar Bandeja"
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:569
+#: webactivity.py:567
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Descarga en curso"
 msgstr[1] "Descargas en curso"
 
-#: webactivity.py:572
+#: webactivity.py:570
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Detener ahora cancelará la descarga"
 msgstr[1] "Detener ahora cancelará las descargas"
 
-#: webactivity.py:577
+#: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Continuar la descarga"
 msgstr[1] "Continuar las descargas"
 
-#: webactivity.py:582
+#: webactivity.py:580
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:250
 msgid "Home page"
 msgstr "Página inicial"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:270
 msgid "Back"
 msgstr "Volver"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:284
 msgid "Forward"
 msgstr "Avanzar"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:298
 msgid "Bookmark"
 msgstr "Marcador"
 
 #, python-format
+#~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+#~ msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+
+#, python-format
+#, python-format,
+#~ msgid "Loading %s..."
+#~ msgstr "Cargando %s..."
+
+#, python-format
 #~ msgid ""
-#~ "Downloading %(file)s from \n"
-#~ "%(source)s."
+#~ "Downloading %s from \n"
+#~ "%s."
 #~ msgstr ""
-#~ "Descargando %(file)s de \n"
-#~ "%(source)s."
+#~ "Bajando %s desde \n"
+#~ "%s."
 
 #~ msgid "Edit"
 #~ msgstr "Editar"
