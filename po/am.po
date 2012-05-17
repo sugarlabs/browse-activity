@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
 "PO-Revision-Date: 2011-04-13 02:49+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,22 +41,12 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-#: browser.py:138
-#, python-format
-msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr ""
-
-#: browser.py:337
-msgid "Loading..."
-msgstr ""
-
-#: browser.py:339
-#, python-format
-msgid "Loading %s..."
-msgstr ""
-
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
+msgstr ""
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
 msgstr ""
 
 #: downloadmanager.py:102
@@ -80,16 +70,16 @@ msgstr ""
 msgid "Ok"
 msgstr "እሺ"
 
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:408
 #, python-format
 msgid "From: %s"
 msgstr "ከ፦  %s  "
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
 
 #: edittoolbar.py:65
@@ -100,7 +90,7 @@ msgstr "ቀድሞ"
 msgid "Next"
 msgstr "ቀጥል"
 
-#: linkbutton.py:103
+#: linkbutton.py:108
 msgid "Remove"
 msgstr "አስወግደው"
 
@@ -128,61 +118,73 @@ msgstr ""
 msgid "Copy image"
 msgstr ""
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "ከርቀት ዕይታ"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "ከቅርበት ዕይታ"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr ""
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "ሙሉ እስክሪን"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr ""
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr ""
 
-#: webactivity.py:569
+#: webactivity.py:567
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:572
+#: webactivity.py:570
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:577
+#: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:582
+#: webactivity.py:580
 msgid "Stop"
 msgstr "ቁም ቁሚ አቁም አቁሚ"
 
-#: webtoolbar.py:247
+#: webtoolbar.py:250
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:267
+#: webtoolbar.py:270
 msgid "Back"
 msgstr "ኋላ"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:284
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:281
+#: webtoolbar.py:298
 msgid "Bookmark"
 msgstr "መለያ ምልክት"
 

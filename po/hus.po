@@ -6,40 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2011-09-18 01:24+0200\n"
-"Last-Translator: <zurisadai_k@hotmail.com>\n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"PO-Revision-Date: 2012-05-04 07:46+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hus\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 # Cambié la traducción a "Aliy" porque refleja mejor la idea de explorar internet. (Zurik)
 #: activity/activity.info:2
 msgid "Browse"
 msgstr "Aliy"
 
-#: browser.py:138
-#, python-format
-msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr ""
-
-#: browser.py:337
-msgid "Loading..."
-msgstr "K'adhbom..."
-
-#: browser.py:339
-#, python-format
-#, python-format, fuzzy
-msgid "Loading %s..."
-msgstr "K'adhbom..."
-
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
 msgstr "Yab bijidh"
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
+msgstr "K'adhbom..."
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -48,7 +37,7 @@ msgstr "Pa'bomtaláb ts'i'kidh"
 #: downloadmanager.py:103 downloadmanager.py:114
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: downloadmanager.py:112
 msgid "Download completed"
@@ -64,20 +53,17 @@ msgid "Ok"
 msgstr "Ne'ets kin t'aja'"
 
 # Ju'taj ti tal., Ju'taj ti ch'enek: %s
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:408
 #, python-format
 msgid "From: %s"
 msgstr "Ti: %s"
 
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
-#, python-format,
 msgid ""
-"Downloading %s from \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
-"Pa'bál %s ma ti \n"
-"%s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -87,7 +73,7 @@ msgstr "Xi ok'xidh"
 msgid "Next"
 msgstr "Xi júnakej"
 
-#: linkbutton.py:103
+#: linkbutton.py:108
 msgid "Remove"
 msgstr "Pakuw"
 
@@ -115,64 +101,90 @@ msgstr "Dhaya' an t'iplab"
 msgid "Copy image"
 msgstr "K'o'tbiy an t'iplab"
 
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Tsipti'méjdha'"
 
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Puwedha'"
 
-#: viewtoolbar.py:52
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr ""
+
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Putat walek"
 
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Tejwa'méjdha' an jolát"
 
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Tsina' an jolát"
 
-#: webactivity.py:569
+#: webactivity.py:567
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Exom ti pa'il"
 msgstr[1] "Exomchik ti pa'il"
 
-#: webactivity.py:572
+#: webactivity.py:570
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtaláb"
 msgstr[1] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtalabchik"
 
-#: webactivity.py:577
+#: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Áynanchij an pa'bomtaláb"
 msgstr[1] "Áynanchij an pa'bomtalabchik"
 
-#: webactivity.py:582
+#: webactivity.py:580
 msgid "Stop"
 msgstr "Kuba'"
 
 # Ts'i'kindhom walxeklek da la idea de que es una página que hace iniciar. Para mí es ideal para la palabra Home Page del inglés. (Zurik)
-#: webtoolbar.py:247
+#: webtoolbar.py:250
 msgid "Home page"
 msgstr "Ts'i'kindhom walxeklek"
 
-#: webtoolbar.py:267
+#: webtoolbar.py:270
 msgid "Back"
 msgstr "Wichiy"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:284
 msgid "Forward"
 msgstr "Ne'etsnanchij"
 
-#: webtoolbar.py:281
+#: webtoolbar.py:298
 msgid "Bookmark"
 msgstr "Pulik tejwa'medhom"
+
+#, python-format
+#, python-format,
+#~ msgid "Loading %s..."
+#~ msgstr "K'adhbom %s..."
+
+#, python-format
+#, python-format,
+#~ msgid ""
+#~ "Downloading %s from \n"
+#~ "%s."
+#~ msgstr ""
+#~ "Pa'bál %s ma ti \n"
+#~ "%s."
 
 #~ msgid "Edit"
 #~ msgstr "Jalk'uy"

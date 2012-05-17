@@ -1,40 +1,34 @@
-# Irma <sankaypillo@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 00:33-0500\n"
-"PO-Revision-Date: 2011-11-19 10:54-0500\n"
-"Last-Translator: Irma <sankaypillo@gmail.com>\n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"PO-Revision-Date: 2012-05-16 00:49+0200\n"
+"Last-Translator: Irma  <sankaypillo@gmail.com>\n"
 "Language-Team: Voluntarios Quechua Sugar Camp\n"
 "Language: quz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Virtaal 0.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #  "Navegar"
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Machkay"
+msgstr "Wayp'uy"
 
-#: browser.py:138
-#, python-format
-msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr ""
-
-#: browser.py:337
-msgid "Loading..."
-msgstr ""
-
-#: browser.py:339
-#, python-format
-msgid "Loading %s..."
-msgstr ""
-
-#: browser.py:367 webactivity.py:415 webtoolbar.py:317
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
-msgstr ""
+msgstr "Mana sutinchayniyuq"
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
+msgstr "Llamk'achkanñam..."
 
 #  "Descarga iniciada"
 #: downloadmanager.py:102
@@ -44,7 +38,7 @@ msgstr "Uyarachiyqa qallarirun"
 #: downloadmanager.py:103 downloadmanager.py:114
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #  "Descarga terminada"
 #: downloadmanager.py:112
@@ -62,21 +56,17 @@ msgid "Ok"
 msgstr "Ok"
 
 #  "De: %s"
-#: downloadmanager.py:128
+#: downloadmanager.py:128 pdfviewer.py:408
 #, python-format
 msgid "From: %s"
 msgstr "Pimanta: %s"
 
-#  "Bajando %s desde \n"
-#  "%s."
-#: downloadmanager.py:202
+#: downloadmanager.py:203
 #, python-format
 msgid ""
-"Downloading %s from \n"
-"%s."
-msgstr ""
-"Urayachichkan %s kaymanta \n"
-"%s."
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr "Urayachichkan %s kaymanta %s."
 
 #  "Anterior"
 #: edittoolbar.py:65
@@ -89,7 +79,7 @@ msgid "Next"
 msgstr "Hamuq"
 
 #  "Eliminar"
-#: linkbutton.py:103
+#: linkbutton.py:108
 msgid "Remove"
 msgstr "Chinkachiy"
 
@@ -100,7 +90,7 @@ msgstr "Waskhanata qatiy"
 
 #: palettes.py:145
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Musuq tab nisqapim Waskhanataqa qatiy"
 
 #  "Mantener el enlace"
 #: palettes.py:151
@@ -123,85 +113,81 @@ msgid "Copy image"
 msgstr "Wankita kikinchay"
 
 #  "Reducir"
-#: viewtoolbar.py:35
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Huch'uyachiy"
 
 #  "Ampliar"
-#: viewtoolbar.py:41
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Hatunyachiy"
 
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr "Ñawpaq raphiÑawpa raphi"
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr "Hamuq raphi"
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr "P'anqata PDF hinatam waqaychay"
+
 #  "Pantalla completa"
-#: viewtoolbar.py:52
+#: viewtoolbar.py:56
 msgid "Fullscreen"
 msgstr "Hunt'asqa pantalla"
 
 #  "Mostrar Bandeja"
-#: viewtoolbar.py:90
+#: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr "Kaskinata Rikuchiy"
+msgstr "Chaskinata Rikuchiy"
 
 #  "Esconder Bandeja"
-#: viewtoolbar.py:94
+#: viewtoolbar.py:117
 msgid "Hide Tray"
 msgstr "Chaskinata pakay"
 
-#: webactivity.py:569
+#: webactivity.py:567
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Urayachkanñam"
+msgstr[1] "Urayachkankuñam"
 
-#: webactivity.py:572
+#: webactivity.py:570
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Urayachkanñam"
+msgstr[1] "Urayachkankuñam"
 
-#: webactivity.py:577
+#: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Urayachkanñam"
+msgstr[1] "Urayachkankuñam"
 
 #  "Parar"
-#: webactivity.py:582
+#: webactivity.py:580
 msgid "Stop"
 msgstr "Sayachiy"
 
 #  "Página inicial"
-#: webtoolbar.py:247
+#: webtoolbar.py:250
 msgid "Home page"
 msgstr "Qallarina"
 
 #  "Volver"
-#: webtoolbar.py:267
+#: webtoolbar.py:270
 msgid "Back"
 msgstr "Kutiy"
 
 #  "Avanzar"
-#: webtoolbar.py:274
+#: webtoolbar.py:284
 msgid "Forward"
 msgstr "Ñawpay"
 
 #  "Marcador"
-#: webtoolbar.py:281
+#: webtoolbar.py:298
 msgid "Bookmark"
 msgstr "T'upsichiq"
-
-#  "Editar"
-#~ msgid "Edit"
-#~ msgstr "Allinchay"
-
-#  "Ver"
-#~ msgid "View"
-#~ msgstr "Qhaway"
-
-#  "Añadir lengueta"
-#~ msgid "Add a tab"
-#~ msgstr "Tab nisqata yapay"
-
-#  "Recargar"
-#~ msgid "Reload"
-#~ msgstr "Kunanyachiy"

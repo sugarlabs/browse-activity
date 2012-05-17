@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-23 00:34-0400\n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
 "PO-Revision-Date: 2012-01-12 08:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,22 +29,12 @@ msgstr ""
 msgid "Browse"
 msgstr "ব্রাউজ করো"
 
-#: browser.py:139
-#, python-format
-msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-msgstr ""
-
-#: browser.py:383
-msgid "Loading..."
-msgstr ""
-
-#: browser.py:385
-#, python-format
-msgid "Loading %s..."
-msgstr ""
-
-#: browser.py:413 webactivity.py:415 webtoolbar.py:332
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
+msgstr ""
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
 msgstr ""
 
 #: downloadmanager.py:102
@@ -68,7 +58,7 @@ msgstr "জার্নাল এ দেখাও"
 msgid "Ok"
 msgstr "ঠিক আছে"
 
-#: downloadmanager.py:128 pdfviewer.py:409
+#: downloadmanager.py:128 pdfviewer.py:408
 #, python-format
 msgid "From: %s"
 msgstr "হইতে: %s"
@@ -88,7 +78,7 @@ msgstr "পুর্ববর্তী"
 msgid "Next"
 msgstr "পরবর্তী"
 
-#: linkbutton.py:103
+#: linkbutton.py:108
 msgid "Remove"
 msgstr "মুছে ফেলো"
 
@@ -148,42 +138,42 @@ msgstr "ট্রে প্রদর্শন করো"
 msgid "Hide Tray"
 msgstr "ট্রে আড়াল করো"
 
-#: webactivity.py:569
+#: webactivity.py:567
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "ডাউনলোড চলছে"
 
-#: webactivity.py:572
+#: webactivity.py:570
 #, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "এখন থামালে তোমার ডাউনলোড বাতিল হয়ে যাবে"
 msgstr[1] ""
 
-#: webactivity.py:577
+#: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:582
+#: webactivity.py:580
 msgid "Stop"
 msgstr "থামাও"
 
-#: webtoolbar.py:248
+#: webtoolbar.py:250
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:268
+#: webtoolbar.py:270
 msgid "Back"
 msgstr "পেছনে"
 
-#: webtoolbar.py:282
+#: webtoolbar.py:284
 msgid "Forward"
 msgstr "সামনে"
 
-#: webtoolbar.py:296
+#: webtoolbar.py:298
 msgid "Bookmark"
 msgstr "বুকমার্ক"
 
