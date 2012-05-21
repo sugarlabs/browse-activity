@@ -358,7 +358,7 @@ class PrimaryToolbar(ToolbarBase):
             self.entry._set_title(_('Loading...'))
         elif status == WebKit.LoadStatus.FINISHED:
             if widget.props.title == None:
-                self.entry._set_title(_('Loading...'))
+                self.entry._set_title(_('Untitled'))
         self._set_status(widget.get_load_status())
 
     def __progress_changed_cb(self, widget, param):
