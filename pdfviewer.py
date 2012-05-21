@@ -289,8 +289,6 @@ class PDFTabPage(Gtk.HBox):
         # The title may be given from the Journal:
         if title is not None:
             self._browser.props.title = title
-        else:
-            self._browser.props.title = os.path.basename(requested_uri)
 
         self._browser.props.uri = requested_uri
         self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
@@ -335,6 +333,8 @@ class PDFTabPage(Gtk.HBox):
         pdf_title = self._evince_viewer.get_pdf_title()
         if pdf_title is not None:
             self._browser.props.title = pdf_title
+        else:
+            self._browser.props.title = os.path.basename(self._requested_uri)
 
     def _get_path_from_journal(self, journal_uri):
         """Get the system tree URI of the file for the Journal object."""
