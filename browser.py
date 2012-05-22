@@ -361,7 +361,8 @@ class TabLabel(Gtk.HBox):
         browser.connect('notify::title', self.__title_changed_cb)
         browser.connect('notify::load-status', self.__load_status_changed_cb)
 
-        self._label = Gtk.Label(label=_('Untitled'))
+        self._title = _('Untitled')
+        self._label = Gtk.Label(label=self._title)
         self._label.set_ellipsize(Pango.EllipsizeMode.END)
         self._label.set_alignment(0, 0.5)
         self.pack_start(self._label, True, True, 0)
@@ -397,15 +398,19 @@ class TabLabel(Gtk.HBox):
     def __title_changed_cb(self, widget, param):
         if widget.props.title:
             self._label.set_text(widget.props.title)
+            self._title = widget.props.title
 
     def __load_status_changed_cb(self, widget, param):
         status = widget.get_load_status()
-        if WebKit.LoadStatus.PROVISIONAL <= status \
+        if status == WebKit.LoadStatus.FAILED:
+            self._label.set_text(self._title)
+        elif WebKit.LoadStatus.PROVISIONAL <= status \
                 < WebKit.LoadStatus.FINISHED:
             self._label.set_text(_('Loading...'))
         elif status == WebKit.LoadStatus.FINISHED:
             if widget.props.title == None:
                 self._label.set_text(_('Untitled'))
+                self._title = _('Untitled')
 
 
 class Browser(WebKit.WebView):

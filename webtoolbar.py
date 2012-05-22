@@ -241,6 +241,7 @@ class PrimaryToolbar(ToolbarBase):
         self._tabbed_view = tabbed_view
 
         self._loading = False
+        self._title = _('Untitled')
 
         toolbar = self.toolbar
         activity_button = ActivityToolbarButton(self._activity)
@@ -353,12 +354,15 @@ class PrimaryToolbar(ToolbarBase):
 
     def __loading_changed_cb(self, widget, param):
         status = widget.get_load_status()
-        if WebKit.LoadStatus.PROVISIONAL <= status \
+        if status == WebKit.LoadStatus.FAILED:
+            self.entry._set_title(self._title)
+        elif WebKit.LoadStatus.PROVISIONAL <= status \
                 < WebKit.LoadStatus.FINISHED:
             self.entry._set_title(_('Loading...'))
         elif status == WebKit.LoadStatus.FINISHED:
             if widget.props.title == None:
                 self.entry._set_title(_('Untitled'))
+                self._title = _('Untitled')
         self._set_status(widget.get_load_status())
 
     def __progress_changed_cb(self, widget, param):
@@ -381,6 +385,7 @@ class PrimaryToolbar(ToolbarBase):
 
     def _set_title(self, title):
         self.entry.props.title = title
+        self._title = title
 
     def _show_stop_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
