@@ -329,7 +329,12 @@ class PDFTabPage(Gtk.HBox):
         self._evince_viewer.show()
         self.pack_start(self._evince_viewer, True, True, 0)
 
-        # if the PDF has a title, show it instead of the URI:
+        # If the PDF has a title, set it as the browse page title,
+        # otherwise use the last part of the URI.  Only when the title
+        # was not set already from the Journal.
+        if from_journal:
+            self._browser.props.title = self._browser.props.title
+            return
         pdf_title = self._evince_viewer.get_pdf_title()
         if pdf_title is not None:
             self._browser.props.title = pdf_title
