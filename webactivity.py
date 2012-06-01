@@ -185,9 +185,14 @@ class WebActivity(activity.Activity):
 
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
 
-        self._edit_toolbar_button = ToolbarButton(
-                page=self._edit_toolbar,
-                icon_name='toolbar-edit')
+        # self._edit_toolbar_button = ToolbarButton(
+        #         page=self._edit_toolbar,
+        #         icon_name='toolbar-edit')
+
+        self._edit_toolbar_button = ToolbarButton()
+        self._edit_toolbar_button.set_page(self._edit_toolbar)
+        self._edit_toolbar_button.props.icon_name = 'toolbar-edit'
+
         self._primary_toolbar.toolbar.insert(
                 self._edit_toolbar_button, 1)
 
