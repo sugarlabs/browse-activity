@@ -134,7 +134,6 @@ from viewtoolbar import ViewToolbar
 import downloadmanager
 
 # TODO: make the registration clearer SL #3087
-# import filepicker  # pylint: disable=W0611
 
 from model import Model
 from sugar3.presence.tubeconn import TubeConnection

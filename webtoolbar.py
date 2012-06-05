@@ -30,8 +30,7 @@ from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
-# FIXME
-# import filepicker
+import filepicker
 import places
 from sugarmenuitem import SugarMenuItem
 from browser import Browser
@@ -429,8 +428,7 @@ class PrimaryToolbar(ToolbarBase):
     def __uri_changed_cb(self, widget, param):
         self._set_address(widget.get_uri())
         self._update_navigation_buttons()
-        # FIXME
-        # filepicker.cleanup_temp_files()
+        filepicker.cleanup_temp_files()
 
     def _stop_and_reload_cb(self, entry, icon_pos, button):
         if self._loading:

@@ -34,6 +34,7 @@ from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
 from widgets import BrowserNotebook
+from filepicker import FilePicker
 import globalhistory
 import downloadmanager
 from pdfviewer import PDFTabPage
@@ -461,6 +462,12 @@ class Browser(WebKit.WebView):
         self.connect('new-window-policy-decision-requested',
                      self.__new_window_policy_cb)
 
+        try:
+            self.connect('run-file-chooser', self.__run_file_chooser)
+        except TypeError:
+            # Only present in WebKit1 > 1.9.3 and WebKit2
+            pass
+
     def get_history(self):
         """Return the browsing history of this browser."""
         back_forward_list = self.get_back_forward_list()
@@ -533,6 +540,18 @@ class Browser(WebKit.WebView):
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)
+
+    def __run_file_chooser(self, browser, request):
+        picker = FilePicker(self)
+        chosen = picker.run()
+        picker.destroy()
+
+        if chosen:
+            request.select_files([chosen])
+        elif hasattr(request, 'cancel'):
+            # WebKit2 only
+            request.cancel()
+        return True
 
     def __load_status_changed_cb(self, widget, param):
         """Add the url to the global history or update it."""
