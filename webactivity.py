@@ -21,9 +21,6 @@ from gettext import gettext as _
 from gettext import ngettext
 import os
 
-from gi.repository import GObject
-GObject.threads_init()
-
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
