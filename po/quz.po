@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-05-16 00:49+0200\n"
-"Last-Translator: Irma  <sankaypillo@gmail.com>\n"
+"PO-Revision-Date: 2012-06-16 05:50+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios Quechua Sugar Camp\n"
 "Language: quz\n"
 "MIME-Version: 1.0\n"
@@ -62,11 +62,13 @@ msgid "From: %s"
 msgstr "Pimanta: %s"
 
 #: downloadmanager.py:203
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
-msgstr "Urayachichkan %s kaymanta %s."
+msgstr ""
+"Urayachichkan %(filename)s kaymanta\n"
+"%(source)s."
 
 #  "Anterior"
 #: edittoolbar.py:65
@@ -90,7 +92,7 @@ msgstr "Waskhanata qatiy"
 
 #: palettes.py:145
 msgid "Follow link in new tab"
-msgstr "Musuq tab nisqapim Waskhanataqa qatiy"
+msgstr "Musuq tab nisqapim waskhanataqa qatiy"
 
 #  "Mantener el enlace"
 #: palettes.py:151
@@ -123,8 +125,9 @@ msgid "Zoom in"
 msgstr "Hatunyachiy"
 
 #: pdfviewer.py:104
+#, fuzzy
 msgid "Previous page"
-msgstr "Ñawpaq raphiÑawpa raphi"
+msgstr "Ñawpaq raphi"
 
 #: pdfviewer.py:111
 msgid "Next page"
