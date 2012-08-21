@@ -1,0 +1,172 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"PO-Revision-Date: 2012-06-26 20:02+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pbs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Browse"
+msgstr "Manjui' manad-eú"
+
+#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+msgid "Untitled"
+msgstr "Nip lumei ngunjiu'"
+
+#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+msgid "Loading..."
+msgstr "Maveje'p..."
+
+#: downloadmanager.py:102
+msgid "Download started"
+msgstr "Mapup maveje'p"
+
+#: downloadmanager.py:103 downloadmanager.py:114
+#, python-format
+#, python-format,
+msgid "%s"
+msgstr "%s"
+
+#: downloadmanager.py:112
+msgid "Download completed"
+msgstr "Maveje'p nivieiñ'"
+
+#: downloadmanager.py:117
+msgid "Show in Journal"
+msgstr "Na'u'up ne xiñi'iu xiñi'iu"
+
+#: downloadmanager.py:120
+msgid "Ok"
+msgstr "Matajaich'"
+
+#: downloadmanager.py:128 pdfviewer.py:408
+#, python-format
+msgid "From: %s"
+msgstr "Ne: %s"
+
+#: downloadmanager.py:203
+#, python-format
+msgid ""
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr ""
+"Maleje'p re maveje'p %(filename)s ne \n"
+"%(source)s."
+
+#: edittoolbar.py:65
+msgid "Previous"
+msgstr "Sevaa"
+
+#: edittoolbar.py:72
+msgid "Next"
+msgstr "Likiu'uch'"
+
+#: linkbutton.py:108
+msgid "Remove"
+msgstr "Malejei'"
+
+#: palettes.py:140
+msgid "Follow link"
+msgstr "Maku'uts ne se lutsjau"
+
+#: palettes.py:145
+msgid "Follow link in new tab"
+msgstr "Maku'uts ne se lutsjau nda vinjiu chiñyia'p"
+
+#: palettes.py:151
+msgid "Keep link"
+msgstr "Matung manu ne se lutsjau"
+
+#: palettes.py:159
+msgid "Copy link"
+msgstr "Make'eik re se lutsjau"
+
+#: palettes.py:215
+msgid "Keep image"
+msgstr "Matung makjat ne snakeje'"
+
+#: palettes.py:223
+msgid "Copy image"
+msgstr "Make'eik ne snakeje'"
+
+#: pdfviewer.py:87 viewtoolbar.py:39
+msgid "Zoom out"
+msgstr "Mats'ei'"
+
+#: pdfviewer.py:93 viewtoolbar.py:45
+msgid "Zoom in"
+msgstr "Manandaí"
+
+#: pdfviewer.py:104
+msgid "Previous page"
+msgstr "Sevaa nixií"
+
+#: pdfviewer.py:111
+msgid "Next page"
+msgstr "Ne nixií likiu'uch'"
+
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
+msgstr "Makjaat PDF ne se xiñi'iu matsjau"
+
+#: viewtoolbar.py:56
+msgid "Fullscreen"
+msgstr "Kutau nak'ujuly' mi'ia lipiá"
+
+#: viewtoolbar.py:113
+msgid "Show Tray"
+msgstr "Ma'u'up ndakal' rixií ngk'uix"
+
+#: viewtoolbar.py:117
+msgid "Hide Tray"
+msgstr "Ma'aung ndakal' ngk'uix"
+
+#: webactivity.py:567
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Nip livieiñ mapup re se maveje'p"
+msgstr[1] "Nip livieiñ mapup mi'ia re se maveje'p"
+
+#: webactivity.py:570
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Mama'ai chu'maní mapejel' mi'ia re se manaja mapup"
+msgstr[1] "Mama'ai chu'maní mi'ia re se manaja k'ua lupup"
+
+#: webactivity.py:575
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Lavaiñ vipiup re se maveje'p"
+msgstr[1] "Lavaiñ vipiup mi'ia re se maveje'p"
+
+#: webactivity.py:580
+msgid "Stop"
+msgstr "Ndama'ai"
+
+#: webtoolbar.py:250
+msgid "Home page"
+msgstr "Ne kutap nixií"
+
+#: webtoolbar.py:270
+msgid "Back"
+msgstr "kue'e"
+
+#: webtoolbar.py:284
+msgid "Forward"
+msgstr "Mad-uá"
+
+#: webtoolbar.py:298
+msgid "Bookmark"
+msgstr "Me'ets sad-ia"
