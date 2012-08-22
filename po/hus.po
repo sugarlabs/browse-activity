@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-05-04 07:46+0200\n"
+"PO-Revision-Date: 2012-07-08 09:07+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hus\n"
@@ -64,6 +64,8 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Pa'bál %(filename)s ti \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -99,7 +101,7 @@ msgstr "Dhaya' an t'iplab"
 
 #: palettes.py:223
 msgid "Copy image"
-msgstr "K'o'tbiy an t'iplab"
+msgstr "K'ot'biy an t'iplab"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -111,15 +113,15 @@ msgstr "Puwedha'"
 
 #: pdfviewer.py:104
 msgid "Previous page"
-msgstr ""
+msgstr "an ok'xidh walxeklek"
 
 #: pdfviewer.py:111
 msgid "Next page"
-msgstr ""
+msgstr "a xi júnakej walxeklek"
 
 #: pdfviewer.py:123
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Dhaya' an PDF ti al an chudhél dhuchlab"
 
 #: viewtoolbar.py:56
 msgid "Fullscreen"
@@ -142,23 +144,23 @@ msgstr[1] "Exomchik ti pa'il"
 #: webactivity.py:570
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtaláb"
-msgstr[1] "Max ka kuba' xuwe'k'ij ne kin t'apts'iy an pa'bomtalabchik"
+msgstr[0] "Max ka kuba' xowék'ij ne'ets ka t'apts'inchij an pa'bomtaláb"
+msgstr[1] "Max ka kuba' xowék'ij ne'ets ka t'apts'inchijchik an pa'bomtalab"
 
 #: webactivity.py:575
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Áynanchij an pa'bomtaláb"
-msgstr[1] "Áynanchij an pa'bomtalabchik"
+msgstr[1] "Áynanchijchik an pa'bomtaláb"
 
 #: webactivity.py:580
 msgid "Stop"
 msgstr "Kuba'"
 
-# Ts'i'kindhom walxeklek da la idea de que es una página que hace iniciar. Para mí es ideal para la palabra Home Page del inglés. (Zurik)
+# Ts'i'kindhom walxeklek da la idea de que es una página que hace iniciar. Para mí es ideal para la palabra Home Page del inglés. (Zurik)/ in tujtal i walxeklek.(bek)
 #: webtoolbar.py:250
 msgid "Home page"
-msgstr "Ts'i'kindhom walxeklek"
+msgstr "inTs'i'kintal i walxeklek"
 
 #: webtoolbar.py:270
 msgid "Back"
@@ -170,7 +172,7 @@ msgstr "Ne'etsnanchij"
 
 #: webtoolbar.py:298
 msgid "Bookmark"
-msgstr "Pulik tejwa'medhom"
+msgstr "Ólnax walxeklek"
 
 #, python-format
 #, python-format,
