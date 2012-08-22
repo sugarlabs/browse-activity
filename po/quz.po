@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-06-16 05:50+0200\n"
+"PO-Revision-Date: 2012-07-16 01:29+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios Quechua Sugar Camp\n"
 "Language: quz\n"
@@ -53,7 +53,7 @@ msgstr "P'anqapi Rikuchiy"
 #  "Ok"
 #: downloadmanager.py:120
 msgid "Ok"
-msgstr "Ok"
+msgstr "Chaskiy"
 
 #  "De: %s"
 #: downloadmanager.py:128 pdfviewer.py:408
@@ -62,6 +62,7 @@ msgid "From: %s"
 msgstr "Pimanta: %s"
 
 #: downloadmanager.py:203
+#, python-format
 #, python-format, fuzzy
 msgid ""
 "Downloading %(filename)s from \n"
