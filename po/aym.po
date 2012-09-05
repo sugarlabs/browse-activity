@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2011-11-23 09:36+0200\n"
+"PO-Revision-Date: 2012-09-06 00:31+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: aym\n"
@@ -24,11 +24,11 @@ msgstr "Internet taypita yatiña"
 
 #: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
 msgid "Untitled"
-msgstr ""
+msgstr "Jani p'iqinchiri sutini"
 
 #: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
 msgid "Loading..."
-msgstr ""
+msgstr "Jist'araskiwa..."
 
 #  "Descarga iniciada"
 #: downloadmanager.py:102
@@ -38,7 +38,7 @@ msgstr "Talliqaña qalltata"
 #: downloadmanager.py:103 downloadmanager.py:114
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s chimpu"
 
 #  "Descarga terminada"
 #: downloadmanager.py:112
@@ -67,6 +67,8 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Apaqaskiwa %(filename)s \n"
+" %(source)s wakichatana."
 
 #  "Anterior"
 #: edittoolbar.py:65
@@ -90,7 +92,7 @@ msgstr "Mayachaña arkaña"
 
 #: palettes.py:145
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Machaqa wakichata luraña laphi chimpuru arkaña"
 
 #  "Mantener el enlace"
 #: palettes.py:151
@@ -124,15 +126,15 @@ msgstr "Uñstayaña"
 
 #: pdfviewer.py:104
 msgid "Previous page"
-msgstr ""
+msgstr "Nayrïri laphi"
 
 #: pdfviewer.py:111
 msgid "Next page"
-msgstr ""
+msgstr "Arkiri laphi"
 
 #: pdfviewer.py:123
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Sapüru luräwiru PDF wakichata imaña"
 
 #  "Pantalla completa"
 #: viewtoolbar.py:56
