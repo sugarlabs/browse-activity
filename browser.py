@@ -188,10 +188,28 @@ class TabbedView(BrowserNotebook):
         self.set_current_page(next_index)
         tab_page.setup(url)
 
+    def __load_status_changed_cb(self, widget, param):
+        """Do not change the cursor if the load-status changed is not
+        on the current browser.
+
+        """
+        if self.props.current_browser != widget:
+            return
+
+        status = widget.get_load_status()
+        if status in (WebKit.LoadStatus.PROVISIONAL,
+                      WebKit.LoadStatus.COMMITTED,
+                      WebKit.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+        elif status in (WebKit.LoadStatus.FAILED,
+                        WebKit.LoadStatus.FINISHED):
+            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+
     def add_tab(self, next_to_current=False):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+        browser.connect('notify::load-status', self.__load_status_changed_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
@@ -318,6 +336,8 @@ class TabbedView(BrowserNotebook):
                 browser = Browser()
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+                browser.connect('notify::load-status',
+                                self.__load_status_changed_cb)
                 self._append_tab(browser)
                 browser.set_history(tab_history)
 
@@ -404,6 +424,7 @@ class TabLabel(Gtk.HBox):
 
     def __load_status_changed_cb(self, widget, param):
         status = widget.get_load_status()
+
         if status == WebKit.LoadStatus.FAILED:
             self._label.set_text(self._title)
         elif WebKit.LoadStatus.PROVISIONAL <= status \

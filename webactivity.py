@@ -169,6 +169,7 @@ class WebActivity(activity.Activity):
         self._force_close = False
         self._tabbed_view = TabbedView()
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
+        self._tabbed_view.connect('switch-page', self.__switch_page_cb)
 
         self._tray = HTray()
         self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
@@ -625,6 +626,18 @@ class WebActivity(activity.Activity):
             self._force_close = True
             downloadmanager.remove_all_downloads()
             self.close()
+
+    def __switch_page_cb(self, tabbed_view, page, page_num):
+        browser = page._browser
+        status = browser.get_load_status()
+
+        if status in (WebKit.LoadStatus.COMMITTED,
+                      WebKit.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+        elif status in (WebKit.LoadStatus.PROVISIONAL,
+                        WebKit.LoadStatus.FAILED,
+                        WebKit.LoadStatus.FINISHED):
+            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser
