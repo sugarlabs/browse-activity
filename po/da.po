@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-03-23 12:52+0200\n"
+"POT-Creation-Date: 2012-09-11 00:32-0400\n"
+"PO-Revision-Date: 2012-09-17 10:54+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -29,11 +29,12 @@ msgstr ""
 msgid "Browse"
 msgstr "Browse"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#: browser.py:366 browser.py:414 browser.py:415 webactivity.py:395
+#: webtoolbar.py:244 webtoolbar.py:336 webtoolbar.py:364 webtoolbar.py:365
 msgid "Untitled"
 msgstr "Ingen titel"
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:411 webtoolbar.py:361
 msgid "Loading..."
 msgstr "Indlæser..."
 
@@ -58,7 +59,7 @@ msgstr "Vis i logbog"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:413
 #, python-format
 msgid "From: %s"
 msgstr "Fra: %s"
@@ -109,11 +110,11 @@ msgstr "Bevar billede"
 msgid "Copy image"
 msgstr "Kopiér billede"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:87 viewtoolbar.py:40
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:93 viewtoolbar.py:46
 msgid "Zoom in"
 msgstr "Forstør"
 
@@ -129,53 +130,57 @@ msgstr "Næste side"
 msgid "Save PDF to Journal"
 msgstr "Gem PDF til journal"
 
-#: viewtoolbar.py:56
+#: viewtoolbar.py:52
+msgid "Actual size"
+msgstr "Faktisk størrelse"
+
+#: viewtoolbar.py:63
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:124
 msgid "Show Tray"
 msgstr "Vis skuffe"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:128
 msgid "Hide Tray"
 msgstr "Skjul skuffe"
 
-#: webactivity.py:567
+#: webactivity.py:568
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Overførsel i gang"
 msgstr[1] "Overførsler i gang"
 
-#: webactivity.py:570
+#: webactivity.py:571
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Stopper du nu vil du slette overførslen"
 msgstr[1] "Stopper du nu vil du slette overførslerne"
 
-#: webactivity.py:575
+#: webactivity.py:576
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Fortsæt overførsel"
 msgstr[1] "Fortsæt overførsler"
 
-#: webactivity.py:580
+#: webactivity.py:581
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:250
+#: webtoolbar.py:251
 msgid "Home page"
 msgstr "Hjemmeside"
 
-#: webtoolbar.py:270
+#: webtoolbar.py:271
 msgid "Back"
 msgstr "Tilbage"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:285
 msgid "Forward"
 msgstr "Frem"
 
-#: webtoolbar.py:298
+#: webtoolbar.py:299
 msgid "Bookmark"
 msgstr "Bogmærke"
 
