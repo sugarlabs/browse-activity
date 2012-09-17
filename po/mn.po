@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2011-10-11 18:44+0200\n"
+"PO-Revision-Date: 2012-09-18 01:16+0200\n"
 "Last-Translator: Cris Anderson <anderson861@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -151,16 +151,16 @@ msgid "Hide Tray"
 msgstr "Туслах мөрийг нуух"
 
 #: webactivity.py:567
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Татаж байна"
+msgstr[1] "Татаж байна"
 
 #: webactivity.py:570
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Программ зогсвол таталт зогсоно"
+msgstr[1] "Программ зогсвол таталт зогсоно"
 
 #: webactivity.py:575
 msgid "Continue download"
