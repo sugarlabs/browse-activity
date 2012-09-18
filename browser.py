@@ -58,6 +58,9 @@ _NON_SEARCH_REGEX = re.compile('''
     ^file:.*$)
     ''', re.VERBOSE)
 
+DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
+                                  'data/error_page.tmpl')
+
 
 class CommandListener(object):
     def __init__(self, window):
@@ -483,6 +486,7 @@ class Browser(WebKit.WebView):
                      self.__mime_type_policy_cb)
         self.connect('new-window-policy-decision-requested',
                      self.__new_window_policy_cb)
+        self.connect('load-error', self.__load_error_cb)
 
         try:
             self.connect('run-file-chooser', self.__run_file_chooser)
@@ -622,6 +626,24 @@ class Browser(WebKit.WebView):
 
     def __download_requested_cb(self, browser, download):
         downloadmanager.add_download(download, browser)
+        return True
+
+    def __load_error_cb(self, web_view, web_frame, uri, web_error):
+        """Show Sugar's error page"""
+
+        data = {
+            'page_title': _('This web page could not be loaded'),
+            'title': _('This web page could not be loaded'),
+            'message': _('"%s" could not be loaded. Please check for '
+                         'typing errors, and make sure you are connected '
+                         'to the internet.') % uri,
+            'btn_value': _('Try again'),
+            'url': uri,
+            }
+
+        html = open(DEFAULT_ERROR_PAGE, 'r').read() % data
+        web_frame.load_alternate_string(html, '', uri)
+
         return True
 
 
