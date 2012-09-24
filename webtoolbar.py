@@ -47,7 +47,6 @@ class WebEntry(iconentry.IconEntry):
         GObject.GObject.__init__(self)
 
         self._address = None
-        self._title = None
         self._search_view = self._search_create_view()
 
         self._search_window = Gtk.Window(type=Gtk.WindowType.POPUP)
@@ -57,8 +56,6 @@ class WebEntry(iconentry.IconEntry):
         self.connect('focus-in-event', self.__focus_in_event_cb)
         self.connect('populate-popup', self.__populate_popup_cb)
         self.connect('key-press-event', self.__key_press_event_cb)
-        self.connect('enter-notify-event', self.__enter_notify_event_cb)
-        self.connect('leave-notify-event', self.__leave_notify_event_cb)
         self._focus_out_hid = self.connect(
                     'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
@@ -79,17 +76,10 @@ class WebEntry(iconentry.IconEntry):
 
     def _set_address(self, address):
         self._address = address
-        if address is not None and self.props.has_focus:
+        if address is not None:
             self._set_text(address)
 
     address = GObject.property(type=str, setter=_set_address)
-
-    def _set_title(self, title):
-        self._title = title
-        if title is not None and not self.props.has_focus:
-            self._set_text(title)
-
-    title = GObject.property(type=str, setter=_set_title)
 
     def _search_create_view(self):
         view = Gtk.TreeView()
@@ -146,20 +136,10 @@ class WebEntry(iconentry.IconEntry):
         self._search_window.hide()
 
     def __focus_in_event_cb(self, entry, event):
-        self._set_text(self._address)
         self._search_popdown()
 
     def __focus_out_event_cb(self, entry, event):
-        self._set_text(self._title)
         self._search_popdown()
-
-    def __enter_notify_event_cb(self, entry, event):
-        if not entry.props.has_focus:
-            self._set_text(self._address)
-
-    def __leave_notify_event_cb(self, entry, event):
-        if not entry.props.has_focus:
-            self._set_text(self._title)
 
     def __view_button_press_event_cb(self, view, event):
         model = view.get_model()
@@ -241,7 +221,6 @@ class PrimaryToolbar(ToolbarBase):
         self._tabbed_view = tabbed_view
 
         self._loading = False
-        self._title = _('Untitled')
 
         toolbar = self.toolbar
         activity_button = ActivityToolbarButton(self._activity)
@@ -310,7 +289,6 @@ class PrimaryToolbar(ToolbarBase):
         self._loading_changed_hid = None
         self._progress_changed_hid = None
         self._session_history_changed_hid = None
-        self._title_changed_hid = None
         self._uri_changed_hid = None
 
         if tabbed_view.get_n_pages():
@@ -324,25 +302,19 @@ class PrimaryToolbar(ToolbarBase):
 
     def _connect_to_browser(self, browser):
         if self._browser is not None:
-            self._browser.disconnect(self._title_changed_hid)
             self._browser.disconnect(self._uri_changed_hid)
             self._browser.disconnect(self._progress_changed_hid)
             self._browser.disconnect(self._loading_changed_hid)
 
         self._browser = browser
-        if self._browser.props.title:
-            self._set_title(self._browser.props.title)
-        else:
-            self._set_title(_('Untitled'))
-        self._set_address(self._browser.props.uri)
+        address = self._browser.props.uri or self._browser.loading_uri
+        self._set_address(address)
         self._set_progress(self._browser.props.progress)
         self._set_status(self._browser.props.load_status)
 
         is_webkit_browser = isinstance(self._browser, Browser)
         self.entry.props.editable = is_webkit_browser
 
-        self._title_changed_hid = self._browser.connect(
-                'notify::title', self._title_changed_cb)
         self._uri_changed_hid = self._browser.connect(
                 'notify::uri', self.__uri_changed_cb)
         self._progress_changed_hid = self._browser.connect(
@@ -353,16 +325,6 @@ class PrimaryToolbar(ToolbarBase):
         self._update_navigation_buttons()
 
     def __loading_changed_cb(self, widget, param):
-        status = widget.get_load_status()
-        if status == WebKit.LoadStatus.FAILED:
-            self.entry._set_title(self._title)
-        elif WebKit.LoadStatus.PROVISIONAL <= status \
-                < WebKit.LoadStatus.FINISHED:
-            self.entry._set_title(_('Loading...'))
-        elif status == WebKit.LoadStatus.FINISHED:
-            if widget.props.title == None:
-                self.entry._set_title(_('Untitled'))
-                self._title = _('Untitled')
         self._set_status(widget.get_load_status())
 
     def __progress_changed_cb(self, widget, param):
@@ -382,10 +344,6 @@ class PrimaryToolbar(ToolbarBase):
             self.entry.props.address = ''
         else:
             self.entry.props.address = uri
-
-    def _set_title(self, title):
-        self.entry.props.title = title
-        self._title = title
 
     def _show_stop_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
@@ -412,6 +370,8 @@ class PrimaryToolbar(ToolbarBase):
         url = entry.props.text
         effective_url = self._tabbed_view.normalize_or_autosearch_url(url)
         self._browser.load_uri(effective_url)
+        self._browser.loading_uri = effective_url
+        self.entry.props.address = effective_url
         self._browser.grab_focus()
 
     def _go_home_cb(self, button):
@@ -422,9 +382,6 @@ class PrimaryToolbar(ToolbarBase):
 
     def _go_forward_cb(self, button):
         self._browser.go_forward()
-
-    def _title_changed_cb(self, widget, param):
-        self._set_title(widget.get_title())
 
     def __uri_changed_cb(self, widget, param):
         self._set_address(widget.get_uri())

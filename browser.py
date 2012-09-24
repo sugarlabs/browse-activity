@@ -477,6 +477,10 @@ class Browser(WebKit.WebView):
         # Scale text and graphics:
         self.set_full_content_zoom(True)
 
+        # This property is used to set the title immediatly the user
+        # presses Enter on the URL Entry
+        self.loading_uri = None
+
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
         self.connect('notify::load-status', self.__load_status_changed_cb)
