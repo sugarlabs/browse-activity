@@ -15,111 +15,128 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import logging
 import os
 import tempfile
-import urlparse
+import urllib2
+
 from gettext import gettext as _
 
 from gi.repository import Gtk
-from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import WebKit
 
 from sugar3.graphics.palette import Palette, Invoker
-from sugar3.graphics.menuitem import MenuItem
-from sugar3.graphics.icon import Icon
 from sugar3 import profile
-from sugar3.activity import activity
 
-import downloadmanager
-
-
-class MouseOutListener(GObject.GObject):
-    _com_interfaces_ = interfaces.nsIDOMEventListener
-
-    __gsignals__ = {
-        'mouse-out': (GObject.SignalFlags.RUN_FIRST,
-                      None,
-                      ([])),
-    }
-
-    def __init__(self, target):
-        GObject.GObject.__init__(self)
-        self.target = target
-
-    def handleEvent(self, event):
-        self.emit('mouse-out')
+from sugarmenuitem import SugarMenuItem
 
 
 class ContentInvoker(Invoker):
-    _com_interfaces_ = interfaces.nsIDOMEventListener
-
     def __init__(self, browser):
         Invoker.__init__(self)
         self._position_hint = self.AT_CURSOR
         self._browser = browser
-        self._mouseout_listener = None
-        self._popdown_handler_id = None
+        self._browser.connect('button-press-event', self.__button_press_cb)
+        self.attach(self._browser)
 
     def get_default_position(self):
         return self.AT_CURSOR
 
     def get_rect(self):
-        return ()
+        allocation = self._browser.get_allocation()
+        window = self._browser.get_window()
+        if window is not None:
+            res, x, y = window.get_origin()
+        else:
+            logging.warning(
+                "Trying to position palette with invoker that's not realized.")
+            x = 0
+            y = 0
+
+        x += allocation.x
+        y += allocation.y
+
+        width = allocation.width
+        height = allocation.height
+
+        rect = Gdk.Rectangle()
+        rect.x = x
+        rect.y = y
+        rect.width = width
+        rect.height = height
+        return rect
 
     def get_toplevel(self):
         return None
 
-    def handleEvent(self, event):
-        if event.button != 2:
-            return
-
-        target = event.target
-
-        if target.tagName.lower() == 'a':
-
-            if target.firstChild:
-                title = target.firstChild.nodeValue
-            else:
-                title = None
-
-            self.palette = LinkPalette(self._browser, title, target.href,
-                                       target.ownerDocument)
+    def __button_press_cb(self, browser, event):
+        logging.debug('===> event: %s', event.button)
+        if event.button != 3:
+            return False
+        hit_test = self._browser.get_hit_test_result(event)
+        if hit_test.props.context & WebKit.HitTestResultContext.LINK:
+            logging.debug('===> click LINK')
+            link_uri = hit_test.props.link_uri
+            if isinstance(hit_test.props.inner_node,
+                            WebKit.DOMHTMLImageElement):
+                title = hit_test.props.inner_node.get_title()
+            elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
+                title = hit_test.props.inner_node.get_text_content()
+            self.palette = LinkPalette(self._browser, title, link_uri, None)
             self.notify_right_click()
-        elif target.tagName.lower() == 'img':
-            if target.title:
-                title = target.title
-            elif target.title:
-                title = target.alt
-            elif target.name:
-                title = target.name
-            else:
-                title = os.path.basename(urlparse.urlparse(target.src).path)
-
-            self.palette = ImagePalette(title, target.src,
-                                        target.ownerDocument)
+        elif hit_test.props.context & WebKit.HitTestResultContext.IMAGE:
+            logging.debug('===> click IMAGE %s %s',
+                          hit_test.props.image_uri, hit_test.props.inner_node)
+            title = hit_test.props.inner_node.get_title()
+            self.palette = ImagePalette(self._browser, title,
+                                        hit_test.props.image_uri, '')
             self.notify_right_click()
-        else:
-            return
+        elif hit_test.props.context & WebKit.HitTestResultContext.SELECTION:
+            # TODO: find a way to get the selected text so we can use
+            # it as the title of the Palette.
+            # The function webkit_web_view_get_selected_text was removed
+            # https://bugs.webkit.org/show_bug.cgi?id=62512
+            title = None
 
-        if self._popdown_handler_id is not None:
-            self._popdown_handler_id = self.palette.connect( \
-                'popdown', self.__palette_popdown_cb)
+            # text = hit_test.props.inner_node.get_text_content()
+            # import epdb;epdb.set_trace()
+            # if len(text) > 20:
+            #     title = text[:20] + '...'
+            # else:
+            #     title = text
+            self.palette = SelectionPalette(self._browser, title, None, None)
+            self.notify_right_click()
 
-        self._mouseout_listener = MouseOutListener(target)
-        wrapper = xpcom.server.WrapObject(self._mouseout_listener,
-                                          interfaces.nsIDOMEventListener)
-        target.addEventListener('mouseout', wrapper, False)
-        self._mouseout_listener.connect('mouse-out', self.__moved_out_cb)
+        return True
 
-    def __moved_out_cb(self, listener):
-        self.palette.popdown()
 
-    def __palette_popdown_cb(self, palette):
-        if self._mouseout_listener is not None:
-            wrapper = xpcom.server.WrapObject(self._mouseout_listener,
-                                              interfaces.nsIDOMEventListener)
-            self._mouseout_listener.target.removeEventListener('mouseout',
-                                                               wrapper, False)
-            del self._mouseout_listener
+class SelectionPalette(Palette):
+    def __init__(self, browser, title, url, owner_document):
+        Palette.__init__(self)
+
+        self._browser = browser
+        self._title = title
+        self._url = url
+        self._owner_document = owner_document
+
+        menu_box = Gtk.VBox()
+        self.set_content(menu_box)
+        menu_box.show()
+        self._content.set_border_width(1)
+
+        self.props.primary_text = title
+
+        menu_item = SugarMenuItem(_('Copy text'), 'edit-copy')
+        menu_item.icon.props.xo_color = profile.get_color()
+        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
+        menu_item.show()
+
+    def __copy_activate_cb(self, menu_item):
+        self.popdown(immediate=True)
+
+        self._browser.copy_clipboard()
 
 
 class LinkPalette(Palette):
@@ -131,40 +148,46 @@ class LinkPalette(Palette):
         self._url = url
         self._owner_document = owner_document
 
-        if title is not None:
+        # FIXME: this sometimes fails because Gtk tries to parse it as
+        # markup text and some URLs has
+        # "?template=gallery&page=gallery" for example
+        if title not in (None, ''):
             self.props.primary_text = title
             self.props.secondary_text = url
         else:
             self.props.primary_text = url
 
-        menu_item = MenuItem(_('Follow link'), 'browse-follow-link')
-        menu_item.connect('activate', self.__follow_activate_cb)
-        self.menu.append(menu_item)
+        menu_box = Gtk.VBox()
+        self.set_content(menu_box)
+        menu_box.show()
+        self._content.set_border_width(1)
+
+        menu_item = SugarMenuItem(_('Follow link'), 'browse-follow-link')
+        menu_item.connect('clicked', self.__follow_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = MenuItem(_('Follow link in new tab'),
-                             'browse-follow-link-new-tab')
-        menu_item.connect('activate', self.__follow_activate_cb, True)
-        self.menu.append(menu_item)
+        menu_item = SugarMenuItem(_('Follow link in new tab'),
+                                  'browse-follow-link-new-tab')
+        menu_item.connect('clicked', self.__follow_activate_cb, True)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = MenuItem(_('Keep link'))
-        icon = Icon(icon_name='document-save', xo_color=profile.get_color(),
-                    icon_size=Gtk.IconSize.MENU)
-        menu_item.set_image(icon)
-        menu_item.connect('activate', self.__download_activate_cb)
-        self.menu.append(menu_item)
+        menu_item = SugarMenuItem(_('Keep link'), 'document-save')
+        menu_item.icon.props.xo_color = profile.get_color()
+        menu_item.connect('clicked', self.__download_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = MenuItem(_('Copy link'))
-        icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
-                    icon_size=Gtk.IconSize.MENU)
-        menu_item.set_image(icon)
-        menu_item.connect('activate', self.__copy_activate_cb)
-        self.menu.append(menu_item)
+        menu_item = SugarMenuItem(_('Copy link'), 'edit-copy')
+        menu_item.icon.props.xo_color = profile.get_color()
+        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
     def __follow_activate_cb(self, menu_item, new_tab=False):
+        self.popdown(immediate=True)
+
         if new_tab:
             new_browser = self._browser.open_new_tab(self._url)
         else:
@@ -172,131 +195,71 @@ class LinkPalette(Palette):
             self._browser.grab_focus()
 
     def __copy_activate_cb(self, menu_item):
-        clipboard = Gtk.Clipboard()
-        targets = Gtk.target_list_add_uri_targets()
-        targets = Gtk.target_list_add_text_targets(targets)
-        targets.append(('text/x-moz-url', 0, 0))
+        self.popdown(immediate=True)
 
-        clipboard.set_with_data(targets,
-                                self.__clipboard_get_func_cb,
-                                self.__clipboard_clear_func_cb)
-
-    def __clipboard_get_func_cb(self, clipboard, selection_data, info, data):
-        uri_targets = \
-            [target[0] for target in Gtk.target_list_add_uri_targets()]
-        text_targets = \
-            [target[0] for target in Gtk.target_list_add_text_targets()]
-
-        if selection_data.target in uri_targets:
-            selection_data.set_uris([self._url])
-        elif selection_data.target in text_targets:
-            selection_data.set_text(self._url)
-        elif selection_data.target == 'text/x-moz-url':
-            selection_data.set('text/x-moz-url', 8, self._url)
-
-    def __clipboard_clear_func_cb(self, clipboard, data):
-        pass
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(self._url, -1)
 
     def __download_activate_cb(self, menu_item):
-        downloadmanager.save_link(self._url, self._title, self._owner_document)
+        self.popdown(immediate=True)
+
+        nr = WebKit.NetworkRequest()
+        nr.set_uri(self._url)
+        download = WebKit.Download(network_request=nr)
+        self._browser.emit('download-requested', download)
 
 
 class ImagePalette(Palette):
-    def __init__(self, title, url, owner_document):
+    def __init__(self, browser, title, url, owner_document):
         Palette.__init__(self)
 
+        self._browser = browser
         self._title = title
         self._url = url
         self._owner_document = owner_document
 
-        self.props.primary_text = title
-        self.props.secondary_text = url
+        if title not in (None, ''):
+            self.props.primary_text = title
+            self.props.secondary_text = url
+        else:
+            self.props.primary_text = url
 
-        menu_item = MenuItem(_('Keep image'))
-        icon = Icon(icon_name='document-save', xo_color=profile.get_color(),
-                    icon_size=Gtk.IconSize.MENU)
-        menu_item.set_image(icon)
-        menu_item.connect('activate', self.__download_activate_cb)
-        self.menu.append(menu_item)
+        menu_box = Gtk.VBox()
+        self.set_content(menu_box)
+        menu_box.show()
+        self._content.set_border_width(1)
+
+        menu_item = SugarMenuItem(_('Copy image'), 'edit-copy')
+        menu_item.icon.props.xo_color = profile.get_color()
+        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = MenuItem(_('Copy image'))
-        icon = Icon(icon_name='edit-copy', xo_color=profile.get_color(),
-                    icon_size=Gtk.IconSize.MENU)
-        menu_item.set_image(icon)
-        menu_item.connect('activate', self.__copy_activate_cb)
-        self.menu.append(menu_item)
+        menu_item = SugarMenuItem(_('Keep image'), 'document-save')
+        menu_item.icon.props.xo_color = profile.get_color()
+        menu_item.connect('clicked', self.__download_activate_cb)
+        menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
     def __copy_activate_cb(self, menu_item):
-        file_name = os.path.basename(urlparse.urlparse(self._url).path)
-        if '.' in file_name:
-            base_name, extension = file_name.split('.')
-            extension = '.' + extension
-        else:
-            base_name = file_name
-            extension = ''
+        self.popdown(immediate=True)
 
-        temp_path = os.path.join(activity.get_activity_root(), 'instance')
-        fd, temp_file = tempfile.mkstemp(dir=temp_path, prefix=base_name,
-                                               suffix=extension)
-        os.close(fd)
-        os.chmod(temp_file, 0664)
+        # Download the image
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        data = urllib2.urlopen(self._url).read()
+        temp_file.write(data)
+        temp_file.close()
 
-        cls = components.classes['@mozilla.org/network/io-service;1']
-        io_service = cls.getService(interfaces.nsIIOService)
-        uri = io_service.newURI(self._url, None, None)
-
-        cls = components.classes['@mozilla.org/file/local;1']
-        target_file = cls.createInstance(interfaces.nsILocalFile)
-        target_file.initWithPath(temp_file)
-
-        cls = components.classes[ \
-                '@mozilla.org/embedding/browser/nsWebBrowserPersist;1']
-        persist = cls.createInstance(interfaces.nsIWebBrowserPersist)
-        persist.persistFlags = 1  # PERSIST_FLAGS_FROM_CACHE
-        listener = xpcom.server.WrapObject(_ImageProgressListener(temp_file),
-                                           interfaces.nsIWebProgressListener)
-        persist.progressListener = listener
-        persist.saveURI(uri, None, None, None, None, target_file)
+        # Copy it inside the clipboard
+        image = Gtk.Image.new_from_file(temp_file.name)
+        os.unlink(temp_file.name)
+        clipboard = Gtk.Clipboard()
+        clipboard.set_image(image.get_pixbuf())
 
     def __download_activate_cb(self, menu_item):
-        downloadmanager.save_link(self._url, self._title, self._owner_document)
+        self.popdown(immediate=True)
 
-
-class _ImageProgressListener(object):
-    _com_interfaces_ = interfaces.nsIWebProgressListener
-
-    def __init__(self, temp_file):
-        self._temp_file = temp_file
-
-    def onLocationChange(self, webProgress, request, location):
-        pass
-
-    def onProgressChange(self, webProgress, request, curSelfProgress,
-                         maxSelfProgress, curTotalProgress, maxTotalProgress):
-        pass
-
-    def onSecurityChange(self, webProgress, request, state):
-        pass
-
-    def onStatusChange(self, webProgress, request, status, message):
-        pass
-
-    def onStateChange(self, webProgress, request, stateFlags, status):
-        if (stateFlags & interfaces.nsIWebProgressListener.STATE_IS_REQUEST and
-            stateFlags & interfaces.nsIWebProgressListener.STATE_STOP):
-            clipboard = Gtk.Clipboard()
-            clipboard.set_with_data([('text/uri-list', 0, 0)],
-                                    _clipboard_get_func_cb,
-                                    _clipboard_clear_func_cb,
-                                    self._temp_file)
-
-
-def _clipboard_get_func_cb(clipboard, selection_data, info, temp_file):
-    selection_data.set_uris(['file://' + temp_file])
-
-
-def _clipboard_clear_func_cb(clipboard, temp_file):
-    if os.path.exists(temp_file):
-        os.remove(temp_file)
+        nr = WebKit.NetworkRequest()
+        nr.set_uri(self._url)
+        download = WebKit.Download(network_request=nr)
+        self._browser.emit('download-requested', download)

@@ -34,6 +34,7 @@ from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
 from widgets import BrowserNotebook
+from palettes import ContentInvoker
 from filepicker import FilePicker
 import globalhistory
 import downloadmanager
@@ -496,6 +497,8 @@ class Browser(WebKit.WebView):
         self.connect('new-window-policy-decision-requested',
                      self.__new_window_policy_cb)
         self.connect('load-error', self.__load_error_cb)
+
+        ContentInvoker(self)
 
         try:
             self.connect('run-file-chooser', self.__run_file_chooser)
