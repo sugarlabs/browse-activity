@@ -270,6 +270,12 @@ class DummyBrowser(GObject.GObject):
     def reload(self):
         pass
 
+    def load_uri(self, uri):
+        pass
+
+    def grab_focus(self):
+        pass
+
 
 class PDFTabPage(Gtk.HBox):
     """Shows a basic PDF viewer, download the file first if the PDF is

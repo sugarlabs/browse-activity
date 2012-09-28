@@ -344,6 +344,11 @@ class TabbedView(BrowserNotebook):
                 self._append_tab(browser)
                 browser.set_history(tab_history)
 
+    def is_current_page_pdf(self):
+        index = self.get_current_page()
+        current_page = self.get_nth_page(index)
+        return isinstance(current_page, PDFTabPage)
+
 
 Gtk.rc_parse_string('''
     style "browse-tab-close" {

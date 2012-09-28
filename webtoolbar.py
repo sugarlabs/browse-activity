@@ -237,6 +237,8 @@ class PrimaryToolbar(ToolbarBase):
                                       'browse-dialog-cancel')
         self.entry.connect('icon-press', self._stop_and_reload_cb)
         self.entry.connect('activate', self._entry_activate_cb)
+        self.entry.connect('focus-in-event', self.__focus_in_event_cb)
+        self.entry.connect('focus-out-event', self.__focus_out_event_cb)
 
         entry_item = Gtk.ToolItem()
         entry_item.set_expand(True)
@@ -345,6 +347,21 @@ class PrimaryToolbar(ToolbarBase):
         else:
             self.entry.props.address = uri
 
+    def __focus_in_event_cb(self, entry, event):
+        if not self._tabbed_view.is_current_page_pdf():
+            self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
+                                          'dialog-cancel')
+
+    def __focus_out_event_cb(self, entry, event):
+        if self._loading:
+            self._show_stop_icon()
+        else:
+            if not self._tabbed_view.is_current_page_pdf():
+                self._show_reload_icon()
+
+    def _show_no_icon(self):
+        self.entry.remove_icon(iconentry.ICON_ENTRY_SECONDARY)
+
     def _show_stop_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
                                       'browse-dialog-cancel')
@@ -389,10 +406,15 @@ class PrimaryToolbar(ToolbarBase):
         filepicker.cleanup_temp_files()
 
     def _stop_and_reload_cb(self, entry, icon_pos, button):
-        if self._loading:
-            self._browser.stop_loading()
+        if entry.has_focus() and \
+                not self._tabbed_view.is_current_page_pdf():
+            entry.set_text('')
         else:
             self._browser.reload()
+            if self._loading:
+                self._browser.stop_loading()
+            else:
+                self._browser.reload()
 
     def _set_loading(self, loading):
         self._loading = loading
@@ -400,7 +422,10 @@ class PrimaryToolbar(ToolbarBase):
         if self._loading:
             self._show_stop_icon()
         else:
-            self._show_reload_icon()
+            if not self._tabbed_view.is_current_page_pdf():
+                self._show_reload_icon()
+            else:
+                self._show_no_icon()
 
     def _reload_session_history(self):
         back_forward_list = self._browser.get_back_forward_list()
