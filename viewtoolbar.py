@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from gi.repository import GObject
 
 from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.toggletoolbutton import ToggleToolButton
 
 from browser import Browser
 from browser import ZOOM_ORIGINAL
@@ -33,8 +34,6 @@ class ViewToolbar(Gtk.Toolbar):
         self._browser = None
 
         self._activity = activity
-        self._activity.tray.connect('unmap', self.__unmap_cb)
-        self._activity.tray.connect('map', self.__map_cb)
 
         self.zoomout = ToolButton('zoom-out')
         self.zoomout.set_tooltip(_('Zoom out'))
@@ -65,9 +64,10 @@ class ViewToolbar(Gtk.Toolbar):
         self.insert(self.fullscreen, -1)
         self.fullscreen.show()
 
-        self.traybutton = ToolButton('tray-hide')
-        self.traybutton.connect('clicked', self.__tray_clicked_cb)
+        self.traybutton = ToggleToolButton('tray-show')
+        self.traybutton.connect('toggled', self.__tray_toggled_cb)
         self.traybutton.props.sensitive = False
+        self.traybutton.props.active = False
         self.insert(self.traybutton, -1)
         self.traybutton.show()
 
@@ -105,24 +105,12 @@ class ViewToolbar(Gtk.Toolbar):
     def __fullscreen_clicked_cb(self, button):
         self._activity.fullscreen()
 
-    def __tray_clicked_cb(self, button):
-        if self._activity.tray.props.visible is False:
+    def __tray_toggled_cb(self, button):
+        if button.props.active:
             self._activity.tray.show()
+            self.traybutton.set_icon_name('tray-show')
+            self.traybutton.set_tooltip(_('Show Tray'))
         else:
             self._activity.tray.hide()
-
-    def __map_cb(self, tray):
-        if len(self._activity.tray.get_children()) > 0:
-            self.tray_set_hide()
-
-    def __unmap_cb(self, tray):
-        if len(self._activity.tray.get_children()) > 0:
-            self.tray_set_show()
-
-    def tray_set_show(self):
-        self.traybutton.set_icon('tray-show')
-        self.traybutton.set_tooltip(_('Show Tray'))
-
-    def tray_set_hide(self):
-        self.traybutton.set_icon('tray-hide')
-        self.traybutton.set_tooltip(_('Hide Tray'))
+            self.traybutton.set_icon_name('tray-hide')
+            self.traybutton.set_tooltip(_('Hide Tray'))

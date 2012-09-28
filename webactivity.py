@@ -173,7 +173,6 @@ class WebActivity(activity.Activity):
 
         self._tray = HTray()
         self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
-        self._tray.show()
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
         self._edit_toolbar = EditToolbar(self)
@@ -553,9 +552,8 @@ class WebActivity(activity.Activity):
         # use index to add to the tray
         self._tray.add_item(item, index)
         item.show()
-        if self._tray.props.visible is False:
-            self._tray.show()
         self._view_toolbar.traybutton.props.sensitive = True
+        self._view_toolbar.traybutton.props.active = True
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
@@ -563,6 +561,7 @@ class WebActivity(activity.Activity):
         self._tray.remove_item(button)
         if len(self._tray.get_children()) == 0:
             self._view_toolbar.traybutton.props.sensitive = False
+            self._view_toolbar.traybutton.props.active = False
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
