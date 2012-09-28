@@ -65,6 +65,7 @@ class ViewToolbar(Gtk.Toolbar):
         self.fullscreen.show()
 
         self.traybutton = ToggleToolButton('tray-show')
+        self.traybutton.set_icon_name('tray-favourite')
         self.traybutton.connect('toggled', self.__tray_toggled_cb)
         self.traybutton.props.sensitive = False
         self.traybutton.props.active = False
@@ -108,9 +109,7 @@ class ViewToolbar(Gtk.Toolbar):
     def __tray_toggled_cb(self, button):
         if button.props.active:
             self._activity.tray.show()
-            self.traybutton.set_icon_name('tray-show')
             self.traybutton.set_tooltip(_('Show Tray'))
         else:
             self._activity.tray.hide()
-            self.traybutton.set_icon_name('tray-hide')
             self.traybutton.set_tooltip(_('Hide Tray'))
