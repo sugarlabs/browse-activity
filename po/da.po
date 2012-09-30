@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 00:32-0400\n"
-"PO-Revision-Date: 2012-09-17 10:54+0200\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"PO-Revision-Date: 2012-09-30 16:19+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -25,18 +25,43 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "Browse"
 
-#: browser.py:366 browser.py:414 browser.py:415 webactivity.py:395
-#: webtoolbar.py:244 webtoolbar.py:336 webtoolbar.py:364 webtoolbar.py:365
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+"Surf verdenen! Her kan du lave forskning, se undervisningsvideoer, tage "
+"kurser online, finde bøger, skabe kontakt til venner og mere."
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr "Ingen titel"
 
-#: browser.py:411 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
 msgstr "Indlæser..."
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr "Denne webside kunne ikke indlæses"
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+"\"%s\" kunne ikke indlæses. Tjek venligst for tastefejl, og sørg for at sikre "
+"at du er tilsluttet til internettet."
+
+#: browser.py:652
+msgid "Try again"
+msgstr "Forsøg igen"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -59,7 +84,7 @@ msgstr "Vis i logbog"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128 pdfviewer.py:413
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Fra: %s"
@@ -86,35 +111,39 @@ msgstr "Næste"
 msgid "Remove"
 msgstr "Fjern"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr "Kopiér tekst"
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "Følg henvisning"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr "Følg henvisning i ny fane"
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "Bevar henvisning"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "Kopiér henvisning"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "Bevar billede"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "Kopiér billede"
 
-#: pdfviewer.py:87 viewtoolbar.py:40
+#: palettes.py:238
+msgid "Keep image"
+msgstr "Bevar billede"
+
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: pdfviewer.py:93 viewtoolbar.py:46
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Forstør"
 
@@ -130,57 +159,57 @@ msgstr "Næste side"
 msgid "Save PDF to Journal"
 msgstr "Gem PDF til journal"
 
-#: viewtoolbar.py:52
+#: viewtoolbar.py:51
 msgid "Actual size"
 msgstr "Faktisk størrelse"
 
-#: viewtoolbar.py:63
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: viewtoolbar.py:124
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "Vis skuffe"
 
-#: viewtoolbar.py:128
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "Skjul skuffe"
 
-#: webactivity.py:568
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Overførsel i gang"
 msgstr[1] "Overførsler i gang"
 
-#: webactivity.py:571
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Stopper du nu vil du slette overførslen"
 msgstr[1] "Stopper du nu vil du slette overførslerne"
 
-#: webactivity.py:576
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Fortsæt overførsel"
 msgstr[1] "Fortsæt overførsler"
 
-#: webactivity.py:581
+#: webactivity.py:611
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:251
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "Hjemmeside"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "Tilbage"
 
-#: webtoolbar.py:285
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "Frem"
 
-#: webtoolbar.py:299
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Bogmærke"
 
