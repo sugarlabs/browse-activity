@@ -643,6 +643,12 @@ class Browser(WebKit.WebView):
     def __load_error_cb(self, web_view, web_frame, uri, web_error):
         """Show Sugar's error page"""
 
+        # Don't show error page if the load was interrupted by policy
+        # change. For example, if a file was requested for download
+        if web_error.code == WebKit.PolicyError.\
+                FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE:
+            return True
+
         data = {
             'page_title': _('This web page could not be loaded'),
             'title': _('This web page could not be loaded'),
