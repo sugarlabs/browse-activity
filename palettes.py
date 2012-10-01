@@ -71,12 +71,10 @@ class ContentInvoker(Invoker):
         return None
 
     def __button_press_cb(self, browser, event):
-        logging.debug('===> event: %s', event.button)
         if event.button != 3:
             return False
         hit_test = self._browser.get_hit_test_result(event)
         if hit_test.props.context & WebKit.HitTestResultContext.LINK:
-            logging.debug('===> click LINK')
             link_uri = hit_test.props.link_uri
             if isinstance(hit_test.props.inner_node,
                             WebKit.DOMHTMLImageElement):
@@ -86,8 +84,6 @@ class ContentInvoker(Invoker):
             self.palette = LinkPalette(self._browser, title, link_uri, None)
             self.notify_right_click()
         elif hit_test.props.context & WebKit.HitTestResultContext.IMAGE:
-            logging.debug('===> click IMAGE %s %s',
-                          hit_test.props.image_uri, hit_test.props.inner_node)
             title = hit_test.props.inner_node.get_title()
             self.palette = ImagePalette(self._browser, title,
                                         hit_test.props.image_uri, '')
