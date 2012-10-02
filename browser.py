@@ -457,7 +457,7 @@ class Browser(WebKit.WebView):
                      ([str])),
     }
 
-    CURRENT_SUGAR_VERSION = '0.96'
+    CURRENT_SUGAR_VERSION = '0.98'
 
     def __init__(self):
         WebKit.WebView.__init__(self)
