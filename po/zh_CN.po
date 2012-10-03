@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2012-03-24 05:12+0200\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"PO-Revision-Date: 2012-10-02 19:08+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,39 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "浏览"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr "在互联网中冲浪！在这里你可以做研究，观看教育影片，学习在线课程，找书，联系朋友等等。"
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr "无标题的"
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
 msgstr "下载中..."
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr "此网页无法加载"
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr "\"%s\"不能被加载。请检查输入错误，并确保已连接到互联网。"
+
+#: browser.py:652
+msgid "Try again"
+msgstr "请再试一次"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -54,7 +76,7 @@ msgstr "在日志中显示"
 msgid "Ok"
 msgstr "确定"
 
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "来自：%s"
@@ -78,29 +100,33 @@ msgstr "下一个"
 msgid "Remove"
 msgstr "删除"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr "复制文本"
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "跟随链接"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr "跟随在新标签的链接"
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "保持链接"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "拷贝链接"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "保留图片"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "拷贝图片"
+
+#: palettes.py:238
+msgid "Keep image"
+msgstr "保留图片"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -122,50 +148,54 @@ msgstr "下一页"
 msgid "Save PDF to Journal"
 msgstr "保存PDF到日志"
 
-#: viewtoolbar.py:56
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr "实际尺寸"
+
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "显示系统托盘"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "隐藏系统托盘"
 
-#: webactivity.py:567
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "下载中"
 
-#: webactivity.py:570
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "停止当前活动将删除您下载的文件"
 
-#: webactivity.py:575
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "继续下载"
 
-#: webactivity.py:580
+#: webactivity.py:611
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:250
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "主页"
 
-#: webtoolbar.py:270
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "上一页"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "下一页"
 
-#: webtoolbar.py:298
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "书签"
 

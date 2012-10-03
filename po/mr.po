@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
 "PO-Revision-Date: 2011-09-11 11:31+0200\n"
 "Last-Translator: <ganeshgajre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,16 +25,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
+msgstr ""
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr ""
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+
+#: browser.py:652
+msgid "Try again"
 msgstr ""
 
 #: downloadmanager.py:102
@@ -58,7 +80,7 @@ msgstr "नियतकालीकामधे दाखवा"
 msgid "Ok"
 msgstr "ठीक"
 
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "च्यापासुन: %s"
@@ -82,29 +104,33 @@ msgstr "पुढील"
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr ""
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "लिंक वर जा"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "लिंक संभाळा"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "लिंकची नक्कल बनवा"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "चित्र सांभाळा"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "चित्राची नक्कल बनवा"
+
+#: palettes.py:238
+msgid "Keep image"
+msgstr "चित्र सांभाळा"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -126,53 +152,57 @@ msgstr ""
 msgid "Save PDF to Journal"
 msgstr ""
 
-#: viewtoolbar.py:56
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "पूर्ण पडदा"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "तबक दाखवा"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:567
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "डाऊनलोड सुरू आहे"
 msgstr[1] "डाऊनलोडस सुरू आहे"
 
-#: webactivity.py:570
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "थांबवल्यास डाऊनलोड रद् होईल"
 msgstr[1] "थांबवल्यास डाऊनलोडस रद् होईल"
 
-#: webactivity.py:575
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "डाऊनलोड सुरु ठेवा"
 msgstr[1] "डाऊनलोडस सुरु ठेवा"
 
-#: webactivity.py:580
+#: webactivity.py:611
 msgid "Stop"
 msgstr "थांबा"
 
-#: webtoolbar.py:250
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "मुख प्रुष्ठ"
 
-#: webtoolbar.py:270
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "मागे"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "पुढे पाठविणे"
 
-#: webtoolbar.py:298
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "वाचनखुण"
 

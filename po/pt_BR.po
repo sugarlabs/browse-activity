@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
 "PO-Revision-Date: 2010-03-01 06:35+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
@@ -25,16 +25,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "Navegar"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
+msgstr ""
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr ""
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+
+#: browser.py:652
+msgid "Try again"
 msgstr ""
 
 # "Download" is a term which generally it's not translated to Portuguese
@@ -59,7 +81,7 @@ msgstr "Mostrar no Diário"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
@@ -83,29 +105,33 @@ msgstr "Próximo"
 msgid "Remove"
 msgstr "Remover"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr ""
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "Seguir vínculo"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "Manter vínculo"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "Copiar vínculo"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "Manter imagem"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "Copiar imagem"
+
+#: palettes.py:238
+msgid "Keep image"
+msgstr "Manter imagem"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -127,55 +153,59 @@ msgstr ""
 msgid "Save PDF to Journal"
 msgstr ""
 
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
 # Encher o ecrã?
-#: viewtoolbar.py:56
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "Mostrar Bandeja"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:567
+#: webactivity.py:598
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Transferência em progresso"
 
-#: webactivity.py:570
+#: webactivity.py:601
 #, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Parar agora irá cancelar a sua transferência"
 
-#: webactivity.py:575
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:580
+#: webactivity.py:611
 msgid "Stop"
 msgstr "Parar"
 
-#: webtoolbar.py:250
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:270
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "Voltar"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "Avançar"
 
 # Favorito?
-#: webtoolbar.py:298
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Marcar"
 

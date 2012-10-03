@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 00:32-0400\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
 "PO-Revision-Date: 2012-09-21 11:34+0200\n"
 "Last-Translator: hariru <hariruroa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "Tirotiro"
 
-#: browser.py:366 browser.py:414 browser.py:415 webactivity.py:395
-#: webtoolbar.py:244 webtoolbar.py:336 webtoolbar.py:364 webtoolbar.py:365
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr "Kore Ingoa"
 
-#: browser.py:411 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
 msgstr "Tāuta ana..."
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr ""
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+
+#: browser.py:652
+msgid "Try again"
+msgstr ""
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -51,7 +72,7 @@ msgstr "Whakaatu ki Tuhitaka"
 msgid "Ok"
 msgstr "Āe"
 
-#: downloadmanager.py:128 pdfviewer.py:413
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Mai i %s"
@@ -77,35 +98,39 @@ msgstr "Panuku"
 msgid "Remove"
 msgstr "Tango"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr ""
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "Whaia ngā hononga"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr "Whāia ngā hononga ki te ripa hōu"
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "Penapena hono"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "Tārua hono"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "Penapena atahanga"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "Tārua atahanga"
 
-#: pdfviewer.py:87 viewtoolbar.py:40
+#: palettes.py:238
+msgid "Keep image"
+msgstr "Penapena atahanga"
+
+#: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Topa atu"
 
-#: pdfviewer.py:93 viewtoolbar.py:46
+#: pdfviewer.py:93 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Topa mai"
 
@@ -121,56 +146,56 @@ msgstr "Whārangi panuku"
 msgid "Save PDF to Journal"
 msgstr "Tiaki PDF ki te Tuhitaka"
 
-#: viewtoolbar.py:52
+#: viewtoolbar.py:51
 msgid "Actual size"
 msgstr "Rahi tūturu"
 
-#: viewtoolbar.py:63
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Matakatoa"
 
-#: viewtoolbar.py:124
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "Whakaatu Terei"
 
-#: viewtoolbar.py:128
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "Huna Terei"
 
-#: webactivity.py:568
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Kei te tikiake"
 msgstr[1] "Kei te tiki ake"
 
-#: webactivity.py:571
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Ki te tū īnāianei ka muku i tō tikiake"
 msgstr[1] "Ki te tū īnāianei ka muku i ō tikiake"
 
-#: webactivity.py:576
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Tikiake tonu"
 msgstr[1] "Tikiake tonu"
 
-#: webactivity.py:581
+#: webactivity.py:611
 msgid "Stop"
 msgstr "Tū"
 
-#: webtoolbar.py:251
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "Whārangi kāinga"
 
-#: webtoolbar.py:271
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "Hoki"
 
-#: webtoolbar.py:285
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "Whakamua"
 
-#: webtoolbar.py:299
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Tohuwāhi"

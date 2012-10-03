@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
 "PO-Revision-Date: 2012-07-08 09:07+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,39 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 # Cambié la traducción a "Aliy" porque refleja mejor la idea de explorar internet. (Zurik)
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "Aliy"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr "Yab bijidh"
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
 msgstr "K'adhbom..."
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr ""
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+
+#: browser.py:652
+msgid "Try again"
+msgstr ""
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -53,7 +75,7 @@ msgid "Ok"
 msgstr "Ne'ets kin t'aja'"
 
 # Ju'taj ti tal., Ju'taj ti ch'enek: %s
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Ti: %s"
@@ -79,29 +101,33 @@ msgstr "Xi júnakej"
 msgid "Remove"
 msgstr "Pakuw"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr ""
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "Áyna' an junkux"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr "Áyna' an junkux al juni it madhidh"
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "Dhaya' an junkux"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "K'ot'biy an junkux"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "Dhaya' an t'iplab"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "K'ot'biy an t'iplab"
+
+#: palettes.py:238
+msgid "Keep image"
+msgstr "Dhaya' an t'iplab"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -123,54 +149,58 @@ msgstr "a xi júnakej walxeklek"
 msgid "Save PDF to Journal"
 msgstr "Dhaya' an PDF ti al an chudhél dhuchlab"
 
-#: viewtoolbar.py:56
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Putat walek"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "Tejwa'méjdha' an jolát"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "Tsina' an jolát"
 
-#: webactivity.py:567
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Exom ti pa'il"
 msgstr[1] "Exomchik ti pa'il"
 
-#: webactivity.py:570
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Max ka kuba' xowék'ij ne'ets ka t'apts'inchij an pa'bomtaláb"
 msgstr[1] "Max ka kuba' xowék'ij ne'ets ka t'apts'inchijchik an pa'bomtalab"
 
-#: webactivity.py:575
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Áynanchij an pa'bomtaláb"
 msgstr[1] "Áynanchijchik an pa'bomtaláb"
 
-#: webactivity.py:580
+#: webactivity.py:611
 msgid "Stop"
 msgstr "Kuba'"
 
 # Ts'i'kindhom walxeklek da la idea de que es una página que hace iniciar. Para mí es ideal para la palabra Home Page del inglés. (Zurik)/ in tujtal i walxeklek.(bek)
-#: webtoolbar.py:250
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "inTs'i'kintal i walxeklek"
 
-#: webtoolbar.py:270
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "Wichiy"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "Ne'etsnanchij"
 
-#: webtoolbar.py:298
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Ólnax walxeklek"
 

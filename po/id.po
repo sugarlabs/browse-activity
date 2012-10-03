@@ -14,28 +14,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:32-0400\n"
-"PO-Revision-Date: 2011-04-04 11:34+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"PO-Revision-Date: 2012-09-29 17:22+0200\n"
+"Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Browse"
 msgstr "Ramban"
 
-#: browser.py:364 browser.py:408 webactivity.py:397 webtoolbar.py:335
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more."
+msgstr ""
+"Jelajahi dunia! Di sini Anda dapat melakukan riset, menonton video "
+"pendidikan, mengikuti kursus daring, mencari buku, menyambung dengan teman-"
+"teman, dan yang lainnya."
+
+#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
 msgstr "Tanpa judul"
 
-#: browser.py:405 webtoolbar.py:358 webtoolbar.py:361
+#: browser.py:441
 msgid "Loading..."
 msgstr "Memuat..."
+
+#: browser.py:647 browser.py:648
+msgid "This web page could not be loaded"
+msgstr "Halaman web ini tak dapat dimuat"
+
+#: browser.py:649
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+"\"%s\" tak dapat dimuat. Harap periksa apakah ada salah ketik, dan pastikan "
+"bahwa Anda tersambung ke internet."
+
+#: browser.py:652
+msgid "Try again"
+msgstr "Coba lagi"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -58,7 +85,7 @@ msgstr "Tampilkan di Jurnal"
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:128 pdfviewer.py:408
+#: downloadmanager.py:128 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Dari: %s"
@@ -84,29 +111,33 @@ msgstr "Selanjutnya"
 msgid "Remove"
 msgstr "Hapus"
 
-#: palettes.py:140
+#: palettes.py:130
+msgid "Copy text"
+msgstr "Salin teks"
+
+#: palettes.py:165
 msgid "Follow link"
 msgstr "Ikuti taut"
 
-#: palettes.py:145
+#: palettes.py:170
 msgid "Follow link in new tab"
 msgstr "Ikuti taut dalam tab baru"
 
-#: palettes.py:151
+#: palettes.py:176
 msgid "Keep link"
 msgstr "Pertahankan taut"
 
-#: palettes.py:159
+#: palettes.py:182
 msgid "Copy link"
 msgstr "Salin taut"
 
-#: palettes.py:215
-msgid "Keep image"
-msgstr "Pertahankan gambar"
-
-#: palettes.py:223
+#: palettes.py:232
 msgid "Copy image"
 msgstr "Salin gambar"
+
+#: palettes.py:238
+msgid "Keep image"
+msgstr "Pertahankan gambar"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -128,50 +159,54 @@ msgstr "Halaman selanjutnya"
 msgid "Save PDF to Journal"
 msgstr "Simpan PDF ke Jurnal"
 
-#: viewtoolbar.py:56
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Ukuran sebenarnya"
+
+#: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Layar penuh"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:112
 msgid "Show Tray"
 msgstr "Tampilkan Baki"
 
-#: viewtoolbar.py:117
+#: viewtoolbar.py:115
 msgid "Hide Tray"
 msgstr "Sembunyikan Baki"
 
-#: webactivity.py:567
+#: webactivity.py:598
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Pengunduhan tengah berlangsung"
 
-#: webactivity.py:570
+#: webactivity.py:601
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Berhenti sekarang akan menghapus unduhan Anda"
 
-#: webactivity.py:575
+#: webactivity.py:606
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Lanjutkan mengunduh"
 
-#: webactivity.py:580
+#: webactivity.py:611
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:250
+#: webtoolbar.py:230
 msgid "Home page"
 msgstr "Beranda"
 
-#: webtoolbar.py:270
+#: webtoolbar.py:252
 msgid "Back"
 msgstr "Kembali"
 
-#: webtoolbar.py:284
+#: webtoolbar.py:266
 msgid "Forward"
 msgstr "Maju"
 
-#: webtoolbar.py:298
+#: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "Penanda taut"
 
