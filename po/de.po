@@ -1,71 +1,59 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # This file is distributed under the same license as the PACKAGE package.
 # Fabian Affolter <fab@fedoraproject.org>, 2007.
+# Markus Schlager <m.slg@gmx.de>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-29 00:32-0400\n"
-"PO-Revision-Date: 2012-03-23 21:28+0100\n"
+"PO-Revision-Date: 2012-10-08 21:17+0200\n"
 "Last-Translator: Markus Schlager <m.slg@gmx.de>\n"
-"Language-Team: German <fedora-trans-de@redhat.com>\n"
+"Language-Team: Deutsche OLPC-Lokalisierung\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Virtaal 0.7.0\n"
 "X-Poedit-Language: German\n"
 
 #. TRANS: "name" option from activity.info file
@@ -78,6 +66,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Surfe durch die Welt! Hier kannst du forschen, lehrreiche Videos betrachten, "
+"Online-Kurse besucht, Bücher finden, Kontakt mit Freunden aufnehmen und "
+"vieles mehr."
 
 #: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
@@ -89,7 +80,7 @@ msgstr "Lade..."
 
 #: browser.py:647 browser.py:648
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Diese Webseite konnte nicht geladen werden."
 
 #: browser.py:649
 #, python-format
@@ -97,10 +88,12 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
+"\"%s\" konnte nicht geladen werden. Überprüfe bitte etwaige Tippfehler und "
+"stelle sicher, dass du mit dem Internet verbunden bist."
 
 #: browser.py:652
 msgid "Try again"
-msgstr ""
+msgstr "Nochmals versuchen"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -151,7 +144,7 @@ msgstr "Entfernen"
 
 #: palettes.py:130
 msgid "Copy text"
-msgstr ""
+msgstr "Text kopieren"
 
 #: palettes.py:165
 msgid "Follow link"
@@ -199,7 +192,7 @@ msgstr "Als PDF ins Tagebuch speichern"
 
 #: viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Tatsächliche Größe"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
