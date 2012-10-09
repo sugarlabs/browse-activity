@@ -26,6 +26,8 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import WebKit
 
+from gi.repository import SugarGestures
+
 from sugar3.graphics.palette import Palette, Invoker
 from sugar3 import profile
 
@@ -37,11 +39,49 @@ class ContentInvoker(Invoker):
         Invoker.__init__(self)
         self._position_hint = self.AT_CURSOR
         self._browser = browser
+        self._recognized_long_press_event = False
         self._browser.connect('button-press-event', self.__button_press_cb)
+        self._browser.connect('button-release-event', self.__button_release_cb)
+        self._browser.connect('realize', self.__browser_realize_cb)
         self.attach(self._browser)
 
     def get_default_position(self):
         return self.AT_CURSOR
+
+    def __long_pressed_cb(self, controller, x, y):
+        self._recognized_long_press_event = True
+
+        event = Gdk.EventButton()
+        event.type = Gdk.EventType._3BUTTON_PRESS
+        gdk_window = self._browser.get_window()
+        event.window = gdk_window
+        event.time = Gtk.get_current_event_time()
+        event.x = x
+        event.y = y
+        x_root, y_root = gdk_window.get_root_coords(x, y)
+        event.x_root = x_root
+        event.y_root = y_root
+
+        self._handle_event(event)
+
+        return True
+
+    def __button_release_cb(self, browser, event):
+        if self._recognized_long_press_event:
+            self._recognized_long_press_event = False
+            return True
+        else:
+            return False
+
+    def __browser_realize_cb(self, browser):
+        x11_window = browser.get_window()
+        x11_window.set_events(x11_window.get_events() |
+                              Gdk.EventMask.POINTER_MOTION_MASK |
+                              Gdk.EventMask.TOUCH_MASK)
+
+        lp = SugarGestures.LongPressController(trigger_delay=500)
+        lp.connect('pressed', self.__long_pressed_cb)
+        lp.attach(browser, SugarGestures.EventControllerFlags.NONE)
 
     def get_rect(self):
         allocation = self._browser.get_allocation()
@@ -73,6 +113,10 @@ class ContentInvoker(Invoker):
     def __button_press_cb(self, browser, event):
         if event.button != 3:
             return False
+        self._handle_event(event)
+        return True
+
+    def _handle_event(self, event):
         hit_test = self._browser.get_hit_test_result(event)
         if hit_test.props.context & WebKit.HitTestResultContext.LINK:
             link_uri = hit_test.props.link_uri
@@ -103,8 +147,6 @@ class ContentInvoker(Invoker):
             #     title = text
             self.palette = SelectionPalette(self._browser, title, None, None)
             self.notify_right_click()
-
-        return True
 
 
 class SelectionPalette(Palette):
