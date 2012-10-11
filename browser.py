@@ -658,7 +658,7 @@ class Browser(WebKit.WebView):
             }
 
         html = open(DEFAULT_ERROR_PAGE, 'r').read() % data
-        web_frame.load_alternate_string(html, '', uri)
+        web_frame.load_alternate_string(html, uri, uri)
 
         return True
 
