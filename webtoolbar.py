@@ -239,6 +239,7 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect('focus-in-event', self.__focus_in_event_cb)
         self.entry.connect('focus-out-event', self.__focus_out_event_cb)
+        self.entry.connect('key-press-event', self.__key_press_event_cb)
 
         entry_item = Gtk.ToolItem()
         entry_item.set_expand(True)
@@ -297,6 +298,9 @@ class PrimaryToolbar(ToolbarBase):
             self._connect_to_browser(tabbed_view.props.current_browser)
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
+
+    def __key_press_event_cb(self, entry, event):
+        self._tabbed_view.current_browser.loading_uri = entry.props.text
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
         if tabbed_view.get_n_pages():
