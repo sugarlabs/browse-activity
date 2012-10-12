@@ -465,7 +465,7 @@ class Browser(WebKit.WebView):
         web_settings = self.get_settings()
 
         # Add SugarLabs user agent:
-        identifier = ' Sugar Labs/' + self.CURRENT_SUGAR_VERSION
+        identifier = ' SugarLabs/' + self.CURRENT_SUGAR_VERSION
         web_settings.props.user_agent += identifier
 
         # Change font size based in the GtkSettings font size.  The
