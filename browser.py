@@ -249,29 +249,27 @@ class TabbedView(BrowserNotebook):
         tab_page.destroy()
 
     def _update_tab_sizes(self):
-        """Update ta widths based in the amount of tabs."""
+        """Update tab widths based in the amount of tabs."""
 
         n_pages = self.get_n_pages()
         canvas_size = self.get_allocation()
-        # FIXME
-        # overlap_size = self.style_get_property('tab-overlap') * n_pages - 1
-        overlap_size = 0
-        allowed_size = canvas_size.width - overlap_size
-
-        tab_new_size = int(allowed_size * 1.0 / (n_pages + 1))
-        # Four tabs ensured:
-        tab_max_size = int(allowed_size * 1.0 / (5))
-        # Eight tabs ensured:
-        tab_min_size = int(allowed_size * 1.0 / (9))
-
-        if tab_new_size < tab_min_size:
-            tab_new_size = tab_min_size
-        elif tab_new_size > tab_max_size:
-            tab_new_size = tab_max_size
+        allowed_size = canvas_size.width
+        if n_pages == 1:
+            # use half of the whole space
+            tab_expand = False
+            tab_new_size = int(allowed_size / 2)
+        elif n_pages <= 8:  # ensure eight tabs
+            tab_expand = True  # use all the space available by tabs
+            tab_new_size = -1
+        else:
+            # scroll the tab toolbar if there are more than 8 tabs
+            tab_expand = False
+            tab_new_size = (allowed_size / 8)
 
         for page_idx in range(n_pages):
             page = self.get_nth_page(page_idx)
             label = self.get_tab_label(page)
+            self.child_set_property(page, 'tab-expand', tab_expand)
             label.update_size(tab_new_size)
 
     def _update_closing_buttons(self):
