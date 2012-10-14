@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-29 00:32-0400\n"
-"PO-Revision-Date: 2012-03-26 16:55+0200\n"
-"Last-Translator: Marcin <ulinski.marcin@gmail.com>\n"
+"PO-Revision-Date: 2012-10-13 19:23+0200\n"
+"Last-Translator: Karolina <karo.zaklika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Surfuj po świecie! Tutaj możesz szukać, oglądać edukacyjne filmy, "
+"uczestniczyć w kursach online, znaleźć książki, kontaktować się ze znajomymi "
+"i o wiele więcej."
 
 #: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
@@ -47,7 +50,7 @@ msgstr "Ładowanie..."
 
 #: browser.py:647 browser.py:648
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Ta strona internetowa nie mogła być załadowana"
 
 #: browser.py:649
 #, python-format
@@ -55,10 +58,12 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
+"Nie można załadować \"%s\". Sprawdź czy nie ma błędów w pisowni i podłączenie "
+"do internetu"
 
 #: browser.py:652
 msgid "Try again"
-msgstr ""
+msgstr "Spróbuj ponownie"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -110,7 +115,7 @@ msgstr "Usuń"
 
 #: palettes.py:130
 msgid "Copy text"
-msgstr ""
+msgstr "Kopiuj tekst"
 
 #: palettes.py:165
 msgid "Follow link"
@@ -158,7 +163,7 @@ msgstr "Zapisz PDF do dziennka"
 
 #: viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Obecny rozmiar"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
