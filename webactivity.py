@@ -54,6 +54,7 @@ from sugar3.graphics.icon import Icon
 from sugar3 import mime
 
 from sugar3.graphics.toolbarbox import ToolbarButton
+from sugar3.graphics.window import _UNFULLSCREEN_BUTTON_VISIBILITY_TIMEOUT
 
 PROFILE_VERSION = 2
 
@@ -206,6 +207,9 @@ class WebActivity(activity.Activity):
 
         self.model = Model()
         self.model.connect('add_link', self._add_link_model_cb)
+
+        self.set_events(Gdk.EventMask.TOUCH_MASK)
+        self.connect('event', self.__event_cb)
 
         # HACK to allow Escape key stop loading on fullscreen mode
         # http://bugs.sugarlabs.org/ticket/1434
@@ -430,6 +434,20 @@ class WebActivity(activity.Activity):
 
     def _go_home_button_cb(self, button):
         self._tabbed_view.load_homepage()
+
+    def __event_cb(self, widget, event):
+        if self._is_fullscreen and event.type == Gdk.EventType.TOUCH_END:
+            # Show Unfullscreen button when the user clicks over the canvas
+            self._unfullscreen_button.show()
+
+            if self._unfullscreen_button_timeout_id is not None:
+                GObject.source_remove(self._unfullscreen_button_timeout_id)
+                self._unfullscreen_button_timeout_id = None
+
+            self._unfullscreen_button_timeout_id = \
+                GObject.timeout_add_seconds( \
+                    _UNFULLSCREEN_BUTTON_VISIBILITY_TIMEOUT, \
+                    self._Window__unfullscreen_button_timeout_cb)
 
     def _key_press_cb(self, widget, event):
         # HACK: this is the hacked version of
