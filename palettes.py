@@ -291,7 +291,7 @@ class ImagePalette(Palette):
         # Copy it inside the clipboard
         image = Gtk.Image.new_from_file(temp_file.name)
         os.unlink(temp_file.name)
-        clipboard = Gtk.Clipboard()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_image(image.get_pixbuf())
 
     def __download_activate_cb(self, menu_item):
