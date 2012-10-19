@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-29 00:32-0400\n"
-"PO-Revision-Date: 2012-09-16 22:14+0200\n"
+"PO-Revision-Date: 2012-10-19 08:31+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -39,6 +39,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Surf met het internet over de hele wereld! Hier kan je onderzoek doen, "
+"leerzame filmpjes bekijken, online lessen volgen, boeken vinden, verbinden "
+"met vrienden en meer."
 
 #: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
@@ -50,7 +53,7 @@ msgstr "Laden..."
 
 #: browser.py:647 browser.py:648
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Deze webpagina kon niet geladen worden."
 
 #: browser.py:649
 #, python-format
@@ -58,10 +61,12 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
+"\"%s\" kon niet geladen worden. Controleer of u geen typefouten gemaakt hebt, "
+"en zorg ervoor dat u verbonden met het internet."
 
 #: browser.py:652
 msgid "Try again"
-msgstr ""
+msgstr "Probeer opnieuw"
 
 #: downloadmanager.py:102
 msgid "Download started"
@@ -113,7 +118,7 @@ msgstr "Verwijderen"
 
 #: palettes.py:130
 msgid "Copy text"
-msgstr ""
+msgstr "Kopieer tekst"
 
 #: palettes.py:165
 msgid "Follow link"
