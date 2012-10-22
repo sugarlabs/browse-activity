@@ -27,6 +27,7 @@ from gi.repository import WebKit
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
+from sugar3.graphics.style import STANDARD_ICON_SIZE
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
@@ -84,6 +85,7 @@ class WebEntry(iconentry.IconEntry):
     def _search_create_view(self):
         view = Gtk.TreeView()
         view.props.headers_visible = False
+        view.props.rules_hint = True
 
         view.connect('button-press-event', self.__view_button_press_event_cb)
 
@@ -93,6 +95,7 @@ class WebEntry(iconentry.IconEntry):
         cell = Gtk.CellRendererText()
         cell.props.ellipsize = Pango.EllipsizeMode.END
         cell.props.ellipsize_set = True
+        cell.props.height = STANDARD_ICON_SIZE
         cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
