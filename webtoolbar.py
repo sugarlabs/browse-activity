@@ -125,9 +125,11 @@ class WebEntry(iconentry.IconEntry):
     def _search_popup(self):
         miss, window_x, window_y = self.props.window.get_origin()
         entry_allocation = self.get_allocation()
+        preferred_height = self.get_preferred_height()[0]
+        gap = (entry_allocation.height - preferred_height) / 2
 
         search_x = window_x + entry_allocation.x
-        search_y = window_y + entry_allocation.y + entry_allocation.height
+        search_y = window_y + gap + preferred_height
         search_width = entry_allocation.width
         search_height = Gdk.Screen.height() / 3
 
