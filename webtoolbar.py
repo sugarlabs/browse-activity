@@ -27,7 +27,7 @@ from gi.repository import WebKit
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
-from sugar3.graphics.style import STANDARD_ICON_SIZE
+from sugar3.graphics import style
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
@@ -38,6 +38,16 @@ from browser import Browser
 
 
 _MAX_HISTORY_ENTRIES = 15
+_SEARCH_ENTRY_MARGIN = style.zoom(14)
+
+
+class _SearchWindow(Gtk.Window):
+    """A search window that can be styled in the theme."""
+
+    __gtype_name__ = "BrowseSearchWindow"
+
+    def __init__(self):
+        Gtk.Window.__init__(self, type=Gtk.WindowType.POPUP)
 
 
 class WebEntry(iconentry.IconEntry):
@@ -50,7 +60,7 @@ class WebEntry(iconentry.IconEntry):
         self._address = None
         self._search_view = self._search_create_view()
 
-        self._search_window = Gtk.Window(type=Gtk.WindowType.POPUP)
+        self._search_window = _SearchWindow()
         self._search_window.add(self._search_view)
         self._search_view.show()
 
@@ -60,6 +70,32 @@ class WebEntry(iconentry.IconEntry):
         self._focus_out_hid = self.connect(
                     'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
+
+    def do_draw(self, cr):
+        """Draw a background to better fit the search window."""
+        if self._search_window.props.visible:
+            original_path = cr.copy_path()
+
+            allocation = self.get_allocation()
+            cr.set_source_rgb(0, 0, 0)
+            cr.rectangle(0, allocation.height / 2,
+                         allocation.width, allocation.height / 2)
+            cr.fill()
+
+            cr.set_source_rgba(*style.COLOR_BUTTON_GREY.get_rgba())
+            # Set the line width two times the theme border to make
+            # the calculation easier.
+            cr.set_line_width(style.LINE_WIDTH * 4)
+            cr.move_to(0, allocation.height)
+            cr.line_to(0, allocation.height / 2)
+            cr.move_to(allocation.width, allocation.height)
+            cr.line_to(allocation.width, allocation.height / 2)
+            cr.stroke()
+
+            cr.new_path()
+            cr.append_path(original_path)
+
+        iconentry.IconEntry.do_draw(self, cr)
 
     def _set_text(self, text):
         """Set the text but block changes notification, so that we can
@@ -85,7 +121,6 @@ class WebEntry(iconentry.IconEntry):
     def _search_create_view(self):
         view = Gtk.TreeView()
         view.props.headers_visible = False
-        view.props.rules_hint = True
 
         view.connect('button-press-event', self.__view_button_press_event_cb)
 
@@ -95,13 +130,16 @@ class WebEntry(iconentry.IconEntry):
         cell = Gtk.CellRendererText()
         cell.props.ellipsize = Pango.EllipsizeMode.END
         cell.props.ellipsize_set = True
-        cell.props.height = STANDARD_ICON_SIZE
+        cell.props.height = style.STANDARD_ICON_SIZE
+        cell.props.xpad = _SEARCH_ENTRY_MARGIN
         cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
         column.add_attribute(cell, 'text', self._COL_TITLE)
 
         cell = Gtk.CellRendererText()
+        cell.props.xpad = _SEARCH_ENTRY_MARGIN
+        cell.props.xalign = 0
         cell.props.ellipsize = Pango.EllipsizeMode.END
         cell.props.ellipsize_set = True
         cell.props.alignment = Pango.Alignment.LEFT
@@ -131,7 +169,8 @@ class WebEntry(iconentry.IconEntry):
         search_x = window_x + entry_allocation.x
         search_y = window_y + gap + preferred_height
         search_width = entry_allocation.width
-        search_height = Gdk.Screen.height() / 3
+        # Set minimun height to four entries.
+        search_height = (style.STANDARD_ICON_SIZE + style.LINE_WIDTH * 2) * 4
 
         self._search_window.move(search_x, search_y)
         self._search_window.resize(search_width, search_height)
