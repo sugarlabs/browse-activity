@@ -207,9 +207,6 @@ class WebActivity(activity.Activity):
         self.model = Model()
         self.model.connect('add_link', self._add_link_model_cb)
 
-        # HACK to allow Escape key stop loading on fullscreen mode
-        # http://bugs.sugarlabs.org/ticket/1434
-        self.disconnect_by_func(self._Window__key_press_cb)
         self.connect('key-press-event', self._key_press_cb)
 
         if handle.uri:
@@ -432,29 +429,6 @@ class WebActivity(activity.Activity):
         self._tabbed_view.load_homepage()
 
     def _key_press_cb(self, widget, event):
-        # HACK: this is the hacked version of
-        # sugar3.graphics.Window.__key_press_cb function to allow stop
-        # loading on fullscreen
-        def __key_press_cb(widget, event):
-            status = self._tabbed_view.props.current_browser.get_load_status()
-            loading = WebKit.LoadStatus.PROVISIONAL <= status \
-                < WebKit.LoadStatus.FINISHED
-
-            key = Gdk.keyval_name(event.keyval)
-            if event.get_state() & Gdk.ModifierType.MOD1_MASK:
-                if self.tray is not None and key == 'space':
-                    self.tray.props.visible = not self.tray.props.visible
-                    return True
-            elif key == 'Escape' and self._is_fullscreen and \
-                    self.props.enable_fullscreen_mode and \
-                    not loading:
-                self.unfullscreen()
-                return True
-            return False
-
-        # Call the original sugar3.graphics.Window.__key_press_cb function
-        __key_press_cb(widget, event)
-
         key_name = Gdk.keyval_name(event.keyval)
         browser = self._tabbed_view.props.current_browser
 
