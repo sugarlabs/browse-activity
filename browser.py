@@ -95,13 +95,31 @@ class TabbedView(BrowserNotebook):
         self.props.show_border = False
         self.props.scrollable = True
 
+        # Used to connect and disconnect functions when 'switch-page'
+        self._browser = None
+        self._load_status_changed_hid = None
+
         self.connect('size-allocate', self.__size_allocate_cb)
         self.connect('page-added', self.__page_added_cb)
         self.connect('page-removed', self.__page_removed_cb)
 
+        self.connect_after('switch-page', self.__switch_page_cb)
+
         self.add_tab()
         self._update_closing_buttons()
         self._update_tab_sizes()
+
+    def __switch_page_cb(self, tabbed_view, page, page_num):
+        if tabbed_view.get_n_pages():
+            self._connect_to_browser(tabbed_view.props.current_browser)
+
+    def _connect_to_browser(self, browser):
+        if self._browser is not None:
+            self._browser.disconnect(self._load_status_changed_hid)
+
+        self._browser = browser
+        self._load_status_changed_hid = self._browser.connect(
+            'notify::load-status', self.__load_status_changed_cb)
 
     def normalize_or_autosearch_url(self, url):
         """Normalize the url input or return a url for search.
@@ -193,11 +211,7 @@ class TabbedView(BrowserNotebook):
         tab_page.setup(url)
 
     def __load_status_changed_cb(self, widget, param):
-        """Do not change the cursor if the load-status changed is not
-        on the current browser.
-
-        """
-        if self.props.current_browser != widget:
+        if self.get_window() is None:
             return
 
         status = widget.get_load_status()
@@ -213,7 +227,6 @@ class TabbedView(BrowserNotebook):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-        browser.connect('notify::load-status', self.__load_status_changed_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
@@ -338,8 +351,6 @@ class TabbedView(BrowserNotebook):
                 browser = Browser()
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-                browser.connect('notify::load-status',
-                                self.__load_status_changed_cb)
                 self._append_tab(browser)
                 browser.set_history(tab_history)
 
