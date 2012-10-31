@@ -461,7 +461,6 @@ class PrimaryToolbar(ToolbarBase):
                 not self._tabbed_view.is_current_page_pdf():
             entry.set_text('')
         else:
-            self._browser.reload()
             if self._loading:
                 self._browser.stop_loading()
             else:
