@@ -653,9 +653,12 @@ class Browser(WebKit.WebView):
         """Show Sugar's error page"""
 
         # Don't show error page if the load was interrupted by policy
-        # change. For example, if a file was requested for download
-        if web_error.code == WebKit.PolicyError.\
-                FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE:
+        # change or the request is going to be handled by a
+        # plugin. For example, if a file was requested for download or
+        # an .ogg file is going to be played.
+        if web_error.code in (WebKit.PolicyError.\
+                FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
+                WebKit.PluginError.WILL_HANDLE_LOAD):
             return True
 
         data = {
