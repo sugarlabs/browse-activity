@@ -451,9 +451,12 @@ class TabLabel(Gtk.HBox):
         self.emit('tab-close')
 
     def __title_changed_cb(self, widget, param):
-        if widget.props.title:
-            self._label.set_text(widget.props.title)
-            self._title = widget.props.title
+        title = widget.props.title
+        if not title:
+            title = os.path.basename(widget.props.uri)
+
+        self._label.set_text(title)
+        self._title = title
 
     def __load_status_changed_cb(self, widget, param):
         status = widget.get_load_status()
