@@ -79,7 +79,7 @@ class ContentInvoker(Invoker):
                               Gdk.EventMask.POINTER_MOTION_MASK |
                               Gdk.EventMask.TOUCH_MASK)
 
-        lp = SugarGestures.LongPressController(trigger_delay=500)
+        lp = SugarGestures.LongPressController()
         lp.connect('pressed', self.__long_pressed_cb)
         lp.attach(browser, SugarGestures.EventControllerFlags.NONE)
 
