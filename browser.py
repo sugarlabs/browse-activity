@@ -258,6 +258,20 @@ class TabbedView(BrowserNotebook):
         self.add_tab()
 
     def __tab_close_cb(self, label, tab_page):
+        if tab_page.props.browser == self.props.current_browser:
+            # Current browser was just closed. The next tab of it has
+            # to take the focus.
+            current_page_num = self.page_num(tab_page)
+
+            if self.get_n_pages() - 1 == current_page_num:
+                # This tab was the last. Grab the left one.
+                page_to_focus = current_page_num - 1
+            else:
+                # This tab was in the middle. Grab the right one.
+                page_to_focus = current_page_num + 1
+            nth_page = self.get_nth_page(page_to_focus)
+            nth_page.props.browser.grab_focus()
+
         self.remove_page(self.page_num(tab_page))
         tab_page.destroy()
 
