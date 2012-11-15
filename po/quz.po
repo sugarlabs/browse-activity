@@ -22,12 +22,20 @@ msgstr ""
 msgid "Browse"
 msgstr "Wayp'uy"
 
+#  [ES] ""
+#  [ES] "¡Navega por el mundo! Aquí puedes hacer investigaciónes, ver vídeos "
+#  [ES] "educativos, tomar cursos en línea, encontrar libros, conectarte con amigos y "
+#  [ES] "mucho más."
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Llapan tiqsimuyupi wanpuy! Kaypiqa imaymanakunamantam yachayta atinki, "
+"videokunatapas qhawakunki, takikunatapas uyarikunki, p'anqakunatapas "
+"ñawichanki, masiykikunawanpas rimarinakuwaq, huk imaymanakunatapas "
+"ruwallawaqmi."
 
 #: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
 msgid "Untitled"
@@ -37,20 +45,27 @@ msgstr "Mana sutinchayniyuq"
 msgid "Loading..."
 msgstr "Llamk'achkanñam..."
 
+#  [ES] "Esta página web no puede ser cargada"
 #: browser.py:647 browser.py:648
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Kay web raphiqa mana rikurinchu"
 
+#  [ES] ""
+#  [ES] "\"%s\" no se pudo cargar. Comprueba si hay errores escritura, y asegúrate de "
+#  [ES] "que estás conectado a Internet."
 #: browser.py:649
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
+"\"%s\" nisqaqa manam rikuchikunchu. Qillqasqayki ichapas mana allinchu "
+"kachkanman utaq maquinayki Internetman manapas tinkuchikuchkanman."
 
+#  [ES] "Inténtalo de nuevo"
 #: browser.py:652
 msgid "Try again"
-msgstr ""
+msgstr "Wakmanta ruwariy"
 
 #  "Descarga iniciada"
 #: downloadmanager.py:102
@@ -83,9 +98,13 @@ msgstr "Chaskiy"
 msgid "From: %s"
 msgstr "Pimanta: %s"
 
+#  [ES] ""
+#  [ES] "Descargando %(filename)s de \n"
+#  [ES] "%(source)s."
 #: downloadmanager.py:203
 #, python-format
-#, python-format, fuzzy
+#, python-format,
+#, python-format, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
@@ -108,9 +127,10 @@ msgstr "Hamuq"
 msgid "Remove"
 msgstr "Chinkachiy"
 
+#  [ES] "Copiar texto"
 #: palettes.py:130
 msgid "Copy text"
-msgstr ""
+msgstr "Qillqata kikinchay"
 
 #  "Seguir el enlace"
 #: palettes.py:165
@@ -151,10 +171,10 @@ msgstr "Huch'uyachiy"
 msgid "Zoom in"
 msgstr "Hatunyachiy"
 
+#  [ES] "Página anterior"
 #: pdfviewer.py:104
-#, fuzzy
 msgid "Previous page"
-msgstr "Ñawpaq raphi"
+msgstr "Qhipa raphi"
 
 #: pdfviewer.py:111
 msgid "Next page"
@@ -164,9 +184,10 @@ msgstr "Hamuq raphi"
 msgid "Save PDF to Journal"
 msgstr "P'anqata PDF hinatam waqaychay"
 
+#  [ES] "Tamaño actual"
 #: viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Kunan kaq sayaynin"
 
 #  "Pantalla completa"
 #: viewtoolbar.py:62
@@ -225,3 +246,79 @@ msgstr "Ñawpay"
 #: webtoolbar.py:280
 msgid "Bookmark"
 msgstr "T'upsichiq"
+
+#  [ES] "Marcador"
+#  "Marcador"
+#~ msgid "Bookmark"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "T'upsichiq"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
+
+#  [ES] "Parar"
+#  "Parar"
+#~ msgid "Stop"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "Sayachiy"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
+
+#  [ES] "Volver"
+#  "Volver"
+#~ msgid "Back"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "Kutiy"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
+
+#  SYNTAX ERROR: msgstr[0] "Urayachkanñam"
+#  SYNTAX ERROR: msgstr[1] "Urayachkankuñam"
+#~ msgid "Stopping now will erase your download"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ msgstr[0] "Utichinki chayqa urayachisqaykiqa pichakunqam"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping kachkan kunanqa urayachisqaykikunata "
+#~ "pichay"
+
+#  [ES] "Avanzar"
+#  "Avanzar"
+#~ msgid "Forward"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "Ñawpay"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
+
+#  [ES] "Página inicial"
+#  "Página inicial"
+#~ msgid "Home page"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "Qallarina"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
+
+#  SYNTAX ERROR: msgstr[0] "Urayachkanñam"
+#  SYNTAX ERROR: msgstr[1] "Urayachkankuñam"
+#~ msgid "Continue download"
+#~ msgid_plural "Downloads in progress"
+#~ "Stopping now will erase your downloads"
+#~ "Continue downloads"
+#~ msgstr[0] "Urayachillan"
+#~ msgstr[1] ""
+#~ "Urayachisqaykikunaqa progressStopping nisqapi kachkan kunanqa "
+#~ "downloadsContinue kaq urayachisqaykikunata pichay"
