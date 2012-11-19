@@ -35,7 +35,7 @@ import filepicker
 import places
 from sugarmenuitem import SugarMenuItem
 from browser import Browser
-
+from pdfviewer import DummyBrowser
 
 _MAX_HISTORY_ENTRIES = 15
 _SEARCH_ENTRY_MARGIN = style.zoom(14)
@@ -357,7 +357,10 @@ class PrimaryToolbar(ToolbarBase):
             self._browser.disconnect(self._loading_changed_hid)
 
         self._browser = browser
-        address = self._browser.props.uri or self._browser.loading_uri
+        if not isinstance(self._browser, DummyBrowser):
+            address = self._browser.props.uri or self._browser.loading_uri
+        else:
+            address = self._browser.props.uri
         self._set_address(address)
         self._set_progress(self._browser.props.progress)
         self._set_status(self._browser.props.load_status)
