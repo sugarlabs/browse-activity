@@ -409,6 +409,7 @@ class WebActivity(activity.Activity):
             for number, tab in enumerate(self.model.data['currents']):
                 tab_page = self._tabbed_view.get_nth_page(number)
                 tab_page.browser.set_history_index(tab['history_index'])
+                tab_page.browser.grab_focus()
 
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
         elif self.metadata['mime_type'] == 'text/uri-list':
@@ -422,6 +423,7 @@ class WebActivity(activity.Activity):
         else:
             file_uri = 'file://' + file_path
             self._tabbed_view.props.current_browser.load_uri(file_uri)
+            self._tabbed_view.props.current_browser.grab_focus()
 
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
