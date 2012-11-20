@@ -202,25 +202,25 @@ class LinkPalette(Palette):
 
         menu_item = SugarMenuItem(_('Follow link'), 'browse-follow-link')
         menu_item.connect('clicked', self.__follow_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
+        menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
         menu_item = SugarMenuItem(_('Follow link in new tab'),
                                   'browse-follow-link-new-tab')
         menu_item.connect('clicked', self.__follow_activate_cb, True)
-        menu_box.pack_end(menu_item, False, False, 0)
+        menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
         menu_item = SugarMenuItem(_('Keep link'), 'document-save')
         menu_item.icon.props.xo_color = profile.get_color()
         menu_item.connect('clicked', self.__download_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
+        menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
         menu_item = SugarMenuItem(_('Copy link'), 'edit-copy')
         menu_item.icon.props.xo_color = profile.get_color()
         menu_item.connect('clicked', self.__copy_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
+        menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
     def __follow_activate_cb(self, menu_item, new_tab=False):
