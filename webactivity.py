@@ -526,8 +526,12 @@ class WebActivity(activity.Activity):
             return True
 
         elif key_name == 'Escape':
-            _logger.debug('keyboard: Stop loading')
-            browser.stop_loading()
+            status = browser.get_load_status()
+            loading = WebKit.LoadStatus.PROVISIONAL <= status \
+                < WebKit.LoadStatus.FINISHED
+            if loading:
+                _logger.debug('keyboard: Stop loading')
+                browser.stop_loading()
 
         return False
 
