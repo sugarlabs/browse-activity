@@ -195,6 +195,33 @@ class TabbedView(BrowserNotebook):
         new_browser.load_uri(url)
         new_browser.grab_focus()
 
+    def __create_web_view_cb(self, web_view, frame):
+        new_web_view = Browser()
+        new_web_view.connect('web-view-ready', self.__web_view_ready_cb)
+        return new_web_view
+
+    def __web_view_ready_cb(self, web_view):
+        """
+        Handle new window requested and open it in a new tab.
+
+        This callback is called when the WebKit.WebView request for a
+        new window to open (for example a call to the Javascript
+        function 'window.open()' or target="_blank")
+
+        web_view -- the new browser there the url of the
+                    window.open() call will be loaded.
+
+                    This object is created in the signal callback
+                    'create-web-view'.
+        """
+
+        web_view.connect('new-tab', self.__new_tab_cb)
+        web_view.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+        web_view.connect('create-web-view', self.__create_web_view_cb)
+        web_view.grab_focus()
+
+        self._insert_tab_next(web_view)
+
     def __open_pdf_in_new_tab_cb(self, browser, url):
         tab_page = PDFTabPage()
         tab_page.browser.connect('new-tab', self.__new_tab_cb)
@@ -227,6 +254,8 @@ class TabbedView(BrowserNotebook):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+        browser.connect('web-view-ready', self.__web_view_ready_cb)
+        browser.connect('create-web-view', self.__create_web_view_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
@@ -366,6 +395,8 @@ class TabbedView(BrowserNotebook):
                 browser = Browser()
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+                browser.connect('web-view-ready', self.__web_view_ready_cb)
+                browser.connect('create-web-view', self.__create_web_view_cb)
                 self._append_tab(browser)
                 browser.set_history(tab_history)
 
@@ -521,8 +552,6 @@ class Browser(WebKit.WebView):
         self.connect('download-requested', self.__download_requested_cb)
         self.connect('mime-type-policy-decision-requested',
                      self.__mime_type_policy_cb)
-        self.connect('new-window-policy-decision-requested',
-                     self.__new_window_policy_cb)
         self.connect('load-error', self.__load_error_cb)
 
         ContentInvoker(self)
@@ -647,21 +676,6 @@ class Browser(WebKit.WebView):
             return True
 
         return False
-
-    def __new_window_policy_cb(self, webview, webframe, request,
-                               navigation_action, policy_decision):
-        """Open new tab instead of a new window.
-
-        Browse doesn't support many windows, as any Sugar activity.
-        So we will handle the request, ignoring it and returning True
-        to inform WebKit that a decision was made.  And we will open a
-        new tab instead.
-
-        """
-        policy_decision.ignore()
-        uri = request.get_uri()
-        self.open_new_tab(uri)
-        return True
 
     def __download_requested_cb(self, browser, download):
         downloadmanager.add_download(download, browser)
