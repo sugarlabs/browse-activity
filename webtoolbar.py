@@ -27,13 +27,13 @@ from gi.repository import WebKit
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
+from sugar3.graphics.palettemenu import PaletteMenuItem
 from sugar3.graphics import style
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
 import filepicker
 import places
-from sugarmenuitem import SugarMenuItem
 from browser import Browser
 from pdfviewer import DummyBrowser
 
@@ -492,8 +492,8 @@ class PrimaryToolbar(ToolbarBase):
             if not isinstance(title, unicode):
                 title = unicode(title, 'utf-8')
             # This is a fix until the Sugar MenuItem is fixed:
-            menu_item = SugarMenuItem(text_label=title)
-            menu_item.connect('clicked', self._history_item_activated_cb,
+            menu_item = PaletteMenuItem(text_label=title)
+            menu_item.connect('activate', self._history_item_activated_cb,
                               item_index)
             return menu_item
 
@@ -519,6 +519,8 @@ class PrimaryToolbar(ToolbarBase):
             item_index += 1
 
     def _history_item_activated_cb(self, menu_item, index):
+        self._back.get_palette().popdown(immediate=True)
+        self._forward.get_palette().popdown(immediate=True)
         self._browser.set_history_index(index)
 
     def _link_add_clicked_cb(self, button):

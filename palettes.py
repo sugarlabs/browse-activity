@@ -29,9 +29,8 @@ from gi.repository import WebKit
 from gi.repository import SugarGestures
 
 from sugar3.graphics.palette import Palette, Invoker
+from sugar3.graphics.palettemenu import PaletteMenuItem
 from sugar3 import profile
-
-from sugarmenuitem import SugarMenuItem
 
 
 class ContentInvoker(Invoker):
@@ -165,9 +164,9 @@ class SelectionPalette(Palette):
 
         self.props.primary_text = title
 
-        menu_item = SugarMenuItem(_('Copy text'), 'edit-copy')
+        menu_item = PaletteMenuItem(_('Copy text'), 'edit-copy')
         menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_item.connect('activate', self.__copy_activate_cb)
         menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
@@ -200,26 +199,26 @@ class LinkPalette(Palette):
         menu_box.show()
         self._content.set_border_width(1)
 
-        menu_item = SugarMenuItem(_('Follow link'), 'browse-follow-link')
-        menu_item.connect('clicked', self.__follow_activate_cb)
+        menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
+        menu_item.connect('activate', self.__follow_activate_cb)
         menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = SugarMenuItem(_('Follow link in new tab'),
+        menu_item = PaletteMenuItem(_('Follow link in new tab'),
                                   'browse-follow-link-new-tab')
-        menu_item.connect('clicked', self.__follow_activate_cb, True)
+        menu_item.connect('activate', self.__follow_activate_cb, True)
         menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = SugarMenuItem(_('Keep link'), 'document-save')
+        menu_item = PaletteMenuItem(_('Keep link'), 'document-save')
         menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('clicked', self.__download_activate_cb)
+        menu_item.connect('activate', self.__download_activate_cb)
         menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = SugarMenuItem(_('Copy link'), 'edit-copy')
+        menu_item = PaletteMenuItem(_('Copy link'), 'edit-copy')
         menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_item.connect('activate', self.__copy_activate_cb)
         menu_box.pack_start(menu_item, False, False, 0)
         menu_item.show()
 
@@ -267,15 +266,15 @@ class ImagePalette(Palette):
         menu_box.show()
         self._content.set_border_width(1)
 
-        menu_item = SugarMenuItem(_('Copy image'), 'edit-copy')
+        menu_item = PaletteMenuItem(_('Copy image'), 'edit-copy')
         menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('clicked', self.__copy_activate_cb)
+        menu_item.connect('activate', self.__copy_activate_cb)
         menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
-        menu_item = SugarMenuItem(_('Keep image'), 'document-save')
+        menu_item = PaletteMenuItem(_('Keep image'), 'document-save')
         menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('clicked', self.__download_activate_cb)
+        menu_item.connect('activate', self.__download_activate_cb)
         menu_box.pack_end(menu_item, False, False, 0)
         menu_item.show()
 
