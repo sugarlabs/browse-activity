@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"POT-Creation-Date: 2012-11-17 00:33-0500\n"
 "PO-Revision-Date: 2012-11-05 21:00+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,19 +43,19 @@ msgstr ""
 "leerzame filmpjes bekijken, online lessen volgen, boeken vinden, verbinden "
 "met vrienden en meer."
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
 msgid "Untitled"
 msgstr "Zonder titel"
 
-#: browser.py:441
+#: browser.py:450
 msgid "Loading..."
 msgstr "Laden..."
 
-#: browser.py:647 browser.py:648
+#: browser.py:665 browser.py:666
 msgid "This web page could not be loaded"
 msgstr "Deze webpagina kon niet geladen worden"
 
-#: browser.py:649
+#: browser.py:667
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
@@ -64,37 +64,47 @@ msgstr ""
 "\"%s\" kon niet geladen worden. Controleer of u geen typefouten gemaakt hebt, "
 "en zorg ervoor dat u verbonden met het internet."
 
-#: browser.py:652
+#: browser.py:670
 msgid "Try again"
 msgstr "Probeer opnieuw"
 
-#: downloadmanager.py:102
+#: downloadmanager.py:111
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:120
+#, python-format
+msgid ""
+"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+msgstr ""
+
+#: downloadmanager.py:125 downloadmanager.py:156
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:137
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:138 downloadmanager.py:150
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:148
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:153
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "Ok"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:164 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Van: %s"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:259
 #, python-format
 #, python-format,
 msgid ""
@@ -116,31 +126,31 @@ msgstr "Volgende"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: palettes.py:130
+#: palettes.py:168
 msgid "Copy text"
 msgstr "Kopieer tekst"
 
-#: palettes.py:165
+#: palettes.py:203
 msgid "Follow link"
 msgstr "Koppeling volgen"
 
-#: palettes.py:170
+#: palettes.py:208
 msgid "Follow link in new tab"
 msgstr "Volg link in nieuwe tab"
 
-#: palettes.py:176
+#: palettes.py:214
 msgid "Keep link"
 msgstr "Koppeling bewaren"
 
-#: palettes.py:182
+#: palettes.py:220
 msgid "Copy link"
 msgstr "Koppeling kopiëren"
 
-#: palettes.py:232
+#: palettes.py:270
 msgid "Copy image"
 msgstr "Afbeelding kopiëren"
 
-#: palettes.py:238
+#: palettes.py:276
 msgid "Keep image"
 msgstr "Afbeelding bewaren"
 
@@ -180,41 +190,41 @@ msgstr "Toon lade"
 msgid "Hide Tray"
 msgstr "Verberg lade"
 
-#: webactivity.py:598
+#: webactivity.py:613
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Bezig met downloaden"
 msgstr[1] "Bezig met downloaden"
 
-#: webactivity.py:601
+#: webactivity.py:616
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Door nu te stoppen wordt het downloaden afgebroken"
 msgstr[1] "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:606
+#: webactivity.py:621
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Doorgaan met download"
 msgstr[1] "Doorgaan met downloaden"
 
-#: webactivity.py:611
+#: webactivity.py:626
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr "Home page"
 
-#: webtoolbar.py:252
+#: webtoolbar.py:297
 msgid "Back"
 msgstr "Terug"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:311
 msgid "Forward"
 msgstr "Vooruit"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "Bladwijzer"
 
