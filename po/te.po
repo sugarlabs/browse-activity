@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
-"PO-Revision-Date: 2011-11-27 06:05+0200\n"
+"POT-Creation-Date: 2012-11-17 00:33-0500\n"
+"PO-Revision-Date: 2012-11-25 07:00+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -36,56 +36,66 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr ""
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:441
+#: browser.py:450
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:647 browser.py:648
+#: browser.py:665 browser.py:666
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:649
+#: browser.py:667
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
 
-#: browser.py:652
+#: browser.py:670
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:102
+#: downloadmanager.py:111
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:120
+#, python-format
+msgid ""
+"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+msgstr ""
+
+#: downloadmanager.py:125 downloadmanager.py:156
+msgid "Ok"
+msgstr "సరి"
+
+#: downloadmanager.py:137
 msgid "Download started"
 msgstr "దిగుమతి మొదలయింది"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:138 downloadmanager.py:150
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:148
 msgid "Download completed"
 msgstr "దిగుమతి పూర్తయింది"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:153
 msgid "Show in Journal"
 msgstr "పద్దులో చూపు"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "సరి"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:164 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
-msgstr "%s :నుండి "
+msgstr "%s :నుండి"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:259
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -104,33 +114,33 @@ msgstr "తర్వాతది"
 msgid "Remove"
 msgstr "తీసివేయి"
 
-#: palettes.py:130
+#: palettes.py:168
 msgid "Copy text"
 msgstr ""
 
-#: palettes.py:165
+#: palettes.py:203
 msgid "Follow link"
 msgstr "జోడికను తెరువుము"
 
-#: palettes.py:170
+#: palettes.py:208
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:176
+#: palettes.py:214
 msgid "Keep link"
 msgstr "జోడింపును ఉంచు"
 
-#: palettes.py:182
+#: palettes.py:220
 msgid "Copy link"
-msgstr "జోడింపును  నకలు తీయు "
+msgstr "జోడింపును  నకలు తీయు"
 
-#: palettes.py:232
+#: palettes.py:270
 msgid "Copy image"
-msgstr "ప్రతి రూపాన్ని నకలు తీయు "
+msgstr "ప్రతి రూపాన్ని నకలు తీయు"
 
-#: palettes.py:238
+#: palettes.py:276
 msgid "Keep image"
-msgstr "ప్రతిరూపాన్ని ఉంచు "
+msgstr "ప్రతిరూపాన్ని ఉంచు"
 
 #: pdfviewer.py:87 viewtoolbar.py:39
 msgid "Zoom out"
@@ -168,41 +178,41 @@ msgstr "ట్రే చూపు"
 msgid "Hide Tray"
 msgstr "ట్రే దాచివేయి"
 
-#: webactivity.py:598
+#: webactivity.py:613
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "దిగుమతి జరుగుతుంది"
 
-#: webactivity.py:601
+#: webactivity.py:616
 #, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "ఇప్పుడు ఆపితే మీ దిగుమతి రద్దవుతుంది"
 
-#: webactivity.py:606
+#: webactivity.py:621
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:611
+#: webactivity.py:626
 msgid "Stop"
 msgstr "ఆపు"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:252
+#: webtoolbar.py:297
 msgid "Back"
 msgstr "వెనుకకు"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:311
 msgid "Forward"
 msgstr "ముందుకు"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "గుర్తు"
 
