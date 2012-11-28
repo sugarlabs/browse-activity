@@ -177,6 +177,7 @@ class DummyBrowser(GObject.GObject):
         'new-tab': (GObject.SignalFlags.RUN_FIRST, None, ([str])),
         'tab-close': (GObject.SignalFlags.RUN_FIRST, None, ([object])),
         'selection-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'security-status-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
     }
 
     __gproperties__ = {
@@ -194,6 +195,7 @@ class DummyBrowser(GObject.GObject):
         self._uri = ""
         self._progress = 0.0
         self._load_status = WebKit.LoadStatus.PROVISIONAL
+        self.security_status = None
 
     def do_get_property(self, prop):
         if prop.name == 'title':

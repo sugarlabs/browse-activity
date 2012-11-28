@@ -156,6 +156,8 @@ class WebActivity(activity.Activity):
 
         session = WebKit.get_default_session()
         session.set_property('accept-language-auto', True)
+        session.set_property('ssl-use-system-ca-file', True)
+        session.set_property('ssl-strict', False)
 
         # By default, cookies are not stored persistently, we have to
         # add a cookie jar so that they get saved to disk.  We use one

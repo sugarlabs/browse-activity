@@ -513,9 +513,15 @@ class Browser(WebKit.WebView):
         'open-pdf': (GObject.SignalFlags.RUN_FIRST,
                      None,
                      ([str])),
+        'security-status-changed': (GObject.SignalFlags.RUN_FIRST,
+                                    None,
+                                    ([])),
     }
 
     CURRENT_SUGAR_VERSION = '0.98'
+
+    SECURITY_STATUS_SECURE = 1
+    SECURITY_STATUS_INSECURE = 2
 
     def __init__(self):
         WebKit.WebView.__init__(self)
@@ -544,6 +550,8 @@ class Browser(WebKit.WebView):
         # This property is used to set the title immediatly the user
         # presses Enter on the URL Entry
         self.loading_uri = None
+
+        self.security_status = None
 
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
@@ -648,11 +656,27 @@ class Browser(WebKit.WebView):
         return True
 
     def __load_status_changed_cb(self, widget, param):
-        """Add the url to the global history or update it."""
         status = widget.get_load_status()
         if status <= WebKit.LoadStatus.COMMITTED:
+            # Add the url to the global history or update it.
             uri = self.get_uri()
             self._global_history.add_page(uri)
+
+        if status == WebKit.LoadStatus.COMMITTED:
+            # Update the security status.
+            response = widget.get_main_frame().get_network_response()
+            message = response.get_message()
+            if message:
+                use_https, certificate, tls_errors = message.get_https_status()
+
+                if use_https:
+                    if tls_errors == 0:
+                        self.security_status = self.SECURITY_STATUS_SECURE
+                    else:
+                        self.security_status = self.SECURITY_STATUS_INSECURE
+                else:
+                    self.security_status = None
+                self.emit('security-status-changed')
 
     def __title_changed_cb(self, widget, param):
         """Update title in global history."""
