@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"POT-Creation-Date: 2012-11-17 00:33-0500\n"
 "PO-Revision-Date: 2012-09-29 17:22+0200\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,19 +39,19 @@ msgstr ""
 "pendidikan, mengikuti kursus daring, mencari buku, menyambung dengan teman-"
 "teman, dan yang lainnya."
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
 msgid "Untitled"
 msgstr "Tanpa judul"
 
-#: browser.py:441
+#: browser.py:450
 msgid "Loading..."
 msgstr "Memuat..."
 
-#: browser.py:647 browser.py:648
+#: browser.py:665 browser.py:666
 msgid "This web page could not be loaded"
 msgstr "Halaman web ini tak dapat dimuat"
 
-#: browser.py:649
+#: browser.py:667
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
@@ -60,37 +60,47 @@ msgstr ""
 "\"%s\" tak dapat dimuat. Harap periksa apakah ada salah ketik, dan pastikan "
 "bahwa Anda tersambung ke internet."
 
-#: browser.py:652
+#: browser.py:670
 msgid "Try again"
 msgstr "Coba lagi"
 
-#: downloadmanager.py:102
+#: downloadmanager.py:111
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:120
+#, python-format
+msgid ""
+"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+msgstr ""
+
+#: downloadmanager.py:125 downloadmanager.py:156
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:137
 msgid "Download started"
 msgstr "Pengunduhan dimulai"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:138 downloadmanager.py:150
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:148
 msgid "Download completed"
 msgstr "Pengunduhan komplit"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:153
 msgid "Show in Journal"
 msgstr "Tampilkan di Jurnal"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "Ok"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:164 pdfviewer.py:419
 #, python-format
 msgid "From: %s"
 msgstr "Dari: %s"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:259
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -111,31 +121,31 @@ msgstr "Selanjutnya"
 msgid "Remove"
 msgstr "Hapus"
 
-#: palettes.py:130
+#: palettes.py:168
 msgid "Copy text"
 msgstr "Salin teks"
 
-#: palettes.py:165
+#: palettes.py:203
 msgid "Follow link"
 msgstr "Ikuti taut"
 
-#: palettes.py:170
+#: palettes.py:208
 msgid "Follow link in new tab"
 msgstr "Ikuti taut dalam tab baru"
 
-#: palettes.py:176
+#: palettes.py:214
 msgid "Keep link"
 msgstr "Pertahankan taut"
 
-#: palettes.py:182
+#: palettes.py:220
 msgid "Copy link"
 msgstr "Salin taut"
 
-#: palettes.py:232
+#: palettes.py:270
 msgid "Copy image"
 msgstr "Salin gambar"
 
-#: palettes.py:238
+#: palettes.py:276
 msgid "Keep image"
 msgstr "Pertahankan gambar"
 
@@ -175,38 +185,38 @@ msgstr "Tampilkan Baki"
 msgid "Hide Tray"
 msgstr "Sembunyikan Baki"
 
-#: webactivity.py:598
+#: webactivity.py:613
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Pengunduhan tengah berlangsung"
 
-#: webactivity.py:601
+#: webactivity.py:616
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Berhenti sekarang akan menghapus unduhan Anda"
 
-#: webactivity.py:606
+#: webactivity.py:621
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Lanjutkan mengunduh"
 
-#: webactivity.py:611
+#: webactivity.py:626
 msgid "Stop"
 msgstr "Stop"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr "Beranda"
 
-#: webtoolbar.py:252
+#: webtoolbar.py:297
 msgid "Back"
 msgstr "Kembali"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:311
 msgid "Forward"
 msgstr "Maju"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "Penanda taut"
 
