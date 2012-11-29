@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-17 00:33-0500\n"
-"PO-Revision-Date: 2012-11-05 21:00+0200\n"
+"PO-Revision-Date: 2012-11-28 20:56+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -70,13 +70,14 @@ msgstr "Probeer opnieuw"
 
 #: downloadmanager.py:111
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Niet genoeg ruimte voor downloaden"
 
 #: downloadmanager.py:120
 #, python-format
 msgid ""
 "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
 msgstr ""
+"Download \"%s\" benodigd %.2f MB vrije ruimte, slechts %.2f MB is beschikbaar"
 
 #: downloadmanager.py:125 downloadmanager.py:156
 msgid "Ok"
