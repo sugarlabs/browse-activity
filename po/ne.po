@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"POT-Creation-Date: 2012-11-17 00:33-0500\n"
 "PO-Revision-Date: 2012-05-07 10:53+0200\n"
 "Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,57 +36,67 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr ""
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
 msgid "Untitled"
 msgstr "नाम नदिइएको"
 
-#: browser.py:441
+#: browser.py:450
 msgid "Loading..."
 msgstr "लोडिङ्ग हुदैछ..."
 
-#: browser.py:647 browser.py:648
+#: browser.py:665 browser.py:666
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:649
+#: browser.py:667
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the internet."
 msgstr ""
 
-#: browser.py:652
+#: browser.py:670
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:102
+#: downloadmanager.py:111
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:120
+#, python-format
+msgid ""
+"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+msgstr ""
+
+#: downloadmanager.py:125 downloadmanager.py:156
+msgid "Ok"
+msgstr "हुन्छ"
+
+#: downloadmanager.py:137
 msgid "Download started"
 msgstr "डाउनलोड सुरु भयो"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:138 downloadmanager.py:150
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:148
 msgid "Download completed"
 msgstr "डाउनलोड सकियो"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:153
 msgid "Show in Journal"
 msgstr "खातामा देखाऊ"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "हुन्छ"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:164 pdfviewer.py:419
 #, python-format
 #, python-format,
 msgid "From: %s"
 msgstr "%s:बाट"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:259
 #, python-format
 #, python-format,
 msgid ""
@@ -108,31 +118,31 @@ msgstr "यसपछिको"
 msgid "Remove"
 msgstr "हटाऊ"
 
-#: palettes.py:130
+#: palettes.py:168
 msgid "Copy text"
 msgstr ""
 
-#: palettes.py:165
+#: palettes.py:203
 msgid "Follow link"
 msgstr "लिंक खोल्ने"
 
-#: palettes.py:170
+#: palettes.py:208
 msgid "Follow link in new tab"
 msgstr "लिंक नयाँ ट्याबमा खोल"
 
-#: palettes.py:176
+#: palettes.py:214
 msgid "Keep link"
 msgstr "लिंक राख"
 
-#: palettes.py:182
+#: palettes.py:220
 msgid "Copy link"
 msgstr "लिंकको प्रतिलिपि बनाऊ"
 
-#: palettes.py:232
+#: palettes.py:270
 msgid "Copy image"
 msgstr "तस्विरको प्रतिलिपि बनाऊ"
 
-#: palettes.py:238
+#: palettes.py:276
 msgid "Keep image"
 msgstr "तस्विर राख"
 
@@ -172,41 +182,41 @@ msgstr "ट्रे देखाऊ"
 msgid "Hide Tray"
 msgstr "ट्रे लुकाऊ"
 
-#: webactivity.py:598
+#: webactivity.py:613
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "डाउनलोड हुदै छ"
 msgstr[1] "डाउनलोडहरु हुदै छन्"
 
-#: webactivity.py:601
+#: webactivity.py:616
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "अहिले रोकेमा डाउनलोड रद्द हुने छ"
 msgstr[1] "अहिले रोकेमा डाउनलोडहरु रद्द हुने छन्"
 
-#: webactivity.py:606
+#: webactivity.py:621
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "डाउनलोड जारी राख"
 msgstr[1] "डाउनलोडहरु जारी राख"
 
-#: webactivity.py:611
+#: webactivity.py:626
 msgid "Stop"
 msgstr "रोक"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr "गृह पृष्ठ"
 
-#: webtoolbar.py:252
+#: webtoolbar.py:297
 msgid "Back"
 msgstr "पहिलाको पाना"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:311
 msgid "Forward"
 msgstr "अगाडीको पाना"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "चिनो"
 
