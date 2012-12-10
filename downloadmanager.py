@@ -40,6 +40,8 @@ _dest_to_window = {}
 
 SPACE_THRESHOLD = 52428800
 
+def format_float(f):
+    return "%0.2f" % f
 
 def can_quit():
     return len(_active_downloads) == 0
@@ -117,9 +119,12 @@ class Download(object):
                     / 1024.0 ** 2
                 filename = self._download.get_suggested_filename()
                 self._canceled_alert.props.msg = \
-                    _('Download "%s" requires %.2f MB of free space, only '
-                      '%.2f MB is available' % (filename, total_size_mb,
-                                              free_space_mb))
+                    _('Download "%{filename}" requires %{total_size_in_mb}' \
+                      ' MB of free space, only %{free_space_in_mb} MB'      \
+                      ' is available' % \
+                      {'filename': filename,
+                       'total_size_in_mb': format_float(total_size_mb),
+                       'free_space_in_mb': format_float(free_space_mb)})
                 ok_icon = Icon(icon_name='dialog-ok')
                 self._canceled_alert.add_button(Gtk.ResponseType.OK,
                                                 _('Ok'), ok_icon)
