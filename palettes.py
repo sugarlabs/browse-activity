@@ -171,8 +171,6 @@ class SelectionPalette(Palette):
         menu_item.show()
 
     def __copy_activate_cb(self, menu_item):
-        self.popdown(immediate=True)
-
         self._browser.copy_clipboard()
 
 
@@ -223,8 +221,6 @@ class LinkPalette(Palette):
         menu_item.show()
 
     def __follow_activate_cb(self, menu_item, new_tab=False):
-        self.popdown(immediate=True)
-
         if new_tab:
             new_browser = self._browser.open_new_tab(self._url)
         else:
@@ -232,14 +228,10 @@ class LinkPalette(Palette):
             self._browser.grab_focus()
 
     def __copy_activate_cb(self, menu_item):
-        self.popdown(immediate=True)
-
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self._url, -1)
 
     def __download_activate_cb(self, menu_item):
-        self.popdown(immediate=True)
-
         nr = WebKit.NetworkRequest()
         nr.set_uri(self._url)
         download = WebKit.Download(network_request=nr)
@@ -279,8 +271,6 @@ class ImagePalette(Palette):
         menu_item.show()
 
     def __copy_activate_cb(self, menu_item):
-        self.popdown(immediate=True)
-
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
         data = urllib2.urlopen(self._url).read()
@@ -294,8 +284,6 @@ class ImagePalette(Palette):
         clipboard.set_image(image.get_pixbuf())
 
     def __download_activate_cb(self, menu_item):
-        self.popdown(immediate=True)
-
         nr = WebKit.NetworkRequest()
         nr.set_uri(self._url)
         download = WebKit.Download(network_request=nr)
