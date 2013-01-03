@@ -282,6 +282,12 @@ class DummyBrowser(GObject.GObject):
     def get_history_index(self):
         return 0
 
+    def set_zoom_level(self, zoom_level):
+        pass
+
+    def get_zoom_level(self):
+        return 0
+
     def stop_loading(self):
         self._tab.cancel_download()
 

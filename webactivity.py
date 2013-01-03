@@ -411,9 +411,13 @@ class WebActivity(activity.Activity):
             for number, tab in enumerate(self.model.data['currents']):
                 tab_page = self._tabbed_view.get_nth_page(number)
                 tab_page.browser.set_history_index(tab['history_index'])
+                zoom_level = tab.get('zoom_level')
+                if zoom_level is not None:
+                    tab_page.browser.set_zoom_level(zoom_level)
                 tab_page.browser.grab_focus()
 
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
+
         elif self.metadata['mime_type'] == 'text/uri-list':
             data = self._get_data_from_file_path(file_path)
             uris = mime.split_uri_list(data)
@@ -453,7 +457,8 @@ class WebActivity(activity.Activity):
                     uri = n_browser.get_uri()
                     history_index = n_browser.get_history_index()
                     info = {'title': n_browser.props.title, 'url': uri,
-                            'history_index': history_index}
+                            'history_index': history_index,
+                            'zoom_level': n_browser.get_zoom_level()}
 
                     self.model.data['currents'].append(info)
 
