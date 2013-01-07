@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 11:21-0500\n"
+"POT-Creation-Date: 2012-12-11 03:05+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,139 +18,186 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: activity/activity.info:2 webactivity.py:274
+#: activity/activity.info:2
 msgid "Browse"
 msgstr ""
 
-#: linkbutton.py:95
-msgid "Remove"
+#: palettes.py:167
+msgid "Copy text"
 msgstr ""
 
-#: webactivity.py:271
-msgid "Edit"
+#: palettes.py:200
+msgid "Follow link"
 msgstr ""
 
-#: webactivity.py:277
-msgid "View"
+#: palettes.py:205
+msgid "Follow link in new tab"
 msgstr ""
 
-#: webactivity.py:655
+#: palettes.py:211
+msgid "Keep link"
+msgstr ""
+
+#: palettes.py:217
+msgid "Copy link"
+msgstr ""
+
+#: palettes.py:261
+msgid "Copy image"
+msgstr ""
+
+#: palettes.py:267
+msgid "Keep image"
+msgstr ""
+
+#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+msgid "Untitled"
+msgstr ""
+
+#: browser.py:499
+msgid "Loading..."
+msgstr ""
+
+#: browser.py:721 browser.py:722
+msgid "This web page could not be loaded"
+msgstr ""
+
+#: browser.py:723
+#, python-format
+msgid ""
+"\"%s\" could not be loaded. Please check for typing errors, and make sure "
+"you are connected to the internet."
+msgstr ""
+
+#: browser.py:726
+msgid "Try again"
+msgstr ""
+
+#: viewtoolbar.py:39 pdfviewer.py:87
+msgid "Zoom out"
+msgstr ""
+
+#: viewtoolbar.py:45 pdfviewer.py:93
+msgid "Zoom in"
+msgstr ""
+
+#: viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: viewtoolbar.py:62
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:112
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:115
+msgid "Hide Tray"
+msgstr ""
+
+#: edittoolbar.py:65
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:72
+msgid "Next"
+msgstr ""
+
+#: downloadmanager.py:113
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:122
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
+msgstr ""
+
+#: downloadmanager.py:130 downloadmanager.py:161
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:142
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:143 downloadmanager.py:155
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:153
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:158
+msgid "Show in Journal"
+msgstr ""
+
+#: downloadmanager.py:169 pdfviewer.py:421
+#, python-format
+msgid "From: %s"
+msgstr ""
+
+#: downloadmanager.py:264
+#, python-format
+msgid ""
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr ""
+
+#: webactivity.py:621
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:658
+#: webactivity.py:624
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:663
+#: webactivity.py:629
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:667 webtoolbar.py:450
+#: webactivity.py:634
 msgid "Stop"
 msgstr ""
 
-#: webtoolbar.py:259
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:281
+#: webtoolbar.py:297
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:288
+#: webtoolbar.py:311
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:296
-msgid "Add a tab"
-msgstr ""
-
-#: webtoolbar.py:303
+#: webtoolbar.py:325
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:453
-msgid "Reload"
+#: linkbutton.py:108
+msgid "Remove"
 msgstr ""
 
-#: palettes.py:143
-msgid "Keep link"
+#: pdfviewer.py:104
+msgid "Previous page"
 msgstr ""
 
-#: palettes.py:151
-msgid "Copy link"
+#: pdfviewer.py:111
+msgid "Next page"
 msgstr ""
 
-#: palettes.py:159
-msgid "Follow link"
-msgstr ""
-
-#: palettes.py:209
-msgid "Keep image"
-msgstr ""
-
-#: palettes.py:217
-msgid "Copy image"
-msgstr ""
-
-#: edittoolbar.py:92
-msgid "Previous"
-msgstr ""
-
-#: edittoolbar.py:99
-msgid "Next"
-msgstr ""
-
-#: viewtoolbar.py:34
-msgid "Zoom out"
-msgstr ""
-
-#: viewtoolbar.py:40
-msgid "Zoom in"
-msgstr ""
-
-#: viewtoolbar.py:51
-msgid "Fullscreen"
-msgstr ""
-
-#: viewtoolbar.py:89
-msgid "Show Tray"
-msgstr ""
-
-#: viewtoolbar.py:93
-msgid "Hide Tray"
-msgstr ""
-
-#: downloadmanager.py:175
-msgid "Download started"
-msgstr ""
-
-#: downloadmanager.py:190
-msgid "Download completed"
-msgstr ""
-
-#: downloadmanager.py:194
-msgid "Show in Journal"
-msgstr ""
-
-#: downloadmanager.py:197
-msgid "Ok"
-msgstr ""
-
-#: downloadmanager.py:204
-#, python-format
-msgid "From: %s"
-msgstr ""
-
-#: downloadmanager.py:346
-msgid ""
-"Downloading %2$s from \n"
-"%1$s."
+#: pdfviewer.py:123
+msgid "Save PDF to Journal"
 msgstr ""
