@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 00:33-0500\n"
-"PO-Revision-Date: 2012-11-24 17:19+0200\n"
+"POT-Creation-Date: 2013-01-08 00:32-0500\n"
+"PO-Revision-Date: 2013-01-10 00:04+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -39,19 +39,19 @@ msgstr ""
 "vidéos éducatives, suivre des cours en ligne, te connecter avec des amis et "
 "faire bien d'autres choses encore."
 
-#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
+#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: browser.py:450
+#: browser.py:499
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: browser.py:665 browser.py:666
+#: browser.py:721 browser.py:722
 msgid "This web page could not be loaded"
 msgstr "Chargement de la page Web impossible"
 
-#: browser.py:667
+#: browser.py:723
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
@@ -60,49 +60,49 @@ msgstr ""
 "Chargement de \"%s\" impossible. Vérifie s'il n'y a pas d'erreur dans le texte "
 "que tu as écris et vérifie la connexion Internet."
 
-#: browser.py:670
+#: browser.py:726
 msgid "Try again"
 msgstr "Essaie à nouveau"
 
-#: downloadmanager.py:111
+#: downloadmanager.py:113
 msgid "Not enough space to download"
 msgstr "Espace insuffisant pour le téléchargement"
 
-#: downloadmanager.py:120
-#, python-format
+#: downloadmanager.py:122
 msgid ""
-"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
-"%.2f Mo d'espace libre sont nécessaires pour télécharger \"%s\", Il ne reste "
-"plus que %.2f Mo d'espace libre."
+"Le téléchargement de \"%{filename}\" requiert %{total_size_in_mb} Mo d'espace "
+"libre, l'espace disponible est limité à %{free_space_in_mb} Mo"
 
-#: downloadmanager.py:125 downloadmanager.py:156
+#: downloadmanager.py:130 downloadmanager.py:161
 msgid "Ok"
 msgstr "Accepter"
 
-#: downloadmanager.py:137
+#: downloadmanager.py:142
 msgid "Download started"
 msgstr "Téléchargement amorcé"
 
-#: downloadmanager.py:138 downloadmanager.py:150
+#: downloadmanager.py:143 downloadmanager.py:155
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:148
+#: downloadmanager.py:153
 msgid "Download completed"
 msgstr "Téléchargement terminé"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:164 pdfviewer.py:419
+#: downloadmanager.py:169 pdfviewer.py:421
 #, python-format
 msgid "From: %s"
 msgstr "De : %s"
 
-#: downloadmanager.py:259
+#: downloadmanager.py:264
 #, python-format
 #, python-format,
 msgid ""
@@ -124,31 +124,31 @@ msgstr "Suivant"
 msgid "Remove"
 msgstr "Retirer"
 
-#: palettes.py:168
+#: palettes.py:167
 msgid "Copy text"
 msgstr "Copier le texte"
 
-#: palettes.py:203
+#: palettes.py:200
 msgid "Follow link"
 msgstr "Suivre le lien"
 
-#: palettes.py:208
+#: palettes.py:205
 msgid "Follow link in new tab"
 msgstr "Suivre le lien sur un nouvel onglet"
 
-#: palettes.py:214
+#: palettes.py:211
 msgid "Keep link"
 msgstr "Conserver le lien"
 
-#: palettes.py:220
+#: palettes.py:217
 msgid "Copy link"
 msgstr "Copier le lien"
 
-#: palettes.py:270
+#: palettes.py:261
 msgid "Copy image"
 msgstr "Copier l'image"
 
-#: palettes.py:276
+#: palettes.py:267
 msgid "Keep image"
 msgstr "Conserver l'image"
 
@@ -188,25 +188,25 @@ msgstr "Afficher la barre"
 msgid "Hide Tray"
 msgstr "Masquer la barre"
 
-#: webactivity.py:613
+#: webactivity.py:621
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Téléchargement en cours"
 msgstr[1] "Téléchargements en cours"
 
-#: webactivity.py:616
+#: webactivity.py:624
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Si vous arrêtez maintenant, votre téléchargement sera annulé"
 msgstr[1] "Si vous arrêtez maintenant, vos téléchargements seront annulés"
 
-#: webactivity.py:621
+#: webactivity.py:629
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Continuer le téléchargement"
 msgstr[1] "Continuer les téléchargements"
 
-#: webactivity.py:626
+#: webactivity.py:634
 msgid "Stop"
 msgstr "Arrêter"
 
@@ -225,6 +225,13 @@ msgstr "Suivant"
 #: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "Signet"
+
+#, python-format
+#~ msgid ""
+#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+#~ msgstr ""
+#~ "%.2f Mo d'espace libre sont nécessaires pour télécharger \"%s\", Il ne reste "
+#~ "plus que %.2f Mo d'espace libre."
 
 #, python-format
 #~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
