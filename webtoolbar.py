@@ -278,7 +278,7 @@ class PrimaryToolbar(ToolbarBase):
 
         self.entry = WebEntry()
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
-                                      'browse-dialog-cancel')
+                                      'entry-stop')
         self.entry.connect('icon-press', self._stop_and_reload_cb)
         self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect('focus-in-event', self.__focus_in_event_cb)
@@ -436,11 +436,11 @@ class PrimaryToolbar(ToolbarBase):
 
     def _show_stop_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
-                                      'browse-dialog-cancel')
+                                      'entry-stop')
 
     def _show_reload_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
-                                      'browse-view-refresh')
+                                      'entry-refresh')
 
     def _update_navigation_buttons(self):
         can_go_back = self._browser.can_go_back()

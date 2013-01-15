@@ -47,7 +47,7 @@ class EditToolbar(BaseEditToolbar):
         search_item = Gtk.ToolItem()
         self.search_entry = iconentry.IconEntry()
         self.search_entry.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
-                                             'system-search')
+                                             'entry-search')
         self.search_entry.add_clear_button()
         self.search_entry.connect('activate', self.__search_entry_activate_cb)
         self.search_entry.connect('changed', self.__search_entry_changed_cb)
