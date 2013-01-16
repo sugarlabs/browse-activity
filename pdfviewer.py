@@ -29,6 +29,9 @@ from gi.repository import WebKit
 
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.icon import Icon
+from sugar3.graphics.progressicon import ProgressIcon
+from sugar3.graphics import style
 from sugar3.datastore import datastore
 from sugar3.activity import activity
 
@@ -279,14 +282,61 @@ class DummyBrowser(GObject.GObject):
         pass
 
 
+class PDFMessageBox(Gtk.EventBox):
+    def __init__(self, message, button_callback):
+        Gtk.EventBox.__init__(self)
+
+        self.modify_bg(Gtk.StateType.NORMAL,
+                       style.COLOR_WHITE.get_gdk_color())
+
+        alignment = Gtk.Alignment.new(0.5, 0.5, 0.1, 0.1)
+        self.add(alignment)
+        alignment.show()
+
+        box = Gtk.VBox()
+        alignment.add(box)
+        box.show()
+
+        icon = ProgressIcon(icon_name='book',
+                            pixel_size=style.LARGE_ICON_SIZE,
+                            stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
+                            fill_color=style.COLOR_SELECTION_GREY.get_svg())
+        self.progress_icon = icon
+
+        box.pack_start(icon, expand=True, fill=False, padding=0)
+        icon.show()
+
+        label = Gtk.Label()
+        color = style.COLOR_BUTTON_GREY.get_html()
+        label.set_markup('<span weight="bold" color="%s">%s</span>' % ( \
+                color, GLib.markup_escape_text(message)))
+        box.pack_start(label, expand=True, fill=False, padding=0)
+        label.show()
+
+        button_box = Gtk.HButtonBox()
+        button_box.set_layout(Gtk.ButtonBoxStyle.CENTER)
+        box.pack_start(button_box, False, True, 0)
+        button_box.show()
+
+        button = Gtk.Button(label=_('Cancel'))
+        button.connect('clicked', button_callback)
+        button.props.image = Icon(icon_name='dialog-cancel',
+                                  icon_size=Gtk.IconSize.BUTTON)
+        button_box.pack_start(button, expand=True, fill=False, padding=0)
+        button.show()
+
+
 class PDFTabPage(Gtk.HBox):
     """Shows a basic PDF viewer, download the file first if the PDF is
     in a remote location.
+
+    When the file is remote, display a message while downloading.
 
     """
     def __init__(self):
         GObject.GObject.__init__(self)
         self._browser = DummyBrowser(self)
+        self._message_box = None
         self._evince_viewer = None
         self._pdf_uri = None
         self._requested_uri = None
@@ -358,6 +408,13 @@ class PDFTabPage(Gtk.HBox):
     def _download_from_http(self, remote_uri):
         """Download the PDF from a remote location to a temporal file."""
 
+        # Display a message
+        self._message_box = PDFMessageBox(
+            message=_("Downloading document..."),
+            button_callback=self.cancel_download)
+        self.pack_start(self._message_box, True, True, 0)
+        self._message_box.show()
+
         # Figure out download URI
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         if not os.path.exists(temp_path):
@@ -380,14 +437,19 @@ class PDFTabPage(Gtk.HBox):
     def __download_progress_cb(self, download, data):
         progress = download.get_progress()
         self._browser.props.progress = progress
+        self._message_box.progress_icon.update(progress)
 
     def __download_status_cb(self, download, data):
         status = download.get_status()
         if status == WebKit.DownloadStatus.STARTED:
             self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
+
         elif status == WebKit.DownloadStatus.FINISHED:
             self._browser.props.load_status = WebKit.LoadStatus.FINISHED
+            self.remove(self._message_box)
+            self._message_box = None
             self._show_pdf()
+
         elif status == WebKit.DownloadStatus.CANCELLED:
             logging.debug('Download PDF canceled')
 
@@ -395,7 +457,7 @@ class PDFTabPage(Gtk.HBox):
         logging.debug('Download error! code %s, detail %s: %s' % \
                           (err_code, err_detail, reason))
 
-    def cancel_download(self):
+    def cancel_download(self, button=None):
         self._download.cancel()
         self._browser.emit_close_tab()
 
