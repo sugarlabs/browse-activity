@@ -422,7 +422,7 @@ class PrimaryToolbar(ToolbarBase):
     def __focus_in_event_cb(self, entry, event):
         if not self._tabbed_view.is_current_page_pdf():
             self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
-                                          'dialog-cancel')
+                                          'entry-cancel')
 
     def __focus_out_event_cb(self, entry, event):
         if self._loading:
