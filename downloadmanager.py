@@ -38,7 +38,7 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _active_downloads = []
 _dest_to_window = {}
 
-SPACE_THRESHOLD = 52428800
+SPACE_THRESHOLD = 52428800  # 50 Mb
 
 def format_float(f):
     return "%0.2f" % f
@@ -114,8 +114,8 @@ class Download(object):
                                                      'to download')
 
                 total_size_mb = total_size / 1024.0 ** 2
-                free_space_mb = self._free_available_space(
-                    path=self.temp_path) - SPACE_THRESHOLD \
+                free_space_mb = (self._free_available_space(
+                    path=self.temp_path) - SPACE_THRESHOLD) \
                     / 1024.0 ** 2
                 filename = self._download.get_suggested_filename()
                 self._canceled_alert.props.msg = \
@@ -241,7 +241,7 @@ class Download(object):
     def enough_space(self, size, path='/'):
         """Check if there is enough (size) free space on path
 
-        size -- free space requested in Kb
+        size -- free space requested in Bytes
 
         path -- device where the check will be done. For example: '/tmp'
 
@@ -255,6 +255,12 @@ class Download(object):
         return free_space - size > SPACE_THRESHOLD
 
     def _free_available_space(self, path='/'):
+        """Return available space in Bytes
+
+        This method returns the available free space in the 'path' and
+        returns this amount in Bytes.
+        """
+
         s = os.statvfs(path)
         return s.f_bavail * s.f_frsize
 
