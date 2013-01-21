@@ -284,6 +284,7 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.connect('focus-in-event', self.__focus_in_event_cb)
         self.entry.connect('focus-out-event', self.__focus_out_event_cb)
         self.entry.connect('key-press-event', self.__key_press_event_cb)
+        self.entry.connect('changed', self.__changed_cb)
 
         entry_item = Gtk.ToolItem()
         entry_item.set_expand(True)
@@ -419,10 +420,22 @@ class PrimaryToolbar(ToolbarBase):
         else:
             self.entry.props.address = uri
 
+    def __changed_cb(self, iconentry):
+        # The WebEntry can be changed when we click on a link, then we
+        # have to show the clear icon only if is the user who has
+        # changed the entry
+        if self.entry.has_focus():
+            if not self.entry.props.text:
+                self._show_no_icon()
+            else:
+                self._show_clear_icon()
+
     def __focus_in_event_cb(self, entry, event):
         if not self._tabbed_view.is_current_page_pdf():
-            self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
-                                          'entry-cancel')
+            if not self.entry.props.text:
+                self._show_no_icon()
+            else:
+                self._show_clear_icon()
 
     def __focus_out_event_cb(self, entry, event):
         if self._loading:
@@ -441,6 +454,10 @@ class PrimaryToolbar(ToolbarBase):
     def _show_reload_icon(self):
         self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
                                       'entry-refresh')
+
+    def _show_clear_icon(self):
+        self.entry.set_icon_from_name(iconentry.ICON_ENTRY_SECONDARY,
+                                      'entry-cancel')
 
     def _update_navigation_buttons(self):
         can_go_back = self._browser.can_go_back()
