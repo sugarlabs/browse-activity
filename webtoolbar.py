@@ -344,6 +344,7 @@ class PrimaryToolbar(ToolbarBase):
             self._connect_to_browser(tabbed_view.props.current_browser)
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
+        tabbed_view.connect_after('page-added', self.__page_added_cb)
 
     def __key_press_event_cb(self, entry, event):
         self._tabbed_view.current_browser.loading_uri = entry.props.text
@@ -351,6 +352,9 @@ class PrimaryToolbar(ToolbarBase):
     def __switch_page_cb(self, tabbed_view, page, page_num):
         if tabbed_view.get_n_pages():
             self._connect_to_browser(tabbed_view.props.current_browser)
+
+    def __page_added_cb(self, notebook, child, pagenum):
+        self.entry._search_popdown()
 
     def _connect_to_browser(self, browser):
         if self._browser is not None:
