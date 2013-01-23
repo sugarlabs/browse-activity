@@ -95,6 +95,12 @@ class EvinceViewer(Gtk.Overlay):
         toolbar_box.toolbar.insert(zoom_in_button, -1)
         zoom_in_button.show()
 
+        zoom_original_button = ToolButton('zoom-original')
+        zoom_original_button.set_tooltip(_('Actual size'))
+        zoom_original_button.connect('clicked', self.__zoom_original_cb)
+        toolbar_box.toolbar.insert(zoom_original_button, -1)
+        zoom_original_button.show()
+
         separator = Gtk.SeparatorToolItem()
         separator.props.draw = True
         toolbar_box.toolbar.insert(separator, -1)
@@ -143,6 +149,9 @@ class EvinceViewer(Gtk.Overlay):
     def __zoom_in_cb(self, widget):
         self.zoom_in()
 
+    def __zoom_original_cb(self, widget):
+        self.zoom_original()
+
     def __go_back_page_cb(self, widget):
         self._view.previous_page()
 
@@ -158,6 +167,10 @@ class EvinceViewer(Gtk.Overlay):
         self._back_page_button.props.sensitive = current_page > 0
         self._forward_page_button.props.sensitive = \
             current_page < self._doc.get_n_pages() - 1
+
+    def zoom_original(self):
+        self._model.props.sizing_mode = EvinceView.SizingMode.FREE
+        self._model.props.scale = 1.0
 
     def zoom_in(self):
         self._model.props.sizing_mode = EvinceView.SizingMode.FREE

@@ -90,6 +90,7 @@ class ViewToolbar(Gtk.Toolbar):
         is_webkit_browser = isinstance(self._browser, Browser)
         self.zoomin.set_sensitive(is_webkit_browser)
         self.zoomout.set_sensitive(is_webkit_browser)
+        self.zoom_original.set_sensitive(is_webkit_browser)
 
     def __zoom_original_clicked_cb(self, button):
         tabbed_view = self._activity.get_canvas()
