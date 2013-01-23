@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 00:33-0500\n"
-"PO-Revision-Date: 2012-11-18 19:48+0200\n"
+"POT-Creation-Date: 2013-01-18 00:33-0500\n"
+"PO-Revision-Date: 2013-01-23 13:42+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -38,19 +38,19 @@ msgstr ""
 "Surf verdenen! Her kan du lave forskning, se undervisningsvideoer, tage "
 "kurser online, finde bøger, skabe kontakt til venner og mere."
 
-#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
+#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
 msgid "Untitled"
 msgstr "Ingen titel"
 
-#: browser.py:450
+#: browser.py:499
 msgid "Loading..."
 msgstr "Indlæser..."
 
-#: browser.py:665 browser.py:666
+#: browser.py:721 browser.py:722
 msgid "This web page could not be loaded"
 msgstr "Denne webside kunne ikke indlæses"
 
-#: browser.py:667
+#: browser.py:723
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
@@ -59,49 +59,49 @@ msgstr ""
 "\"%s\" kunne ikke indlæses. Tjek venligst for tastefejl, og sørg for at sikre "
 "at du er tilsluttet til internettet."
 
-#: browser.py:670
+#: browser.py:726
 msgid "Try again"
 msgstr "Forsøg igen"
 
-#: downloadmanager.py:111
+#: downloadmanager.py:113
 msgid "Not enough space to download"
 msgstr "Der er ikke nok plads til at hente"
 
-#: downloadmanager.py:120
-#, python-format
+#: downloadmanager.py:122
 msgid ""
-"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
-"For at hente \"%s\" kræver der %.2f MB fri plads, men der er blot %.2f MB "
-"tilgængelig"
+"For at hente \"%{filename}\" kræves der %{total_size_in_mb} MB fri plads, men "
+"der er kun %{free_space_in_mb} MB tilgængelig"
 
-#: downloadmanager.py:125 downloadmanager.py:156
+#: downloadmanager.py:130 downloadmanager.py:161
 msgid "Ok"
 msgstr "O.k."
 
-#: downloadmanager.py:137
+#: downloadmanager.py:142
 msgid "Download started"
 msgstr "Nedlastning startet"
 
-#: downloadmanager.py:138 downloadmanager.py:150
+#: downloadmanager.py:143 downloadmanager.py:155
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:148
+#: downloadmanager.py:153
 msgid "Download completed"
 msgstr "Nedlastning færdig"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Show in Journal"
 msgstr "Vis i logbog"
 
-#: downloadmanager.py:164 pdfviewer.py:419
+#: downloadmanager.py:169 pdfviewer.py:483
 #, python-format
 msgid "From: %s"
 msgstr "Fra: %s"
 
-#: downloadmanager.py:259
+#: downloadmanager.py:264
 #, python-format
 #, python-format,
 msgid ""
@@ -123,53 +123,61 @@ msgstr "Næste"
 msgid "Remove"
 msgstr "Fjern"
 
-#: palettes.py:168
+#: palettes.py:167
 msgid "Copy text"
 msgstr "Kopiér tekst"
 
-#: palettes.py:203
+#: palettes.py:200
 msgid "Follow link"
 msgstr "Følg henvisning"
 
-#: palettes.py:208
+#: palettes.py:205
 msgid "Follow link in new tab"
 msgstr "Følg henvisning i ny fane"
 
-#: palettes.py:214
+#: palettes.py:211
 msgid "Keep link"
 msgstr "Bevar henvisning"
 
-#: palettes.py:220
+#: palettes.py:217
 msgid "Copy link"
 msgstr "Kopiér henvisning"
 
-#: palettes.py:270
+#: palettes.py:261
 msgid "Copy image"
 msgstr "Kopiér billede"
 
-#: palettes.py:276
+#: palettes.py:267
 msgid "Keep image"
 msgstr "Bevar billede"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:90 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:96 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Forstør"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:107
 msgid "Previous page"
 msgstr "Forrige side"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:114
 msgid "Next page"
 msgstr "Næste side"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:126
 msgid "Save PDF to Journal"
 msgstr "Gem PDF til journal"
+
+#: pdfviewer.py:321
+msgid "Cancel"
+msgstr "Afbryd"
+
+#: pdfviewer.py:413
+msgid "Downloading document..."
+msgstr "Henter dokument ..."
 
 #: viewtoolbar.py:51
 msgid "Actual size"
@@ -187,25 +195,25 @@ msgstr "Vis skuffe"
 msgid "Hide Tray"
 msgstr "Skjul skuffe"
 
-#: webactivity.py:613
+#: webactivity.py:621
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Overførsel i gang"
 msgstr[1] "Overførsler i gang"
 
-#: webactivity.py:616
+#: webactivity.py:624
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Stopper du nu vil du slette overførslen"
 msgstr[1] "Stopper du nu vil du slette overførslerne"
 
-#: webactivity.py:621
+#: webactivity.py:629
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Fortsæt overførsel"
 msgstr[1] "Fortsæt overførsler"
 
-#: webactivity.py:626
+#: webactivity.py:634
 msgid "Stop"
 msgstr "Stop"
 
@@ -224,6 +232,13 @@ msgstr "Frem"
 #: webtoolbar.py:325
 msgid "Bookmark"
 msgstr "Bogmærke"
+
+#, python-format
+#~ msgid ""
+#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+#~ msgstr ""
+#~ "For at hente \"%s\" kræver der %.2f MB fri plads, men der er blot %.2f MB "
+#~ "tilgængelig"
 
 #, python-format
 #~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
@@ -254,9 +269,6 @@ msgstr "Bogmærke"
 
 #~ msgid "Reload"
 #~ msgstr "Genindlæs"
-
-#~ msgid "Cancel"
-#~ msgstr "Afbryd"
 
 #~ msgid "Copy"
 #~ msgstr "Kopiér"
