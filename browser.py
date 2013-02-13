@@ -301,6 +301,11 @@ class TabbedView(BrowserNotebook):
             nth_page = self.get_nth_page(page_to_focus)
             nth_page.props.browser.grab_focus()
 
+        if isinstance(tab_page, PDFTabPage):
+            if tab_page.props.browser.props.load_status < \
+                    WebKit.LoadStatus.FINISHED:
+                tab_page.cancel_download()
+
         self.remove_page(self.page_num(tab_page))
         tab_page.destroy()
 
