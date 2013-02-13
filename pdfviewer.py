@@ -280,7 +280,7 @@ class DummyBrowser(GObject.GObject):
         return 0
 
     def stop_loading(self):
-        self._tab.cancel_download()
+        self._tab.close_tab()
 
     def reload(self):
         pass
@@ -408,9 +408,11 @@ class PDFTabPage(Gtk.HBox):
         logging.debug('Download error! code %s, detail %s: %s' % \
                           (err_code, err_detail, reason))
 
+    def close_tab(self, button=None):
+        self._browser.emit_close_tab()
+
     def cancel_download(self):
         self._download.cancel()
-        self._browser.emit_close_tab()
 
     def __journal_id_to_uri(self, journal_id):
         """Return an URI for a Journal object ID."""
