@@ -727,7 +727,7 @@ class Browser(WebKit.WebView):
             'title': _('This web page could not be loaded'),
             'message': _('"%s" could not be loaded. Please check for '
                          'typing errors, and make sure you are connected '
-                         'to the internet.') % uri,
+                         'to the Internet.') % uri,
             'btn_value': _('Try again'),
             'url': uri,
             }

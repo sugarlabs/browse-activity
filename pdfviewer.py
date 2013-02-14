@@ -34,6 +34,7 @@ from sugar3.graphics.progressicon import ProgressIcon
 from sugar3.graphics import style
 from sugar3.datastore import datastore
 from sugar3.activity import activity
+from sugar3.bundle.activitybundle import ActivityBundle
 
 
 class EvinceViewer(Gtk.Overlay):
@@ -301,7 +302,7 @@ class DummyBrowser(GObject.GObject):
         pass
 
 
-class PDFMessageBox(Gtk.EventBox):
+class PDFProgressMessageBox(Gtk.EventBox):
     def __init__(self, message, button_callback):
         Gtk.EventBox.__init__(self)
 
@@ -341,6 +342,61 @@ class PDFMessageBox(Gtk.EventBox):
         button.connect('clicked', button_callback)
         button.props.image = Icon(icon_name='dialog-cancel',
                                   icon_size=Gtk.IconSize.BUTTON)
+        button_box.pack_start(button, expand=True, fill=False, padding=0)
+        button.show()
+
+
+class PDFErrorMessageBox(Gtk.EventBox):
+    def __init__(self, title, message, button_callback):
+        Gtk.EventBox.__init__(self)
+
+        self.modify_bg(Gtk.StateType.NORMAL,
+                       style.COLOR_WHITE.get_gdk_color())
+
+        alignment = Gtk.Alignment.new(0.5, 0.5, 0.1, 0.1)
+        self.add(alignment)
+        alignment.show()
+
+        box = Gtk.VBox()
+        alignment.add(box)
+        box.show()
+
+        # Get the icon of this activity through the bundle path.
+        bundle_path = activity.get_bundle_path()
+        activity_bundle = ActivityBundle(bundle_path)
+        icon = Icon(pixel_size=style.LARGE_ICON_SIZE,
+                    file=activity_bundle.get_icon(),
+                    stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
+                    fill_color=style.COLOR_TRANSPARENT.get_svg())
+
+        box.pack_start(icon, expand=True, fill=False, padding=0)
+        icon.show()
+
+        color = style.COLOR_BUTTON_GREY.get_html()
+
+        label = Gtk.Label()
+        label.set_markup('<span weight="bold" color="%s">%s</span>' % ( \
+                color, GLib.markup_escape_text(title)))
+        box.pack_start(label, expand=True, fill=False, padding=0)
+        label.show()
+
+        label = Gtk.Label()
+        label.set_markup('<span color="%s">%s</span>' % ( \
+                color, GLib.markup_escape_text(message)))
+        box.pack_start(label, expand=True, fill=False, padding=0)
+        label.show()
+
+        button_box = Gtk.HButtonBox()
+        button_box.set_layout(Gtk.ButtonBoxStyle.CENTER)
+        box.pack_start(button_box, False, True, 0)
+        button_box.show()
+
+        button = Gtk.Button(label=_('Try again'))
+        button.connect('clicked', button_callback)
+        button.props.image = Icon(icon_name='entry-refresh',
+                                  icon_size=Gtk.IconSize.BUTTON,
+                                  stroke_color=style.COLOR_WHITE.get_svg(),
+                                  fill_color=style.COLOR_TRANSPARENT.get_svg())
         button_box.pack_start(button, expand=True, fill=False, padding=0)
         button.show()
 
@@ -428,7 +484,7 @@ class PDFTabPage(Gtk.HBox):
         """Download the PDF from a remote location to a temporal file."""
 
         # Display a message
-        self._message_box = PDFMessageBox(
+        self._message_box = PDFProgressMessageBox(
             message=_("Downloading document..."),
             button_callback=self.close_tab)
         self.pack_start(self._message_box, True, True, 0)
@@ -475,6 +531,23 @@ class PDFTabPage(Gtk.HBox):
     def __download_error_cb(self, download, err_code, err_detail, reason):
         logging.debug('Download error! code %s, detail %s: %s' % \
                           (err_code, err_detail, reason))
+        title = _('This document could not be loaded')
+        self._browser.props.title = title
+
+        if self._message_box is not None:
+            self.remove(self._message_box)
+
+        self._message_box = PDFErrorMessageBox(
+            title=title,
+            message=_('Please make sure you are connected to the Internet.'),
+            button_callback=self.reload)
+        self.pack_start(self._message_box, True, True, 0)
+        self._message_box.show()
+
+    def reload(self, button=None):
+        self.remove(self._message_box)
+        self._message_box = None
+        self.setup(self._requested_uri)
 
     def close_tab(self, button=None):
         self._browser.emit_close_tab()
