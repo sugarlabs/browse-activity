@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 00:32-0500\n"
-"PO-Revision-Date: 2013-01-10 00:04+0200\n"
+"POT-Creation-Date: 2013-01-18 00:33-0500\n"
+"PO-Revision-Date: 2013-02-14 14:36+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -97,7 +97,7 @@ msgstr "Téléchargement terminé"
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:169 pdfviewer.py:421
+#: downloadmanager.py:169 pdfviewer.py:483
 #, python-format
 msgid "From: %s"
 msgstr "De : %s"
@@ -152,25 +152,33 @@ msgstr "Copier l'image"
 msgid "Keep image"
 msgstr "Conserver l'image"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:90 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Zoom arrière"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:96 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Zoom avant"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:107
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:114
 msgid "Next page"
 msgstr "Page suivante"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:126
 msgid "Save PDF to Journal"
 msgstr "Enregistrer le fichier PDF dans le Journal"
+
+#: pdfviewer.py:321
+msgid "Cancel"
+msgstr "Annuler"
+
+#: pdfviewer.py:413
+msgid "Downloading document..."
+msgstr "Téléchargement du document en cours..."
 
 #: viewtoolbar.py:51
 msgid "Actual size"
@@ -262,9 +270,6 @@ msgstr "Signet"
 
 #~ msgid "Reload"
 #~ msgstr "Recharger"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
 
 #, python-format
 #~ msgid "File %s from %s."
