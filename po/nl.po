@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 00:33-0500\n"
-"PO-Revision-Date: 2012-11-28 20:56+0200\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
+"PO-Revision-Date: 2013-02-21 20:10+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -43,69 +43,70 @@ msgstr ""
 "leerzame filmpjes bekijken, online lessen volgen, boeken vinden, verbinden "
 "met vrienden en meer."
 
-#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Zonder titel"
 
-#: browser.py:450
+#: browser.py:504
 msgid "Loading..."
 msgstr "Laden..."
 
-#: browser.py:665 browser.py:666
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr "Deze webpagina kon niet geladen worden"
 
-#: browser.py:667
-#, python-format
+#: browser.py:728
+#, python-format, 
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 "\"%s\" kon niet geladen worden. Controleer of u geen typefouten gemaakt hebt, "
 "en zorg ervoor dat u verbonden met het internet."
 
-#: browser.py:670
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr "Probeer opnieuw"
 
-#: downloadmanager.py:111
+#: downloadmanager.py:113
 msgid "Not enough space to download"
 msgstr "Niet genoeg ruimte voor downloaden"
 
-#: downloadmanager.py:120
-#, python-format
+#: downloadmanager.py:122
 msgid ""
-"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
-"Download \"%s\" benodigd %.2f MB vrije ruimte, slechts %.2f MB is beschikbaar"
+"Download \"%{filename}\" gebruikt %{total_size_in_mb} MB vrije ruimte, slechts "
+"%{free_space_in_mb} MB is beschikbaar"
 
-#: downloadmanager.py:125 downloadmanager.py:156
+#: downloadmanager.py:130 downloadmanager.py:161
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:137
+#: downloadmanager.py:142
 msgid "Download started"
 msgstr "Download gestart"
 
-#: downloadmanager.py:138 downloadmanager.py:150
+#: downloadmanager.py:143 downloadmanager.py:155
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:148
+#: downloadmanager.py:153
 msgid "Download completed"
 msgstr "Download voltooid"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Show in Journal"
 msgstr "In dagboek weergeven"
 
-#: downloadmanager.py:164 pdfviewer.py:419
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "Van: %s"
 
-#: downloadmanager.py:259
+#: downloadmanager.py:270
 #, python-format
 #, python-format,
 msgid ""
@@ -127,89 +128,105 @@ msgstr "Volgende"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: palettes.py:168
+#: palettes.py:167
 msgid "Copy text"
 msgstr "Kopieer tekst"
 
-#: palettes.py:203
+#: palettes.py:200
 msgid "Follow link"
 msgstr "Koppeling volgen"
 
-#: palettes.py:208
+#: palettes.py:205
 msgid "Follow link in new tab"
 msgstr "Volg link in nieuwe tab"
 
-#: palettes.py:214
+#: palettes.py:211
 msgid "Keep link"
 msgstr "Koppeling bewaren"
 
-#: palettes.py:220
+#: palettes.py:217
 msgid "Copy link"
 msgstr "Koppeling kopiëren"
 
-#: palettes.py:270
+#: palettes.py:261
 msgid "Copy image"
 msgstr "Afbeelding kopiëren"
 
-#: palettes.py:276
+#: palettes.py:267
 msgid "Keep image"
 msgstr "Afbeelding bewaren"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Zoom uit"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Huidige grootte"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Vorige pagina"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Volgende pagina"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Bewaar PDF in Logboek"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "Huidige grootte"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: pdfviewer.py:488
+msgid "Downloading document..."
+msgstr "Downloaden document..."
+
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr "Deze webpagina kon niet geladen worden"
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
+msgstr "Zorg dat je verbonden bent met het Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Volledig scherm"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Toon lade"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Verberg lade"
 
-#: webactivity.py:613
+#: webactivity.py:626
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Bezig met downloaden"
 msgstr[1] "Bezig met downloaden"
 
-#: webactivity.py:616
+#: webactivity.py:629
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Door nu te stoppen wordt het downloaden afgebroken"
 msgstr[1] "Door nu te stoppen wordt het downloaden afgebroken"
 
-#: webactivity.py:621
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Doorgaan met download"
 msgstr[1] "Doorgaan met downloaden"
 
-#: webactivity.py:626
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Stop"
 
@@ -217,17 +234,23 @@ msgstr "Stop"
 msgid "Home page"
 msgstr "Home page"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Terug"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Vooruit"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Bladwijzer"
+
+#, python-format
+#~ msgid ""
+#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+#~ msgstr ""
+#~ "Download \"%s\" benodigd %.2f MB vrije ruimte, slechts %.2f MB is beschikbaar"
 
 #, python-format
 #~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
@@ -258,9 +281,6 @@ msgstr "Bladwijzer"
 
 #~ msgid "Reload"
 #~ msgstr "Vernieuwen"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuleren"
 
 #, python-format
 #~ msgid "File %s from %s."
