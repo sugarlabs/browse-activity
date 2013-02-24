@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-18 00:33-0500\n"
-"PO-Revision-Date: 2013-02-14 14:36+0200\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
+"PO-Revision-Date: 2013-02-24 12:12+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -39,28 +39,28 @@ msgstr ""
 "vidéos éducatives, suivre des cours en ligne, te connecter avec des amis et "
 "faire bien d'autres choses encore."
 
-#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: browser.py:499
+#: browser.py:504
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: browser.py:721 browser.py:722
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr "Chargement de la page Web impossible"
 
-#: browser.py:723
-#, python-format
+#: browser.py:728
+#, python-format, 
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 "Chargement de \"%s\" impossible. Vérifie s'il n'y a pas d'erreur dans le texte "
 "que tu as écris et vérifie la connexion Internet."
 
-#: browser.py:726
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr "Essaie à nouveau"
 
@@ -97,12 +97,12 @@ msgstr "Téléchargement terminé"
 msgid "Show in Journal"
 msgstr "Afficher dans le journal"
 
-#: downloadmanager.py:169 pdfviewer.py:483
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "De : %s"
 
-#: downloadmanager.py:264
+#: downloadmanager.py:270
 #, python-format
 #, python-format,
 msgid ""
@@ -152,69 +152,77 @@ msgstr "Copier l'image"
 msgid "Keep image"
 msgstr "Conserver l'image"
 
-#: pdfviewer.py:90 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Zoom arrière"
 
-#: pdfviewer.py:96 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Zoom avant"
 
-#: pdfviewer.py:107
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Taille actuelle"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: pdfviewer.py:114
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Page suivante"
 
-#: pdfviewer.py:126
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Enregistrer le fichier PDF dans le Journal"
 
-#: pdfviewer.py:321
+#: pdfviewer.py:341
 msgid "Cancel"
 msgstr "Annuler"
 
-#: pdfviewer.py:413
+#: pdfviewer.py:488
 msgid "Downloading document..."
 msgstr "Téléchargement du document en cours..."
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "Taille actuelle"
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr "Chargement du document impossible"
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
+msgstr "Vérifie la connexion à Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Afficher la barre"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Masquer la barre"
 
-#: webactivity.py:621
+#: webactivity.py:626
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Téléchargement en cours"
 msgstr[1] "Téléchargements en cours"
 
-#: webactivity.py:624
+#: webactivity.py:629
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Si vous arrêtez maintenant, votre téléchargement sera annulé"
 msgstr[1] "Si vous arrêtez maintenant, vos téléchargements seront annulés"
 
-#: webactivity.py:629
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Continuer le téléchargement"
 msgstr[1] "Continuer les téléchargements"
 
-#: webactivity.py:634
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Arrêter"
 
@@ -222,15 +230,15 @@ msgstr "Arrêter"
 msgid "Home page"
 msgstr "Page d'accueil"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Précédent"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Suivant"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Signet"
 
