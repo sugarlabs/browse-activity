@@ -95,6 +95,13 @@ class Download(object):
         self.dl_jobject.metadata['progress'] = str(int(progress * 100))
         datastore.write(self.dl_jobject)
 
+    def __current_size_changed_cb(self, download, something):
+        current_size = self._download.get_current_size()
+        total_size = self._download.get_total_size()
+        progress = current_size * 100 / total_size
+        self.dl_jobject.metadata['progress'] = str(progress)
+        datastore.write(self.dl_jobject)
+
     def __state_change_cb(self, download, gparamspec):
         state = self._download.get_status()
         if state == WebKit.DownloadStatus.STARTED:
@@ -128,8 +135,12 @@ class Download(object):
                                              self.__stop_response_cb)
                 self._activity.add_alert(self._canceled_alert)
             else:
-                self._download.connect('notify::progress',
-                                       self.__progress_change_cb)
+                # FIXME: workaround for SL #4385
+                # self._download.connect('notify::progress',
+                #                        self.__progress_change_cb)
+                self._download.connect('notify::current-size',
+                                       self.__current_size_changed_cb)
+
                 self._create_journal_object()
                 self._object_id = self.dl_jobject.object_id
 
