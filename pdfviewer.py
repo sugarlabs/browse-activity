@@ -503,11 +503,21 @@ class PDFTabPage(Gtk.HBox):
         self._download = WebKit.Download.new(network_request)
         self._download.set_destination_uri('file://' + dest_path)
 
-        self._download.connect('notify::progress', self.__download_progress_cb)
+        # FIXME: workaround for SL #4385
+        # self._download.connect('notify::progress', self.__download_progress_cb)
+        self._download.connect('notify::current-size',
+                               self.__current_size_changed_cb)
         self._download.connect('notify::status', self.__download_status_cb)
         self._download.connect('error', self.__download_error_cb)
 
         self._download.start()
+
+    def __current_size_changed_cb(self, download, something):
+        current_size = download.get_current_size()
+        total_size = download.get_total_size()
+        progress = current_size / float(total_size)
+        self._browser.props.progress = progress
+        self._message_box.progress_icon.update(progress)
 
     def __download_progress_cb(self, download, data):
         progress = download.get_progress()
