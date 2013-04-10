@@ -431,10 +431,12 @@ class PDFTabPage(Gtk.HBox):
 
         if requested_uri.startswith('file://'):
             self._pdf_uri = requested_uri
+            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
             self._show_pdf()
 
         elif requested_uri.startswith('journal://'):
             self._pdf_uri = self._get_path_from_journal(requested_uri)
+            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
             self._show_pdf(from_journal=True)
 
         # download first if file is remote
