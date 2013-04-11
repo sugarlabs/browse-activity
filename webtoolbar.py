@@ -515,8 +515,10 @@ class PrimaryToolbar(ToolbarBase):
             self._show_stop_icon()
         else:
             if not self._tabbed_view.is_current_page_pdf():
+                self.set_sensitive(True)
                 self._show_reload_icon()
             else:
+                self.set_sensitive(False)
                 self._show_no_icon()
 
     def _reload_session_history(self):
