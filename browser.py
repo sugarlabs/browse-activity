@@ -567,6 +567,8 @@ class Browser(WebKit.WebView):
                      self.__mime_type_policy_cb)
         self.connect('load-error', self.__load_error_cb)
 
+        self._inject_media_style = False
+
         ContentInvoker(self)
 
         try:
@@ -700,6 +702,9 @@ class Browser(WebKit.WebView):
             policy_decision.ignore()
             return True
 
+        elif mimetype == 'audio/x-vorbis+ogg':
+            self._inject_media_style = True
+
         elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
             return True
@@ -720,6 +725,15 @@ class Browser(WebKit.WebView):
         if web_error.code in (WebKit.PolicyError.\
                 FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
                 WebKit.PluginError.WILL_HANDLE_LOAD):
+            if self._inject_media_style:
+                css_style_file = open(os.path.join(activity.get_bundle_path(),
+                                                   "data/media-controls.css"))
+                css_style = css_style_file.read().replace('\n', '')
+                inject_style_script = \
+                    "var style = document.createElement('style');" \
+                    "style.innerHTML = '%s';" \
+                    "document.body.appendChild(style);" % css_style
+                web_view.execute_script(inject_style_script)
             return True
 
         data = {

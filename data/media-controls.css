@@ -1,0 +1,32 @@
+body {
+  background-color: #ffffff;
+}
+audio, video {
+  width: 500px;
+  height: 55px;
+  color: #ffffff;
+}
+audio::-webkit-media-controls-enclosure, video::-webkit-media-controls-enclosure {
+  height: 55px;
+}
+audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
+  height: 55px;
+  background-color: #282828;
+  border-radius: 25px;
+}
+audio::-webkit-media-controls-mute-button, video::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-toggle-closed-captions-button, video::-webkit-media-controls-toggle-closed-captions-button,
+audio::-webkit-media-controls-fullscreen-button, video::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-seek-back-button, video::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button, video::-webkit-media-controls-seek-forward-button {
+  width: 55px;
+  height: 55px;
+}
+audio::-webkit-media-controls-current-time-display, video::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display, video::-webkit-media-controls-time-remaining-display {
+  height: 55px;
+  line-height: 0px;
+  font-size: 23px;
+  text-align: center;
+}
