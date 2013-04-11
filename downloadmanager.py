@@ -20,9 +20,13 @@ import logging
 from gettext import gettext as _
 import tempfile
 import dbus
+import cairo
+import StringIO
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import WebKit
+from gi.repository import GdkPixbuf
 
 from sugar3.datastore import datastore
 from sugar3 import profile
@@ -186,6 +190,13 @@ class Download(object):
             sniffed_mime_type = mime.get_for_file(self._dest_path)
             self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
+            if sniffed_mime_type in ('image/bmp','image/gif','image/jpeg',
+                                     'image/png','image/tiff'):
+                preview = self._get_preview()
+                if preview is not None:
+                    self.dl_jobject.metadata['preview'] = \
+                        dbus.ByteArray(preview)
+
             datastore.write(self.dl_jobject,
                             transfer_ownership=True,
                             reply_handler=self.__internal_save_cb,
@@ -298,6 +309,39 @@ class Download(object):
         self.datastore_deleted_handler = datastore_dbus.connect_to_signal(
             'Deleted', self.__datastore_deleted_cb,
             arg0=self.dl_jobject.object_id)
+
+    def _get_preview(self):
+        # This code borrows from sugar3.activity.Activity.get_preview
+        # to make the preview with cairo, and also uses GdkPixbuf to
+        # load any GdkPixbuf supported format.
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(self._dest_path)
+        image_width = pixbuf.get_width()
+        image_height = pixbuf.get_height()
+
+        preview_width, preview_height = activity.PREVIEW_SIZE
+        preview_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                             preview_width, preview_height)
+        cr = cairo.Context(preview_surface)
+
+        scale_w = preview_width * 1.0 / image_width
+        scale_h = preview_height * 1.0 / image_height
+        scale = min(scale_w, scale_h)
+
+        translate_x = int((preview_width - (image_width * scale)) / 2)
+        translate_y = int((preview_height - (image_height * scale)) / 2)
+
+        cr.translate(translate_x, translate_y)
+        cr.scale(scale, scale)
+
+        cr.set_source_rgba(1, 1, 1, 0)
+        cr.set_operator(cairo.OPERATOR_SOURCE)
+        cr.paint()
+        Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
+        cr.paint()
+
+        preview_str = StringIO.StringIO()
+        preview_surface.write_to_png(preview_str)
+        return preview_str.getvalue()
 
     def __datastore_deleted_cb(self, uid):
         logging.debug('Downloaded entry has been deleted' \
