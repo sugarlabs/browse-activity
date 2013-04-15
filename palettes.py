@@ -117,7 +117,13 @@ class ContentInvoker(Invoker):
 
     def _handle_event(self, event):
         hit_test = self._browser.get_hit_test_result(event)
-        if hit_test.props.context & WebKit.HitTestResultContext.LINK:
+        hit_context = hit_test.props.context
+        hit_info = {
+            'is link': hit_context & WebKit.HitTestResultContext.LINK,
+            'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
+            'is selection': hit_context & WebKit.HitTestResultContext.SELECTION,
+            }
+        if hit_info['is link']:
             link_uri = hit_test.props.link_uri
             if isinstance(hit_test.props.inner_node,
                             WebKit.DOMHTMLImageElement):
@@ -126,12 +132,12 @@ class ContentInvoker(Invoker):
                 title = hit_test.props.inner_node.get_text_content()
             self.palette = LinkPalette(self._browser, title, link_uri)
             self.notify_right_click()
-        elif hit_test.props.context & WebKit.HitTestResultContext.IMAGE:
+        elif hit_info['is image']:
             title = hit_test.props.inner_node.get_title()
             self.palette = ImagePalette(self._browser, title,
                                         hit_test.props.image_uri)
             self.notify_right_click()
-        elif hit_test.props.context & WebKit.HitTestResultContext.SELECTION:
+        elif hit_info['is selection']:
             # TODO: find a way to get the selected text so we can use
             # it as the title of the Palette.
             # The function webkit_web_view_get_selected_text was removed
