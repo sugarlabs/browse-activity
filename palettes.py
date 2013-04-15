@@ -124,12 +124,12 @@ class ContentInvoker(Invoker):
                 title = hit_test.props.inner_node.get_title()
             elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
-            self.palette = LinkPalette(self._browser, title, link_uri, None)
+            self.palette = LinkPalette(self._browser, title, link_uri)
             self.notify_right_click()
         elif hit_test.props.context & WebKit.HitTestResultContext.IMAGE:
             title = hit_test.props.inner_node.get_title()
             self.palette = ImagePalette(self._browser, title,
-                                        hit_test.props.image_uri, '')
+                                        hit_test.props.image_uri)
             self.notify_right_click()
         elif hit_test.props.context & WebKit.HitTestResultContext.SELECTION:
             # TODO: find a way to get the selected text so we can use
@@ -144,18 +144,17 @@ class ContentInvoker(Invoker):
             #     title = text[:20] + '...'
             # else:
             #     title = text
-            self.palette = SelectionPalette(self._browser, title, None, None)
+            self.palette = SelectionPalette(self._browser, title, None)
             self.notify_right_click()
 
 
 class SelectionPalette(Palette):
-    def __init__(self, browser, title, url, owner_document):
+    def __init__(self, browser, title, url):
         Palette.__init__(self)
 
         self._browser = browser
         self._title = title
         self._url = url
-        self._owner_document = owner_document
 
         menu_box = Gtk.VBox()
         self.set_content(menu_box)
@@ -175,13 +174,12 @@ class SelectionPalette(Palette):
 
 
 class LinkPalette(Palette):
-    def __init__(self, browser, title, url, owner_document):
+    def __init__(self, browser, title, url):
         Palette.__init__(self)
 
         self._browser = browser
         self._title = title
         self._url = url
-        self._owner_document = owner_document
 
         # FIXME: this sometimes fails because Gtk tries to parse it as
         # markup text and some URLs has
@@ -239,13 +237,12 @@ class LinkPalette(Palette):
 
 
 class ImagePalette(Palette):
-    def __init__(self, browser, title, url, owner_document):
+    def __init__(self, browser, title, url):
         Palette.__init__(self)
 
         self._browser = browser
         self._title = title
         self._url = url
-        self._owner_document = owner_document
 
         if title not in (None, ''):
             self.props.primary_text = title
