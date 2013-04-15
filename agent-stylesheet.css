@@ -1,8 +1,0 @@
-/* Prevent flash animations from playing until you click on them. */
-object[classid$=":D27CDB6E-AE6D-11cf-96B8-444553540000"],
-object[codebase*="swflash.cab"],
-object[type="application/x-shockwave-flash"],
-embed[type="application/x-shockwave-flash"],
-embed[src$=".swf"]
-{ -moz-binding: url("clickToView.xml#flash"); }
-
