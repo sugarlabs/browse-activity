@@ -123,20 +123,20 @@ class ContentInvoker(Invoker):
             'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
             'is selection': hit_context & WebKit.HitTestResultContext.SELECTION,
             }
+
+        title = None
+        url = None
+
         if hit_info['is link']:
-            link_uri = hit_test.props.link_uri
             if isinstance(hit_test.props.inner_node,
                             WebKit.DOMHTMLImageElement):
                 title = hit_test.props.inner_node.get_title()
             elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
-            self.palette = LinkPalette(self._browser, title, link_uri)
-            self.notify_right_click()
+            url = hit_test.props.link_uri
         elif hit_info['is image']:
             title = hit_test.props.inner_node.get_title()
-            self.palette = ImagePalette(self._browser, title,
-                                        hit_test.props.image_uri)
-            self.notify_right_click()
+            url = hit_test.props.image_uri
         elif hit_info['is selection']:
             # TODO: find a way to get the selected text so we can use
             # it as the title of the Palette.
@@ -150,79 +150,82 @@ class ContentInvoker(Invoker):
             #     title = text[:20] + '...'
             # else:
             #     title = text
-            self.palette = SelectionPalette(self._browser, title, None)
+
+        if (hit_info['is link'] or hit_info['is image'] or
+            hit_info['is selection']):
+            self.palette = BrowsePalette(self._browser, title, url, hit_info)
             self.notify_right_click()
 
 
-class SelectionPalette(Palette):
-    def __init__(self, browser, title, url):
+class BrowsePalette(Palette):
+    def __init__(self, browser, title, url, hit_info):
         Palette.__init__(self)
 
         self._browser = browser
-        self._title = title
         self._url = url
 
-        menu_box = Gtk.VBox()
-        self.set_content(menu_box)
-        menu_box.show()
-        self._content.set_border_width(1)
-
-        self.props.primary_text = title
-
-        menu_item = PaletteMenuItem(_('Copy text'), 'edit-copy')
-        menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('activate', self.__copy_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
-        menu_item.show()
-
-    def __copy_activate_cb(self, menu_item):
-        self._browser.copy_clipboard()
-
-
-class LinkPalette(Palette):
-    def __init__(self, browser, title, url):
-        Palette.__init__(self)
-
-        self._browser = browser
-        self._title = title
-        self._url = url
-
-        # FIXME: this sometimes fails because Gtk tries to parse it as
-        # markup text and some URLs has
+        # FIXME: this sometimes fails for links because Gtk tries
+        # to parse it as markup text and some URLs has
         # "?template=gallery&page=gallery" for example
         if title not in (None, ''):
             self.props.primary_text = title
-            self.props.secondary_text = url
+            if url is not None:
+                self.props.secondary_text = url
         else:
-            self.props.primary_text = url
+            if url is not None:
+                self.props.primary_text = url
 
         menu_box = Gtk.VBox()
         self.set_content(menu_box)
         menu_box.show()
         self._content.set_border_width(1)
 
-        menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
-        menu_item.connect('activate', self.__follow_activate_cb)
-        menu_box.pack_start(menu_item, False, False, 0)
-        menu_item.show()
+        if hit_info['is link']:
+            menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
+            menu_item.connect('activate', self.__follow_activate_cb)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
 
-        menu_item = PaletteMenuItem(_('Follow link in new tab'),
-                                  'browse-follow-link-new-tab')
-        menu_item.connect('activate', self.__follow_activate_cb, True)
-        menu_box.pack_start(menu_item, False, False, 0)
-        menu_item.show()
+            menu_item = PaletteMenuItem(_('Follow link in new tab'),
+                                      'browse-follow-link-new-tab')
+            menu_item.connect('activate', self.__follow_activate_cb, True)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
 
-        menu_item = PaletteMenuItem(_('Keep link'), 'document-save')
-        menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('activate', self.__download_activate_cb)
-        menu_box.pack_start(menu_item, False, False, 0)
-        menu_item.show()
+            # Add "keep link" only if it is not an image.  "Keep
+            # image" will be shown in that case.
+            if not hit_info['is image']:
+                menu_item = PaletteMenuItem(_('Keep link'), 'document-save')
+                menu_item.icon.props.xo_color = profile.get_color()
+                menu_item.connect('activate', self.__download_activate_cb)
+                menu_box.pack_start(menu_item, False, False, 0)
+                menu_item.show()
 
-        menu_item = PaletteMenuItem(_('Copy link'), 'edit-copy')
-        menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('activate', self.__copy_activate_cb)
-        menu_box.pack_start(menu_item, False, False, 0)
-        menu_item.show()
+            menu_item = PaletteMenuItem(_('Copy link'), 'edit-copy')
+            menu_item.icon.props.xo_color = profile.get_color()
+            menu_item.connect('activate', self.__copy_link_activate_cb)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
+
+        if hit_info['is image']:
+            menu_item = PaletteMenuItem(_('Copy image'), 'edit-copy')
+            menu_item.icon.props.xo_color = profile.get_color()
+            menu_item.connect('activate', self.__copy_image_activate_cb)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
+
+            menu_item = PaletteMenuItem(_('Keep image'), 'document-save')
+            menu_item.icon.props.xo_color = profile.get_color()
+            menu_item.connect('activate', self.__download_activate_cb)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
+
+        if hit_info['is selection']:
+            menu_item = PaletteMenuItem(_('Copy text'), 'edit-copy')
+            menu_item.icon.props.xo_color = profile.get_color()
+            menu_item.connect('activate', self.__copy_activate_cb)
+            menu_box.pack_start(menu_item, False, False, 0)
+            menu_item.show()
 
     def __follow_activate_cb(self, menu_item, new_tab=False):
         if new_tab:
@@ -231,7 +234,7 @@ class LinkPalette(Palette):
             self._browser.load_uri(self._url)
             self._browser.grab_focus()
 
-    def __copy_activate_cb(self, menu_item):
+    def __copy_link_activate_cb(self, menu_item):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self._url, -1)
 
@@ -241,39 +244,7 @@ class LinkPalette(Palette):
         download = WebKit.Download(network_request=nr)
         self._browser.emit('download-requested', download)
 
-
-class ImagePalette(Palette):
-    def __init__(self, browser, title, url):
-        Palette.__init__(self)
-
-        self._browser = browser
-        self._title = title
-        self._url = url
-
-        if title not in (None, ''):
-            self.props.primary_text = title
-            self.props.secondary_text = url
-        else:
-            self.props.primary_text = url
-
-        menu_box = Gtk.VBox()
-        self.set_content(menu_box)
-        menu_box.show()
-        self._content.set_border_width(1)
-
-        menu_item = PaletteMenuItem(_('Copy image'), 'edit-copy')
-        menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('activate', self.__copy_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
-        menu_item.show()
-
-        menu_item = PaletteMenuItem(_('Keep image'), 'document-save')
-        menu_item.icon.props.xo_color = profile.get_color()
-        menu_item.connect('activate', self.__download_activate_cb)
-        menu_box.pack_end(menu_item, False, False, 0)
-        menu_item.show()
-
-    def __copy_activate_cb(self, menu_item):
+    def __copy_image_activate_cb(self, menu_item):
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
         data = urllib2.urlopen(self._url).read()
@@ -286,8 +257,5 @@ class ImagePalette(Palette):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_image(image.get_pixbuf())
 
-    def __download_activate_cb(self, menu_item):
-        nr = WebKit.NetworkRequest()
-        nr.set_uri(self._url)
-        download = WebKit.Download(network_request=nr)
-        self._browser.emit('download-requested', download)
+    def __copy_activate_cb(self, menu_item):
+        self._browser.copy_clipboard()
