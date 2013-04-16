@@ -30,6 +30,7 @@ from gi.repository import SugarGestures
 
 from sugar3.graphics.palette import Palette, Invoker
 from sugar3.graphics.palettemenu import PaletteMenuItem
+from sugar3.graphics.palettemenu import PaletteMenuItemSeparator
 from sugar3 import profile
 
 
@@ -180,7 +181,10 @@ class BrowsePalette(Palette):
         menu_box.show()
         self._content.set_border_width(1)
 
+        first_section_added = False
         if hit_info['is link']:
+            first_section_added = True
+
             menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
             menu_item.connect('activate', self.__follow_activate_cb)
             menu_box.pack_start(menu_item, False, False, 0)
@@ -208,6 +212,13 @@ class BrowsePalette(Palette):
             menu_item.show()
 
         if hit_info['is image']:
+            if not first_section_added:
+                first_section_added = True
+            else:
+                separator = PaletteMenuItemSeparator()
+                menu_box.pack_start(separator, False, False, 0)
+                separator.show()
+
             menu_item = PaletteMenuItem(_('Copy image'), 'edit-copy')
             menu_item.icon.props.xo_color = profile.get_color()
             menu_item.connect('activate', self.__copy_image_activate_cb)
@@ -221,6 +232,13 @@ class BrowsePalette(Palette):
             menu_item.show()
 
         if hit_info['is selection']:
+            if not first_section_added:
+                first_section_added = True
+            else:
+                separator = PaletteMenuItemSeparator()
+                menu_box.pack_start(separator, False, False, 0)
+                separator.show()
+
             menu_item = PaletteMenuItem(_('Copy text'), 'edit-copy')
             menu_item.icon.props.xo_color = profile.get_color()
             menu_item.connect('activate', self.__copy_activate_cb)
