@@ -135,22 +135,18 @@ class ContentInvoker(Invoker):
             elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
             url = hit_test.props.link_uri
+
         elif hit_info['is image']:
             title = hit_test.props.inner_node.get_title()
             url = hit_test.props.image_uri
+
         elif hit_info['is selection']:
             # TODO: find a way to get the selected text so we can use
             # it as the title of the Palette.
             # The function webkit_web_view_get_selected_text was removed
             # https://bugs.webkit.org/show_bug.cgi?id=62512
-            title = None
-
-            # text = hit_test.props.inner_node.get_text_content()
-            # import epdb;epdb.set_trace()
-            # if len(text) > 20:
-            #     title = text[:20] + '...'
-            # else:
-            #     title = text
+            if isinstance(hit_test.props.inner_node, WebKit.DOMNode):
+                title = hit_test.props.inner_node.get_text_content()
 
         if (hit_info['is link'] or hit_info['is image'] or
             hit_info['is selection']):
