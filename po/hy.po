@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 00:33-0500\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
 "PO-Revision-Date: 2012-07-10 04:15+0200\n"
 "Last-Translator: Jasmine <udea_jasmine@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,66 +28,66 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr ""
 
-#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Անվերնագիր"
 
-#: browser.py:450
+#: browser.py:504
 msgid "Loading..."
 msgstr "Բեռնում է..."
 
-#: browser.py:665 browser.py:666
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:667
+#: browser.py:728
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 
-#: browser.py:670
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:111
+#: downloadmanager.py:113
 msgid "Not enough space to download"
 msgstr ""
 
-#: downloadmanager.py:120
-#, python-format
+#: downloadmanager.py:122
 msgid ""
-"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:125 downloadmanager.py:156
+#: downloadmanager.py:130 downloadmanager.py:161
 msgid "Ok"
 msgstr "OK"
 
-#: downloadmanager.py:137
+#: downloadmanager.py:142
 msgid "Download started"
 msgstr "Ներբեռնումը մեկնարկել է"
 
-#: downloadmanager.py:138 downloadmanager.py:150
+#: downloadmanager.py:143 downloadmanager.py:155
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:148
+#: downloadmanager.py:153
 msgid "Download completed"
 msgstr "Բեռնումն ավարտվել է"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:158
 msgid "Show in Journal"
 msgstr "Ցույց տալ Մատյանում"
 
-#: downloadmanager.py:164 pdfviewer.py:419
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "%s -ից"
 
-#: downloadmanager.py:259
+#: downloadmanager.py:270
 #, python-format
 #, python-format,
 msgid ""
@@ -109,89 +109,105 @@ msgstr "Հաջորդ"
 msgid "Remove"
 msgstr "Հեռացնել"
 
-#: palettes.py:168
+#: palettes.py:167
 msgid "Copy text"
 msgstr ""
 
-#: palettes.py:203
+#: palettes.py:200
 msgid "Follow link"
 msgstr "Հետևել հղումին"
 
-#: palettes.py:208
+#: palettes.py:205
 msgid "Follow link in new tab"
 msgstr "Հետևել հղումին նոր էջում"
 
-#: palettes.py:214
+#: palettes.py:211
 msgid "Keep link"
 msgstr "Պահել հղումը"
 
-#: palettes.py:220
+#: palettes.py:217
 msgid "Copy link"
 msgstr "Պատճենել հղումը"
 
-#: palettes.py:270
+#: palettes.py:261
 msgid "Copy image"
 msgstr "Պատճենել պատկերը"
 
-#: palettes.py:276
+#: palettes.py:267
 msgid "Keep image"
 msgstr "Պահել պատկերը"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Հեռացնել"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Մոտեցնել"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Նախորդ էջ"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Հաջորդ էջ"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Պահել PDF-ը Մատյանում"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr ""
+
+#: pdfviewer.py:488
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Էկրանի չափով"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Ցույց տալ դարակը"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Թաքցնել դարակը"
 
-#: webactivity.py:613
+#: webactivity.py:626
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Բեռնումն ընթացքի մեջ է"
 msgstr[1] "Բեռնումներն ընթացքի մեջ են"
 
-#: webactivity.py:616
+#: webactivity.py:629
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Այժմյա կանգը կչեղարկի Ձեր բեռնումը"
 msgstr[1] "Այժմյա կանգը կչեղարկի Ձեր բեռնումներըը"
 
-#: webactivity.py:621
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Շարունակել բեռնումը"
 msgstr[1] "Շարունակել բեռնումները"
 
-#: webactivity.py:626
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Կանգ"
 
@@ -199,14 +215,14 @@ msgstr "Կանգ"
 msgid "Home page"
 msgstr "Հիմնաէջ"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Հետ"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Առաջ"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Էջանիշ"
