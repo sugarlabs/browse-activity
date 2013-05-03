@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-19 00:33-0500\n"
-"PO-Revision-Date: 2012-07-10 04:15+0200\n"
-"Last-Translator: Jasmine <udea_jasmine@yahoo.com>\n"
+"PO-Revision-Date: 2013-04-19 16:34+0200\n"
+"Last-Translator: anushnur <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Կայքավարել աշխարհը. Այստեղ դու կարող ես կատարել ուսումնասիրություններ, դիտել "
+"կրթական տեսանյութեր, մասնակցել համացանց կուրսեր, գտնել գրքեր, հաղորթակցվել "
+"ընկերների հետ և ավելին:"
 
 #: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
@@ -38,7 +41,7 @@ msgstr "Բեռնում է..."
 
 #: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Այս կայքէջը չի բեռնվում"
 
 #: browser.py:728
 #, python-format
@@ -46,20 +49,24 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" չի կարող բեռնվել: Խնդրեմ, ստուգեք տպագրական սխալները, և համոզվեք, որ "
+"միացած եք համացանցին:"
 
 #: browser.py:731 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Փորձիր կրկին"
 
 #: downloadmanager.py:113
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Բեռնելու համար բավական տարածություն չկա "
 
 #: downloadmanager.py:122
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Բեռնել \"%{filename}\" պահանջվում է ազատ տարածության %{total_size_in_mb} ՄԲ, "
+"միայն %{free_space_in_mb} ՄԲ է հասանելի"
 
 #: downloadmanager.py:130 downloadmanager.py:161
 msgid "Ok"
@@ -111,7 +118,7 @@ msgstr "Հեռացնել"
 
 #: palettes.py:167
 msgid "Copy text"
-msgstr ""
+msgstr "Պատճենել տեքստը"
 
 #: palettes.py:200
 msgid "Follow link"
@@ -147,7 +154,7 @@ msgstr "Մոտեցնել"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Ներկայիս չափսը"
 
 #: pdfviewer.py:114
 msgid "Previous page"
@@ -163,19 +170,19 @@ msgstr "Պահել PDF-ը Մատյանում"
 
 #: pdfviewer.py:341
 msgid "Cancel"
-msgstr ""
+msgstr "Չեղարկել"
 
 #: pdfviewer.py:488
 msgid "Downloading document..."
-msgstr ""
+msgstr "Բեռնում է փաստաթուղթը..."
 
 #: pdfviewer.py:534
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Այս փաստաթուղթը չի կարող բեռնվել"
 
 #: pdfviewer.py:542
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Խնդրեմ, համոզվեք արդյոք միացած եք համացանցին"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
