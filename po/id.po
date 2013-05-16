@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 00:32-0500\n"
-"PO-Revision-Date: 2013-01-09 05:52+0200\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
+"PO-Revision-Date: 2013-04-06 08:39+0200\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -39,28 +39,29 @@ msgstr ""
 "pendidikan, mengikuti kursus daring, mencari buku, menyambung dengan teman-"
 "teman, dan yang lainnya."
 
-#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Tanpa judul"
 
-#: browser.py:499
+#: browser.py:504
 msgid "Loading..."
 msgstr "Memuat..."
 
-#: browser.py:721 browser.py:722
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr "Halaman web ini tak dapat dimuat"
 
-#: browser.py:723
+#: browser.py:728
 #, python-format
+#, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 "\"%s\" tak dapat dimuat. Harap periksa apakah ada salah ketik, dan pastikan "
 "bahwa Anda tersambung ke internet."
 
-#: browser.py:726
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr "Coba lagi"
 
@@ -97,12 +98,12 @@ msgstr "Pengunduhan komplit"
 msgid "Show in Journal"
 msgstr "Tampilkan di Jurnal"
 
-#: downloadmanager.py:169 pdfviewer.py:421
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "Dari: %s"
 
-#: downloadmanager.py:264
+#: downloadmanager.py:270
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -151,58 +152,74 @@ msgstr "Salin gambar"
 msgid "Keep image"
 msgstr "Pertahankan gambar"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Zum perkecil"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Zum perbesar"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Ukuran sebenarnya"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Halaman sebelumnya"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Halaman selanjutnya"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Simpan PDF ke Jurnal"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "Ukuran sebenarnya"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "Batal"
+
+#: pdfviewer.py:488
+msgid "Downloading document..."
+msgstr "Mengunduh dokumen..."
+
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr "Dokumen ini tak dapat dimuat"
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
+msgstr "Pastikan bahwa Anda sedang tersambung ke Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Layar penuh"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Tampilkan Baki"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Sembunyikan Baki"
 
-#: webactivity.py:621
+#: webactivity.py:626
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Pengunduhan tengah berlangsung"
 
-#: webactivity.py:624
+#: webactivity.py:629
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Berhenti sekarang akan menghapus unduhan Anda"
 
-#: webactivity.py:629
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Lanjutkan mengunduh"
 
-#: webactivity.py:634
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Stop"
 
@@ -210,15 +227,15 @@ msgstr "Stop"
 msgid "Home page"
 msgstr "Beranda"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Kembali"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Maju"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Penanda taut"
 
@@ -226,6 +243,3 @@ msgstr "Penanda taut"
 #~ msgid ""
 #~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
 #~ msgstr "Unduhan \"%s\" memerlukan ruang bebas %.2f MB, tersedia hanya %.2f MB"
-
-#~ msgid "Cancel"
-#~ msgstr "Batal"
