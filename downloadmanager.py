@@ -33,6 +33,7 @@ from sugar3 import profile
 from sugar3 import mime
 from sugar3.graphics.alert import Alert, TimeoutAlert
 from sugar3.graphics.icon import Icon
+from sugar3.graphics import style
 from sugar3.activity import activity
 
 DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
@@ -313,7 +314,7 @@ class Download(object):
         image_width = pixbuf.get_width()
         image_height = pixbuf.get_height()
 
-        preview_width, preview_height = activity.PREVIEW_SIZE
+        preview_width, preview_height = style.zoom(300), style.zoom(225)
         preview_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                              preview_width, preview_height)
         cr = cairo.Context(preview_surface)
