@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 00:32-0500\n"
-"PO-Revision-Date: 2013-01-08 13:58+0200\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
+"PO-Revision-Date: 2013-02-22 09:30+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
@@ -52,28 +52,29 @@ msgstr ""
 "educativos, tomar cursos en línea, encontrar libros, conectarte con amigos y "
 "mucho más."
 
-#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Sin titulo"
 
-#: browser.py:499
+#: browser.py:504
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: browser.py:721 browser.py:722
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr "Esta página web no puede ser cargada"
 
-#: browser.py:723
+#: browser.py:728
 #, python-format
+#, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
-"\"%s\" no se pudo cargar. Comprueba si hay errores escritura, y asegúrate de "
-"que estás conectado a Internet."
+"\"%s\" no se pudo cargar. Comprueba si hay errores de escritura, y asegúrate "
+"de que estás conectado a Internet."
 
-#: browser.py:726
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr "Inténtalo de nuevo"
 
@@ -111,12 +112,12 @@ msgstr "Descarga terminada"
 msgid "Show in Journal"
 msgstr "Mostrar en el Diario"
 
-#: downloadmanager.py:169 pdfviewer.py:421
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:264
+#: downloadmanager.py:270
 #, python-format
 #, python-format,
 msgid ""
@@ -166,61 +167,77 @@ msgstr "Copiar la imagen"
 msgid "Keep image"
 msgstr "Mantener la imagen"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Reducir"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Tamaño actual"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Página anterior"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Página siguiente"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Guardar PDF al Diario"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "Tamaño actual"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: pdfviewer.py:488
+msgid "Downloading document..."
+msgstr "Descargando documento..."
+
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr "Este documento no se pudo cargar"
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
+msgstr "Asegúrate de que estás conectado a Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Mostrar Bandeja"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:621
+#: webactivity.py:626
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Descarga en curso"
 msgstr[1] "Descargas en curso"
 
-#: webactivity.py:624
+#: webactivity.py:629
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Detener ahora cancelará la descarga"
 msgstr[1] "Detener ahora cancelará las descargas"
 
-#: webactivity.py:629
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Continuar la descarga"
 msgstr[1] "Continuar las descargas"
 
-#: webactivity.py:634
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Parar"
 
@@ -228,15 +245,15 @@ msgstr "Parar"
 msgid "Home page"
 msgstr "Página inicial"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Volver"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Avanzar"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Marcador"
 
@@ -276,9 +293,6 @@ msgstr "Marcador"
 # Recargar is more consistent with the term "cargar" used for "download" in these menus.
 #~ msgid "Reload"
 #~ msgstr "Recargar"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
 
 #, python-format
 #~ msgid "File %s from %s."
