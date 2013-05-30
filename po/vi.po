@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"POT-Creation-Date: 2013-02-19 00:33-0500\n"
 "PO-Revision-Date: 2011-12-02 05:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,56 +36,66 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr ""
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
 msgstr "Chưa tên"
 
-#: browser.py:441
+#: browser.py:504
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:647 browser.py:648
+#: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:649
+#: browser.py:728
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 
-#: browser.py:652
+#: browser.py:731 pdfviewer.py:394
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:102
+#: downloadmanager.py:113
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:122
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
+msgstr ""
+
+#: downloadmanager.py:130 downloadmanager.py:161
+msgid "Ok"
+msgstr "OK"
+
+#: downloadmanager.py:142
 msgid "Download started"
 msgstr "Đã bắt đầu tải về"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:143 downloadmanager.py:155
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:153
 msgid "Download completed"
 msgstr "Đã kết thúc tải về"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:158
 msgid "Show in Journal"
 msgstr "Hiện trong Nhật ký"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "OK"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:169 pdfviewer.py:577
 #, python-format
 msgid "From: %s"
 msgstr "Từ : %s"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:270
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -104,104 +114,120 @@ msgstr "Tiếp"
 msgid "Remove"
 msgstr "Bỏ"
 
-#: palettes.py:130
+#: palettes.py:167
 msgid "Copy text"
 msgstr ""
 
-#: palettes.py:165
+#: palettes.py:200
 msgid "Follow link"
 msgstr "Theo liên kết"
 
-#: palettes.py:170
+#: palettes.py:205
 msgid "Follow link in new tab"
 msgstr ""
 
-#: palettes.py:176
+#: palettes.py:211
 msgid "Keep link"
 msgstr "Giữ liên kết"
 
-#: palettes.py:182
+#: palettes.py:217
 msgid "Copy link"
 msgstr "Chép liên kết"
 
-#: palettes.py:232
+#: palettes.py:261
 msgid "Copy image"
 msgstr "Chép ảnh"
 
-#: palettes.py:238
+#: palettes.py:267
 msgid "Keep image"
 msgstr "Giữ ảnh"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Thu nhỏ"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Phóng to"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr ""
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr ""
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr ""
 
-#: viewtoolbar.py:51
-msgid "Actual size"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "Thôi"
+
+#: pdfviewer.py:488
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:534
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:542
+msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Hiện khay"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Ẩn khay"
 
-#: webactivity.py:598
+#: webactivity.py:626
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Đang tải về"
 
-#: webactivity.py:601
+#: webactivity.py:629
 #, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Dừng ngay bây giờ thì cũng thôi tải về"
 
-#: webactivity.py:606
+#: webactivity.py:634
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 
-#: webactivity.py:611
+#: webactivity.py:639
 msgid "Stop"
 msgstr "Dừng"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:274
 msgid "Home page"
 msgstr "Trang chủ"
 
-#: webtoolbar.py:252
+#: webtoolbar.py:298
 msgid "Back"
 msgstr "Lùi"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:312
 msgid "Forward"
 msgstr "Tiếp"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:326
 msgid "Bookmark"
 msgstr "Liên kết lưu"
 
@@ -222,9 +248,6 @@ msgstr "Liên kết lưu"
 
 #~ msgid "Reload"
 #~ msgstr "Nạp lại"
-
-#~ msgid "Cancel"
-#~ msgstr "Thôi"
 
 #, python-format
 #~ msgid "File %s from %s."
