@@ -27,6 +27,7 @@ from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit
 from gi.repository import Soup
+from gi.repository import GConf
 
 from sugar3 import env
 from sugar3.activity import activity
@@ -42,7 +43,7 @@ from pdfviewer import PDFTabPage
 
 ZOOM_ORIGINAL = 1.0
 _ZOOM_AMOUNT = 0.1
-_LIBRARY_PATH = '/usr/share/library-common/index.html'
+LIBRARY_PATH = '/usr/share/library-common/index.html'
 
 _WEB_SCHEMES = ['http', 'https', 'ftp', 'file', 'javascript', 'data',
                 'about', 'gopher', 'mailto']
@@ -61,6 +62,8 @@ _NON_SEARCH_REGEX = re.compile('''
 
 DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
+
+HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
 
 
 class CommandListener(object):
@@ -342,16 +345,30 @@ class TabbedView(BrowserNotebook):
         else:
             first_label.show_close_button()
 
-    def load_homepage(self):
+    def load_homepage(self, ignore_gconf=False):
         browser = self.current_browser
-
-        if os.path.isfile(_LIBRARY_PATH):
-            browser.load_uri('file://' + _LIBRARY_PATH)
+        uri_homepage = None
+        if not ignore_gconf:
+            client = GConf.Client.get_default()
+            uri_homepage = client.get_string(HOME_PAGE_GCONF_KEY)
+        if uri_homepage is not None:
+            browser.load_uri(uri_homepage)
+        elif os.path.isfile(LIBRARY_PATH):
+            browser.load_uri('file://' + LIBRARY_PATH)
         else:
             default_page = os.path.join(activity.get_bundle_path(),
                                         "data/index.html")
             browser.load_uri('file://' + default_page)
         browser.grab_focus()
+
+    def set_homepage(self):
+        uri = self.current_browser.get_uri()
+        client = GConf.Client.get_default()
+        client.set_string(HOME_PAGE_GCONF_KEY, uri)
+
+    def reset_homepage(self):
+        client = GConf.Client.get_default()
+        client.unset(HOME_PAGE_GCONF_KEY)
 
     def _get_current_browser(self):
         if self.get_n_pages():

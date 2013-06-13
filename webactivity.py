@@ -50,6 +50,7 @@ from sugar3.presence import presenceservice
 from sugar3.graphics.tray import HTray
 from sugar3 import profile
 from sugar3.graphics.alert import Alert
+from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
 from sugar3 import mime
 
@@ -186,6 +187,12 @@ class WebActivity(activity.Activity):
         self._primary_toolbar.connect('add-link', self._link_add_button_cb)
 
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
+
+        self._primary_toolbar.connect('go-library', self._go_library_button_cb)
+
+        self._primary_toolbar.connect('set-home', self._set_home_button_cb)
+
+        self._primary_toolbar.connect('reset-home', self._reset_home_button_cb)
 
         self._edit_toolbar_button = ToolbarButton(
                 page=self._edit_toolbar,
@@ -474,6 +481,28 @@ class WebActivity(activity.Activity):
 
     def _go_home_button_cb(self, button):
         self._tabbed_view.load_homepage()
+
+    def _go_library_button_cb(self, button):
+        self._tabbed_view.load_homepage(ignore_gconf=True)
+
+    def _set_home_button_cb(self, button):
+        self._tabbed_view.set_homepage()
+        self._alert(_('The initial page was configured'))
+
+    def _reset_home_button_cb(self, button):
+        self._tabbed_view.reset_homepage()
+        self._alert(_('The default initial page was configured'))
+
+    def _alert(self, title, text=None):
+        alert = NotifyAlert(timeout=5)
+        alert.props.title = title
+        alert.props.msg = text
+        self.add_alert(alert)
+        alert.connect('response', self._alert_cancel_cb)
+        alert.show()
+
+    def _alert_cancel_cb(self, alert, response_id):
+        self.remove_alert(alert)
 
     def _key_press_cb(self, widget, event):
         key_name = Gdk.keyval_name(event.keyval)

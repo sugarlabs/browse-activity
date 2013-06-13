@@ -16,11 +16,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import os
 from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GConf
 from gi.repository import Pango
 from gi.repository import WebKit
 
@@ -28,6 +30,7 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
 from sugar3.graphics.palettemenu import PaletteMenuItem
+from sugar3.graphics.palettemenu import PaletteMenuBox
 from sugar3.graphics import style
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
@@ -35,6 +38,8 @@ from sugar3.activity.widgets import StopButton
 import filepicker
 import places
 from browser import Browser
+from browser import HOME_PAGE_GCONF_KEY, LIBRARY_PATH
+
 from pdfviewer import DummyBrowser
 
 _MAX_HISTORY_ENTRIES = 15
@@ -255,6 +260,15 @@ class PrimaryToolbar(ToolbarBase):
         'go-home': (GObject.SignalFlags.RUN_FIRST,
                      None,
                      ([])),
+        'set-home': (GObject.SignalFlags.RUN_FIRST,
+                     None,
+                     ([])),
+        'reset-home': (GObject.SignalFlags.RUN_FIRST,
+                     None,
+                     ([])),
+        'go-library': (GObject.SignalFlags.RUN_FIRST,
+                     None,
+                     ([])),
     }
 
     def __init__(self, tabbed_view, act):
@@ -273,6 +287,32 @@ class PrimaryToolbar(ToolbarBase):
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
         self._go_home.connect('clicked', self._go_home_cb)
+        # add a menu to save the home page
+        menu_box = PaletteMenuBox()
+        self._go_home.props.palette.set_content(menu_box)
+        menu_item = PaletteMenuItem()
+        menu_item.set_label(_('Select as initial page'))
+        menu_item.connect('activate', self._set_home_cb)
+        menu_box.append_item(menu_item)
+
+        self._reset_home_menu = PaletteMenuItem()
+        self._reset_home_menu.set_label(_('Reset initial page'))
+        self._reset_home_menu.connect('activate', self._reset_home_cb)
+        menu_box.append_item(self._reset_home_menu)
+
+        if os.path.isfile(LIBRARY_PATH):
+            library_menu = PaletteMenuItem()
+            library_menu.set_label(_('Library'))
+            library_menu.connect('activate', self._go_library_cb)
+            menu_box.append_item(library_menu)
+
+        menu_box.show_all()
+
+        # verify if the home page is configured
+        client = GConf.Client.get_default()
+        self._reset_home_menu.set_visible(
+            client.get_string(HOME_PAGE_GCONF_KEY) is not None)
+
         toolbar.insert(self._go_home, -1)
         self._go_home.show()
 
@@ -486,6 +526,17 @@ class PrimaryToolbar(ToolbarBase):
 
     def _go_home_cb(self, button):
         self.emit('go-home')
+
+    def _go_library_cb(self, button):
+        self.emit('go-library')
+
+    def _set_home_cb(self, button):
+        self._reset_home_menu.set_visible(True)
+        self.emit('set-home')
+
+    def _reset_home_cb(self, button):
+        self._reset_home_menu.set_visible(False)
+        self.emit('reset-home')
 
     def _go_back_cb(self, button):
         self._browser.go_back()
