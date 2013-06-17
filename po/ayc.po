@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-19 00:33-0500\n"
-"PO-Revision-Date: 2012-10-13 22:48+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-06-13 15:28+0200\n"
+"Last-Translator: EdgarQuispeChambi <quispedgar@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ayc\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"¡Aka pachana thaqma! Akana maya yatxatäwi ch'amanchasma, yatiqaña uñjäwinaka "
+"uñjaña, yatiñanaka ch'amamnchaña katuqaña, pankanaka jakiña, masinakampi "
+"jakisiña ukata juk'ampinakampi."
 
 #: browser.py:455 browser.py:507 browser.py:508 webactivity.py:444
 msgid "Untitled"
@@ -39,7 +42,7 @@ msgstr "Jist'araskiwa..."
 
 #: browser.py:726 browser.py:727
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "akïri thaqaña wakichäwixa janiwa qhantayasiti"
 
 #: browser.py:728
 #, python-format
@@ -47,20 +50,24 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" janiwa qhantaña muniti. Qillqaña pantjatacha utji uka suma uñakipma, "
+"Internet wakichäwixa qhantatati."
 
 #: browser.py:731 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Mayampi yant'ma"
 
 #: downloadmanager.py:113
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Wakichatanaka apaqañataki janiwa chanixa utjiti"
 
 #: downloadmanager.py:122
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Apaqaña \"%{filename}\" wakisiwa %{total_size_in_mb} MB utjiri chani, ukaki %"
+"{free_space_in_mb} MB utjirinaka"
 
 #  "Ok"
 #: downloadmanager.py:130 downloadmanager.py:161
@@ -119,7 +126,7 @@ msgstr "Chhaqtayaña"
 
 #: palettes.py:167
 msgid "Copy text"
-msgstr ""
+msgstr "qillqata apaqaña"
 
 #  "Seguir el enlace"
 #: palettes.py:200
@@ -178,19 +185,19 @@ msgstr "Sapüru luräwiru PDF wakichata imaña"
 
 #: pdfviewer.py:341
 msgid "Cancel"
-msgstr ""
+msgstr "Tukuyaña"
 
 #: pdfviewer.py:488
 msgid "Downloading document..."
-msgstr ""
+msgstr "wakichata... apaqkasa"
 
 #: pdfviewer.py:534
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "akïri wakichata janiwa qhantaña muniti"
 
 #: pdfviewer.py:542
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Internet wakichäwixa qhantatati."
 
 #  "Pantalla completa"
 #: viewtoolbar.py:62
