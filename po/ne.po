@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 00:33-0500\n"
+"POT-Creation-Date: 2013-06-28 00:32-0400\n"
 "PO-Revision-Date: 2012-05-07 10:53+0200\n"
 "Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,67 +36,67 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr ""
 
-#: browser.py:404 browser.py:453 browser.py:454 webactivity.py:436
+#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
 msgstr "नाम नदिइएको"
 
-#: browser.py:450
+#: browser.py:521
 msgid "Loading..."
 msgstr "लोडिङ्ग हुदैछ..."
 
-#: browser.py:665 browser.py:666
+#: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:667
+#: browser.py:759
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 
-#: browser.py:670
+#: browser.py:762 pdfviewer.py:394
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:111
+#: downloadmanager.py:124
 msgid "Not enough space to download"
 msgstr ""
 
-#: downloadmanager.py:120
-#, python-format
+#: downloadmanager.py:133
 msgid ""
-"Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:125 downloadmanager.py:156
+#: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
 msgstr "हुन्छ"
 
-#: downloadmanager.py:137
+#: downloadmanager.py:157
 msgid "Download started"
 msgstr "डाउनलोड सुरु भयो"
 
-#: downloadmanager.py:138 downloadmanager.py:150
+#: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:148
+#: downloadmanager.py:168
 msgid "Download completed"
 msgstr "डाउनलोड सकियो"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:173
 msgid "Show in Journal"
 msgstr "खातामा देखाऊ"
 
-#: downloadmanager.py:164 pdfviewer.py:419
+#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 #, python-format,
 msgid "From: %s"
 msgstr "%s:बाट"
 
-#: downloadmanager.py:259
+#: downloadmanager.py:292
 #, python-format
 #, python-format,
 msgid ""
@@ -118,105 +118,141 @@ msgstr "यसपछिको"
 msgid "Remove"
 msgstr "हटाऊ"
 
-#: palettes.py:168
-msgid "Copy text"
-msgstr ""
-
-#: palettes.py:203
+#: palettes.py:184
 msgid "Follow link"
 msgstr "लिंक खोल्ने"
 
-#: palettes.py:208
+#: palettes.py:189
 msgid "Follow link in new tab"
 msgstr "लिंक नयाँ ट्याबमा खोल"
 
-#: palettes.py:214
+#: palettes.py:198
 msgid "Keep link"
 msgstr "लिंक राख"
 
-#: palettes.py:220
+#: palettes.py:204
 msgid "Copy link"
 msgstr "लिंकको प्रतिलिपि बनाऊ"
 
-#: palettes.py:270
+#: palettes.py:218
 msgid "Copy image"
 msgstr "तस्विरको प्रतिलिपि बनाऊ"
 
-#: palettes.py:276
+#: palettes.py:224
 msgid "Keep image"
 msgstr "तस्विर राख"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: palettes.py:238
+msgid "Copy text"
+msgstr ""
+
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "सानो बनाऊ"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "ठूलो बनाऊ"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "पहिलाको पाना"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "यसपछिको पाना"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "PDF लाई पंजिकामा सेभ गर"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "रद्द गर"
+
+#: pdfviewer.py:490
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:546
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:554
+msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "पुरै पर्दा"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "ट्रे देखाऊ"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "ट्रे लुकाऊ"
 
-#: webactivity.py:613
+#: webactivity.py:490
+msgid "The initial page was configured"
+msgstr ""
+
+#: webactivity.py:494
+msgid "The default initial page was configured"
+msgstr ""
+
+#: webactivity.py:655
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "डाउनलोड हुदै छ"
 msgstr[1] "डाउनलोडहरु हुदै छन्"
 
-#: webactivity.py:616
+#: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "अहिले रोकेमा डाउनलोड रद्द हुने छ"
 msgstr[1] "अहिले रोकेमा डाउनलोडहरु रद्द हुने छन्"
 
-#: webactivity.py:621
+#: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "डाउनलोड जारी राख"
 msgstr[1] "डाउनलोडहरु जारी राख"
 
-#: webactivity.py:626
+#: webactivity.py:668
 msgid "Stop"
 msgstr "रोक"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:288
 msgid "Home page"
 msgstr "गृह पृष्ठ"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:294
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:299
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:305
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:338
 msgid "Back"
 msgstr "पहिलाको पाना"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:352
 msgid "Forward"
 msgstr "अगाडीको पाना"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:366
 msgid "Bookmark"
 msgstr "चिनो"
 
@@ -248,9 +284,6 @@ msgstr "चिनो"
 
 #~ msgid "Reload"
 #~ msgstr "फेरि सुरु गर"
-
-#~ msgid "Cancel"
-#~ msgstr "रद्द गर"
 
 #, python-format
 #~ msgid "File %s from %s."
