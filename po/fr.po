@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-02-24 12:12+0200\n"
+"PO-Revision-Date: 2013-06-28 23:36+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Traduc-fr <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -207,11 +207,11 @@ msgstr "Masquer la barre"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "La page initiale a été configurée"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "La page initiale par défaut a été configurée"
 
 #: webactivity.py:655
 msgid "Download in progress"
@@ -241,15 +241,15 @@ msgstr "Page d'accueil"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Sélectionner comme page initiale"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Redéfinir la page initiale"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Bibliothèque"
 
 #: webtoolbar.py:338
 msgid "Back"
