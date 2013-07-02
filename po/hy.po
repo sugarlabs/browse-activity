@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-06-20 03:18+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-07-01 18:51+0200\n"
+"Last-Translator: anushnur <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -198,11 +198,11 @@ msgstr "Թաքցնել դարակը"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Մեկնարկման էջը կոնֆիգուրացված է"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Բաց թողնված մեկնարկման էջը կոնֆիգուրացված է"
 
 #: webactivity.py:655
 msgid "Download in progress"
@@ -232,15 +232,15 @@ msgstr "Հիմնաէջ"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Ընտրել որպես մեկնարկման էջ"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Մեկնարկման էջը բերել սկզբնական վիճակի"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Գրադարան"
 
 #: webtoolbar.py:338
 msgid "Back"
