@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-02-22 11:37+0200\n"
+"PO-Revision-Date: 2013-07-09 10:25+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -206,11 +206,11 @@ msgstr "Skjul skuffe"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Den første side blev konfigureret"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Standard for første side blev konfigureret"
 
 #: webactivity.py:655
 msgid "Download in progress"
@@ -240,15 +240,15 @@ msgstr "Hjemmeside"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Vælg som første side"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Nulstil første side"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Bibliotek"
 
 #: webtoolbar.py:338
 msgid "Back"
