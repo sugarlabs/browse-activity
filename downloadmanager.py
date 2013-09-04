@@ -97,16 +97,20 @@ class Download(object):
         self._download.start()
 
     def __progress_change_cb(self, download, something):
-        progress = self._download.get_progress()
-        self.dl_jobject.metadata['progress'] = str(int(progress * 100))
-        datastore.write(self.dl_jobject)
+        progress = int(self._download.get_progress() * 100)
+        if progress > self._last_update_percent:
+            self._last_update_percent = progress
+            self.dl_jobject.metadata['progress'] = str(progress)
+            datastore.write(self.dl_jobject)
 
     def __current_size_changed_cb(self, download, something):
         current_size = self._download.get_current_size()
         total_size = self._download.get_total_size()
-        progress = current_size * 100 / total_size
-        self.dl_jobject.metadata['progress'] = str(progress)
-        datastore.write(self.dl_jobject)
+        progress = int(current_size * 100 / total_size)
+        if progress > self._last_update_percent:
+            self._last_update_percent = progress
+            self.dl_jobject.metadata['progress'] = str(progress)
+            datastore.write(self.dl_jobject)
 
     def __state_change_cb(self, download, gparamspec):
         state = self._download.get_status()
