@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-18 00:33-0500\n"
-"PO-Revision-Date: 2013-01-19 16:15+0200\n"
+"POT-Creation-Date: 2013-06-28 00:32-0400\n"
+"PO-Revision-Date: 2013-02-22 15:13+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
@@ -32,34 +32,35 @@ msgid ""
 "online courses, find books, connect with friends and more."
 msgstr "在互联网中冲浪！在这里你可以做研究，观看教育影片，学习在线课程，找书，联系朋友等等。"
 
-#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
 msgstr "无标题的"
 
-#: browser.py:499
+#: browser.py:521
 msgid "Loading..."
 msgstr "下载中..."
 
-#: browser.py:721 browser.py:722
+#: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
 msgstr "此网页无法加载"
 
-#: browser.py:723
+#: browser.py:759
 #, python-format
+#, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
-msgstr "\"%s\"不能被加载。请检查输入错误，并确保已连接到互联网。"
+"you are connected to the Internet."
+msgstr "\"%s\" 不能被加载。请检查输入错误，并确保已连接到互联网。"
 
-#: browser.py:726
+#: browser.py:762 pdfviewer.py:394
 msgid "Try again"
 msgstr "请再试一次"
 
-#: downloadmanager.py:113
+#: downloadmanager.py:124
 msgid "Not enough space to download"
 msgstr "没有足够的空间来下载"
 
-#: downloadmanager.py:122
+#: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
@@ -67,33 +68,33 @@ msgstr ""
 "下载 \"%{filename}\" 需要 %{total_size_in_mb} MB 的剩余空间, 只有 %{free_space_in_mb} MB "
 "可用"
 
-#: downloadmanager.py:130 downloadmanager.py:161
+#: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
 msgstr "确定"
 
-#: downloadmanager.py:142
+#: downloadmanager.py:157
 msgid "Download started"
 msgstr "开始下载"
 
-#: downloadmanager.py:143 downloadmanager.py:155
+#: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:153
+#: downloadmanager.py:168
 msgid "Download completed"
 msgstr "下载完成"
 
-#: downloadmanager.py:158
+#: downloadmanager.py:173
 msgid "Show in Journal"
 msgstr "在日志中显示"
 
-#: downloadmanager.py:169 pdfviewer.py:483
+#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "来自：%s"
 
-#: downloadmanager.py:264
+#: downloadmanager.py:292
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -112,110 +113,138 @@ msgstr "下一个"
 msgid "Remove"
 msgstr "删除"
 
-#: palettes.py:167
-msgid "Copy text"
-msgstr "复制文本"
-
-#: palettes.py:200
+#: palettes.py:184
 msgid "Follow link"
 msgstr "跟随链接"
 
-#: palettes.py:205
+#: palettes.py:189
 msgid "Follow link in new tab"
 msgstr "跟随在新标签的链接"
 
-#: palettes.py:211
+#: palettes.py:198
 msgid "Keep link"
 msgstr "保持链接"
 
-#: palettes.py:217
+#: palettes.py:204
 msgid "Copy link"
 msgstr "拷贝链接"
 
-#: palettes.py:261
+#: palettes.py:218
 msgid "Copy image"
 msgstr "拷贝图片"
 
-#: palettes.py:267
+#: palettes.py:224
 msgid "Keep image"
 msgstr "保留图片"
 
-#: pdfviewer.py:90 viewtoolbar.py:39
+#: palettes.py:238
+msgid "Copy text"
+msgstr "复制文本"
+
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "缩小"
 
-#: pdfviewer.py:96 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "放大"
 
-#: pdfviewer.py:107
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "实际尺寸"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "上一页"
 
-#: pdfviewer.py:114
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "下一页"
 
-#: pdfviewer.py:126
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "保存PDF到日志"
 
-#: pdfviewer.py:321
+#: pdfviewer.py:341
 msgid "Cancel"
 msgstr "取消"
 
-#: pdfviewer.py:413
+#: pdfviewer.py:490
 msgid "Downloading document..."
 msgstr "正在下载文件..."
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "实际尺寸"
+#: pdfviewer.py:546
+msgid "This document could not be loaded"
+msgstr "此文件无法加载"
+
+#: pdfviewer.py:554
+msgid "Please make sure you are connected to the Internet."
+msgstr "请确保已连接到互联网。"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "显示系统托盘"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "隐藏系统托盘"
 
-#: webactivity.py:621
+#: webactivity.py:490
+msgid "The initial page was configured"
+msgstr ""
+
+#: webactivity.py:494
+msgid "The default initial page was configured"
+msgstr ""
+
+#: webactivity.py:655
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "下载中"
 
-#: webactivity.py:624
+#: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "停止当前活动将删除您下载的文件"
 
-#: webactivity.py:629
+#: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "继续下载"
 
-#: webactivity.py:634
+#: webactivity.py:668
 msgid "Stop"
 msgstr "停止"
 
-#: webtoolbar.py:274
+#: webtoolbar.py:288
 msgid "Home page"
 msgstr "主页"
 
-#: webtoolbar.py:297
+#: webtoolbar.py:294
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:299
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:305
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:338
 msgid "Back"
 msgstr "上一页"
 
-#: webtoolbar.py:311
+#: webtoolbar.py:352
 msgid "Forward"
 msgstr "下一页"
 
-#: webtoolbar.py:325
+#: webtoolbar.py:366
 msgid "Bookmark"
 msgstr "书签"
 

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-29 00:32-0400\n"
+"POT-Creation-Date: 2013-06-28 00:32-0400\n"
 "PO-Revision-Date: 2012-11-14 05:42+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,58 +40,69 @@ msgstr ""
 "uczestniczyć w kursach online, znaleźć książki, kontaktować się ze znajomymi "
 "i o wiele więcej."
 
-#: browser.py:395 browser.py:444 browser.py:445 webactivity.py:398
+#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
 msgstr "Bez nazwy"
 
-#: browser.py:441
+#: browser.py:521
 msgid "Loading..."
 msgstr "Ładowanie..."
 
-#: browser.py:647 browser.py:648
+#: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
 msgstr "Ta strona internetowa nie mogła być załadowana"
 
-#: browser.py:649
+#: browser.py:759
 #, python-format
+#, python-format, fuzzy
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 "Nie można załadować \"%s\". Sprawdź czy nie ma błędów w pisowni i podłączenie "
 "do internetu."
 
-#: browser.py:652
+#: browser.py:762 pdfviewer.py:394
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 
-#: downloadmanager.py:102
+#: downloadmanager.py:124
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:133
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
+msgstr ""
+
+#: downloadmanager.py:141 downloadmanager.py:176
+msgid "Ok"
+msgstr "Ok"
+
+#: downloadmanager.py:157
 msgid "Download started"
 msgstr "Pobieranie rozpoczęte"
 
-#: downloadmanager.py:103 downloadmanager.py:114
+#: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
 msgid "%s"
 msgstr "%s"
 
-#: downloadmanager.py:112
+#: downloadmanager.py:168
 msgid "Download completed"
 msgstr "Pobieranie zakończone"
 
-#: downloadmanager.py:117
+#: downloadmanager.py:173
 msgid "Show in Journal"
 msgstr "Pokaż w Dzienniku"
 
-#: downloadmanager.py:120
-msgid "Ok"
-msgstr "Ok"
-
-#: downloadmanager.py:128 pdfviewer.py:419
+#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "Z: %s"
 
-#: downloadmanager.py:203
+#: downloadmanager.py:292
 #, python-format
 #, python-format,
 msgid ""
@@ -113,108 +124,145 @@ msgstr "Następny"
 msgid "Remove"
 msgstr "Usuń"
 
-#: palettes.py:130
-msgid "Copy text"
-msgstr "Kopiuj tekst"
-
-#: palettes.py:165
+#: palettes.py:184
 msgid "Follow link"
 msgstr "Idź za odnośnikiem"
 
-#: palettes.py:170
+#: palettes.py:189
 msgid "Follow link in new tab"
 msgstr "Idź za odnośnikiem w nowej karcie"
 
-#: palettes.py:176
+#: palettes.py:198
 msgid "Keep link"
 msgstr "Zatrzymaj odnośnik"
 
-#: palettes.py:182
+#: palettes.py:204
 msgid "Copy link"
 msgstr "Kopiuj odnośnik"
 
-#: palettes.py:232
+#: palettes.py:218
 msgid "Copy image"
 msgstr "Kopiuj obrazek"
 
-#: palettes.py:238
+#: palettes.py:224
 msgid "Keep image"
 msgstr "Zatrzymaj obrazek"
 
-#: pdfviewer.py:87 viewtoolbar.py:39
+#: palettes.py:238
+msgid "Copy text"
+msgstr "Kopiuj tekst"
+
+#: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr "Pomniejsz"
 
-#: pdfviewer.py:93 viewtoolbar.py:45
+#: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr "Powiększ"
 
-#: pdfviewer.py:104
+#: pdfviewer.py:103 viewtoolbar.py:51
+msgid "Actual size"
+msgstr "Obecny rozmiar"
+
+#: pdfviewer.py:114
 msgid "Previous page"
 msgstr "Poprzednia strona"
 
-#: pdfviewer.py:111
+#: pdfviewer.py:121
 msgid "Next page"
 msgstr "Następna strona"
 
-#: pdfviewer.py:123
+#: pdfviewer.py:133
 msgid "Save PDF to Journal"
 msgstr "Zapisz PDF do dziennka"
 
-#: viewtoolbar.py:51
-msgid "Actual size"
-msgstr "Obecny rozmiar"
+#: pdfviewer.py:341
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: pdfviewer.py:490
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:546
+#, fuzzy
+msgid "This document could not be loaded"
+msgstr "Ta strona internetowa nie mogła być załadowana"
+
+#: pdfviewer.py:554
+msgid "Please make sure you are connected to the Internet."
+msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Pełny ekran"
 
-#: viewtoolbar.py:112
+#: viewtoolbar.py:113
 msgid "Show Tray"
 msgstr "Pokaż pasek"
 
-#: viewtoolbar.py:115
+#: viewtoolbar.py:116
 msgid "Hide Tray"
 msgstr "Ukryj pasek"
 
-#: webactivity.py:598
+#: webactivity.py:490
+msgid "The initial page was configured"
+msgstr ""
+
+#: webactivity.py:494
+msgid "The default initial page was configured"
+msgstr ""
+
+#: webactivity.py:655
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Pobieranie w trakcie"
 msgstr[1] "Pobieranie w trakcie"
 msgstr[2] "Pobieranie w trakcie"
 
-#: webactivity.py:601
+#: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "Zatrzymanie spowoduje przerwanie pobierania"
 msgstr[1] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
 msgstr[2] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
 
-#: webactivity.py:606
+#: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "Wznów pobieranie"
 msgstr[1] "Wznów pobieranie wszystkich plików"
 msgstr[2] "Wznów pobieranie wszystkich plików"
 
-#: webactivity.py:611
+#: webactivity.py:668
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: webtoolbar.py:230
+#: webtoolbar.py:288
 msgid "Home page"
 msgstr "Strona domowa"
 
-#: webtoolbar.py:252
+#: webtoolbar.py:294
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:299
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:305
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:338
 msgid "Back"
 msgstr "Wstecz"
 
-#: webtoolbar.py:266
+#: webtoolbar.py:352
 msgid "Forward"
 msgstr "Dalej"
 
-#: webtoolbar.py:280
+#: webtoolbar.py:366
 msgid "Bookmark"
 msgstr "Zakładka"
 
@@ -246,9 +294,6 @@ msgstr "Zakładka"
 
 #~ msgid "Reload"
 #~ msgstr "Odśwież"
-
-#~ msgid "Cancel"
-#~ msgstr "Anuluj"
 
 #, python-format
 #~ msgid "File %s from %s."
