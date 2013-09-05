@@ -27,6 +27,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import WebKit
 from gi.repository import GdkPixbuf
+from gi.repository import GObject
 
 from sugar3.datastore import datastore
 from sugar3 import profile
@@ -42,6 +43,7 @@ DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
 _active_downloads = []
 _dest_to_window = {}
 
+PROGRESS_TIMEOUT = 3000
 SPACE_THRESHOLD = 52428800  # 50 Mb
 
 def format_float(f):
@@ -76,9 +78,11 @@ class Download(object):
 
         self.dl_jobject = None
         self._object_id = None
-        self._last_update_time = 0
-        self._last_update_percent = 0
         self._stop_alert = None
+
+        self._progress = 0
+        self._last_update_progress = 0
+        self._progress_sid = None
 
         # figure out download URI
         self.temp_path = os.path.join(activity.get_activity_root(), 'instance')
@@ -96,21 +100,30 @@ class Download(object):
         self._download.set_destination_uri('file://' + self._dest_path)
         self._download.start()
 
-    def __progress_change_cb(self, download, something):
-        progress = int(self._download.get_progress() * 100)
-        if progress > self._last_update_percent:
-            self._last_update_percent = progress
-            self.dl_jobject.metadata['progress'] = str(progress)
+    def _update_progress(self):
+        if self._progress > self._last_update_progress:
+            self._last_update_progress = self._progress
+            self.dl_jobject.metadata['progress'] = str(self._progress)
             datastore.write(self.dl_jobject)
+
+        self._progress_sid = None
+        return False
+
+    def __progress_change_cb(self, download, something):
+        self._progress = int(self._download.get_progress() * 100)
+
+        if self._progress_sid is None:
+            self._progress_sid = GObject.timeout_add(
+                PROGRESS_TIMEOUT, self._update_progress)
 
     def __current_size_changed_cb(self, download, something):
         current_size = self._download.get_current_size()
         total_size = self._download.get_total_size()
-        progress = int(current_size * 100 / total_size)
-        if progress > self._last_update_percent:
-            self._last_update_percent = progress
-            self.dl_jobject.metadata['progress'] = str(progress)
-            datastore.write(self.dl_jobject)
+        self._progress = int(current_size * 100 / total_size)
+
+        if self._progress_sid is None:
+            self._progress_sid = GObject.timeout_add(
+                PROGRESS_TIMEOUT, self._update_progress)
 
     def __state_change_cb(self, download, gparamspec):
         state = self._download.get_status()
@@ -182,6 +195,9 @@ class Download(object):
             self._activity.add_alert(self._stop_alert)
             self._stop_alert.connect('response', self.__stop_response_cb)
             self._stop_alert.show()
+
+            if self._progress_sid is not None:
+                GObject.source_remove(self._progress_sid)
 
             self.dl_jobject.metadata['title'] = \
                 self._download.get_suggested_filename()
