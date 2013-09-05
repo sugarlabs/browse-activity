@@ -250,6 +250,27 @@ class WebEntry(iconentry.IconEntry):
             self._search_popup()
 
 
+class UrlToolbar(Gtk.EventBox):
+    # This is used for the URL entry in portrait mode.
+
+    def __init__(self):
+        Gtk.EventBox.__init__(self)
+        self.modify_bg(Gtk.StateType.NORMAL,
+                       style.COLOR_TOOLBAR_GREY.get_gdk_color())
+
+        url_alignment = Gtk.Alignment(xscale=1.0, yscale=1.0)
+        url_alignment.set_padding(0, 0, style.LINE_WIDTH * 4,
+                                  style.LINE_WIDTH * 4)
+
+        self.add(url_alignment)
+        url_alignment.show()
+
+        self.toolbar = Gtk.Toolbar()
+        self.toolbar.set_size_request(-1, style.GRID_CELL_SIZE)
+        url_alignment.add(self.toolbar)
+        self.toolbar.show()
+
+
 class PrimaryToolbar(ToolbarBase):
     __gtype_name__ = 'PrimaryToolbar'
 
@@ -273,6 +294,8 @@ class PrimaryToolbar(ToolbarBase):
 
     def __init__(self, tabbed_view, act):
         ToolbarBase.__init__(self)
+
+        self._url_toolbar = UrlToolbar()
 
         self._activity = act
 
@@ -326,13 +349,14 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.connect('key-press-event', self.__key_press_event_cb)
         self.entry.connect('changed', self.__changed_cb)
 
-        entry_item = Gtk.ToolItem()
-        entry_item.set_expand(True)
-        entry_item.add(self.entry)
+        self._entry_item = Gtk.ToolItem()
+        self._entry_item.set_expand(True)
+        self._entry_item.add(self.entry)
         self.entry.show()
 
-        toolbar.insert(entry_item, -1)
-        entry_item.show()
+        toolbar.insert(self._entry_item, -1)
+
+        self._entry_item.show()
 
         self._back = ToolButton('go-previous-paired')
         self._back.set_tooltip(_('Back'))
@@ -368,6 +392,10 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(self._link_add, -1)
         self._link_add.show()
 
+        self._toolbar_separator = Gtk.SeparatorToolItem()
+        self._toolbar_separator.props.draw = False
+        self._toolbar_separator.set_expand(True)
+
         stop_button = StopButton(self._activity)
         toolbar.insert(stop_button, -1)
 
@@ -386,6 +414,11 @@ class PrimaryToolbar(ToolbarBase):
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
         tabbed_view.connect_after('page-added', self.__page_added_cb)
 
+        Gdk.Screen.get_default().connect('size-changed',
+                                         self.__screen_size_changed_cb)
+
+        self._configure_toolbar()
+
     def __key_press_event_cb(self, entry, event):
         self._tabbed_view.current_browser.loading_uri = entry.props.text
 
@@ -395,6 +428,42 @@ class PrimaryToolbar(ToolbarBase):
 
     def __page_added_cb(self, notebook, child, pagenum):
         self.entry._search_popdown()
+
+    def _configure_toolbar(self, screen=None):
+        # Adapt the toolbars for portrait or landscape mode.
+
+        if screen is None:
+            screen = Gdk.Screen.get_default()
+
+        if screen.get_width() < screen.get_height():
+            if self._entry_item in self._url_toolbar.toolbar.get_children():
+                return
+
+            self.toolbar.remove(self._entry_item)
+            self._url_toolbar.toolbar.insert(self._entry_item, -1)
+
+            separator_pos = len(self.toolbar.get_children()) - 1
+            self.toolbar.insert(self._toolbar_separator, separator_pos)
+            self._toolbar_separator.show()
+
+            self.pack_end(self._url_toolbar, True, True, 0)
+            self._url_toolbar.show()
+
+        else:
+            if self._entry_item in self.toolbar.get_children():
+                return
+
+            self.toolbar.remove(self._toolbar_separator)
+
+            position = len(self.toolbar.get_children()) - 4
+            self._url_toolbar.toolbar.remove(self._entry_item)
+            self.toolbar.insert(self._entry_item, position)
+
+            self._toolbar_separator.hide()
+            self.remove(self._url_toolbar)
+
+    def __screen_size_changed_cb(self, screen):
+        self._configure_toolbar(screen)
 
     def _connect_to_browser(self, browser):
         if self._browser is not None:
