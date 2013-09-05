@@ -539,6 +539,9 @@ class WebActivity(activity.Activity):
                 browser.reload()
             elif Gdk.keyval_name(event.keyval) == "t":
                 self._tabbed_view.add_tab()
+            elif key_name == 'w':
+                _logger.debug('keyboard: close tab')
+                self._tabbed_view.close_tab()
             else:
                 return False
 
