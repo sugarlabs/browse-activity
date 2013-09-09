@@ -537,7 +537,7 @@ class Browser(WebKit.WebView):
                                     ([])),
     }
 
-    CURRENT_SUGAR_VERSION = '0.98'
+    CURRENT_SUGAR_VERSION = '0.100'
 
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
