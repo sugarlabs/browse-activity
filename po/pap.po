@@ -1,29 +1,27 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Wenchi <linguares@yahoo.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2010-02-25 00:17+0200\n"
-"Last-Translator: Urso Wieske <uwieske@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-09-24 01:32+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: Suares\n"
 "Language: pap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
@@ -35,18 +33,20 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Nabegá rònt mundu! Aki bo por hasi investigashon, wak vidio edukashonal, "
+"sigui kursonan online, haña buki, konektá ku amigunan i mas."
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
-msgstr ""
+msgstr "Sin título"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr ""
+msgstr "Kargando..."
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "No por a karga e web page akí"
 
 #: browser.py:759
 #, python-format
@@ -54,20 +54,24 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"no por a karga \"%s\". Fabor chèk pa eror di taip i sòru pa bo ta konektá ku "
+"Internet."
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Bolbe purba"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "No tin sufisiente espasio pa download"
 
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Download \"%{filename}\" ta rekerí %{total_size_in_mb} MB of di espasio liber, "
+"solamente %{free_space_in_mb} MB ta disponibel"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
@@ -88,7 +92,7 @@ msgstr "Download kompletá"
 
 #: downloadmanager.py:173
 msgid "Show in Journal"
-msgstr "Mustra den e Zjurnal"
+msgstr "Mustra den Diario"
 
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
@@ -101,6 +105,8 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Ta download %(filename)s for di \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -120,51 +126,52 @@ msgstr "Sigui e link"
 
 #: palettes.py:189
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Sigui link den tab nobo"
 
 #: palettes.py:198
 msgid "Keep link"
-msgstr "Mantené e lenk/link"
+msgstr "Mantené link"
 
 #: palettes.py:204
 msgid "Copy link"
-msgstr "Kopia lenk/link"
+msgstr "Kopia link"
 
 #: palettes.py:218
 msgid "Copy image"
-msgstr "Kopia e imagen"
+msgstr "Kopia plachi"
 
 #: palettes.py:224
 msgid "Keep image"
-msgstr "Mantené e imagen"
+msgstr "Mantené plachi"
 
 #: palettes.py:238
+#, fuzzy
 msgid "Copy text"
-msgstr ""
+msgstr "Kopia teksto"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
-msgstr "Zoom out"
+msgstr "Hala afó"
 
 #: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
-msgstr "Zoom in"
+msgstr "Hala aden"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Tamaño real"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr ""
+msgstr "Página anterior"
 
 #: pdfviewer.py:121
 msgid "Next page"
-msgstr ""
+msgstr "Siguiente página"
 
 #: pdfviewer.py:133
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Warda PDF den Diario"
 
 #: pdfviewer.py:341
 msgid "Cancel"
@@ -172,53 +179,54 @@ msgstr "Kanselá"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "Ta download dokumento..."
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "No por a karga e dokumento page akí"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Fabor sòru pa bo ta konektá ku Internet"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr "Pantaya kompleto"
+msgstr "Pantaya kompletu"
 
 #: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr "Mustra bandeha"
+msgstr "Mustra Teblachi"
 
 #: viewtoolbar.py:116
 msgid "Hide Tray"
-msgstr "Skonde bandeha"
+msgstr "Skonde Teblach"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "A konfigurá e página inisial"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "A konfigurá e página inisial predefiní"
 
 #: webactivity.py:655
 #, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Download den progreso"
+msgstr[0] "Download tumando lugá"
+msgstr[1] "Download tumando lugá"
 
 #: webactivity.py:658
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Stòp aworaki lo kansela bo download"
+msgstr[0] "Stòp aworakí lo kanselá bo download"
+msgstr[1] "Stòp aworakí lo kanselá bo download"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sigui ku download"
+msgstr[1] "Sigui ku e downloadnan"
 
 #: webactivity.py:668
 msgid "Stop"
@@ -226,19 +234,19 @@ msgstr "Stòp"
 
 #: webtoolbar.py:288
 msgid "Home page"
-msgstr ""
+msgstr "Página inisial"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Skohe komo página inisial"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Reinisiá página inisial"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Biblioteka"
 
 #: webtoolbar.py:338
 msgid "Back"
@@ -246,11 +254,11 @@ msgstr "Bèk"
 
 #: webtoolbar.py:352
 msgid "Forward"
-msgstr "Avansá"
+msgstr "Padilanti"
 
 #: webtoolbar.py:366
 msgid "Bookmark"
-msgstr "Markadó"
+msgstr "Markabuki"
 
 #, python-format
 #, fuzzy
