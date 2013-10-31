@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-09-24 01:32+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-10-30 00:38+0200\n"
+"Last-Translator: June <juneleonora@yahoo.com>\n"
 "Language-Team: Suares\n"
 "Language: pap\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,6 @@ msgid "Keep image"
 msgstr "Mantené plachi"
 
 #: palettes.py:238
-#, fuzzy
 msgid "Copy text"
 msgstr "Kopia teksto"
 
