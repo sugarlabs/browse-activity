@@ -55,7 +55,7 @@ msgstr "Kay web raphiqa mana rikurinchu"
 #  [ES] "que estás conectado a Internet."
 #: browser.py:759
 #, python-format
-#, python-format, 
+#, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
