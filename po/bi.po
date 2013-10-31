@@ -10,19 +10,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-07-13 20:40+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: bi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.1.1rc4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
@@ -131,7 +132,7 @@ msgstr ""
 
 #: palettes.py:218
 msgid "Copy image"
-msgstr ""
+msgstr "Kopiem imej"
 
 #: palettes.py:224
 msgid "Keep image"
@@ -167,7 +168,7 @@ msgstr ""
 
 #: pdfviewer.py:341
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselem"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
@@ -205,23 +206,20 @@ msgstr ""
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:668
 msgid "Stop"
-msgstr ""
+msgstr "Stopem"
 
 #: webtoolbar.py:288
 msgid "Home page"
