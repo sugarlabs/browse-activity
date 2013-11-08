@@ -17,14 +17,11 @@
 import os
 import logging
 import tempfile
-import threading
 from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
-from gi.repository import EvinceDocument
-from gi.repository import EvinceView
 from gi.repository import WebKit
 
 from sugar3.graphics.toolbarbox import ToolbarBox
@@ -56,6 +53,10 @@ class EvinceViewer(Gtk.Overlay):
 
         self._uri = uri
 
+        # delay Evince import until is needed to improve activity startup time
+        from gi.repository import EvinceDocument
+        from gi.repository import EvinceView
+
         # Create Evince objects to handle the PDF in the URI:
         EvinceDocument.init()
         self._doc = EvinceDocument.Document.factory_get_document(uri)
@@ -63,6 +64,8 @@ class EvinceViewer(Gtk.Overlay):
         self._model = EvinceView.DocumentModel()
         self._model.set_document(self._doc)
         self._view.set_model(self._model)
+
+        self._EVINCE_MODE_FREE = EvinceView.SizingMode.FREE
 
         self._view.connect('external-link', self.__handle_link_cb)
         self._model.connect('page-changed', self.__page_changed_cb)
@@ -173,15 +176,15 @@ class EvinceViewer(Gtk.Overlay):
             current_page < self._doc.get_n_pages() - 1
 
     def zoom_original(self):
-        self._model.props.sizing_mode = EvinceView.SizingMode.FREE
+        self._model.props.sizing_mode = self._EVINCE_MODE_FREE
         self._model.props.scale = 1.0
 
     def zoom_in(self):
-        self._model.props.sizing_mode = EvinceView.SizingMode.FREE
+        self._model.props.sizing_mode = self._EVINCE_MODE_FREE
         self._view.zoom_in()
 
     def zoom_out(self):
-        self._model.props.sizing_mode = EvinceView.SizingMode.FREE
+        self._model.props.sizing_mode = self._EVINCE_MODE_FREE
         self._view.zoom_out()
 
     def get_pdf_title(self):
