@@ -231,6 +231,7 @@ class WebEntry(iconentry.IconEntry):
             return True
         elif keyname == 'Escape':
             self._search_window.hide()
+            self.props.text = ''
             return True
         return False
 
