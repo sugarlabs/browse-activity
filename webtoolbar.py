@@ -34,7 +34,12 @@ from sugar3.graphics.palettemenu import PaletteMenuBox
 from sugar3.graphics import style
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
+from sugar3.datastore import datastore
+from sugar3.activity import activity
+from sugar3.graphics.alert import Alert
+from sugar3.graphics.icon import Icon
 
+import tempfile
 import filepicker
 import places
 from browser import Browser
@@ -300,13 +305,24 @@ class PrimaryToolbar(ToolbarBase):
 
         self._activity = act
 
-        self._tabbed_view = tabbed_view
+        self._tabbed_view = self._canvas = tabbed_view
 
         self._loading = False
 
         toolbar = self.toolbar
         activity_button = ActivityToolbarButton(self._activity)
         toolbar.insert(activity_button, 0)
+
+        separator = Gtk.SeparatorToolItem()
+
+        save_as_pdf = ToolButton('save-as-pdf')
+        save_as_pdf.set_tooltip(_('Save page as pdf'))
+        save_as_pdf.connect('clicked', self.save_as_pdf)
+
+        activity_button.props.page.insert(separator, -1)
+        activity_button.props.page.insert(save_as_pdf, -1)
+        separator.show()
+        save_as_pdf.show()
 
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
@@ -690,3 +706,57 @@ class PrimaryToolbar(ToolbarBase):
 
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
+
+    def save_as_pdf(self, widget):
+        tmp_dir = os.path.join(self._activity.get_activity_root(), 'tmp')
+        fd, file_path = tempfile.mkstemp(dir=tmp_dir)
+        os.close(fd)
+
+        page = self._canvas.get_current_page()
+        webview = self._canvas.get_children()[page].get_children()[0]
+
+        operation = Gtk.PrintOperation.new()
+        operation.set_export_filename(file_path)
+
+        webview.get_main_frame().print_full(operation,
+            Gtk.PrintOperationAction.EXPORT)
+
+        client = GConf.Client.get_default()
+        jobject = datastore.create()
+        color = client.get_string('/desktop/sugar/user/color')
+        try:
+            jobject.metadata['title'] = _('Browse activity as PDF')
+            jobject.metadata['icon-color'] = color
+            jobject.metadata['mime_type'] = 'application/pdf'
+            jobject.file_path = file_path
+            datastore.write(jobject)
+        finally:
+            self.__pdf_alert(jobject.object_id)
+            jobject.destroy()
+            del jobject
+
+    def __pdf_alert(self, object_id):
+        alert = Alert()
+        alert.props.title = _('Page saved')
+        alert.props.msg = _('The page has been saved as PDF to journal')
+
+        alert.add_button(Gtk.ResponseType.APPLY,
+                               _('Show in Journal'),
+                               Icon(icon_name='zoom-activity'))
+        alert.add_button(Gtk.ResponseType.OK, _('Ok'),
+                               Icon(icon_name='dialog-ok'))
+
+        # Remove other alerts
+        for alert in self._activity._alerts:
+            self._activity.remove_alert(alert)
+
+        self._activity.add_alert(alert)
+        alert.connect('response', self.__pdf_response_alert, object_id)
+        alert.show_all()
+
+    def __pdf_response_alert(self, alert, response_id, object_id):
+
+        if response_id is Gtk.ResponseType.APPLY:
+            activity.show_object_in_journal(object_id)
+
+        self._activity.remove_alert(alert)
