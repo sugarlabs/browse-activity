@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2012-05-07 10:53+0200\n"
-"Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
+"PO-Revision-Date: 2013-11-20 08:14+0200\n"
+"Last-Translator: Avasz <avashmulmi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,9 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"संसार हेर! यहाँ तिमीले खोजी गर्न सक्छौ, शेक्षिक भिडियोहरु हेर्न सक्छौ, "
+"अनलाईन पाठ्यक्रमहरु लिन सक्छौ, किताबहरु खोज्न सक्छौ, साथीहरुसँग जोडिन सक्छौ "
+"र अन्य धेरै कामहरु गर्न सक्छौ।"
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
@@ -42,11 +45,11 @@ msgstr "नाम नदिइएको"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr "लोडिङ्ग हुदैछ..."
+msgstr "लोड हुँदैछ.."
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "यो वेबपृष्ठ लोड हुन सकेन"
 
 #: browser.py:759
 #, python-format
@@ -54,20 +57,24 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\"लोड हुन सकेन। कृपया तिम्रो लेखाईमा कुनै त्रुटि छ कि हेर, र तिमी "
+"इन्टरनेटमा जडित छौ भन्ने कुरमा पक्का होउ।"
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "पुन: प्रयास गर"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "डाउनलोड गर्न पुग्ने स्थान छैन"
 
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"\"%{filename}\" डाउनलोड हुन %{total_size_in_mb} एम.बि खाली स्थान चाहिन्छ। "
+"जम्मा %{free_space_in_mb} एम.बी स्थान मात्र खाली छ।"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
@@ -144,7 +151,7 @@ msgstr "तस्विर राख"
 
 #: palettes.py:238
 msgid "Copy text"
-msgstr ""
+msgstr "अक्षरको प्रतिलिपी बनाउ"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
@@ -156,11 +163,11 @@ msgstr "ठूलो बनाऊ"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "वास्तविक आकार"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr "पहिलाको पाना"
+msgstr "अघिल्लो पाना"
 
 #: pdfviewer.py:121
 msgid "Next page"
@@ -176,15 +183,15 @@ msgstr "रद्द गर"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "कागजात डाउनलोड गर्दै..."
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "यो कागजात लोड हुन सकेन"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "तिमी इन्टरनेटमा जडित छौ कि छैनो पक्का होउ।"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
@@ -200,11 +207,11 @@ msgstr "ट्रे लुकाऊ"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "प्रारम्भिक पृष्ठ कन्फिगर गरिएको छ"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "प्रारम्भिक पृष्ठ कन्फिगर गरिएको छ"
 
 #: webactivity.py:655
 msgid "Download in progress"
@@ -234,15 +241,15 @@ msgstr "गृह पृष्ठ"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "प्रारम्भिक पृष्ठको रुपमा चयन गर"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "प्रारम्भिक पृष्ठलाई पुन:तयार गर"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "पुस्तकालय"
 
 #: webtoolbar.py:338
 msgid "Back"
@@ -254,7 +261,7 @@ msgstr "अगाडीको पाना"
 
 #: webtoolbar.py:366
 msgid "Bookmark"
-msgstr "चिनो"
+msgstr "पुस्तकचिनो"
 
 #, python-format
 #~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
