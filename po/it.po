@@ -104,7 +104,7 @@ msgstr "Da: %s"
 
 #: downloadmanager.py:292
 #, python-format
-#, python-format, 
+#, python-format,
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
