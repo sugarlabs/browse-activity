@@ -614,6 +614,7 @@ class WebActivity(activity.Activity):
         item.show()
         self._view_toolbar.traybutton.props.sensitive = True
         self._view_toolbar.traybutton.props.active = True
+        self._view_toolbar.update_traybutton_tooltip()
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
@@ -622,6 +623,7 @@ class WebActivity(activity.Activity):
         if len(self._tray.get_children()) == 0:
             self._view_toolbar.traybutton.props.sensitive = False
             self._view_toolbar.traybutton.props.active = False
+            self._view_toolbar.update_traybutton_tooltip()
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''

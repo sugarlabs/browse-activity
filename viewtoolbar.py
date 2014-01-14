@@ -110,7 +110,12 @@ class ViewToolbar(Gtk.Toolbar):
     def __tray_toggled_cb(self, button):
         if button.props.active:
             self._activity.tray.show()
-            self.traybutton.set_tooltip(_('Show Tray'))
         else:
             self._activity.tray.hide()
+        self.update_traybutton_tooltip()
+
+    def update_traybutton_tooltip(self):
+        if not self.traybutton.props.active:
+            self.traybutton.set_tooltip(_('Show Tray'))
+        else:
             self.traybutton.set_tooltip(_('Hide Tray'))
