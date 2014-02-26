@@ -119,6 +119,8 @@ class ContentInvoker(Invoker):
     def _handle_event(self, event):
         hit_test = self._browser.get_hit_test_result(event)
         hit_context = hit_test.props.context
+        #FIXME #4638
+        logging.error("TEST %r", hit_context)
         hit_info = {
             'is link': hit_context & WebKit.HitTestResultContext.LINK,
             'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
