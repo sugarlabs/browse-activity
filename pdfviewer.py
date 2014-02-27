@@ -344,7 +344,7 @@ class PDFProgressMessageBox(Gtk.EventBox):
         button = Gtk.Button(label=_('Cancel'))
         button.connect('clicked', button_callback)
         button.props.image = Icon(icon_name='dialog-cancel',
-                                  icon_size=Gtk.IconSize.BUTTON)
+                                  pixel_size=style.SMALL_ICON_SIZE)
         button_box.pack_start(button, expand=True, fill=False, padding=0)
         button.show()
 
@@ -397,7 +397,7 @@ class PDFErrorMessageBox(Gtk.EventBox):
         button = Gtk.Button(label=_('Try again'))
         button.connect('clicked', button_callback)
         button.props.image = Icon(icon_name='entry-refresh',
-                                  icon_size=Gtk.IconSize.BUTTON,
+                                  pixel_size=style.SMALL_ICON_SIZE,
                                   stroke_color=style.COLOR_WHITE.get_svg(),
                                   fill_color=style.COLOR_TRANSPARENT.get_svg())
         button_box.pack_start(button, expand=True, fill=False, padding=0)
