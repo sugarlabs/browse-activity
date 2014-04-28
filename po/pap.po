@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-10-30 00:38+0200\n"
+"PO-Revision-Date: 2013-11-02 15:45+0200\n"
 "Last-Translator: June <juneleonora@yahoo.com>\n"
 "Language-Team: Suares\n"
 "Language: pap\n"
@@ -209,23 +209,22 @@ msgid "The default initial page was configured"
 msgstr "A konfigurá e página inisial predefiní"
 
 #: webactivity.py:655
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Download tumando lugá"
-msgstr[1] "Download tumando lugá"
+msgstr[0] "Bahamentu tumando lugá"
+msgstr[1] "Bahamentu tumando lugá"
 
 #: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Stòp aworakí lo kanselá bo download"
-msgstr[1] "Stòp aworakí lo kanselá bo download"
+msgstr[0] "Si stòp aworakí e bahamentu ta kanselá"
+msgstr[1] "Si stòp aworakí e bahamentu ta kanselá"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] "Sigui ku download"
-msgstr[1] "Sigui ku e downloadnan"
+msgstr[0] "Sigui ku bahamentu"
+msgstr[1] "Sigui ku bahamentu"
 
 #: webactivity.py:668
 msgid "Stop"
