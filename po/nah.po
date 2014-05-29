@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2012-04-28 07:33+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-11-14 21:52+0200\n"
+"Last-Translator: usuarionahuatl02 <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nah\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
-msgstr ""
+msgstr "Ximopaxalolti"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,18 +27,21 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"¡Xipaxalo ipan tlaltepaktli! Nika uelis tij tlatemos, tikitas ixnextilotl "
+"tlen inon kaltlamachtilme, uelis timomomachtis ika sekinok, tipantis "
+"amochme, tikamanaltis ika moj uampoxua uan sekinok."
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
-msgstr ""
+msgstr "Axtleno itokax"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr ""
+msgstr "Tlajkoltijtok"
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Nij tlaixnextilisamatl web axueli motlajkoltia"
 
 #: browser.py:759
 #, python-format
@@ -46,28 +49,32 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" axuelki motlajkolti. Xikita tlan inka timokuapolo ipan tlajkuiloli, uan "
+"xikita titlatskitos ipan Tlilmekatemolistli."
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Xichiua sempa"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Inka onka miyak kakiuilio tlen uelis titlatemojuis"
 
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Descargar \"%{filename}\" requiere %{total_size_in_mb} MB de espacio libre, "
+"solo %{free_space_in_mb} MB hay disponibles"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: downloadmanager.py:157
 msgid "Download started"
-msgstr ""
+msgstr "Tlatemouilistli mopeualti"
 
 #: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
@@ -76,16 +83,16 @@ msgstr "%s"
 
 #: downloadmanager.py:168
 msgid "Download completed"
-msgstr ""
+msgstr "Tlatemouilistli tlanki"
 
 #: downloadmanager.py:173
 msgid "Show in Journal"
-msgstr ""
+msgstr "Moixnexti ipan Amochtlajkuiloli"
 
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "De: %s"
 
 #: downloadmanager.py:292
 #, python-format
@@ -93,153 +100,155 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Tlatemouijtok %(filename)s de \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
-msgstr ""
+msgstr "Achtiui"
 
 #: edittoolbar.py:72
 msgid "Next"
-msgstr ""
+msgstr "Teipa"
 
 #: linkbutton.py:108
 msgid "Remove"
-msgstr ""
+msgstr "Xikixpolo"
 
 #: palettes.py:184
 msgid "Follow link"
-msgstr ""
+msgstr "Xijtokili nopa tlatskiltili"
 
 #: palettes.py:189
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Xitokili nopa tlatskiltili ipan sej yankuik ixtentsoyotl"
 
 #: palettes.py:198
 msgid "Keep link"
-msgstr ""
+msgstr "Xipixto nopa tlatskiltili"
 
 #: palettes.py:204
 msgid "Copy link"
-msgstr ""
+msgstr "Xikixkopina nopa tlatskiltili"
 
 #: palettes.py:218
 msgid "Copy image"
-msgstr ""
+msgstr "xikixkopina nopa tlaixnexkayotl"
 
 #: palettes.py:224
 msgid "Keep image"
-msgstr ""
+msgstr "Xipixto nopa tlaixkopintli"
 
 #: palettes.py:238
 msgid "Copy text"
-msgstr ""
+msgstr "Xikixkopina tlajkuiloli"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
-msgstr ""
+msgstr "Xitsikitetili"
 
 #: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
-msgstr ""
+msgstr "xijueyili"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Tlen ama iuexka"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr ""
+msgstr "Amatlanextili achtiui"
 
 #: pdfviewer.py:121
 msgid "Next page"
-msgstr ""
+msgstr "Seyok tlaixnexkayotl"
 
 #: pdfviewer.py:133
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Tij ajokuis PDF pan tlajkuilolnochipa"
 
 #: pdfviewer.py:341
 msgid "Cancel"
-msgstr ""
+msgstr "Tlamis"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "Tlatemouijtoj tekitl"
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Ni tekitl amo ueli mo temouia"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Xij tlachili tlaj ti ixtok pa internet"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr ""
+msgstr "Asikaatlaixnextili"
 
 #: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr ""
+msgstr "Tij kitas kampa mo nextiaj tenijki"
 
 #: viewtoolbar.py:116
 msgid "Hide Tray"
-msgstr ""
+msgstr "mo ixtempolos kampa eltok tlenijki"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "tlaixnexkayotl kampa peua mo chijchijki"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Tlaixnexkayotl kati eltoya mo kuepkaya"
 
 #: webactivity.py:655
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tlatemouilistli pejtok"
+msgstr[1] "Nochi tlatemouilistli pejtok"
 
 #: webactivity.py:658
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tlaj moketsas tlamis tlen tij temouijtok"
+msgstr[1] "Tlaj moketsas tlsmis ten nochi kati tij temouijtok"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sempayok temosuijkayotl"
+msgstr[1] "Sempayon temoseuijkayotl"
 
 #: webactivity.py:668
 msgid "Stop"
-msgstr ""
+msgstr "Moketsas"
 
 #: webtoolbar.py:288
 msgid "Home page"
-msgstr ""
+msgstr "Tlaixnextili kampa peua"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "tij tlapenpenis kej tlaixnexkayotl"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Mo kuepas tlaixnexkayotl kampa peua"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Amochsentilistli"
 
 #: webtoolbar.py:338
 msgid "Back"
-msgstr ""
+msgstr "Mokuepa"
 
 #: webtoolbar.py:352
 msgid "Forward"
-msgstr ""
+msgstr "Yaui"
 
 #: webtoolbar.py:366
 msgid "Bookmark"
-msgstr ""
+msgstr "Tlanextiketl"
