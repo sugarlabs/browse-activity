@@ -29,7 +29,6 @@ from gi.repository import WebKit
 from gi.repository import Soup
 from gi.repository import GConf
 
-from sugar3 import env
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
@@ -64,23 +63,6 @@ DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
-
-
-class CommandListener(object):
-    def __init__(self, window):
-        self._window = window
-
-    def handleEvent(self, event):
-        if not event.isTrusted:
-            return
-
-        uri = event.originalTarget.ownerDocument.documentURI
-        if not uri.startswith('about:neterror?e=nssBadCert'):
-            return
-
-        cls = components.classes['@sugarlabs.org/add-cert-exception;1']
-        cert_exception = cls.createInstance(interfaces.hulahopAddCertException)
-        cert_exception.showDialog(self._window)
 
 
 class TabbedView(BrowserNotebook):

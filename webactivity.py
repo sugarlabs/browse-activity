@@ -26,7 +26,6 @@ GObject.threads_init()
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import GdkPixbuf
 from gi.repository import WebKit
 from gi.repository import Soup
 from gi.repository import SoupGNOME
@@ -34,10 +33,8 @@ from gi.repository import SoupGNOME
 import base64
 import time
 import shutil
-import sqlite3
 import json
 from gi.repository import GConf
-import locale
 import cairo
 import StringIO
 from hashlib import sha1
@@ -119,13 +116,6 @@ def _seed_xs_cookie(cookie_jar):
     xs_cookie.set_max_age(expire)
     cookie_jar.add_cookie(xs_cookie)
     _logger.debug('seed_xs_cookie: Updated cookie successfully')
-
-
-def _set_char_preference(name, value):
-    cls = components.classes["@mozilla.org/preferences-service;1"]
-    prefService = cls.getService(components.interfaces.nsIPrefService)
-    branch = prefService.getBranch('')
-    branch.setCharPref(name, value)
 
 
 from browser import TabbedView
