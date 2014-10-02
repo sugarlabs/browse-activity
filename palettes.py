@@ -119,12 +119,13 @@ class ContentInvoker(Invoker):
     def _handle_event(self, event):
         hit_test = self._browser.get_hit_test_result(event)
         hit_context = hit_test.props.context
-        #FIXME #4638
+        # FIXME #4638
         logging.error("TEST %r", hit_context)
         hit_info = {
             'is link': hit_context & WebKit.HitTestResultContext.LINK,
             'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
-            'is selection': hit_context & WebKit.HitTestResultContext.SELECTION,
+            'is selection': (hit_context &
+                             WebKit.HitTestResultContext.SELECTION),
             }
 
         title = None
@@ -132,7 +133,7 @@ class ContentInvoker(Invoker):
 
         if hit_info['is link']:
             if isinstance(hit_test.props.inner_node,
-                            WebKit.DOMHTMLImageElement):
+                          WebKit.DOMHTMLImageElement):
                 title = hit_test.props.inner_node.get_title()
             elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
@@ -151,7 +152,7 @@ class ContentInvoker(Invoker):
                 title = hit_test.props.inner_node.get_text_content()
 
         if (hit_info['is link'] or hit_info['is image'] or
-            hit_info['is selection']):
+                hit_info['is selection']):
             self.palette = BrowsePalette(self._browser, title, url, hit_info)
             self.notify_right_click()
 
@@ -189,7 +190,7 @@ class BrowsePalette(Palette):
             menu_item.show()
 
             menu_item = PaletteMenuItem(_('Follow link in new tab'),
-                                      'browse-follow-link-new-tab')
+                                        'browse-follow-link-new-tab')
             menu_item.connect('activate', self.__follow_activate_cb, True)
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()

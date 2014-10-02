@@ -46,8 +46,10 @@ _dest_to_window = {}
 PROGRESS_TIMEOUT = 3000
 SPACE_THRESHOLD = 52428800  # 50 Mb
 
+
 def format_float(f):
     return "%0.2f" % f
+
 
 def can_quit():
     return len(_active_downloads) == 0
@@ -89,9 +91,9 @@ class Download(object):
         if not os.path.exists(self.temp_path):
             os.makedirs(self.temp_path)
 
-        fd, self._dest_path = tempfile.mkstemp(dir=self.temp_path,
-                                    suffix=download.get_suggested_filename(),
-                                    prefix='tmp')
+        fd, self._dest_path = tempfile.mkstemp(
+            dir=self.temp_path, suffix=download.get_suggested_filename(),
+            prefix='tmp')
         os.close(fd)
         logging.debug('Download destination path: %s' % self._dest_path)
 
@@ -147,9 +149,9 @@ class Download(object):
                     / 1024.0 ** 2
                 filename = self._download.get_suggested_filename()
                 self._canceled_alert.props.msg = \
-                    _('Download "%{filename}" requires %{total_size_in_mb}' \
-                      ' MB of free space, only %{free_space_in_mb} MB'      \
-                      ' is available' % \
+                    _('Download "%{filename}" requires %{total_size_in_mb}'
+                      ' MB of free space, only %{free_space_in_mb} MB'
+                      ' is available' %
                       {'filename': filename,
                        'total_size_in_mb': format_float(total_size_mb),
                        'free_space_in_mb': format_float(free_space_mb)})
@@ -210,8 +212,8 @@ class Download(object):
             sniffed_mime_type = mime.get_for_file(self._dest_path)
             self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
-            if sniffed_mime_type in ('image/bmp','image/gif','image/jpeg',
-                                     'image/png','image/tiff'):
+            if sniffed_mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
+                                     'image/png', 'image/tiff'):
                 preview = self._get_preview()
                 if preview is not None:
                     self.dl_jobject.metadata['preview'] = \
@@ -228,7 +230,7 @@ class Download(object):
 
     def __error_cb(self, download, err_code, err_detail, reason):
         logging.debug('Error downloading URI code %s, detail %s: %s'
-                       % (err_code, err_detail, reason))
+                      % (err_code, err_detail, reason))
 
     def __internal_save_cb(self):
         logging.debug('Object saved succesfully to the datastore.')
@@ -318,7 +320,7 @@ class Download(object):
         self.dl_jobject.metadata['buddies'] = ''
         self.dl_jobject.metadata['preview'] = ''
         self.dl_jobject.metadata['icon-color'] = \
-                profile.get_color().to_string()
+            profile.get_color().to_string()
         self.dl_jobject.metadata['mime_type'] = ''
         self.dl_jobject.file_path = ''
         datastore.write(self.dl_jobject)
@@ -364,8 +366,8 @@ class Download(object):
         return preview_str.getvalue()
 
     def __datastore_deleted_cb(self, uid):
-        logging.debug('Downloaded entry has been deleted' \
-                          ' from the datastore: %r', uid)
+        logging.debug('Downloaded entry has been deleted'
+                      ' from the datastore: %r', uid)
         global _active_downloads
         if self in _active_downloads:
             self.cancel()

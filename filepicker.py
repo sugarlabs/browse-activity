@@ -52,8 +52,9 @@ class FilePicker(ObjectChooser):
                 logging.debug('FilePicker.show: %r', jobject)
 
                 if jobject and jobject.file_path:
-                    tmp_dir = tempfile.mkdtemp(prefix='', \
-                            dir=os.path.join(get_activity_root(), 'tmp'))
+                    tmp_dir = tempfile.mkdtemp(
+                        prefix='',
+                        dir=os.path.join(get_activity_root(), 'tmp'))
                     _file = os.path.join(tmp_dir, _basename_strip(jobject))
 
                     os.rename(jobject.file_path, _file)

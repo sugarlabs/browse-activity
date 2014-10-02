@@ -385,7 +385,7 @@ class TabbedView(BrowserNotebook):
 
     def set_history(self, tab_histories):
         if tab_histories and isinstance(tab_histories[0], dict):
-           # Old format, no tabs
+            # Old format, no tabs
             tab_histories = [tab_histories]
 
         while self.get_n_pages():
@@ -517,7 +517,7 @@ class TabLabel(Gtk.HBox):
                 < WebKit.LoadStatus.FINISHED:
             self._label.set_text(_('Loading...'))
         elif status == WebKit.LoadStatus.FINISHED:
-            if widget.props.title == None:
+            if widget.props.title is None:
                 self._label.set_text(_('Untitled'))
                 self._title = _('Untitled')
 
@@ -736,8 +736,8 @@ class Browser(WebKit.WebView):
         # change or the request is going to be handled by a
         # plugin. For example, if a file was requested for download or
         # an .ogg file is going to be played.
-        if web_error.code in (WebKit.PolicyError.\
-                FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
+        if web_error.code in (
+                WebKit.PolicyError.FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
                 WebKit.PluginError.WILL_HANDLE_LOAD):
             if self._inject_media_style:
                 css_style_file = open(os.path.join(activity.get_bundle_path(),

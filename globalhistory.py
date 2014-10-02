@@ -44,6 +44,6 @@ class GlobalHistory(object):
 
 def get_global_history():
     global _global_history
-    if _global_history == None:
+    if _global_history is None:
         _global_history = GlobalHistory()
     return _global_history

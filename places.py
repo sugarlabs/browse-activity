@@ -45,7 +45,7 @@ class SqliteStore(object):
         cursor = self._connection.cursor()
 
         cursor.execute('select * from sqlite_master where name == "places"')
-        if cursor.fetchone() == None:
+        if cursor.fetchone() is None:
             # Create table to store the visited places.  Note that
             # bookmark and gecko_flags fields aren't used anymore in
             # WebKit port, but are kept for backwards compatibility.
@@ -66,9 +66,9 @@ class SqliteStore(object):
 
         try:
             text = '%' + text + '%'
-            cursor.execute('select uri, title, bookmark, gecko_flags, ' \
-                           'visits, last_visit from places ' \
-                           'where uri like ? or title like ? ' \
+            cursor.execute('select uri, title, bookmark, gecko_flags, '
+                           'visits, last_visit from places '
+                           'where uri like ? or title like ? '
                            'order by visits desc limit 0, ?',
                            (text, text, self.MAX_SEARCH_MATCHES))
 
@@ -82,9 +82,9 @@ class SqliteStore(object):
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute('insert into places (uri, title, bookmark, ' \
-                           'gecko_flags, visits, last_visit) ' \
-                           'values (?, ?, ?, ?, ?, ?)', \
+            cursor.execute('insert into places (uri, title, bookmark, '
+                           'gecko_flags, visits, last_visit) '
+                           'values (?, ?, ?, ?, ?, ?)',
                            (place.uri, place.title, place.bookmark,
                             place.gecko_flags, place.visits, place.last_visit))
             self._connection.commit()
@@ -124,9 +124,9 @@ class SqliteStore(object):
         # Return uri and title as empty strings instead of None.
         # Previous versions of Browse were allowing to store None for
         # those fields in the places database.  See ticket #3400 .
-        if row[0] == None:
+        if row[0] is None:
             row = tuple([''] + list(row[1:]))
-        if row[1] == None:
+        if row[1] is None:
             row = tuple([row[0], ''] + list(row[2:]))
 
         place.uri, place.title, place.bookmark, place.gecko_flags, \
@@ -147,6 +147,6 @@ class SqliteStore(object):
 
 def get_store():
     global _store
-    if _store == None:
+    if _store is None:
         _store = SqliteStore()
     return _store

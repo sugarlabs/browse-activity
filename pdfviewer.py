@@ -45,8 +45,7 @@ class EvinceViewer(Gtk.Overlay):
                             ([])),
         'open-link': (GObject.SignalFlags.RUN_FIRST,
                       None,
-                      ([str])),
-   }
+                      ([str])), }
 
     def __init__(self, uri):
         GObject.GObject.__init__(self)
@@ -227,7 +226,7 @@ class DummyBrowser(GObject.GObject):
         elif prop.name == 'load-status':
             return self._load_status
         else:
-            raise AttributeError, 'Unknown property %s' % prop.name
+            raise AttributeError('Unknown property %s' % prop.name)
 
     def do_set_property(self, prop, value):
         if prop.name == 'title':
@@ -239,7 +238,7 @@ class DummyBrowser(GObject.GObject):
         elif prop.name == 'load-status':
             self._load_status = value
         else:
-            raise AttributeError, 'Unknown property %s' % prop.name
+            raise AttributeError('Unknown property %s' % prop.name)
 
     def get_title(self):
         return self._title
@@ -331,8 +330,8 @@ class PDFProgressMessageBox(Gtk.EventBox):
 
         label = Gtk.Label()
         color = style.COLOR_BUTTON_GREY.get_html()
-        label.set_markup('<span weight="bold" color="%s">%s</span>' % ( \
-                color, GLib.markup_escape_text(message)))
+        label.set_markup('<span weight="bold" color="%s">%s</span>' % (
+            color, GLib.markup_escape_text(message)))
         box.pack_start(label, expand=True, fill=False, padding=0)
         label.show()
 
@@ -378,14 +377,14 @@ class PDFErrorMessageBox(Gtk.EventBox):
         color = style.COLOR_BUTTON_GREY.get_html()
 
         label = Gtk.Label()
-        label.set_markup('<span weight="bold" color="%s">%s</span>' % ( \
-                color, GLib.markup_escape_text(title)))
+        label.set_markup('<span weight="bold" color="%s">%s</span>' % (
+            color, GLib.markup_escape_text(title)))
         box.pack_start(label, expand=True, fill=False, padding=0)
         label.show()
 
         label = Gtk.Label()
-        label.set_markup('<span color="%s">%s</span>' % ( \
-                color, GLib.markup_escape_text(message)))
+        label.set_markup('<span color="%s">%s</span>' % (
+            color, GLib.markup_escape_text(message)))
         box.pack_start(label, expand=True, fill=False, padding=0)
         label.show()
 
@@ -509,7 +508,8 @@ class PDFTabPage(Gtk.HBox):
         self._download.set_destination_uri('file://' + dest_path)
 
         # FIXME: workaround for SL #4385
-        # self._download.connect('notify::progress', self.__download_progress_cb)
+        # self._download.connect('notify::progress',
+        #                        self.__download_progress_cb)
         self._download.connect('notify::current-size',
                                self.__current_size_changed_cb)
         self._download.connect('notify::status', self.__download_status_cb)
@@ -544,8 +544,8 @@ class PDFTabPage(Gtk.HBox):
             logging.debug('Download PDF canceled')
 
     def __download_error_cb(self, download, err_code, err_detail, reason):
-        logging.debug('Download error! code %s, detail %s: %s' % \
-                          (err_code, err_detail, reason))
+        logging.debug('Download error! code %s, detail %s: %s' %
+                      (err_code, err_detail, reason))
         title = _('This document could not be loaded')
         self._browser.props.title = title
 

@@ -77,8 +77,8 @@ class EditToolbar(BaseEditToolbar):
 
         tabbed_view = self._activity.get_canvas()
 
-        GObject.idle_add(lambda:
-                self._connect_to_browser(tabbed_view.props.current_browser))
+        GObject.idle_add(lambda: self._connect_to_browser(
+            tabbed_view.props.current_browser))
 
         tabbed_view.connect_after('switch-page', self.__switch_page_cb)
 
@@ -95,7 +95,7 @@ class EditToolbar(BaseEditToolbar):
         self._update_copypaste_buttons()
 
         self._selection_changed_hid = self._browser.connect(
-                'selection-changed', self._selection_changed_cb)
+            'selection-changed', self._selection_changed_cb)
 
     def _selection_changed_cb(self, widget):
         self._update_undoredo_buttons()

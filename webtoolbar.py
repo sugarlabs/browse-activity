@@ -78,7 +78,7 @@ class WebEntry(iconentry.IconEntry):
         self.connect('populate-popup', self.__populate_popup_cb)
         self.connect('key-press-event', self.__key_press_event_cb)
         self._focus_out_hid = self.connect(
-                    'focus-out-event', self.__focus_out_event_cb)
+            'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
 
     def do_draw(self, cr):
@@ -281,21 +281,11 @@ class PrimaryToolbar(ToolbarBase):
     __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
-        'add-link': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
-        'go-home': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
-        'set-home': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
-        'reset-home': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
-        'go-library': (GObject.SignalFlags.RUN_FIRST,
-                     None,
-                     ([])),
+        'add-link': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'go-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'set-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'reset-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'go-library': (GObject.SignalFlags.RUN_FIRST, None, ([])),
     }
 
     def __init__(self, tabbed_view, act):
@@ -503,13 +493,13 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.props.editable = is_webkit_browser
 
         self._uri_changed_hid = self._browser.connect(
-                'notify::uri', self.__uri_changed_cb)
+            'notify::uri', self.__uri_changed_cb)
         self._progress_changed_hid = self._browser.connect(
-                'notify::progress', self.__progress_changed_cb)
+            'notify::progress', self.__progress_changed_cb)
         self._loading_changed_hid = self._browser.connect(
-                'notify::load-status', self.__loading_changed_cb)
+            'notify::load-status', self.__loading_changed_cb)
         self._security_status_changed_hid = self._browser.connect(
-                'security-status-changed', self.__security_status_changed_cb)
+            'security-status-changed', self.__security_status_changed_cb)
 
         self._update_navigation_buttons()
 
@@ -718,8 +708,8 @@ class PrimaryToolbar(ToolbarBase):
         operation = Gtk.PrintOperation.new()
         operation.set_export_filename(file_path)
 
-        webview.get_main_frame().print_full(operation,
-            Gtk.PrintOperationAction.EXPORT)
+        webview.get_main_frame().print_full(
+            operation, Gtk.PrintOperationAction.EXPORT)
 
         client = GConf.Client.get_default()
         jobject = datastore.create()
@@ -741,10 +731,10 @@ class PrimaryToolbar(ToolbarBase):
         alert.props.msg = _('The page has been saved as PDF to journal')
 
         alert.add_button(Gtk.ResponseType.APPLY,
-                               _('Show in Journal'),
-                               Icon(icon_name='zoom-activity'))
+                         _('Show in Journal'),
+                         Icon(icon_name='zoom-activity'))
         alert.add_button(Gtk.ResponseType.OK, _('Ok'),
-                               Icon(icon_name='dialog-ok'))
+                         Icon(icon_name='dialog-ok'))
 
         # Remove other alerts
         for alert in self._activity._alerts:

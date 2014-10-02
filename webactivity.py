@@ -195,17 +195,15 @@ class WebActivity(activity.Activity):
         self._primary_toolbar.connect('reset-home', self._reset_home_button_cb)
 
         self._edit_toolbar_button = ToolbarButton(
-                page=self._edit_toolbar,
-                icon_name='toolbar-edit')
+            page=self._edit_toolbar, icon_name='toolbar-edit')
 
         self._primary_toolbar.toolbar.insert(
-                self._edit_toolbar_button, 1)
+            self._edit_toolbar_button, 1)
 
         view_toolbar_button = ToolbarButton(
-                page=self._view_toolbar,
-                icon_name='toolbar-view')
+            page=self._view_toolbar, icon_name='toolbar-view')
         self._primary_toolbar.toolbar.insert(
-                view_toolbar_button, 2)
+            view_toolbar_button, 2)
 
         self._primary_toolbar.show_all()
         self.set_toolbar_box(self._primary_toolbar)
@@ -306,7 +304,7 @@ class WebActivity(activity.Activity):
             return
 
         bus_name, conn_path, channel_paths = \
-                self.get_shared_activity().get_channels()
+            self.get_shared_activity().get_channels()
 
         # Work out what our room is called and whether we have Tubes already
         room = None
@@ -347,8 +345,8 @@ class WebActivity(activity.Activity):
         self.tubes_chan = tubes_chan
         self.text_chan = text_chan
 
-        tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal( \
-                'NewTube', self._new_tube_cb)
+        tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal(
+            'NewTube', self._new_tube_cb)
 
     def _list_tubes_reply_cb(self, tubes):
         for tube_info in tubes:
@@ -378,13 +376,13 @@ class WebActivity(activity.Activity):
                       service, params, state)
 
         if (type == telepathy.TUBE_TYPE_DBUS and
-            service == SERVICE):
+                service == SERVICE):
             if state == telepathy.TUBE_STATE_LOCAL_PENDING:
                 self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptDBusTube(
-                        identifier)
+                    identifier)
 
-            self.tube_conn = TubeConnection(self.conn,
-                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES],
+            self.tube_conn = TubeConnection(
+                self.conn, self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES],
                 identifier, group_iface=self.text_chan[
                     telepathy.CHANNEL_INTERFACE_GROUP])
 
@@ -460,7 +458,7 @@ class WebActivity(activity.Activity):
             for n in range(0, self._tabbed_view.get_n_pages()):
                 tab_page = self._tabbed_view.get_nth_page(n)
                 n_browser = tab_page.browser
-                if n_browser != None:
+                if n_browser is not None:
                     uri = n_browser.get_uri()
                     history_index = n_browser.get_history_index()
                     info = {'title': n_browser.props.title, 'url': uri,
@@ -636,8 +634,8 @@ class WebActivity(activity.Activity):
 
         thumb_width, thumb_height = style.zoom(100), style.zoom(80)
 
-        thumb_surface = Gdk.Window.create_similar_surface(window,
-            cairo.CONTENT_COLOR, thumb_width, thumb_height)
+        thumb_surface = Gdk.Window.create_similar_surface(
+            window, cairo.CONTENT_COLOR, thumb_width, thumb_height)
 
         cairo_context = cairo.Context(thumb_surface)
         thumb_scale_w = thumb_width * 1.0 / width
