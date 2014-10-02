@@ -716,7 +716,7 @@ class Browser(WebKit.WebView):
             policy_decision.ignore()
             return True
 
-        elif mimetype == 'audio/x-vorbis+ogg':
+        elif mimetype == 'audio/x-vorbis+ogg' or mimetype == 'audio/mpeg':
             self._inject_media_style = True
 
         elif not self.can_show_mime_type(mimetype):
