@@ -19,6 +19,7 @@
 import os
 import time
 import re
+import json
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -28,8 +29,10 @@ from gi.repository import Pango
 from gi.repository import WebKit
 from gi.repository import Soup
 from gi.repository import GConf
+from gi.repository import Gio
 
 from sugar3.activity import activity
+from sugar3 import profile
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
@@ -680,6 +683,19 @@ class Browser(WebKit.WebView):
                 else:
                     self.security_status = None
                 self.emit('security-status-changed')
+
+            settings = Gio.Settings('org.sugarlabs.user')
+            stroke, fill = settings.get_string('color').split(',')
+            obj = json.dumps({'stroke': stroke, 'fill': fill,
+                              'nick': profile.get_nick_name()})
+
+            # If the app has already set window.sugarUser don't
+            # change it as the app will be annoyed.
+            script = """
+            if (window.sugarUser === undefined) {
+                window.sugarUser = %s
+            }""" % obj
+            self.execute_script(script)
 
     def __title_changed_cb(self, widget, param):
         """Update title in global history."""
