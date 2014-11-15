@@ -34,7 +34,7 @@ from sugar3.activity import activity
 from sugar3.bundle.activitybundle import ActivityBundle
 
 
-class EvinceViewer(Gtk.Overlay):
+class EvinceViewer(Gtk.VBox):
     """PDF viewer with a toolbar overlay for basic navigation and an
     option to save to Journal.
 
@@ -76,11 +76,11 @@ class EvinceViewer(Gtk.Overlay):
 
         self._toolbar_box.set_halign(Gtk.Align.FILL)
         self._toolbar_box.set_valign(Gtk.Align.END)
-        self.add_overlay(self._toolbar_box)
+        self.pack_end(self._toolbar_box, False, True, 0)
         self._toolbar_box.show()
 
         scrolled_window = Gtk.ScrolledWindow()
-        self.add(scrolled_window)
+        self.pack_start(scrolled_window, True, True, 0)
         scrolled_window.show()
 
         scrolled_window.add(self._view)
