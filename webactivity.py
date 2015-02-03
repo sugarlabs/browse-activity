@@ -530,6 +530,9 @@ class WebActivity(activity.Activity):
             elif key_name == 'w':
                 _logger.debug('keyboard: close tab')
                 self._tabbed_view.close_tab()
+            elif key_name in ['1','2','3','4','5','6','7','8','9']:
+                if int(key_name) <= self._tabbed_view.get_n_pages():
+                    self._tabbed_view.set_current_page(int(keyname) - 1)
             else:
                 return False
 
