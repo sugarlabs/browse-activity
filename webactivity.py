@@ -530,6 +530,22 @@ class WebActivity(activity.Activity):
             elif key_name == 'w':
                 _logger.debug('keyboard: close tab')
                 self._tabbed_view.close_tab()
+            elif key_name == "Tab":
+                _logger.debug('keyboard: next tab')
+                current_index = self._tabbed_view.get_current_page()
+                if current_index == self._tabbed_view.get_n_pages() - 1:
+                    self._tabbed_view.set_current_page(0)
+                else:
+                    self._tabbed_view.set_current_page(current_index + 1)
+            elif event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+                if key_name == "ISO_Left_Tab":
+                    _logger.debug('keyboard: previous tab')
+                    current_index = self._tabbed_view.get_current_page()
+                    last_index = self._tabbed_view.get_n_pages()
+                    if current_index == 0:
+                        self._tabbed_view.set_current_page(last_index - 1)
+                    else:
+                        self._tabbed_view.set_current_page(current_index - 1)
             else:
                 return False
 
