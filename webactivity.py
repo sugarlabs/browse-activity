@@ -498,6 +498,11 @@ class WebActivity(activity.Activity):
 
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
 
+            is_entry_focused = self._primary_toolbar.entry.is_focus()
+            if key_name.lower() == 'c' and is_entry_focused:
+                self._primary_toolbar.entry.copy_clipboard()
+            elif key_name.lower() == 'v' and is_entry_focused:
+                self._primary_toolbar.entry.paste_clipboard()
             if key_name == 'd':
                 self._add_link()
             elif key_name == 'f':
