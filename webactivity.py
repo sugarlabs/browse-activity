@@ -143,6 +143,8 @@ class WebActivity(activity.Activity):
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
 
+        self.count = 0
+
         _logger.debug('Starting the web activity')
 
         session = WebKit.get_default_session()
@@ -493,8 +495,8 @@ class WebActivity(activity.Activity):
         self.remove_alert(alert)
 
     def _key_press_cb(self, widget, event):
-        key_name = Gdk.keyval_name(event.keyval)
-        browser = self._tabbed_view.props.current_browser
+        key_name = Gdk.keyval_name(event.keyval)    
+        browser = self._tabbed_view.props.current_browser            
 
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
 
@@ -522,18 +524,27 @@ class WebActivity(activity.Activity):
             elif key_name == 'Right':
                 _logger.debug('keyboard: Go forward')
                 browser.go_forward()
-            elif key_name == 'r':
+            elif key_name in ['r', 'F5']:
                 _logger.debug('keyboard: Reload')
                 browser.reload()
             elif Gdk.keyval_name(event.keyval) == "t":
                 self._tabbed_view.add_tab()
-            elif key_name == 'w':
+            elif key_name in ['w', 'F4']:
                 _logger.debug('keyboard: close tab')
                 self._tabbed_view.close_tab()
+            elif key_name ==  'F11':
+                if self.count % 2 == 0 :   
+                    self._primary_toolbar.hide()
+                    self.count = self.count + 1
+                else:
+                    self._primary_toolbar.show_all()
+                    self.count = self.count + 1
+                
             else:
                 return False
 
             return True
+
 
         elif key_name in ('KP_Up', 'KP_Down', 'KP_Left', 'KP_Right'):
             scrolled_window = browser.get_parent()
