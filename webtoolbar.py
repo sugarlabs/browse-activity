@@ -211,7 +211,7 @@ class WebEntry(iconentry.IconEntry):
 
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
             if keyname == 'Return':
-                m = re.search('\.',self.props.text)
+                m = re.search('\.', self.props.text)
                 if self.props.text == "":
                     return False
                 if m is None:
@@ -222,7 +222,7 @@ class WebEntry(iconentry.IconEntry):
 
         if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
             if keyname == 'Return':
-                m = re.search('\.',self.props.text)
+                m = re.search('\.', self.props.text)
                 if self.props.text == "":
                     return False
                 if m is None:
@@ -230,7 +230,7 @@ class WebEntry(iconentry.IconEntry):
                     self.activate(self.props.text)
                     return True
                 self.activate(self.props.text)
-                
+
         if keyname == 'Up':
             if selected is None:
                 selection.select_iter(model[-1].iter)
