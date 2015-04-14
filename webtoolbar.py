@@ -209,6 +209,28 @@ class WebEntry(iconentry.IconEntry):
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()
 
+        if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
+            if keyname == 'Return':
+                m = re.search('\.', self.props.text)
+                if self.props.text == "":
+                    return False
+                if m is None:
+                    self._set_text("www."+self.props.text+".com")
+                    self.activate(self.props.text)
+                    return True
+                self.activate(self.props.text)
+
+        if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+            if keyname == 'Return':
+                m = re.search('\.', self.props.text)
+                if self.props.text == "":
+                    return False
+                if m is None:
+                    self._set_text("www."+self.props.text+".net")
+                    self.activate(self.props.text)
+                    return True
+                self.activate(self.props.text)
+
         if keyname == 'Up':
             if selected is None:
                 selection.select_iter(model[-1].iter)
