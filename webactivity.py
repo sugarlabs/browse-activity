@@ -26,9 +26,8 @@ GObject.threads_init()
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import WebKit
+from gi.repository import WebKit2
 from gi.repository import Soup
-from gi.repository import SoupGNOME
 
 import base64
 import time
@@ -145,19 +144,25 @@ class WebActivity(activity.Activity):
 
         _logger.debug('Starting the web activity')
 
-        session = WebKit.get_default_session()
-        session.set_property('accept-language-auto', True)
-        session.set_property('ssl-use-system-ca-file', True)
-        session.set_property('ssl-strict', False)
+        # TODO PORT
+        # session = WebKit2.get_default_session()
+        # session.set_property('accept-language-auto', True)
+        # session.set_property('ssl-use-system-ca-file', True)
+        # session.set_property('ssl-strict', False)
+        context = WebKit2.WebContext.get_default()
+        cookie_manager = context.get_cookie_manager()
 
         # By default, cookies are not stored persistently, we have to
         # add a cookie jar so that they get saved to disk.  We use one
         # with a SQlite database:
-        cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
-                                               read_only=False)
-        session.add_feature(cookie_jar)
+        # cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
+        #                                       read_only=False)
+        cookie_manager.set_persistent_storage(
+            _cookies_db_path, WebKit2.CookiePersistentStorage.SQLITE)
+        # session.add_feature(cookie_jar)
 
-        _seed_xs_cookie(cookie_jar)
+        # TODO PORT
+        # _seed_xs_cookie(cookie_jar)
 
         # FIXME
         # downloadmanager.remove_old_parts()
@@ -570,8 +575,8 @@ class WebActivity(activity.Activity):
 
         elif key_name == 'Escape':
             status = browser.get_load_status()
-            loading = WebKit.LoadStatus.PROVISIONAL <= status \
-                < WebKit.LoadStatus.FINISHED
+            loading = WebKit2.LoadStatus.PROVISIONAL <= status \
+                < WebKit2.LoadStatus.FINISHED
             if loading:
                 _logger.debug('keyboard: Stop loading')
                 browser.stop_loading()
@@ -696,12 +701,12 @@ class WebActivity(activity.Activity):
         browser = page._browser
         status = browser.get_load_status()
 
-        if status in (WebKit.LoadStatus.COMMITTED,
-                      WebKit.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+        if status in (WebKit2.LoadStatus.COMMITTED,
+                      WebKit2.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
-        elif status in (WebKit.LoadStatus.PROVISIONAL,
-                        WebKit.LoadStatus.FAILED,
-                        WebKit.LoadStatus.FINISHED):
+        elif status in (WebKit2.LoadStatus.PROVISIONAL,
+                        WebKit2.LoadStatus.FAILED,
+                        WebKit2.LoadStatus.FINISHED):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def get_document_path(self, async_cb, async_err_cb):

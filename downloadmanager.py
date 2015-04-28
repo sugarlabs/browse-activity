@@ -25,7 +25,7 @@ import StringIO
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import WebKit
+from gi.repository import WebKit2
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
 
@@ -129,7 +129,7 @@ class Download(object):
 
     def __state_change_cb(self, download, gparamspec):
         state = self._download.get_status()
-        if state == WebKit.DownloadStatus.STARTED:
+        if state == WebKit2.DownloadStatus.STARTED:
             # Check free space and cancel the download if there is not enough.
             total_size = self._download.get_total_size()
             logging.debug('Total size of the file: %s', total_size)
@@ -182,7 +182,7 @@ class Download(object):
                 global _active_downloads
                 _active_downloads.append(self)
 
-        elif state == WebKit.DownloadStatus.FINISHED:
+        elif state == WebKit2.DownloadStatus.FINISHED:
             self._stop_alert = Alert()
             self._stop_alert.props.title = _('Download completed')
             self._stop_alert.props.msg = \
@@ -208,7 +208,7 @@ class Download(object):
             self.dl_jobject.metadata['progress'] = '100'
             self.dl_jobject.file_path = self._dest_path
 
-            # sniff for a mime type, no way to get headers from WebKit
+            # sniff for a mime type, no way to get headers from WebKit2
             sniffed_mime_type = mime.get_for_file(self._dest_path)
             self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
@@ -225,7 +225,7 @@ class Download(object):
                             error_handler=self.__internal_error_cb,
                             timeout=360)
 
-        elif state == WebKit.DownloadStatus.CANCELLED:
+        elif state == WebKit2.DownloadStatus.CANCELLED:
             self.cleanup()
 
     def __error_cb(self, download, err_code, err_detail, reason):

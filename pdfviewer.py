@@ -22,7 +22,7 @@ from gettext import gettext as _
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
-from gi.repository import WebKit
+from gi.repository import WebKit2
 
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.graphics.toolbutton import ToolButton
@@ -213,7 +213,7 @@ class DummyBrowser(GObject.GObject):
         self._title = ""
         self._uri = ""
         self._progress = 0.0
-        self._load_status = WebKit.LoadStatus.PROVISIONAL
+        self._load_status = WebKit2.LoadStatus.PROVISIONAL
         self.security_status = None
 
     def do_get_property(self, prop):
@@ -426,19 +426,19 @@ class PDFTabPage(Gtk.HBox):
             self._browser.props.title = title
 
         self._browser.props.uri = requested_uri
-        self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
+        self._browser.props.load_status = WebKit2.LoadStatus.PROVISIONAL
 
         # show PDF directly if the file is local (from the system tree
         # or from the journal)
 
         if requested_uri.startswith('file://'):
             self._pdf_uri = requested_uri
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
+            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
             self._show_pdf()
 
         elif requested_uri.startswith('journal://'):
             self._pdf_uri = self._get_path_from_journal(requested_uri)
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
+            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
             self._show_pdf(from_journal=True)
 
         # download first if file is remote
@@ -503,8 +503,8 @@ class PDFTabPage(Gtk.HBox):
 
         self._pdf_uri = 'file://' + dest_path
 
-        network_request = WebKit.NetworkRequest.new(remote_uri)
-        self._download = WebKit.Download.new(network_request)
+        network_request = WebKit2.NetworkRequest.new(remote_uri)
+        self._download = WebKit2.Download.new(network_request)
         self._download.set_destination_uri('file://' + dest_path)
 
         # FIXME: workaround for SL #4385
@@ -531,16 +531,16 @@ class PDFTabPage(Gtk.HBox):
 
     def __download_status_cb(self, download, data):
         status = download.get_status()
-        if status == WebKit.DownloadStatus.STARTED:
-            self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
+        if status == WebKit2.DownloadStatus.STARTED:
+            self._browser.props.load_status = WebKit2.LoadStatus.PROVISIONAL
 
-        elif status == WebKit.DownloadStatus.FINISHED:
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
+        elif status == WebKit2.DownloadStatus.FINISHED:
+            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
             self.remove(self._message_box)
             self._message_box = None
             self._show_pdf()
 
-        elif status == WebKit.DownloadStatus.CANCELLED:
+        elif status == WebKit2.DownloadStatus.CANCELLED:
             logging.debug('Download PDF canceled')
 
     def __download_error_cb(self, download, err_code, err_detail, reason):

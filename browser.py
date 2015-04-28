@@ -25,7 +25,7 @@ from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
-from gi.repository import WebKit
+from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import GConf
 
@@ -189,7 +189,7 @@ class TabbedView(BrowserNotebook):
         """
         Handle new window requested and open it in a new tab.
 
-        This callback is called when the WebKit.WebView request for a
+        This callback is called when the WebKit2.WebView request for a
         new window to open (for example a call to the Javascript
         function 'window.open()' or target="_blank")
 
@@ -227,20 +227,21 @@ class TabbedView(BrowserNotebook):
             return
 
         status = widget.get_load_status()
-        if status in (WebKit.LoadStatus.PROVISIONAL,
-                      WebKit.LoadStatus.COMMITTED,
-                      WebKit.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+        if status in (WebKit2.LoadStatus.PROVISIONAL,
+                      WebKit2.LoadStatus.COMMITTED,
+                      WebKit2.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
-        elif status in (WebKit.LoadStatus.FAILED,
-                        WebKit.LoadStatus.FINISHED):
+        elif status in (WebKit2.LoadStatus.FAILED,
+                        WebKit2.LoadStatus.FINISHED):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def add_tab(self, next_to_current=False):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-        browser.connect('web-view-ready', self.__web_view_ready_cb)
-        browser.connect('create-web-view', self.__create_web_view_cb)
+        # TODO PORT
+        # browser.connect('web-view-ready', self.__web_view_ready_cb)
+        # browser.connect('create-web-view', self.__create_web_view_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
@@ -280,7 +281,7 @@ class TabbedView(BrowserNotebook):
 
         if isinstance(tab_page, PDFTabPage):
             if tab_page.props.browser.props.load_status < \
-                    WebKit.LoadStatus.FINISHED:
+                    WebKit2.LoadStatus.FINISHED:
                 tab_page.cancel_download()
 
         self.remove_page(self.page_num(tab_page))
@@ -493,18 +494,18 @@ class TabLabel(Gtk.HBox):
     def __load_status_changed_cb(self, widget, param):
         status = widget.get_load_status()
 
-        if status == WebKit.LoadStatus.FAILED:
+        if status == WebKit2.LoadStatus.FAILED:
             self._label.set_text(self._title)
-        elif WebKit.LoadStatus.PROVISIONAL <= status \
-                < WebKit.LoadStatus.FINISHED:
+        elif WebKit2.LoadStatus.PROVISIONAL <= status \
+                < WebKit2.LoadStatus.FINISHED:
             self._label.set_text(_('Loading...'))
-        elif status == WebKit.LoadStatus.FINISHED:
+        elif status == WebKit2.LoadStatus.FINISHED:
             if widget.props.title is None:
                 self._label.set_text(_('Untitled'))
                 self._title = _('Untitled')
 
 
-class Browser(WebKit.WebView):
+class Browser(WebKit2.WebView):
     __gtype_name__ = 'Browser'
 
     __gsignals__ = {
@@ -525,7 +526,7 @@ class Browser(WebKit.WebView):
     SECURITY_STATUS_INSECURE = 2
 
     def __init__(self):
-        WebKit.WebView.__init__(self)
+        WebKit2.WebView.__init__(self)
 
         web_settings = self.get_settings()
 
@@ -546,7 +547,8 @@ class Browser(WebKit.WebView):
         self.set_settings(web_settings)
 
         # Scale text and graphics:
-        self.set_full_content_zoom(True)
+        # TODO PORT
+        # self.set_full_content_zoom(True)
 
         # This property is used to set the title immediatly the user
         # presses Enter on the URL Entry
@@ -558,10 +560,11 @@ class Browser(WebKit.WebView):
         self._global_history = globalhistory.get_global_history()
         self.connect('notify::load-status', self.__load_status_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
-        self.connect('download-requested', self.__download_requested_cb)
-        self.connect('mime-type-policy-decision-requested',
-                     self.__mime_type_policy_cb)
-        self.connect('load-error', self.__load_error_cb)
+        # TODO PORT
+        # self.connect('download-requested', self.__download_requested_cb)
+        # self.connect('mime-type-policy-decision-requested',
+        #             self.__mime_type_policy_cb)
+        # self.connect('load-error', self.__load_error_cb)
 
         self._inject_media_style = False
 
@@ -595,7 +598,7 @@ class Browser(WebKit.WebView):
         back_forward_list.clear()
         for entry in history:
             uri, title = entry['url'], entry['title']
-            history_item = WebKit.WebHistoryItem.new_with_data(uri, title)
+            history_item = WebKit2.WebHistoryItem.new_with_data(uri, title)
             back_forward_list.add_item(history_item)
 
     def get_history_index(self):
@@ -614,7 +617,7 @@ class Browser(WebKit.WebView):
             self.go_to_back_forward_item(item)
 
     def _items_history_as_list(self, history):
-        """Return a list with the items of a WebKit.WebBackForwardList."""
+        """Return a list with the items of a WebKit2.WebBackForwardList."""
         back_items = []
         for n in reversed(range(1, history.get_back_length() + 1)):
             item = history.get_nth_item(n * -1)
@@ -660,12 +663,12 @@ class Browser(WebKit.WebView):
 
     def __load_status_changed_cb(self, widget, param):
         status = widget.get_load_status()
-        if status <= WebKit.LoadStatus.COMMITTED:
+        if status <= WebKit2.LoadStatus.COMMITTED:
             # Add the url to the global history or update it.
             uri = self.get_uri()
             self._global_history.add_page(uri)
 
-        if status == WebKit.LoadStatus.COMMITTED:
+        if status == WebKit2.LoadStatus.COMMITTED:
             # Update the security status.
             response = widget.get_main_frame().get_network_response()
             message = response.get_message()
@@ -719,8 +722,8 @@ class Browser(WebKit.WebView):
         # plugin. For example, if a file was requested for download or
         # an .ogg file is going to be played.
         if web_error.code in (
-                WebKit.PolicyError.FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
-                WebKit.PluginError.WILL_HANDLE_LOAD):
+                WebKit2.PolicyError.FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
+                WebKit2.PluginError.WILL_HANDLE_LOAD):
             if self._inject_media_style:
                 css_style_file = open(os.path.join(activity.get_bundle_path(),
                                                    "data/media-controls.css"))
@@ -758,7 +761,7 @@ class PopupDialog(Gtk.Window):
         self.set_default_size(Gdk.Screen.width() - border * 2,
                               Gdk.Screen.height() - border * 2)
 
-        self.view = WebKit.WebView()
+        self.view = WebKit2.WebView()
         self.view.connect('notify::visibility', self.__notify_visibility_cb)
         self.add(self.view)
         self.view.realize()

@@ -24,7 +24,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import Pango
-from gi.repository import WebKit
+from gi.repository import WebKit2
 
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
@@ -485,9 +485,10 @@ class PrimaryToolbar(ToolbarBase):
         else:
             address = self._browser.props.uri
         self._set_address(address)
-        self._set_progress(self._browser.props.progress)
-        self._set_status(self._browser.props.load_status)
-        self._set_security_status(self._browser.security_status)
+        # TODO PORT
+        # self._set_progress(self._browser.props.progress)
+        # self._set_status(self._browser.props.load_status)
+        # self._set_security_status(self._browser.security_status)
 
         is_webkit_browser = isinstance(self._browser, Browser)
         self.entry.props.editable = is_webkit_browser
@@ -513,7 +514,7 @@ class PrimaryToolbar(ToolbarBase):
         self._set_progress(widget.get_progress())
 
     def _set_status(self, status):
-        self._set_loading(status < WebKit.LoadStatus.FINISHED)
+        self._set_loading(status < WebKit2.LoadStatus.FINISHED)
 
     def _set_security_status(self, security_status):
         # Display security status as a lock icon in the left side of

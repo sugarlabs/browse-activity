@@ -24,7 +24,7 @@ from gettext import gettext as _
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import WebKit
+from gi.repository import WebKit2
 
 from gi.repository import SugarGestures
 
@@ -122,10 +122,10 @@ class ContentInvoker(Invoker):
         # FIXME #4638
         logging.error("TEST %r", hit_context)
         hit_info = {
-            'is link': hit_context & WebKit.HitTestResultContext.LINK,
-            'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
+            'is link': hit_context & WebKit2.HitTestResultContext.LINK,
+            'is image': hit_context & WebKit2.HitTestResultContext.IMAGE,
             'is selection': (hit_context &
-                             WebKit.HitTestResultContext.SELECTION),
+                             WebKit2.HitTestResultContext.SELECTION),
             }
 
         title = None
@@ -133,9 +133,9 @@ class ContentInvoker(Invoker):
 
         if hit_info['is link']:
             if isinstance(hit_test.props.inner_node,
-                          WebKit.DOMHTMLImageElement):
+                          WebKit2.DOMHTMLImageElement):
                 title = hit_test.props.inner_node.get_title()
-            elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
+            elif isinstance(hit_test.props.inner_node, WebKit2.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
             url = hit_test.props.link_uri
 
@@ -148,7 +148,7 @@ class ContentInvoker(Invoker):
             # it as the title of the Palette.
             # The function webkit_web_view_get_selected_text was removed
             # https://bugs.webkit.org/show_bug.cgi?id=62512
-            if isinstance(hit_test.props.inner_node, WebKit.DOMNode):
+            if isinstance(hit_test.props.inner_node, WebKit2.DOMNode):
                 title = hit_test.props.inner_node.get_text_content()
 
         if (hit_info['is link'] or hit_info['is image'] or
@@ -256,9 +256,9 @@ class BrowsePalette(Palette):
         clipboard.set_text(self._url, -1)
 
     def __download_activate_cb(self, menu_item):
-        nr = WebKit.NetworkRequest()
+        nr = WebKit2.NetworkRequest()
         nr.set_uri(self._url)
-        download = WebKit.Download(network_request=nr)
+        download = WebKit2.Download(network_request=nr)
         self._browser.emit('download-requested', download)
 
     def __copy_image_activate_cb(self, menu_item):
