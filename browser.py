@@ -182,7 +182,7 @@ class TabbedView(BrowserNotebook):
 
     def __create_web_view_cb(self, web_view, frame):
         new_web_view = Browser()
-        new_web_view.connect('web-view-ready', self.__web_view_ready_cb)
+        new_web_view.connect('ready-to-show', self.__web_view_ready_cb)
         return new_web_view
 
     def __web_view_ready_cb(self, web_view):
@@ -202,7 +202,7 @@ class TabbedView(BrowserNotebook):
 
         web_view.connect('new-tab', self.__new_tab_cb)
         web_view.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-        web_view.connect('create-web-view', self.__create_web_view_cb)
+        web_view.connect('create', self.__create_web_view_cb)
         web_view.grab_focus()
 
         self._insert_tab_next(web_view)
@@ -239,9 +239,8 @@ class TabbedView(BrowserNotebook):
         browser = Browser()
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-        # TODO PORT
-        # browser.connect('web-view-ready', self.__web_view_ready_cb)
-        # browser.connect('create-web-view', self.__create_web_view_cb)
+        browser.connect('ready-to-show', self.__web_view_ready_cb)
+        browser.connect('create', self.__create_web_view_cb)
 
         if next_to_current:
             self._insert_tab_next(browser)
