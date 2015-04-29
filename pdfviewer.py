@@ -16,7 +16,6 @@
 
 import os
 import logging
-import tempfile
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -203,8 +202,6 @@ class DummyBrowser(GObject.GObject):
         "title": (object, "title", "Title", GObject.PARAM_READWRITE),
         "uri": (object, "uri", "URI", GObject.PARAM_READWRITE),
         "progress": (object, "progress", "Progress", GObject.PARAM_READWRITE),
-        "load-status": (object, "load status", "a WebKit LoadStatus",
-                        GObject.PARAM_READWRITE),
     }
 
     def __init__(self, tab):
@@ -213,7 +210,6 @@ class DummyBrowser(GObject.GObject):
         self._title = ""
         self._uri = ""
         self._progress = 0.0
-        self._load_status = WebKit2.LoadStatus.PROVISIONAL
         self.security_status = None
 
     def do_get_property(self, prop):
@@ -223,8 +219,6 @@ class DummyBrowser(GObject.GObject):
             return self._uri
         elif prop.name == 'progress':
             return self._progress
-        elif prop.name == 'load-status':
-            return self._load_status
         else:
             raise AttributeError('Unknown property %s' % prop.name)
 
@@ -235,8 +229,6 @@ class DummyBrowser(GObject.GObject):
             self._uri = value
         elif prop.name == 'progress':
             self._progress = value
-        elif prop.name == 'load-status':
-            self._load_status = value
         else:
             raise AttributeError('Unknown property %s' % prop.name)
 
@@ -250,7 +242,8 @@ class DummyBrowser(GObject.GObject):
         return self._progress
 
     def get_load_status(self):
-        return self._load_status
+        # TODO PORT
+        return ""
 
     def emit_new_tab(self, uri):
         self.emit('new-tab', uri)
@@ -417,6 +410,8 @@ class PDFTabPage(Gtk.HBox):
         self._evince_viewer = None
         self._pdf_uri = None
         self._requested_uri = None
+        self._download = None
+        self._downloaded_pdf = False
 
     def setup(self, requested_uri, title=None):
         self._requested_uri = requested_uri
@@ -426,24 +421,21 @@ class PDFTabPage(Gtk.HBox):
             self._browser.props.title = title
 
         self._browser.props.uri = requested_uri
-        self._browser.props.load_status = WebKit2.LoadStatus.PROVISIONAL
 
         # show PDF directly if the file is local (from the system tree
         # or from the journal)
 
         if requested_uri.startswith('file://'):
             self._pdf_uri = requested_uri
-            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
             self._show_pdf()
 
         elif requested_uri.startswith('journal://'):
             self._pdf_uri = self._get_path_from_journal(requested_uri)
-            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
             self._show_pdf(from_journal=True)
 
         # download first if file is remote
-
-        elif requested_uri.startswith('http://'):
+        elif requested_uri.startswith('http://') or \
+                requested_uri.startswith('https://'):
             self._download_from_http(requested_uri)
 
     def _get_browser(self):
@@ -494,56 +486,39 @@ class PDFTabPage(Gtk.HBox):
         self.pack_start(self._message_box, True, True, 0)
         self._message_box.show()
 
+        """
         # Figure out download URI
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         if not os.path.exists(temp_path):
             os.makedirs(temp_path)
 
         fd, dest_path = tempfile.mkstemp(dir=temp_path)
+        """
 
-        self._pdf_uri = 'file://' + dest_path
+        context = WebKit2.WebContext.get_default()
+        context.connect('download-started', self.__download_started_cb)
+        context.download_uri(remote_uri)
 
-        network_request = WebKit2.NetworkRequest.new(remote_uri)
-        self._download = WebKit2.Download.new(network_request)
-        self._download.set_destination_uri('file://' + dest_path)
+    def __download_started_cb(self, context, download):
+        self._download = download
+        download.connect('failed', self.__download_failed_cb)
+        download.connect('finished', self.__download_finished_cb)
+        download.connect('received-data', self.__download_received_data_cb)
 
-        # FIXME: workaround for SL #4385
-        # self._download.connect('notify::progress',
-        #                        self.__download_progress_cb)
-        self._download.connect('notify::current-size',
-                               self.__current_size_changed_cb)
-        self._download.connect('notify::status', self.__download_status_cb)
-        self._download.connect('error', self.__download_error_cb)
+    def __download_received_data_cb(self, download, data_size):
+        self._browser.props.progress = self._download.get_estimated_progress()
+        self._message_box.progress_icon.update(self._browser.props.progress)
 
-        self._download.start()
+    def __download_finished_cb(self, download):
+        self._pdf_uri = download.get_destination()
+        logging.error('FINISHED %s', self._pdf_uri)
+        self.remove(self._message_box)
+        self._message_box = None
+        self._show_pdf()
+        self._download = None
+        self._downloaded_pdf = True
 
-    def __current_size_changed_cb(self, download, something):
-        current_size = download.get_current_size()
-        total_size = download.get_total_size()
-        progress = current_size / float(total_size)
-        self._browser.props.progress = progress
-        self._message_box.progress_icon.update(progress)
-
-    def __download_progress_cb(self, download, data):
-        progress = download.get_progress()
-        self._browser.props.progress = progress
-        self._message_box.progress_icon.update(progress)
-
-    def __download_status_cb(self, download, data):
-        status = download.get_status()
-        if status == WebKit2.DownloadStatus.STARTED:
-            self._browser.props.load_status = WebKit2.LoadStatus.PROVISIONAL
-
-        elif status == WebKit2.DownloadStatus.FINISHED:
-            self._browser.props.load_status = WebKit2.LoadStatus.FINISHED
-            self.remove(self._message_box)
-            self._message_box = None
-            self._show_pdf()
-
-        elif status == WebKit2.DownloadStatus.CANCELLED:
-            logging.debug('Download PDF canceled')
-
-    def __download_error_cb(self, download, err_code, err_detail, reason):
+    def __download_failed_cb(self, download, err_code, err_detail, reason):
         logging.debug('Download error! code %s, detail %s: %s' %
                       (err_code, err_detail, reason))
         title = _('This document could not be loaded')
@@ -558,6 +533,7 @@ class PDFTabPage(Gtk.HBox):
             button_callback=self.reload)
         self.pack_start(self._message_box, True, True, 0)
         self._message_box.show()
+        self._download = None
 
     def reload(self, button=None):
         self.remove(self._message_box)
@@ -568,7 +544,13 @@ class PDFTabPage(Gtk.HBox):
         self._browser.emit_close_tab()
 
     def cancel_download(self):
-        self._download.cancel()
+        if self._download is not None:
+            self._download.cancel()
+        try:
+            if self._downloaded_pdf:
+                os.remove(self._pdf_uri[len("file://"):])
+        except:
+            pass
 
     def __journal_id_to_uri(self, journal_id):
         """Return an URI for a Journal object ID."""

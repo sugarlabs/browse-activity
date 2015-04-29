@@ -279,9 +279,7 @@ class TabbedView(BrowserNotebook):
             tab_page = self.get_nth_page(self.get_current_page())
 
         if isinstance(tab_page, PDFTabPage):
-            if tab_page.props.browser.props.load_status < \
-                    WebKit2.LoadStatus.FINISHED:
-                tab_page.cancel_download()
+            tab_page.cancel_download()
 
         self.remove_page(self.page_num(tab_page))
 
@@ -561,8 +559,8 @@ class Browser(WebKit2.WebView):
         self.connect('notify::title', self.__title_changed_cb)
         # TODO PORT
         # self.connect('download-requested', self.__download_requested_cb)
-        # self.connect('mime-type-policy-decision-requested',
-        #             self.__mime_type_policy_cb)
+        self.connect('decide-policy', self.__decide_policy_cb)
+
         # self.connect('load-error', self.__load_error_cb)
 
         self._inject_media_style = False
@@ -692,11 +690,17 @@ class Browser(WebKit2.WebView):
                 title = unicode(title, 'utf-8')
             self._global_history.set_page_title(uri, title)
 
-    def __mime_type_policy_cb(self, webview, frame, request, mimetype,
-                              policy_decision):
+    def __decide_policy_cb(self, webview, policy_decision, decision_type):
         """Handle downloads and PDF files."""
+
+        if decision_type != WebKit2.PolicyDecisionType.RESPONSE:
+            return False
+
+        response = WebKit2.ResponsePolicyDecision.get_response(policy_decision)
+        mimetype = WebKit2.URIResponse.get_mime_type(response)
+
         if mimetype == 'application/pdf':
-            self.emit('open-pdf', request.get_uri())
+            self.emit('open-pdf', response.get_uri())
             policy_decision.ignore()
             return True
 
