@@ -394,8 +394,8 @@ class TabbedView(BrowserNotebook):
                 browser = Browser()
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-                browser.connect('web-view-ready', self.__web_view_ready_cb)
-                browser.connect('create-web-view', self.__create_web_view_cb)
+                browser.connect('ready-to-show', self.__web_view_ready_cb)
+                browser.connect('create', self.__create_web_view_cb)
                 self._append_tab(browser)
                 browser.set_history(tab_history)
 
@@ -591,12 +591,18 @@ class Browser(WebKit2.WebView):
 
     def set_history(self, history):
         """Restore the browsing history for this browser."""
+        pass
+        # TODO PORT: how create objects for the history
+        # is not possible set the title and url
+        """
         back_forward_list = self.get_back_forward_list()
-        back_forward_list.clear()
+        # back_forward_list.clear()
         for entry in history:
             uri, title = entry['url'], entry['title']
-            history_item = WebKit2.WebHistoryItem.new_with_data(uri, title)
-            back_forward_list.add_item(history_item)
+            history_item = WebKit2.BackForwardHistoryItem()
+            # history_item WebHistoryItem.new_with_data(uri, title)
+            # back_forward_list.add_item(history_item)
+        """
 
     def get_history_index(self):
         """Return the index of the current item in the history."""
@@ -608,26 +614,23 @@ class Browser(WebKit2.WebView):
     def set_history_index(self, index):
         """Go to the item in the history specified by the index."""
         back_forward_list = self.get_back_forward_list()
-        current_item = index - back_forward_list.get_back_length()
+        current_item = index - back_forward_list.get_length()
         item = back_forward_list.get_nth_item(current_item)
         if item is not None:
-            self.go_to_back_forward_item(item)
+            self.go_to_back_forward_list_item(item)
 
     def _items_history_as_list(self, history):
         """Return a list with the items of a WebKit2.WebBackForwardList."""
-        back_items = []
-        for n in reversed(range(1, history.get_back_length() + 1)):
-            item = history.get_nth_item(n * -1)
-            back_items.append(item)
+        all_items = []
 
-        current_item = [history.get_current_item()]
+        for item in reversed(history.get_back_list()):
+            all_items.append(item)
 
-        forward_items = []
-        for n in range(1, history.get_forward_length() + 1):
-            item = history.get_nth_item(n)
-            forward_items.append(item)
+        all_items.append(history.get_current_item())
 
-        all_items = back_items + current_item + forward_items
+        for item in history.get_forward_list():
+            all_items.append(item)
+
         return all_items
 
     def get_source(self, async_cb, async_err_cb):
