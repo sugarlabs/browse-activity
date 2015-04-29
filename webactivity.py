@@ -168,7 +168,7 @@ class WebActivity(activity.Activity):
         # downloadmanager.remove_old_parts()
 
         self._force_close = False
-        self._tabbed_view = TabbedView()
+        self._tabbed_view = TabbedView(self)
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
         self._tabbed_view.connect('switch-page', self.__switch_page_cb)
 

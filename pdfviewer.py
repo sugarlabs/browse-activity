@@ -518,9 +518,9 @@ class PDFTabPage(Gtk.HBox):
         self._download = None
         self._downloaded_pdf = True
 
-    def __download_failed_cb(self, download, err_code, err_detail, reason):
-        logging.debug('Download error! code %s, detail %s: %s' %
-                      (err_code, err_detail, reason))
+    def __download_failed_cb(self, download, error):
+        logging.debug('Download error! code %s, message %s' %
+                      (error.code, error.message))
         title = _('This document could not be loaded')
         self._browser.props.title = title
 

@@ -19,6 +19,8 @@
 import os
 import time
 import re
+import logging
+
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -74,9 +76,9 @@ class TabbedView(BrowserNotebook):
                             ([])),
     }
 
-    def __init__(self):
+    def __init__(self, activity):
+        self._activity = activity
         BrowserNotebook.__init__(self)
-
         self.props.show_border = False
         self.props.scrollable = True
 
@@ -181,7 +183,7 @@ class TabbedView(BrowserNotebook):
         new_browser.grab_focus()
 
     def __create_web_view_cb(self, web_view, frame):
-        new_web_view = Browser()
+        new_web_view = Browser(self._activity)
         new_web_view.connect('ready-to-show', self.__web_view_ready_cb)
         return new_web_view
 
@@ -236,7 +238,7 @@ class TabbedView(BrowserNotebook):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def add_tab(self, next_to_current=False):
-        browser = Browser()
+        browser = Browser(self._activity)
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
         browser.connect('ready-to-show', self.__web_view_ready_cb)
@@ -391,7 +393,7 @@ class TabbedView(BrowserNotebook):
                 tab_page.setup(url, title=tab_history[0]['title'])
 
             else:
-                browser = Browser()
+                browser = Browser(self._activity)
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
                 browser.connect('ready-to-show', self.__web_view_ready_cb)
@@ -522,9 +524,9 @@ class Browser(WebKit2.WebView):
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
 
-    def __init__(self):
+    def __init__(self, activity):
         WebKit2.WebView.__init__(self)
-
+        self._activity = activity
         web_settings = self.get_settings()
 
         # Add SugarLabs user agent:
@@ -543,6 +545,9 @@ class Browser(WebKit2.WebView):
 
         self.set_settings(web_settings)
 
+        context = self.get_context()
+        context.connect('download-started', self.__download_requested_cb)
+
         # Scale text and graphics:
         # TODO PORT
         # self.set_full_content_zoom(True)
@@ -557,8 +562,6 @@ class Browser(WebKit2.WebView):
         self._global_history = globalhistory.get_global_history()
         self.connect('notify::load-status', self.__load_status_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
-        # TODO PORT
-        # self.connect('download-requested', self.__download_requested_cb)
         self.connect('decide-policy', self.__decide_policy_cb)
 
         # self.connect('load-error', self.__load_error_cb)
@@ -716,8 +719,9 @@ class Browser(WebKit2.WebView):
 
         return False
 
-    def __download_requested_cb(self, browser, download):
-        downloadmanager.add_download(download, browser)
+    def __download_requested_cb(self, context, download):
+        logging.error('__download_requested_cb')
+        downloadmanager.add_download(download, self._activity)
         return True
 
     def __load_error_cb(self, web_view, web_frame, uri, web_error):
@@ -752,7 +756,7 @@ class Browser(WebKit2.WebView):
             }
 
         html = open(DEFAULT_ERROR_PAGE, 'r').read() % data
-        web_frame.load_alternate_string(html, uri, uri)
+        web_frame.load_alternate_html(html, uri, uri)
 
         return True
 

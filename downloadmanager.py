@@ -18,14 +18,12 @@
 import os
 import logging
 from gettext import gettext as _
-import tempfile
 import dbus
 import cairo
 import StringIO
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import WebKit2
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
 
@@ -68,13 +66,13 @@ def remove_all_downloads():
 
 
 class Download(object):
-    def __init__(self, download, browser):
-        self._download = download
-        self._activity = browser.get_toplevel()
-        self._source = download.get_uri()
 
-        self._download.connect('notify::status', self.__state_change_cb)
-        self._download.connect('error', self.__error_cb)
+    def __init__(self, webkit_download, activity):
+        self._download = webkit_download
+        self._activity = activity
+
+        self._source = self._download.get_request().get_uri()
+        logging.error('START Download %s', self._source)
 
         self.datastore_deleted_handler = None
 
@@ -86,6 +84,8 @@ class Download(object):
         self._last_update_progress = 0
         self._progress_sid = None
 
+        # TODO PORT check if we can define where do the download
+        """
         # figure out download URI
         self.temp_path = os.path.join(activity.get_activity_root(), 'instance')
         if not os.path.exists(self.temp_path):
@@ -100,7 +100,59 @@ class Download(object):
         # We have to start the download to get 'total-size'
         # property. It not, 0 is returned
         self._download.set_destination_uri('file://' + self._dest_path)
-        self._download.start()
+        """
+
+        # TODO PORT validate disk space available
+        """
+        # Check free space and cancel the download if there is not enough.
+        total_size = self._download.get_total_size()
+        logging.debug('Total size of the file: %s', total_size)
+        enough_space = self.enough_space(
+            total_size, path=self.temp_path)
+        if not enough_space:
+            logging.debug('Download canceled because of Disk Space')
+            self.cancel()
+
+            self._canceled_alert = Alert()
+            self._canceled_alert.props.title = _('Not enough space '
+                                                 'to download')
+
+            total_size_mb = total_size / 1024.0 ** 2
+            free_space_mb = (self._free_available_space(
+                path=self.temp_path) - SPACE_THRESHOLD) \
+                / 1024.0 ** 2
+            filename = self._download.get_suggested_filename()
+            self._canceled_alert.props.msg = \
+                _('Download "%{filename}" requires %{total_size_in_mb}'
+                  ' MB of free space, only %{free_space_in_mb} MB'
+                  ' is available' %
+                  {'filename': filename,
+                   'total_size_in_mb': format_float(total_size_mb),
+                   'free_space_in_mb': format_float(free_space_mb)})
+            ok_icon = Icon(icon_name='dialog-ok')
+            self._canceled_alert.add_button(Gtk.ResponseType.OK,
+                                            _('Ok'), ok_icon)
+            ok_icon.show()
+            self._canceled_alert.connect('response',
+                                         self.__stop_response_cb)
+            self._activity.add_alert(self._canceled_alert)
+        """
+        self._create_journal_object()
+        self._object_id = self.dl_jobject.object_id
+
+        alert = TimeoutAlert(9)
+        alert.props.title = _('Download started')
+        # TODO PORT
+        # alert.props.msg = _('%s' %
+        #                     self._download.get_suggested_filename())
+        self._activity.add_alert(alert)
+        alert.connect('response', self.__start_response_cb)
+        alert.show()
+
+        self._download.connect('failed', self.__download_failed_cb)
+        self._download.connect('finished', self.__download_finished_cb)
+        self._download.connect('received-data',
+                               self.__download_received_data_cb)
 
     def _update_progress(self):
         if self._progress > self._last_update_progress:
@@ -111,126 +163,63 @@ class Download(object):
         self._progress_sid = None
         return False
 
-    def __progress_change_cb(self, download, something):
-        self._progress = int(self._download.get_progress() * 100)
+    def __download_received_data_cb(self, download, data_size):
+        self._progress = int(self._download.get_estimated_progress() * 100)
 
         if self._progress_sid is None:
             self._progress_sid = GObject.timeout_add(
                 PROGRESS_TIMEOUT, self._update_progress)
 
-    def __current_size_changed_cb(self, download, something):
-        current_size = self._download.get_current_size()
-        total_size = self._download.get_total_size()
-        self._progress = int(current_size * 100 / total_size)
+    def __download_finished_cb(self, download):
+        self._dest_path = download.get_destination()[len("file://"):]
+        suggested_filename = os.path.basename(self._dest_path)
 
-        if self._progress_sid is None:
-            self._progress_sid = GObject.timeout_add(
-                PROGRESS_TIMEOUT, self._update_progress)
+        if self._progress_sid is not None:
+            GObject.source_remove(self._progress_sid)
 
-    def __state_change_cb(self, download, gparamspec):
-        state = self._download.get_status()
-        if state == WebKit2.DownloadStatus.STARTED:
-            # Check free space and cancel the download if there is not enough.
-            total_size = self._download.get_total_size()
-            logging.debug('Total size of the file: %s', total_size)
-            enough_space = self.enough_space(
-                total_size, path=self.temp_path)
-            if not enough_space:
-                logging.debug('Download canceled because of Disk Space')
-                self.cancel()
+        self.dl_jobject.metadata['title'] = suggested_filename
+        self.dl_jobject.metadata['description'] = _('From: %s') \
+            % self._source
+        self.dl_jobject.metadata['progress'] = '100'
+        self.dl_jobject.file_path = self._dest_path
 
-                self._canceled_alert = Alert()
-                self._canceled_alert.props.title = _('Not enough space '
-                                                     'to download')
+        # sniff for a mime type, no way to get headers from WebKit2
+        sniffed_mime_type = mime.get_for_file(self._dest_path)
+        self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
 
-                total_size_mb = total_size / 1024.0 ** 2
-                free_space_mb = (self._free_available_space(
-                    path=self.temp_path) - SPACE_THRESHOLD) \
-                    / 1024.0 ** 2
-                filename = self._download.get_suggested_filename()
-                self._canceled_alert.props.msg = \
-                    _('Download "%{filename}" requires %{total_size_in_mb}'
-                      ' MB of free space, only %{free_space_in_mb} MB'
-                      ' is available' %
-                      {'filename': filename,
-                       'total_size_in_mb': format_float(total_size_mb),
-                       'free_space_in_mb': format_float(free_space_mb)})
-                ok_icon = Icon(icon_name='dialog-ok')
-                self._canceled_alert.add_button(Gtk.ResponseType.OK,
-                                                _('Ok'), ok_icon)
-                ok_icon.show()
-                self._canceled_alert.connect('response',
-                                             self.__stop_response_cb)
-                self._activity.add_alert(self._canceled_alert)
-            else:
-                # FIXME: workaround for SL #4385
-                # self._download.connect('notify::progress',
-                #                        self.__progress_change_cb)
-                self._download.connect('notify::current-size',
-                                       self.__current_size_changed_cb)
+        if sniffed_mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
+                                 'image/png', 'image/tiff'):
+            preview = self._get_preview()
+            if preview is not None:
+                self.dl_jobject.metadata['preview'] = \
+                    dbus.ByteArray(preview)
 
-                self._create_journal_object()
-                self._object_id = self.dl_jobject.object_id
+        datastore.write(self.dl_jobject,
+                        transfer_ownership=True,
+                        reply_handler=self.__internal_save_cb,
+                        error_handler=self.__internal_error_cb,
+                        timeout=360)
 
-                alert = TimeoutAlert(9)
-                alert.props.title = _('Download started')
-                alert.props.msg = _('%s' %
-                                    self._download.get_suggested_filename())
-                self._activity.add_alert(alert)
-                alert.connect('response', self.__start_response_cb)
-                alert.show()
-                global _active_downloads
-                _active_downloads.append(self)
+        # update the alert
+        self._stop_alert = Alert()
+        self._stop_alert.props.title = _('Download completed')
+        self._stop_alert.props.msg = \
+            _('%s' % suggested_filename)
+        open_icon = Icon(icon_name='zoom-activity')
+        self._stop_alert.add_button(Gtk.ResponseType.APPLY,
+                                    _('Show in Journal'), open_icon)
+        open_icon.show()
+        ok_icon = Icon(icon_name='dialog-ok')
+        self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
+        ok_icon.show()
+        self._activity.add_alert(self._stop_alert)
+        self._stop_alert.connect('response', self.__stop_response_cb)
+        self._stop_alert.show()
 
-        elif state == WebKit2.DownloadStatus.FINISHED:
-            self._stop_alert = Alert()
-            self._stop_alert.props.title = _('Download completed')
-            self._stop_alert.props.msg = \
-                _('%s' % self._download.get_suggested_filename())
-            open_icon = Icon(icon_name='zoom-activity')
-            self._stop_alert.add_button(Gtk.ResponseType.APPLY,
-                                        _('Show in Journal'), open_icon)
-            open_icon.show()
-            ok_icon = Icon(icon_name='dialog-ok')
-            self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
-            ok_icon.show()
-            self._activity.add_alert(self._stop_alert)
-            self._stop_alert.connect('response', self.__stop_response_cb)
-            self._stop_alert.show()
-
-            if self._progress_sid is not None:
-                GObject.source_remove(self._progress_sid)
-
-            self.dl_jobject.metadata['title'] = \
-                self._download.get_suggested_filename()
-            self.dl_jobject.metadata['description'] = _('From: %s') \
-                % self._source
-            self.dl_jobject.metadata['progress'] = '100'
-            self.dl_jobject.file_path = self._dest_path
-
-            # sniff for a mime type, no way to get headers from WebKit2
-            sniffed_mime_type = mime.get_for_file(self._dest_path)
-            self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
-
-            if sniffed_mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
-                                     'image/png', 'image/tiff'):
-                preview = self._get_preview()
-                if preview is not None:
-                    self.dl_jobject.metadata['preview'] = \
-                        dbus.ByteArray(preview)
-
-            datastore.write(self.dl_jobject,
-                            transfer_ownership=True,
-                            reply_handler=self.__internal_save_cb,
-                            error_handler=self.__internal_error_cb,
-                            timeout=360)
-
-        elif state == WebKit2.DownloadStatus.CANCELLED:
-            self.cleanup()
-
-    def __error_cb(self, download, err_code, err_detail, reason):
+    def __download_failed_cb(self, download, err_code, err_detail, reason):
         logging.debug('Error downloading URI code %s, detail %s: %s'
                       % (err_code, err_detail, reason))
+        self.cleanup()
 
     def __internal_save_cb(self):
         logging.debug('Object saved succesfully to the datastore.')
@@ -241,7 +230,6 @@ class Download(object):
         self.cleanup()
 
     def __start_response_cb(self, alert, response_id):
-        global _active_downloads
         if response_id is Gtk.ResponseType.CANCEL:
             logging.debug('Download Canceled')
             self.cancel()
@@ -257,7 +245,6 @@ class Download(object):
         self._activity.remove_alert(alert)
 
     def __stop_response_cb(self, alert, response_id):
-        global _active_downloads
         if response_id is Gtk.ResponseType.APPLY:
             logging.debug('Start application with downloaded object')
             activity.show_object_in_journal(self._object_id)
@@ -310,9 +297,10 @@ class Download(object):
 
     def _create_journal_object(self):
         self.dl_jobject = datastore.create()
+        # TODO PORT: get the suggested filename
         self.dl_jobject.metadata['title'] = \
             _('Downloading %(filename)s from \n%(source)s.') % \
-            {'filename': self._download.get_suggested_filename(),
+            {'filename': '',  # self._download.get_suggested_filename(),
              'source': self._source}
 
         self.dl_jobject.metadata['progress'] = '0'
@@ -322,7 +310,7 @@ class Download(object):
         self.dl_jobject.metadata['icon-color'] = \
             profile.get_color().to_string()
         self.dl_jobject.metadata['mime_type'] = ''
-        self.dl_jobject.file_path = ''
+        # self.dl_jobject.file_path = ''
         datastore.write(self.dl_jobject)
 
         bus = dbus.SessionBus()
@@ -374,5 +362,6 @@ class Download(object):
             self.cleanup()
 
 
-def add_download(download, browser):
-    download = Download(download, browser)
+def add_download(webkit_download, activity):
+    download = Download(webkit_download, activity)
+    _active_downloads.append(download)
