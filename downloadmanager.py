@@ -36,6 +36,14 @@ from sugar3.graphics.alert import Alert, TimeoutAlert
 from sugar3.graphics.icon import Icon
 from sugar3.activity import activity
 
+try:
+    from jarabe.journal.bundlelauncher import get_bundle
+    from sugar3.activity.activity import launch_bundle
+    _HAS_BUNDLE_LAUNCHER = True
+except ImportError:
+    _HAS_BUNDLE_LAUNCHER = False
+
+
 DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
 DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
 DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
@@ -187,16 +195,6 @@ class Download(object):
             self._stop_alert.props.title = _('Download completed')
             self._stop_alert.props.msg = \
                 _('%s' % self._download.get_suggested_filename())
-            open_icon = Icon(icon_name='zoom-activity')
-            self._stop_alert.add_button(Gtk.ResponseType.APPLY,
-                                        _('Show in Journal'), open_icon)
-            open_icon.show()
-            ok_icon = Icon(icon_name='dialog-ok')
-            self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
-            ok_icon.show()
-            self._activity.add_alert(self._stop_alert)
-            self._stop_alert.connect('response', self.__stop_response_cb)
-            self._stop_alert.show()
 
             if self._progress_sid is not None:
                 GObject.source_remove(self._progress_sid)
@@ -224,6 +222,28 @@ class Download(object):
                             reply_handler=self.__internal_save_cb,
                             error_handler=self.__internal_error_cb,
                             timeout=360)
+
+            bundle = None
+            if _HAS_BUNDLE_LAUNCHER:
+                bundle = get_bundle(object_id=self._object_id)
+
+            if bundle is not None:
+                icon = Icon(file=bundle.get_icon())
+                label = _('Open with %s') % bundle.get_name()
+            else:
+                icon = Icon(icon_name='zoom-activity')
+                label = _('Show in Journal')
+
+            self._stop_alert.add_button(Gtk.ResponseType.APPLY, label, icon)
+            icon.show()
+
+            ok_icon = Icon(icon_name='dialog-ok')
+            self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
+            ok_icon.show()
+
+            self._activity.add_alert(self._stop_alert)
+            self._stop_alert.connect('response', self.__stop_response_cb)
+            self._stop_alert.show()
 
         elif state == WebKit.DownloadStatus.CANCELLED:
             self.cleanup()
@@ -257,10 +277,12 @@ class Download(object):
         self._activity.remove_alert(alert)
 
     def __stop_response_cb(self, alert, response_id):
-        global _active_downloads
-        if response_id is Gtk.ResponseType.APPLY:
-            logging.debug('Start application with downloaded object')
-            activity.show_object_in_journal(self._object_id)
+        if response_id == Gtk.ResponseType.APPLY:
+            if _HAS_BUNDLE_LAUNCHER:
+                logging.debug('Start application with downloaded object')
+                launch_bundle(object_id=self._object_id)
+            else:
+                activity.show_object_in_journal(self._object_id)
         self._activity.remove_alert(alert)
 
     def cleanup(self):
