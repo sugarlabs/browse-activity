@@ -230,11 +230,13 @@ class Download(object):
             if bundle is not None:
                 icon = Icon(file=bundle.get_icon())
                 label = _('Open with %s') % bundle.get_name()
+                response_type = Gtk.ResponseType.APPLY
             else:
                 icon = Icon(icon_name='zoom-activity')
                 label = _('Show in Journal')
+                response_type = Gtk.ResponseType.ACCEPT
 
-            self._stop_alert.add_button(Gtk.ResponseType.APPLY, label, icon)
+            self._stop_alert.add_button(response_type, label, icon)
             icon.show()
 
             ok_icon = Icon(icon_name='dialog-ok')
@@ -278,11 +280,10 @@ class Download(object):
 
     def __stop_response_cb(self, alert, response_id):
         if response_id == Gtk.ResponseType.APPLY:
-            if _HAS_BUNDLE_LAUNCHER:
-                logging.debug('Start application with downloaded object')
-                launch_bundle(object_id=self._object_id)
-            else:
-                activity.show_object_in_journal(self._object_id)
+            logging.debug('Start application with downloaded object')
+            launch_bundle(object_id=self._object_id)
+        if response_id == Gtk.ResponseType.ACCEPT:
+            activity.show_object_in_journal(self._object_id)
         self._activity.remove_alert(alert)
 
     def cleanup(self):
