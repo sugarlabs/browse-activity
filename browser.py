@@ -25,15 +25,18 @@ from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import GConf
 
+import jarabe.config
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
+from sugar3.graphics.alert import ConfirmationAlert
 
 from widgets import BrowserNotebook
 from palettes import ContentInvoker
@@ -60,12 +63,18 @@ _NON_SEARCH_REGEX = re.compile('''
     ^data:.*$|
     ^file:.*$)
     ''', re.VERBOSE)
+_HOSTNAME_REGEX = re.compile('[a-z]+://([^/]+)/.*')
 
 DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
 
+PERMISSION_REQUEST_NAMES = {
+    WebKit2.GeolocationPermissionRequest: _('access to you location'),
+    WebKit2.NotificationPermissionRequest:
+        _('to display notifications in the frame'),
+}
 
 class TabbedView(BrowserNotebook):
     __gtype_name__ = 'TabbedView'
@@ -422,6 +431,7 @@ class TabPage(Gtk.ScrolledWindow):
         GObject.GObject.__init__(self)
 
         self._browser = browser
+        self._browser.connect('web-process-crashed', self.__crashed_cb)
 
         self.add(browser)
         browser.show()
@@ -431,6 +441,47 @@ class TabPage(Gtk.ScrolledWindow):
 
     browser = GObject.property(type=object,
                                getter=_get_browser)
+
+    def __crashed_cb(self, webview):
+        self._show_message(
+            _('WebKit has crashed'),
+            _('WebKit was unable to display this page.  Try reloading this'
+              ' page or navigating to a different page if the issue'
+              ' persists'))
+
+    def _show_message(self, title, message):
+        # Copy 'n' paste reuse from the journal :)
+        self.remove(self.get_child())
+
+        background_box = Gtk.EventBox()
+        background_box.modify_bg(Gtk.StateType.NORMAL,
+                                 style.COLOR_WHITE.get_gdk_color())
+        self.add(background_box)
+
+        alignment = Gtk.Alignment.new(0.5, 0.5, 0.1, 0.1)
+        background_box.add(alignment)
+
+        box = Gtk.VBox()
+        alignment.add(box)
+
+        icon = Icon(pixel_size=style.LARGE_ICON_SIZE,
+                    icon_name='emblem-warning',
+                    stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
+                    fill_color=style.COLOR_TRANSPARENT.get_svg())
+        box.pack_start(icon, expand=True, fill=False, padding=0)
+
+        label = Gtk.Label()
+        color = style.COLOR_BUTTON_GREY.get_html()
+        label.set_markup(
+            '<span weight="bold" color="%s">%s</span>' % (
+                color, GLib.markup_escape_text(title)))
+        box.pack_start(label, expand=True, fill=False, padding=0)
+
+        label = Gtk.Label()
+        label.set_markup(message)
+        box.pack_start(label, expand=True, fill=False, padding=0)
+
+        background_box.show_all()
 
 
 class TabLabel(Gtk.HBox):
@@ -519,8 +570,6 @@ class Browser(WebKit2.WebView):
                                     ([])),
     }
 
-    CURRENT_SUGAR_VERSION = '0.100'
-
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
 
@@ -530,7 +579,7 @@ class Browser(WebKit2.WebView):
         web_settings = self.get_settings()
 
         # Add SugarLabs user agent:
-        identifier = ' SugarLabs/' + self.CURRENT_SUGAR_VERSION
+        identifier = ' SugarLabs/' + jarabe.config.version
         web_settings.props.user_agent += identifier
 
         # Change font size based in the GtkSettings font size.  The
@@ -563,6 +612,7 @@ class Browser(WebKit2.WebView):
         self.connect('notify::load-status', self.__load_status_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
         self.connect('decide-policy', self.__decide_policy_cb)
+        self.connect('permission-request', self.__permission_request_cb)
 
         # self.connect('load-error', self.__load_error_cb)
 
@@ -760,6 +810,31 @@ class Browser(WebKit2.WebView):
 
         return True
 
+    def __permission_request_cb(self, webview, request):
+        description = PERMISSION_REQUEST_NAMES.get(
+            type(request), str(type(request)))
+        site = webview.get_uri()
+        match = _HOSTNAME_REGEX.match(site)
+        if match:
+            site = match.group(1)
+
+        alert = ConfirmationAlert()
+        alert.props.title = _('Allow %s to %s?') % \
+            (site, description)
+        alert.props.msg = _('You can change your choice later by reloading the page')
+        alert.connect('response', self.__permission_request_alert_cb, request)
+        self._activity.add_alert(alert)
+
+        # Allow async handeling
+        return True
+
+    def __permission_request_alert_cb(self, alert, response_id, request):
+        self._activity.remove_alert(alert)
+
+        if response_id == Gtk.ResponseType.OK:
+            request.allow()
+        elif response_id == Gtk.ResponseType.CANCEL:
+            request.deny()
 
 class PopupDialog(Gtk.Window):
     def __init__(self):

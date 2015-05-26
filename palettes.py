@@ -40,48 +40,11 @@ class ContentInvoker(Invoker):
         self._position_hint = self.AT_CURSOR
         self._browser = browser
         self._recognized_long_press_event = False
-        self._browser.connect('button-press-event', self.__button_press_cb)
-        self._browser.connect('button-release-event', self.__button_release_cb)
-        self._browser.connect('realize', self.__browser_realize_cb)
+        self._browser.connect('context-menu', self.__context_menu_cb)
         self.attach(self._browser)
 
     def get_default_position(self):
         return self.AT_CURSOR
-
-    def __long_pressed_cb(self, controller, x, y):
-        self._recognized_long_press_event = True
-
-        event = Gdk.EventButton()
-        event.type = Gdk.EventType._3BUTTON_PRESS
-        gdk_window = self._browser.get_window()
-        event.window = gdk_window
-        event.time = Gtk.get_current_event_time()
-        event.x = x
-        event.y = y
-        x_root, y_root = gdk_window.get_root_coords(x, y)
-        event.x_root = x_root
-        event.y_root = y_root
-
-        self._handle_event(event)
-
-        return True
-
-    def __button_release_cb(self, browser, event):
-        if self._recognized_long_press_event:
-            self._recognized_long_press_event = False
-            return True
-        else:
-            return False
-
-    def __browser_realize_cb(self, browser):
-        x11_window = browser.get_window()
-        x11_window.set_events(x11_window.get_events() |
-                              Gdk.EventMask.POINTER_MOTION_MASK |
-                              Gdk.EventMask.TOUCH_MASK)
-
-        lp = SugarGestures.LongPressController()
-        lp.connect('pressed', self.__long_pressed_cb)
-        lp.attach(browser, SugarGestures.EventControllerFlags.NONE)
 
     def get_rect(self):
         allocation = self._browser.get_allocation()
@@ -110,28 +73,8 @@ class ContentInvoker(Invoker):
     def get_toplevel(self):
         return None
 
-    def __button_press_cb(self, browser, event):
-        if event.button != 3:
-            return False
-        self._handle_event(event)
-        return True
-
-    def _handle_event(self, event):
-        hit_test = self._browser.get_hit_test_result(event)
-        hit_context = hit_test.props.context
-        # FIXME #4638
-        logging.error("TEST %r", hit_context)
-        hit_info = {
-            'is link': hit_context & WebKit2.HitTestResultContext.LINK,
-            'is image': hit_context & WebKit2.HitTestResultContext.IMAGE,
-            'is selection': (hit_context &
-                             WebKit2.HitTestResultContext.SELECTION),
-            }
-
-        title = None
-        url = None
-
-        if hit_info['is link']:
+    def __context_menu_cb(self, webview, context_menu, event, hit_test):
+        '''if hit_info['is link']:
             if isinstance(hit_test.props.inner_node,
                           WebKit2.DOMHTMLImageElement):
                 title = hit_test.props.inner_node.get_title()
@@ -149,31 +92,35 @@ class ContentInvoker(Invoker):
             # The function webkit_web_view_get_selected_text was removed
             # https://bugs.webkit.org/show_bug.cgi?id=62512
             if isinstance(hit_test.props.inner_node, WebKit2.DOMNode):
-                title = hit_test.props.inner_node.get_text_content()
+                title = hit_test.props.inner_node.get_text_content()'''
 
-        if (hit_info['is link'] or hit_info['is image'] or
-                hit_info['is selection']):
-            self.palette = BrowsePalette(self._browser, title, url, hit_info)
-            self.notify_right_click()
+        self.palette = BrowsePalette(self._browser, hit_test)
+        self.notify_right_click()
+
+        # Don't show the default menu
+        return True
 
 
 class BrowsePalette(Palette):
-    def __init__(self, browser, title, url, hit_info):
+    def __init__(self, browser, hit):
         Palette.__init__(self)
-
         self._browser = browser
-        self._url = url
+        self._hit = hit
+
+        self._title = hit.props.link_label or hit.props.link_title
+        self._url = hit.props.link_uri or hit.props.image_uri \
+                    or hit.props.media_uri
 
         # FIXME: this sometimes fails for links because Gtk tries
         # to parse it as markup text and some URLs has
         # "?template=gallery&page=gallery" for example
-        if title not in (None, ''):
-            self.props.primary_text = title
-            if url is not None:
-                self.props.secondary_text = url
+        if self._title not in (None, ''):
+            self.props.primary_text = self._title
+            if self._url is not None:
+                self.props.secondary_text = self._url
         else:
-            if url is not None:
-                self.props.primary_text = url
+            if self._url is not None:
+                self.props.primary_text = self._url
 
         menu_box = Gtk.VBox()
         self.set_content(menu_box)
@@ -181,7 +128,7 @@ class BrowsePalette(Palette):
         self._content.set_border_width(1)
 
         first_section_added = False
-        if hit_info['is link']:
+        if self._hit.context_is_link():
             first_section_added = True
 
             menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
@@ -197,7 +144,7 @@ class BrowsePalette(Palette):
 
             # Add "keep link" only if it is not an image.  "Keep
             # image" will be shown in that case.
-            if not hit_info['is image']:
+            if not self._hit.context_is_image():
                 menu_item = PaletteMenuItem(_('Keep link'), 'document-save')
                 menu_item.icon.props.xo_color = profile.get_color()
                 menu_item.connect('activate', self.__download_activate_cb)
@@ -210,7 +157,7 @@ class BrowsePalette(Palette):
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
-        if hit_info['is image']:
+        if self._hit.context_is_image():
             if not first_section_added:
                 first_section_added = True
             else:
@@ -230,7 +177,7 @@ class BrowsePalette(Palette):
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
-        if hit_info['is selection']:
+        if self._hit.context_is_selection():
             if not first_section_added:
                 first_section_added = True
             else:
