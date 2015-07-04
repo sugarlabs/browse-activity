@@ -34,6 +34,7 @@ from gi.repository import GConf
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
+from sugar3.graphics.alert import ConfirmationAlert
 
 from widgets import BrowserNotebook
 from palettes import ContentInvoker
@@ -60,6 +61,7 @@ _NON_SEARCH_REGEX = re.compile('''
     ^data:.*$|
     ^file:.*$)
     ''', re.VERBOSE)
+_HOSTNAME_REGEX = re.compile('[a-z]+://([^/]+)/.*')
 
 DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
@@ -563,6 +565,7 @@ class Browser(WebKit2.WebView):
         self.connect('notify::load-status', self.__load_status_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
         self.connect('decide-policy', self.__decide_policy_cb)
+        self.connect('permission-request', self.__permission_request_cb)
 
         # self.connect('load-error', self.__load_error_cb)
 
@@ -760,6 +763,40 @@ class Browser(WebKit2.WebView):
 
         return True
 
+    def _get_permission_name(self, request):
+        if hasattr(WebKit2, 'GeolocationPermissionRequest') and \
+           isinstance(request, WebKit2.GeolocationPermissionRequest):
+            return _('access to you location')
+        if hasattr(WebKit2, 'NotificationPermissionRequest') and \
+           isinstance(request, WebKit2.NotificationPermissionRequest):
+            return _('to display notifications in the frame')
+        # Should never be reached
+        return type(request).__name__
+
+    def __permission_request_cb(self, webview, request):
+        description = self._get_permission_name(request)
+        site = webview.get_uri()
+        match = _HOSTNAME_REGEX.match(site)
+        if match:
+            site = match.group(1)
+
+        alert = ConfirmationAlert()
+        alert.props.title = _('Allow %s to %s?') % \
+            (site, description)
+        alert.props.msg = _('You can change your choice later by reloading the page')
+        alert.connect('response', self.__permission_request_alert_cb, request)
+        self._activity.add_alert(alert)
+
+        # Allow async handeling
+        return True
+
+    def __permission_request_alert_cb(self, alert, response_id, request):
+        self._activity.remove_alert(alert)
+
+        if response_id == Gtk.ResponseType.OK:
+            request.allow()
+        elif response_id == Gtk.ResponseType.CANCEL:
+            request.deny()
 
 class PopupDialog(Gtk.Window):
     def __init__(self):
