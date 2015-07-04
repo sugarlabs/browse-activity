@@ -476,7 +476,6 @@ class PrimaryToolbar(ToolbarBase):
         if self._browser is not None:
             self._browser.disconnect(self._uri_changed_hid)
             self._browser.disconnect(self._progress_changed_hid)
-            self._browser.disconnect(self._loading_changed_hid)
             self._browser.disconnect(self._security_status_changed_hid)
 
         self._browser = browser
@@ -485,10 +484,9 @@ class PrimaryToolbar(ToolbarBase):
         else:
             address = self._browser.props.uri
         self._set_address(address)
-        # TODO PORT
-        # self._set_progress(self._browser.props.progress)
-        # self._set_status(self._browser.props.load_status)
-        # self._set_security_status(self._browser.security_status)
+        self._set_progress(self._browser.props.estimated_load_progress)
+        self._set_loading(self._browser.props.estimated_load_progress < 1.0)
+        self._set_security_status(self._browser.security_status)
 
         is_webkit_browser = isinstance(self._browser, Browser)
         self.entry.props.editable = is_webkit_browser
@@ -496,25 +494,18 @@ class PrimaryToolbar(ToolbarBase):
         self._uri_changed_hid = self._browser.connect(
             'notify::uri', self.__uri_changed_cb)
         self._progress_changed_hid = self._browser.connect(
-            'notify::progress', self.__progress_changed_cb)
-        self._loading_changed_hid = self._browser.connect(
-            'notify::load-status', self.__loading_changed_cb)
+            'notify::estimated-load-progress', self.__progress_changed_cb)
         self._security_status_changed_hid = self._browser.connect(
             'security-status-changed', self.__security_status_changed_cb)
 
         self._update_navigation_buttons()
 
-    def __loading_changed_cb(self, widget, param):
-        self._set_status(widget.get_load_status())
-
     def __security_status_changed_cb(self, widget):
         self._set_security_status(widget.security_status)
 
     def __progress_changed_cb(self, widget, param):
-        self._set_progress(widget.get_progress())
-
-    def _set_status(self, status):
-        self._set_loading(status < WebKit2.LoadStatus.FINISHED)
+        self._set_progress(widget.props.estimated_load_progress)
+        self._set_loading(widget.props.estimated_load_progress < 1.0)
 
     def _set_security_status(self, security_status):
         # Display security status as a lock icon in the left side of
