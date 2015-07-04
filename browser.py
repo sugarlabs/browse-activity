@@ -32,6 +32,7 @@ from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import GConf
 
+import jarabe.config
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
@@ -564,8 +565,6 @@ class Browser(WebKit2.WebView):
                                     ([])),
     }
 
-    CURRENT_SUGAR_VERSION = '0.100'
-
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
 
@@ -575,7 +574,7 @@ class Browser(WebKit2.WebView):
         web_settings = self.get_settings()
 
         # Add SugarLabs user agent:
-        identifier = ' SugarLabs/' + self.CURRENT_SUGAR_VERSION
+        identifier = ' SugarLabs/' + jarabe.config.version
         web_settings.props.user_agent += identifier
 
         # Change font size based in the GtkSettings font size.  The
