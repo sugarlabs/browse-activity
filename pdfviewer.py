@@ -194,14 +194,16 @@ class DummyBrowser(GObject.GObject):
     __gsignals__ = {
         'new-tab': (GObject.SignalFlags.RUN_FIRST, None, ([str])),
         'tab-close': (GObject.SignalFlags.RUN_FIRST, None, ([object])),
+        'load-changed': (GObject.SignalFlags.RUN_FIRST, None, ([int])),
         'selection-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'security-status-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
     }
 
     __gproperties__ = {
-        "title": (object, "title", "Title", GObject.PARAM_READWRITE),
-        "uri": (object, "uri", "URI", GObject.PARAM_READWRITE),
-        "progress": (object, "progress", "Progress", GObject.PARAM_READWRITE),
+        'title': (object, 'title', 'Title', GObject.PARAM_READWRITE),
+        'uri': (object, 'uri', 'URI', GObject.PARAM_READWRITE),
+        'estimated-load-progress': (object, 'estimated-load-progress',
+                                    'Progress', GObject.PARAM_READWRITE),
     }
 
     def __init__(self, tab):
@@ -217,7 +219,7 @@ class DummyBrowser(GObject.GObject):
             return self._title
         elif prop.name == 'uri':
             return self._uri
-        elif prop.name == 'progress':
+        elif prop.name == 'estimated-load-progress':
             return self._progress
         else:
             raise AttributeError('Unknown property %s' % prop.name)
@@ -227,8 +229,11 @@ class DummyBrowser(GObject.GObject):
             self._title = value
         elif prop.name == 'uri':
             self._uri = value
-        elif prop.name == 'progress':
+        elif prop.name == 'estimated-load-progress':
             self._progress = value
+            if self._progress >= 1.0:
+                # Clear spinning cursor
+                self.emit('load-changed', WebKit2.LoadEvent.FINISHED)
         else:
             raise AttributeError('Unknown property %s' % prop.name)
 
@@ -237,13 +242,6 @@ class DummyBrowser(GObject.GObject):
 
     def get_uri(self):
         return self._uri
-
-    def get_progress(self):
-        return self._progress
-
-    def get_load_status(self):
-        # TODO PORT
-        return ""
 
     def emit_new_tab(self, uri):
         self.emit('new-tab', uri)
@@ -506,8 +504,8 @@ class PDFTabPage(Gtk.HBox):
         download.connect('received-data', self.__download_received_data_cb)
 
     def __download_received_data_cb(self, download, data_size):
-        self._browser.props.progress = self._download.get_estimated_progress()
-        self._message_box.progress_icon.update(self._browser.props.progress)
+        self._browser.props.estimated_load_progress = self._download.get_estimated_progress()
+        self._message_box.progress_icon.update(self._browser.props.estimated_load_progress)
 
     def __download_finished_cb(self, download):
         self._pdf_uri = download.get_destination()
