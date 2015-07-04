@@ -25,6 +25,7 @@ from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit2
@@ -424,6 +425,7 @@ class TabPage(Gtk.ScrolledWindow):
         GObject.GObject.__init__(self)
 
         self._browser = browser
+        self._browser.connect('web-process-crashed', self.__crashed_cb)
 
         self.add(browser)
         browser.show()
@@ -433,6 +435,47 @@ class TabPage(Gtk.ScrolledWindow):
 
     browser = GObject.property(type=object,
                                getter=_get_browser)
+
+    def __crashed_cb(self, webview):
+        self._show_message(
+            _('WebKit has crashed'),
+            _('WebKit was unable to display this page.  Try reloading this'
+              ' page or navigating to a different page if the issue'
+              ' persists'))
+
+    def _show_message(self, title, message):
+        # Copy 'n' paste reuse from the journal :)
+        self.remove(self.get_child())
+
+        background_box = Gtk.EventBox()
+        background_box.modify_bg(Gtk.StateType.NORMAL,
+                                 style.COLOR_WHITE.get_gdk_color())
+        self.add(background_box)
+
+        alignment = Gtk.Alignment.new(0.5, 0.5, 0.1, 0.1)
+        background_box.add(alignment)
+
+        box = Gtk.VBox()
+        alignment.add(box)
+
+        icon = Icon(pixel_size=style.LARGE_ICON_SIZE,
+                    icon_name='emblem-warning',
+                    stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
+                    fill_color=style.COLOR_TRANSPARENT.get_svg())
+        box.pack_start(icon, expand=True, fill=False, padding=0)
+
+        label = Gtk.Label()
+        color = style.COLOR_BUTTON_GREY.get_html()
+        label.set_markup(
+            '<span weight="bold" color="%s">%s</span>' % (
+                color, GLib.markup_escape_text(title)))
+        box.pack_start(label, expand=True, fill=False, padding=0)
+
+        label = Gtk.Label()
+        label.set_markup(message)
+        box.pack_start(label, expand=True, fill=False, padding=0)
+
+        background_box.show_all()
 
 
 class TabLabel(Gtk.HBox):
