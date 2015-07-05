@@ -109,7 +109,7 @@ class TabbedView(BrowserNotebook):
 
         self._browser = browser
         self._load_status_changed_hid = self._browser.connect(
-            'notify::load-status', self.__load_status_changed_cb)
+            'load-changed', self.__load_changed_cb)
 
     def normalize_or_autosearch_url(self, url):
         """Normalize the url input or return a url for search.
@@ -227,17 +227,13 @@ class TabbedView(BrowserNotebook):
         self.set_current_page(next_index)
         tab_page.setup(url)
 
-    def __load_status_changed_cb(self, widget, param):
+    def __load_changed_cb(self, widget, status):
         if self.get_window() is None:
             return
 
-        status = widget.get_load_status()
-        if status in (WebKit2.LoadStatus.PROVISIONAL,
-                      WebKit2.LoadStatus.COMMITTED,
-                      WebKit2.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+        if widget.props.estimated_load_progress < 1.0 and widget.props.uri:
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
-        elif status in (WebKit2.LoadStatus.FAILED,
-                        WebKit2.LoadStatus.FINISHED):
+        else:
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def add_tab(self, next_to_current=False):
@@ -491,7 +487,7 @@ class TabLabel(Gtk.HBox):
         GObject.GObject.__init__(self)
 
         browser.connect('notify::title', self.__title_changed_cb)
-        browser.connect('notify::load-status', self.__load_status_changed_cb)
+        browser.connect('load-changed', self.__load_changed_cb)
 
         self._title = _('Untitled')
         self._label = Gtk.Label(label=self._title)
@@ -535,18 +531,13 @@ class TabLabel(Gtk.HBox):
         self._label.set_text(title)
         self._title = title
 
-    def __load_status_changed_cb(self, widget, param):
-        status = widget.get_load_status()
-
-        if status == WebKit2.LoadStatus.FAILED:
-            self._label.set_text(self._title)
-        elif WebKit2.LoadStatus.PROVISIONAL <= status \
-                < WebKit2.LoadStatus.FINISHED:
-            self._label.set_text(_('Loading...'))
-        elif status == WebKit2.LoadStatus.FINISHED:
+    def __load_changed_cb(self, widget, status):
+        if status == WebKit2.LoadEvent.FINISHED:
             if widget.props.title is None:
                 self._label.set_text(_('Untitled'))
                 self._title = _('Untitled')
+        else:
+            self._label.set_text(_('Loading...'))
 
 
 class Browser(WebKit2.WebView):
@@ -605,7 +596,7 @@ class Browser(WebKit2.WebView):
 
         # Reference to the global history and callbacks to handle it:
         self._global_history = globalhistory.get_global_history()
-        self.connect('notify::load-status', self.__load_status_changed_cb)
+        self.connect('load-changed', self.__load_changed_cb)
         self.connect('notify::title', self.__title_changed_cb)
         self.connect('decide-policy', self.__decide_policy_cb)
         self.connect('permission-request', self.__permission_request_cb)
@@ -710,28 +701,23 @@ class Browser(WebKit2.WebView):
             request.cancel()
         return True
 
-    def __load_status_changed_cb(self, widget, param):
-        status = widget.get_load_status()
-        if status <= WebKit2.LoadStatus.COMMITTED:
+    def __load_changed_cb(self, widget, status):
+        if status <= WebKit2.LoadEvent.COMMITTED:
             # Add the url to the global history or update it.
             uri = self.get_uri()
             self._global_history.add_page(uri)
 
-        if status == WebKit2.LoadStatus.COMMITTED:
+        if status == WebKit2.LoadEvent.COMMITTED:
             # Update the security status.
-            response = widget.get_main_frame().get_network_response()
-            message = response.get_message()
-            if message:
-                use_https, certificate, tls_errors = message.get_https_status()
-
-                if use_https:
-                    if tls_errors == 0:
-                        self.security_status = self.SECURITY_STATUS_SECURE
-                    else:
-                        self.security_status = self.SECURITY_STATUS_INSECURE
+            bool_, cert, errors = widget.get_tls_info()
+            if cert:
+                if not errors:
+                    self.security_status = self.SECURITY_STATUS_SECURE
                 else:
-                    self.security_status = None
-                self.emit('security-status-changed')
+                    self.security_status = self.SECURITY_STATUS_INSECURE
+            else:
+                self.security_status = None
+            self.emit('security-status-changed')
 
     def __title_changed_cb(self, widget, param):
         """Update title in global history."""

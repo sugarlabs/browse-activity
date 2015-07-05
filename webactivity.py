@@ -574,12 +574,8 @@ class WebActivity(activity.Activity):
             return True
 
         elif key_name == 'Escape':
-            status = browser.get_load_status()
-            loading = WebKit2.LoadStatus.PROVISIONAL <= status \
-                < WebKit2.LoadStatus.FINISHED
-            if loading:
-                _logger.debug('keyboard: Stop loading')
-                browser.stop_loading()
+            _logger.debug('keyboard: Stop loading')
+            browser.stop_loading()
 
         return False
 
@@ -699,14 +695,9 @@ class WebActivity(activity.Activity):
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
         browser = page._browser
-        status = browser.get_load_status()
-
-        if status in (WebKit2.LoadStatus.COMMITTED,
-                      WebKit2.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
+        if browser.props.estimated_load_progress < 1.0 and browser.props.uri:
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
-        elif status in (WebKit2.LoadStatus.PROVISIONAL,
-                        WebKit2.LoadStatus.FAILED,
-                        WebKit2.LoadStatus.FINISHED):
+        else:
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def get_document_path(self, async_cb, async_err_cb):
