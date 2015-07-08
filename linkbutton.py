@@ -26,6 +26,8 @@ import cairo
 from gettext import gettext as _
 import re
 
+from sugar3.graphics.palettemenu import PaletteMenuItem
+from sugar3.graphics.palettemenu import PaletteMenuBox
 from sugar3.graphics.palette import Palette
 from sugar3.graphics.tray import TrayButton
 from sugar3.graphics import style
@@ -103,9 +105,13 @@ class LinkButton(TrayButton, GObject.GObject):
         palette = Palette(info, text_maxlen=50)
         self.set_palette(palette)
 
-        menu_item = Gtk.MenuItem(_('Remove'))
+        box = PaletteMenuBox()
+        palette.set_content(box)
+        box.show()
+
+        menu_item = PaletteMenuItem(_('Remove'), 'list-remove')
         menu_item.connect('activate', self.item_remove_cb)
-        palette.menu.append(menu_item)
+        box.append_item(menu_item)
         menu_item.show()
 
     def item_remove_cb(self, widget):
