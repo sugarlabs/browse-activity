@@ -19,6 +19,7 @@
 import os
 import time
 import re
+import logging
 from gettext import gettext as _
 
 from gi.repository import GObject
@@ -63,6 +64,22 @@ DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
+
+_sugar_version = None
+
+
+def get_sugar_version():
+    global _sugar_version
+    if _sugar_version is None:
+        if 'SUGAR_VERSION' in os.environ:
+            version = os.environ['SUGAR_VERSION']
+            major, minor = version.split('.')[0:2]
+            # use the last stable version
+            _sugar_version = '%s.%s' % (major, int(minor) - int(minor) % 2)
+        else:
+            logging.error('SUGAR_VERSION env variable not found')
+            _sugar_version = '0.100'
+    return _sugar_version
 
 
 class TabbedView(BrowserNotebook):
@@ -519,7 +536,8 @@ class Browser(WebKit.WebView):
                                     ([])),
     }
 
-    CURRENT_SUGAR_VERSION = '0.100'
+
+    CURRENT_SUGAR_VERSION = get_sugar_version()
 
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
