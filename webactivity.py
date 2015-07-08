@@ -400,7 +400,8 @@ class WebActivity(activity.Activity):
                 self._add_link_totray(link['url'],
                                       base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
-                                      link['owner'], -1, link['hash'])
+                                      link['owner'], -1, link['hash'],
+                                      link['notes'])
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_history(self.model.data['history'])
             for number, tab in enumerate(self.model.data['currents']):
@@ -606,13 +607,16 @@ class WebActivity(activity.Activity):
         link = self.model.data['shared_links'][index]
         self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
                               link['color'], link['title'],
-                              link['owner'], index, link['hash'])
+                              link['owner'], index, link['hash'],
+                              link.get('notes'))
 
-    def _add_link_totray(self, url, buf, color, title, owner, index, hash):
+    def _add_link_totray(self, url, buf, color, title, owner, index, hash,
+                         notes=None):
         ''' add a link to the tray '''
-        item = LinkButton(buf, color, title, owner, hash)
+        item = LinkButton(buf, color, title, owner, hash, notes)
         item.connect('clicked', self._link_clicked_cb, url)
         item.connect('remove_link', self._link_removed_cb)
+        item.notes_changed_signal.connect(self.__link_notes_changed)
         # use index to add to the tray
         self._tray.add_item(item, index)
         item.show()
@@ -628,6 +632,9 @@ class WebActivity(activity.Activity):
             self._view_toolbar.traybutton.props.sensitive = False
             self._view_toolbar.traybutton.props.active = False
             self._view_toolbar.update_traybutton_tooltip()
+
+    def __link_notes_changed(self, button, hash, notes):
+        self.model.change_link_notes(hash, notes)
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''

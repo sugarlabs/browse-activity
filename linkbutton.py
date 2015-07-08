@@ -26,6 +26,7 @@ import cairo
 from gettext import gettext as _
 import re
 
+from sugar3.graphics.palettemenu import PaletteMenuItemSeparator
 from sugar3.graphics.palettemenu import PaletteMenuItem
 from sugar3.graphics.palettemenu import PaletteMenuBox
 from sugar3.graphics.palette import Palette
@@ -39,8 +40,10 @@ class LinkButton(TrayButton, GObject.GObject):
         'remove_link': (GObject.SignalFlags.RUN_FIRST,
                         None, ([str])),
         }
+    notes_changed_signal = GObject.Signal(
+        'notes-changed', arg_types=[str, str])
 
-    def __init__(self, buf, color, title, owner, hash):
+    def __init__(self, buf, color, title, owner, hash, notes=None):
         TrayButton.__init__(self)
 
         # Color read from the Journal may be Unicode, but Rsvg needs
@@ -50,6 +53,7 @@ class LinkButton(TrayButton, GObject.GObject):
         self.set_image(buf, color.split(',')[1], color.split(',')[0])
 
         self.hash = hash
+        self.notes = notes
         info = title + '\n' + owner
         self.setup_rollover_options(info)
 
@@ -114,5 +118,29 @@ class LinkButton(TrayButton, GObject.GObject):
         box.append_item(menu_item)
         menu_item.show()
 
+        separator = PaletteMenuItemSeparator()
+        box.append_item(separator)
+        separator.show()
+
+        textview = Gtk.TextView()
+        textview.props.height_request = style.GRID_CELL_SIZE * 2
+        textview.props.width_request = style.GRID_CELL_SIZE * 3
+        textview.props.hexpand = True
+        textview.props.vexpand = True
+        box.append_item(textview)
+        textview.show()
+
+        buffer = textview.get_buffer()
+        if self.notes is None:
+            buffer.set_text(_('Take notes on this page'))
+        else:
+            buffer.set_text(self.notes)
+        buffer.connect('changed', self.__buffer_changed_cb)
+
     def item_remove_cb(self, widget):
         self.emit('remove_link', self.hash)
+
+    def __buffer_changed_cb(self, buffer):
+        start, end = buffer.get_bounds()
+        self.notes = buffer.get_text(start, end, False)
+        self.notes_changed_signal.emit(self.hash, self.notes)
