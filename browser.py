@@ -571,7 +571,6 @@ class Browser(WebKit2.WebView):
                                     ([])),
     }
 
-
     CURRENT_SUGAR_VERSION = get_sugar_version()
 
     SECURITY_STATUS_SECURE = 1
@@ -829,7 +828,8 @@ class Browser(WebKit2.WebView):
         alert = ConfirmationAlert()
         alert.props.title = _('Allow %s to %s?') % \
             (site, description)
-        alert.props.msg = _('You can change your choice later by reloading the page')
+        alert.props.msg = _(
+            'You can change your choice later by reloading the page')
         alert.connect('response', self.__permission_request_alert_cb, request)
         self._activity.add_alert(alert)
 
@@ -843,6 +843,7 @@ class Browser(WebKit2.WebView):
             request.allow()
         elif response_id == Gtk.ResponseType.CANCEL:
             request.deny()
+
 
 class PopupDialog(Gtk.Window):
     def __init__(self):

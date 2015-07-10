@@ -24,7 +24,6 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import Pango
-from gi.repository import WebKit2
 
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry

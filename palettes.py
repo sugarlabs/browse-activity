@@ -26,7 +26,6 @@ from gettext import gettext as _
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GLib
-from gi.repository import WebKit2
 
 from sugar3.graphics.palette import Palette, Invoker
 from sugar3.graphics.palettemenu import PaletteMenuItem
@@ -104,11 +103,11 @@ class BrowsePalette(Palette):
         self._browser.run_javascript(
             'document.title = document.SugarBrowseOldTitle')
         self._link_text = self._hit.props.link_label \
-                          or self._hit.props.link_title
+            or self._hit.props.link_title
 
         self._title = self._link_text or self._all_text
         self._url = self._hit.props.link_uri or self._hit.props.image_uri \
-                    or self._hit.props.media_uri
+            or self._hit.props.media_uri
 
         if self._title not in (None, ''):
             self.props.primary_text = GLib.markup_escape_text(self._title)

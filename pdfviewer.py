@@ -504,8 +504,10 @@ class PDFTabPage(Gtk.HBox):
         download.connect('received-data', self.__download_received_data_cb)
 
     def __download_received_data_cb(self, download, data_size):
-        self._browser.props.estimated_load_progress = self._download.get_estimated_progress()
-        self._message_box.progress_icon.update(self._browser.props.estimated_load_progress)
+        self._browser.props.estimated_load_progress = \
+            self._download.get_estimated_progress()
+        self._message_box.progress_icon.update(
+            self._browser.props.estimated_load_progress)
 
     def __download_finished_cb(self, download):
         self._pdf_uri = download.get_destination()
