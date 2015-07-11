@@ -443,7 +443,7 @@ class PDFTabPage(Gtk.HBox):
 
         # download first if file is remote
 
-        elif requested_uri.startswith('http://'):
+        elif requested_uri.startswith('http://') or requested_uri.startswith('https://'):
             self._download_from_http(requested_uri)
 
     def _get_browser(self):
