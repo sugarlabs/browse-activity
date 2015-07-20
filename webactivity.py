@@ -69,7 +69,13 @@ if _profile_version < PROFILE_VERSION:
     if not os.path.exists(_profile_path):
         os.mkdir(_profile_path)
 
-    shutil.copy('cert8.db', _profile_path)
+    if os.path.exists('cert8.db'):
+        shutil.copy('cert8.db', _profile_path)
+    else:
+        # wikipedia activity use a empty file
+        with open(os.path.join(_profile_path, 'cert8.db'), 'w') as cert_file:
+            cert_file.write()
+
     os.chmod(os.path.join(_profile_path, 'cert8.db'), 0660)
 
     f = open(_version_file, 'w')
