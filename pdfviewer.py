@@ -252,22 +252,7 @@ class DummyBrowser(GObject.GObject):
     def get_history(self):
         return [{'url': self.props.uri, 'title': self.props.title}]
 
-    def can_undo(self):
-        return False
-
-    def can_redo(self):
-        return False
-
-    def can_go_back(self):
-        return False
-
-    def can_go_forward(self):
-        return False
-
-    def can_copy_clipboard(self):
-        return False
-
-    def can_paste_clipboard(self):
+    def can_query_editing_commands(self):
         return False
 
     def set_history_index(self, index):
