@@ -21,6 +21,7 @@ from gettext import gettext as _
 import dbus
 import cairo
 import StringIO
+import tempfile
 
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -72,7 +73,7 @@ class Download(object):
         self._activity = activity
 
         self._source = self._download.get_request().get_uri()
-        logging.error('START Download %s', self._source)
+        logging.debug('START Download %s', self._source)
 
         self.datastore_deleted_handler = None
 
@@ -80,32 +81,34 @@ class Download(object):
         self._object_id = None
         self._stop_alert = None
 
+        self._dest_path = ''
         self._progress = 0
         self._last_update_progress = 0
         self._progress_sid = None
 
-        # TODO PORT check if we can define where do the download
-        """
-        # figure out download URI
-        self.temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        self.temp_path = os.path.join(
+            self._activity.get_activity_root(), 'instance')
         if not os.path.exists(self.temp_path):
             os.makedirs(self.temp_path)
 
-        fd, self._dest_path = tempfile.mkstemp(
-            dir=self.temp_path, suffix=download.get_suggested_filename(),
-            prefix='tmp')
-        os.close(fd)
-        logging.debug('Download destination path: %s' % self._dest_path)
+        self._download.connect('failed', self.__download_failed_cb)
+        self._download.connect('finished', self.__download_finished_cb)
+        self._download.connect('received-data',
+                               self.__download_received_data_cb)
 
-        # We have to start the download to get 'total-size'
-        # property. It not, 0 is returned
-        self._download.set_destination_uri('file://' + self._dest_path)
-        """
+        # Notify response is called before decide destination
+        self._download.connect('notify::response', self.__notify_response_cb)
+        self._download.connect('decide-destination',
+                               self.__decide_destination_cb)
+        self._download.connect('created-destination',
+                               self.__created_destination_cb)
 
-        # TODO PORT validate disk space available
-        """
+    def __notify_response_cb(self, download, pspec):
+        logging.debug('__notify_response_cb')
+        response = download.get_response()
+
         # Check free space and cancel the download if there is not enough.
-        total_size = self._download.get_total_size()
+        total_size = response.get_content_length()
         logging.debug('Total size of the file: %s', total_size)
         enough_space = self.enough_space(
             total_size, path=self.temp_path)
@@ -121,7 +124,7 @@ class Download(object):
             free_space_mb = (self._free_available_space(
                 path=self.temp_path) - SPACE_THRESHOLD) \
                 / 1024.0 ** 2
-            filename = self._download.get_suggested_filename()
+            filename = response.get_suggested_filename()
             self._canceled_alert.props.msg = \
                 _('Download "%{filename}" requires %{total_size_in_mb}'
                   ' MB of free space, only %{free_space_in_mb} MB'
@@ -136,23 +139,31 @@ class Download(object):
             self._canceled_alert.connect('response',
                                          self.__stop_response_cb)
             self._activity.add_alert(self._canceled_alert)
-        """
-        self._create_journal_object()
-        self._object_id = self.dl_jobject.object_id
 
+    def __decide_destination_cb(self, download, suggested_filename):
+        logging.debug('__decide_desintation_cb suggests %s',
+                      suggested_filename)
         alert = TimeoutAlert(9)
         alert.props.title = _('Download started')
-        # TODO PORT
-        # alert.props.msg = _('%s' %
-        #                     self._download.get_suggested_filename())
+        alert.props.msg = suggested_filename
         self._activity.add_alert(alert)
         alert.connect('response', self.__start_response_cb)
         alert.show()
 
-        self._download.connect('failed', self.__download_failed_cb)
-        self._download.connect('finished', self.__download_finished_cb)
-        self._download.connect('received-data',
-                               self.__download_received_data_cb)
+        self._suggested_filename = suggested_filename
+        # figure out download URI
+        self._dest_path = tempfile.mktemp(
+            dir=self.temp_path, suffix=suggested_filename,
+            prefix='tmp')
+        logging.debug('Download destination path: %s' % self._dest_path)
+        self._download.set_destination('file://' + self._dest_path)
+        logging.error(self._download.get_destination)
+        return True
+
+    def __created_destination_cb(self, download, dest):
+        logging.debug('__created_destination_cb at %s', dest)
+        self._create_journal_object()
+        self._object_id = self.dl_jobject.object_id
 
     def _update_progress(self):
         if self._progress > self._last_update_progress:
@@ -171,24 +182,22 @@ class Download(object):
                 PROGRESS_TIMEOUT, self._update_progress)
 
     def __download_finished_cb(self, download):
-        self._dest_path = download.get_destination()[len("file://"):]
-        suggested_filename = os.path.basename(self._dest_path)
+        logging.error('__download_finished_cb')
 
         if self._progress_sid is not None:
             GObject.source_remove(self._progress_sid)
 
-        self.dl_jobject.metadata['title'] = suggested_filename
+        self.dl_jobject.metadata['title'] = self._suggested_filename
         self.dl_jobject.metadata['description'] = _('From: %s') \
             % self._source
         self.dl_jobject.metadata['progress'] = '100'
         self.dl_jobject.file_path = self._dest_path
 
-        # sniff for a mime type, no way to get headers from WebKit2
-        sniffed_mime_type = mime.get_for_file(self._dest_path)
-        self.dl_jobject.metadata['mime_type'] = sniffed_mime_type
+        mime_type = download.get_response().get_mime_type()
+        self.dl_jobject.metadata['mime_type'] = mime_type
 
-        if sniffed_mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
-                                 'image/png', 'image/tiff'):
+        if mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
+                         'image/png', 'image/tiff'):
             preview = self._get_preview()
             if preview is not None:
                 self.dl_jobject.metadata['preview'] = \
@@ -203,8 +212,7 @@ class Download(object):
         # update the alert
         self._stop_alert = Alert()
         self._stop_alert.props.title = _('Download completed')
-        self._stop_alert.props.msg = \
-            _('%s' % suggested_filename)
+        self._stop_alert.props.msg = self._suggested_filename
         open_icon = Icon(icon_name='zoom-activity')
         self._stop_alert.add_button(Gtk.ResponseType.APPLY,
                                     _('Show in Journal'), open_icon)
@@ -216,9 +224,9 @@ class Download(object):
         self._stop_alert.connect('response', self.__stop_response_cb)
         self._stop_alert.show()
 
-    def __download_failed_cb(self, download, err_code, err_detail, reason):
-        logging.debug('Error downloading URI code %s, detail %s: %s'
-                      % (err_code, err_detail, reason))
+    def __download_failed_cb(self, download, error):
+        logging.error('Error downloading URI due to %s'
+                      % error)
         self.cleanup()
 
     def __internal_save_cb(self):
@@ -296,12 +304,12 @@ class Download(object):
         return s.f_bavail * s.f_frsize
 
     def _create_journal_object(self):
+        logging.error('_create_journal_object')
         self.dl_jobject = datastore.create()
-        # TODO PORT: get the suggested filename
+        filename = self._download.get_response().get_suggested_filename()
         self.dl_jobject.metadata['title'] = \
             _('Downloading %(filename)s from \n%(source)s.') % \
-            {'filename': '',  # self._download.get_suggested_filename(),
-             'source': self._source}
+            {'filename': filename, 'source': self._source}
 
         self.dl_jobject.metadata['progress'] = '0'
         self.dl_jobject.metadata['keep'] = '0'
@@ -310,7 +318,7 @@ class Download(object):
         self.dl_jobject.metadata['icon-color'] = \
             profile.get_color().to_string()
         self.dl_jobject.metadata['mime_type'] = ''
-        # self.dl_jobject.file_path = ''
+        self.dl_jobject.file_path = self._dest_path
         datastore.write(self.dl_jobject)
 
         bus = dbus.SessionBus()
@@ -362,6 +370,16 @@ class Download(object):
             self.cleanup()
 
 
+_previous_source = None
+
+
 def add_download(webkit_download, activity):
+    global _previous_source
+    # FIXME:  WebKit shouldn't send us the same download twice
+    source = webkit_download.get_request().get_uri()
+    if source == _previous_source:
+        return
+
+    _previous_source = source
     download = Download(webkit_download, activity)
     _active_downloads.append(download)

@@ -108,6 +108,8 @@ class BrowsePalette(Palette):
         self._title = self._link_text or self._all_text
         self._url = self._hit.props.link_uri or self._hit.props.image_uri \
             or self._hit.props.media_uri
+        self._image_url = self._hit.props.image_uri \
+            or self._hit.props.media_uri
 
         if self._title not in (None, ''):
             self.props.primary_text = GLib.markup_escape_text(self._title)
@@ -180,7 +182,8 @@ class BrowsePalette(Palette):
 
             menu_item = PaletteMenuItem(_('Keep image'), 'document-save')
             menu_item.icon.props.xo_color = profile.get_color()
-            menu_item.connect('activate', self.__download_activate_cb)
+            menu_item.connect('activate', self.__download_activate_cb,
+                              self._image_url)
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
@@ -205,13 +208,13 @@ class BrowsePalette(Palette):
             self._browser.load_uri(self._url)
             self._browser.grab_focus()
 
-    def __download_activate_cb(self, menu_item):
-        self._browser.download_uri(self._url)
+    def __download_activate_cb(self, menu_item, url=None):
+        self._browser.download_uri(url or self._url)
 
     def __copy_image_activate_cb(self, menu_item):
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
-        data = urllib2.urlopen(self._url).read()
+        data = urllib2.urlopen(self._image_url).read()
         temp_file.write(data)
         temp_file.close()
 
