@@ -600,10 +600,6 @@ class Browser(WebKit2.WebView):
         context = self.get_context()
         context.connect('download-started', self.__download_requested_cb)
 
-        # Scale text and graphics:
-        # TODO PORT
-        # self.set_full_content_zoom(True)
-
         # This property is used to set the title immediatly the user
         # presses Enter on the URL Entry
         self.loading_uri = None
@@ -843,6 +839,12 @@ class Browser(WebKit2.WebView):
             request.allow()
         elif response_id == Gtk.ResponseType.CANCEL:
             request.deny()
+
+    def zoom_in(self):
+        self.props.zoom_level = self.props.zoom_level + _ZOOM_AMOUNT
+
+    def zoom_out(self):
+        self.props.zoom_level = self.props.zoom_level - _ZOOM_AMOUNT
 
 
 class PopupDialog(Gtk.Window):
