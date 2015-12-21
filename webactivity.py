@@ -47,7 +47,11 @@ from sugar3.graphics.alert import Alert
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
 from sugar3 import mime
-from sugar3.presence.wrapper import CollabWrapper
+try:
+    from sugar3.presence.wrapper import CollabWrapper
+    logging.error('Using sugar3 CollabWrapper')
+except ImportError:
+    from textchannelwrapper import CollabWrapper
 
 from sugar3.graphics.toolbarbox import ToolbarButton
 
