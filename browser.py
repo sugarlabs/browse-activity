@@ -300,6 +300,15 @@ class TabbedView(BrowserNotebook):
                     WebKit.LoadStatus.FINISHED:
                 tab_page.cancel_download()
 
+        # ensure that a tab opened because of click on 
+        # <a href="something" target="name">this</a>
+        # can be closed and then opened again
+        # (WebKit is keeping the WebView object alive)
+        tab_page.props.browser.destroy()
+
+        # FIXME: above causes log warnings about signal handlers that
+        # were connected to the destroyed WebView object.
+
         self.remove_page(self.page_num(tab_page))
 
         current_page = self.get_nth_page(self.get_current_page())
