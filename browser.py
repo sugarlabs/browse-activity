@@ -21,6 +21,7 @@ import time
 import re
 import logging
 from gettext import gettext as _
+from base64 import b64decode, b64encode
 
 from gi.repository import GObject
 from gi.repository import Gtk
@@ -67,6 +68,9 @@ DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
+
+TAB_BROWSER = 'browser'
+TAB_PDF = 'pdf'
 
 
 _sugar_version = None
@@ -373,17 +377,18 @@ class TabbedView(BrowserNotebook):
     current_browser = GObject.property(type=object,
                                        getter=_get_current_browser)
 
-    def get_history(self):
+    def get_legacy_history(self):
         tab_histories = []
         for index in xrange(0, self.get_n_pages()):
             tab_page = self.get_nth_page(index)
-            tab_histories.append(tab_page.browser.get_history())
+            tab_histories.append(tab_page.browser.get_legacy_history())
         return tab_histories
 
-    def set_history(self, tab_histories):
+    def set_legacy_history(self, tab_histories, currents):
         if tab_histories and isinstance(tab_histories[0], dict):
             # Old format, no tabs
             tab_histories = [tab_histories]
+            currents = [currents]
 
         while self.get_n_pages():
             self.remove_page(self.get_n_pages() - 1)
@@ -392,7 +397,7 @@ class TabbedView(BrowserNotebook):
             return (len(tab_history) == 1 and
                     tab_history[0]['url'].lower().endswith('pdf'))
 
-        for tab_history in tab_histories:
+        for tab_history, current in zip(tab_histories, currents):
             if is_pdf_history(tab_history):
                 url = tab_history[0]['url']
                 tab_page = PDFTabPage()
@@ -406,7 +411,6 @@ class TabbedView(BrowserNotebook):
                 tab_page.show()
                 label.show()
                 tab_page.setup(url, title=tab_history[0]['title'])
-
             else:
                 browser = Browser(self._activity)
                 browser.connect('new-tab', self.__new_tab_cb)
@@ -414,7 +418,45 @@ class TabbedView(BrowserNotebook):
                 browser.connect('ready-to-show', self.__web_view_ready_cb)
                 browser.connect('create', self.__create_web_view_cb)
                 self._append_tab(browser)
-                browser.set_history(tab_history)
+                browser.set_legacy_history(tab_history, current)
+
+    def get_state(self):
+        state = []
+        for index in xrange(0, self.get_n_pages()):
+            tab_page = self.get_nth_page(index)
+            type_name = TAB_BROWSER
+            if isinstance(tab_page, PDFTabPage):
+                type_name = TAB_PDF
+            state.append({
+                'type': type_name,
+                'state': tab_page.browser.get_state()})
+        return state
+
+    def set_session_state(self, states):
+        while self.get_n_pages():
+            self.remove_page(self.get_n_pages() - 1)
+
+        for state in states:
+            if state['type'] == TAB_PDF:
+                tab_page = PDFTabPage(state=state['state'])
+                tab_page.browser.connect('new-tab', self.__new_tab_cb)
+                tab_page.browser.connect('tab-close', self.__tab_close_cb)
+
+                label = TabLabel(tab_page.browser)
+                label.connect('tab-close', self.__tab_close_cb, tab_page)
+
+                self.append_page(tab_page, label)
+                tab_page.show()
+                label.show()
+            elif state['type'] == TAB_BROWSER:
+                browser = Browser(self._activity, state=state['state'])
+                browser.connect('new-tab', self.__new_tab_cb)
+                browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+                browser.connect('ready-to-show', self.__web_view_ready_cb)
+                browser.connect('create', self.__create_web_view_cb)
+                self._append_tab(browser)
+            else:
+                logging.error('Encountered unknown tab state %r', state)
 
     def is_current_page_pdf(self):
         index = self.get_current_page()
@@ -576,7 +618,7 @@ class Browser(WebKit2.WebView):
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
 
-    def __init__(self, activity):
+    def __init__(self, activity, state=None):
         WebKit2.WebView.__init__(self)
         self._activity = activity
         web_settings = self.get_settings()
@@ -616,6 +658,7 @@ class Browser(WebKit2.WebView):
         self.connect('notify::title', self.__title_changed_cb)
         self.connect('decide-policy', self.__decide_policy_cb)
         self.connect('permission-request', self.__permission_request_cb)
+        self.connect('run-file-chooser', self.__run_file_chooser)
 
         # self.connect('load-error', self.__load_error_cb)
 
@@ -623,13 +666,21 @@ class Browser(WebKit2.WebView):
 
         ContentInvoker(self)
 
-        try:
-            self.connect('run-file-chooser', self.__run_file_chooser)
-        except TypeError:
-            # Only present in WebKit1 > 1.9.3 and WebKit2
-            pass
+        if state is not None:
+            gbytes = GLib.Bytes(b64decode(state))
+            session_state = WebKit2.WebViewSessionState(gbytes)
+            self.restore_session_state(session_state)
+            # For some reason we need to trigger a load so that it
+            # isn't just a blank page (tested on webkitgtk4-2.11.5)
+            self.set_history_index(self.get_history_index())
 
-    def get_history(self):
+    def get_state(self):
+        state = self.get_session_state()
+        gbytes = state.serialize()
+        # JSON results in utf8-decoding, so it needs to be good data
+        return b64encode(gbytes.get_data())
+
+    def get_legacy_history(self):
         """Return the browsing history of this browser."""
         back_forward_list = self.get_back_forward_list()
         items_list = self._items_history_as_list(back_forward_list)
@@ -645,20 +696,16 @@ class Browser(WebKit2.WebView):
 
         return history
 
-    def set_history(self, history):
-        """Restore the browsing history for this browser."""
-        pass
-        # TODO PORT: how create objects for the history
-        # is not possible set the title and url
+    def set_legacy_history(self, history, current):
         """
-        back_forward_list = self.get_back_forward_list()
-        # back_forward_list.clear()
-        for entry in history:
-            uri, title = entry['url'], entry['title']
-            history_item = WebKit2.BackForwardHistoryItem()
-            # history_item WebHistoryItem.new_with_data(uri, title)
-            # back_forward_list.add_item(history_item)
+        Restore the browsing history for this browser.
+
+        Since the legacy history format is not loadable by WebKit2,
+        this function is DEPRECATED
         """
+        current_item = current['history_index']
+        current_uri = history[current_item]['url']
+        self.load_uri(current_uri)
 
     def get_history_index(self):
         """Return the index of the current item in the history."""

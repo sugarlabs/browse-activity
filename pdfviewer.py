@@ -237,6 +237,9 @@ class DummyBrowser(GObject.GObject):
         else:
             raise AttributeError('Unknown property %s' % prop.name)
 
+    def get_state(self):
+        return {'uri': self.props.uri, 'title': self.props.title}
+
     def get_title(self):
         return self._title
 
@@ -249,7 +252,7 @@ class DummyBrowser(GObject.GObject):
     def emit_close_tab(self):
         self.emit('tab-close', self._tab)
 
-    def get_history(self):
+    def get_legacy_history(self):
         return [{'url': self.props.uri, 'title': self.props.title}]
 
     def can_undo(self):
@@ -401,7 +404,7 @@ class PDFTabPage(Gtk.HBox):
     When the file is remote, display a message while downloading.
 
     """
-    def __init__(self):
+    def __init__(self, state=None):
         GObject.GObject.__init__(self)
         self._browser = DummyBrowser(self)
         self._message_box = None
@@ -410,6 +413,8 @@ class PDFTabPage(Gtk.HBox):
         self._requested_uri = None
         self._download = None
         self._downloaded_pdf = False
+        if state is not None:
+            self.setup(state['uri'], state['title'])
 
     def setup(self, requested_uri, title=None):
         self._requested_uri = requested_uri
