@@ -587,7 +587,6 @@ class PrimaryToolbar(ToolbarBase):
         self._forward.props.sensitive = can_go_forward
 
         is_webkit_browser = isinstance(self._browser, Browser)
-        self._link_add.props.sensitive = is_webkit_browser
         self._go_home.props.sensitive = is_webkit_browser
         if is_webkit_browser:
             self._reload_session_history()
@@ -650,7 +649,8 @@ class PrimaryToolbar(ToolbarBase):
 
     def _set_sensitive(self, value):
         for widget in self.toolbar:
-            if widget != self._stop_button:
+            if widget not in (self._stop_button,
+                              self._link_add):
                 widget.set_sensitive(value)
 
     def _reload_session_history(self):
