@@ -407,7 +407,7 @@ class WebActivity(activity.Activity):
                                       base64.b64decode(link['thumb']),
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'],
-                                      link['notes'])
+                                      link.get('notes'))
             logging.debug('########## reading %s', data)
             self._tabbed_view.set_history(self.model.data['history'])
             for number, tab in enumerate(self.model.data['currents']):
