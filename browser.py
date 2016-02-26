@@ -844,6 +844,9 @@ class Browser(WebKit2.WebView):
         elif response_id == Gtk.ResponseType.CANCEL:
             request.deny()
 
+    def can_query_editing_commands(self):
+        return True
+
 
 class PopupDialog(Gtk.Window):
     def __init__(self):
