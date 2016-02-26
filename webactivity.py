@@ -407,14 +407,19 @@ class WebActivity(activity.Activity):
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'])
             logging.debug('########## reading %s', data)
-            self._tabbed_view.set_history(self.model.data['history'])
-            for number, tab in enumerate(self.model.data['currents']):
-                tab_page = self._tabbed_view.get_nth_page(number)
-                tab_page.browser.set_history_index(tab['history_index'])
-                zoom_level = tab.get('zoom_level')
-                if zoom_level is not None:
-                    tab_page.browser.set_zoom_level(zoom_level)
-                tab_page.browser.grab_focus()
+            if 'session_state' in self.model.data:
+                self._tabbed_view.set_session_state(
+                    self.model.data['session_state'])
+            else:
+                self._tabbed_view.set_legacy_history(
+                    self.model.data['history'],
+                    self.model.data['currents'])
+                for number, tab in enumerate(self.model.data['currents']):
+                    tab_page = self._tabbed_view.get_nth_page(number)
+                    zoom_level = tab.get('zoom_level')
+                    if zoom_level is not None:
+                        tab_page.browser.set_zoom_level(zoom_level)
+                    tab_page.browser.grab_focus()
 
             self._tabbed_view.set_current_page(self.model.data['current_tab'])
 
@@ -445,7 +450,7 @@ class WebActivity(activity.Activity):
                 else:
                     self.metadata['title'] = browser.props.title
 
-            self.model.data['history'] = self._tabbed_view.get_history()
+            self.model.data['history'] = self._tabbed_view.get_legacy_history()
             current_tab = self._tabbed_view.get_current_page()
             self.model.data['current_tab'] = current_tab
 
@@ -461,6 +466,9 @@ class WebActivity(activity.Activity):
                             'zoom_level': n_browser.get_zoom_level()}
 
                     self.model.data['currents'].append(info)
+
+            self.model.data['session_state'] = \
+                self._tabbed_view.get_state()
 
             f = open(file_path, 'w')
             try:
