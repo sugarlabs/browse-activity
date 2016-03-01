@@ -88,15 +88,12 @@ class EditToolbar(BaseEditToolbar):
         self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
-        if self._browser is not None:
-            self._browser.disconnect(self._selection_changed_hid)
-
         self._browser = browser
 
         self._update_buttons()
 
-        # FIXME  this api was cahanged.  Since multiproccess, we need
-        #        a "web extention" which is loaded into the
+        # FIXME  this api was changed.  Since multiproccess, we need
+        #        a "web extension" which is loaded into the
         #        webkit process to access the page and signal
         # self._selection_changed_hid = self._browser.connect(
         #     'selection-changed', self.__selection_changed_cb)
@@ -106,8 +103,9 @@ class EditToolbar(BaseEditToolbar):
             GObject.timeout_add(300, self.__selection_changed_cb)
 
         find = self._browser.get_find_controller()
-        find.connect('found-text', self.__found_text_cb)
-        find.connect('failed-to-find-text', self.__failed_to_find_text_cb)
+        if find is not None:
+            find.connect('found-text', self.__found_text_cb)
+            find.connect('failed-to-find-text', self.__failed_to_find_text_cb)
 
     def __selection_changed_cb(self, *args):
         self._update_buttons()
@@ -140,7 +138,7 @@ class EditToolbar(BaseEditToolbar):
         self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_COPY)
 
     def __paste_cb(self, button):
-        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_PADTE)
+        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_PASTE)
 
     def _find_and_mark_text(self, entry):
         search_text = entry.get_text()
