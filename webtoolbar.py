@@ -38,10 +38,12 @@ from sugar3.datastore import datastore
 from sugar3.activity import activity
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.icon import Icon
+from sugar3 import profile
 
 import tempfile
 import filepicker
 import places
+from bookmarkbutton import BookmarkToolButton
 from browser import Browser
 from browser import HOME_PAGE_GCONF_KEY, LIBRARY_PATH
 
@@ -281,11 +283,12 @@ class PrimaryToolbar(ToolbarBase):
     __gtype_name__ = 'PrimaryToolbar'
 
     __gsignals__ = {
-        'add-link': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'toggle-tray': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'go-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'set-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'reset-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'go-library': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'page-loaded': (GObject.SignalFlags.RUN_FIRST, None, ([]))
     }
 
     def __init__(self, tabbed_view, act):
@@ -393,9 +396,11 @@ class PrimaryToolbar(ToolbarBase):
         # FIXME, this is a hack, should be done in the theme:
         palette._content.set_border_width(1)
 
-        self._link_add = ToolButton('emblem-favorite')
+        # Bookmark tray toggle button
+        self._link_add = BookmarkToolButton('emblem-favorite')
         self._link_add.set_tooltip(_('Bookmark'))
-        self._link_add.connect('clicked', self._link_add_clicked_cb)
+        self._link_add.connect('toggled', self._toggle_tray_cb)
+        self._link_add.props.active = False
         toolbar.insert(self._link_add, -1)
         self._link_add.show()
 
@@ -540,6 +545,9 @@ class PrimaryToolbar(ToolbarBase):
         else:
             self.entry.props.address = uri
 
+        # Signal that changes the bookmark button color to xo_color/None
+        self.emit('page-loaded')
+
     def __changed_cb(self, iconentry):
         # The WebEntry can be changed when we click on a link, then we
         # have to show the clear icon only if is the user who has
@@ -618,6 +626,9 @@ class PrimaryToolbar(ToolbarBase):
 
     def _go_forward_cb(self, button):
         self._browser.go_forward()
+
+    def _toggle_tray_cb(self, button):
+        self.emit('toggle-tray')
 
     def __uri_changed_cb(self, widget, param):
         self._set_address(widget.get_uri())
@@ -698,9 +709,6 @@ class PrimaryToolbar(ToolbarBase):
         self._back.get_palette().popdown(immediate=True)
         self._forward.get_palette().popdown(immediate=True)
         self._browser.set_history_index(index)
-
-    def _link_add_clicked_cb(self, button):
-        self.emit('add-link')
 
     def save_as_pdf(self, widget):
         tmp_dir = os.path.join(self._activity.get_activity_root(), 'tmp')

@@ -64,14 +64,6 @@ class ViewToolbar(Gtk.Toolbar):
         self.insert(self.fullscreen, -1)
         self.fullscreen.show()
 
-        self.traybutton = ToggleToolButton('tray-show')
-        self.traybutton.set_icon_name('tray-favourite')
-        self.traybutton.connect('toggled', self.__tray_toggled_cb)
-        self.traybutton.props.sensitive = False
-        self.traybutton.props.active = False
-        self.insert(self.traybutton, -1)
-        self.traybutton.show()
-
         tabbed_view = self._activity.get_canvas()
 
         if tabbed_view.get_n_pages():
@@ -106,16 +98,3 @@ class ViewToolbar(Gtk.Toolbar):
 
     def __fullscreen_clicked_cb(self, button):
         self._activity.fullscreen()
-
-    def __tray_toggled_cb(self, button):
-        if button.props.active:
-            self._activity.tray.show()
-        else:
-            self._activity.tray.hide()
-        self.update_traybutton_tooltip()
-
-    def update_traybutton_tooltip(self):
-        if not self.traybutton.props.active:
-            self.traybutton.set_tooltip(_('Show Tray'))
-        else:
-            self.traybutton.set_tooltip(_('Hide Tray'))
