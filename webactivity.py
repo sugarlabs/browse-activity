@@ -657,6 +657,7 @@ class WebActivity(activity.Activity):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
         self._tray.remove_item(button)
+        self._bookmark_color_change_cb(button)
 
     def __link_notes_changed(self, button, hash, notes):
         self.model.change_link_notes(hash, notes)
