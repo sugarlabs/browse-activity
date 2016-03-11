@@ -25,6 +25,7 @@ from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import Pango
 
+import sugar3.profile
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
@@ -304,6 +305,10 @@ class PrimaryToolbar(ToolbarBase):
 
         separator = Gtk.SeparatorToolItem()
 
+        '''
+        Disabled since the python gi bindings don't expose the critical
+        WebKit2.PrintOperation.print function
+
         save_as_pdf = ToolButton('save-as-pdf')
         save_as_pdf.set_tooltip(_('Save page as pdf'))
         save_as_pdf.connect('clicked', self.save_as_pdf)
@@ -312,6 +317,7 @@ class PrimaryToolbar(ToolbarBase):
         activity_button.props.page.insert(save_as_pdf, -1)
         separator.show()
         save_as_pdf.show()
+        '''
 
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
@@ -688,6 +694,7 @@ class PrimaryToolbar(ToolbarBase):
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
 
+    '''
     def save_as_pdf(self, widget):
         tmp_dir = os.path.join(self._activity.get_activity_root(), 'tmp')
         fd, file_path = tempfile.mkstemp(dir=tmp_dir)
@@ -695,16 +702,21 @@ class PrimaryToolbar(ToolbarBase):
 
         page = self._canvas.get_current_page()
         webview = self._canvas.get_children()[page].get_children()[0]
+        webview.connect('print', self.__pdf_print_cb, file_path)
+        # Why is there no webview method to do this?
+        webview.run_javascript('window.print()', None, None)
 
-        operation = Gtk.PrintOperation.new()
-        operation.set_export_filename(file_path)
+    def __pdf_print_cb(self, webview, wk_print, file_path):
+        webkit.dicsonnect_by_func(self.__pdf_print_cb)
 
-        webview.get_main_frame().print_full(
-            operation, Gtk.PrintOperationAction.EXPORT)
+        settings = wk_print.get_settings()
+        settings.set(Gtk.PRINT_SETTINGS_OUTPUT_FILE_FORMAT, 'PDF')
+        settings.set(Gtk.PRINT_SETTINGS_OUTPUT_FILE_URI, 'file://' + file_path)
+        # The docs say that the print operation has this, but it seems to
+        # get lost in the python bindings since it conflicts with the keyword
+        wk_print.print()
 
-        client = GConf.Client.get_default()
-        jobject = datastore.create()
-        color = client.get_string('/desktop/sugar/user/color')
+        color = sugar3.profile.get_color().to_string()
         try:
             jobject.metadata['title'] = _('Browse activity as PDF')
             jobject.metadata['icon-color'] = color
@@ -741,3 +753,4 @@ class PrimaryToolbar(ToolbarBase):
             activity.show_object_in_journal(object_id)
 
         self._activity.remove_alert(alert)
+    '''
