@@ -418,6 +418,7 @@ class PrimaryToolbar(ToolbarBase):
         self._progress_changed_hid = None
         self._session_history_changed_hid = None
         self._uri_changed_hid = None
+        self._load_changed_hid = None
         self._security_status_changed_hid = None
 
         if tabbed_view.get_n_pages():
@@ -480,6 +481,7 @@ class PrimaryToolbar(ToolbarBase):
     def _connect_to_browser(self, browser):
         if self._browser is not None:
             self._browser.disconnect(self._uri_changed_hid)
+            self._browser.disconnect(self._load_changed_hid)
             self._browser.disconnect(self._progress_changed_hid)
             self._browser.disconnect(self._security_status_changed_hid)
 
@@ -498,6 +500,8 @@ class PrimaryToolbar(ToolbarBase):
 
         self._uri_changed_hid = self._browser.connect(
             'notify::uri', self.__uri_changed_cb)
+        self._load_changed_hid = self._browser.connect(
+            'load-changed', self.__load_changed_cb)
         self._progress_changed_hid = self._browser.connect(
             'notify::estimated-load-progress', self.__progress_changed_cb)
         self._security_status_changed_hid = self._browser.connect(
@@ -622,6 +626,9 @@ class PrimaryToolbar(ToolbarBase):
         self._update_navigation_buttons()
         filepicker.cleanup_temp_files()
 
+    def __load_changed_cb(self, widget, event):
+        self._update_navigation_buttons()
+
     def _stop_and_reload_cb(self, entry, icon_pos, button):
         if entry.has_focus() and \
                 not self._tabbed_view.is_current_page_pdf():
@@ -656,7 +663,7 @@ class PrimaryToolbar(ToolbarBase):
 
         def create_menu_item(history_item, item_index):
             """Create a MenuItem for the back or forward palettes."""
-            title = history_item.get_title()
+            title = history_item.get_title() or _('No Title')
             if not isinstance(title, unicode):
                 title = unicode(title, 'utf-8')
             # This is a fix until the Sugar MenuItem is fixed:
