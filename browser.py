@@ -683,9 +683,13 @@ class Browser(WebKit2.WebView):
             gbytes = GLib.Bytes(b64decode(state))
             session_state = WebKit2.WebViewSessionState(gbytes)
             self.restore_session_state(session_state)
-            # For some reason we need to trigger a load so that it
-            # isn't just a blank page (tested on webkitgtk4-2.11.5)
-            self.set_history_index(self.get_history_index())
+            # this is what epiphany does:
+            # https://github.com/GNOME/epiphany/blob/
+            # 04e7811c32ba8a2c980a77aac1316b77f0969057/src/ephy-session.c#L280
+            bf_list = self.get_back_forward_list()
+            item = bf_list.get_current_item()
+            if item is not None:
+                self.go_to_back_forward_list_item(item)
 
     def get_state(self):
         state = self.get_session_state()
