@@ -282,6 +282,12 @@ class DummyBrowser(GObject.GObject):
     def grab_focus(self):
         pass
 
+    def destroy(self):
+        pass
+
+    def get_window(self):
+        return self._tab.get_window()
+
 
 class PDFProgressMessageBox(Gtk.EventBox):
     def __init__(self, message, button_callback):

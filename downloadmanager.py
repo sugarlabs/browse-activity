@@ -35,6 +35,13 @@ from sugar3.graphics.alert import Alert, TimeoutAlert
 from sugar3.graphics.icon import Icon
 from sugar3.activity import activity
 
+try:
+    from sugar3.activity.activity import launch_bundle, get_bundle
+    _HAS_BUNDLE_LAUNCHER = True
+except ImportError:
+    _HAS_BUNDLE_LAUNCHER = False
+
+
 DS_DBUS_SERVICE = 'org.laptop.sugar.DataStore'
 DS_DBUS_INTERFACE = 'org.laptop.sugar.DataStore'
 DS_DBUS_PATH = '/org/laptop/sugar/DataStore'
@@ -253,8 +260,10 @@ class Download(object):
         self._activity.remove_alert(alert)
 
     def __stop_response_cb(self, alert, response_id):
-        if response_id is Gtk.ResponseType.APPLY:
+        if response_id == Gtk.ResponseType.APPLY:
             logging.debug('Start application with downloaded object')
+            launch_bundle(object_id=self._object_id)
+        if response_id == Gtk.ResponseType.ACCEPT:
             activity.show_object_in_journal(self._object_id)
         self._activity.remove_alert(alert)
 

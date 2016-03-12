@@ -408,8 +408,8 @@ class PrimaryToolbar(ToolbarBase):
         self._toolbar_separator.props.draw = False
         self._toolbar_separator.set_expand(True)
 
-        stop_button = StopButton(self._activity)
-        toolbar.insert(stop_button, -1)
+        self._stop_button = StopButton(self._activity)
+        toolbar.insert(self._stop_button, -1)
 
         self._progress_listener = None
         self._browser = None
@@ -588,7 +588,6 @@ class PrimaryToolbar(ToolbarBase):
         self._forward.props.sensitive = can_go_forward
 
         is_webkit_browser = isinstance(self._browser, Browser)
-        self._link_add.props.sensitive = is_webkit_browser
         self._go_home.props.sensitive = is_webkit_browser
         if is_webkit_browser:
             self._reload_session_history()
@@ -646,11 +645,17 @@ class PrimaryToolbar(ToolbarBase):
             self._show_stop_icon()
         else:
             if not self._tabbed_view.is_current_page_pdf():
-                self.set_sensitive(True)
+                self._set_sensitive(True)
                 self._show_reload_icon()
             else:
-                self.set_sensitive(False)
+                self._set_sensitive(False)
                 self._show_no_icon()
+
+    def _set_sensitive(self, value):
+        for widget in self.toolbar:
+            if widget not in (self._stop_button,
+                              self._link_add):
+                widget.set_sensitive(value)
 
     def _reload_session_history(self):
         back_forward_list = self._browser.get_back_forward_list()

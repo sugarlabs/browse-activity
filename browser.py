@@ -72,7 +72,6 @@ HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
 TAB_BROWSER = 'browser'
 TAB_PDF = 'pdf'
 
-
 _sugar_version = None
 
 
@@ -302,6 +301,15 @@ class TabbedView(BrowserNotebook):
         if isinstance(tab_page, PDFTabPage):
             tab_page.cancel_download()
 
+        # ensure that a tab opened because of click on 
+        # <a href="something" target="name">this</a>
+        # can be closed and then opened again
+        # (WebKit is keeping the WebView object alive)
+        tab_page.props.browser.destroy()
+
+        # FIXME: above causes log warnings about signal handlers that
+        # were connected to the destroyed WebView object.
+
         self.remove_page(self.page_num(tab_page))
 
         current_page = self.get_nth_page(self.get_current_page())
@@ -335,13 +343,22 @@ class TabbedView(BrowserNotebook):
             label.update_size(tab_new_size)
 
     def _update_closing_buttons(self):
-        """Prevent closing the last tab."""
-        first_page = self.get_nth_page(0)
-        first_label = self.get_tab_label(first_page)
-        if self.get_n_pages() == 1:
-            first_label.hide_close_button()
+        """Prevent closing the last non-PDF tab"""
+        pages_html = []
+        pages_pdf = []
+        for page_idx in range(self.get_n_pages()):
+            page = self.get_nth_page(page_idx)
+            if isinstance(page, PDFTabPage):
+                pages_pdf.append(page)
+            else:
+                pages_html.append(page)
+
+        if len(pages_html) == 1:
+            for page in pages_html:
+                self.get_tab_label(page).hide_close_button()
         else:
-            first_label.show_close_button()
+            for page in pages_pdf + pages_html:
+                self.get_tab_label(page).show_close_button()
 
     def load_homepage(self, ignore_gconf=False):
         browser = self.current_browser

@@ -58,6 +58,11 @@ class Model(GObject.GObject):
                 self.data['shared_links'].remove(link)
                 break
 
+    def change_link_notes(self, hash, notes):
+        for link in self.data['shared_links']:
+            if link['hash'] == hash:
+                link['notes'] = notes
+
     def serialize(self):
         return json.dumps(self.data)
 
