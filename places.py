@@ -34,7 +34,7 @@ class Place(object):
 
 
 class SqliteStore(object):
-    MAX_SEARCH_MATCHES = 7
+    MAX_SEARCH_MATCHES = 20
     EXPIRE_DAYS = 30
 
     def __init__(self):

@@ -61,8 +61,8 @@ class _SearchWindow(Gtk.Window):
 
 
 class WebEntry(iconentry.IconEntry):
-    _COL_ADDRESS = 0
-    _COL_TITLE = 1
+    _COL_ADDRESS = 1
+    _COL_TITLE = 0
 
     def __init__(self):
         GObject.GObject.__init__(self)
@@ -71,8 +71,14 @@ class WebEntry(iconentry.IconEntry):
         self._search_view = self._search_create_view()
 
         self._search_window = _SearchWindow()
-        self._search_window.add(self._search_view)
+        self._search_window_scroll = Gtk.ScrolledWindow()
+        self._search_window_scroll.set_policy(Gtk.PolicyType.NEVER,
+                                Gtk.PolicyType.AUTOMATIC)
+        self._search_window_scroll.set_min_content_height(200)
+        self._search_window_scroll.add(self._search_view)
+        self._search_window.add(self._search_window_scroll)
         self._search_view.show()
+        self._search_window_scroll.show()
 
         self.connect('focus-in-event', self.__focus_in_event_cb)
         self.connect('populate-popup', self.__populate_popup_cb)
@@ -142,20 +148,9 @@ class WebEntry(iconentry.IconEntry):
         cell.props.ellipsize_set = True
         cell.props.height = style.STANDARD_ICON_SIZE
         cell.props.xpad = _SEARCH_ENTRY_MARGIN
-        cell.props.font = 'Bold'
         column.pack_start(cell, True)
 
-        column.add_attribute(cell, 'text', self._COL_TITLE)
-
-        cell = Gtk.CellRendererText()
-        cell.props.xpad = _SEARCH_ENTRY_MARGIN
-        cell.props.xalign = 0
-        cell.props.ellipsize = Pango.EllipsizeMode.END
-        cell.props.ellipsize_set = True
-        cell.props.alignment = Pango.Alignment.LEFT
-        column.pack_start(cell, True)
-
-        column.add_attribute(cell, 'text', self._COL_ADDRESS)
+        column.add_attribute(cell, 'markup', self._COL_TITLE)
 
         return view
 
@@ -164,7 +159,8 @@ class WebEntry(iconentry.IconEntry):
 
         search_text = self.props.text.decode('utf-8')
         for place in places.get_store().search(search_text):
-            list_store.append([place.uri, place.title])
+            title = '<span weight="bold" >%s</span>' % (place.title)
+            list_store.append([title + '\n' + place.uri, place.uri])
 
         self._search_view.set_model(list_store)
 
@@ -217,7 +213,8 @@ class WebEntry(iconentry.IconEntry):
                 up_iter = model.iter_previous(selected)
                 if up_iter:
                     selection.select_iter(up_iter)
-                    self._set_text(model.get(up_iter, 0)[0])
+                    self._set_text(model.get(up_iter, self._COL_ADDRESS)[0])
+            self.set_vadjustments(selection)
             return True
         elif keyname == 'Down':
             if selected is None:
@@ -226,7 +223,8 @@ class WebEntry(iconentry.IconEntry):
                 down_iter = model.iter_next(selected)
             if down_iter:
                 selection.select_iter(down_iter)
-                self._set_text(model.get(down_iter, 0)[0])
+                self._set_text(model.get(down_iter, self._COL_ADDRESS)[0])
+            self.set_vadjustments(selection)
             return True
         elif keyname == 'Return':
             if selected is None:
@@ -239,6 +237,17 @@ class WebEntry(iconentry.IconEntry):
             self.props.text = ''
             return True
         return False
+
+    def set_vadjustments(self, selection):
+        # Sets the vertical adjustments of the scrolled window
+        # on 'Up'/'Down' keypress
+        path = (selection.get_selected_rows()[1])[0]
+        index = path.get_indices()[0]
+        adjustment = self._search_window_scroll.get_vadjustment()
+        value = adjustment.get_value()
+        step = style.STANDARD_ICON_SIZE
+        adjustment.set_value(step * index)
+        self._search_window_scroll.set_vadjustment(adjustment)
 
     def __popup_unmap_cb(self, entry):
         self.handler_unblock(self._focus_out_hid)
