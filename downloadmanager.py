@@ -200,8 +200,8 @@ class Download(object):
 
             self.dl_jobject.metadata['title'] = \
                 self._download.get_suggested_filename()
-            self.dl_jobject.metadata['description'] = _('From: %s') \
-                % self._source
+            self.dl_jobject.metadata['description'] = _('From: %(source)s') \
+                % {'source': self._source}
             self.dl_jobject.metadata['progress'] = '100'
             self.dl_jobject.file_path = self._dest_path
 
