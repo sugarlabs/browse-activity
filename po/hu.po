@@ -93,7 +93,7 @@ msgstr "Mutatás a naplóban"
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
-msgstr "Feladó"
+msgstr "Feladó: %s"
 
 #: downloadmanager.py:292
 #, python-format
