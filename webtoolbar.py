@@ -666,7 +666,7 @@ class PrimaryToolbar(ToolbarBase):
             for menu_item in box_menu.get_children():
                 box_menu.remove(menu_item)
 
-        def create_menu_item(history_item, item_index):
+        def create_menu_item(history_item):
             """Create a MenuItem for the back or forward palettes."""
             title = history_item.get_title() or _('No Title')
             if not isinstance(title, unicode):
@@ -674,14 +674,14 @@ class PrimaryToolbar(ToolbarBase):
             # This is a fix until the Sugar MenuItem is fixed:
             menu_item = PaletteMenuItem(text_label=title)
             menu_item.connect('activate', self._history_item_activated_cb,
-                              item_index)
+                              history_item)
             return menu_item
 
         back_list = back_forward_list.get_back_list_with_limit(
             _MAX_HISTORY_ENTRIES)
         back_list.reverse()
         for item in back_list:
-            menu_item = create_menu_item(item, item_index)
+            menu_item = create_menu_item(item)
             self._back_box_menu.pack_end(menu_item, False, False, 0)
             menu_item.show()
             item_index += 1
@@ -693,15 +693,16 @@ class PrimaryToolbar(ToolbarBase):
             _MAX_HISTORY_ENTRIES)
         forward_list.reverse()
         for item in forward_list:
-            menu_item = create_menu_item(item, item_index)
+            menu_item = create_menu_item(item)
             self._forward_box_menu.pack_start(menu_item, False, False, 0)
             menu_item.show()
             item_index += 1
 
-    def _history_item_activated_cb(self, menu_item, index):
+    def _history_item_activated_cb(self, menu_item, history_item):
         self._back.get_palette().popdown(immediate=True)
         self._forward.get_palette().popdown(immediate=True)
-        self._browser.set_history_index(index)
+        #self._browser.set_history_index(index)
+        self._browser.go_to_back_forward_list_item(history_item)
 
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
