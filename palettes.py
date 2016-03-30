@@ -26,6 +26,7 @@ from gettext import gettext as _
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GLib
+from gi.repository import SugarGestures
 
 from sugar3.graphics.palette import Palette, Invoker
 from sugar3.graphics.palettemenu import PaletteMenuItem
@@ -39,6 +40,34 @@ class ContentInvoker(Invoker):
         self._position_hint = self.AT_CURSOR
         self._browser = browser
         self._browser.connect('context-menu', self.__context_menu_cb)
+        self._browser.connect('realize', self.__browser_realize_cb)
+
+    def __browser_realize_cb(self, browser):
+        x11_window = browser.get_window()
+        x11_window.set_events(x11_window.get_events() |
+                              Gdk.EventMask.POINTER_MOTION_MASK |
+                              Gdk.EventMask.TOUCH_MASK)
+
+        lp = SugarGestures.LongPressController()
+        lp.connect('pressed', self.__long_pressed_cb)
+        lp.attach(browser, SugarGestures.EventControllerFlags.NONE)
+
+    def __long_pressed_cb(self, controller, x, y):
+        # We can't force a context menu, but we can fake a right mouse click
+        event = Gdk.Event()
+        event.type = Gdk.EventType.BUTTON_PRESS
+
+        b = event.button
+        b.type = Gdk.EventType.BUTTON_PRESS
+        b.window = self._browser.get_window()
+        b.time = Gtk.get_current_event_time()
+        b.button = 3  # Right
+        b.x = x
+        b.y = y
+        b.x_root, b.y_root = self._browser.get_window().get_root_coords(x, y)
+
+        Gtk.main_do_event(event)
+        return True
 
     def get_default_position(self):
         return self.AT_CURSOR
