@@ -644,7 +644,9 @@ class WebActivity(activity.Activity):
 
     def _link_clicked_cb(self, button, url):
         ''' an item of the link tray has been clicked '''
-        self._tabbed_view.props.current_browser.load_uri(url)
+        browser = self._tabbed_view.add_tab()
+        browser.load_uri(url)
+        browser.grab_focus()
 
     def _get_screenshot(self):
         browser = self._tabbed_view.props.current_browser
