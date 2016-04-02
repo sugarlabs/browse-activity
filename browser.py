@@ -680,8 +680,7 @@ class Browser(WebKit2.WebView):
         self.connect('decide-policy', self.__decide_policy_cb)
         self.connect('permission-request', self.__permission_request_cb)
         self.connect('run-file-chooser', self.__run_file_chooser)
-
-        # self.connect('load-error', self.__load_error_cb)
+        self.connect('load-failed', self.__load_failed_cb)
 
         self._inject_media_style = False
 
@@ -844,7 +843,7 @@ class Browser(WebKit2.WebView):
         downloadmanager.add_download(download, self._activity)
         return True
 
-    def __load_error_cb(self, web_view, web_frame, uri, web_error):
+    def __load_failed_cb(self, web_view, event, uri, web_error):
         """Show Sugar's error page"""
 
         # Don't show error page if the load was interrupted by policy
@@ -866,6 +865,7 @@ class Browser(WebKit2.WebView):
             return True
 
         data = {
+            'raw_error': str(web_error),
             'page_title': _('This web page could not be loaded'),
             'title': _('This web page could not be loaded'),
             'message': _('"%s" could not be loaded. Please check for '
@@ -876,7 +876,7 @@ class Browser(WebKit2.WebView):
             }
 
         html = open(DEFAULT_ERROR_PAGE, 'r').read() % data
-        web_frame.load_alternate_html(html, uri, uri)
+        web_view.load_alternate_html(html, uri, uri)
 
         return True
 
