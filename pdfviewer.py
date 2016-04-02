@@ -197,6 +197,8 @@ class DummyBrowser(GObject.GObject):
         'load-changed': (GObject.SignalFlags.RUN_FIRST, None, ([int])),
         'selection-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'security-status-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'enter-fullscreen': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'leave-fullscreen': (GObject.SignalFlags.RUN_FIRST, None, ([])),
     }
 
     __gproperties__ = {

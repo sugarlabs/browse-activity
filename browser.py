@@ -227,9 +227,19 @@ class TabbedView(BrowserNotebook):
         web_view.connect('new-tab', self.__new_tab_cb)
         web_view.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
         web_view.connect('create', self.__create_web_view_cb)
+        web_view.connect('enter-fullscreen', self.__enter_fullscreen_cb)
+        web_view.connect('leave-fullscreen', self.__leave_fullscreen_cb)
         web_view.grab_focus()
 
         self._insert_tab_next(web_view)
+
+    def __enter_fullscreen_cb(self, browser):
+        self.props.show_tabs = False
+        browser.get_toplevel().fullscreen()
+
+    def __leave_fullscreen_cb(self, browser):
+        self.props.show_tabs = True
+        browser.get_toplevel().unfullscreen()
 
     def __open_pdf_in_new_tab_cb(self, browser, url):
         tab_page = PDFTabPage()
@@ -258,6 +268,8 @@ class TabbedView(BrowserNotebook):
     def add_tab(self, next_to_current=False):
         browser = Browser(self._activity)
         browser.connect('new-tab', self.__new_tab_cb)
+        browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
+        browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
         browser.connect('ready-to-show', self.__web_view_ready_cb)
         browser.connect('create', self.__create_web_view_cb)
@@ -431,6 +443,8 @@ class TabbedView(BrowserNotebook):
             else:
                 browser = Browser(self._activity)
                 browser.connect('new-tab', self.__new_tab_cb)
+                browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
+                browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
                 browser.connect('ready-to-show', self.__web_view_ready_cb)
                 browser.connect('create', self.__create_web_view_cb)
@@ -468,6 +482,8 @@ class TabbedView(BrowserNotebook):
             elif state['type'] == TAB_BROWSER:
                 browser = Browser(self._activity, state=state['state'])
                 browser.connect('new-tab', self.__new_tab_cb)
+                browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
+                browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
                 browser.connect('ready-to-show', self.__web_view_ready_cb)
                 browser.connect('create', self.__create_web_view_cb)
