@@ -785,6 +785,7 @@ class Browser(WebKit.WebView):
             return True
 
         data = {
+            'raw_error': str(web_error),
             'page_title': _('This web page could not be loaded'),
             'title': _('This web page could not be loaded'),
             'message': _('"%s" could not be loaded. Please check for '
