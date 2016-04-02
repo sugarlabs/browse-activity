@@ -497,14 +497,6 @@ class TabbedView(BrowserNotebook):
         return isinstance(current_page, PDFTabPage)
 
 
-Gtk.rc_parse_string('''
-    style "browse-tab-close" {
-        xthickness = 0
-        ythickness = 0
-    }
-    widget "*browse-tab-close" style "browse-tab-close"''')
-
-
 class TabPage(Gtk.ScrolledWindow):
     __gtype_name__ = 'BrowseTabPage'
 

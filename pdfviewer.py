@@ -216,6 +216,9 @@ class DummyBrowser(GObject.GObject):
         self._progress = 0.0
         self.security_status = None
 
+    def get_web_inspector(self):
+        return None
+
     def do_get_property(self, prop):
         if prop.name == 'title':
             return self._title

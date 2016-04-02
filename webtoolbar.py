@@ -327,6 +327,14 @@ class PrimaryToolbar(ToolbarBase):
         separator.show()
         save_as_pdf.show()
         '''
+        inspect_view = ToolButton('emblem-view-source')
+        inspect_view.set_tooltip(_('Show Web Inspector'))
+        inspect_view.connect('clicked', self.inspect_view)
+
+        activity_button.props.page.insert(separator, -1)
+        activity_button.props.page.insert(inspect_view, -1)
+        separator.show()
+        inspect_view.show()
 
         self._go_home = ToolButton('go-home')
         self._go_home.set_tooltip(_('Home page'))
@@ -715,6 +723,14 @@ class PrimaryToolbar(ToolbarBase):
 
     def _link_add_clicked_cb(self, button):
         self.emit('add-link')
+
+    def inspect_view(self, button):
+        page = self._canvas.get_current_page()
+        webview = self._canvas.get_children()[page].props.browser
+        inspector = webview.get_inspector()
+        if inspector is not None:
+            inspector.show()
+            inspector.attach()
 
     '''
     def save_as_pdf(self, widget):
