@@ -28,6 +28,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import WebKit2
 from gi.repository import Soup
+from gi.repository import SoupGNOME
 
 import base64
 import time
@@ -155,20 +156,18 @@ class WebActivity(activity.Activity):
         # session.set_property('accept-language-auto', True)
         # session.set_property('ssl-use-system-ca-file', True)
         # session.set_property('ssl-strict', False)
+
+        # But of a hack, but webkit doesn't let us change the cookie jar
+        # contents, we we can just pre-seed it
+        cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
+                                               read_only=False)
+        _seed_xs_cookie(cookie_jar)
+        del cookie_jar
+
         context = WebKit2.WebContext.get_default()
         cookie_manager = context.get_cookie_manager()
-
-        # By default, cookies are not stored persistently, we have to
-        # add a cookie jar so that they get saved to disk.  We use one
-        # with a SQlite database:
-        # cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
-        #                                       read_only=False)
         cookie_manager.set_persistent_storage(
             _cookies_db_path, WebKit2.CookiePersistentStorage.SQLITE)
-        # session.add_feature(cookie_jar)
-
-        # TODO PORT
-        # _seed_xs_cookie(cookie_jar)
 
         # FIXME
         # downloadmanager.remove_old_parts()
