@@ -302,8 +302,10 @@ class TabbedView(BrowserNotebook):
         tab_page.show()
         self.set_current_page(-1)
 
-    def on_add_tab(self, gobject):
-        self.add_tab()
+    def on_add_tab(self, gobject, uri):
+        browser = self.add_tab()
+        if uri is not None:
+            browser.load_uri(uri)
 
     def close_tab(self, tab_page=None):
         if self.get_n_pages() == 1:
