@@ -238,7 +238,7 @@ class TabbedView(BrowserNotebook):
         browser.get_toplevel().fullscreen()
 
     def __leave_fullscreen_cb(self, browser):
-        self.props.show_tabs = True
+        # Tab showing done by toplevel
         browser.get_toplevel().unfullscreen()
 
     def __open_pdf_in_new_tab_cb(self, browser, url):
