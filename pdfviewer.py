@@ -32,6 +32,8 @@ from sugar3.datastore import datastore
 from sugar3.activity import activity
 from sugar3.bundle.activitybundle import ActivityBundle
 
+import downloadmanager
+
 
 class EvinceViewer(Gtk.VBox):
     """PDF viewer with a toolbar overlay for basic navigation and an
@@ -496,6 +498,7 @@ class PDFTabPage(Gtk.HBox):
 
         context = WebKit2.WebContext.get_default()
         context.connect('download-started', self.__download_started_cb)
+        downloadmanager.ignore_pdf(remote_uri)
         context.download_uri(remote_uri)
 
     def __download_started_cb(self, context, download):
@@ -503,6 +506,7 @@ class PDFTabPage(Gtk.HBox):
         download.connect('failed', self.__download_failed_cb)
         download.connect('finished', self.__download_finished_cb)
         download.connect('received-data', self.__download_received_data_cb)
+        context.disconnect_by_func(self.__download_started_cb)
 
     def __download_received_data_cb(self, download, data_size):
         self._browser.props.estimated_load_progress = \

@@ -379,6 +379,19 @@ class Download(object):
             self.cleanup()
 
 
+_ignore_pdf_uris = []
+
+
+def ignore_pdf(uri):
+    _ignore_pdf_uris.append(uri)
+
+
 def add_download(webkit_download, activity):
+    uri = webkit_download.get_request().get_uri()
+    if uri in _ignore_pdf_uris:
+        # The pdf viewer will handle this download`
+        _ignore_pdf_uris.remove(uri)
+        return
+
     download = Download(webkit_download, activity)
     _active_downloads.append(download)
