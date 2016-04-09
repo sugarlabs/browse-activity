@@ -41,7 +41,6 @@ from widgets import BrowserNotebook
 from palettes import ContentInvoker
 from filepicker import FilePicker
 import globalhistory
-import downloadmanager
 from pdfviewer import PDFTabPage
 
 ZOOM_ORIGINAL = 1.0
@@ -666,9 +665,6 @@ class Browser(WebKit2.WebView):
 
         self.set_settings(web_settings)
 
-        context = self.get_context()
-        context.connect('download-started', self.__download_requested_cb)
-
         # This property is used to set the title immediatly the user
         # presses Enter on the URL Entry
         self.loading_uri = None
@@ -839,11 +835,6 @@ class Browser(WebKit2.WebView):
             return True
 
         return False
-
-    def __download_requested_cb(self, context, download):
-        logging.error('__download_requested_cb')
-        downloadmanager.add_download(download, self._activity)
-        return True
 
     def __load_failed_cb(self, web_view, event, uri, web_error):
         """Show Sugar's error page"""

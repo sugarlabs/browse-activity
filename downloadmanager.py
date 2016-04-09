@@ -379,16 +379,6 @@ class Download(object):
             self.cleanup()
 
 
-_previous_source = None
-
-
 def add_download(webkit_download, activity):
-    global _previous_source
-    # FIXME:  WebKit shouldn't send us the same download twice
-    source = webkit_download.get_request().get_uri()
-    if source == _previous_source:
-        return
-
-    _previous_source = source
     download = Download(webkit_download, activity)
     _active_downloads.append(download)

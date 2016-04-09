@@ -171,6 +171,7 @@ class WebActivity(activity.Activity):
 
         # FIXME
         # downloadmanager.remove_old_parts()
+        context.connect('download-started', self.__download_requested_cb)
 
         self._force_close = False
         self._tabbed_view = TabbedView(self)
@@ -251,6 +252,12 @@ class WebActivity(activity.Activity):
         # README: this is a workaround to remove old temp file
         # http://bugs.sugarlabs.org/ticket/3973
         self._cleanup_temp_files()
+
+    def __download_requested_cb(self, context, download):
+        logging.error('__download_requested_cb %r',
+                      download.get_request().get_uri())
+        downloadmanager.add_download(download, self)
+        return True
 
     def unfullscreen(self):
         activity.Activity.unfullscreen(self)
