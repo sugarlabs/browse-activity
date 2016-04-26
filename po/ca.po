@@ -1,33 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2009-08-24 12:14-0400\n"
-"Last-Translator: Camille Robert <camille.robert@gmail.com>\n"
+"PO-Revision-Date: 2015-09-23 16:21+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1443025310.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
-msgstr "Navegar"
+msgstr "Navegació"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -35,18 +28,20 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Navegueu pel món! Aquí podeu fer recerca, veure vídeos educatius, fer cursos "
+"en línia, trobar llibres, connectar-vos amb amics i molt més."
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
-msgstr ""
+msgstr "Sense títol"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr ""
+msgstr "S'està carregant..."
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "No s'ha pogut carregar la pàgina web"
 
 #: browser.py:759
 #, python-format
@@ -54,20 +49,25 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" no s'ha pogut carregar. Si us plau, comproveu que no hi hagi cap "
+"error tipogràfic i assegureu-vos que estigueu connectat a Internet."
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Torna-ho a intentar"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "No hi ha prou espai per baixar"
 
+# well-spelled: MB, filename, totalsizeinmb, freespaceinmb
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Baixar \"%{filename}\" requereix %{total_size_in_mb} MB d'espai lliure, tan "
+"sols hi ha %{free_space_in_mb} MB disponibles"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
@@ -75,7 +75,7 @@ msgstr "D'acord"
 
 #: downloadmanager.py:157
 msgid "Download started"
-msgstr "Descàrrega començada"
+msgstr "S'ha iniciat la baixada"
 
 #: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
@@ -84,11 +84,11 @@ msgstr "%s"
 
 #: downloadmanager.py:168
 msgid "Download completed"
-msgstr "Descàrrega completa"
+msgstr "S'ha completat la baixada"
 
 #: downloadmanager.py:173
 msgid "Show in Journal"
-msgstr "Mostra al Diari"
+msgstr "Mostra al diari"
 
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
@@ -101,6 +101,8 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"S'està baixant %(filename)s de \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
@@ -112,61 +114,61 @@ msgstr "Següent"
 
 #: linkbutton.py:108
 msgid "Remove"
-msgstr "Suprimir"
+msgstr "Suprimeix"
 
 #: palettes.py:184
 msgid "Follow link"
-msgstr "Seguir l'enllaç"
+msgstr "Segueix l'enllaç"
 
 #: palettes.py:189
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Segueix l'enllaç en una nova pestanya"
 
 #: palettes.py:198
 msgid "Keep link"
-msgstr ""
+msgstr "Manté l'enllaç"
 
 #: palettes.py:204
 msgid "Copy link"
-msgstr "Copiar l'enllaç"
+msgstr "Copia l'enllaç"
 
 # "la imatge" o "l'imatge" ??
 #: palettes.py:218
-#, fuzzy
 msgid "Copy image"
-msgstr "Copiar la imatge"
+msgstr "Copia la imatge"
 
 #: palettes.py:224
 msgid "Keep image"
-msgstr ""
+msgstr "Manté la imatge"
 
 #: palettes.py:238
 msgid "Copy text"
-msgstr ""
+msgstr "Copia el text"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
-msgstr "Reduir"
+msgstr "Redueix"
 
 #: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
-msgstr "Ampliar"
+msgstr "Amplia"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Mida real"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr ""
+msgstr "Pàgina anterior"
 
 #: pdfviewer.py:121
 msgid "Next page"
-msgstr ""
+msgstr "Pàgina següent"
 
+# well-spelled: PDF
 #: pdfviewer.py:133
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Desa el PDF al diari"
 
 #: pdfviewer.py:341
 msgid "Cancel"
@@ -174,15 +176,15 @@ msgstr "Cancel·la"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "S'està baixant el document..."
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "No s'ha pogut carregar el document"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Si us plau, assegureu-vos que esteu connectat a Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
@@ -190,37 +192,37 @@ msgstr "Pantalla completa"
 
 #: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr "Mostrar safata"
+msgstr "Mostra la safata"
 
 #: viewtoolbar.py:116
 msgid "Hide Tray"
-msgstr "Ocultar safata"
+msgstr "Oculta la safata"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Es va configurar la pàgina inicial"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Es va configurar la pàgina inicial per defecte"
 
 #: webactivity.py:655
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Descàrrega en procés"
+msgstr[0] "Baixada en progrés"
+msgstr[1] "Baixades en progrés"
 
 #: webactivity.py:658
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Si l'atures ara, la descàrrega serà cancel·lada"
+msgstr[0] "Aturar-ho ara esborrarà la vostra baixada"
+msgstr[1] "Aturar-ho ara esborrarà les vostres baixades"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Continua la baixada"
+msgstr[1] "Continua les baixades"
 
 #: webactivity.py:668
 msgid "Stop"
@@ -228,19 +230,19 @@ msgstr "Atura"
 
 #: webtoolbar.py:288
 msgid "Home page"
-msgstr ""
+msgstr "Pàgina inicial"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Selecciona com la pàgina inicial"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Restableix la pàgina inicial"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: webtoolbar.py:338
 msgid "Back"
@@ -253,31 +255,3 @@ msgstr "Endavant"
 #: webtoolbar.py:366
 msgid "Bookmark"
 msgstr "Adreça d'interès"
-
-#, python-format
-#, fuzzy
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr "Descarregant %s des de %s."
-
-#~ msgid "View"
-#~ msgstr "Veure"
-
-#~ msgid "Reload"
-#~ msgstr "Recarrega"
-
-# cal veure el context
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "Fitxer %s des de %s."
-
-#~ msgid "blank"
-#~ msgstr "en blanc"
-
-# codi font o font
-#~ msgid "Source"
-#~ msgstr "Codi font"
-
-#~ msgid "Open"
-#~ msgstr "Obert"
