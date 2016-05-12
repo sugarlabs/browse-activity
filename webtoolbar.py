@@ -727,8 +727,14 @@ class PrimaryToolbar(ToolbarBase):
     def inspect_view(self, button):
         page = self._canvas.get_current_page()
         webview = self._canvas.get_children()[page].props.browser
+
+        # If get_inspector returns None, it is not a real WebView
         inspector = webview.get_inspector()
         if inspector is not None:
+            # Inspector window will be blank if disabled
+            web_settings = webview.get_settings()
+            web_settings.props.enable_developer_extras = True
+
             inspector.show()
             inspector.attach()
 
