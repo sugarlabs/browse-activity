@@ -252,17 +252,6 @@ msgstr "Előre"
 msgid "Bookmark"
 msgstr "Könyvjelző"
 
-# 1w1jEq  <a href="http://bnjxdgatwdcg.com/">bnjxdgatwdcg</a>, [url=http://gomeqifpoiss.com/]gomeqifpoiss[/url], [link=http://qxcougvejxib.com/]qxcougvejxib[/link], http://yzxrjsphgmqt.com/
-#, python-format
-#, fuzzy
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "1w1jEq  <a href=\"http://bnjxdgatwdcg.com/\">bnjxdgatwdcg</a>, "
-#~ "[url=http://gomeqifpoiss.com/]gomeqifpoiss[/url], "
-#~ "[link=http://qxcougvejxib.com/]qxcougvejxib[/link], http://yzxrjsphgmqt.com/"
-
 #~ msgid "Edit"
 #~ msgstr "Szerkesztés"
 
