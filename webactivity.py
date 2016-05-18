@@ -174,13 +174,14 @@ class WebActivity(activity.Activity):
         self._tabbed_view.connect('switch-page', self.__switch_page_cb)
 
         self._tray = HTray()
+        self._tray._add_bookmark.connect('add-link', self._link_add_button_cb)
         self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
         self._edit_toolbar = EditToolbar(self)
         self._view_toolbar = ViewToolbar(self)
 
-        self._primary_toolbar.connect('add-link', self._link_add_button_cb)
+        self._primary_toolbar.connect('toggle-tray', self._toggle_tray_cb)
 
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
 
@@ -189,6 +190,8 @@ class WebActivity(activity.Activity):
         self._primary_toolbar.connect('set-home', self._set_home_button_cb)
 
         self._primary_toolbar.connect('reset-home', self._reset_home_button_cb)
+
+        self._primary_toolbar.connect('page-loaded', self._bookmark_color_change_cb)
 
         self._edit_toolbar_button = ToolbarButton(
             page=self._edit_toolbar, icon_name='toolbar-edit')
@@ -471,6 +474,13 @@ class WebActivity(activity.Activity):
             finally:
                 f.close()
 
+    # Toggles the bookmark tray
+    def _toggle_tray_cb(self, button):
+        if self._primary_toolbar._link_add.props.active:
+            self._tray.show()
+        else:
+            self._tray.hide()
+
     def _link_add_button_cb(self, button):
         self._add_link()
 
@@ -487,6 +497,21 @@ class WebActivity(activity.Activity):
     def _reset_home_button_cb(self, button):
         self._tabbed_view.reset_homepage()
         self._alert(_('The default initial page was configured'))
+
+    def _bookmark_color_change_cb(self, button):
+        ''' changes the bookmark color to xo_color/None on page load '''
+        browser = self._tabbed_view.props.current_browser
+        ui_uri = browser.get_uri()
+        if ui_uri is not None:
+            for link in self.model.data['shared_links']:
+                if link['hash'] == sha1(ui_uri).hexdigest():
+                    _logger.debug('_add_link: link exist already a=%s b=%s',
+                                  link['hash'], sha1(ui_uri).hexdigest())
+                    color = profile.get_color()
+                    self._primary_toolbar._link_add.set_xo_color(xo_color=color)
+                    return
+
+        self._primary_toolbar._link_add.set_xo_color(None)
 
     def _alert(self, title, text=None):
         alert = NotifyAlert(timeout=5)
@@ -587,26 +612,25 @@ class WebActivity(activity.Activity):
 
     def _add_link(self):
         ''' take screenshot and add link info to the model '''
-
         browser = self._tabbed_view.props.current_browser
         ui_uri = browser.get_uri()
+        if ui_uri is not None:
+            for link in self.model.data['shared_links']:
+                if link['hash'] == sha1(ui_uri).hexdigest():
+                    _logger.debug('_add_link: link exist already a=%s b=%s',
+                                  link['hash'], sha1(ui_uri).hexdigest())
+                    return
+            buf = self._get_screenshot()
+            timestamp = time.time()
+            self.model.add_link(ui_uri, browser.props.title, buf,
+                                profile.get_nick_name(),
+                                profile.get_color().to_string(), timestamp)
 
-        for link in self.model.data['shared_links']:
-            if link['hash'] == sha1(ui_uri).hexdigest():
-                _logger.debug('_add_link: link exist already a=%s b=%s',
-                              link['hash'], sha1(ui_uri).hexdigest())
-                return
-        buf = self._get_screenshot()
-        timestamp = time.time()
-        self.model.add_link(ui_uri, browser.props.title, buf,
-                            profile.get_nick_name(),
-                            profile.get_color().to_string(), timestamp)
-
-        if self.messenger is not None:
-            self.messenger._add_link(ui_uri, browser.props.title,
-                                     profile.get_color().to_string(),
-                                     profile.get_nick_name(),
-                                     base64.b64encode(buf), timestamp)
+            if self.messenger is not None:
+                self.messenger._add_link(ui_uri, browser.props.title,
+                                         profile.get_color().to_string(),
+                                         profile.get_nick_name(),
+                                         base64.b64encode(buf), timestamp)
 
     def _add_link_model_cb(self, model, index):
         ''' receive index of new link from the model '''
@@ -615,6 +639,8 @@ class WebActivity(activity.Activity):
                               link['color'], link['title'],
                               link['owner'], index, link['hash'],
                               link.get('notes'))
+        color = profile.get_color()
+        self._primary_toolbar._link_add.set_xo_color(xo_color=color)
 
     def _add_link_totray(self, url, buf, color, title, owner, index, hash,
                          notes=None):
@@ -626,18 +652,12 @@ class WebActivity(activity.Activity):
         # use index to add to the tray
         self._tray.add_item(item, index)
         item.show()
-        self._view_toolbar.traybutton.props.sensitive = True
-        self._view_toolbar.traybutton.props.active = True
-        self._view_toolbar.update_traybutton_tooltip()
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
         self.model.remove_link(hash)
         self._tray.remove_item(button)
-        if len(self._tray.get_children()) == 0:
-            self._view_toolbar.traybutton.props.sensitive = False
-            self._view_toolbar.traybutton.props.active = False
-            self._view_toolbar.update_traybutton_tooltip()
+        self._bookmark_color_change_cb(button)
 
     def __link_notes_changed(self, button, hash, notes):
         self.model.change_link_notes(hash, notes)
