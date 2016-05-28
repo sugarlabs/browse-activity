@@ -72,6 +72,19 @@ def remove_all_downloads():
             datastore.delete(download.dl_jobject.object_id)
         download.cleanup()
 
+def overall_downloads_progress():
+    '''
+    Returns the average progress of "all" the concurrent
+    downloads running in background
+    '''
+    if len(_active_downloads) != 0:
+        total_progress = 0.0
+        for download in _active_downloads:
+            total_progress += (download._progress / 100.0)
+        return (total_progress / num_downloads())
+    else:
+        return 0.0
+
 
 class Download(object):
 
