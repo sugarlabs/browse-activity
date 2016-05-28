@@ -649,6 +649,10 @@ class Browser(WebKit2.WebView):
         self._activity = activity
         web_settings = self.get_settings()
 
+        # "Experimental" features that Epiphany enabled by default
+        web_settings.props.enable_webgl = True
+        web_settings.props.enable_webaudio = True
+
         # Add SugarLabs user agent:
         identifier = ' SugarLabs/' + self.CURRENT_SUGAR_VERSION
         web_settings.props.user_agent += identifier
