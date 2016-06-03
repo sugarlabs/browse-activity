@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2016  Utkarsh Tiwari
+# Copyright (C) 2016 Utkarsh Tiwari <iamutkarshtiwari@gmail.com>
+# Copyright (C) 2016 Sam Parkinson <sam@sam.today>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,126 +13,124 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contact information:
-# Utkarsh Tiwari    iamutkarshtiwari@gmail.com
+'''
+The progress toolbutton is a :class:`sugar3.graphics.progressicon.ProgressIcon`
+that fits into a toolbar.  It is a great way to convey progress of an
+ongoing background operation, especially if you want to have a palette with
+more detailed information.
 
-"""
-BETA
-"""
+Using the progress toolbutton is just like using a regular toolbutton; you
+set the icon name and add it to the toolbar.  You can then use the `update`
+function as the operation progresses to change the fill percentage.
 
-import logging
+Example::
+
+    self._download_icon = ProgressToolButton(icon_name='emblem-downloads')
+    self._download_icon.props.tooltip = _('No Download Running')
+    toolbar.insert(self._download_icon, -1)
+    self._download_icon.show()
+
+    def __download_progress_cb(self, progress):
+        self._download_icon.props.tooltip = _('Downloading')
+        self._download_icon.update(progress)
+'''
 
 from gi.repository import Gtk
 from gi.repository import GObject
 
 from sugar3.graphics import style
-from sugar3.graphics import toolbutton
 from sugar3.graphics.toolbutton import ToolButton
-from sugar3.graphics.icon import Icon
-from sugar3.graphics.icon import get_surface
-from sugar3.graphics.palette import Palette, ToolInvoker
+from sugar3.graphics.progressicon import ProgressIcon
+from sugar3.graphics.xocolor import XoColor
 
 
 class ProgressToolButton(ToolButton):
-    """
-    This class provides a simple wrapper based on the :class:`ToolButton`
-    Displays the progress filling the ToolButton icon.
-
-    Call update(progress) with the new progress to update the ToolButton icon.
-
-    The direction defaults to 'vertical', in which case the icon is
-    filled from bottom to top.  If direction is set to 'horizontal',
-    it will be filled from right to left or from left to right,
-    depending on the system's language RTL setting.
-    """
+    '''
+    This button is just like a normal tool button, except that the
+    icon can dynamically fill based on a progress number.
+    '''
 
     __gtype_name__ = 'SugarProgressToolButton'
 
-    def __init__(self, icon_name=None, pixel_size=None,
-                direction=Gtk.Orientation.VERTICAL, **kwargs):
-        self._accelerator = None
-        self._tooltip = None
-        self._palette_invoker = ToolInvoker()
+    def __init__(self, **kwargs):
+        self._xo_color = XoColor('insensitive')
+        self._icon_name = None
+        self._direction = 'vertical'
         self._progress = 0.0
-        self._icon_name = icon_name
-        self._pixel_size = pixel_size
-        self._direction = direction
 
-        GObject.GObject.__init__(self, **kwargs)
+        ToolButton.__init__(self, **kwargs)
+        # GObject should do this, but something down the ToolButton chain of
+        # parents is not passing the kwargs to GObject
+        if 'xo_color' in kwargs:
+            self.props.xo_color = kwargs['xo_color']
+        if 'icon_name' in kwargs:
+            self.props.icon_name = kwargs['icon_name']
+        if 'direction' in kwargs:
+            self.props.direction = kwargs['direction']
+        self._updated()
 
-        self._hide_tooltip_on_click = True
-        self._palette_invoker.attach_tool(self)
+    @GObject.property
+    def xo_color(self):
+        '''
+        This property defines the stroke and fill of the icon, and is
+        the type :class:`sugar3.graphics.xocolor.XoColor`
+        '''
+        return self._xo_color
 
-        self._stroke = get_surface(
-            icon_name=self._icon_name, width=self._pixel_size, height=self._pixel_size,
-            stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
-            fill_color=style.COLOR_TRANSPARENT.get_svg())
+    @xo_color.setter
+    def xo_color(self, new):
+        self._xo_color = new
+        self._updated()
 
-        self._fill = get_surface(
-            icon_name=self._icon_name, width=self._pixel_size, height=self._pixel_size,
-            stroke_color=style.COLOR_TRANSPARENT.get_svg(),
-            fill_color=style.COLOR_WHITE.get_svg())
+    @GObject.property
+    def icon_name(self):
+        '''
+        Icon name (same as with a :class:`sugar3.graphics.icon.Icon`), as the
+        type :class:`str`
+        '''
+        return self._icon_name
 
-    def do_draw(self, cr):
-        if self.palette and self.palette.is_up():
-            allocation = self.get_allocation()
-            # draw a black background, has been done by the engine before
-            cr.set_source_rgb(0, 0, 0)
-            cr.rectangle(0, 0, allocation.width, allocation.height)
-            cr.paint()
+    @icon_name.setter
+    def icon_name(self, new):
+        self._icon_name = new
+        self._updated()
 
-        if self.palette and self.palette.is_up():
-            invoker = self.palette.props.invoker
-            invoker.draw_rectangle(cr, self.palette)
+    @GObject.property
+    def direction(self):
+        '''
+        Direction for the icon to fill as it progresses, filling either,
+        * :class:`Gtk.Orientation.VERTICAL` - bottom to top
+        * :class:`Gtk.Orientation.HORIZONTAL` - user's text direction
+        '''
+        return Gtk.Orientation.VERTICAL if self._direction == 'vertical' \
+               else Gtk.Orientation.HORIONTAL
 
-        # Changes the outline color of the progressicon on activation
-        if self._progress > 0:
-            self._stroke = get_surface(
-                icon_name=self._icon_name, width=self._pixel_size, height=self._pixel_size,
-                stroke_color=style.COLOR_WHITE.get_svg(),
-                fill_color=style.COLOR_TRANSPARENT.get_svg())
-        else:
-            self._stroke = get_surface(
-                icon_name=self._icon_name, width=self._pixel_size, height=self._pixel_size,
-                stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
-                fill_color=style.COLOR_TRANSPARENT.get_svg())
+    @direction.setter
+    def direction(self, new):
+        self._direction = 'vertical' if new == Gtk.Orientation.VETICAL \
+                          else Gtk.Orientation.HORIZONTAL
+        self._updated()
 
-        allocation = self.get_allocation()
-
-        # Center the graphic in the allocated space.
-        margin_x = (allocation.width - self._stroke.get_width()) / 2
-        margin_y = (allocation.height - self._stroke.get_height()) / 2
-        cr.translate(margin_x, margin_y)
-
-        # Paint the fill, clipping it by the progress.
-        x_, y_ = 0, 0
-        width, height = self._stroke.get_width(), self._stroke.get_height()
-        if self._direction == 'vertical':  # vertical direction, bottom to top
-            y_ = self._stroke.get_height()
-            height *= self._progress * -1
-        else:
-            rtl_direction = \
-                Gtk.Widget.get_default_direction() == Gtk.TextDirection.RTL
-            if rtl_direction:  # horizontal direction, right to left
-                x_ = self._stroke.get_width()
-                width *= self._progress * -1
-            else:  # horizontal direction, left to right
-                width *= self._progress
-
-        cr.rectangle(x_, y_, width, height)
-        cr.clip()
-        cr.set_source_surface(self._fill, 0, 0)
-        cr.paint()
-
-        # Paint the stroke over the fill.
-        cr.reset_clip()
-        cr.set_source_surface(self._stroke, 0, 0)
-        cr.paint()
-
-        return False
+    def _updated(self):
+        self._icon = ProgressIcon(
+            self._icon_name,
+            style.STANDARD_ICON_SIZE,
+            self._xo_color.get_stroke_color(),
+            self._xo_color.get_fill_color(),
+            self._direction)
+        self._icon.update(self._progress)
+        self.set_icon_widget(self._icon)
+        self._icon.show()
 
     def update(self, progress):
-        # Updates the progress
+        '''
+        Redraw the icon with a different percentage filled in
+
+        Args:
+            progress (float): a value from 0.0 to 1.0, where 1.0 fully
+                fills the icon and 0.0 results in only the stroke being
+                visible
+        '''
         self._progress = progress
+        self._icon.update(progress)
         self.queue_draw()

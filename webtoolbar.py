@@ -38,6 +38,7 @@ from sugar3.datastore import datastore
 from sugar3.activity import activity
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.icon import Icon
+from sugar3.graphics.xocolor import XoColor
 
 import tempfile
 import filepicker
@@ -417,11 +418,9 @@ class PrimaryToolbar(ToolbarBase):
         # FIXME, this is a hack, should be done in the theme:
         palette._content.set_border_width(1)
 
-        # Downloads ProgressIcon
-        self._download_icon = ProgressToolButton('emblem-downloads',
-                                style.STANDARD_ICON_SIZE, 'vertical')
-        self._download_icon.set_tooltip(_('Downloads'))
-        self._download_icon.props.sensitive = False
+        self._download_icon = ProgressToolButton(
+            icon_name='emblem-downloads',
+            tooltip=_('No Downloads Running'))
         down_id = GObject.timeout_add(500, self.__download_running_cb)
         toolbar.insert(self._download_icon, -1)
         self._download_icon.show()
@@ -461,15 +460,15 @@ class PrimaryToolbar(ToolbarBase):
         self._configure_toolbar()
 
     def __download_running_cb(self):
-        '''
-        Updates the downloadIcon tooltip message and progress value.
-        '''
         progress = downloadmanager.overall_downloads_progress()
         self._download_icon.update(progress)
         if progress > 0.0:
-            self._download_icon.set_tooltip(_("Downloading.. {}%".format(int(progress*100))))
+            self._download_icon.props.tooltip = \
+                _('{}% Downloaded').format(int(progress*100))
+            self._download_icon.props.xo_color = XoColor('white')
         else:
-            self._download_icon.set_tooltip(_("No active downloads"))
+            self._download_icon.props.tooltip = _('No Downloads Running')
+            self._download_icon.props.xo_color = XoColor('insensitive')
         return True
 
     def __key_press_event_cb(self, entry, event):
