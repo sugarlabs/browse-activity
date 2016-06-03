@@ -841,7 +841,9 @@ class Browser(WebKit2.WebView):
         return False
 
     def __load_failed_cb(self, web_view, event, uri, web_error):
-        """Show Sugar's error page"""
+        if web_error.code == WebKit2.NetworkError.CANCLLED:
+            # User pressed the stop button - not a real error
+            return True
 
         # Don't show error page if the load was interrupted by policy
         # change or the request is going to be handled by a
