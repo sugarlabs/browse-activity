@@ -35,19 +35,19 @@ class ViewToolbar(Gtk.Toolbar):
 
         self._activity = activity
 
-        self.zoomout = ToolButton('zoom-out')
+        self.zoomout = ToolButton('zoom-out', accelerator='<ctrl>minus')
         self.zoomout.set_tooltip(_('Zoom out'))
         self.zoomout.connect('clicked', self.__zoomout_clicked_cb)
         self.insert(self.zoomout, -1)
         self.zoomout.show()
 
-        self.zoomin = ToolButton('zoom-in')
+        self.zoomin = ToolButton('zoom-in', accelerator='<ctrl>plus')
         self.zoomin.set_tooltip(_('Zoom in'))
         self.zoomin.connect('clicked', self.__zoomin_clicked_cb)
         self.insert(self.zoomin, -1)
         self.zoomin.show()
 
-        self.zoom_original = ToolButton('zoom-original')
+        self.zoom_original = ToolButton('zoom-original', accelerator='<ctrl>0')
         self.zoom_original.set_tooltip(_('Actual size'))
         self.zoom_original.connect('clicked', self.__zoom_original_clicked_cb)
         self.insert(self.zoom_original, -1)

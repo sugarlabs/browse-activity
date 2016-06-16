@@ -534,10 +534,7 @@ class WebActivity(activity.Activity):
         browser = self._tabbed_view.props.current_browser
 
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
-
-            if key_name == 'd':
-                self._add_link()
-            elif key_name == 'f':
+            if key_name == 'f':
                 _logger.debug('keyboard: Find')
                 self._edit_toolbar_button.set_expanded(True)
                 self._edit_toolbar.search_entry.grab_focus()
@@ -547,21 +544,11 @@ class WebActivity(activity.Activity):
             elif key_name == 'minus':
                 _logger.debug('keyboard: Zoom out')
                 browser.zoom_out()
-            elif key_name in ['plus', 'equal']:
+            elif key_name == 'equal':
+                # Equal is + without a shift, a convenience in addition to
+                # the ctrl+ accelerator configured in the ToolButton
                 _logger.debug('keyboard: Zoom in')
                 browser.zoom_in()
-            elif key_name == '0':
-                _logger.debug('keyboard: Actual size')
-                browser.set_zoom_level(ZOOM_ORIGINAL)
-            elif key_name == 'Left':
-                _logger.debug('keyboard: Go back')
-                browser.go_back()
-            elif key_name == 'Right':
-                _logger.debug('keyboard: Go forward')
-                browser.go_forward()
-            elif key_name == 'r':
-                _logger.debug('keyboard: Reload')
-                browser.reload()
             elif Gdk.keyval_name(event.keyval) == "t":
                 self._tabbed_view.add_tab()
             elif key_name == 'w':
