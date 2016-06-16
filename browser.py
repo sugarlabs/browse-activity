@@ -35,7 +35,7 @@ from gi.repository import GConf
 from sugar3.activity import activity
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
-from sugar3.graphics.alert import ConfirmationAlert
+from sugar3.graphics.alert import Alert, ConfirmationAlert
 
 from widgets import BrowserNotebook
 from palettes import ContentInvoker
@@ -224,6 +224,7 @@ class TabbedView(BrowserNotebook):
         """
 
         web_view.connect('new-tab', self.__new_tab_cb)
+        web_view.connect('web-process-crashed', self.__crashed_cb)
         web_view.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
         web_view.connect('create', self.__create_web_view_cb)
         web_view.connect('enter-fullscreen', self.__enter_fullscreen_cb)
@@ -264,9 +265,30 @@ class TabbedView(BrowserNotebook):
         else:
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
+    def __crashed_cb(self, browser):
+        self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+        uri = browser.cached_uri
+        logging.error('WebKit2 WebView at uri %r has crashed', uri)
+        self.close_tab(browser.get_parent())
+
+        alert = Alert(title=_('This tab has crashed Browse: %s') % uri,
+                      msg=_('If you reopen the tab, it may just crash again'))
+        alert.add_button(Gtk.ResponseType.OK, _('Reopen'))
+        alert.add_button(Gtk.ResponseType.CANCEL, _('Disregard'))
+        alert.connect('response', self.__crashed_alert_cb, uri)
+        self._activity.add_alert(alert)
+
+    def __crashed_alert_cb(self, alert, response_id, uri):
+        self._activity.remove_alert(alert)
+
+        if response_id == Gtk.ResponseType.OK:
+            browser = self.add_tab()
+            browser.props.uri = uri
+
     def add_tab(self, next_to_current=False):
         browser = Browser(self._activity)
         browser.connect('new-tab', self.__new_tab_cb)
+        browser.connect('web-process-crashed', self.__crashed_cb)
         browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
         browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
@@ -488,6 +510,7 @@ class TabbedView(BrowserNotebook):
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
                 browser.connect('ready-to-show', self.__web_view_ready_cb)
                 browser.connect('create', self.__create_web_view_cb)
+                browser.connect('web-process-crashed', self.__crashed_cb)
                 self._append_tab(browser)
             else:
                 logging.error('Encountered unknown tab state %r', state)
@@ -505,7 +528,6 @@ class TabPage(Gtk.ScrolledWindow):
         GObject.GObject.__init__(self)
 
         self._browser = browser
-        self._browser.connect('web-process-crashed', self.__crashed_cb)
 
         self.add(browser)
         browser.show()
@@ -515,47 +537,6 @@ class TabPage(Gtk.ScrolledWindow):
 
     browser = GObject.property(type=object,
                                getter=_get_browser)
-
-    def __crashed_cb(self, webview):
-        self._show_message(
-            _('WebKit has crashed'),
-            _('WebKit was unable to display this page.  Try reloading this'
-              ' page or navigating to a different page if the issue'
-              ' persists'))
-
-    def _show_message(self, title, message):
-        # Copy 'n' paste reuse from the journal :)
-        self.remove(self.get_child())
-
-        background_box = Gtk.EventBox()
-        background_box.modify_bg(Gtk.StateType.NORMAL,
-                                 style.COLOR_WHITE.get_gdk_color())
-        self.add(background_box)
-
-        alignment = Gtk.Alignment.new(0.5, 0.5, 0.1, 0.1)
-        background_box.add(alignment)
-
-        box = Gtk.VBox()
-        alignment.add(box)
-
-        icon = Icon(pixel_size=style.LARGE_ICON_SIZE,
-                    icon_name='emblem-warning',
-                    stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
-                    fill_color=style.COLOR_TRANSPARENT.get_svg())
-        box.pack_start(icon, expand=True, fill=False, padding=0)
-
-        label = Gtk.Label()
-        color = style.COLOR_BUTTON_GREY.get_html()
-        label.set_markup(
-            '<span weight="bold" color="%s">%s</span>' % (
-                color, GLib.markup_escape_text(title)))
-        box.pack_start(label, expand=True, fill=False, padding=0)
-
-        label = Gtk.Label()
-        label.set_markup(message)
-        box.pack_start(label, expand=True, fill=False, padding=0)
-
-        background_box.show_all()
 
 
 class TabLabel(Gtk.HBox):
@@ -700,6 +681,9 @@ class Browser(WebKit2.WebView):
             if item is not None:
                 self.go_to_back_forward_list_item(item)
 
+        # we use this if the browser crashes
+        self.cached_uri = None
+
     def get_state(self):
         state = self.get_session_state()
         gbytes = state.serialize()
@@ -795,6 +779,8 @@ class Browser(WebKit2.WebView):
             # Add the url to the global history or update it.
             uri = self.get_uri()
             self._global_history.add_page(uri)
+
+        self.cached_uri = self.props.uri
 
         if status == WebKit2.LoadEvent.COMMITTED:
             # Update the security status.
