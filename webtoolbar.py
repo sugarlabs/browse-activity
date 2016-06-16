@@ -377,7 +377,8 @@ class PrimaryToolbar(ToolbarBase):
 
         self._entry_item.show()
 
-        self._back = ToolButton('go-previous-paired')
+        self._back = ToolButton('go-previous-paired',
+                                accelerator='<ctrl>Left')
         self._back.set_tooltip(_('Back'))
         self._back.props.sensitive = False
         self._back.connect('clicked', self._go_back_cb)
@@ -391,7 +392,8 @@ class PrimaryToolbar(ToolbarBase):
         # FIXME, this is a hack, should be done in the theme:
         palette._content.set_border_width(1)
 
-        self._forward = ToolButton('go-next-paired')
+        self._forward = ToolButton('go-next-paired',
+                                   accelerator='<ctrl>Right')
         self._forward.set_tooltip(_('Forward'))
         self._forward.props.sensitive = False
         self._forward.connect('clicked', self._go_forward_cb)
@@ -412,7 +414,7 @@ class PrimaryToolbar(ToolbarBase):
         toolbar.insert(self._download_icon, -1)
         self._download_icon.show()
 
-        self._link_add = ToolButton('emblem-favorite')
+        self._link_add = ToolButton('emblem-favorite', accelerator='<ctrl>d')
         self._link_add.set_tooltip(_('Bookmark'))
         self._link_add.connect('clicked', self._link_add_clicked_cb)
         toolbar.insert(self._link_add, -1)
