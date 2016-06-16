@@ -43,6 +43,9 @@ class LinkButton(TrayButton, GObject.GObject):
     notes_changed_signal = GObject.Signal(
         'notes-changed', arg_types=[str, str])
 
+    _dest_x = style.zoom(10)
+    _dest_y = style.zoom(20)
+
     def __init__(self, buf, color, title, owner, hash, notes=None):
         TrayButton.__init__(self)
 
@@ -50,49 +53,63 @@ class LinkButton(TrayButton, GObject.GObject):
         # it as single byte string:
         if isinstance(color, unicode):
             color = str(color)
-        self.set_image(buf, color.split(',')[1], color.split(',')[0])
+        self._fill, self._stroke = color.split(',')
+        self.set_image(buf)
 
         self.hash = hash
         self.notes = notes
         info = title + '\n' + owner
         self.setup_rollover_options(info)
 
-    def set_image(self, buf, fill='#0000ff', stroke='#4d4c4f'):
-        img = Gtk.Image()
+    def get_image_coords(self, relative_to):
+        return self._img.translate_coordinates(
+            relative_to, self._dest_x, self._dest_y)
+
+    def show_thumb(self):
+        self._img.set_from_pixbuf(self._pixbuf_bg)
+
+    def hide_thumb(self):
+        xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
+        bg_surface = self._read_link_background(xo_buddy)
+        bg_width, bg_height = style.zoom(120), style.zoom(110)
+        pixbuf = Gdk.pixbuf_get_from_surface(bg_surface, 0, 0,
+                                             bg_width, bg_height)
+        self._img.set_from_pixbuf(pixbuf)
+
+    def set_image(self, buf):
+        self._img = Gtk.Image()
         str_buf = StringIO.StringIO(buf)
         thumb_surface = cairo.ImageSurface.create_from_png(str_buf)
 
         xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
 
-        bg_surface = self._read_link_background(xo_buddy, fill, stroke)
+        bg_surface = self._read_link_background(xo_buddy)
 
         cairo_context = cairo.Context(bg_surface)
-        dest_x = style.zoom(10)
-        dest_y = style.zoom(20)
-        cairo_context.set_source_surface(thumb_surface, dest_x, dest_y)
+        cairo_context.set_source_surface(thumb_surface,
+                                         self._dest_x, self._dest_y)
         thumb_width, thumb_height = style.zoom(100), style.zoom(80)
-        cairo_context.rectangle(dest_x, dest_y, thumb_width, thumb_height)
+        cairo_context.rectangle(self._dest_x, self._dest_y,
+                                thumb_width, thumb_height)
         cairo_context.fill()
 
         bg_width, bg_height = style.zoom(120), style.zoom(110)
-        pixbuf_bg = Gdk.pixbuf_get_from_surface(bg_surface, 0, 0,
-                                                bg_width, bg_height)
-        img.set_from_pixbuf(pixbuf_bg)
-        self.set_icon_widget(img)
-        img.show()
+        self._pixbuf_bg = Gdk.pixbuf_get_from_surface(bg_surface, 0, 0,
+                                                      bg_width, bg_height)
+        self._img.set_from_pixbuf(self._pixbuf_bg)
+        self.set_icon_widget(self._img)
+        self._img.show()
 
-    def _read_link_background(self, filename, fill_color, stroke_color):
+    def _read_link_background(self, filename):
         icon_file = open(filename, 'r')
         data = icon_file.read()
         icon_file.close()
 
-        if fill_color:
-            entity = '<!ENTITY fill_color "%s">' % fill_color
-            data = re.sub('<!ENTITY fill_color .*>', entity, data)
+        entity = '<!ENTITY fill_color "%s">' % self._fill
+        data = re.sub('<!ENTITY fill_color .*>', entity, data)
 
-        if stroke_color:
-            entity = '<!ENTITY stroke_color "%s">' % stroke_color
-            data = re.sub('<!ENTITY stroke_color .*>', entity, data)
+        entity = '<!ENTITY stroke_color "%s">' % self._stroke
+        data = re.sub('<!ENTITY stroke_color .*>', entity, data)
 
         link_width, link_height = style.zoom(120), style.zoom(110)
         link_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,

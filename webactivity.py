@@ -49,11 +49,14 @@ from sugar3 import profile
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
+from sugar3.graphics.animator import Animator, Animation
 from sugar3 import mime
 
 from sugar3.graphics.toolbarbox import ToolbarButton
 
 PROFILE_VERSION = 2
+
+THUMB_WIDTH, THUMB_HEIGHT = style.zoom(100), style.zoom(80)
 
 _profile_version = 0
 _profile_path = os.path.join(activity.get_activity_root(), 'data/gecko')
@@ -564,22 +567,6 @@ class WebActivity(activity.Activity):
             elif key_name == 'w':
                 _logger.debug('keyboard: close tab')
                 self._tabbed_view.close_tab()
-            elif key_name == "Tab":
-                _logger.debug('keyboard: next tab')
-                current_index = self._tabbed_view.get_current_page()
-                if current_index == self._tabbed_view.get_n_pages() - 1:
-                    self._tabbed_view.set_current_page(0)
-                else:
-                    self._tabbed_view.set_current_page(current_index + 1)
-            elif event.get_state() & Gdk.ModifierType.SHIFT_MASK:
-                if key_name == "ISO_Left_Tab":
-                    _logger.debug('keyboard: previous tab')
-                    current_index = self._tabbed_view.get_current_page()
-                    last_index = self._tabbed_view.get_n_pages()
-                    if current_index == 0:
-                        self._tabbed_view.set_current_page(last_index - 1)
-                    else:
-                        self._tabbed_view.set_current_page(current_index - 1)
             else:
                 return False
 
@@ -634,10 +621,16 @@ class WebActivity(activity.Activity):
     def _add_link_model_cb(self, model, index):
         ''' receive index of new link from the model '''
         link = self.model.data['shared_links'][index]
-        self._add_link_totray(link['url'], base64.b64decode(link['thumb']),
-                              link['color'], link['title'],
-                              link['owner'], index, link['hash'],
-                              link.get('notes'))
+        widget = self._add_link_totray(
+            link['url'], base64.b64decode(link['thumb']),
+            link['color'], link['title'],
+            link['owner'], index, link['hash'],
+            link.get('notes'))
+
+        animator = Animator(1, widget=self)
+        animator.add(AddLinkAnimation(
+            self, self._tabbed_view.props.current_browser, widget))
+        animator.start()
 
     def _add_link_totray(self, url, buf, color, title, owner, index, hash,
                          notes=None):
@@ -652,6 +645,7 @@ class WebActivity(activity.Activity):
         self._view_toolbar.traybutton.props.sensitive = True
         self._view_toolbar.traybutton.props.active = True
         self._view_toolbar.update_traybutton_tooltip()
+        return item
 
     def _link_removed_cb(self, button, hash):
         ''' remove a link from tray and delete it in the model '''
@@ -676,14 +670,12 @@ class WebActivity(activity.Activity):
         window = browser.get_window()
         width, height = window.get_width(), window.get_height()
 
-        thumb_width, thumb_height = style.zoom(100), style.zoom(80)
-
         thumb_surface = Gdk.Window.create_similar_surface(
-            window, cairo.CONTENT_COLOR, thumb_width, thumb_height)
+            window, cairo.CONTENT_COLOR, THUMB_WIDTH, THUMB_HEIGHT)
 
         cairo_context = cairo.Context(thumb_surface)
-        thumb_scale_w = thumb_width * 1.0 / width
-        thumb_scale_h = thumb_height * 1.0 / height
+        thumb_scale_w = THUMB_WIDTH * 1.0 / width
+        thumb_scale_h = THUMB_HEIGHT * 1.0 / height
         cairo_context.scale(thumb_scale_w, thumb_scale_h)
         Gdk.cairo_set_source_window(cairo_context, window, 0, 0)
         cairo_context.paint()
@@ -743,3 +735,93 @@ class WebActivity(activity.Activity):
 
     def get_canvas(self):
         return self._tabbed_view
+
+
+class AddLinkAnimation(Animation):
+
+    def __init__(self, widget, browser, tray_widget):
+        Animation.__init__(self, 0, 3)
+        self._draw_hid = None
+        self._widget = widget
+        self._browser = browser
+        self._tray_widget = tray_widget
+        self._tray_widget.hide_thumb()
+
+        self._balloc = browser.get_allocation()
+        self._center = ((self._balloc.width) / 2.0,
+                        (self._balloc.height) / 2.0)
+
+        window = browser.get_window()
+        width, height = window.get_width(), window.get_height()
+
+        self._snap = Gdk.Window.create_similar_surface(
+            window, cairo.CONTENT_COLOR, width, height)
+        cairo_context = cairo.Context(self._snap)
+        Gdk.cairo_set_source_window(cairo_context, window, 0, 0)
+        cairo_context.paint()
+
+    def do_frame(self, t, duration, easing):
+        # exponential ease in/out
+        t /= duration / 2.0
+        if t < 1:
+            frame = self.end/2.0 * pow(2, 10 * (t - 1))
+        else:
+            t -= 1
+            frame = self.end/2.0 * (-pow(2, -10 * t) + 2)
+        self.next_frame(frame)
+
+    def next_frame(self, frame):
+        self._frame = frame
+        if self._draw_hid is None:
+            self._draw_hid = self._widget.connect_after('draw', self.__draw_cb)
+        self._widget.queue_draw()
+
+    def __draw_cb(self, widget, cr):
+        if self._frame == 3.0:
+            self._tray_widget.show_thumb()
+            self._widget.disconnect(self._draw_hid)
+            return
+
+        cr.save()
+
+        thumb_scale_w = THUMB_WIDTH * 1.0 / self._balloc.width
+        thumb_scale_h = THUMB_HEIGHT * 1.0 / self._balloc.height
+        rect = (self._balloc.x, self._balloc.y,
+                self._balloc.width, self._balloc.height)
+        ox, oy = self._browser.translate_coordinates(widget, 0, 0)
+        if self._frame < 1.0:
+            frame = self._frame
+            notframe = 1.0 - frame
+
+            cr.save()
+            cr.translate(ox, oy)
+            cr.set_source_rgba(1.0, 1.0, 1.0, notframe)
+            cr.rectangle(*rect)
+            cr.fill()
+            cr.restore()
+
+            cr.translate(ox + (self._center[0] * frame),
+                         oy + (self._center[1] * frame))
+            cr.scale(notframe + (thumb_scale_w * frame),
+                     notframe + (thumb_scale_h * frame))
+            stroke_alpha = frame
+            width = 20 * frame
+        else:
+            frame = (self._frame - 1.0) / 2.0
+            notframe = 1.0 - frame
+            x, y = self._tray_widget.get_image_coords(widget)
+            cr.translate(((ox + self._center[0]) * notframe) + (x * frame),
+                         ((oy + self._center[1]) * notframe) + (y * frame))
+            cr.scale(thumb_scale_w, thumb_scale_h)
+            stroke_alpha = notframe
+            width = 20
+
+        cr.set_source_surface(self._snap)
+        cr.rectangle(*rect)
+        cr.fill()
+        cr.set_source_rgba(0.0, 0.0, 0.0, stroke_alpha)
+        cr.set_line_width(width)
+        cr.rectangle(*rect)
+        cr.stroke()
+
+        cr.restore()
