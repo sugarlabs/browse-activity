@@ -43,7 +43,8 @@ from filepicker import FilePicker
 import globalhistory
 from pdfviewer import PDFTabPage
 
-ZOOM_ORIGINAL = 1.0
+# Sugar is relative to 100x (XO), the web is relative to 72x (desktop) scale
+ZOOM_ORIGINAL = style.zoom(100 * 100 / 72) / 100.0
 _ZOOM_AMOUNT = 0.1
 LIBRARY_PATH = '/usr/share/library-common/index.html'
 
@@ -638,16 +639,6 @@ class Browser(WebKit2.WebView):
         identifier = ' SugarLabs/' + self.CURRENT_SUGAR_VERSION
         web_settings.props.user_agent += identifier
 
-        # Change font size based in the GtkSettings font size.  The
-        # gtk-font-name property is a string with format '[font name]
-        # [font size]' like 'Sans Serif 10'.
-        gtk_settings = Gtk.Settings.get_default()
-        gtk_font_name = gtk_settings.get_property('gtk-font-name')
-        gtk_font_size = float(gtk_font_name.split()[-1])
-        web_settings.props.default_font_size = gtk_font_size * 1.2
-        web_settings.props.default_monospace_font_size = \
-            gtk_font_size * 1.2 - 2
-
         self.set_settings(web_settings)
 
         # This property is used to set the title immediatly the user
@@ -666,6 +657,7 @@ class Browser(WebKit2.WebView):
         self.connect('load-failed', self.__load_failed_cb)
 
         self._inject_media_style = False
+        self.props.zoom_level = ZOOM_ORIGINAL
 
         ContentInvoker(self)
 
