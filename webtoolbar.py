@@ -61,6 +61,46 @@ class _SearchWindow(Gtk.Window):
 
     def __init__(self):
         Gtk.Window.__init__(self, type=Gtk.WindowType.POPUP)
+        self.get_style_context().add_class('search-window')
+
+
+screen = Gdk.Screen.get_default()
+css_provider = Gtk.CssProvider.get_default()
+css = ('''
+@define-color button_grey #808080;
+
+.search-window treeview {{
+    background: black;
+    color: white;
+    border-color: @button_grey;
+    border-width: 0 {thickness}px {thickness}px {thickness}px;
+    border-style: solid;
+}}
+
+.search-window treeview:selected {{
+    background: @button_grey;
+}}
+
+.connected-entry {{
+    background: black;
+    border-color: @button_grey;
+    border-width: {thickness}px {thickness}px 0 {thickness}px;
+    border-style: solid;
+}}
+
+.search-window scrollbar trough {{
+    background: black;
+}}
+
+.search-window scrollbar {{
+    border: {thickness}px solid @button_grey;
+    border-left: none;
+}}
+'''.format(thickness=style.LINE_WIDTH))
+css_provider.load_from_data(css)
+context = Gtk.StyleContext()
+context.add_provider_for_screen(screen, css_provider,
+                                Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
 
 class WebEntry(iconentry.IconEntry):
@@ -89,32 +129,6 @@ class WebEntry(iconentry.IconEntry):
         self._focus_out_hid = self.connect(
             'focus-out-event', self.__focus_out_event_cb)
         self._change_hid = self.connect('changed', self.__changed_cb)
-
-    def do_draw(self, cr):
-        """Draw a background to better fit the search window."""
-        if self._search_window.props.visible:
-            original_path = cr.copy_path()
-
-            allocation = self.get_allocation()
-            cr.set_source_rgb(0, 0, 0)
-            cr.rectangle(0, allocation.height / 2,
-                         allocation.width, allocation.height / 2)
-            cr.fill()
-
-            cr.set_source_rgba(*style.COLOR_BUTTON_GREY.get_rgba())
-            # Set the line width two times the theme border to make
-            # the calculation easier.
-            cr.set_line_width(style.LINE_WIDTH * 4)
-            cr.move_to(0, allocation.height)
-            cr.line_to(0, allocation.height / 2)
-            cr.move_to(allocation.width, allocation.height)
-            cr.line_to(allocation.width, allocation.height / 2)
-            cr.stroke()
-
-            cr.new_path()
-            cr.append_path(original_path)
-
-        iconentry.IconEntry.do_draw(self, cr)
 
     def _set_text(self, text):
         """Set the text but block changes notification, so that we can
@@ -185,8 +199,14 @@ class WebEntry(iconentry.IconEntry):
         self._search_window.resize(search_width, search_height)
         self._search_window.show()
 
+        print('My PARENT is', self.get_parent())
+        self.get_parent().get_style_context().add_class('connected-entry')
+        self.get_parent().queue_draw()
+
     def _search_popdown(self):
         self._search_window.hide()
+        self.get_parent().get_style_context().remove_class('connected-entry')
+        self.get_parent().queue_draw()
 
     def __focus_in_event_cb(self, entry, event):
         self._search_popdown()
@@ -368,9 +388,14 @@ class PrimaryToolbar(ToolbarBase):
         self.entry.connect('key-press-event', self.__key_press_event_cb)
         self.entry.connect('changed', self.__changed_cb)
 
+        # In an event box so that it can render the background
+        entry_box = Gtk.EventBox()
+        entry_box.add(self.entry)
+        entry_box.show()
+
         self._entry_item = Gtk.ToolItem()
         self._entry_item.set_expand(True)
-        self._entry_item.add(self.entry)
+        self._entry_item.add(entry_box)
         self.entry.show()
 
         toolbar.insert(self._entry_item, -1)
