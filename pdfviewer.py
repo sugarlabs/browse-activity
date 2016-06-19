@@ -16,13 +16,12 @@
 
 import os
 import logging
-import tempfile
 from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
-from gi.repository import WebKit
+from gi.repository import WebKit2
 
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.graphics.toolbutton import ToolButton
@@ -32,6 +31,8 @@ from sugar3.graphics import style
 from sugar3.datastore import datastore
 from sugar3.activity import activity
 from sugar3.bundle.activitybundle import ActivityBundle
+
+import downloadmanager
 
 
 class EvinceViewer(Gtk.VBox):
@@ -195,16 +196,18 @@ class DummyBrowser(GObject.GObject):
     __gsignals__ = {
         'new-tab': (GObject.SignalFlags.RUN_FIRST, None, ([str])),
         'tab-close': (GObject.SignalFlags.RUN_FIRST, None, ([object])),
+        'load-changed': (GObject.SignalFlags.RUN_FIRST, None, ([int])),
         'selection-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'security-status-changed': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'enter-fullscreen': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'leave-fullscreen': (GObject.SignalFlags.RUN_FIRST, None, ([])),
     }
 
     __gproperties__ = {
-        "title": (object, "title", "Title", GObject.PARAM_READWRITE),
-        "uri": (object, "uri", "URI", GObject.PARAM_READWRITE),
-        "progress": (object, "progress", "Progress", GObject.PARAM_READWRITE),
-        "load-status": (object, "load status", "a WebKit LoadStatus",
-                        GObject.PARAM_READWRITE),
+        'title': (object, 'title', 'Title', GObject.PARAM_READWRITE),
+        'uri': (object, 'uri', 'URI', GObject.PARAM_READWRITE),
+        'estimated-load-progress': (object, 'estimated-load-progress',
+                                    'Progress', GObject.PARAM_READWRITE),
     }
 
     def __init__(self, tab):
@@ -213,18 +216,18 @@ class DummyBrowser(GObject.GObject):
         self._title = ""
         self._uri = ""
         self._progress = 0.0
-        self._load_status = WebKit.LoadStatus.PROVISIONAL
         self.security_status = None
+
+    def get_web_inspector(self):
+        return None
 
     def do_get_property(self, prop):
         if prop.name == 'title':
             return self._title
         elif prop.name == 'uri':
             return self._uri
-        elif prop.name == 'progress':
+        elif prop.name == 'estimated-load-progress':
             return self._progress
-        elif prop.name == 'load-status':
-            return self._load_status
         else:
             raise AttributeError('Unknown property %s' % prop.name)
 
@@ -233,12 +236,16 @@ class DummyBrowser(GObject.GObject):
             self._title = value
         elif prop.name == 'uri':
             self._uri = value
-        elif prop.name == 'progress':
+        elif prop.name == 'estimated-load-progress':
             self._progress = value
-        elif prop.name == 'load-status':
-            self._load_status = value
+            if self._progress >= 1.0:
+                # Clear spinning cursor
+                self.emit('load-changed', WebKit2.LoadEvent.FINISHED)
         else:
             raise AttributeError('Unknown property %s' % prop.name)
+
+    def get_state(self):
+        return {'uri': self.props.uri, 'title': self.props.title}
 
     def get_title(self):
         return self._title
@@ -246,37 +253,16 @@ class DummyBrowser(GObject.GObject):
     def get_uri(self):
         return self._uri
 
-    def get_progress(self):
-        return self._progress
-
-    def get_load_status(self):
-        return self._load_status
-
     def emit_new_tab(self, uri):
         self.emit('new-tab', uri)
 
     def emit_close_tab(self):
         self.emit('tab-close', self._tab)
 
-    def get_history(self):
+    def get_legacy_history(self):
         return [{'url': self.props.uri, 'title': self.props.title}]
 
-    def can_undo(self):
-        return False
-
-    def can_redo(self):
-        return False
-
-    def can_go_back(self):
-        return False
-
-    def can_go_forward(self):
-        return False
-
-    def can_copy_clipboard(self):
-        return False
-
-    def can_paste_clipboard(self):
+    def can_query_editing_commands(self):
         return False
 
     def set_history_index(self, index):
@@ -416,13 +402,17 @@ class PDFTabPage(Gtk.HBox):
     When the file is remote, display a message while downloading.
 
     """
-    def __init__(self):
+    def __init__(self, state=None):
         GObject.GObject.__init__(self)
         self._browser = DummyBrowser(self)
         self._message_box = None
         self._evince_viewer = None
         self._pdf_uri = None
         self._requested_uri = None
+        self._download = None
+        self._downloaded_pdf = False
+        if state is not None:
+            self.setup(state['uri'], state['title'])
 
     def setup(self, requested_uri, title=None):
         self._requested_uri = requested_uri
@@ -432,24 +422,21 @@ class PDFTabPage(Gtk.HBox):
             self._browser.props.title = title
 
         self._browser.props.uri = requested_uri
-        self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
 
         # show PDF directly if the file is local (from the system tree
         # or from the journal)
 
         if requested_uri.startswith('file://'):
             self._pdf_uri = requested_uri
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
             self._show_pdf()
 
         elif requested_uri.startswith('journal://'):
             self._pdf_uri = self._get_path_from_journal(requested_uri)
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
             self._show_pdf(from_journal=True)
 
         # download first if file is remote
-
-        elif requested_uri.startswith('http://') or requested_uri.startswith('https://'):
+        elif requested_uri.startswith('http://') or \
+                requested_uri.startswith('https://'):
             self._download_from_http(requested_uri)
 
     def _get_browser(self):
@@ -500,58 +487,45 @@ class PDFTabPage(Gtk.HBox):
         self.pack_start(self._message_box, True, True, 0)
         self._message_box.show()
 
+        """
         # Figure out download URI
         temp_path = os.path.join(activity.get_activity_root(), 'instance')
         if not os.path.exists(temp_path):
             os.makedirs(temp_path)
 
         fd, dest_path = tempfile.mkstemp(dir=temp_path)
+        """
 
-        self._pdf_uri = 'file://' + dest_path
+        context = WebKit2.WebContext.get_default()
+        context.connect('download-started', self.__download_started_cb)
+        downloadmanager.ignore_pdf(remote_uri)
+        context.download_uri(remote_uri)
 
-        network_request = WebKit.NetworkRequest.new(remote_uri)
-        self._download = WebKit.Download.new(network_request)
-        self._download.set_destination_uri('file://' + dest_path)
+    def __download_started_cb(self, context, download):
+        self._download = download
+        download.connect('failed', self.__download_failed_cb)
+        download.connect('finished', self.__download_finished_cb)
+        download.connect('received-data', self.__download_received_data_cb)
+        context.disconnect_by_func(self.__download_started_cb)
 
-        # FIXME: workaround for SL #4385
-        # self._download.connect('notify::progress',
-        #                        self.__download_progress_cb)
-        self._download.connect('notify::current-size',
-                               self.__current_size_changed_cb)
-        self._download.connect('notify::status', self.__download_status_cb)
-        self._download.connect('error', self.__download_error_cb)
+    def __download_received_data_cb(self, download, data_size):
+        self._browser.props.estimated_load_progress = \
+            self._download.get_estimated_progress()
+        self._message_box.progress_icon.update(
+            self._browser.props.estimated_load_progress)
 
-        self._download.start()
+    def __download_finished_cb(self, download):
+        self._pdf_uri = download.get_destination()
+        logging.error('FINISHED %s', self._pdf_uri)
+        self.remove(self._message_box)
+        self._message_box = None
+        self._show_pdf()
+        self._download = None
+        self._downloaded_pdf = True
 
-    def __current_size_changed_cb(self, download, something):
-        current_size = download.get_current_size()
-        total_size = download.get_total_size()
-        progress = current_size / float(total_size)
-        self._browser.props.progress = progress
-        self._message_box.progress_icon.update(progress)
-
-    def __download_progress_cb(self, download, data):
-        progress = download.get_progress()
-        self._browser.props.progress = progress
-        self._message_box.progress_icon.update(progress)
-
-    def __download_status_cb(self, download, data):
-        status = download.get_status()
-        if status == WebKit.DownloadStatus.STARTED:
-            self._browser.props.load_status = WebKit.LoadStatus.PROVISIONAL
-
-        elif status == WebKit.DownloadStatus.FINISHED:
-            self._browser.props.load_status = WebKit.LoadStatus.FINISHED
-            self.remove(self._message_box)
-            self._message_box = None
-            self._show_pdf()
-
-        elif status == WebKit.DownloadStatus.CANCELLED:
-            logging.debug('Download PDF canceled')
-
-    def __download_error_cb(self, download, err_code, err_detail, reason):
-        logging.debug('Download error! code %s, detail %s: %s' %
-                      (err_code, err_detail, reason))
+    def __download_failed_cb(self, download, error):
+        logging.debug('Download error! code %s, message %s' %
+                      (error.code, error.message))
         title = _('This document could not be loaded')
         self._browser.props.title = title
 
@@ -564,6 +538,7 @@ class PDFTabPage(Gtk.HBox):
             button_callback=self.reload)
         self.pack_start(self._message_box, True, True, 0)
         self._message_box.show()
+        self._download = None
 
     def reload(self, button=None):
         self.remove(self._message_box)
@@ -574,7 +549,13 @@ class PDFTabPage(Gtk.HBox):
         self._browser.emit_close_tab()
 
     def cancel_download(self):
-        self._download.cancel()
+        if self._download is not None:
+            self._download.cancel()
+        try:
+            if self._downloaded_pdf:
+                os.remove(self._pdf_uri[len("file://"):])
+        except:
+            pass
 
     def __journal_id_to_uri(self, journal_id):
         """Return an URI for a Journal object ID."""

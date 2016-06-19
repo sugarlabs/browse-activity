@@ -1,5 +1,6 @@
 # Copyright (C) 2008, One Laptop Per Child
 # Copyright (C) 2009, Tomeu Vizoso, Simon Schampijer
+# Copyright (C) 2015, Sam Parkinson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,8 +25,7 @@ from gettext import gettext as _
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import WebKit
-
+from gi.repository import GLib
 from gi.repository import SugarGestures
 
 from sugar3.graphics.palette import Palette, Invoker
@@ -39,39 +39,8 @@ class ContentInvoker(Invoker):
         Invoker.__init__(self)
         self._position_hint = self.AT_CURSOR
         self._browser = browser
-        self._recognized_long_press_event = False
-        self._browser.connect('button-press-event', self.__button_press_cb)
-        self._browser.connect('button-release-event', self.__button_release_cb)
+        self._browser.connect('context-menu', self.__context_menu_cb)
         self._browser.connect('realize', self.__browser_realize_cb)
-        self.attach(self._browser)
-
-    def get_default_position(self):
-        return self.AT_CURSOR
-
-    def __long_pressed_cb(self, controller, x, y):
-        self._recognized_long_press_event = True
-
-        event = Gdk.EventButton()
-        event.type = Gdk.EventType._3BUTTON_PRESS
-        gdk_window = self._browser.get_window()
-        event.window = gdk_window
-        event.time = Gtk.get_current_event_time()
-        event.x = x
-        event.y = y
-        x_root, y_root = gdk_window.get_root_coords(x, y)
-        event.x_root = x_root
-        event.y_root = y_root
-
-        self._handle_event(event)
-
-        return True
-
-    def __button_release_cb(self, browser, event):
-        if self._recognized_long_press_event:
-            self._recognized_long_press_event = False
-            return True
-        else:
-            return False
 
     def __browser_realize_cb(self, browser):
         x11_window = browser.get_window()
@@ -82,6 +51,26 @@ class ContentInvoker(Invoker):
         lp = SugarGestures.LongPressController()
         lp.connect('pressed', self.__long_pressed_cb)
         lp.attach(browser, SugarGestures.EventControllerFlags.NONE)
+
+    def __long_pressed_cb(self, controller, x, y):
+        # We can't force a context menu, but we can fake a right mouse click
+        event = Gdk.Event()
+        event.type = Gdk.EventType.BUTTON_PRESS
+
+        b = event.button
+        b.type = Gdk.EventType.BUTTON_PRESS
+        b.window = self._browser.get_window()
+        b.time = Gtk.get_current_event_time()
+        b.button = 3  # Right
+        b.x = x
+        b.y = y
+        b.x_root, b.y_root = self._browser.get_window().get_root_coords(x, y)
+
+        Gtk.main_do_event(event)
+        return True
+
+    def get_default_position(self):
+        return self.AT_CURSOR
 
     def get_rect(self):
         allocation = self._browser.get_allocation()
@@ -110,70 +99,58 @@ class ContentInvoker(Invoker):
     def get_toplevel(self):
         return None
 
-    def __button_press_cb(self, browser, event):
-        if event.button != 3:
-            return False
-        self._handle_event(event)
+    def __context_menu_cb(self, webview, context_menu, event, hit_test):
+        self.palette = BrowsePalette(self._browser, hit_test)
+        self.notify_right_click()
+
+        # Don't show the default menu
         return True
-
-    def _handle_event(self, event):
-        hit_test = self._browser.get_hit_test_result(event)
-        hit_context = hit_test.props.context
-        # FIXME #4638
-        logging.error("TEST %r", hit_context)
-        hit_info = {
-            'is link': hit_context & WebKit.HitTestResultContext.LINK,
-            'is image': hit_context & WebKit.HitTestResultContext.IMAGE,
-            'is selection': (hit_context &
-                             WebKit.HitTestResultContext.SELECTION),
-            }
-
-        title = None
-        url = None
-
-        if hit_info['is link']:
-            if isinstance(hit_test.props.inner_node,
-                          WebKit.DOMHTMLImageElement):
-                title = hit_test.props.inner_node.get_title()
-            elif isinstance(hit_test.props.inner_node, WebKit.DOMNode):
-                title = hit_test.props.inner_node.get_text_content()
-            url = hit_test.props.link_uri
-
-        if hit_info['is image']:
-            title = hit_test.props.inner_node.get_title()
-            url = hit_test.props.image_uri
-
-        if hit_info['is selection']:
-            # TODO: find a way to get the selected text so we can use
-            # it as the title of the Palette.
-            # The function webkit_web_view_get_selected_text was removed
-            # https://bugs.webkit.org/show_bug.cgi?id=62512
-            if isinstance(hit_test.props.inner_node, WebKit.DOMNode):
-                title = hit_test.props.inner_node.get_text_content()
-
-        if (hit_info['is link'] or hit_info['is image'] or
-                hit_info['is selection']):
-            self.palette = BrowsePalette(self._browser, title, url, hit_info)
-            self.notify_right_click()
 
 
 class BrowsePalette(Palette):
-    def __init__(self, browser, title, url, hit_info):
+    def __init__(self, browser, hit):
         Palette.__init__(self)
-
         self._browser = browser
-        self._url = url
+        self._hit = hit
 
-        # FIXME: this sometimes fails for links because Gtk tries
-        # to parse it as markup text and some URLs has
-        # "?template=gallery&page=gallery" for example
-        if title not in (None, ''):
-            self.props.primary_text = title
-            if url is not None:
-                self.props.secondary_text = url
+        # Have to set document.title,
+        # see http://comments.gmane.org/gmane.os.opendarwin.webkit.gtk/1981
+        self._browser.run_javascript('''
+            document.SugarBrowseOldTitle = document.title;
+            document.title = (function () {
+                if (window.getSelection) {
+                    return window.getSelection().toString();
+                } else if (document.selection &&
+                           document.selection.type != "Control") {
+                    return document.selection.createRange().text;
+                }
+                return '';
+            })()''', None, self.__after_get_text_cb, None)
+
+    def __after_get_text_cb(self, browser, async_result, user_data):
+        self._all_text = self._browser.props.title
+        self._browser.run_javascript(
+            'document.title = document.SugarBrowseOldTitle')
+        self._link_text = self._hit.props.link_label \
+            or self._hit.props.link_title
+
+        self._title = self._link_text or self._all_text
+        self._url = self._hit.props.link_uri or self._hit.props.image_uri \
+            or self._hit.props.media_uri
+        self._image_url = self._hit.props.image_uri \
+            or self._hit.props.media_uri
+
+        if self._title not in (None, ''):
+            self.props.primary_text = GLib.markup_escape_text(self._title)
+            if self._url is not None:
+                self.props.secondary_text = GLib.markup_escape_text(self._url)
         else:
-            if url is not None:
-                self.props.primary_text = url
+            if self._url is not None:
+                self.props.primary_text = GLib.markup_escape_text(self._url)
+
+        if not self._all_text and not self._url:
+            self.popdown(immediate=True)
+            return  # Nothing to see here!
 
         menu_box = Gtk.VBox()
         self.set_content(menu_box)
@@ -181,7 +158,7 @@ class BrowsePalette(Palette):
         self._content.set_border_width(1)
 
         first_section_added = False
-        if hit_info['is link']:
+        if self._hit.context_is_link():
             first_section_added = True
 
             menu_item = PaletteMenuItem(_('Follow link'), 'browse-follow-link')
@@ -197,7 +174,7 @@ class BrowsePalette(Palette):
 
             # Add "keep link" only if it is not an image.  "Keep
             # image" will be shown in that case.
-            if not hit_info['is image']:
+            if not self._hit.context_is_image():
                 menu_item = PaletteMenuItem(_('Keep link'), 'document-save')
                 menu_item.icon.props.xo_color = profile.get_color()
                 menu_item.connect('activate', self.__download_activate_cb)
@@ -206,11 +183,18 @@ class BrowsePalette(Palette):
 
             menu_item = PaletteMenuItem(_('Copy link'), 'edit-copy')
             menu_item.icon.props.xo_color = profile.get_color()
-            menu_item.connect('activate', self.__copy_link_activate_cb)
+            menu_item.connect('activate', self.__copy_cb, self._url)
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
-        if hit_info['is image']:
+            if self._link_text:
+                menu_item = PaletteMenuItem(_('Copy link text'), 'edit-copy')
+                menu_item.icon.props.xo_color = profile.get_color()
+                menu_item.connect('activate', self.__copy_cb, self._link_text)
+                menu_box.pack_start(menu_item, False, False, 0)
+                menu_item.show()
+
+        if self._hit.context_is_image():
             if not first_section_added:
                 first_section_added = True
             else:
@@ -218,6 +202,7 @@ class BrowsePalette(Palette):
                 menu_box.pack_start(separator, False, False, 0)
                 separator.show()
 
+            # FIXME: Copy image is broken
             menu_item = PaletteMenuItem(_('Copy image'), 'edit-copy')
             menu_item.icon.props.xo_color = profile.get_color()
             menu_item.connect('activate', self.__copy_image_activate_cb)
@@ -226,11 +211,12 @@ class BrowsePalette(Palette):
 
             menu_item = PaletteMenuItem(_('Keep image'), 'document-save')
             menu_item.icon.props.xo_color = profile.get_color()
-            menu_item.connect('activate', self.__download_activate_cb)
+            menu_item.connect('activate', self.__download_activate_cb,
+                              self._image_url)
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
-        if hit_info['is selection']:
+        if self._hit.context_is_selection() and self._all_text:
             if not first_section_added:
                 first_section_added = True
             else:
@@ -240,7 +226,7 @@ class BrowsePalette(Palette):
 
             menu_item = PaletteMenuItem(_('Copy text'), 'edit-copy')
             menu_item.icon.props.xo_color = profile.get_color()
-            menu_item.connect('activate', self.__copy_activate_cb)
+            menu_item.connect('activate', self.__copy_cb, self._all_text)
             menu_box.pack_start(menu_item, False, False, 0)
             menu_item.show()
 
@@ -251,20 +237,13 @@ class BrowsePalette(Palette):
             self._browser.load_uri(self._url)
             self._browser.grab_focus()
 
-    def __copy_link_activate_cb(self, menu_item):
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(self._url, -1)
-
-    def __download_activate_cb(self, menu_item):
-        nr = WebKit.NetworkRequest()
-        nr.set_uri(self._url)
-        download = WebKit.Download(network_request=nr)
-        self._browser.emit('download-requested', download)
+    def __download_activate_cb(self, menu_item, url=None):
+        self._browser.download_uri(url or self._url)
 
     def __copy_image_activate_cb(self, menu_item):
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
-        data = urllib2.urlopen(self._url).read()
+        data = urllib2.urlopen(self._image_url).read()
         temp_file.write(data)
         temp_file.close()
 
@@ -274,5 +253,6 @@ class BrowsePalette(Palette):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_image(image.get_pixbuf())
 
-    def __copy_activate_cb(self, menu_item):
-        self._browser.copy_clipboard()
+    def __copy_cb(self, menu_item, text):
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(text, -1)

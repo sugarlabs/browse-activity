@@ -15,6 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+from gi.repository import WebKit2
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -32,6 +33,7 @@ class EditToolbar(BaseEditToolbar):
 
         self._activity = act
         self._browser = None
+        self._source_id = None
 
         self.undo.connect('clicked', self.__undo_cb)
         self.redo.connect('clicked', self.__redo_cb)
@@ -86,75 +88,86 @@ class EditToolbar(BaseEditToolbar):
         self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
-        if self._browser is not None:
-            self._browser.disconnect(self._selection_changed_hid)
-
         self._browser = browser
 
-        self._update_undoredo_buttons()
-        self._update_copypaste_buttons()
+        self._update_buttons()
 
-        self._selection_changed_hid = self._browser.connect(
-            'selection-changed', self._selection_changed_cb)
+        # FIXME  this api was changed.  Since multiproccess, we need
+        #        a "web extension" which is loaded into the
+        #        webkit process to access the page and signal
+        # self._selection_changed_hid = self._browser.connect(
+        #     'selection-changed', self.__selection_changed_cb)
+        if self._source_id is not None:
+            GObject.source_remove(self._source_id)
+        self._source_id = \
+            GObject.timeout_add(300, self.__selection_changed_cb)
 
-    def _selection_changed_cb(self, widget):
-        self._update_undoredo_buttons()
-        self._update_copypaste_buttons()
+        find = self._browser.get_find_controller()
+        if find is not None:
+            find.connect('found-text', self.__found_text_cb)
+            find.connect('failed-to-find-text', self.__failed_to_find_text_cb)
 
-    def _update_undoredo_buttons(self):
-        self.undo.set_sensitive(self._browser.can_undo())
-        self.redo.set_sensitive(self._browser.can_redo())
+    def __selection_changed_cb(self, *args):
+        self._update_buttons()
+        return True
 
-    def _update_copypaste_buttons(self):
-        self.copy.set_sensitive(self._browser.can_copy_clipboard())
-        self.paste.set_sensitive(self._browser.can_paste_clipboard())
+    def _update_buttons(self):
+        if self._browser.can_query_editing_commands():
+            self._find_sensitive(self.undo, WebKit2.EDITING_COMMAND_UNDO)
+            self._find_sensitive(self.redo, WebKit2.EDITING_COMMAND_REDO)
+            self._find_sensitive(self.copy, WebKit2.EDITING_COMMAND_COPY)
+            self._find_sensitive(self.paste, WebKit2.EDITING_COMMAND_PASTE)
+
+    def _find_sensitive(self, button, command):
+        self._browser.can_execute_editing_command(
+            command, None, self.__can_execute_editing_command_cb, button)
+
+    def __can_execute_editing_command_cb(self, source, result, button):
+        can = self._browser.can_execute_editing_command_finish(result)
+        button.set_sensitive(can)
 
     def __undo_cb(self, button):
-        self._browser.undo()
-        self._update_undoredo_buttons()
+        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_UNDO)
+        self._update_buttons()
 
     def __redo_cb(self, button):
-        self._browser.redo()
-        self._update_undoredo_buttons()
+        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_REDO)
+        self._update_buttons()
 
     def __copy_cb(self, button):
-        self._browser.copy_clipboard()
+        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_COPY)
 
     def __paste_cb(self, button):
-        self._browser.paste_clipboard()
+        self._browser.execute_editing_command(WebKit2.EDITING_COMMAND_PASTE)
 
     def _find_and_mark_text(self, entry):
         search_text = entry.get_text()
-        self._browser.unmark_text_matches()
-        self._browser.mark_text_matches(search_text, case_sensitive=False,
-                                        limit=0)
-        self._browser.set_highlight_text_matches(True)
-        found = self._browser.search_text(search_text, case_sensitive=False,
-                                          forward=True, wrap=True)
-        return found
+        controller = self._browser.get_find_controller()
+        controller.search(search_text,
+                          WebKit2.FindOptions.CASE_INSENSITIVE
+                          | WebKit2.FindOptions.WRAP_AROUND,
+                          (2 << 31) - 1)
 
     def __search_entry_activate_cb(self, entry):
         self._find_and_mark_text(entry)
 
     def __search_entry_changed_cb(self, entry):
-        found = self._find_and_mark_text(entry)
-        if not found:
-            self._prev.props.sensitive = False
-            self._next.props.sensitive = False
-            entry.modify_text(Gtk.StateType.NORMAL,
-                              style.COLOR_BUTTON_GREY.get_gdk_color())
-        else:
-            self._prev.props.sensitive = True
-            self._next.props.sensitive = True
-            entry.modify_text(Gtk.StateType.NORMAL,
-                              style.COLOR_BLACK.get_gdk_color())
+        self._find_and_mark_text(entry)
+
+    def __found_text_cb(self, controller, match_count):
+        self._prev.props.sensitive = True
+        self._next.props.sensitive = True
+        self.search_entry.modify_text(Gtk.StateType.NORMAL,
+                                      style.COLOR_BLACK.get_gdk_color())
+
+    def __failed_to_find_text_cb(self, controller):
+        self._prev.props.sensitive = False
+        self._next.props.sensitive = False
+        self.search_entry.modify_text(Gtk.StateType.NORMAL,
+                                      style.COLOR_BUTTON_GREY.get_gdk_color())
 
     def __find_previous_cb(self, button):
-        search_text = self.search_entry.get_text()
-        self._browser.search_text(search_text, case_sensitive=False,
-                                  forward=False, wrap=True)
+        self._browser.get_find_controller().search_previous()
 
     def __find_next_cb(self, button):
-        search_text = self.search_entry.get_text()
-        self._browser.search_text(search_text, case_sensitive=False,
-                                  forward=True, wrap=True)
+        self._browser.get_find_controller().search_next()
