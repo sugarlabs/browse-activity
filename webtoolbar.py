@@ -21,6 +21,7 @@ from gettext import gettext as _
 
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import Pango
@@ -330,6 +331,7 @@ class PrimaryToolbar(ToolbarBase):
         self._tabbed_view = self._canvas = tabbed_view
 
         self._loading = False
+        self._download_running_hid = None
 
         toolbar = self.toolbar
         activity_button = ActivityToolbarButton(self._activity)
@@ -448,9 +450,9 @@ class PrimaryToolbar(ToolbarBase):
         self._download_icon = ProgressToolButton(
             icon_name='emblem-downloads',
             tooltip=_('No Downloads Running'))
-        down_id = GObject.timeout_add(500, self.__download_running_cb)
         toolbar.insert(self._download_icon, -1)
         self._download_icon.show()
+        downloadmanager.connect_donwload_started(self.__download_started_cb)
 
         self._link_add = ToolButton('emblem-favorite', accelerator='<ctrl>d')
         self._link_add.set_tooltip(_('Bookmark'))
@@ -486,17 +488,26 @@ class PrimaryToolbar(ToolbarBase):
 
         self._configure_toolbar()
 
+    def __download_started_cb(self):
+        if self._download_running_hid is None:
+            self._download_running_hid = GLib.timeout_add(
+                80, self.__download_running_cb)
+
     def __download_running_cb(self):
+        print('__DLR')
         progress = downloadmanager.overall_downloads_progress()
         self._download_icon.update(progress)
-        if progress > 0.0:
+        if downloadmanager.num_downloads() > 0:
             self._download_icon.props.tooltip = \
                 _('{}% Downloaded').format(int(progress*100))
-            self._download_icon.props.xo_color = XoColor('white')
+            self._download_icon.props.xo_color = XoColor(None)
+            return True
         else:
+            GLib.source_remove(self._download_running_hid)
+            self._download_running_hid = None
             self._download_icon.props.tooltip = _('No Downloads Running')
             self._download_icon.props.xo_color = XoColor('insensitive')
-        return True
+            return False
 
     def __key_press_event_cb(self, entry, event):
         self._tabbed_view.current_browser.loading_uri = entry.props.text

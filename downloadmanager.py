@@ -393,10 +393,15 @@ class Download(object):
 
 
 _ignore_pdf_uris = []
+_started_callbacks = []
 
 
 def ignore_pdf(uri):
     _ignore_pdf_uris.append(uri)
+
+
+def connect_donwload_started(callback):
+    _started_callbacks.append(callback)
 
 
 def add_download(webkit_download, activity):
@@ -408,3 +413,6 @@ def add_download(webkit_download, activity):
 
     download = Download(webkit_download, activity)
     _active_downloads.append(download)
+
+    for cb in _started_callbacks:
+        cb()
