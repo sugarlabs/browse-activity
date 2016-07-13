@@ -1,0 +1,3 @@
+[submodule "collabwrapper"]
+	path = collabwrapper
+	url = https://github.com/samdroid-apps/collabwrapper
