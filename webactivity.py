@@ -30,7 +30,7 @@ from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import SoupGNOME
 
-import base64
+from base64 import b64decode, b64encode
 import time
 import shutil
 import json
@@ -51,8 +51,10 @@ from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.animator import Animator, Animation
 from sugar3 import mime
-
 from sugar3.graphics.toolbarbox import ToolbarButton
+
+from collabwrapper.collabwrapper import CollabWrapper
+
 
 PROFILE_VERSION = 2
 
@@ -137,8 +139,6 @@ import downloadmanager
 # TODO: make the registration clearer SL #3087
 
 from model import Model
-from sugar3.presence.tubeconn import TubeConnection
-from messenger import Messenger
 from linkbutton import LinkButton
 
 SERVICE = "org.laptop.WebActivity"
@@ -151,6 +151,8 @@ _logger = logging.getLogger('web-activity')
 class WebActivity(activity.Activity):
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
+        self._collab = CollabWrapper(self)
+        self._collab.message.connect(self.__message_cb)
 
         _logger.debug('Starting the web activity')
 
@@ -183,6 +185,7 @@ class WebActivity(activity.Activity):
 
         self._tray = HTray()
         self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
+        self._tray_links = {}
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
         self._edit_toolbar = EditToolbar(self)
@@ -216,7 +219,7 @@ class WebActivity(activity.Activity):
         self._tabbed_view.show()
 
         self.model = Model()
-        self.model.connect('add_link', self._add_link_model_cb)
+        self.model.add_link_signal.connect(self._add_link_model_cb)
 
         self.connect('key-press-event', self._key_press_cb)
 
@@ -227,34 +230,11 @@ class WebActivity(activity.Activity):
             # opening URIs and default docs.
             self._tabbed_view.load_homepage()
 
-        self.messenger = None
-        self.connect('shared', self._shared_cb)
-
-        # Get the Presence Service
-        self.pservice = presenceservice.get_instance()
-        try:
-            name, path = self.pservice.get_preferred_connection()
-            self.tp_conn_name = name
-            self.tp_conn_path = path
-            self.conn = telepathy.client.Connection(name, path)
-        except TypeError:
-            _logger.debug('Offline')
-        self.initiating = None
-
-        if self.get_shared_activity() is not None:
-            _logger.debug('shared: %s', self.get_shared())
-            # We are joining the activity
-            _logger.debug('Joined activity')
-            self.connect('joined', self._joined_cb)
-            if self.get_shared():
-                # We've already joined
-                self._joined_cb()
-        else:
-            _logger.debug('Created activity')
-
         # README: this is a workaround to remove old temp file
         # http://bugs.sugarlabs.org/ticket/3973
         self._cleanup_temp_files()
+
+        self._collab.setup()
 
     def __download_requested_cb(self, context, download):
         logging.error('__download_requested_cb %r',
@@ -307,107 +287,6 @@ class WebActivity(activity.Activity):
     def _on_focus_url_entry(self, gobject):
         self._primary_toolbar.entry.grab_focus()
 
-    def _shared_cb(self, activity_):
-        _logger.debug('My activity was shared')
-        self.initiating = True
-        self._setup()
-
-        _logger.debug('This is my activity: making a tube...')
-        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(SERVICE,
-                                                                    {})
-
-    def _setup(self):
-        if self.get_shared_activity() is None:
-            _logger.debug('Failed to share or join activity')
-            return
-
-        bus_name, conn_path, channel_paths = \
-            self.get_shared_activity().get_channels()
-
-        # Work out what our room is called and whether we have Tubes already
-        room = None
-        tubes_chan = None
-        text_chan = None
-        for channel_path in channel_paths:
-            channel = telepathy.client.Channel(bus_name, channel_path)
-            htype, handle = channel.GetHandle()
-            if htype == telepathy.HANDLE_TYPE_ROOM:
-                _logger.debug('Found our room: it has handle#%d "%s"',
-                              handle,
-                              self.conn.InspectHandles(htype, [handle])[0])
-                room = handle
-                ctype = channel.GetChannelType()
-                if ctype == telepathy.CHANNEL_TYPE_TUBES:
-                    _logger.debug('Found our Tubes channel at %s',
-                                  channel_path)
-                    tubes_chan = channel
-                elif ctype == telepathy.CHANNEL_TYPE_TEXT:
-                    _logger.debug('Found our Text channel at %s',
-                                  channel_path)
-                    text_chan = channel
-
-        if room is None:
-            _logger.debug("Presence service didn't create a room")
-            return
-        if text_chan is None:
-            _logger.debug("Presence service didn't create a text channel")
-            return
-
-        # Make sure we have a Tubes channel - PS doesn't yet provide one
-        if tubes_chan is None:
-            _logger.debug("Didn't find our Tubes channel, requesting one...")
-            tubes_chan = self.conn.request_channel(
-                telepathy.CHANNEL_TYPE_TUBES, telepathy.HANDLE_TYPE_ROOM,
-                room, True)
-
-        self.tubes_chan = tubes_chan
-        self.text_chan = text_chan
-
-        tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal(
-            'NewTube', self._new_tube_cb)
-
-    def _list_tubes_reply_cb(self, tubes):
-        for tube_info in tubes:
-            self._new_tube_cb(*tube_info)
-
-    def _list_tubes_error_cb(self, e):
-        _logger.debug('ListTubes() failed: %s', e)
-
-    def _joined_cb(self, activity_):
-        if not self.get_shared_activity():
-            return
-
-        _logger.debug('Joined an existing shared activity')
-
-        self.initiating = False
-        self._setup()
-
-        _logger.debug('This is not my activity: waiting for a tube...')
-        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].ListTubes(
-            reply_handler=self._list_tubes_reply_cb,
-            error_handler=self._list_tubes_error_cb)
-
-    def _new_tube_cb(self, identifier, initiator, type, service, params,
-                     state):
-        _logger.debug('New tube: ID=%d initator=%d type=%d service=%s '
-                      'params=%r state=%d', identifier, initiator, type,
-                      service, params, state)
-
-        if (type == telepathy.TUBE_TYPE_DBUS and
-                service == SERVICE):
-            if state == telepathy.TUBE_STATE_LOCAL_PENDING:
-                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].AcceptDBusTube(
-                    identifier)
-
-            self.tube_conn = TubeConnection(
-                self.conn, self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES],
-                identifier, group_iface=self.text_chan[
-                    telepathy.CHANNEL_INTERFACE_GROUP])
-
-            _logger.debug('Tube created')
-            self.messenger = Messenger(self.tube_conn, self.initiating,
-                                       self.model)
-
     def _get_data_from_file_path(self, file_path):
         fd = open(file_path, 'r')
         try:
@@ -426,7 +305,7 @@ class WebActivity(activity.Activity):
                                                               link['title'],
                                                               link['color']))
                 self._add_link_totray(link['url'],
-                                      base64.b64decode(link['thumb']),
+                                      b64decode(link['thumb']),
                                       link['color'], link['title'],
                                       link['owner'], -1, link['hash'],
                                       link.get('notes'))
@@ -461,11 +340,14 @@ class WebActivity(activity.Activity):
             self._tabbed_view.props.current_browser.grab_focus()
 
     def write_file(self, file_path):
+        if not hasattr(self, '_tabbed_view'):
+            _logger.error('Called write_file before the tabbed_view was made')
+            return
+
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
 
         if self.metadata['mime_type'] == 'text/plain':
-
             browser = self._tabbed_view.current_browser
 
             if not self._jobject.metadata['title_set_by_user'] == '1':
@@ -593,40 +475,63 @@ class WebActivity(activity.Activity):
                 _logger.debug('_add_link: link exist already a=%s b=%s',
                               link['hash'], sha1(ui_uri).hexdigest())
                 return
-        buf = self._get_screenshot()
+        buf = b64encode(self._get_screenshot())
         timestamp = time.time()
-        self.model.add_link(ui_uri, browser.props.title, buf,
-                            profile.get_nick_name(),
-                            profile.get_color().to_string(), timestamp)
+        args = (ui_uri, browser.props.title, buf,
+                profile.get_nick_name(),
+                profile.get_color().to_string(), timestamp)
+        self.model.add_link(*args, by_me=True)
+        self._collab.post({'type': 'add_link', 'args': args})
 
-        if self.messenger is not None:
-            self.messenger._add_link(ui_uri, browser.props.title,
-                                     profile.get_color().to_string(),
-                                     profile.get_nick_name(),
-                                     base64.b64encode(buf), timestamp)
+    def __message_cb(self, collab, buddy, message):
+        type_ = message.get('type')
+        if type_ == 'add_link':
+            self.model.add_link(*message['args'])
+        elif type_ == 'add_link_from_info':
+            self.model.add_link_from_info(message['dict'])
+        elif type_ == 'remove_link':
+            self.remove_link(message['hash'])
 
-    def _add_link_model_cb(self, model, index):
+    def get_data(self):
+        return self.model.data
+
+    def set_data(self, data):
+        for link in data['shared_links']:
+            if link['hash'] not in self.model.get_links_ids():
+                self.model.add_link_from_info(link)
+            # FIXME: Case where buddy has updated link desciption
+
+        their_model = Model()
+        their_model.data = data
+        for link in self.model.data['shared_links']:
+            if link['hash'] not in their_model.get_links_ids():
+                self._collab.post({'type': 'add_link_from_info',
+                                   'dict': link})
+
+    def _add_link_model_cb(self, model, index, by_me):
         ''' receive index of new link from the model '''
         link = self.model.data['shared_links'][index]
         widget = self._add_link_totray(
-            link['url'], base64.b64decode(link['thumb']),
+            link['url'], b64decode(link['thumb']),
             link['color'], link['title'],
             link['owner'], index, link['hash'],
             link.get('notes'))
 
-        animator = Animator(1, widget=self)
-        animator.add(AddLinkAnimation(
-            self, self._tabbed_view.props.current_browser, widget))
-        animator.start()
+        if by_me:
+            animator = Animator(1, widget=self)
+            animator.add(AddLinkAnimation(
+                self, self._tabbed_view.props.current_browser, widget))
+            animator.start()
 
     def _add_link_totray(self, url, buf, color, title, owner, index, hash,
                          notes=None):
         ''' add a link to the tray '''
         item = LinkButton(buf, color, title, owner, hash, notes)
         item.connect('clicked', self._link_clicked_cb, url)
-        item.connect('remove_link', self._link_removed_cb)
+        item.connect('remove_link', self.__link_removed_cb)
         item.notes_changed_signal.connect(self.__link_notes_changed)
         # use index to add to the tray
+        self._tray_links[hash] = item
         self._tray.add_item(item, index)
         item.show()
         self._view_toolbar.traybutton.props.sensitive = True
@@ -634,10 +539,17 @@ class WebActivity(activity.Activity):
         self._view_toolbar.update_traybutton_tooltip()
         return item
 
-    def _link_removed_cb(self, button, hash):
+    def __link_removed_cb(self, button, hash):
+        self.remove_link(hash)
+        self._collab.post({'type': 'remove_link', 'hash': hash})
+
+    def remove_link(self, hash):
         ''' remove a link from tray and delete it in the model '''
+        self._tray_links[hash].hide()
+        self._tray_links[hash].destroy()
+        del self._tray_links[hash]
+
         self.model.remove_link(hash)
-        self._tray.remove_item(button)
         if len(self._tray.get_children()) == 0:
             self._view_toolbar.traybutton.props.sensitive = False
             self._view_toolbar.traybutton.props.active = False

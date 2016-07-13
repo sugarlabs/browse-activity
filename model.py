@@ -26,35 +26,35 @@ class Model(GObject.GObject):
     ''' The model of web-activity which uses json to serialize its data
     to a file and deserealize from it.
     '''
-    __gsignals__ = {
-        'add_link': (GObject.SignalFlags.RUN_FIRST,
-                     None, ([int])),
-        }
+
+    add_link_signal = GObject.Signal('add_link', arg_types=[int, bool])
 
     def __init__(self):
         GObject.GObject.__init__(self)
         self.data = {}
         self.data['shared_links'] = []
-        self.data['deleted'] = []
 
-    def add_link(self, url, title, thumb, owner, color, timestamp):
+    def add_link(self, url, title, thumb, owner, color, timestamp,
+                 by_me=False):
+        info = {'hash': sha.new(str(url)).hexdigest(), 'url': str(url),
+                'title': str(title), 'thumb': thumb,
+                'owner': str(owner), 'color': str(color),
+                'timestamp': float(timestamp)}
+        self.add_link_from_info(info, by_me)
+
+    def add_link_from_info(self, info_dict, by_me=False):
         index = len(self.data['shared_links'])
         for item in self.data['shared_links']:
-            if timestamp <= item['timestamp']:
+            if info_dict['timestamp'] <= item['timestamp']:
                 index = self.data['shared_links'].index(item)
                 break
 
-        info = {'hash': sha.new(str(url)).hexdigest(), 'url': str(url),
-                'title': str(title), 'thumb': base64.b64encode(thumb),
-                'owner': str(owner), 'color': str(color),
-                'timestamp': float(timestamp)}
-        self.data['shared_links'].insert(index, info)
-        self.emit('add_link', index)
+        self.data['shared_links'].insert(index, info_dict)
+        self.add_link_signal.emit(index, by_me)
 
     def remove_link(self, hash):
         for link in self.data['shared_links']:
             if link['hash'] == hash:
-                self.data['deleted'].append(link['hash'])
                 self.data['shared_links'].remove(link)
                 break
 
@@ -69,12 +69,10 @@ class Model(GObject.GObject):
     def deserialize(self, data):
         self.data = json.loads(data)
         self.data.setdefault('shared_links', [])
-        self.data.setdefault('deleted', [])
 
     def get_links_ids(self):
         ids = []
         for link in self.data['shared_links']:
             ids.append(link['hash'])
-        ids.extend(self.data['deleted'])
         ids.append('')
         return ids
