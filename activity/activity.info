@@ -5,6 +5,18 @@ bundle_id = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
 mime_types = image/png;image/gif;image/jpeg;text/html;text/uri-list;application/xhtml+xml;application/rss+xml;application/xml;text/css;application/ogg;audio/x-wav;audio/ogg;video/ogg;audio/x-vorbis+ogg;audio/x-flac+ogg;audio/x-speex+ogg;video/x-theora+ogg;video/x-ogm+ogg;image/svg+xml;application/x-shockwave-flash
-license = GPLv2+
-summary = Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.
+summary = Surf the world!
 max_participants = 100
+
+license = GPL-2.0+
+metadata_license = CC0-1.0
+description:
+    <p>Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.  Browse is powered by the WebKit2 rendering engine with the Faster Than Light javascript interpreter - allowing you to view the full beauty of the web.</p>
+    <p>To help in researching, Browse offers many features:</p>
+    <ul>
+        <li>Bookmark (save) good pages you find - never loose good resources or forget to add them to your bibliography</li>
+        <li>Bookmark pages with collaborators in real time - great for researching as a group or teachers showing pages to their class</li>
+        <li>Comment on your bookmarked pages - a great tool for making curated collections</li>
+    </ul>
+url = https://github.com/sugarlabs/browse-activity
+screenshots = https://people.sugarlabs.org/sam/activity-ss/browse-1-1.png https://people.sugarlabs.org/sam/activity-ss/browse-1-2.png
