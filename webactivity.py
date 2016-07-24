@@ -41,11 +41,6 @@ from hashlib import sha1
 
 from sugar3.activity import activity
 from sugar3.graphics import style
-import telepathy
-import telepathy.client
-from sugar3.presence import presenceservice
-from sugar3.graphics.tray import HTray
-from sugar3 import profile
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
@@ -54,6 +49,7 @@ from sugar3 import mime
 from sugar3.graphics.toolbarbox import ToolbarButton
 
 from collabwrapper.collabwrapper import CollabWrapper
+from widgets import TitledTray
 
 
 PROFILE_VERSION = 2
@@ -183,22 +179,24 @@ class WebActivity(activity.Activity):
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
         self._tabbed_view.connect('switch-page', self.__switch_page_cb)
 
-        self._tray = HTray()
-        self.set_tray(self._tray, Gtk.PositionType.BOTTOM)
+        self._titled_tray = TitledTray(_('Bookmarks'))
+        self._tray = self._titled_tray.tray
+        self.set_tray(self._titled_tray, Gtk.PositionType.BOTTOM)
         self._tray_links = {}
+
+        self.model = Model()
+        self.model.add_link_signal.connect(self._add_link_model_cb)
 
         self._primary_toolbar = PrimaryToolbar(self._tabbed_view, self)
         self._edit_toolbar = EditToolbar(self)
         self._view_toolbar = ViewToolbar(self)
 
-        self._primary_toolbar.connect('add-link', self._link_add_button_cb)
-
+        self._primary_toolbar.connect('add-link', self.__link_add_button_cb)
+        self._primary_toolbar.connect('remove-link',
+                                      self.__link_remove_button_cb)
         self._primary_toolbar.connect('go-home', self._go_home_button_cb)
-
         self._primary_toolbar.connect('go-library', self._go_library_button_cb)
-
         self._primary_toolbar.connect('set-home', self._set_home_button_cb)
-
         self._primary_toolbar.connect('reset-home', self._reset_home_button_cb)
 
         self._edit_toolbar_button = ToolbarButton(
@@ -217,9 +215,6 @@ class WebActivity(activity.Activity):
 
         self.set_canvas(self._tabbed_view)
         self._tabbed_view.show()
-
-        self.model = Model()
-        self.model.add_link_signal.connect(self._add_link_model_cb)
 
         self.connect('key-press-event', self._key_press_cb)
 
@@ -383,8 +378,13 @@ class WebActivity(activity.Activity):
             finally:
                 f.close()
 
-    def _link_add_button_cb(self, button):
+    def __link_add_button_cb(self, button):
         self._add_link()
+
+    def __link_remove_button_cb(self, button):
+        browser = self._tabbed_view.props.current_browser
+        uri = browser.get_uri()
+        self.__link_removed_cb(None, sha1(uri).hexdigest())
 
     def _go_home_button_cb(self, button):
         self._tabbed_view.load_homepage()
@@ -470,11 +470,9 @@ class WebActivity(activity.Activity):
         browser = self._tabbed_view.props.current_browser
         ui_uri = browser.get_uri()
 
-        for link in self.model.data['shared_links']:
-            if link['hash'] == sha1(ui_uri).hexdigest():
-                _logger.debug('_add_link: link exist already a=%s b=%s',
-                              link['hash'], sha1(ui_uri).hexdigest())
-                return
+        if self.model.has_link(ui_uri):
+            return
+
         buf = b64encode(self._get_screenshot())
         timestamp = time.time()
         args = (ui_uri, browser.props.title, buf,
@@ -679,6 +677,7 @@ class AddLinkAnimation(Animation):
         if self._frame == 3.0:
             self._tray_widget.show_thumb()
             self._widget.disconnect(self._draw_hid)
+            self._widget.queue_draw()
             return
 
         cr.save()

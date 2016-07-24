@@ -19,7 +19,7 @@
 import json
 import sha
 from gi.repository import GObject
-import base64
+from hashlib import sha1
 
 
 class Model(GObject.GObject):
@@ -28,11 +28,19 @@ class Model(GObject.GObject):
     '''
 
     add_link_signal = GObject.Signal('add_link', arg_types=[int, bool])
+    link_removed_signal = GObject.Signal('link-removed')
 
     def __init__(self):
         GObject.GObject.__init__(self)
         self.data = {}
         self.data['shared_links'] = []
+
+    def has_link(self, uri):
+        '''returns true if the uri is already bookmarked, O(n) oddly'''
+        for link in self.data['shared_links']:
+            if link['hash'] == sha1(uri).hexdigest():
+                return True
+        return False
 
     def add_link(self, url, title, thumb, owner, color, timestamp,
                  by_me=False):
@@ -56,6 +64,7 @@ class Model(GObject.GObject):
         for link in self.data['shared_links']:
             if link['hash'] == hash:
                 self.data['shared_links'].remove(link)
+                self.link_removed_signal.emit()
                 break
 
     def change_link_notes(self, hash, notes):

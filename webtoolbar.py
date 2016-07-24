@@ -28,6 +28,7 @@ from gi.repository import Pango
 
 import sugar3.profile
 from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox as ToolbarBase
 from sugar3.graphics.palettemenu import PaletteMenuItem
@@ -315,6 +316,7 @@ class PrimaryToolbar(ToolbarBase):
 
     __gsignals__ = {
         'add-link': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'remove-link': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'go-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'set-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
         'reset-home': (GObject.SignalFlags.RUN_FIRST, None, ([])),
@@ -327,6 +329,8 @@ class PrimaryToolbar(ToolbarBase):
         self._url_toolbar = UrlToolbar()
 
         self._activity = act
+        self.model = act.model
+        self.model.link_removed_signal.connect(self.__link_removed_cb)
 
         self._tabbed_view = self._canvas = tabbed_view
 
@@ -454,9 +458,11 @@ class PrimaryToolbar(ToolbarBase):
         self._download_icon.show()
         downloadmanager.connect_donwload_started(self.__download_started_cb)
 
-        self._link_add = ToolButton('emblem-favorite', accelerator='<ctrl>d')
+        self._link_add = ToggleToolButton('emblem-favorite')
+        self._link_add.set_accelerator('<ctrl>d')
         self._link_add.set_tooltip(_('Bookmark'))
-        self._link_add.connect('clicked', self._link_add_clicked_cb)
+        self._link_add_toggled_hid = \
+            self._link_add.connect('toggled', self.__link_add_toggled_cb)
         toolbar.insert(self._link_add, -1)
         self._link_add.show()
 
@@ -669,6 +675,14 @@ class PrimaryToolbar(ToolbarBase):
         if is_webkit_browser:
             self._reload_session_history()
 
+        with self._link_add.handler_block(self._link_add_toggled_hid):
+            uri = self._browser.get_uri()
+            print(self.model.has_link(uri), uri)
+            self._link_add.props.active = self.model.has_link(uri)
+
+    def __link_removed_cb(self, model):
+        self._update_navigation_buttons()
+
     def _entry_activate_cb(self, entry):
         url = entry.props.text
         effective_url = self._tabbed_view.normalize_or_autosearch_url(url)
@@ -778,11 +792,14 @@ class PrimaryToolbar(ToolbarBase):
     def _history_item_activated_cb(self, menu_item, history_item):
         self._back.get_palette().popdown(immediate=True)
         self._forward.get_palette().popdown(immediate=True)
-        #self._browser.set_history_index(index)
+        # self._browser.set_history_index(index)
         self._browser.go_to_back_forward_list_item(history_item)
 
-    def _link_add_clicked_cb(self, button):
-        self.emit('add-link')
+    def __link_add_toggled_cb(self, button):
+        if button.props.active:
+            self.emit('add-link')
+        else:
+            self.emit('remove-link')
 
     def inspect_view(self, button):
         page = self._canvas.get_current_page()
