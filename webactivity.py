@@ -47,6 +47,7 @@ from sugar3.graphics.icon import Icon
 from sugar3.graphics.animator import Animator, Animation
 from sugar3 import mime
 from sugar3.graphics.toolbarbox import ToolbarButton
+from sugar3 import profile
 
 from collabwrapper.collabwrapper import CollabWrapper
 from widgets import TitledTray
