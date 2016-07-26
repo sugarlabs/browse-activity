@@ -675,12 +675,6 @@ class AddLinkAnimation(Animation):
         self._widget.queue_draw()
 
     def __draw_cb(self, widget, cr):
-        if self._frame == 3.0:
-            self._tray_widget.show_thumb()
-            self._widget.disconnect(self._draw_hid)
-            self._widget.queue_draw()
-            return
-
         cr.save()
 
         thumb_scale_w = THUMB_WIDTH * 1.0 / self._balloc.width
@@ -724,3 +718,8 @@ class AddLinkAnimation(Animation):
         cr.stroke()
 
         cr.restore()
+
+    def do_stop(self):
+        self._tray_widget.show_thumb()
+        self._widget.disconnect(self._draw_hid)
+        self._widget.queue_draw()
