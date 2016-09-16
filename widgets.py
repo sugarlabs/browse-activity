@@ -106,7 +106,10 @@ css = ('''
 '''.format(
     cell2over5=(style.GRID_CELL_SIZE*2)/5
 ))
-css_provider.load_from_data(css)
+try:
+    css_provider.load_from_data(css)
+except:
+    pass  # Gtk+ 3.18.9 does not have min-height
 context = Gtk.StyleContext()
 context.add_provider_for_screen(screen, css_provider,
                                 Gtk.STYLE_PROVIDER_PRIORITY_USER)
