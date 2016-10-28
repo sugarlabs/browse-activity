@@ -15,19 +15,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2010-01-21 20:04+0200\n"
-"Last-Translator: jon <joni-ber_rock@hotmail.com>\n"
+"PO-Revision-Date: 2016-10-22 17:44+0000\n"
+"Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1477158273.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
-msgstr "Shfleto"
+msgstr "Shfletoni"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -35,18 +36,20 @@ msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more."
 msgstr ""
+"Lundroni nëpër botë! Këtu mund të bëni kërkime, të shihni video edukative, "
+"të ndiqni mësime në Internet, të gjeni libra, të lidheni me shokët, etj."
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
-msgstr ""
+msgstr "Pa titull"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr ""
+msgstr "Po ngarkohet…"
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Kjo faqe web s’u ngarkuar dot"
 
 #: browser.py:759
 #, python-format
@@ -54,28 +57,32 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" s’u shkarkua dot. Ju lutemi, kontrolloni për gabime shkrimi, dhe "
+"sigurohuni se jeni të lidhur në Internet."
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Riprovoni"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Pa hapësirë të mjaftueshme për shkarkim"
 
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Shkarkimi i \"%{filename}\" lyp %{total_size_in_mb} MB hapësirë të lirëo, ka "
+"vetëm %{free_space_in_mb} të lira"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
-msgstr "Në Rregull"
+msgstr "Ok"
 
 #: downloadmanager.py:157
 msgid "Download started"
-msgstr "Shkarkimi ka filluar"
+msgstr "Shkarkimi filloi"
 
 #: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
@@ -84,11 +91,11 @@ msgstr "%s"
 
 #: downloadmanager.py:168
 msgid "Download completed"
-msgstr "Shkarkimi ka përfunduar"
+msgstr "Shkarkimi u plotësua"
 
 #: downloadmanager.py:173
 msgid "Show in Journal"
-msgstr "Trego në Ditar"
+msgstr "Shfaqe në Ditar"
 
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
@@ -101,30 +108,32 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Po shkarkohet %(filename)s që prej \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
-msgstr "I Mëparshmi"
+msgstr "E mëparshmja"
 
 #: edittoolbar.py:72
 msgid "Next"
-msgstr "Tjetra"
+msgstr "Pasuesja"
 
 #: linkbutton.py:108
 msgid "Remove"
-msgstr "Fshi"
+msgstr "Hiqe"
 
 #: palettes.py:184
 msgid "Follow link"
-msgstr "Ndiq lidhjen"
+msgstr "Ndiqni lidhjen"
 
 #: palettes.py:189
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Ndiqeni lidhjen në një skedë të re"
 
 #: palettes.py:198
 msgid "Keep link"
-msgstr "Mbani lidhjen"
+msgstr "Mbaje lidhjen"
 
 #: palettes.py:204
 msgid "Copy link"
@@ -140,109 +149,109 @@ msgstr "Mbaje figurën"
 
 #: palettes.py:238
 msgid "Copy text"
-msgstr ""
+msgstr "Kopjo tekstin"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
-msgstr "Zvoglo"
+msgstr "Zvogëloje"
 
 #: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
-msgstr "Zmadho"
+msgstr "Zmadhoje"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Madhësi faktike"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr ""
+msgstr "Faqja e mëparshme"
 
 #: pdfviewer.py:121
 msgid "Next page"
-msgstr ""
+msgstr "Faqja pasuese"
 
 #: pdfviewer.py:133
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Ruaje PDF-në në Ditar"
 
 #: pdfviewer.py:341
 msgid "Cancel"
-msgstr "Anulo"
+msgstr "Anuloje"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "Po shkarkohet dokument…"
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Ky dokument s’u ngarkua dot"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Ju lutemi, sigurohuni që jeni të lidhur në Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr "Ekran të plot"
+msgstr "Sa krejt ekrani"
 
 #: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr "Shfaqe shportën"
+msgstr "Shfaq Panelin"
 
 #: viewtoolbar.py:116
 msgid "Hide Tray"
-msgstr "Fsheh shportën"
+msgstr "Fshihe Panelin"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Faqja fillestare u formësua"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Parazgjedhja për faqen fillestare u formësua"
 
 #: webactivity.py:655
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Shkarkimi në progres"
+msgstr[0] "Shkarkim në ecuri e sipër"
+msgstr[1] "Shkarkime në ecuri e sipër"
 
 #: webactivity.py:658
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Nëse e ndalni tani shkarkimi do të anulohet"
+msgstr[0] "Ndalja tani do të fshijë shkarkimin tuaj"
+msgstr[1] "Ndalja tani do të fshijë shkarkimet tuaja"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vazhdoje shkarkimin"
+msgstr[1] "Vazhdoji shkarkimet"
 
 #: webactivity.py:668
 msgid "Stop"
-msgstr "Ndal"
+msgstr "Ndale"
 
 #: webtoolbar.py:288
 msgid "Home page"
-msgstr ""
+msgstr "Faqja hyrëse"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Përzgjidhni një faqe fillestare"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Ricaktoni faqen fillestare"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Biblotekë"
 
 #: webtoolbar.py:338
 msgid "Back"
-msgstr "Prapa"
+msgstr "Mbrapsht"
 
 #: webtoolbar.py:352
 msgid "Forward"
@@ -250,7 +259,7 @@ msgstr "Përpara"
 
 #: webtoolbar.py:366
 msgid "Bookmark"
-msgstr "Shëno faqen"
+msgstr "Faqeruajeni"
 
 #, python-format
 #, fuzzy
