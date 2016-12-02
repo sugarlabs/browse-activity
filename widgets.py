@@ -92,21 +92,26 @@ class BrowserNotebook(Gtk.Notebook):
 
 screen = Gdk.Screen.get_default()
 css_provider = Gtk.CssProvider.get_default()
-css = ('''
+css = '''
 @define-color button_grey #808080;
 
-.TitledTray-top-bar {{
+.TitledTray-top-bar {
     color: white;
     background: @button_grey;
     min-height: {cell2over5}px;
-}}
-.TitledTray-top-bar label {{
+}
+.TitledTray-top-bar label {
     color: white;
-}}
+}
 '''.format(
-    cell2over5=(style.GRID_CELL_SIZE*2)/5
-))
-css_provider.load_from_data(css)
+    cell2over5=(style.GRID_CELL_SIZE*2) / 5
+)
+
+try:
+    css_provider.load_from_data(css)
+except:
+    pass  # Gtk+ 3.18.9 does not have min-height
+
 context = Gtk.StyleContext()
 context.add_provider_for_screen(screen, css_provider,
                                 Gtk.STYLE_PROVIDER_PRIORITY_USER)
