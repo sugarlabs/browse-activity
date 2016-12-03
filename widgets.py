@@ -98,12 +98,20 @@ css = '''
 .TitledTray-top-bar {
     color: white;
     background: @button_grey;
+    min-height: {cell2over5}px;
 }
 .TitledTray-top-bar label {
     color: white;
 }
-'''
-css_provider.load_from_data(css)
+'''.format(
+    cell2over5=(style.GRID_CELL_SIZE*2) / 5
+)
+
+try:
+    css_provider.load_from_data(css)
+except:
+    pass  # Gtk+ 3.18.9 does not have min-height
+
 context = Gtk.StyleContext()
 context.add_provider_for_screen(screen, css_provider,
                                 Gtk.STYLE_PROVIDER_PRIORITY_USER)
@@ -119,8 +127,6 @@ class TitledTray(Gtk.Box):
 
     def __init__(self, title):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
-
-        self.set_size_request(1, (style.GRID_CELL_SIZE * 2) / 5)
 
         self._top_event_box = Gtk.EventBox()
         self._top_event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
