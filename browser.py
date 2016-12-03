@@ -677,10 +677,13 @@ class Browser(WebKit2.WebView):
         self.cached_uri = None
 
     def get_state(self):
-        state = self.get_session_state()
-        gbytes = state.serialize()
-        # JSON results in utf8-decoding, so it needs to be good data
-        return b64encode(gbytes.get_data())
+        try:
+            state = self.get_session_state()
+            gbytes = state.serialize()
+            # JSON results in utf8-decoding, so it needs to be good data
+            return b64encode(gbytes.get_data())
+        except:
+            return ""  # graceful degradation in case of old WebKit2
 
     def get_legacy_history(self):
         """Return the browsing history of this browser."""
