@@ -10,19 +10,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-01-02 17:23+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1483377832.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Browse"
@@ -37,15 +39,15 @@ msgstr ""
 
 #: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
 msgid "Untitled"
-msgstr ""
+msgstr "Ónefnt"
 
 #: browser.py:521
 msgid "Loading..."
-msgstr ""
+msgstr "Hleð inn..."
 
 #: browser.py:757 browser.py:758
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Ekki var hægt að hlaða inn þessari vefsíðu"
 
 #: browser.py:759
 #, python-format
@@ -53,20 +55,24 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"Ekki var hægt að hlaða inn \"%s\". Athugaðu með villur í stafsetningu, og "
+"athugaðu hvort þú sért ekki með tengingu við internetið."
 
 #: browser.py:762 pdfviewer.py:394
 msgid "Try again"
-msgstr ""
+msgstr "Reyndu aftur"
 
 #: downloadmanager.py:124
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Það er ekki nægilegt pláss til að sækja"
 
 #: downloadmanager.py:133
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Það að sækja \"%{filename}\" krefst %{total_size_in_mb} MB af lausu plássi, "
+"en aðeins %{free_space_in_mb} MB eru tiltæk núna"
 
 #: downloadmanager.py:141 downloadmanager.py:176
 msgid "Ok"
@@ -74,7 +80,7 @@ msgstr "Í lagi"
 
 #: downloadmanager.py:157
 msgid "Download started"
-msgstr "Byrjaður að sækja"
+msgstr "Byrjað að sækja"
 
 #: downloadmanager.py:158 downloadmanager.py:170
 #, python-format
@@ -83,16 +89,16 @@ msgstr "%s"
 
 #: downloadmanager.py:168
 msgid "Download completed"
-msgstr "Búinn að sækja"
+msgstr "Búið að sækja"
 
 #: downloadmanager.py:173
 msgid "Show in Journal"
-msgstr ""
+msgstr "Birta í dagbókinni"
 
 #: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "Frá: %s"
 
 #: downloadmanager.py:292
 #, python-format
@@ -100,14 +106,16 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Sæki %(filename)s frá \n"
+"%(source)s."
 
 #: edittoolbar.py:65
 msgid "Previous"
-msgstr ""
+msgstr "Fyrra"
 
 #: edittoolbar.py:72
 msgid "Next"
-msgstr ""
+msgstr "Næsta"
 
 #: linkbutton.py:108
 msgid "Remove"
@@ -115,55 +123,55 @@ msgstr "Fjarlægja"
 
 #: palettes.py:184
 msgid "Follow link"
-msgstr ""
+msgstr "Fylgja tengli"
 
 #: palettes.py:189
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Opna tengil í nýjum flipa"
 
 #: palettes.py:198
 msgid "Keep link"
-msgstr ""
+msgstr "Halda tengli"
 
 #: palettes.py:204
 msgid "Copy link"
-msgstr ""
+msgstr "Afrita tengil"
 
 #: palettes.py:218
 msgid "Copy image"
-msgstr ""
+msgstr "Afrita mynd"
 
 #: palettes.py:224
 msgid "Keep image"
-msgstr ""
+msgstr "Halda mynd"
 
 #: palettes.py:238
 msgid "Copy text"
-msgstr ""
+msgstr "Afrita texta"
 
 #: pdfviewer.py:91 viewtoolbar.py:39
 msgid "Zoom out"
-msgstr ""
+msgstr "Renna frá"
 
 #: pdfviewer.py:97 viewtoolbar.py:45
 msgid "Zoom in"
-msgstr ""
+msgstr "Renna að"
 
 #: pdfviewer.py:103 viewtoolbar.py:51
 msgid "Actual size"
-msgstr ""
+msgstr "Raunstærð"
 
 #: pdfviewer.py:114
 msgid "Previous page"
-msgstr ""
+msgstr "Fyrri síða"
 
 #: pdfviewer.py:121
 msgid "Next page"
-msgstr ""
+msgstr "Næsta síða"
 
 #: pdfviewer.py:133
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Vista PDF í dagbókina"
 
 #: pdfviewer.py:341
 msgid "Cancel"
@@ -171,53 +179,53 @@ msgstr "Hætta við"
 
 #: pdfviewer.py:490
 msgid "Downloading document..."
-msgstr ""
+msgstr "Sæki skjalið..."
 
 #: pdfviewer.py:546
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Ekki var hægt að opna skjalið"
 
 #: pdfviewer.py:554
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Athugaðu hvort þú sért ekki með tengingu við internetið."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr ""
+msgstr "Fylla skjá"
 
 #: viewtoolbar.py:113
 msgid "Show Tray"
-msgstr ""
+msgstr "Birta bakka"
 
 #: viewtoolbar.py:116
 msgid "Hide Tray"
-msgstr ""
+msgstr "Fela bakka"
 
 #: webactivity.py:490
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Stillti upphafssíðu"
 
 #: webactivity.py:494
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Stillti sjálfgefna upphafssíðu"
 
 #: webactivity.py:655
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Er að sækja"
+msgstr[0] "Niðurhal er í gangi"
+msgstr[1] "Niðurhöl eru í gangi"
 
 #: webactivity.py:658
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Að stoppa núna þýðir að þú hættir við að sækja"
+msgstr[0] "Að stoppa núna þýðir að því sem þú hefur sótt verður eytt"
+msgstr[1] "Að stoppa núna þýðir að því sem þú hefur sótt verður eytt"
 
 #: webactivity.py:663
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Halda áfram að sækja"
+msgstr[1] "Halda áfram að sækja"
 
 #: webactivity.py:668
 msgid "Stop"
@@ -225,23 +233,23 @@ msgstr "Stopp"
 
 #: webtoolbar.py:288
 msgid "Home page"
-msgstr ""
+msgstr "Heimasíða"
 
 #: webtoolbar.py:294
 msgid "Select as initial page"
-msgstr ""
+msgstr "Veldu sem upphafssíðu"
 
 #: webtoolbar.py:299
 msgid "Reset initial page"
-msgstr ""
+msgstr "Endurstilla upphafssíðu"
 
 #: webtoolbar.py:305
 msgid "Library"
-msgstr ""
+msgstr "Síðusafn"
 
 #: webtoolbar.py:338
 msgid "Back"
-msgstr "Aftur"
+msgstr "Til baka"
 
 #: webtoolbar.py:352
 msgid "Forward"
@@ -249,7 +257,7 @@ msgstr "Áfram"
 
 #: webtoolbar.py:366
 msgid "Bookmark"
-msgstr "Bókmerki"
+msgstr "Bókamerki"
 
 #, python-format
 #, fuzzy
