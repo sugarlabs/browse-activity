@@ -94,7 +94,7 @@ def _seed_xs_cookie(cookie_jar):
     """
     client = GConf.Client.get_default()
     backup_url = client.get_string('/desktop/sugar/backup_url')
-    if backup_url == '':
+    if not backup_url:
         _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
         return
 
