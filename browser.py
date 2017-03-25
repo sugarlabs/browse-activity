@@ -863,7 +863,7 @@ class Browser(WebKit2.WebView):
     def _get_permission_name(self, request):
         if hasattr(WebKit2, 'GeolocationPermissionRequest') and \
            isinstance(request, WebKit2.GeolocationPermissionRequest):
-            return _('access to you location')
+            return _('access to your location')
         if hasattr(WebKit2, 'NotificationPermissionRequest') and \
            isinstance(request, WebKit2.NotificationPermissionRequest):
             return _('to display notifications in the frame')
