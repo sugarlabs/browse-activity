@@ -97,7 +97,7 @@ msgid "Try again"
 msgstr ""
 
 #: browser.py:866
-msgid "access to you location"
+msgid "access to your location"
 msgstr ""
 
 #: browser.py:869
