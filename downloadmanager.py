@@ -27,6 +27,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
+from gi.repository import Gio
 
 from sugar3.datastore import datastore
 from sugar3 import profile
@@ -213,7 +214,10 @@ class Download(object):
         self.dl_jobject.metadata['progress'] = '100'
         self.dl_jobject.file_path = self._dest_path
 
-        mime_type = download.get_response().get_mime_type()
+        mime_type = Gio.content_type_guess(self._dest_path)[0]
+        if mime_type != 'application/vnd.olpc-sugar':
+            mime_type = download.get_response().get_mime_type()
+
         self.dl_jobject.metadata['mime_type'] = mime_type
 
         if mime_type in ('image/bmp', 'image/gif', 'image/jpeg',
