@@ -385,59 +385,69 @@ class WebActivity(activity.Activity):
         self.remove_alert(alert)
 
     def _key_press_cb(self, widget, event):
-        key_name = Gdk.keyval_name(event.keyval)
         browser = self._tabbed_view.props.current_browser
 
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
-            if key_name == 'f':
-                _logger.debug('keyboard: Find')
+            if event.keyval == Gdk.KEY_f:
                 self._edit_toolbar_button.set_expanded(True)
                 self._edit_toolbar.search_entry.grab_focus()
-            elif key_name == 'l':
-                _logger.debug('keyboard: Focus url entry')
+                return True
+            if event.keyval == Gdk.KEY_l:
                 self._primary_toolbar.entry.grab_focus()
-            elif key_name == 'minus':
-                _logger.debug('keyboard: Zoom out')
-                browser.zoom_out()
-            elif key_name == 'equal':
-                # Equal is + without a shift, a convenience in addition to
-                # the ctrl+ accelerator configured in the ToolButton
-                _logger.debug('keyboard: Zoom in')
+                return True
+            if event.keyval == Gdk.KEY_equal:
+                # On US keyboards, KEY_equal is KEY_plus without
+                # SHIFT_MASK, so for convenience treat this as the
+                # same as the zoom in accelerator configured in
+                # WebKit2
                 browser.zoom_in()
-            elif Gdk.keyval_name(event.keyval) == "t":
+                return True
+            if event.keyval == Gdk.KEY_t:
                 self._tabbed_view.add_tab()
-            elif key_name == 'w':
-                _logger.debug('keyboard: close tab')
+                return True
+            if event.keyval == Gdk.KEY_w:
                 self._tabbed_view.close_tab()
-            else:
-                return False
+                return True
 
-            return True
+            # FIXME: copy and paste is supposed to be handled by
+            # Gtk.Entry, but does not work when we catch
+            # key-press-event and return False.
+            if self._primary_toolbar.entry.is_focus():
+                if event.keyval == Gdk.KEY_c:
+                    self._primary_toolbar.entry.copy_clipboard()
+                    return True
+                if event.keyval == Gdk.KEY_v:
+                    self._primary_toolbar.entry.paste_clipboard()
+                    return True
 
-        elif key_name in ('KP_Up', 'KP_Down', 'KP_Left', 'KP_Right'):
+            return False
+
+        if event.keyval in (Gdk.KEY_KP_Up, Gdk.KEY_KP_Down,
+                            Gdk.KEY_KP_Left, Gdk.KEY_KP_Right):
             scrolled_window = browser.get_parent()
 
-            if key_name in ('KP_Up', 'KP_Down'):
+            if event.keyval in (Gdk.KEY_KP_Up, Gdk.KEY_KP_Down):
                 adjustment = scrolled_window.get_vadjustment()
-            elif key_name in ('KP_Left', 'KP_Right'):
+            elif event.keyval in (Gdk.KEY_KP_Left, Gdk.KEY_KP_Right):
                 adjustment = scrolled_window.get_hadjustment()
             value = adjustment.get_value()
             step = adjustment.get_step_increment()
 
-            if key_name in ('KP_Up', 'KP_Left'):
+            if event.keyval in (Gdk.KEY_KP_Up, Gdk.KEY_KP_Left):
                 adjustment.set_value(value - step)
-            elif key_name in ('KP_Down', 'KP_Right'):
+            else:
                 adjustment.set_value(value + step)
 
             return True
 
-        elif key_name == 'Escape':
+        if event.keyval == Gdk.KEY_Escape:
             status = browser.get_load_status()
             loading = WebKit.LoadStatus.PROVISIONAL <= status \
                 < WebKit.LoadStatus.FINISHED
             if loading:
                 _logger.debug('keyboard: Stop loading')
                 browser.stop_loading()
+            return True
 
         return False
 
