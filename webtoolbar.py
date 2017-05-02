@@ -225,12 +225,10 @@ class WebEntry(iconentry.IconEntry):
             self.activate(uri)
 
     def __key_press_event_cb(self, entry, event):
-        keyname = Gdk.keyval_name(event.keyval)
-
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()
 
-        if keyname == 'Up':
+        if event.keyval == Gdk.KEY_uparrow:
             if selected is None:
                 selection.select_iter(model[-1].iter)
                 self._set_text(model[-1][0])
@@ -241,7 +239,8 @@ class WebEntry(iconentry.IconEntry):
                     self._set_text(model.get(up_iter, self._COL_ADDRESS)[0])
             self.set_vadjustments(selection)
             return True
-        elif keyname == 'Down':
+
+        if event.keyval == Gdk.KEY_downarrow:
             if selected is None:
                 down_iter = model.get_iter_first()
             else:
@@ -251,16 +250,19 @@ class WebEntry(iconentry.IconEntry):
                 self._set_text(model.get(down_iter, self._COL_ADDRESS)[0])
             self.set_vadjustments(selection)
             return True
-        elif keyname == 'Return':
+
+        if event.keyval == Gdk.KEY_Return:
             if selected is None:
                 return False
             uri = model[model.get_path(selected)][self._COL_ADDRESS]
             self.activate(uri)
             return True
-        elif keyname == 'Escape':
+
+        if event.keyval == Gdk.KEY_Escape:
             self._search_window.hide()
             self.props.text = ''
             return True
+
         return False
 
     def set_vadjustments(self, selection):
