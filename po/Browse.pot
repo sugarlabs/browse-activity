@@ -1,6 +1,6 @@
-# POT file for the Web / Browse Activity.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Web / Browse package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"POT-Creation-Date: 2017-05-29 17:23+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,63 @@ msgid ""
 "collections"
 msgstr ""
 
+#: linkbutton.py:133
+msgid "Remove"
+msgstr ""
+
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr ""
+
+#: pdfviewer.py:94 viewtoolbar.py:39
+msgid "Zoom out"
+msgstr ""
+
+#: pdfviewer.py:100 viewtoolbar.py:45
+msgid "Zoom in"
+msgstr ""
+
+#: pdfviewer.py:106 viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr ""
+
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr ""
+
+#: pdfviewer.py:388 browser.py:854
+msgid "Try again"
+msgstr ""
+
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr ""
+
+#: pdfviewer.py:579 downloadmanager.py:212
+#, python-format
+msgid "From: %s"
+msgstr ""
+
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
@@ -92,10 +149,6 @@ msgid ""
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:854 pdfviewer.py:388
-msgid "Try again"
-msgstr ""
-
 #: browser.py:866
 msgid "access to your location"
 msgstr ""
@@ -113,6 +166,50 @@ msgstr ""
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
+#: webtoolbar.py:362
+msgid "Show Web Inspector"
+msgstr ""
+
+#: webtoolbar.py:371
+msgid "Home page"
+msgstr ""
+
+#: webtoolbar.py:377
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:382
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:388
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:428
+msgid "Back"
+msgstr ""
+
+#: webtoolbar.py:443
+msgid "Forward"
+msgstr ""
+
+#: webtoolbar.py:458 webtoolbar.py:516
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:465
+msgid "Bookmark"
+msgstr ""
+
+#: webtoolbar.py:510
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:764
+msgid "No Title"
+msgstr ""
+
 #: webactivity.py:183
 msgid "Bookmarks"
 msgstr ""
@@ -125,177 +222,26 @@ msgstr ""
 msgid "The default initial page was configured"
 msgstr ""
 
-#: webactivity.py:592
+#: webactivity.py:601
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:595
+#: webactivity.py:604
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:600
+#: webactivity.py:609
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:605
+#: webactivity.py:614
 msgid "Stop"
-msgstr ""
-
-#: webtoolbar.py:360
-msgid "Show Web Inspector"
-msgstr ""
-
-#: webtoolbar.py:369
-msgid "Home page"
-msgstr ""
-
-#: webtoolbar.py:375
-msgid "Select as initial page"
-msgstr ""
-
-#: webtoolbar.py:380
-msgid "Reset initial page"
-msgstr ""
-
-#: webtoolbar.py:386
-msgid "Library"
-msgstr ""
-
-#: webtoolbar.py:426
-msgid "Back"
-msgstr ""
-
-#: webtoolbar.py:441
-msgid "Forward"
-msgstr ""
-
-#: webtoolbar.py:456 webtoolbar.py:514
-msgid "No Downloads Running"
-msgstr ""
-
-#: webtoolbar.py:463
-msgid "Bookmark"
-msgstr ""
-
-#: webtoolbar.py:508
-msgid "{}% Downloaded"
-msgstr ""
-
-#: webtoolbar.py:762
-msgid "No Title"
-msgstr ""
-
-#: downloadmanager.py:140
-msgid "Not enough space to download"
-msgstr ""
-
-#: downloadmanager.py:149
-#, python-brace-format
-msgid ""
-"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
-"%{free_space_in_mb} MB is available"
-msgstr ""
-
-#: downloadmanager.py:157 downloadmanager.py:241
-msgid "Ok"
-msgstr ""
-
-#: downloadmanager.py:167
-msgid "Download started"
-msgstr ""
-
-#: downloadmanager.py:211 pdfviewer.py:579
-#, python-format
-msgid "From: %s"
-msgstr ""
-
-#: downloadmanager.py:234
-msgid "Download completed"
-msgstr ""
-
-#: downloadmanager.py:238
-msgid "Show in Journal"
-msgstr ""
-
-#: downloadmanager.py:333
-#, python-format
-msgid ""
-"Downloading %(filename)s from \n"
-"%(source)s."
-msgstr ""
-
-#: edittoolbar.py:67
-msgid "Previous"
-msgstr ""
-
-#: edittoolbar.py:74
-msgid "Next"
-msgstr ""
-
-#: linkbutton.py:133
-msgid "Remove"
-msgstr ""
-
-#: linkbutton.py:152
-msgid "Take notes on this page"
-msgstr ""
-
-#: viewtoolbar.py:39 pdfviewer.py:94
-msgid "Zoom out"
-msgstr ""
-
-#: viewtoolbar.py:45 pdfviewer.py:100
-msgid "Zoom in"
-msgstr ""
-
-#: viewtoolbar.py:51 pdfviewer.py:106
-msgid "Actual size"
-msgstr ""
-
-#: viewtoolbar.py:62
-msgid "Fullscreen"
-msgstr ""
-
-#: viewtoolbar.py:119
-msgid "Show Tray"
-msgstr ""
-
-#: viewtoolbar.py:121
-msgid "Hide Tray"
-msgstr ""
-
-#: pdfviewer.py:117
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:124
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:136
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:335
-msgid "Cancel"
-msgstr ""
-
-#: pdfviewer.py:485
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:529
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:537
-msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
 #: palettes.py:164
@@ -328,4 +274,70 @@ msgstr ""
 
 #: palettes.py:227
 msgid "Copy text"
+msgstr ""
+
+#: edittoolbar.py:67
+msgid "Previous"
+msgstr ""
+
+#: edittoolbar.py:74
+msgid "Next"
+msgstr ""
+
+#: viewtoolbar.py:62
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:119
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:121
+msgid "Hide Tray"
+msgstr ""
+
+#: downloadmanager.py:141
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:150
+#, python-brace-format
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
+msgstr ""
+
+#: downloadmanager.py:158 downloadmanager.py:245
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:168
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:238
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:242
+msgid "Show in Journal"
+msgstr ""
+
+#: downloadmanager.py:337
+#, python-format
+msgid ""
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:178
+msgid "Joining activity..."
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:179 collabwrapper/collabwrapper.py:191
+msgid "Please wait for the connection..."
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:190
+msgid "Resuming shared activity..."
 msgstr ""
