@@ -18,5 +18,5 @@ description:
         <li>Bookmark pages with collaborators in real time - great for researching as a group or teachers showing pages to their class</li>
         <li>Comment on your bookmarked pages - a great tool for making curated collections</li>
     </ul>
-url = https://github.com/sugarlabs/browse-activity
+repository = https://github.com/sugarlabs/browse-activity
 screenshots = https://people.sugarlabs.org/sam/activity-ss/browse-1-1.png https://people.sugarlabs.org/sam/activity-ss/browse-1-2.png
