@@ -26,6 +26,7 @@ GObject.threads_init()
 
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import SoupGNOME
@@ -346,7 +347,17 @@ class WebActivity(activity.Activity):
         if self.metadata['mime_type'] == 'text/plain':
             browser = self._tabbed_view.current_browser
 
-            if not self._jobject.metadata['title_set_by_user'] == '1':
+            # Handles the error when Browse is running
+            # on a version of Sugar before 0.112
+            try:
+                _save_as = Gio.Settings(
+                    'org.sugarlabs.user').get_boolean('save-as')
+            except Exception, e:
+                _save_as = False
+                logging.exception(e)
+
+            if not self._jobject.metadata['title_set_by_user'] == '1' and \
+                not _save_as:
                 if browser.props.title is None:
                     self.metadata['title'] = _('Untitled')
                 else:
