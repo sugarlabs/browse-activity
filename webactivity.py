@@ -291,6 +291,11 @@ class WebActivity(activity.Activity):
             fd.close()
         return data
 
+    def _get_save_as(self):
+        if not hasattr(profile, 'get_save_as'):
+            return False
+        return profile.get_save_as()
+
     def read_file(self, file_path):
         if self.metadata['mime_type'] == 'text/plain':
             data = self._get_data_from_file_path(file_path)
@@ -346,7 +351,8 @@ class WebActivity(activity.Activity):
         if self.metadata['mime_type'] == 'text/plain':
             browser = self._tabbed_view.current_browser
 
-            if not self._jobject.metadata['title_set_by_user'] == '1':
+            if not self._jobject.metadata['title_set_by_user'] == '1' and \
+                not self._get_save_as():
                 if browser.props.title is None:
                     self.metadata['title'] = _('Untitled')
                 else:
