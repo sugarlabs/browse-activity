@@ -457,7 +457,7 @@ class PrimaryToolbar(ToolbarBase):
             tooltip=_('No Downloads Running'))
         toolbar.insert(self._download_icon, -1)
         self._download_icon.show()
-        downloadmanager.connect_donwload_started(self.__download_started_cb)
+        downloadmanager.connect_download_started(self.__download_started_cb)
 
         self._link_add = ToggleToolButton('emblem-favorite')
         self._link_add.set_accelerator('<ctrl>d')

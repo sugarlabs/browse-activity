@@ -410,7 +410,7 @@ def ignore_pdf(uri):
     _ignore_pdf_uris.append(uri)
 
 
-def connect_donwload_started(callback):
+def connect_download_started(callback):
     _started_callbacks.append(callback)
 
 
