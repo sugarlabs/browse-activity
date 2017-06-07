@@ -239,17 +239,30 @@ class Download(object):
                         error_handler=self.__internal_error_cb,
                         timeout=360)
 
-        # update the alert
         self._stop_alert = Alert()
         self._stop_alert.props.title = _('Download completed')
         self._stop_alert.props.msg = self._suggested_filename
-        open_icon = Icon(icon_name='zoom-activity')
-        self._stop_alert.add_button(Gtk.ResponseType.APPLY,
-                                    _('Show in Journal'), open_icon)
-        open_icon.show()
+
+        bundle = None
+        if _HAS_BUNDLE_LAUNCHER:
+            bundle = get_bundle(object_id=self._object_id)
+
+        if bundle is not None:
+            icon = Icon(file=bundle.get_icon())
+            label = _('Open with %s') % bundle.get_name()
+            response_id = Gtk.ResponseType.APPLY
+        else:
+            icon = Icon(icon_name='zoom-activity')
+            label = _('Show in Journal')
+            response_id = Gtk.ResponseType.ACCEPT
+
+        self._stop_alert.add_button(response_id, label, icon)
+        icon.show()
+
         ok_icon = Icon(icon_name='dialog-ok')
         self._stop_alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
         ok_icon.show()
+
         self._activity.add_alert(self._stop_alert)
         self._stop_alert.connect('response', self.__stop_response_cb)
         self._stop_alert.show()
@@ -284,7 +297,6 @@ class Download(object):
 
     def __stop_response_cb(self, alert, response_id):
         if response_id == Gtk.ResponseType.APPLY:
-            logging.debug('Start application with downloaded object')
             launch_bundle(object_id=self._object_id)
         if response_id == Gtk.ResponseType.ACCEPT:
             activity.show_object_in_journal(self._object_id)
