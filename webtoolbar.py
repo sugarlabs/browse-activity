@@ -199,7 +199,6 @@ class WebEntry(iconentry.IconEntry):
         self._search_window.resize(search_width, search_height)
         self._search_window.show()
 
-        print('My PARENT is', self.get_parent())
         self.get_parent().get_style_context().add_class('connected-entry')
         self.get_parent().queue_draw()
 

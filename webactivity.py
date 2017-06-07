@@ -21,6 +21,12 @@ from gettext import gettext as _
 from gettext import ngettext
 import os
 
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('WebKit', '3.0')
+gi.require_version('SoupGNOME', '2.4')
+gi.require_version('GConf', '2.0')
+
 from gi.repository import GObject
 GObject.threads_init()
 
