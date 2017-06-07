@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:42+1000\n"
+"POT-Creation-Date: 2017-06-07 17:43+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,61 +56,73 @@ msgid ""
 "collections"
 msgstr ""
 
-#: browser.py:275
+#: browser.py:279
 #, python-format
 msgid "This tab has crashed Browse: %s"
 msgstr ""
 
-#: browser.py:276
+#: browser.py:280
 msgid "If you reopen the tab, it may just crash again"
 msgstr ""
 
-#: browser.py:277
+#: browser.py:281
 msgid "Reopen"
 msgstr ""
 
-#: browser.py:278
+#: browser.py:282
 msgid "Disregard"
 msgstr ""
 
-#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
+#: browser.py:562 browser.py:607 browser.py:608 webactivity.py:366
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:606
+#: browser.py:610
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:849 browser.py:850
+#: browser.py:858 browser.py:859
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:851
+#: browser.py:860
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:854 pdfviewer.py:388
+#: browser.py:863 pdfviewer.py:388
 msgid "Try again"
 msgstr ""
 
-#: browser.py:866
+#: browser.py:875
 msgid "access to your location"
 msgstr ""
 
-#: browser.py:869
+#: browser.py:878
 msgid "to display notifications in the frame"
 msgstr ""
 
-#: browser.py:881
+#: browser.py:890
 #, python-format
 msgid "Allow %s to %s?"
 msgstr ""
 
-#: browser.py:884
+#: browser.py:893
 msgid "You can change your choice later by reloading the page"
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:178
+msgid "Joining activity..."
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:179 collabwrapper/collabwrapper.py:191
+msgid "Please wait for the connection..."
+msgstr ""
+
+#: collabwrapper/collabwrapper.py:190
+msgid "Resuming shared activity..."
 msgstr ""
 
 #: downloadmanager.py:141
@@ -124,28 +136,33 @@ msgid ""
 "%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:158 downloadmanager.py:245
+#: downloadmanager.py:158 downloadmanager.py:263
 msgid "Ok"
 msgstr ""
 
-#: downloadmanager.py:168
+#: downloadmanager.py:171
 msgid "Download started"
 msgstr ""
 
-#: downloadmanager.py:212 pdfviewer.py:579
+#: downloadmanager.py:218 pdfviewer.py:579
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:238
+#: downloadmanager.py:243
 msgid "Download completed"
 msgstr ""
 
-#: downloadmanager.py:242
+#: downloadmanager.py:252
+#, python-format
+msgid "Open with %s"
+msgstr ""
+
+#: downloadmanager.py:256
 msgid "Show in Journal"
 msgstr ""
 
-#: downloadmanager.py:337
+#: downloadmanager.py:355
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -252,80 +269,80 @@ msgstr ""
 msgid "Hide Tray"
 msgstr ""
 
-#: webactivity.py:183
+#: webactivity.py:189
 msgid "Bookmarks"
 msgstr ""
 
-#: webactivity.py:398
+#: webactivity.py:413
 msgid "The initial page was configured"
 msgstr ""
 
-#: webactivity.py:402
+#: webactivity.py:417
 msgid "The default initial page was configured"
 msgstr ""
 
-#: webactivity.py:601
+#: webactivity.py:616
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:604
+#: webactivity.py:619
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:609
+#: webactivity.py:624
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:614
+#: webactivity.py:629
 msgid "Stop"
 msgstr ""
 
-#: webtoolbar.py:362
+#: webtoolbar.py:361
 msgid "Show Web Inspector"
 msgstr ""
 
-#: webtoolbar.py:371
+#: webtoolbar.py:370
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:377
+#: webtoolbar.py:376
 msgid "Select as initial page"
 msgstr ""
 
-#: webtoolbar.py:382
+#: webtoolbar.py:381
 msgid "Reset initial page"
 msgstr ""
 
-#: webtoolbar.py:388
+#: webtoolbar.py:387
 msgid "Library"
 msgstr ""
 
-#: webtoolbar.py:428
+#: webtoolbar.py:427
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:443
+#: webtoolbar.py:442
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:458 webtoolbar.py:516
+#: webtoolbar.py:457 webtoolbar.py:514
 msgid "No Downloads Running"
 msgstr ""
 
-#: webtoolbar.py:465
+#: webtoolbar.py:464
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:510
+#: webtoolbar.py:508
 msgid "{}% Downloaded"
 msgstr ""
 
-#: webtoolbar.py:764
+#: webtoolbar.py:761
 msgid "No Title"
 msgstr ""
