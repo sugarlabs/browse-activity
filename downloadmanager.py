@@ -203,7 +203,7 @@ class Download(object):
                 PROGRESS_TIMEOUT, self._update_progress)
 
     def __download_finished_cb(self, download):
-        logging.error('__download_finished_cb')
+        self._activity.unbusy()
 
         if self._progress_sid is not None:
             GObject.source_remove(self._progress_sid)
@@ -330,7 +330,7 @@ class Download(object):
         return s.f_bavail * s.f_frsize
 
     def _create_journal_object(self):
-        logging.error('_create_journal_object')
+        logging.debug('_create_journal_object')
         self.dl_jobject = datastore.create()
         filename = self._download.get_response().get_suggested_filename()
         self.dl_jobject.metadata['title'] = \

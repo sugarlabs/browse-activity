@@ -239,7 +239,10 @@ class WebActivity(activity.Activity):
         self._collab.setup()
 
     def __download_requested_cb(self, context, download):
-        logging.error('__download_requested_cb %r',
+        if hasattr(self, 'busy'):
+            while self.unbusy() > 0:
+                continue
+        logging.debug('__download_requested_cb %r',
                       download.get_request().get_uri())
         downloadmanager.add_download(download, self)
         return True
@@ -642,11 +645,18 @@ class WebActivity(activity.Activity):
             self.close()
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
+        if not hasattr(self, 'busy'):
+            return
+
         browser = page._browser
-        if browser.props.estimated_load_progress < 1.0 and browser.props.uri:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+        progress = browser.props.estimated_load_progress
+        uri = browser.props.uri
+
+        if progress < 1.0 and uri:
+            self.busy()
         else:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+            while self.unbusy() > 0:
+                continue
 
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser

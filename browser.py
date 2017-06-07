@@ -261,13 +261,17 @@ class TabbedView(BrowserNotebook):
         if self.get_window() is None:
             return
 
+        if not hasattr(self._activity, 'busy'):
+            return
+
         if widget.props.estimated_load_progress < 1.0 and widget.props.uri:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+            self._activity.busy()
         else:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+            while self._activity.unbusy() > 0:
+                continue
 
     def __crashed_cb(self, browser):
-        self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+        self._activity.unbusy()
         uri = browser.cached_uri
         logging.error('WebKit2 WebView at uri %r has crashed', uri)
         self.close_tab(browser.get_parent())
@@ -808,8 +812,12 @@ class Browser(WebKit2.WebView):
         mimetype = WebKit2.URIResponse.get_mime_type(response)
 
         if mimetype == 'application/pdf':
+            # FIXME: this causes two GET requests to the server; at
+            # this point the first is in progress and then abandoned,
+            # or already completed, then a second GET request is made.
             self.emit('open-pdf', response.get_uri())
             policy_decision.ignore()
+            self._activity.unbusy()
             return True
 
         elif mimetype == 'audio/x-vorbis+ogg' or mimetype == 'audio/mpeg':
@@ -817,6 +825,7 @@ class Browser(WebKit2.WebView):
 
         elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
+            self._activity.unbusy()
             return True
 
         return False
