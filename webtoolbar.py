@@ -201,7 +201,6 @@ class WebEntry(iconentry.IconEntry):
         self._search_window.resize(search_width, search_height)
         self._search_window.show()
 
-        print('My PARENT is', self.get_parent())
         self.get_parent().get_style_context().add_class('connected-entry')
         self.get_parent().queue_draw()
 
@@ -502,7 +501,6 @@ class PrimaryToolbar(ToolbarBase):
                 80, self.__download_running_cb)
 
     def __download_running_cb(self):
-        print('__DLR')
         progress = downloadmanager.overall_downloads_progress()
         self._download_icon.update(progress)
         if downloadmanager.num_downloads() > 0:
@@ -679,7 +677,6 @@ class PrimaryToolbar(ToolbarBase):
 
         with self._link_add.handler_block(self._link_add_toggled_hid):
             uri = self._browser.get_uri()
-            print(self.model.has_link(uri), uri)
             self._link_add.props.active = self.model.has_link(uri)
 
     def __link_removed_cb(self, model):
