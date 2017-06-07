@@ -158,8 +158,11 @@ class Download(object):
                                             _('Ok'), ok_icon)
             ok_icon.show()
             self._canceled_alert.connect('response',
-                                         self.__stop_response_cb)
+                                         self.__canceled_response_cb)
             self._activity.add_alert(self._canceled_alert)
+
+    def __canceled_response_cb(self, alert, response_id):
+        self._activity.remove_alert(alert)
 
     def __decide_destination_cb(self, download, suggested_filename):
         logging.debug('__decide_desintation_cb suggests %s',
