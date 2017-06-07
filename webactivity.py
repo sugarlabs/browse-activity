@@ -180,7 +180,7 @@ class WebActivity(activity.Activity):
         # downloadmanager.remove_old_parts()
 
         self._force_close = False
-        self._tabbed_view = TabbedView()
+        self._tabbed_view = TabbedView(self)
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
         self._tabbed_view.connect('switch-page', self.__switch_page_cb)
 
@@ -621,16 +621,20 @@ class WebActivity(activity.Activity):
             self.close()
 
     def __switch_page_cb(self, tabbed_view, page, page_num):
+        if not hasattr(self, 'busy'):
+            return
+
         browser = page._browser
         status = browser.get_load_status()
 
         if status in (WebKit.LoadStatus.COMMITTED,
                       WebKit.LoadStatus.FIRST_VISUALLY_NON_EMPTY_LAYOUT):
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+            self.busy()
         elif status in (WebKit.LoadStatus.PROVISIONAL,
                         WebKit.LoadStatus.FAILED,
                         WebKit.LoadStatus.FINISHED):
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
+            while self.unbusy() > 0:
+                continue
 
     def get_document_path(self, async_cb, async_err_cb):
         browser = self._tabbed_view.props.current_browser

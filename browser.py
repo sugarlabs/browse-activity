@@ -108,7 +108,8 @@ class TabbedView(BrowserNotebook):
                             ([])),
     }
 
-    def __init__(self):
+    def __init__(self, activity):
+        self._activity = activity
         BrowserNotebook.__init__(self)
 
         self.props.show_border = False
@@ -215,7 +216,7 @@ class TabbedView(BrowserNotebook):
         new_browser.grab_focus()
 
     def __create_web_view_cb(self, web_view, frame):
-        new_web_view = Browser()
+        new_web_view = Browser(self._activity)
         new_web_view.connect('web-view-ready', self.__web_view_ready_cb)
         return new_web_view
 
@@ -270,7 +271,7 @@ class TabbedView(BrowserNotebook):
             self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.LEFT_PTR))
 
     def add_tab(self, next_to_current=False):
-        browser = Browser()
+        browser = Browser(self._activity)
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
         browser.connect('web-view-ready', self.__web_view_ready_cb)
@@ -447,7 +448,7 @@ class TabbedView(BrowserNotebook):
                 tab_page.setup(url, title=tab_history[0]['title'])
 
             else:
-                browser = Browser()
+                browser = Browser(self._activity)
                 browser.connect('new-tab', self.__new_tab_cb)
                 browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
                 browser.connect('web-view-ready', self.__web_view_ready_cb)
@@ -578,8 +579,9 @@ class Browser(WebKit.WebView):
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
 
-    def __init__(self):
+    def __init__(self, activity):
         WebKit.WebView.__init__(self)
+        self._activity = activity
 
         web_settings = self.get_settings()
 
@@ -748,8 +750,12 @@ class Browser(WebKit.WebView):
                               policy_decision):
         """Handle downloads and PDF files."""
         if mimetype == 'application/pdf':
+            # FIXME: this causes two GET requests to the server; at
+            # this point the first is in progress and then abandoned,
+            # or already completed, then a second GET request is made.
             self.emit('open-pdf', request.get_uri())
             policy_decision.ignore()
+            self._activity.unbusy()
             return True
 
         elif mimetype == 'audio/x-vorbis+ogg' or mimetype == 'audio/mpeg':
@@ -757,6 +763,7 @@ class Browser(WebKit.WebView):
 
         elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
+            self._activity.unbusy()
             return True
 
         return False
