@@ -180,7 +180,7 @@ class Download(object):
                                                 _('Ok'), ok_icon)
                 ok_icon.show()
                 self._canceled_alert.connect('response',
-                                             self.__stop_response_cb)
+                                             self.__canceled_response_cb)
                 self._activity.add_alert(self._canceled_alert)
             else:
                 # FIXME: workaround for SL #4385
@@ -261,6 +261,9 @@ class Download(object):
 
         elif state == WebKit.DownloadStatus.CANCELLED:
             self.cleanup()
+
+    def __canceled_response_cb(self, alert, response_id):
+        self._activity.remove_alert(alert)
 
     def __error_cb(self, download, err_code, err_detail, reason):
         logging.debug('Error downloading URI code %s, detail %s: %s'
