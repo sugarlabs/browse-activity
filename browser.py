@@ -755,7 +755,9 @@ class Browser(WebKit.WebView):
             # or already completed, then a second GET request is made.
             self.emit('open-pdf', request.get_uri())
             policy_decision.ignore()
-            self._activity.unbusy()
+            if hasattr(self._activity, 'busy'):
+                while self._activity.unbusy() > 0:
+                    continue
             return True
 
         elif mimetype == 'audio/x-vorbis+ogg' or mimetype == 'audio/mpeg':
@@ -763,7 +765,9 @@ class Browser(WebKit.WebView):
 
         elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
-            self._activity.unbusy()
+            if hasattr(self._activity, 'busy'):
+                while self._activity.unbusy() > 0:
+                    continue
             return True
 
         return False
