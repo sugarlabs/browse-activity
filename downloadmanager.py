@@ -206,7 +206,8 @@ class Download(object):
                 PROGRESS_TIMEOUT, self._update_progress)
 
     def __download_finished_cb(self, download):
-        self._activity.unbusy()
+        if hasattr(self._activity, 'busy'):
+            self._activity.unbusy()
 
         if self._progress_sid is not None:
             GObject.source_remove(self._progress_sid)

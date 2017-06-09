@@ -825,7 +825,8 @@ class Browser(WebKit2.WebView):
 
         elif not self.can_show_mime_type(mimetype):
             policy_decision.download()
-            self._activity.unbusy()
+            if hasattr(self._activity, 'busy'):
+                self._activity.unbusy()
             return True
 
         return False
