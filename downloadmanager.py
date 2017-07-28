@@ -211,6 +211,9 @@ class Download(object):
             if self._progress_sid is not None:
                 GObject.source_remove(self._progress_sid)
 
+            if self.dl_jobject is None:
+                return
+
             self.dl_jobject.metadata['title'] = \
                 self._download.get_suggested_filename()
             self.dl_jobject.metadata['description'] = _('From: %s') \
