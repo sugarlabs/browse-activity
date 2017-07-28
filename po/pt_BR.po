@@ -14,246 +14,369 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2010-03-01 06:35+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-20 13:08+0000\n"
+"Last-Translator: Mariana <dias.inkscape@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1497964115.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Navegar"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Surfe pelo mundo!"
+
+# Literal translation for the end bit will sound exactly like that... There's still room for improvement in the sentence above, but so far it was the best I could come up with.
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Surfe pelo mundo! Aqui você pode pesquisar, assistir videos educacionais, "
+"fazer cursos online, encontrar livros, conectar-se com amigos e mais.  A "
+"navegação é sustentada pelo mecanismo de renderização WebKit2 com o Faster "
+"Than Light interpretador javascript - permitindo que você possa experimentar "
+"de maneira única a beleza da internet."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "Para ajudar na sua pesquisa, o Browse tem muitos recursos a oferecer:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Marque como Favoritas as páginas interessantes que encontrar - não se "
+"esqueça de salvar boas fontes de informação ou adicioná-las a sua "
+"bibliografia."
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Marque páginas como favoritas em conjunto com seus colaboradores em tempo "
+"real - ótimo para pesquisas em grupo ou para professores fazendo "
+"apresentações em sala de aula"
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Faça comentários nas suas páginas salvas como favoritas - uma ótima "
+"ferramenta para criar coleções  profissional"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Esta guia apresentou erros Browse: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Se você tentar reabrir a guia, ela pode apresentar erros novamente"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Abrir novamente"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Desconsidere"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "Sem título"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "Carregando..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Não foi possível carregar esta página"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" não pôde ser carregado. Por favor, verifique se há erros de digitação "
+"e certifique-se de estar conectado à Internet."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr ""
+msgstr "Tente novamente"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "acesso a sua localização"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "para mostrar as notificações na estrutura"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Permitir %s para %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr ""
+"Você pode escolher outra opção mais tarde, para isso apenas recarregue a "
+"página"
+
+# Favorito?
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Favoritos"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "A página inicial foi configurada"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "A página inicial padrão foi configurada"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Download em andamento"
+msgstr[1] "Downloads em andamento"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Parar agora irá cancelar seu download"
+msgstr[1] "Parar agora irá cancelar seus downloads"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Continuar download"
+msgstr[1] "Continuar downloads"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Parar"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Mostrar o Inspetor Web"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Página inicial"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Selecionar como página inicial"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Resetar página inicial"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Biblioteca"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Voltar"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Avançar"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Nenhum Download Ativo"
+
+# Favorito?
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Marcar"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% do Download"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Sem Título"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Sem espaço suficiente para fazer download"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"O download de \"%{filename}\" requer %{total_size_in_mb} MB de espaço livre, "
+"apenas %{free_space_in_mb} MB estão disponíveis"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
 # "Download" is a term which generally it's not translated to Portuguese
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Transferência iniciada"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Transferência completada"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Mostrar no Diário"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Transferência completada"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Mostrar no Diário"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Baixando %(filename)s de \n"
+"%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Anterior"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Próximo"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Remover"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Seguir vínculo"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Faça suas anotações nesta página"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr ""
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Manter vínculo"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Copiar vínculo"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Copiar imagem"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Manter imagem"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr ""
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Diminuir zoom"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Aumentar zoom"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Tamanho real"
 
 # Encher o ecrã?
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Mostrar Bandeja"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr ""
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Página anterior"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr ""
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Próxima página"
 
-#: webactivity.py:655
-#, fuzzy
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Transferência em progresso"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Salvar PDF no Diário"
 
-#: webactivity.py:658
-#, fuzzy
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Parar agora irá cancelar a sua transferência"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Baixando documento..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Parar"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Este documento não pôde ser carregado"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr ""
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Por favor, certifique-se de estar conectado à Internet."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr ""
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Seguir vínculo"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr ""
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Abrir link em uma nova aba"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr ""
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Manter vínculo"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Voltar"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Copiar vínculo"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Avançar"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Copiar o texto do link"
 
-# Favorito?
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Marcar"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Copiar imagem"
+
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Manter imagem"
+
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Copiar texto"
+
+#~ msgid ""
+#~ "Surf the world! Here you can do research, watch educational videos, take "
+#~ "online courses, find books, connect with friends and more."
+#~ msgstr ""
+#~ "Surfe pelo mundo! Aqui você pode pesquisar, assitir vídeos educacionais, "
+#~ "fazer cursos online, encontrar livros, conectar-se aos amigos e muito mais."
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #, python-format
 #, fuzzy

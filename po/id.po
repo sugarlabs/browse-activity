@@ -2,20 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-07-05 07:10+0200\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-03-28 04:47+0000\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -23,35 +15,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1490676422.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Ramban"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Jelajahi dunia!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
 "Jelajahi dunia! Di sini Anda dapat melakukan riset, menonton video "
-"pendidikan, mengikuti kursus daring, mencari buku, menyambung dengan teman-"
-"teman, dan yang lainnya."
+"pendidikan, mengambil kursus daring, mencari buku, berhubungan dengan teman, "
+"dan lain-lain.  Ramban dibangun memakai mesin rendir WebKit2 dengan "
+"interpreter javascript Faster Than Light - memungkinkan Anda menyaksikan "
+"kecantikan utuh dari web."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "Untuk bantuan dalam riset, Peramban menawarkan banyak fitur:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Tandai (simpan) halaman bagus yang Anda temukan - tak akan pernah kehilangan "
+"sumber daya yang bagus atau lupa menambahkan mereka ke bibliografi Anda"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Tandai halaman dengan para kolaborator seketika - hebat untuk melakukan "
+"riset sebagai kelompok atau guru menunjukkan halaman ke kelas mereka"
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Komentari pada halaman yang Anda tandai - suatu alat yang bagus untuk "
+"membuat koleksi yang terpelihara"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Tab ini telah membuat Peramban kres: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Bila Anda membuka ulang tab, mungkin itu bakal kres lagi"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Buka lagi"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Abaikan"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Tanpa judul"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Memuat..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Halaman web ini tak dapat dimuat"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -61,49 +107,139 @@ msgstr ""
 "\"%s\" tak dapat dimuat. Harap periksa apakah ada salah ketik, dan pastikan "
 "bahwa Anda tersambung ke internet."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Coba lagi"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "akses ke lokasi Anda"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "untuk menampilkan pemberitahuan dalam kerangka"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Izinkan %s untuk %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Anda dapat mengubah pilihan nanti dengan memuat ulang halaman"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Penanda taut"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Halaman awal telah dikonfigurasi"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Halaman awal baku telah dikonfigurasi"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Pengunduhan tengah berlangsung"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Berhenti sekarang akan menghapus unduhan Anda"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Lanjutkan mengunduh"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Stop"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Tampilkan Inspektur Web"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Beranda"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Pilih sebagai halaman awal"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Reset halaman awal"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Pustaka"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Kembali"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Maju"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Tak Ada Pengunduhan Berjalan"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Penanda taut"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% Diunduh"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Tanpa Judul"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "Tak cukup ruang untuk mengunduh"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
-"Mengunduh \"%{filename}\" memerlukan ruang bebas %{total_size_in_mb} MB, hanya "
-"%{free_space_in_mb} MB yang tersedia"
+"Mengunduh \"%{filename}\" memerlukan ruang bebas %{total_size_in_mb} MB, "
+"hanya %{free_space_in_mb} MB yang tersedia"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Pengunduhan dimulai"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Pengunduhan komplit"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Tampilkan di Jurnal"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "Dari: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Pengunduhan komplit"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Tampilkan di Jurnal"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -112,154 +248,102 @@ msgstr ""
 "Mengunduh %(filename)s dari \n"
 "%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Sebelumnya"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Selanjutnya"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Hapus"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Ikuti taut"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Tulis catatan pada halaman ini"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Ikuti taut dalam tab baru"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Pertahankan taut"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Salin taut"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Salin gambar"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Pertahankan gambar"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Salin teks"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Zum perkecil"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Zum perbesar"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Ukuran sebenarnya"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Halaman sebelumnya"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Halaman selanjutnya"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Simpan PDF ke Jurnal"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Batal"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Mengunduh dokumen..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Dokumen ini tak dapat dimuat"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Pastikan bahwa Anda sedang tersambung ke Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Layar penuh"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Tampilkan Baki"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Sembunyikan Baki"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Halaman awal telah dikonfigurasi"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Halaman sebelumnya"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Halaman awal baku telah dikonfigurasi"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Halaman selanjutnya"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Pengunduhan tengah berlangsung"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Simpan PDF ke Jurnal"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Berhenti sekarang akan menghapus unduhan Anda"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Batal"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Lanjutkan mengunduh"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Mengunduh dokumen..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Stop"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Dokumen ini tak dapat dimuat"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Beranda"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Pastikan bahwa Anda sedang tersambung ke Internet."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Pilih sebagai halaman awal"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Ikuti taut"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Reset halaman awal"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Ikuti taut dalam tab baru"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Pustaka"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Pertahankan taut"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Kembali"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Salin taut"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Maju"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Salin teks taut"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Penanda taut"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Salin gambar"
 
-#, python-format
-#~ msgid ""
-#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
-#~ msgstr "Unduhan \"%s\" memerlukan ruang bebas %.2f MB, tersedia hanya %.2f MB"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Pertahankan gambar"
+
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Salin teks"

@@ -1,6 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
 # translation of web-activity.po to Arabic
 # Khaled Hosny <khaledhosny@eglug.org>, 2007, 2011.
 # Ahmed Mansour <atphalix@users.arabeyes.org>, 2008.
@@ -10,199 +7,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2011-10-11 20:56+0200\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-03 22:33+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 2.0.5\n"
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1496529198.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "تصفّح"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
-msgid ""
-"Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+#: activity/activity.info:3
+msgid "Surf the world!"
 msgstr ""
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
+msgstr ""
+
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr ""
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+
+#: browser.py:277
+msgid "Reopen"
+msgstr ""
+
+#: browser.py:278
+msgid "Disregard"
+msgstr ""
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "يُحمّل..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:759
+#: browser.py:851
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:124
-msgid "Not enough space to download"
+#: browser.py:866
+msgid "access to your location"
 msgstr ""
 
-#: downloadmanager.py:133
-msgid ""
-"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
-"%{free_space_in_mb} MB is available"
+#: browser.py:869
+msgid "to display notifications in the frame"
 msgstr ""
 
-#: downloadmanager.py:141 downloadmanager.py:176
-msgid "Ok"
-msgstr "حسنا"
-
-#: downloadmanager.py:157
-msgid "Download started"
-msgstr "بدأ التنزيل"
-
-#: downloadmanager.py:158 downloadmanager.py:170
+#: browser.py:881
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "اكتمل التنزيل"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "اعرض في اليوميات"
-
-#: downloadmanager.py:184 pdfviewer.py:589
-#, python-format
-msgid "From: %s"
-msgstr "من: %s"
-
-#: downloadmanager.py:292
-#, python-format
-#, python-format, fuzzy
-msgid ""
-"Downloading %(filename)s from \n"
-"%(source)s."
-msgstr ""
-"ينزّل %(file)s من  \n"
-"%(source)s."
-
-#: edittoolbar.py:65
-msgid "Previous"
-msgstr "السابق"
-
-#: edittoolbar.py:72
-msgid "Next"
-msgstr "التالي"
-
-#: linkbutton.py:108
-msgid "Remove"
-msgstr "أزِل"
-
-#: palettes.py:184
-msgid "Follow link"
-msgstr "اتبع الوصلة"
-
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "اتبع الوصلة في لسان جديد"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "احفظ الوصلة"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "انسخ الوصلة"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "انسخ الصورة"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "احفظ الصورة"
-
-#: palettes.py:238
-msgid "Copy text"
+msgid "Allow %s to %s?"
 msgstr ""
 
-#: pdfviewer.py:91 viewtoolbar.py:39
-msgid "Zoom out"
-msgstr "بعّد"
-
-#: pdfviewer.py:97 viewtoolbar.py:45
-msgid "Zoom in"
-msgstr "قرّب"
-
-#: pdfviewer.py:103 viewtoolbar.py:51
-msgid "Actual size"
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
 msgstr ""
 
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
+#: webactivity.py:183
+#, fuzzy
+msgid "Bookmarks"
+msgstr "علِّم"
 
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "ألغِ"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr ""
-
-#: viewtoolbar.py:62
-msgid "Fullscreen"
-msgstr "ملء الشاشة"
-
-#: viewtoolbar.py:113
-msgid "Show Tray"
-msgstr "أظهر الطبق"
-
-#: viewtoolbar.py:116
-msgid "Hide Tray"
-msgstr "اخفِ الطبق"
-
-#: webactivity.py:490
+#: webactivity.py:398
 msgid "The initial page was configured"
 msgstr ""
 
-#: webactivity.py:494
+#: webactivity.py:402
 msgid "The default initial page was configured"
 msgstr ""
 
-#: webactivity.py:655
+#: webactivity.py:592
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "يجري التنزيل"
@@ -212,7 +138,7 @@ msgstr[3] "يجري التنزيل"
 msgstr[4] "يجري التنزيل"
 msgstr[5] "يجري التنزيل"
 
-#: webactivity.py:658
+#: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] "التوقف الآن سيلغي تنزيلك"
@@ -222,7 +148,7 @@ msgstr[3] "التوقف الآن سيلغي تنزيلاتك"
 msgstr[4] "التوقف الآن سيلغي تنزيلاتك"
 msgstr[5] "التوقف الآن سيلغي تنزيلاتك"
 
-#: webactivity.py:663
+#: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] "أكمِل التنزيل"
@@ -232,101 +158,194 @@ msgstr[3] "أكمِل التنزيلات"
 msgstr[4] "أكمِل التنزيلات"
 msgstr[5] "أكمِل التنزيلات"
 
-#: webactivity.py:668
+#: webactivity.py:605
 msgid "Stop"
 msgstr "قف"
 
-#: webtoolbar.py:288
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr ""
+
+#: webtoolbar.py:369
 msgid "Home page"
 msgstr "الصفحة الرئيسية"
 
-#: webtoolbar.py:294
+#: webtoolbar.py:375
 msgid "Select as initial page"
 msgstr ""
 
-#: webtoolbar.py:299
+#: webtoolbar.py:380
 msgid "Reset initial page"
 msgstr ""
 
-#: webtoolbar.py:305
+#: webtoolbar.py:386
 msgid "Library"
 msgstr ""
 
-#: webtoolbar.py:338
+#: webtoolbar.py:426
 msgid "Back"
 msgstr "للخلف"
 
-#: webtoolbar.py:352
+#: webtoolbar.py:441
 msgid "Forward"
 msgstr "للأمام"
 
-#: webtoolbar.py:366
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:463
 msgid "Bookmark"
 msgstr "علِّم"
 
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr ""
+
+#: downloadmanager.py:140
+msgid "Not enough space to download"
+msgstr ""
+
+#: downloadmanager.py:149
+#, python-brace-format
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
+msgstr ""
+
+#: downloadmanager.py:157 downloadmanager.py:241
+msgid "Ok"
+msgstr "حسنا"
+
+#: downloadmanager.py:167
+msgid "Download started"
+msgstr "بدأ التنزيل"
+
+#: downloadmanager.py:211 pdfviewer.py:579
+#, python-format
+#, python-format
+msgid "From: %s"
+msgstr "من: %s"
+
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "اكتمل التنزيل"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "اعرض في اليوميات"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 #, python-format, fuzzy
-#~ msgid "Loading %s..."
-#~ msgstr "يُحمّل..."
+msgid ""
+"Downloading %(filename)s from \n"
+"%(source)s."
+msgstr ""
+"ينزّل %(filename)s من \n"
+"%(source)s."
 
-#, python-format
-#, python-format,
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "يُنزِّل %s من \n"
-#~ "%s."
+#: edittoolbar.py:67
+msgid "Previous"
+msgstr "السابق"
 
-#~ msgid "Edit"
-#~ msgstr "تحرير"
+#: edittoolbar.py:74
+msgid "Next"
+msgstr "التالي"
 
-#~ msgid "View"
-#~ msgstr "عرض"
+#: linkbutton.py:133
+msgid "Remove"
+msgstr "أزِل"
 
-#~ msgid "Add a tab"
-#~ msgstr "أضِف لسانا"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr ""
 
-#~ msgid "Reload"
-#~ msgstr "أعد التحميل"
+#: viewtoolbar.py:39 pdfviewer.py:94
+msgid "Zoom out"
+msgstr "بعّد"
 
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "ملف %s مِن %s."
+#: viewtoolbar.py:45 pdfviewer.py:100
+msgid "Zoom in"
+msgstr "قرّب"
 
-#~ msgid "Copy"
-#~ msgstr "انسخ"
+#: viewtoolbar.py:51 pdfviewer.py:106
+msgid "Actual size"
+msgstr ""
 
-#~ msgid "Download link"
-#~ msgstr "تحميل الوصلة"
+#: viewtoolbar.py:62
+msgid "Fullscreen"
+msgstr "ملء الشاشة"
 
-#~ msgid "Download image"
-#~ msgstr "تحميل الصورة"
+#: viewtoolbar.py:119
+msgid "Show Tray"
+msgstr "أظهر الطبق"
 
-#~ msgid "blank"
-#~ msgstr "فارغ"
+#: viewtoolbar.py:121
+msgid "Hide Tray"
+msgstr "اخفِ الطبق"
 
-#~ msgid "Source"
-#~ msgstr "المصدر"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr ""
 
-#~ msgid "Open"
-#~ msgstr "افتح"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr ""
 
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr ""
-#~ "نُزِّل الملف %s من\n"
-#~ "%s."
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr ""
 
-#~ msgid ""
-#~ "Downloading %s from\n"
-#~ "%s. Progress %i%%."
-#~ msgstr ""
-#~ "يجري تنزيل %s من\n"
-#~ "%s. التقدم %i%%."
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "ألغِ"
 
-#, python-format
-#~ msgid "Web Activity"
-#~ msgstr "نشاط الوِب"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr ""
+
+#: palettes.py:164
+msgid "Follow link"
+msgstr "اتبع الوصلة"
+
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "اتبع الوصلة في لسان جديد"
+
+#: palettes.py:178
+msgid "Keep link"
+msgstr "احفظ الوصلة"
+
+#: palettes.py:184
+msgid "Copy link"
+msgstr "انسخ الوصلة"
+
+#: palettes.py:191
+msgid "Copy link text"
+msgstr ""
+
+#: palettes.py:206
+msgid "Copy image"
+msgstr "انسخ الصورة"
+
+#: palettes.py:212
+msgid "Keep image"
+msgstr "احفظ الصورة"
+
+#: palettes.py:227
+msgid "Copy text"
+msgstr ""

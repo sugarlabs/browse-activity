@@ -2,251 +2,359 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-04-16 15:09+0000\n"
+"Last-Translator: yurchor <yurchor@ukr.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1492355342.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
-msgstr ""
+msgstr "Перегляд інтернету"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Подорожуйте світом!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Подорожуйте світом! Тут ви можете досліджувати, переглядати навчальні відео, "
+"навчатися на інтернет-курсах, шукати книги, з’єднуватися з друзями тощо. «"
+"Перегляд інтернету» працює за допомогою рушія показу сторінок WebKit2 із "
+"дуже швидким обробником коду javascript — це надає змогу користуватися усіма "
+"принадами сторінок інтернету."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr ""
+"Щоб допомогти у дослідженнях, у «Перегляді інтернету» передбачено багато "
+"можливостей:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Створення (збереження) закладок для знайдених сторінок — не втрачайте "
+"корисні ресурси, на забувайте додавати їх до вашої бібліографії"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Інтерактивне створення закладок на сторінки разом із колегами — чудова "
+"можливість для досліджень у групі або для показу викладачами сторінок усьому "
+"класу"
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Створюйте коментарі до ваших сторінок із закладками — чудовий інструмент для "
+"створення ретельно коментованих збірок"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Ця вкладка призвела до аварійного завершення «Перегляду»: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+"Якщо ви ще раз відкриєте вкладку, програма може знову аварійно завершити "
+"роботу"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Повторно відкрити"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Не брати до уваги"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "Без назви"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження…"
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Не вдалося завантажити цю сторінку"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"Не вдалося завантажити «%s». Перевірте правильність введення адреси та "
+"наявність з’єднання з інтернетом."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr ""
+msgstr "Повторити спробу"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "доступ до даних щодо вашого місця перебування"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "показ сповіщень у рамці"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Дозволити %s %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Пізніше ви можете змінити ваш вибір перезавантаженням сторінки"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Домашню сторінку встановлено"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Налаштовано типову початкову сторінку"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Отримуємо дані"
+msgstr[1] "Отримуємо дані"
+msgstr[2] "Отримуємо дані"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Вихід призведе до втрати отриманого"
+msgstr[1] "Вихід призведе до втрати отриманого"
+msgstr[2] "Вихід призведе до втрати отриманого"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Продовжити отримання"
+msgstr[1] "Продовжити отримання"
+msgstr[2] "Продовжити отримання"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Зупинити"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Показати панель ревізора"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Домашня сторінка"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Вибрати домашньою сторінкою"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Скинути домашню сторінку"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Бібліотека"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Назад"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Вперед"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Отримання даних не виконується"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Додати до закладок"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "Отримано {}%"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Без назви"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Недостатньо місця для отримання даних"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Для отримання «%{filename}» потрібно %{total_size_in_mb} МБ, натомість "
+"доступно %{free_space_in_mb} МБ"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr ""
+msgstr "Гаразд"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
-msgstr ""
+msgstr "Розпочато отримання даних"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr ""
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr ""
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr ""
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "Звідки: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Отримання завершено"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Показати у журналі"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Отримуємо %(filename)s з \n"
+"%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
-msgstr ""
+msgstr "Далі"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
-msgstr ""
+msgstr "Прибрати"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr ""
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Додати нотатки щодо цієї сторінки"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr ""
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr ""
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr ""
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr ""
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
-msgstr ""
+msgstr "Зменшити"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
-msgstr ""
+msgstr "Збільшити"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr ""
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Фактичний розмір"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr ""
+msgstr "На весь екран"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr ""
+msgstr "Показати лоток"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
-msgstr ""
+msgstr "Сховати лоток"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr ""
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Попередня сторінка"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr ""
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Наступна сторінка"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] ""
-msgstr[1] ""
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Зберегти PDF до журналу"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] ""
-msgstr[1] ""
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Скасувати"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Отримуємо документ…"
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr ""
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Цей документ не може бути завантажено"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr ""
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Перевірте, будь ласка, чи з’єднано комп’ютер з інтернетом."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr ""
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Перейти за посиланням"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr ""
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Відкрити посилання у новій вкладці"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr ""
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Зберегти посилання"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr ""
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Копіювати посилання"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr ""
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Копіювати текст посилання"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr ""
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Копіювати зображення"
+
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Зберегти зображення"
+
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Копіювати текст"

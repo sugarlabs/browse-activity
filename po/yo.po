@@ -2,21 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2016-09-24 09:57+0000\n"
-"Last-Translator: Samson <samsongoddy@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-04-17 02:43+0000\n"
+"Last-Translator: Abiye <anabrabaabiye@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: yo\n"
 "MIME-Version: 1.0\n"
@@ -24,34 +16,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1474711023.000000\n"
+"X-POOTLE-MTIME: 1492396988.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Ìbojúwò"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "iyalẹnu aye"
+
+#: activity/activity.info:4
+#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Iyalẹnu awọn aye! Nibi ti o ti le se iwadi, wo eko awọn fidio, ya online "
-"courses, ri iwe, sopọ pẹlu awọn ọrẹ ati siwaju sii."
+"iyalẹnu aye! Nibi ti o ti le se iwadi,wo eko awọn fidio, ya dajudaju "
+"lóníforíkorí,"
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr ""
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+
+#: browser.py:277
+msgid "Reopen"
+msgstr ""
+
+#: browser.py:278
+msgid "Disregard"
+msgstr ""
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Ko si orukọ"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Kíki..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Yi oju-iwe ayelujara le wa ko le rù"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
@@ -60,15 +98,112 @@ msgstr ""
 "\"%s\" ko le wa ni rù. Jọwọ ṣayẹwo fun awọn titẹ aṣiṣe, ki o si rii daju pe "
 "o ti wa ni ti sopọ si Ayelujara."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Gbiyanju lẹẹkansi"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr ""
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr ""
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr ""
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr ""
+
+#: webactivity.py:183
+#, fuzzy
+msgid "Bookmarks"
+msgstr "Bukumaaki"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Awọn ni ibẹrẹ iwe ti a tunto"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Awọn aiyipada ni ibẹrẹ iwe ti a tunto"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Gba ni ilọsiwaju"
+msgstr[1] "Gbigba lati ayelujara ni ilọsiwaju"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Idekun bayi yio pa rẹ gba"
+msgstr[1] "Idekun bayi yio pa rẹ gbigba lati ayelujara"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Tesiwaju gba"
+msgstr[1] "Tesiwaju gbigba lati ayelujara"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Dúró"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr ""
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Ojú-ìwé ilé"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Yan bi ni ibẹrẹ iwe"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Tun ni ibẹrẹ iwe"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Ìkàwé"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Padà"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Iwájú"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Bukumaaki"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr ""
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "Ko to aaye lati gba lati ayelujara"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
@@ -76,33 +211,30 @@ msgstr ""
 "daakọ \"%{orukọ faili}\" nbeere %{total_size_in_mb} MB ti ṣ'ofo aaye, nikan "
 "%{free_aaye_ni_mb} MB ti o wa"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Dara"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Gba bere"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Gba pari"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Fihan ni akosile"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "lati: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Gba pari"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Fihan ni akosile"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -111,152 +243,102 @@ msgstr ""
 "Gbigba %(filename)s lati \n"
 "%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Ti tẹlẹ"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Itele"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Yọkúrò"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Tẹle ọna asopọ"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr ""
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Tẹle ọna asopọ ni titun taabu"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Pa ọna asopọ"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Daakọ ọna asopọ"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Daakọ aworan"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Pa aworan"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Daakọ ọrọ"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Fẹ̀ẹ́ Síta"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Fẹ̀ẹ́ Sinú"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Gangan iwọn"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Ti tẹlẹ iwe"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Itele iwe"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Fi Šee iwe kika iwe irohin"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Fagilee"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Gbigba iwe..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Yi iwe ko le rù"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Jọwọ rii daju o ti wa ni ti sopọ si Ayelujara."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Gbogbo sikirini"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Fihan atẹ"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Tọju atẹ"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Awọn ni ibẹrẹ iwe ti a tunto"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Ti tẹlẹ iwe"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Awọn aiyipada ni ibẹrẹ iwe ti a tunto"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Itele iwe"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Gba ni ilọsiwaju"
-msgstr[1] "Gbigba lati ayelujara ni ilọsiwaju"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Fi Šee iwe kika iwe irohin"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Idekun bayi yio pa rẹ gba"
-msgstr[1] "Idekun bayi yio pa rẹ gbigba lati ayelujara"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Fagilee"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Tesiwaju gba"
-msgstr[1] "Tesiwaju gbigba lati ayelujara"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Gbigba iwe..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Dúró"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Yi iwe ko le rù"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Ojú-ìwé ilé"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Jọwọ rii daju o ti wa ni ti sopọ si Ayelujara."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Yan bi ni ibẹrẹ iwe"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Tẹle ọna asopọ"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Tun ni ibẹrẹ iwe"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Tẹle ọna asopọ ni titun taabu"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Ìkàwé"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Pa ọna asopọ"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Padà"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Daakọ ọna asopọ"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Iwájú"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr ""
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Bukumaaki"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Daakọ aworan"
+
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Pa aworan"
+
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Daakọ ọrọ"

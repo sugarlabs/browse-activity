@@ -6,116 +6,275 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-08-07 00:15+0200\n"
-"Last-Translator: Irma  <sankaypillo@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-04 02:10+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Voluntarios Quechua Sugar Camp\n"
 "Language: quz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1496542228.000000\n"
 
 #  "Navegar"
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
-msgstr "Wayp'uq"
+msgstr "Wamp'uy"
 
-#  [ES] ""
-#  [ES] "¡Navega por el mundo! Aquí puedes hacer investigaciónes, ver vídeos "
-#  [ES] "educativos, tomar cursos en línea, encontrar libros, conectarte con amigos y "
-#  [ES] "mucho más."
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr ""
+
+#: activity/activity.info:4
+#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Llapan tiqsimuyupi wanpuy! Kaypiqa imaymanakunamantam yachayta atinki, "
-"videokunatapas qhawakunki, takikunatapas uyarikunki, p'anqakunatapas "
+"¡Llapan tiqsimuyupi wamp'uy! Kaypiqa imaymanakunamantam yachayta atinki, "
+"videokunatapas qhawakunki, takikunatapas uyarikunki, liwru p'anqakunatapas "
 "ñawichanki, masiykikunawanpas rimarinakuwaq, huk imaymanakunatapas "
-"ruwallawaqmi."
+"rurallawaqmi."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr ""
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+
+#: browser.py:277
+msgid "Reopen"
+msgstr ""
+
+#: browser.py:278
+msgid "Disregard"
+msgstr ""
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Mana sutinchayniyuq"
 
-#: browser.py:521
+# wichachiy. v. Elevar, levantar, subir, ascender. SINÓN: seqachiy.
+#: browser.py:606
 msgid "Loading..."
-msgstr "Llamk'achkanñam..."
+msgstr "Hunt'achkanmi..."
 
 #  [ES] "Esta página web no puede ser cargada"
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr "Kay web raphiqa mana rikurinchu"
+msgstr "Kay web raphiqa manam hunt'achikuq hinachu"
 
 # [ES] ""
 #  [ES] "\"%s\" no se pudo cargar. Comprueba si hay errores escritura, y asegúrate de "
 #  [ES] "que estás conectado a Internet."
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
-"\"%s\" nisqaqa manam rikuchikunchu. Qillqasqayki ichapas mana allinchu "
-"kachkanman utaq maquinayki Internetman manapas tinkuchikuchkanman."
+"\"%s\" nisqaqa manam hunt'achkanchu. Qillqasqaykichá pantasqa, utaq "
+"maquinaykichá mana Internetwan t'inkichisqa, chayta qhaway."
 
 #  [ES] "Inténtalo de nuevo"
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr "Wakmanta ruwariy"
+msgstr "Wakmanta rurariy"
+
+#: browser.py:866
+msgid "access to your location"
+msgstr ""
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr ""
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr ""
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr ""
+
+# Marcador
+#: webactivity.py:183
+#, fuzzy
+msgid "Bookmarks"
+msgstr "T'upsichiq"
+
+# La página inicial ha sido configurada
+#
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Qallariy raphiqa ña allinchasqam"
+
+# POR DEFECTO = PREDETERMINADO
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Qallariy raphiqa kasqanmantapacha kikinmanhina allinchasqam"
+
+# Descarga en curso
+# Descargas en curso
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Urayachkakunñam"
+msgstr[1] "Urayachkakunkuñam"
+
+# Detener ahora cancelará la descarga
+# Detener ahora cancelará las descargas
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Kunanpacha sayachisqaqa manam urayachkanñachu"
+msgstr[1] "Kunanpacha sayachisqaqa manam urayachkankuñachu"
+
+# Continuar la descarga
+# Continuar las descargas
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Chayta urayachichkallay"
+msgstr[1] "Chaykunata urayachichkallay"
+
+#  "Parar"
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Sayachiy"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr ""
+
+#  "Página inicial"
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Qallarina raphi"
+
+# Seleccionar como página de inicio
+#
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Qallarina raphiyhinatam akllay"
+
+# Restablecer página de inicio
+#
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Qallarinata raphita wakmanta churay"
+
+# Biblioteca
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "P'anqawasi"
+
+#  "Volver"
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Kutiy"
+
+#  "Avanzar"
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Ñawpay"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr ""
+
+# Marcador
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "T'upsichiq"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr ""
 
 # No hay suficiente espacio para descargar
-#: downloadmanager.py:124
+#: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr "Urayachisqa haykunanpaqqa manam k'iti kachkanchu"
+msgstr "Urayachinanpaqqa manam k'iti kachkanchu"
 
-#: downloadmanager.py:133
+# TRAD. ANT.- Kayta urayachinapaqqa "%{filename}" munanpuni %{total_size_in_mb} MB sayayta, ichaqa %{free_space_in_mb} MB sayaylla kachkan
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
-"Kayta urayachinapaqqa \"%{filename}\" munanpuni %{total_size_in_mb} MB "
-"sayayta, ichaqa %{free_space_in_mb} MB sayaylla kachkan"
+"Kay \"%{filename}\" nisqapaqqa %{total_size_in_mb} MB k'itim munakun, ichaqa "
+"%{free_space_in_mb} MB sayaylla kachkanña"
 
 #  "Ok"
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "Chaskiy"
+msgstr "Allin"
 
 #  "Descarga iniciada"
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
-msgstr "Uyarachiyqa qallarirun"
+msgstr "Urayachiyqa qallarirqunmi"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#  "De: %s"
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
+#, python-format
+msgid "From: %s"
+msgstr "Kaymanta: %s"
 
 #  "Descarga terminada"
-#: downloadmanager.py:168
+#: downloadmanager.py:234
 msgid "Download completed"
 msgstr "Urayachiyqa tukurunña"
 
 #  "Mostrar en el Diario"
-#: downloadmanager.py:173
+#: downloadmanager.py:238
 msgid "Show in Journal"
-msgstr "P'anqapi Rikuchiy"
-
-#  "De: %s"
-#: downloadmanager.py:184 pdfviewer.py:589
-#, python-format
-msgid "From: %s"
-msgstr "Pimanta: %s"
+msgstr "P'anqapi rikuchiy"
 
 #  [ES] ""
 #  [ES] "Descargando %(filename)s de \n"
 #  [ES] "%(source)s."
-#: downloadmanager.py:292
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 #, python-format,
 #, python-format, python-format
@@ -123,102 +282,42 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
-"Urayachichkan %(filename)s kaymanta\n"
+"Urayachichkanmi %(filename)s nisqata kaymanta\n"
 "%(source)s."
 
 #  "Anterior"
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Ñawpaq"
 
 #  "Siguiente"
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Hamuq"
 
 #  "Eliminar"
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Chinkachiy"
 
-#  "Seguir el enlace"
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Waskhanata qatiy"
-
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Musuq tab nisqapim waskhanataqa qatiy"
-
-#  "Mantener el enlace"
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Wachkanataqa hap'ipay"
-
-#  "Copiar el enlace"
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Waskhanata kikinchay"
-
-#  "Copiar la imagen"
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Wankita kikinchay"
-
-#  "Mantener la imagen"
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Wankita hap'iy"
-
-#  [ES] "Copiar texto"
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Qillqata kikinchay"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr ""
 
 #  "Reducir"
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
-msgstr "Huch'uyachiy"
+msgstr "Huch'uyyachiy"
 
 #  "Ampliar"
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Hatunyachiy"
 
 #  [ES] "Tamaño actual"
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Kunan kaq sayaynin"
-
-#  [ES] "Página anterior"
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Qhipa raphi"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Hamuq raphi"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "P'anqata PDF hinatam waqaychay"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Chinkachiy"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Khiputa urayachispa"
-
-# [ES] "Esta página web no puede ser cargada"
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Kay phipuqa manam wichachikunchu"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Internetman allin t'inkisqa kasqaykita qhawariy"
 
 #  "Pantalla completa"
 #: viewtoolbar.py:62
@@ -226,83 +325,85 @@ msgid "Fullscreen"
 msgstr "Hunt'asqa pantalla"
 
 #  "Mostrar Bandeja"
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr "Chaskinata Rikuchiy"
+msgstr "Chaskinata rikuchiy"
 
 #  "Esconder Bandeja"
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Chaskinata pakay"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Raphi qallarinaqa ña kamarichikunña"
+#  [ES] "Página anterior"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Ñawpa raphi"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Raphi qallarinaqa kikillanmanta kamarichikun"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Hamuq raphi"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Urayachkanñam"
-msgstr[1] "Urayachkankuñam"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "P'anqaman PDF hinatam waqaychay"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Urayachkanñam"
-msgstr[1] "Urayachkankuñam"
+# Cancelar
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Chinkachiy"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Urayachkanñam"
-msgstr[1] "Urayachkankuñam"
+# Descargando documento...
+#
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Khipuqa urayachikuchkanmi..."
 
-#  "Parar"
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Sayachiy"
+# Este documento no se pudo cargar
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Kay khipuqa manam hunt'achikunchu"
 
-#  "Página inicial"
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Qallarina"
+# Asegúrate de que estás conectado a Internet.
+#
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Internetman allin t'inkisqa kasqaykita qhawariy."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Raphi qallarina hinatam akllay"
+#  "Seguir el enlace"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Waskhanata qatiy"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Raphi qallarinata wakmanta qallarichiy"
+# pestaña. s. Qhechirpa, pullurki. Pe.Aya: jechiphra (AMLQ)
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Musuq qhiripranisqapim waskhanataqa qatiy"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "P'anqa wasi"
+#  "Mantener el enlace"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Wachkanataqa hap'ipay"
 
-#  "Volver"
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Kutiy"
+#  "Copiar el enlace"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Waskhanata kikinchay"
 
-#  "Avanzar"
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Ñawpay"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr ""
 
-#  "Marcador"
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "T'upsichiq"
+#  "Copiar la imagen"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Wankita kikinchay"
 
-# Descargar "%s" requiere %.2f MB de espacio libre, solo %.2f MB están disponible.
-#, python-format
-#, python-format,
-#~ msgid ""
-#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
-#~ msgstr ""
-#~ "Kay \"%s\" nisqata urayachinapaqqa, kay saya k'ititam munan %.2f MB, kunanqa "
-#~ "kay sayallam %.2f MB kachkan."
+#  "Mantener la imagen"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Wankita hap'ipay"
+
+#  [ES] "Copiar texto"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Qillqata kikinchay"
