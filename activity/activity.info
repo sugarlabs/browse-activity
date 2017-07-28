@@ -11,7 +11,7 @@ max_participants = 100
 license = GPL-2.0+
 metadata_license = CC0-1.0
 description:
-    <p>Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.  Browse is powered by the WebKit2 rendering engine with the Faster Than Light javascript interpreter - allowing you to view the full beauty of the web.</p>
+    <p>Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.  Browse is powered by the WebKit rendering engine with the Faster Than Light javascript interpreter - allowing you to view the full beauty of the web.</p>
     <p>To help in researching, Browse offers many features:</p>
     <ul>
         <li>Bookmark (save) good pages you find - never loose good resources or forget to add them to your bibliography</li>
