@@ -227,7 +227,7 @@ class WebEntry(iconentry.IconEntry):
         selection = self._search_view.get_selection()
         model, selected = selection.get_selected()
 
-        if event.keyval == Gdk.KEY_uparrow:
+        if event.keyval in (Gdk.KEY_uparrow, Gdk.KEY_Up):
             if selected is None:
                 selection.select_iter(model[-1].iter)
                 self._set_text(model[-1][0])
@@ -239,7 +239,7 @@ class WebEntry(iconentry.IconEntry):
             self.set_vadjustments(selection)
             return True
 
-        if event.keyval == Gdk.KEY_downarrow:
+        if event.keyval in (Gdk.KEY_downarrow, Gdk.KEY_Down):
             if selected is None:
                 down_iter = model.get_iter_first()
             else:

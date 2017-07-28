@@ -485,7 +485,7 @@ class WebActivity(activity.Activity):
 
         if event.keyval == Gdk.KEY_Escape:
             browser.stop_loading()
-            return True
+            return False  # allow toolbar entry to handle escape too
 
         return False
 
