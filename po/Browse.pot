@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-11 03:05+0530\n"
+"POT-Creation-Date: 2017-07-28 17:04+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,79 +22,122 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-#: palettes.py:167
-msgid "Copy text"
+#: activity/activity.info:3
+msgid "Surf the world!"
 msgstr ""
 
-#: palettes.py:200
-msgid "Follow link"
+#: activity/activity.info:4
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit rendering engine with the Faster Than Light javascript "
+"interpreter - allowing you to view the full beauty of the web."
 msgstr ""
 
-#: palettes.py:205
-msgid "Follow link in new tab"
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
 msgstr ""
 
-#: palettes.py:211
-msgid "Keep link"
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
 msgstr ""
 
-#: palettes.py:217
-msgid "Copy link"
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
 msgstr ""
 
-#: palettes.py:261
-msgid "Copy image"
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
 msgstr ""
 
-#: palettes.py:267
-msgid "Keep image"
-msgstr ""
-
-#: browser.py:450 browser.py:502 browser.py:503 webactivity.py:440
+#: browser.py:506 browser.py:558 browser.py:559 webactivity.py:343
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:499
+#: browser.py:555
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:721 browser.py:722
+#: browser.py:800 browser.py:801
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:723
+#: browser.py:802
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
-"you are connected to the internet."
+"you are connected to the Internet."
 msgstr ""
 
-#: browser.py:726
+#: browser.py:805 pdfviewer.py:402
 msgid "Try again"
 msgstr ""
 
-#: viewtoolbar.py:39 pdfviewer.py:87
-msgid "Zoom out"
+#: collabwrapper/collabwrapper.py:178
+msgid "Joining activity..."
 msgstr ""
 
-#: viewtoolbar.py:45 pdfviewer.py:93
-msgid "Zoom in"
+#: collabwrapper/collabwrapper.py:179 collabwrapper/collabwrapper.py:191
+msgid "Please wait for the connection..."
 msgstr ""
 
-#: viewtoolbar.py:51
-msgid "Actual size"
+#: collabwrapper/collabwrapper.py:190
+msgid "Resuming shared activity..."
 msgstr ""
 
-#: viewtoolbar.py:62
-msgid "Fullscreen"
+#: downloadmanager.py:163
+msgid "Not enough space to download"
 msgstr ""
 
-#: viewtoolbar.py:112
-msgid "Show Tray"
+#: downloadmanager.py:172
+#, python-brace-format
+msgid ""
+"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
+"%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: viewtoolbar.py:115
-msgid "Hide Tray"
+#: downloadmanager.py:180 downloadmanager.py:258 webtoolbar.py:801
+msgid "Ok"
+msgstr ""
+
+#: downloadmanager.py:196
+msgid "Download started"
+msgstr ""
+
+#: downloadmanager.py:197 downloadmanager.py:209
+#, python-format
+msgid "%s"
+msgstr ""
+
+#: downloadmanager.py:207
+msgid "Download completed"
+msgstr ""
+
+#: downloadmanager.py:219 pdfviewer.py:598
+#, python-format
+msgid "From: %s"
+msgstr ""
+
+#: downloadmanager.py:247
+#, python-format
+msgid "Open with %s"
+msgstr ""
+
+#: downloadmanager.py:251 webtoolbar.py:799
+msgid "Show in Journal"
+msgstr ""
+
+#: downloadmanager.py:355
+#, python-format
+msgid ""
+"Downloading %(filename)s from \n"
+"%(source)s."
 msgstr ""
 
 #: edittoolbar.py:65
@@ -105,99 +148,172 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: downloadmanager.py:113
-msgid "Not enough space to download"
+#: linkbutton.py:133
+msgid "Remove"
 msgstr ""
 
-#: downloadmanager.py:122
-msgid ""
-"Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
-"%{free_space_in_mb} MB is available"
+#: linkbutton.py:152
+msgid "Take notes on this page"
 msgstr ""
 
-#: downloadmanager.py:130 downloadmanager.py:161
-msgid "Ok"
+#: palettes.py:187
+msgid "Follow link"
 msgstr ""
 
-#: downloadmanager.py:142
-msgid "Download started"
+#: palettes.py:192
+msgid "Follow link in new tab"
 msgstr ""
 
-#: downloadmanager.py:143 downloadmanager.py:155
-#, python-format
-msgid "%s"
+#: palettes.py:201
+msgid "Keep link"
 msgstr ""
 
-#: downloadmanager.py:153
-msgid "Download completed"
+#: palettes.py:207
+msgid "Copy link"
 msgstr ""
 
-#: downloadmanager.py:158
-msgid "Show in Journal"
+#: palettes.py:221
+msgid "Copy image"
 msgstr ""
 
-#: downloadmanager.py:169 pdfviewer.py:421
-#, python-format
-msgid "From: %s"
+#: palettes.py:227
+msgid "Keep image"
 msgstr ""
 
-#: downloadmanager.py:264
-#, python-format
-msgid ""
-"Downloading %(filename)s from \n"
-"%(source)s."
+#: palettes.py:241
+msgid "Copy text"
 msgstr ""
 
-#: webactivity.py:621
+#: pdfviewer.py:93 viewtoolbar.py:39
+msgid "Zoom out"
+msgstr ""
+
+#: pdfviewer.py:99 viewtoolbar.py:45
+msgid "Zoom in"
+msgstr ""
+
+#: pdfviewer.py:105 viewtoolbar.py:51
+msgid "Actual size"
+msgstr ""
+
+#: pdfviewer.py:116
+msgid "Previous page"
+msgstr ""
+
+#: pdfviewer.py:123
+msgid "Next page"
+msgstr ""
+
+#: pdfviewer.py:135
+msgid "Save PDF to Journal"
+msgstr ""
+
+#: pdfviewer.py:349
+msgid "Cancel"
+msgstr ""
+
+#: pdfviewer.py:498
+msgid "Downloading document..."
+msgstr ""
+
+#: pdfviewer.py:555
+msgid "This document could not be loaded"
+msgstr ""
+
+#: pdfviewer.py:563
+msgid "Please make sure you are connected to the Internet."
+msgstr ""
+
+#: viewtoolbar.py:62
+msgid "Fullscreen"
+msgstr ""
+
+#: viewtoolbar.py:119
+msgid "Show Tray"
+msgstr ""
+
+#: viewtoolbar.py:121
+msgid "Hide Tray"
+msgstr ""
+
+#: webactivity.py:382
+msgid "The initial page was configured"
+msgstr ""
+
+#: webactivity.py:386
+msgid "The default initial page was configured"
+msgstr ""
+
+#: webactivity.py:592
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:624
+#: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:629
+#: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:634
+#: webactivity.py:605
 msgid "Stop"
 msgstr ""
 
-#: webtoolbar.py:274
+#: webtoolbar.py:342
+msgid "Save page as pdf"
+msgstr ""
+
+#: webtoolbar.py:351
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:297
+#: webtoolbar.py:357
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:362
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:368
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:408
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:311
+#: webtoolbar.py:423
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:325
+#: webtoolbar.py:438 webtoolbar.py:484
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:444
 msgid "Bookmark"
 msgstr ""
 
-#: linkbutton.py:108
-msgid "Remove"
+#: webtoolbar.py:481
+msgid "{}% Downloaded"
 msgstr ""
 
-#: pdfviewer.py:104
-msgid "Previous page"
+#: webtoolbar.py:783
+msgid "Browse activity as PDF"
 msgstr ""
 
-#: pdfviewer.py:111
-msgid "Next page"
+#: webtoolbar.py:795
+msgid "Page saved"
 msgstr ""
 
-#: pdfviewer.py:123
-msgid "Save PDF to Journal"
+#: webtoolbar.py:796
+msgid "The page has been saved as PDF to journal"
 msgstr ""
