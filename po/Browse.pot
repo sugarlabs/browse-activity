@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:43+1000\n"
+"POT-Creation-Date: 2017-07-28 20:02+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,35 +81,35 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:858 browser.py:859
+#: browser.py:859 browser.py:860
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:860
+#: browser.py:861
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:863 pdfviewer.py:388
+#: browser.py:864 pdfviewer.py:388
 msgid "Try again"
 msgstr ""
 
-#: browser.py:875
+#: browser.py:876
 msgid "access to your location"
 msgstr ""
 
-#: browser.py:878
+#: browser.py:879
 msgid "to display notifications in the frame"
 msgstr ""
 
-#: browser.py:890
+#: browser.py:891
 #, python-format
 msgid "Allow %s to %s?"
 msgstr ""
 
-#: browser.py:893
+#: browser.py:894
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
@@ -136,7 +136,7 @@ msgid ""
 "%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:158 downloadmanager.py:263
+#: downloadmanager.py:158 downloadmanager.py:264
 msgid "Ok"
 msgstr ""
 
@@ -144,25 +144,25 @@ msgstr ""
 msgid "Download started"
 msgstr ""
 
-#: downloadmanager.py:218 pdfviewer.py:579
+#: downloadmanager.py:219 pdfviewer.py:579
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:243
+#: downloadmanager.py:244
 msgid "Download completed"
 msgstr ""
 
-#: downloadmanager.py:252
+#: downloadmanager.py:253
 #, python-format
 msgid "Open with %s"
 msgstr ""
 
-#: downloadmanager.py:256
+#: downloadmanager.py:257
 msgid "Show in Journal"
 msgstr ""
 
-#: downloadmanager.py:355
+#: downloadmanager.py:356
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
