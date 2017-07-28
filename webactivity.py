@@ -459,7 +459,8 @@ class WebActivity(activity.Activity):
             if loading:
                 _logger.debug('keyboard: Stop loading')
                 browser.stop_loading()
-            return True
+                return True
+            return False
 
         return False
 
