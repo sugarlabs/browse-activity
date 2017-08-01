@@ -746,17 +746,19 @@ class Browser(WebKit2.WebView):
         return all_items
 
     def get_source(self, async_cb, async_err_cb):
-        data_source = self.get_main_frame().get_data_source()
-        data = data_source.get_data()
-        if data_source.is_loading() or data is None:
+        if self.is_loading():
             async_err_cb()
-        temp_path = os.path.join(activity.get_activity_root(), 'instance')
-        file_path = os.path.join(temp_path, '%i' % time.time())
 
-        file_handle = file(file_path, 'w')
-        file_handle.write(data.str)
-        file_handle.close()
-        async_cb(file_path)
+        def writer(view, result):
+            temp_path = os.path.join(activity.get_activity_root(), 'instance')
+            file_path = os.path.join(temp_path, '%i' % time.time())
+
+            file_handle = file(file_path, 'w')
+            file_handle.write(view.get_data_finish(result))
+            file_handle.close()
+            async_cb(file_path)
+
+        data = self.get_main_resource().get_data(None, writer)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)
