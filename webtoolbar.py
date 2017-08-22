@@ -479,10 +479,8 @@ class PrimaryToolbar(ToolbarBase):
         if progress > 0.0:
             self._download_icon.props.tooltip = \
                 _('{}% Downloaded').format(int(progress*100))
-            self._download_icon.props.xo_color = XoColor('white')
         else:
             self._download_icon.props.tooltip = _('No Downloads Running')
-            self._download_icon.props.xo_color = XoColor('insensitive')
         return True
 
     def __key_press_event_cb(self, entry, event):
