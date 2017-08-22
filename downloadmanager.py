@@ -415,5 +415,12 @@ class Download(object):
             self.cleanup()
 
 
+_started_callbacks = []
+
+def connect_download_started(callback):
+    _started_callbacks.append(callback)
+
 def add_download(download, browser):
     download = Download(download, browser)
+    for cb in _started_callbacks:
+        cb()
