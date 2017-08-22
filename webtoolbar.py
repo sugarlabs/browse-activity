@@ -507,7 +507,6 @@ class PrimaryToolbar(ToolbarBase):
                 _('{}% Downloaded').format(int(progress*100))
             return True
         else:
-            GLib.source_remove(self._download_running_hid)
             self._download_running_hid = None
             self._download_icon.props.tooltip = _('No Downloads Running')
             return False
