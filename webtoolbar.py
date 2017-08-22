@@ -40,7 +40,6 @@ from sugar3.datastore import datastore
 from sugar3.activity import activity
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.icon import Icon
-from sugar3.graphics.xocolor import XoColor
 
 import tempfile
 import filepicker
@@ -506,13 +505,11 @@ class PrimaryToolbar(ToolbarBase):
         if downloadmanager.num_downloads() > 0:
             self._download_icon.props.tooltip = \
                 _('{}% Downloaded').format(int(progress*100))
-            self._download_icon.props.xo_color = XoColor(None)
             return True
         else:
             GLib.source_remove(self._download_running_hid)
             self._download_running_hid = None
             self._download_icon.props.tooltip = _('No Downloads Running')
-            self._download_icon.props.xo_color = XoColor('insensitive')
             return False
 
     def __key_press_event_cb(self, entry, event):
