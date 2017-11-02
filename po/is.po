@@ -34,6 +34,9 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+#~ "Brunaðu um netið! Hér geturðu rannsakað allskyns efni, horft á fræðandi "
+#~ "myndskeið, tekið þátt í námskeiðum, verið í sambandi við vini þína og margt "
+#~ "fleira."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-28 20:02+1000\n"
+"POT-Creation-Date: 2017-11-03 08:03+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,35 +81,35 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:859 browser.py:860
+#: browser.py:861 browser.py:862
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:861
+#: browser.py:863
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:864 pdfviewer.py:388
+#: browser.py:866 pdfviewer.py:388
 msgid "Try again"
 msgstr ""
 
-#: browser.py:876
+#: browser.py:878
 msgid "access to your location"
 msgstr ""
 
-#: browser.py:879
+#: browser.py:881
 msgid "to display notifications in the frame"
 msgstr ""
 
-#: browser.py:891
+#: browser.py:893
 #, python-format
 msgid "Allow %s to %s?"
 msgstr ""
 
-#: browser.py:894
+#: browser.py:896
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
@@ -303,46 +303,46 @@ msgstr[1] ""
 msgid "Stop"
 msgstr ""
 
-#: webtoolbar.py:361
+#: webtoolbar.py:360
 msgid "Show Web Inspector"
 msgstr ""
 
-#: webtoolbar.py:370
+#: webtoolbar.py:369
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:376
+#: webtoolbar.py:375
 msgid "Select as initial page"
 msgstr ""
 
-#: webtoolbar.py:381
+#: webtoolbar.py:380
 msgid "Reset initial page"
 msgstr ""
 
-#: webtoolbar.py:387
+#: webtoolbar.py:386
 msgid "Library"
 msgstr ""
 
-#: webtoolbar.py:427
+#: webtoolbar.py:426
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:442
+#: webtoolbar.py:441
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:457 webtoolbar.py:514
+#: webtoolbar.py:456 webtoolbar.py:511
 msgid "No Downloads Running"
 msgstr ""
 
-#: webtoolbar.py:464
+#: webtoolbar.py:463
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:508
+#: webtoolbar.py:507
 msgid "{}% Downloaded"
 msgstr ""
 
-#: webtoolbar.py:761
+#: webtoolbar.py:757
 msgid "No Title"
 msgstr ""

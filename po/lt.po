@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-02-17 11:23+0000\n"
+"PO-Revision-Date: 2017-10-29 22:07+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487330636.000000\n"
+"X-POOTLE-MTIME: 1509314843.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -28,7 +28,6 @@ msgid "Surf the world!"
 msgstr ""
 
 #: activity/activity.info:4
-#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more.  Browse is "
@@ -37,11 +36,13 @@ msgid ""
 msgstr ""
 "Naršykite pasaulį! Čia jūs galite atlikti tyrinėjimus, žiūrėti mokomuosius "
 "vaizdo įrašus, dalyvauti internetiniuose kursuose, surasti knygas, "
-"susisiekti su draugais ir daugiau."
+"susisiekti su draugais ir daugiau.  Naršyti veikia su WebKit2 atvaizdavimo "
+"moduliu su greitesniu už šviesą javascript interpretatoriumi - leisdama jums "
+"matyti visą saityno grožį."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "Stengdamasi padėti tyrinėjimuose, Naršyti siūlo daug ypatybių:"
 
 #: activity/activity.info:4
 msgid ""
@@ -68,15 +69,15 @@ msgstr ""
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
-msgstr ""
+msgstr "Jeigu atversite kortelę iš naujo, ji ir vėl gali užstrigti"
 
 #: browser.py:277
 msgid "Reopen"
-msgstr ""
+msgstr "Atverti iš naujo"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr ""
+msgstr "Nepaisyti"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
@@ -106,20 +107,20 @@ msgstr "Bandyti dar kartą"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr ""
+msgstr "gauti prieigą prie jūsų buvimo vietos"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr ""
+msgstr "rodyti pranešimus rėmelyje"
 
 #: browser.py:881
 #, python-format
 msgid "Allow %s to %s?"
-msgstr ""
+msgstr "Leisti %s %s?"
 
 #: browser.py:884
 msgid "You can change your choice later by reloading the page"
-msgstr ""
+msgstr "Vėliau galite pakeisti savo pasirinkimą, įkeldami puslapį iš naujo"
 
 #: webactivity.py:183
 msgid "Bookmarks"
@@ -136,27 +137,27 @@ msgstr ""
 #: webactivity.py:592
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vyksta atsiuntimas"
+msgstr[1] "Vyksta atsiuntimai"
+msgstr[2] "Vyksta atsiuntimai"
 
 #: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Sustabdžius, jūsų atsiuntimas bus ištrintas"
+msgstr[1] "Sustabdžius, jūsų atsiuntimai bus ištrinti"
+msgstr[2] "Sustabdžius, jūsų atsiuntimai bus ištrinti"
 
 #: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tęsti atsiuntimą"
+msgstr[1] "Tęsti atsiuntimus"
+msgstr[2] "Tęsti atsiuntimus"
 
 #: webactivity.py:605
 msgid "Stop"
-msgstr ""
+msgstr "Stabdyti"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
@@ -180,11 +181,11 @@ msgstr ""
 
 #: webtoolbar.py:426
 msgid "Back"
-msgstr ""
+msgstr "Atgal"
 
 #: webtoolbar.py:441
 msgid "Forward"
-msgstr ""
+msgstr "Pirmyn"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
@@ -196,7 +197,7 @@ msgstr ""
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr ""
+msgstr "Atsiųsta {}%"
 
 #: webtoolbar.py:762
 msgid "No Title"
@@ -265,11 +266,11 @@ msgstr ""
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
-msgstr ""
+msgstr "Mažinti"
 
 #: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
-msgstr ""
+msgstr "Didinti"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
@@ -277,15 +278,15 @@ msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr ""
+msgstr "Visas ekranas"
 
 #: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr ""
+msgstr "Rodyti dėklą"
 
 #: viewtoolbar.py:121
 msgid "Hide Tray"
-msgstr ""
+msgstr "Slėpti dėklą"
 
 #: pdfviewer.py:117
 msgid "Previous page"
@@ -329,15 +330,15 @@ msgstr ""
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr ""
+msgstr "Kopijuoti nuorodą"
 
 #: palettes.py:191
 msgid "Copy link text"
-msgstr ""
+msgstr "Kopijuoti nuorodos tekstą"
 
 #: palettes.py:206
 msgid "Copy image"
-msgstr ""
+msgstr "Kopijuoti paveikslą"
 
 #: palettes.py:212
 msgid "Keep image"
@@ -345,4 +346,4 @@ msgstr ""
 
 #: palettes.py:227
 msgid "Copy text"
-msgstr ""
+msgstr "Kopijuoti tekstą"

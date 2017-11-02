@@ -33,6 +33,9 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+#~ "Կայքավարել աշխարհը. Այստեղ դու կարող ես կատարել ուսումնասիրություններ, դիտել "
+#~ "կրթական տեսանյութեր, մասնակցել համացանց կուրսեր, գտնել գրքեր, հաղորթակցվել "
+#~ "ընկերների հետ և ավելին:"
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"

@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: OLPC Web Activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2013-06-28 19:19+0200\n"
-"Last-Translator: lite <litekok@gmail.com>\n"
+"PO-Revision-Date: 2017-08-01 09:15+0000\n"
+"Last-Translator: Liang <1656703453@qq.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1501578913.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -26,30 +27,30 @@ msgid "Surf the world!"
 msgstr ""
 
 #: activity/activity.info:4
-#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more.  Browse is "
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"在互联网中冲浪！在这里你可以做研究，观看教育影片，学习在线课程，找书，联系朋友等等。"
+"在互联网世界遨游！在这里你可以做研究，观看教育影片，学习在线课程，寻找书籍，联系朋友等等。浏览器采用Webkit2渲染引擎，这个引擎带有比光速还快的jav"
+"ascript解释器——使你可以浏览互联网的全部美丽。"
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "为了帮助研究，浏览器提供了许多功能："
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
-msgstr ""
+msgstr "书签（保存）你找到的好页面——从不让好的资源溜走，或者忘记添加它们到你的参考书目"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
-msgstr ""
+msgstr "与合作者实时共享书签页面——作为一个研究小组或老师向班级展示页面，是一个不错的建议"
 
 #: activity/activity.info:4
 msgid ""
@@ -60,19 +61,19 @@ msgstr ""
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr ""
+msgstr "%s 这个选项卡已经崩溃"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
-msgstr ""
+msgstr "如果你重新打开这个选项卡，它可能会再次崩溃"
 
 #: browser.py:277
 msgid "Reopen"
-msgstr ""
+msgstr "重新打开"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr ""
+msgstr "忽略"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
@@ -101,24 +102,24 @@ msgstr "请再试一次"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr ""
+msgstr "访问你的地理位置信息"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr ""
+msgstr "在框架中显示通知"
 
 #: browser.py:881
 #, python-format
 msgid "Allow %s to %s?"
-msgstr ""
+msgstr "允许 %s 至 %s?"
 
 #: browser.py:884
 msgid "You can change your choice later by reloading the page"
-msgstr ""
+msgstr "之后你可以重新加载页面来更改你的选择"
 
 #: webactivity.py:183
 msgid "Bookmarks"
-msgstr ""
+msgstr "书签"
 
 #: webactivity.py:398
 msgid "The initial page was configured"
@@ -149,7 +150,7 @@ msgstr "停止"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
-msgstr ""
+msgstr "显示网页检查器"
 
 #: webtoolbar.py:369
 msgid "Home page"
@@ -177,7 +178,7 @@ msgstr "下一页"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr ""
+msgstr "没有正在下载"
 
 #: webtoolbar.py:463
 msgid "Bookmark"
@@ -185,11 +186,11 @@ msgstr "书签"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr ""
+msgstr "{}% 下载完成"
 
 #: webtoolbar.py:762
 msgid "No Title"
-msgstr ""
+msgstr "无标题"
 
 #: downloadmanager.py:140
 msgid "Not enough space to download"
@@ -248,7 +249,7 @@ msgstr "删除"
 
 #: linkbutton.py:152
 msgid "Take notes on this page"
-msgstr ""
+msgstr "在此页面上记笔记"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
@@ -316,11 +317,11 @@ msgstr "保持链接"
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr "拷贝链接"
+msgstr "复制链接"
 
 #: palettes.py:191
 msgid "Copy link text"
-msgstr ""
+msgstr "复制链接文本"
 
 #: palettes.py:206
 msgid "Copy image"

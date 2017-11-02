@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-06-04 01:39+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2017-10-11 16:37+0000\n"
+"Last-Translator: elcico <elcico2001@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1496540387.000000\n"
+"X-POOTLE-MTIME: 1507739834.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -40,13 +40,17 @@ msgstr ""
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "Browse offre diverse funzionalità che facilitano la ricerca:"
 
 #: activity/activity.info:4
+#, fuzzy
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
+"Salva come segnalibri le pagine più interessanti che trovi - non perderai le "
+"risorse più interessanti, né ti dimenticherai di aggiungerle alla tua "
+"bibliografia"
 
 #: activity/activity.info:4
 msgid ""
