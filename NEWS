@@ -1,0 +1,53 @@
+201.3
+
+* Fix entry selection window up and down arrow keys (James Cameron),
+* Fix View Source feature, port source for WebKit2, fixes #57 (James Cameron),
+* Speed up download progress, removing unused code, (James Cameron),
+* Fix incomplete plurals expressions in translations (James Cameron).
+* Updated translations (Chris Leonard et al),
+
+201.2
+
+* Fix busy cursor on old toolkit versions (James Cameron),
+
+201.1
+
+* Avoid conflict with new Save-As feature in 0.111 toolkit (Utkarsh Tiwari),
+* Remove unnecessary log warnings and messages (James Cameron),
+* Use new toolkit methods for cursor changes (James Cameron),
+* No disk-space canceled alert used wrong callback (James Cameron),
+* Fix warning on download user cancel (James Cameron),
+* Open with an activity if possible #4981 (Gonzalo Odiard, Sam Parkinson),
+* Updated translations (Chris Leonard et al),
+
+201
+
+Sam Parkinson
+
+* Fix typo that broke network error displays,
+* Remove long running timeout used for download progress tool button,
+* Port to CollabWrapper based collaboration,
+* Add extra metadata, needed for AppStream,
+* Adopt improved bookmarks option #2, fixes #4714,
+* Fix missing sugar3.profile import - crashed on bookmark,
+* Use new do_stop api for animation.
+
+Chris Leonard et al
+
+* New and updated translations,
+
+James Cameron
+
+* Support for older versions of Gtk+ and WebKit,
+* Update collabwrapper,
+* Interim fix for ctrl+c and ctrl+v in URL entry, #4642 and #4979,
+* Update POTFILE,
+* Update repository URL.
+
+Sebastian Silva
+
+* Update license,
+
+György Balló
+
+* Fix error when the backup_url value is None,
