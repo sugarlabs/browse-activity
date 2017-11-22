@@ -341,7 +341,7 @@ class TabbedView(BrowserNotebook):
         if isinstance(tab_page, PDFTabPage):
             tab_page.cancel_download()
 
-        # ensure that a tab opened because of click on 
+        # ensure that a tab opened because of click on
         # <a href="something" target="name">this</a>
         # can be closed and then opened again
         # (WebKit is keeping the WebView object alive)
@@ -758,7 +758,7 @@ class Browser(WebKit2.WebView):
             file_handle.close()
             async_cb(file_path)
 
-        data = self.get_main_resource().get_data(None, writer)
+        self.get_main_resource().get_data(None, writer)
 
     def open_new_tab(self, url):
         self.emit('new-tab', url)

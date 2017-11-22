@@ -111,7 +111,7 @@ class WebEntry(iconentry.IconEntry):
         self._search_window = _SearchWindow()
         self._search_window_scroll = Gtk.ScrolledWindow()
         self._search_window_scroll.set_policy(Gtk.PolicyType.NEVER,
-                                Gtk.PolicyType.AUTOMATIC)
+                                              Gtk.PolicyType.AUTOMATIC)
         self._search_window_scroll.set_min_content_height(200)
         self._search_window_scroll.add(self._search_view)
         self._search_window.add(self._search_window_scroll)
@@ -263,7 +263,6 @@ class WebEntry(iconentry.IconEntry):
         path = (selection.get_selected_rows()[1])[0]
         index = path.get_indices()[0]
         adjustment = self._search_window_scroll.get_vadjustment()
-        value = adjustment.get_value()
         step = style.STANDARD_ICON_SIZE
         adjustment.set_value(step * index)
         self._search_window_scroll.set_vadjustment(adjustment)

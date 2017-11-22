@@ -144,8 +144,8 @@ class EditToolbar(BaseEditToolbar):
         search_text = entry.get_text()
         controller = self._browser.get_find_controller()
         controller.search(search_text,
-                          WebKit2.FindOptions.CASE_INSENSITIVE
-                          | WebKit2.FindOptions.WRAP_AROUND,
+                          WebKit2.FindOptions.CASE_INSENSITIVE |
+                          WebKit2.FindOptions.WRAP_AROUND,
                           (2 << 31) - 1)
 
     def __search_entry_activate_cb(self, entry):
