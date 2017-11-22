@@ -102,13 +102,17 @@ class ProgressToolButton(ToolButton):
         * :class:`Gtk.Orientation.VERTICAL` - bottom to top
         * :class:`Gtk.Orientation.HORIZONTAL` - user's text direction
         '''
-        return Gtk.Orientation.VERTICAL if self._direction == 'vertical' \
-               else Gtk.Orientation.HORIONTAL
+        if self._direction == 'vertical':
+            return Gtk.Orientation.VERTICAL
+        else:
+            return Gtk.Orientation.HORIZONTAL
 
     @direction.setter
     def direction(self, new):
-        self._direction = 'vertical' if new == Gtk.Orientation.VETICAL \
-                          else Gtk.Orientation.HORIZONTAL
+        if new == Gtk.Orientation.VERTICAL:
+            self._direction = 'vertical'
+        else:
+            self._direction = 'horizontal'
         self._updated()
 
     def _updated(self):
