@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-10-29 22:07+0000\n"
+"PO-Revision-Date: 2017-11-04 19:49+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1509314843.000000\n"
+"X-POOTLE-MTIME: 1509824981.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -25,7 +25,7 @@ msgstr "Naršyti"
 
 #: activity/activity.info:3
 msgid "Surf the world!"
-msgstr ""
+msgstr "Naršykite po pasaulį!"
 
 #: activity/activity.info:4
 msgid ""
@@ -49,23 +49,29 @@ msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
+"Įtraukite į adresyną (įsirašykite) surastus gerus puslapius - niekada "
+"nepraraskite gerų išteklių ar nepamirškite juos pridėti į savo bibliografiją."
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
+"Kartu su talkininkais įtraukite į adresyną puslapius realiu laiku - puikiai "
+"tinka grupės tyrinėjimams ar mokytojams rodyti puslapius savo klasei"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
 msgstr ""
+"Komentuokite savo adresyno puslapius - puikus įrankis, skirtas kurti "
+"kuruojamas kolekcijas"
 
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr ""
+msgstr "Ši kortelė privertė programą Naršyti užstrigti: %s"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
@@ -124,15 +130,15 @@ msgstr "Vėliau galite pakeisti savo pasirinkimą, įkeldami puslapį iš naujo"
 
 #: webactivity.py:183
 msgid "Bookmarks"
-msgstr ""
+msgstr "Adresyno įrašai"
 
 #: webactivity.py:398
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Pradinis puslapis buvo sukonfigūruotas"
 
 #: webactivity.py:402
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Numatytasis pradinis puslapis buvo sukonfigūruotas"
 
 #: webactivity.py:592
 msgid "Download in progress"
@@ -161,23 +167,23 @@ msgstr "Stabdyti"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
-msgstr ""
+msgstr "Rodyti saityno tyrėją"
 
 #: webtoolbar.py:369
 msgid "Home page"
-msgstr ""
+msgstr "Pradžios tinklalapis"
 
 #: webtoolbar.py:375
 msgid "Select as initial page"
-msgstr ""
+msgstr "Pasirinkti kaip pradinį puslapį"
 
 #: webtoolbar.py:380
 msgid "Reset initial page"
-msgstr ""
+msgstr "Atstatyti pradinį puslapį"
 
 #: webtoolbar.py:386
 msgid "Library"
-msgstr ""
+msgstr "Biblioteka"
 
 #: webtoolbar.py:426
 msgid "Back"
@@ -189,11 +195,11 @@ msgstr "Pirmyn"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr ""
+msgstr "Nėra vykdomų atsiuntimų"
 
 #: webtoolbar.py:463
 msgid "Bookmark"
-msgstr ""
+msgstr "Įtraukti į adresyną"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
@@ -201,7 +207,7 @@ msgstr "Atsiųsta {}%"
 
 #: webtoolbar.py:762
 msgid "No Title"
-msgstr ""
+msgstr "Be pavadinimo"
 
 #: downloadmanager.py:140
 msgid "Not enough space to download"
@@ -262,7 +268,7 @@ msgstr "Šalinti"
 
 #: linkbutton.py:152
 msgid "Take notes on this page"
-msgstr ""
+msgstr "Užsirašykite pastabas apie šį puslapį"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
@@ -274,7 +280,7 @@ msgstr "Didinti"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
+msgstr "Tikrasis dydis"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
@@ -298,7 +304,7 @@ msgstr "Kitas puslapis"
 
 #: pdfviewer.py:136
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Įrašyti PDF į žurnalą"
 
 #: pdfviewer.py:335
 msgid "Cancel"
@@ -314,19 +320,19 @@ msgstr "Šio dokumento įkelti nepavyko"
 
 #: pdfviewer.py:537
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Įsitikinkite, kad esate prisijungę prie interneto."
 
 #: palettes.py:164
 msgid "Follow link"
-msgstr ""
+msgstr "Sekti nuoroda"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Sekti nuoroda naujoje kortelėje"
 
 #: palettes.py:178
 msgid "Keep link"
-msgstr ""
+msgstr "Išsaugoti nuorodą"
 
 #: palettes.py:184
 msgid "Copy link"
@@ -342,7 +348,7 @@ msgstr "Kopijuoti paveikslą"
 
 #: palettes.py:212
 msgid "Keep image"
-msgstr ""
+msgstr "Išsaugoti paveikslą"
 
 #: palettes.py:227
 msgid "Copy text"
