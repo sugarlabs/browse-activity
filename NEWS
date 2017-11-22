@@ -1,3 +1,10 @@
+201.4
+
+* Source formatting to flake8 (James Cameron),
+* Fix unreported progress tool button syntax errors (James Cameron),
+* Stop using submodules in GitHub (James Cameron),
+* Updated translations (Chris Leonard et al),
+
 201.3
 
 * Fix entry selection window up and down arrow keys (James Cameron),
