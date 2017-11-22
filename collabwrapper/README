@@ -1,0 +1,20 @@
+
+  ____      _ _       _  __        __                               
+ / ___|___ | | | __ _| |_\ \      / / __ __ _ _ __  _ __   ___ _ __ 
+| |   / _ \| | |/ _` | '_ \ \ /\ / / '__/ _` | '_ \| '_ \ / _ \ '__|
+| |__| (_) | | | (_| | |_) \ V  V /| | | (_| | |_) | |_) |  __/ |   
+ \____\___/|_|_|\__,_|_.__/ \_/\_/ |_|  \__,_| .__/| .__/ \___|_|   
+                                             |_|   |_|              
+
+How to use:
+
+1. Add this repository as a git submodule:
+
+    git clone https://github.com/samdroid-apps/collabwrapper
+    git add collabwrapper
+
+2. Import it
+
+    from collabwrapper.collabwrapper import CollabWrapper
+
+3.  See the docs for how to use it: http://people.sugarlabs.org/sam/docs-collab-wrapper-try2/sugar3.presence.wrapper.html
