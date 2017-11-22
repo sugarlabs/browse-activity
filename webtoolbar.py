@@ -26,7 +26,6 @@ from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import Pango
 
-import sugar3.profile
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics import iconentry
@@ -36,12 +35,7 @@ from sugar3.graphics.palettemenu import PaletteMenuBox
 from sugar3.graphics import style
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
-from sugar3.datastore import datastore
-from sugar3.activity import activity
-from sugar3.graphics.alert import Alert
-from sugar3.graphics.icon import Icon
 
-import tempfile
 import filepicker
 import places
 import downloadmanager
@@ -811,6 +805,13 @@ class PrimaryToolbar(ToolbarBase):
             inspector.attach()
 
     '''
+    import sugar3.profile
+    from sugar3.datastore import datastore
+    from sugar3.activity import activity
+    from sugar3.graphics.alert import Alert
+    from sugar3.graphics.icon import Icon
+    import tempfile
+
     def save_as_pdf(self, widget):
         tmp_dir = os.path.join(self._activity.get_activity_root(), 'tmp')
         fd, file_path = tempfile.mkstemp(dir=tmp_dir)

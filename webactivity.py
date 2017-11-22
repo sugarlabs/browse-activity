@@ -133,7 +133,6 @@ def _seed_xs_cookie(cookie_jar):
 
 
 from browser import TabbedView
-from browser import ZOOM_ORIGINAL
 from webtoolbar import PrimaryToolbar
 from edittoolbar import EditToolbar
 from viewtoolbar import ViewToolbar

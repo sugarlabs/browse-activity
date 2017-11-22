@@ -31,7 +31,6 @@ from gi.repository import Gio
 
 from sugar3.datastore import datastore
 from sugar3 import profile
-from sugar3 import mime
 from sugar3.graphics.alert import Alert, TimeoutAlert
 from sugar3.graphics.icon import Icon
 from sugar3.activity import activity
