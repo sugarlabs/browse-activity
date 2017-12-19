@@ -1,0 +1,13 @@
+157.4
+
+* Fix resuming a journal object from older version of Browse,
+* Allow bookmarks for PDF pages,
+* Fix clicking items in back and forward buttons,
+* Improve autocomplete in URL entry list, #4081,
+* Open bookmarked links in new tab,
+* Show full error message when a page does not load,
+* Drag a link to + button to open new tab,
+* Show overall progress of downloads on tool bar,
+* Add keyboard shortcuts for making text larger or smaller,
+* Fix ctrl+c and ctrl+v shortcuts in URL entry, #4979, #4642,
+* New and updated translations.
