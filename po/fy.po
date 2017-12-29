@@ -1,31 +1,31 @@
-# SOME DESCRIPTIVE TITLE.
+# POT file for the Web / Browse Activity.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the Web / Browse package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-12-18 15:08+0000\n"
-"Last-Translator: jszu <jszu@protonmail.com>\n"
+"PO-Revision-Date: 2017-12-15 13:47+0000\n"
+"Last-Translator: Berend <berendy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pl\n"
+"Language: fy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1513609736.000000\n"
+"X-POOTLE-MTIME: 1513345676.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Internet"
+msgstr "Sneupe"
 
 #: activity/activity.info:3
 msgid "Surf the world!"
-msgstr "Serfuj po świecie!"
+msgstr "Surf oer de wrâld!"
 
 #: activity/activity.info:4
 msgid ""
@@ -34,185 +34,179 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Surfuj po świecie! Tutaj możesz odkrywać, oglądać edukacyjne filmy, "
-"uczestniczyć w kursach online, znaleźć książki, kontaktować się ze znajomymi "
-"i o wiele więcej.Przeglądarka działa w oparciu o silnik renderujący WebKit2 "
-"z interpreterem javascript \"Szybszym Od Światła\" - dzieki temu możesz w "
-"pełni poznać piękno sieci. "
+"Surf oer de wrâld! Hjir kinst ûndersyk dwaan, ûnderwiis fideo's besjen, "
+"kursus op it ynternet dwaan, boeken sykje, ferbine mei freonen en mear.  "
+"Browse wurdt oantrune troch de WebKit2 opmaak motor mei de flugger as ljocht "
+"JavaSkript interpreter - om al it moais fan it web te sjen."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr "By pomóc w odkrywaniu, Przegladarka oferuje wiele funkcji:"
+msgstr "Om yn ûndersyk te helpen, komt Browse mei in soad mooglikheiden:"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
-"Stwórz Zakładki (zapisz) do stron które znajdziesz - by nigdy ich nie zgubić "
-"lub zapomnieć możesz je dodać do swojej bibliografii. "
+"Goede siden dy'tst tsjinkomst in blêdwizer (bewarje) fan meitsje - ferlies "
+"nea goede boarnen of ferjit it ta te heakjen oan dyn bibliografy"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
-"Stwórz zakładki do stron z współtwórcami w czasie rzeczywistym - idealne dla "
-"grupowych okryć lub dla nauczycieli pokazującym strony swym uczniom. "
+"In blêdwizer fan siden meitsje mei gearwurkjende yn real time - ideaal foar "
+"groepspetear of leararen dy siden foar de klasse sjen litte"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
 msgstr ""
-"Komentuj swoje zakładki - doskonały sposób na utrzymanie porządku w "
-"kolekcji. "
+"Kommentaar op dyn blêdwizere siden - in goed helpmiddel om in fersoarge "
+"samling te meitsjen"
 
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr "Ta karta spowodowała awarię Przeglądarki: %s"
+msgstr "Dizze side har Browser ferûngelokke: %s"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
-msgstr "Jeśli otworzysz ponownie tą kartę, awaria może się powtórzyć"
+msgstr "Ast de ljepper wer-iepenst, dan kin dy wer ferûngelokje"
 
 #: browser.py:277
 msgid "Reopen"
-msgstr "Otwórz ponownie"
+msgstr "Wer-iepenje"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr "Zignoruj"
+msgstr "Negearje"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr "Bez nazwy"
+msgstr "Nammeleas"
 
 #: browser.py:606
 msgid "Loading..."
-msgstr "Ładowanie..."
+msgstr "Laden..."
 
 #: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr "Ta strona internetowa nie mogła być załadowana"
+msgstr "Dizze webside koe net laden wurde"
 
 #: browser.py:851
 #, python-format
-#, python-format
-#, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
-"Nie można załadować \"%s\". Sprawdź czy nie ma błędów w pisowni i upewnij "
-"się, że masz połączenie z internetem."
+"\"%s\" koe net laden wurde. Kontrolearje of der gjin typ flaters makke "
+"binne, en soargje derfoar dat der ferbining is mei it ynternet."
 
 #: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr "Spróbuj ponownie"
+msgstr "Besykje nochris"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr "dostęp do Twojej lokalizacji"
+msgstr "tagong ta dyn lokaasje"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr "by pokazywać notyfikacje w ramce"
+msgstr "om berjochten yn it ramt sjen te litten"
 
 #: browser.py:881
 #, python-format
 msgid "Allow %s to %s?"
-msgstr "Zezwalasz na %s do %s?"
+msgstr "Stean %s foar %s ta?"
 
 #: browser.py:884
 msgid "You can change your choice later by reloading the page"
-msgstr "Możesz zmienić ustawienie poźniej poprzez przeładowanie strony"
+msgstr "Do kinst de kar letter feroarje troch de side te ferfarskjen"
 
 #: webactivity.py:183
 msgid "Bookmarks"
-msgstr "Zakładki"
+msgstr "Blêdwizer"
 
 #: webactivity.py:398
 msgid "The initial page was configured"
-msgstr "Ustawiono stronę startową"
+msgstr "De earste side is konfigurearre"
 
 #: webactivity.py:402
 msgid "The default initial page was configured"
-msgstr "Ustawiono domyślną stronę startową"
+msgstr "De standert side is konfigurearre"
 
 #: webactivity.py:592
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] "Pobieranie w trakcie"
-msgstr[1] "Pobieranie w trakcie"
-msgstr[2] "Pobieranie w trakcie"
+msgstr[0] "Dwaande mei ynladen"
+msgstr[1] "Dwaande mei ynladen"
 
 #: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Zatrzymanie spowoduje przerwanie pobierania"
-msgstr[1] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
-msgstr[2] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+msgstr[0] "No ophâlde sil dyn ynlaad wiskje"
+msgstr[1] "No ophâlde sil dyn ynladen wiskje"
 
 #: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] "Wznów pobieranie"
-msgstr[1] "Wznów pobieranie wszystkich plików"
-msgstr[2] "Wznów pobieranie wszystkich plików"
+msgstr[0] "Trochgean mei ynladen"
+msgstr[1] "Trochgean mei ynladen"
 
 #: webactivity.py:605
 msgid "Stop"
-msgstr "Zatrzymaj"
+msgstr "Ophâlde"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
-msgstr "Pokaż Narzędzia Diagnostyczne"
+msgstr "Web ynspekteur sjen litte"
 
 #: webtoolbar.py:369
 msgid "Home page"
-msgstr "Strona domowa"
+msgstr "Hiem side"
 
 #: webtoolbar.py:375
 msgid "Select as initial page"
-msgstr "Ustaw jako stronę startową"
+msgstr "Selektearje as earste side"
 
 #: webtoolbar.py:380
 msgid "Reset initial page"
-msgstr "Anuluj ustawienie strony startowej"
+msgstr "Earste side weromsette"
 
 #: webtoolbar.py:386
 msgid "Library"
-msgstr "Biblioteka"
+msgstr "Biblioteek"
 
 #: webtoolbar.py:426
 msgid "Back"
-msgstr "Wstecz"
+msgstr "Tebek"
 
 #: webtoolbar.py:441
 msgid "Forward"
-msgstr "Dalej"
+msgstr "Folgjende"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr "Brak aktywnych pobierań"
+msgstr "Gjin ynladen dwaande"
 
 #: webtoolbar.py:463
 msgid "Bookmark"
-msgstr "Zakładka"
+msgstr "Blêdwizer"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr "{}% Pobrane"
+msgstr "{}% Ynladen"
 
 #: webtoolbar.py:762
 msgid "No Title"
-msgstr "Brak Tytułu"
+msgstr "Gjin titel"
 
 #: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr "Brak miejsca aby załadować plik"
+msgstr "Net genôch romte foar it ynladen"
 
 #: downloadmanager.py:149
 #, python-brace-format
@@ -220,139 +214,135 @@ msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
-"Załadowanie \"%{filename}\" wymaga %{total_size_in_mb} MB wolnego miejsca na "
-"dysku, podczas gdy dostępne jest tylko %{free_space_in_mb} MB"
+"Ynlaad \"%{filename}\" brûkt %{total_size_in_mb} MB fan frije romte, allinne "
+"%{free_space_in_mb} MB is beskikber"
 
 #: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "Ok"
+msgstr "Okee"
 
 #: downloadmanager.py:167
 msgid "Download started"
-msgstr "Pobieranie rozpoczęte"
+msgstr "Ynlaad start"
 
 #: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-#, python-format
 msgid "From: %s"
-msgstr "Z: %s"
+msgstr "Fan: %s"
 
 #: downloadmanager.py:234
 msgid "Download completed"
-msgstr "Pobieranie zakończone"
+msgstr "Ynlaad foltôge"
 
 #: downloadmanager.py:238
 msgid "Show in Journal"
-msgstr "Pokaż w Dzienniku"
+msgstr "Yn deiboek sjen litte"
 
 #: downloadmanager.py:333
 #, python-format
-#, python-format
-#, python-format,
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
-"Pobieranie %(filename)s z \n"
+"Ynladen %(filename)s fan \n"
 "%(source)s."
 
 #: edittoolbar.py:67
 msgid "Previous"
-msgstr "Poprzedni"
+msgstr "Foarige"
 
 #: edittoolbar.py:74
 msgid "Next"
-msgstr "Następny"
+msgstr "Folgjende"
 
 #: linkbutton.py:133
 msgid "Remove"
-msgstr "Usuń"
+msgstr "Wiskje"
 
 #: linkbutton.py:152
-#, fuzzy
 msgid "Take notes on this page"
-msgstr "Zrób notatki o tej stronie"
+msgstr "Nim notysjes op dizze side"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
-msgstr "Pomniejsz"
+msgstr "Zoom út"
 
 #: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
-msgstr "Powiększ"
+msgstr "Zoom yn"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr "Obecny rozmiar"
+msgstr "Wiere grutte"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr "Pełny ekran"
+msgstr "Folslein skerm"
 
 #: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr "Pokaż pasek"
+msgstr "Lade sjen litte"
 
 #: viewtoolbar.py:121
 msgid "Hide Tray"
-msgstr "Ukryj pasek"
+msgstr "Lade ferbergje"
 
 #: pdfviewer.py:117
 msgid "Previous page"
-msgstr "Poprzednia strona"
+msgstr "Foar side"
 
 #: pdfviewer.py:124
 msgid "Next page"
-msgstr "Następna strona"
+msgstr "Folgjende side"
 
 #: pdfviewer.py:136
 msgid "Save PDF to Journal"
-msgstr "Zapisz PDF do dziennika"
+msgstr "PDF yn deiboek bewarje"
 
 #: pdfviewer.py:335
 msgid "Cancel"
-msgstr "Anuluj"
+msgstr "Ofbrekke"
 
 #: pdfviewer.py:485
 msgid "Downloading document..."
-msgstr "Ładuję plik..."
+msgstr "Dokumint wurdt ynladen..."
 
 #: pdfviewer.py:529
 msgid "This document could not be loaded"
-msgstr "Nie można załadować tego dokumentu (pliku)"
+msgstr "Dit dokumint koe net laden wurde"
 
 #: pdfviewer.py:537
 msgid "Please make sure you are connected to the Internet."
-msgstr "Proszę upewnij się, że masz połączenie z internetem."
+msgstr "Soargje foar ferbining mei it ynternet."
 
 #: palettes.py:164
 msgid "Follow link"
-msgstr "Idź za odnośnikiem"
+msgstr "Keppeling folgje"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
-msgstr "Idź za odnośnikiem w nowej karcie"
+msgstr "Folgje keppeling yn nije ljepper"
 
 #: palettes.py:178
 msgid "Keep link"
-msgstr "Zatrzymaj odnośnik"
+msgstr "Keppeling bewarje"
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr "Kopiuj odnośnik"
+msgstr "Keppeling kopiearje"
 
 #: palettes.py:191
 msgid "Copy link text"
-msgstr "Skopiuj tekst łącza"
+msgstr "Keppeling tekst kopiearje"
 
 #: palettes.py:206
 msgid "Copy image"
-msgstr "Kopiuj obrazek"
+msgstr "Ofbylding kopiearje"
 
 #: palettes.py:212
 msgid "Keep image"
-msgstr "Zatrzymaj obrazek"
+msgstr "Ofbylding behâlde"
 
 #: palettes.py:227
 msgid "Copy text"
-msgstr "Kopiuj tekst"
+msgstr "Tekst kopiearje"
