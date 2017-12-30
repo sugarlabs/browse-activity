@@ -23,7 +23,11 @@ import os
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')
+try:
+    incompatible = False
+    gi.require_version('WebKit2', '4.0')
+except:
+    incompatible = True
 gi.require_version('SoupGNOME', '2.4')
 gi.require_version('GConf', '2.0')
 
@@ -46,13 +50,14 @@ import StringIO
 from hashlib import sha1
 
 from sugar3.activity import activity
+from sugar3.activity.widgets import StopButton
 from sugar3.graphics import style
 from sugar3.graphics.alert import Alert
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.animator import Animator, Animation
 from sugar3 import mime
-from sugar3.graphics.toolbarbox import ToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarBox, ToolbarButton
 from sugar3 import profile
 
 from collabwrapper.collabwrapper import CollabWrapper
@@ -153,6 +158,11 @@ _logger = logging.getLogger('web-activity')
 class WebActivity(activity.Activity):
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
+
+        self._force_close = False
+        if incompatible:
+            return self._incompatible()
+
         self._collab = CollabWrapper(self)
         self._collab.message.connect(self.__message_cb)
 
@@ -180,7 +190,6 @@ class WebActivity(activity.Activity):
         # downloadmanager.remove_old_parts()
         context.connect('download-started', self.__download_requested_cb)
 
-        self._force_close = False
         self._tabbed_view = TabbedView(self)
         self._tabbed_view.connect('focus-url-entry', self._on_focus_url_entry)
         self._tabbed_view.connect('switch-page', self.__switch_page_cb)
@@ -350,7 +359,7 @@ class WebActivity(activity.Activity):
 
     def write_file(self, file_path):
         if not hasattr(self, '_tabbed_view'):
-            _logger.error('Called write_file before the tabbed_view was made')
+            _logger.debug('Called write_file before the tabbed_view was made')
             return
 
         if not self.metadata['mime_type']:
@@ -663,6 +672,46 @@ class WebActivity(activity.Activity):
 
     def get_canvas(self):
         return self._tabbed_view
+
+    def _incompatible(self):
+        ''' Display abbreviated activity user interface with alert '''
+        toolbox = ToolbarBox()
+        stop = StopButton(self)
+        toolbox.toolbar.add(stop)
+        self.set_toolbar_box(toolbox)
+
+        title = _('Activity not compatible with this system.')
+        msg = _('Please downgrade activity and try again.')
+        alert = Alert(title=title, msg=msg)
+        alert.add_button(0, 'Stop', Icon(icon_name='activity-stop'))
+        self.add_alert(alert)
+
+        label = Gtk.Label(_('Uh oh, WebKit2 is too old. '
+                            'Browse-200 and later require WebKit2 API 4.0, '
+                            'sorry!'))
+        self.set_canvas(label)
+
+        '''
+        Workaround: start Terminal activity, then type
+
+        sugar-erase-bundle org.laptop.WebActivity
+
+        then in My Settings, choose Software Update, which will offer
+        older Browse.
+        '''
+
+        alert.connect('response', self.__incompatible_response_cb)
+        stop.connect('clicked', self.__incompatible_stop_clicked_cb,
+                         alert)
+
+        self.show_all()
+
+    def __incompatible_stop_clicked_cb(self, button, alert):
+        self.remove_alert(alert)
+
+    def __incompatible_response_cb(self, alert, response):
+        self.remove_alert(alert)
+        self.close()
 
 
 class AddLinkAnimation(Animation):
