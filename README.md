@@ -46,7 +46,7 @@ Browse is packaged by Linux distributions;
 How to develop?
 ===============
 
-* [setup a development environment for Sugar desktop](https://developer.sugarlabs.org/dev-environment.md.html),
+* setup a development environment for Sugar desktop,
 * clone this repository,
 * edit source files,
 * test in Terminal by typing `sugar-activity .`
