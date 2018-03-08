@@ -26,6 +26,8 @@ from sugar3.graphics import iconentry
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics import style
 
+from browser import Browser
+
 
 class EditToolbar(BaseEditToolbar):
     def __init__(self, act):
@@ -88,6 +90,7 @@ class EditToolbar(BaseEditToolbar):
         self._connect_to_browser(tabbed_view.props.current_browser)
 
     def _connect_to_browser(self, browser):
+        find = None
         self._browser = browser
 
         self._update_buttons()
@@ -102,7 +105,8 @@ class EditToolbar(BaseEditToolbar):
         self._source_id = \
             GObject.timeout_add(300, self.__selection_changed_cb)
 
-        find = self._browser.get_find_controller()
+        if isinstance(self._browser, Browser):
+            find = self._browser.get_find_controller()
         if find is not None:
             find.connect('found-text', self.__found_text_cb)
             find.connect('failed-to-find-text', self.__failed_to_find_text_cb)
