@@ -653,11 +653,15 @@ class PrimaryToolbar(ToolbarBase):
                                       'entry-cancel')
 
     def _update_navigation_buttons(self):
-        can_go_back = self._browser.can_go_back()
-        self._back.props.sensitive = can_go_back
+        if isinstance(self._browser, Browser):
+            can_go_back = self._browser.can_go_back()
+            self._back.props.sensitive = can_go_back
 
-        can_go_forward = self._browser.can_go_forward()
-        self._forward.props.sensitive = can_go_forward
+            can_go_forward = self._browser.can_go_forward()
+            self._forward.props.sensitive = can_go_forward
+        else:
+            self._back.props.sensitive = False
+            self._forward.props.sensitive = False
 
         is_webkit_browser = isinstance(self._browser, Browser)
         self._go_home.props.sensitive = is_webkit_browser
