@@ -606,6 +606,8 @@ class TabLabel(Gtk.HBox):
             if widget.props.title is None:
                 self._label.set_text(_('Untitled'))
                 self._title = _('Untitled')
+            else:
+                self._label.set_text(self._title)
         else:
             self._label.set_text(_('Loading...'))
 
