@@ -18,6 +18,7 @@ import os
 import logging
 from gettext import gettext as _
 
+import gi
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
@@ -54,6 +55,8 @@ class EvinceViewer(Gtk.VBox):
         self._uri = uri
 
         # delay Evince import until is needed to improve activity startup time
+        gi.require_version('EvinceDocument', '3.0')
+        gi.require_version('EvinceView', '3.0')
         from gi.repository import EvinceDocument
         from gi.repository import EvinceView
 
