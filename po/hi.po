@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-06-04 01:28+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2018-03-18 03:11+0000\n"
+"Last-Translator: avinashbharti97 <avinashbharti97@gmail.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1496539715.000000\n"
+"X-POOTLE-MTIME: 1521342712.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -40,25 +40,30 @@ msgstr ""
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "शोध में सहायता करने के लिए, ब्राउज़ कई विशेषताएं प्रदान करता है:"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
+"अच्छे पृष्ठों को खोजें (सहेजें) अच्छे पृष्ठ - कभी ढीले अच्छे संसाधन न हों या "
+"उन्हें अपनी ग्रंथसूची में जोड़ना भूल जाएं"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
+"रीयल टाइम में सहयोगियों के साथ पृष्ठों को बुकमार्क करें - समूह या शिक्षकों के"
+" रूप में उनकी कक्षा में पृष्ठों को दिखाने वाले शोध के लिए शानदार"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
 msgstr ""
+"अपने बुकमार्क पृष्ठों पर टिप्पणी - क्युरेटेड संग्रह बनाने के लिए एक महान टूल"
 
 #: browser.py:275
 #, python-format
