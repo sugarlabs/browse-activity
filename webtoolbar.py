@@ -23,7 +23,7 @@ from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import Gdk
-from gi.repository import GConf
+from gi.repository import Gio
 from gi.repository import Pango
 
 from sugar3.graphics.toolbutton import ToolButton
@@ -40,7 +40,7 @@ import filepicker
 import places
 import downloadmanager
 from browser import Browser
-from browser import HOME_PAGE_GCONF_KEY, LIBRARY_PATH
+from browser import SETTINGS_KEY_HOME_PAGE, LIBRARY_PATH
 from progresstoolbutton import ProgressToolButton
 
 from pdfviewer import DummyBrowser
@@ -383,9 +383,8 @@ class PrimaryToolbar(ToolbarBase):
         menu_box.show_all()
 
         # verify if the home page is configured
-        client = GConf.Client.get_default()
-        self._reset_home_menu.set_visible(
-            client.get_string(HOME_PAGE_GCONF_KEY) is not None)
+        home_page = tabbed_view.settings.get_string(SETTINGS_KEY_HOME_PAGE)
+        self._reset_home_menu.set_visible(home_page != '')
 
         toolbar.insert(self._go_home, -1)
         self._go_home.show()

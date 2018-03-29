@@ -30,7 +30,6 @@ from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import WebKit2
 from gi.repository import Soup
-from gi.repository import GConf
 from gi.repository import Gio
 
 from sugar3.activity.activity import get_bundle_path, get_activity_root
@@ -68,7 +67,6 @@ _HOSTNAME_REGEX = re.compile('[a-z]+://([^/]+)/.*')
 DEFAULT_ERROR_PAGE = os.path.join(get_bundle_path(),
                                   'data/error_page.tmpl')
 
-HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
 SETTINGS_SCHEMA_ID = 'org.laptop.WebActivity'
 SETTINGS_KEY_HOME_PAGE = 'home-page'
 
@@ -432,14 +430,13 @@ class TabbedView(BrowserNotebook):
             for page in pages_pdf + pages_html:
                 self.get_tab_label(page).show_close_button()
 
-    def load_homepage(self, ignore_gconf=False):
+    def load_homepage(self, ignore_settings=False):
         browser = self.current_browser
-        uri_homepage = None
-        if not ignore_gconf:
-            client = GConf.Client.get_default()
-            uri_homepage = client.get_string(HOME_PAGE_GCONF_KEY)
-        if uri_homepage is not None:
-            browser.load_uri(uri_homepage)
+        home_page = None
+        if not ignore_settings:
+            home_page = self.settings.get_string(SETTINGS_KEY_HOME_PAGE)
+        if home_page != '':
+            browser.load_uri(home_page)
         elif os.path.isfile(LIBRARY_PATH):
             browser.load_uri('file://' + LIBRARY_PATH)
         else:
@@ -450,13 +447,9 @@ class TabbedView(BrowserNotebook):
 
     def set_homepage(self):
         uri = self.current_browser.get_uri()
-        client = GConf.Client.get_default()
-        client.set_string(HOME_PAGE_GCONF_KEY, uri)
         self.settings.set_string(SETTINGS_KEY_HOME_PAGE, uri)
 
     def reset_homepage(self):
-        client = GConf.Client.get_default()
-        client.unset(HOME_PAGE_GCONF_KEY)
         self.settings.reset(SETTINGS_KEY_HOME_PAGE)
 
     def _get_current_browser(self):
