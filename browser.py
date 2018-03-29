@@ -31,6 +31,7 @@ from gi.repository import Pango
 from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import GConf
+from gi.repository import Gio
 
 from sugar3.activity.activity import get_bundle_path, get_activity_root
 from sugar3.graphics import style
@@ -68,11 +69,14 @@ DEFAULT_ERROR_PAGE = os.path.join(get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
+SETTINGS_SCHEMA_ID = 'org.laptop.WebActivity'
+SETTINGS_KEY_HOME_PAGE = 'home-page'
 
 TAB_BROWSER = 'browser'
 TAB_PDF = 'pdf'
 
 _sugar_version = None
+_settings = None
 
 
 def _get_sugar_version():
@@ -89,6 +93,33 @@ def _get_sugar_version():
     return _sugar_version
 
 
+def _get_local_settings(activity):
+    """ return an activity-specific Gio.Settings
+    """
+    global _settings
+    if _settings is None:
+
+        # create schemas directory if missing
+        path = os.path.join(get_activity_root(), 'data', 'schemas')
+        if not os.access(path, os.F_OK):
+            os.makedirs(path)
+
+        # create compiled schema file if missing
+        compiled = os.path.join(path, 'gschemas.compiled')
+        if not os.access(compiled, os.R_OK):
+            src = '%s.gschema.xml' % activity.get_bundle_id()
+            lines = open(os.path.join(get_bundle_path(), src), 'r').readlines()
+            open(os.path.join(path, src), 'w').writelines(lines)
+            os.system('glib-compile-schemas %s' % path)
+            os.remove(os.path.join(path, src))
+
+        # create a local Gio.Settings based on the compiled schema
+        source = Gio.SettingsSchemaSource.new_from_directory(path, None, True)
+        schema = source.lookup(SETTINGS_SCHEMA_ID, True)
+        _settings = Gio.Settings.new_full(schema, None, None)
+    return _settings
+
+
 class TabbedView(BrowserNotebook):
     __gtype_name__ = 'TabbedView'
 
@@ -101,6 +132,7 @@ class TabbedView(BrowserNotebook):
     def __init__(self, activity):
         self._activity = activity
         BrowserNotebook.__init__(self)
+        self.settings = _get_local_settings(activity)
         self.props.show_border = False
         self.props.scrollable = True
 
@@ -420,10 +452,12 @@ class TabbedView(BrowserNotebook):
         uri = self.current_browser.get_uri()
         client = GConf.Client.get_default()
         client.set_string(HOME_PAGE_GCONF_KEY, uri)
+        self.settings.set_string(SETTINGS_KEY_HOME_PAGE, uri)
 
     def reset_homepage(self):
         client = GConf.Client.get_default()
         client.unset(HOME_PAGE_GCONF_KEY)
+        self.settings.reset(SETTINGS_KEY_HOME_PAGE)
 
     def _get_current_browser(self):
         if self.get_n_pages():
