@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-03 08:03+1100\n"
+"POT-Creation-Date: 2018-03-29 12:40+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,60 +56,60 @@ msgid ""
 "collections"
 msgstr ""
 
-#: browser.py:279
+#: browser.py:309
 #, python-format
 msgid "This tab has crashed Browse: %s"
 msgstr ""
 
-#: browser.py:280
+#: browser.py:310
 msgid "If you reopen the tab, it may just crash again"
 msgstr ""
 
-#: browser.py:281
+#: browser.py:311
 msgid "Reopen"
 msgstr ""
 
-#: browser.py:282
+#: browser.py:312
 msgid "Disregard"
 msgstr ""
 
-#: browser.py:562 browser.py:607 browser.py:608 webactivity.py:366
+#: browser.py:589 browser.py:634 browser.py:635 webactivity.py:377
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:610
+#: browser.py:639
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:861 browser.py:862
+#: browser.py:890 browser.py:891
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:863
+#: browser.py:892
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:866 pdfviewer.py:388
+#: browser.py:895 pdfviewer.py:391
 msgid "Try again"
 msgstr ""
 
-#: browser.py:878
+#: browser.py:907
 msgid "access to your location"
 msgstr ""
 
-#: browser.py:881
+#: browser.py:910
 msgid "to display notifications in the frame"
 msgstr ""
 
-#: browser.py:893
+#: browser.py:922
 #, python-format
 msgid "Allow %s to %s?"
 msgstr ""
 
-#: browser.py:896
+#: browser.py:925
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
@@ -144,7 +144,7 @@ msgstr ""
 msgid "Download started"
 msgstr ""
 
-#: downloadmanager.py:219 pdfviewer.py:579
+#: downloadmanager.py:219 pdfviewer.py:582
 #, python-format
 msgid "From: %s"
 msgstr ""
@@ -169,11 +169,11 @@ msgid ""
 "%(source)s."
 msgstr ""
 
-#: edittoolbar.py:67
+#: edittoolbar.py:69
 msgid "Previous"
 msgstr ""
 
-#: edittoolbar.py:74
+#: edittoolbar.py:76
 msgid "Next"
 msgstr ""
 
@@ -217,43 +217,43 @@ msgstr ""
 msgid "Copy text"
 msgstr ""
 
-#: pdfviewer.py:94 viewtoolbar.py:39
+#: pdfviewer.py:97 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr ""
 
-#: pdfviewer.py:100 viewtoolbar.py:45
+#: pdfviewer.py:103 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr ""
 
-#: pdfviewer.py:106 viewtoolbar.py:51
+#: pdfviewer.py:109 viewtoolbar.py:51
 msgid "Actual size"
 msgstr ""
 
-#: pdfviewer.py:117
+#: pdfviewer.py:120
 msgid "Previous page"
 msgstr ""
 
-#: pdfviewer.py:124
+#: pdfviewer.py:127
 msgid "Next page"
 msgstr ""
 
-#: pdfviewer.py:136
+#: pdfviewer.py:139
 msgid "Save PDF to Journal"
 msgstr ""
 
-#: pdfviewer.py:335
+#: pdfviewer.py:338
 msgid "Cancel"
 msgstr ""
 
-#: pdfviewer.py:485
+#: pdfviewer.py:488
 msgid "Downloading document..."
 msgstr ""
 
-#: pdfviewer.py:529
+#: pdfviewer.py:532
 msgid "This document could not be loaded"
 msgstr ""
 
-#: pdfviewer.py:537
+#: pdfviewer.py:540
 msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
@@ -269,80 +269,94 @@ msgstr ""
 msgid "Hide Tray"
 msgstr ""
 
-#: webactivity.py:189
+#: webactivity.py:196
 msgid "Bookmarks"
 msgstr ""
 
-#: webactivity.py:413
+#: webactivity.py:424
 msgid "The initial page was configured"
 msgstr ""
 
-#: webactivity.py:417
+#: webactivity.py:428
 msgid "The default initial page was configured"
 msgstr ""
 
-#: webactivity.py:616
+#: webactivity.py:627
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:619
+#: webactivity.py:630
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:624
+#: webactivity.py:635
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: webactivity.py:629
+#: webactivity.py:640
 msgid "Stop"
 msgstr ""
 
-#: webtoolbar.py:360
+#: webactivity.py:686
+msgid "Activity not compatible with this system."
+msgstr ""
+
+#: webactivity.py:687
+msgid "Please downgrade activity and try again."
+msgstr ""
+
+#: webactivity.py:692
+msgid ""
+"Uh oh, WebKit2 is too old. Browse-200 and later require WebKit2 API 4.0, "
+"sorry!"
+msgstr ""
+
+#: webtoolbar.py:353
 msgid "Show Web Inspector"
 msgstr ""
 
-#: webtoolbar.py:369
+#: webtoolbar.py:362
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:375
+#: webtoolbar.py:368
 msgid "Select as initial page"
 msgstr ""
 
-#: webtoolbar.py:380
+#: webtoolbar.py:373
 msgid "Reset initial page"
 msgstr ""
 
-#: webtoolbar.py:386
+#: webtoolbar.py:379
 msgid "Library"
 msgstr ""
 
-#: webtoolbar.py:426
+#: webtoolbar.py:418
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:441
+#: webtoolbar.py:433
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:456 webtoolbar.py:511
+#: webtoolbar.py:448 webtoolbar.py:503
 msgid "No Downloads Running"
 msgstr ""
 
-#: webtoolbar.py:463
+#: webtoolbar.py:455
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:507
+#: webtoolbar.py:499
 msgid "{}% Downloaded"
 msgstr ""
 
-#: webtoolbar.py:757
+#: webtoolbar.py:753
 msgid "No Title"
 msgstr ""
