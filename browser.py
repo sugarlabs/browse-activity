@@ -75,7 +75,7 @@ TAB_PDF = 'pdf'
 _sugar_version = None
 
 
-def get_sugar_version():
+def _get_sugar_version():
     global _sugar_version
     if _sugar_version is None:
         if 'SUGAR_VERSION' in os.environ:
@@ -627,7 +627,7 @@ class Browser(WebKit2.WebView):
                                     ([])),
     }
 
-    CURRENT_SUGAR_VERSION = get_sugar_version()
+    CURRENT_SUGAR_VERSION = _get_sugar_version()
 
     SECURITY_STATUS_SECURE = 1
     SECURITY_STATUS_INSECURE = 2
