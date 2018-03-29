@@ -29,13 +29,13 @@ try:
 except:
     incompatible = True
 gi.require_version('SoupGNOME', '2.4')
-gi.require_version('GConf', '2.0')
 
 from gi.repository import GObject
 GObject.threads_init()
 
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import WebKit2
 from gi.repository import Soup
 from gi.repository import SoupGNOME
@@ -44,7 +44,6 @@ from base64 import b64decode, b64encode
 import time
 import shutil
 import json
-from gi.repository import GConf
 import cairo
 import StringIO
 from hashlib import sha1
@@ -103,14 +102,14 @@ def _seed_xs_cookie(cookie_jar):
     if the cookie already exists.
 
     """
-    client = GConf.Client.get_default()
-    backup_url = client.get_string('/desktop/sugar/backup_url')
+    settings = Gio.Settings('org.sugarlabs')
+    backup_url = settings.get_string('backup-url')
     if not backup_url:
         _logger.debug('seed_xs_cookie: Not registered with Schoolserver')
         return
 
-    jabber_server = client.get_string(
-        '/desktop/sugar/collaboration/jabber_server')
+    settings = Gio.Settings('org.sugarlabs.collaboration')
+    jabber_server = settings.get_string('jabber-server')
 
     soup_uri = Soup.URI()
     soup_uri.set_scheme('xmpp')
@@ -418,7 +417,7 @@ class WebActivity(activity.Activity):
         self._tabbed_view.load_homepage()
 
     def _go_library_button_cb(self, button):
-        self._tabbed_view.load_homepage(ignore_gconf=True)
+        self._tabbed_view.load_homepage(ignore_settings=True)
 
     def _set_home_button_cb(self, button):
         self._tabbed_view.set_homepage()

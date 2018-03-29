@@ -34,7 +34,7 @@ On Fedora systems;
 dnf install sugar-browse
 ```
 
-Browse depends on Python, [Sugar Toolkit](https://github.com/sugarlabs/sugar-toolkit-gtk3), D-Bus, Cairo, Telepathy, GTK+ 3, GConf, Pango, Rsvg, Soup, Evince and WebKit.
+Browse depends on Python, [Sugar Toolkit](https://github.com/sugarlabs/sugar-toolkit-gtk3), D-Bus, Cairo, Telepathy, GTK+ 3, Pango, Rsvg, Soup, Evince and WebKit.
 
 Browse is started by [Sugar](https://github.com/sugarlabs/sugar).
 
