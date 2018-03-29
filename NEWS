@@ -1,3 +1,14 @@
+201.5
+
+* Add README.md documentation for activity (James Cameron),
+* Detect and avoid Fedora 18 systems (James Cameron),
+* Hide notebook tabs in fullscreen mode (Rahul Bothra),
+* Reset tab title after a download starts (Rahul Bothra),
+* Fix log errors when a PDF is shown (Rahul Bothra, James Cameron),
+* Begin saving home-page in Gio.Settings (James Cameron),
+* Update POT file with new strings (James Cameron),
+* Updated translations (Chris Leonard et al),
+
 201.4
 
 * Source formatting to flake8 (James Cameron),
