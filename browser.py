@@ -30,7 +30,7 @@ from gi.repository import WebKit
 from gi.repository import Soup
 from gi.repository import GConf
 
-from sugar3.activity import activity
+from sugar3.activity.activity import get_bundle_path, get_activity_root
 from sugar3.graphics import style
 from sugar3.graphics.icon import Icon
 
@@ -60,7 +60,7 @@ _NON_SEARCH_REGEX = re.compile('''
     ^file:.*$)
     ''', re.VERBOSE)
 
-DEFAULT_ERROR_PAGE = os.path.join(activity.get_bundle_path(),
+DEFAULT_ERROR_PAGE = os.path.join(get_bundle_path(),
                                   'data/error_page.tmpl')
 
 HOME_PAGE_GCONF_KEY = '/desktop/sugar/browser/home_page'
@@ -390,7 +390,7 @@ class TabbedView(BrowserNotebook):
         elif os.path.isfile(LIBRARY_PATH):
             browser.load_uri('file://' + LIBRARY_PATH)
         else:
-            default_page = os.path.join(activity.get_bundle_path(),
+            default_page = os.path.join(get_bundle_path(),
                                         "data/index.html")
             browser.load_uri('file://' + default_page)
         browser.grab_focus()
@@ -693,7 +693,7 @@ class Browser(WebKit.WebView):
         data = data_source.get_data()
         if data_source.is_loading() or data is None:
             async_err_cb()
-        temp_path = os.path.join(activity.get_activity_root(), 'instance')
+        temp_path = os.path.join(get_activity_root(), 'instance')
         file_path = os.path.join(temp_path, '%i' % time.time())
 
         file_handle = file(file_path, 'w')
@@ -789,7 +789,7 @@ class Browser(WebKit.WebView):
                 WebKit.PolicyError.FRAME_LOAD_INTERRUPTED_BY_POLICY_CHANGE,
                 WebKit.PluginError.WILL_HANDLE_LOAD):
             if self._inject_media_style:
-                css_style_file = open(os.path.join(activity.get_bundle_path(),
+                css_style_file = open(os.path.join(get_bundle_path(),
                                                    "data/media-controls.css"))
                 css_style = css_style_file.read().replace('\n', '')
                 inject_style_script = \
