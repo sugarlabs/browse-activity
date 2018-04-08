@@ -170,6 +170,7 @@ class TabbedView(BrowserNotebook):
 
         soup_uri = None
         effective_url = None
+        url = url.lstrip()
 
         if has_web_scheme(url):
             try:
