@@ -177,10 +177,6 @@ class TabbedView(BrowserNotebook):
         Return: a string containing a valid url
 
         """
-        def detecting_leading_spaces(address):
-            if ' ' in address:
-                return True
-
         def has_web_scheme(address):
             if address == '':
                 return False
@@ -193,10 +189,7 @@ class TabbedView(BrowserNotebook):
 
         soup_uri = None
         effective_url = None
-
-        if detecting_leading_spaces(url):
-            effective_url = url.lstrip()
-            soup_uri = Soup.URI.new(url)
+        url = url.lstrip()
 
         if has_web_scheme(url):
             try:
@@ -220,8 +213,6 @@ class TabbedView(BrowserNotebook):
         else:
             if has_web_scheme(url):
                 effective_url = url
-            elif detecting_leading_spaces(url):
-                effective_url = url.lstrip()
             else:
                 effective_url = 'http://' + url
 
