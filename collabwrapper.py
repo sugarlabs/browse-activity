@@ -16,13 +16,12 @@
 # Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
 
 '''
-The wrapper module provides an abstraction over the sugar
+The wrapper module provides an abstraction over the Sugar
 collaboration system.
 
 Using CollabWrapper
 -------------------
-1. Implement the `get_data` and `set_data` methods in your activity
-   class::
+1. Add `get_data` and `set_data` methods to the activity class::
 
     def get_data(self):
         # return plain python objects - things that can be encoded
@@ -35,19 +34,19 @@ Using CollabWrapper
         # data will be the same object returned by get_data
         self._entry.set_text(data.get('text'))
 
-2. Make your CollabWrapper instance::
+2. Make a CollabWrapper instance::
 
     def __init__(self, handle):
         sugar3.activity.activity.Activity.__init__(self, handle)
         self._collab = CollabWrapper(self)
         self._collab.connect('message', self.__message_cb)
 
-        # setup your activity
+        # setup your activity here
 
         self._collab.setup()
 
-3. Post any changes to the CollabWrapper.  The changes will be sent to
-   other users if any are connected::
+3. Post any changes of shared state to the CollabWrapper.  The changes
+   will be sent to other buddies if any are connected, for example::
 
     def __entry_changed_cb(self, *args):
         self._collab.post(dict(
@@ -55,9 +54,9 @@ Using CollabWrapper
             new_text=self._entry.get_text()
         ))
 
-4. Handle incoming messages::
+4. Handle incoming messages, for example::
 
-    def __message_cb(self, collab, buddy, message):
+    def __message_cb(self, collab, buddy, msg):
         action = msg.get('action')
         if action == 'entry_changed':
             self._entry.set_text(msg.get('new_text'))
@@ -106,36 +105,53 @@ ACTIVITY_FT_MIME = 'x-sugar/from-activity'
 
 class CollabWrapper(GObject.GObject):
     '''
-    The collaboration wrapper provides a high level abstraction over the
-    collaboration system.  The wrapper deals with setting up the channels,
-    encoding and decoding messages, initialization and alerting the user
-    to the status.
+    The wrapper provides a high level abstraction over the
+    collaboration system.  The wrapper deals with setting up the
+    channels, encoding and decoding messages, initialization and
+    alerting the caller to the status.
 
-    When a user joins the activity, it will query the leader for the
-    contents.  The leader will return the result of the activity's
-    `get_data` function which will be passed to the `set_data` function
-    on the new user's computer.
+    An activity instance is initially private, but may be shared.  Once
+    shared, an instance will remain shared for as long as the activity
+    runs.  On stop, the journal will preserve the instance as shared,
+    and on resume the instance will be shared again.
 
-    The `message` signal is called when a message is received from a
-    buddy.  It has 2 arguments.  The first is the buddy, as a
-    :class:`sugar3.presence.buddy.Buddy`. The second is the decoded
-    content of the message, same as that posted by the other instance.
+    When the caller shares an activity instance, they are the leader,
+    and other buddies may join.  The instance is now a shared activity.
 
-    The `joined` signal is emitted when the buddy joins a running
-    activity.  If the user shares and activity, the joined signal
-    is not emitted.  By the time this signal is emitted, the channels
-    will be setup so all messages will flow through.
+    When the caller joins a shared activity, the leader will call
+    `get_data`, and the caller's `set_data` will be called with the
+    result.
 
-    The `buddy_joined` and `buddy_left` signals are emitted when
-    another user joins or leaves the activity.  They both a
-    :class:`sugar3.presence.buddy.Buddy` as their only argument.
+    The `joined` signal is emitted when the caller joins a shared
+    activity.  One or more `buddy_joined` signals will be emitted before
+    this signal.  The signal is not emitted to the caller who first
+    shared the activity.  There are no arguments.
+
+    The `buddy_joined` signal is emitted when another buddy joins the
+    shared activity.  At least one will be emitted before the `joined`
+    signal.  The caller will never be mentioned, but is assumed to be
+    part of the set.  The signal passes a
+    :class:`sugar3.presence.buddy.Buddy` as the only argument.
+
+    The `buddy_left` signal is emitted when another user leaves the
+    shared activity.  The signal is not emitted during quit.  The signal
+    passes a :class:`sugar3.presence.buddy.Buddy` as the only argument.
+
+    Any buddy may call `post` to send a message to all buddies.  Each
+    buddy will receive a `message` signal.
+
+    The `message` signal is emitted when a `post` is received from any
+    buddy.  The signal has two arguments.  The first is a
+    :class:`sugar3.presence.buddy.Buddy`. The second is the message.
+
+    Any buddy may call `send_file_memory` or `send_file_file` to
+    transfer a file to all buddies.  A description is to be given.
+    Each buddy will receive an `incoming_file` signal.
 
     The `incoming_file` signal is emitted when a file transfer is
-    received from a buddy.  The first argument is the object representing
-    the transfer, as a
-    :class:`sugar3.presence.filetransfer.IncomingFileTransfer`.  The seccond
-    argument is the description, as passed to the `send_file_*` function
-    on the sender's client
+    received.  The signal has two arguments.  The first is a
+    :class:`sugar3.presence.filetransfer.IncomingFileTransfer`.  The
+    second is the description.
     '''
 
     message = GObject.Signal('message', arg_types=[object, object])
@@ -154,14 +170,14 @@ class CollabWrapper(GObject.GObject):
 
     def setup(self):
         '''
-        Setup must be called to so that the activity can join or share
+        Setup must be called so that the activity can join or share
         if appropriate.
 
         .. note::
             As soon as setup is called, any signal, `get_data` or
-            `set_data` call must be made.  This means that your
-            activity must have set up enough so these functions can
-            work.  For example, place this at the end of the activity's
+            `set_data` call may occur.  This means that the activity
+            must have set up enough so these functions can work.  For
+            example, call setup at the end of the activity
             `__init__` function.
         '''
         # Some glue to know if we are launching, joining, or resuming
@@ -216,6 +232,9 @@ class CollabWrapper(GObject.GObject):
         self._listen_for_channels()
         self._init_waiting = True
         self.post({'action': ACTION_INIT_REQUEST})
+
+        for buddy in self.shared_activity.get_joined_buddies():
+            self.buddy_joined.emit(buddy)
 
         _logger.debug('I joined a shared activity.')
         self.joined.emit()
@@ -294,16 +313,16 @@ class CollabWrapper(GObject.GObject):
 
     def send_file_memory(self, buddy, data, description):
         '''
-        Send a 1-to-1 transfer from memory to a given buddy.  They will
-        get the file transfer and description through the `incoming_transfer`
-        signal.
+        Send a one to one file transfer from memory to a buddy.  The
+        buddy will get the file transfer and description through the
+        `incoming_transfer` signal.
 
         Args:
-            buddy (sugar3.presence.buddy.Buddy), buddy to offer the transfer to
-            data (str), the data to offer to the buddy via the transfer
+            buddy (sugar3.presence.buddy.Buddy), buddy to send to.
+            data (str), the data to send.
             description (object), a json encodable description for the
-                transfer.  This will be given to the `incoming_transfer` signal
-                of the transfer
+                transfer.  This will be given to the
+                `incoming_transfer` signal at the buddy.
         '''
         OutgoingBlobTransfer(
             buddy,
@@ -315,16 +334,16 @@ class CollabWrapper(GObject.GObject):
 
     def send_file_file(self, buddy, path, description):
         '''
-        Send a 1-to-1 transfer from a file to a given buddy.  They will
-        get the file transfer and description through the `incoming_transfer`
-        signal.
+        Send a one to one file transfer from a filesystem path to a
+        given buddy.  The buddy will get the file transfer and
+        description through the `incoming_transfer` signal.
 
         Args:
-            buddy (sugar3.presence.buddy.Buddy), buddy to offer the transfer to
-            path (str), path of the file to send to the buddy
+            buddy (sugar3.presence.buddy.Buddy), buddy to send to.
+            path (str), path of the file containing the data to send.
             description (object), a json encodable description for the
-                transfer.  This will be given to the `incoming_transfer` signal
-                of the transfer
+                transfer.  This will be given to the
+                `incoming_transfer` signal at the buddy.
         '''
         OutgoingFileTransfer(
             buddy,
@@ -336,13 +355,12 @@ class CollabWrapper(GObject.GObject):
 
     def post(self, msg):
         '''
-        Broadcast a message to the other buddies if the activity is
-        shared.  If it is not shared, the message will not be send
-        at all.
+        Send a message to all buddies.  If the activity is not shared,
+        no message is sent.
 
         Args:
-            msg (object): json encodable object to send to the other
-                buddies, eg. :class:`dict` or :class:`str`.
+            msg (object): json encodable object to send,
+                eg. :class:`dict` or :class:`str`.
         '''
         if self._text_channel is not None:
             self._text_channel.post(msg)
@@ -368,9 +386,10 @@ class CollabWrapper(GObject.GObject):
         '''
         Boolean of if this client is the leader in this activity.  The
         way the leader is decided may change, however there should only
-        ever be 1 leader for an activity.
+        ever be one leader for an activity.
         '''
         return self._leader
+
 
 FT_STATE_NONE = 0
 FT_STATE_PENDING = 1
