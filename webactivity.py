@@ -59,7 +59,7 @@ from sugar3 import mime
 from sugar3.graphics.toolbarbox import ToolbarBox, ToolbarButton
 from sugar3 import profile
 
-from collabwrapper.collabwrapper import CollabWrapper
+from collabwrapper import CollabWrapper
 from widgets import TitledTray
 
 
