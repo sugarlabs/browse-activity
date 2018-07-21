@@ -59,7 +59,7 @@ from sugar3.graphics.animator import Animator, Animation
 from sugar3 import mime
 from sugar3.graphics.toolbarbox import ToolbarButton
 
-from collabwrapper.collabwrapper import CollabWrapper
+from collabwrapper import CollabWrapper
 
 
 PROFILE_VERSION = 2
