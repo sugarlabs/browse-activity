@@ -19,7 +19,7 @@
 import logging
 import os
 import tempfile
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from gettext import gettext as _
 
@@ -243,7 +243,7 @@ class BrowsePalette(Palette):
     def __copy_image_activate_cb(self, menu_item):
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
-        data = urllib2.urlopen(self._image_url).read()
+        data = urllib.request.urlopen(self._image_url).read()
         temp_file.write(data)
         temp_file.close()
 

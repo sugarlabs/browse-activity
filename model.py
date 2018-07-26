@@ -16,7 +16,6 @@
 #    Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import json
-import sha
 from gi.repository import GObject
 from hashlib import sha1
 
@@ -43,7 +42,7 @@ class Model(GObject.GObject):
 
     def add_link(self, url, title, thumb, owner, color, timestamp,
                  by_me=False):
-        info = {'hash': sha.new(str(url)).hexdigest(), 'url': str(url),
+        info = {'hash': sha1.new(str(url)).hexdigest(), 'url': str(url),
                 'title': str(title), 'thumb': thumb,
                 'owner': str(owner), 'color': str(color),
                 'timestamp': float(timestamp)}

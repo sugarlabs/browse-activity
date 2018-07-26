@@ -45,7 +45,7 @@ import time
 import shutil
 import json
 import cairo
-import StringIO
+import io
 from hashlib import sha1
 
 from sugar3.activity import activity
@@ -88,7 +88,7 @@ if _profile_version < PROFILE_VERSION:
         with open(os.path.join(_profile_path, 'cert8.db'), 'w') as cert_file:
             cert_file.write()
 
-    os.chmod(os.path.join(_profile_path, 'cert8.db'), 0660)
+    os.chmod(os.path.join(_profile_path, 'cert8.db'), 0o660)
 
     f = open(_version_file, 'w')
     f.write(str(PROFILE_VERSION))
@@ -613,7 +613,7 @@ class WebActivity(activity.Activity):
         Gdk.cairo_set_source_window(cairo_context, window, 0, 0)
         cairo_context.paint()
 
-        thumb_str = StringIO.StringIO()
+        thumb_str = io.StringIO()
         thumb_surface.write_to_png(thumb_str)
         return thumb_str.getvalue()
 
