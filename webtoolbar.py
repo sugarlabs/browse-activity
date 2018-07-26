@@ -92,7 +92,7 @@ css = ('''
     border-left: none;
 }}
 '''.format(thickness=style.LINE_WIDTH))
-css_provider.load_from_data(css)
+css_provider.load_from_data(css.encode('utf-8'))
 context = Gtk.StyleContext()
 context.add_provider_for_screen(screen, css_provider,
                                 Gtk.STYLE_PROVIDER_PRIORITY_USER)
@@ -169,7 +169,7 @@ class WebEntry(iconentry.IconEntry):
     def _search_update(self):
         list_store = Gtk.ListStore(str, str)
 
-        search_text = self.props.text.decode('utf-8')
+        search_text = self.props.text
         for place in places.get_store().search(search_text):
             title = '<span weight="bold" >%s</span>' % (place.title)
             list_store.append([title + '\n' + place.uri, place.uri])
@@ -751,9 +751,6 @@ class PrimaryToolbar(ToolbarBase):
         def create_menu_item(history_item):
             """Create a MenuItem for the back or forward palettes."""
             title = history_item.get_title() or _('No Title')
-            if not isinstance(title, unicode):
-                title = unicode(title, 'utf-8')
-            # This is a fix until the Sugar MenuItem is fixed:
             menu_item = PaletteMenuItem(text_label=title)
             menu_item.connect('activate', self._history_item_activated_cb,
                               history_item)

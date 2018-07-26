@@ -478,7 +478,7 @@ class TabbedView(BrowserNotebook):
 
     def get_legacy_history(self):
         tab_histories = []
-        for index in xrange(0, self.get_n_pages()):
+        for index in range(0, self.get_n_pages()):
             tab_page = self.get_nth_page(index)
             tab_histories.append(tab_page.browser.get_legacy_history())
         return tab_histories
@@ -523,14 +523,14 @@ class TabbedView(BrowserNotebook):
 
     def get_state(self):
         state = []
-        for index in xrange(0, self.get_n_pages()):
+        for index in range(0, self.get_n_pages()):
             tab_page = self.get_nth_page(index)
             type_name = TAB_BROWSER
             if isinstance(tab_page, PDFTabPage):
                 type_name = TAB_PDF
             state.append({
                 'type': type_name,
-                'state': tab_page.browser.get_state()})
+                'state': tab_page.browser.get_state().decode()})
         return state
 
     def set_session_state(self, states):
@@ -844,8 +844,6 @@ class Browser(WebKit2.WebView):
         uri = self.get_uri()
         if self.props.title is not None:
             title = self.props.title
-            if not isinstance(title, unicode):
-                title = unicode(title, 'utf-8')
             self._global_history.set_page_title(uri, title)
 
     def __decide_policy_cb(self, webview, policy_decision, decision_type):

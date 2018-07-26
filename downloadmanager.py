@@ -20,7 +20,7 @@ import logging
 from gettext import gettext as _
 import dbus
 import cairo
-import StringIO
+import io
 import tempfile
 
 from gi.repository import Gtk
@@ -290,7 +290,7 @@ class Download(object):
             self.cancel()
             try:
                 datastore.delete(self._object_id)
-            except Exception, e:
+            except Exception as e:
                 logging.warning('Object has been deleted already %s' % e)
 
             self.cleanup()
@@ -406,7 +406,7 @@ class Download(object):
         Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
         cr.paint()
 
-        preview_str = StringIO.StringIO()
+        preview_str = io.StringIO()
         preview_surface.write_to_png(preview_str)
         return preview_str.getvalue()
 

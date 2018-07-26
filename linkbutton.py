@@ -21,7 +21,7 @@ from gi.repository import GObject
 from gi.repository import Rsvg
 
 import os
-import StringIO
+import io
 import cairo
 from gettext import gettext as _
 import re
@@ -49,10 +49,6 @@ class LinkButton(TrayButton, GObject.GObject):
     def __init__(self, buf, color, title, owner, hash, notes=None):
         TrayButton.__init__(self)
 
-        # Color read from the Journal may be Unicode, but Rsvg needs
-        # it as single byte string:
-        if isinstance(color, unicode):
-            color = str(color)
         self._fill, self._stroke = color.split(',')
         self.set_image(buf)
 
@@ -78,7 +74,7 @@ class LinkButton(TrayButton, GObject.GObject):
 
     def set_image(self, buf):
         self._img = Gtk.Image()
-        str_buf = StringIO.StringIO(buf)
+        str_buf = io.StringIO(buf)
         thumb_surface = cairo.ImageSurface.create_from_png(str_buf)
 
         xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
