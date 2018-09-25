@@ -582,7 +582,8 @@ class IncomingFileTransfer(_BaseFileTransfer):
                     self._output_stream = destination_file.append_to()
             else:
                 if hasattr(Gio.MemoryOutputStream, 'new_resizable'):
-                    self._output_stream = Gio.MemoryOutputStream.new_resizable()
+                    self._output_stream = \
+                        Gio.MemoryOutputStream.new_resizable()
                 else:
                     self._output_stream = Gio.MemoryOutputStream()
 
