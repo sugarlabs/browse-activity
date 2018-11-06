@@ -2,12 +2,12 @@
 name = Browse
 activity_version = 202
 bundle_id = org.laptop.WebActivity
+license = GPLv2+;LGPLv2+;GPLv3+
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
 mime_types = image/png;image/gif;image/jpeg;text/html;text/uri-list;application/xhtml+xml;application/rss+xml;application/xml;text/css;application/ogg;audio/x-wav;audio/ogg;video/ogg;audio/x-vorbis+ogg;audio/x-flac+ogg;audio/x-speex+ogg;video/x-theora+ogg;video/x-ogm+ogg;image/svg+xml;application/x-shockwave-flash
 summary = Surf the world!
 max_participants = 100
-license = GPLv2+;LGPLv2+;GPLv3+
 metadata_license = CC0-1.0
 description:
     <p>Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.  Browse is powered by the WebKit2 rendering engine with the Faster Than Light javascript interpreter - allowing you to view the full beauty of the web.</p>
@@ -20,4 +20,4 @@ description:
 repository = https://github.com/sugarlabs/browse-activity
 screenshots = https://people.sugarlabs.org/sam/activity-ss/browse-1-1.png https://people.sugarlabs.org/sam/activity-ss/browse-1-2.png
 url = https://help.sugarlabs.org/en/browse.html
-tags = Internet;Utilities
+tags = Internet; Utilities
