@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript" language="JavaScript">
@@ -43,6 +43,15 @@ html { 	margin-right: 8px; 	margin-left: 8px; 	font-family: Helvetica, Arial, sa
 .link11:hover { color: white; background-color: #006e00; }
 .link12 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
 .link12:hover { color: white; background-color: #033cd2;}
+.search{background: #FFFFFF;border: 0.25px solid #D4D4D4;box-sizing: border-box;box-shadow: 0px 4px 4px #FFFFFF;height: 43px;width: 400px;
+}
+.btn{background: #5A89EB;border-radius: 2px;width: 121px;height: 45px;color:#FFFFFF;font-size: 13px;font-style: normal; border-color: #FFFFFF;}
+img{
+    position: relative;
+    top: 60px;
+
+    
+}
 </style>
 <title>Sugar Labs</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -58,20 +67,25 @@ document.write("<a class=\"" + link_colour() + "\" href=\"https://www.sugarlabs.
 </div>
 <center>
 <script type="text/javascript" language="JavaScript">
+
 <!--
 document.write("<br/><br/><br/><a href=\"https://www.sugarlabs.org/\"><img src=\"")
 document.write(logo_filename())
-document.write("\" alt=\"Sugar Labs\" width=\"750\" height=\"250\" border=\"0\"/></a><br/><br/>")
+document.write("\" alt=\"Sugar Labs\" width=\"395.31\" height=\"150\" top=\"150\" left=\"378\" position=\"static\" /></a><br/><br/>")
+
 -->
 </script>
-<table border="0" cellspacing="0" cellpadding="0" width="700px"><tr>
-<td width="130px" align="center">
-<form action="http://google.com/search" name="f" target="_top">
-<input name="hl" type="hidden" value="en"/>
-<br/><br/><input maxlength="2048" name="q" size="35" title="Google Search" value=""/> <input name="btnG" type="submit" value="Google Search"/>
-</form>
-</td>
-</tr></table>
+
+ <table border="0" cellspacing="0" cellpadding="0" width="700px"><tr>
+  <td width="130px" align="center">
+  <form action="http://google.com/search" name="f" target="_top">
+  <input name="hl" type="hidden" value="en"/>
+  <br/><br/><input class="search" maxlength="2048" name="q" size="35" title="Google Search" value="" autofocus/><input class= "btn" name="btnG" type="submit" value="Google Search"/>
+  </form>
+  </td>
+  </tr></table> 
+    
+
 </center>
 </body>
 </html>
