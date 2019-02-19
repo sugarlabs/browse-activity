@@ -1,0 +1,33 @@
+<script>
+window.onload = async () => {
+  const video = document.getElementById('monitor');
+  const canvas = document.getElementById('photo');
+  const shutter = document.getElementById('shutter');
+
+  try {
+    video.srcObject = await navigator.mediaDevices.getUserMedia({video: true});
+
+    await new Promise((resolve) => video.onloadedmetadata = resolve);
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    document.getElementById('splash').hidden = true;
+    document.getElementById('app').hidden = false;
+
+    shutter.onclick = () => canvas.getContext('2d').drawImage(video, 0, 0);
+  } catch (err) {
+    console.error(err);
+  }
+};
+</script>
+
+<h1>Snapshot Kiosk</h1>
+
+<section id="splash">
+  <p id="errorMessage">Loading...</p>
+</section>
+
+<section id="app" hidden>
+  <video id="monitor" autoplay></video>
+  <button id="shutter">&#x1F4F7;</button>
+  <canvas id="photo"></canvas>
+</section>
