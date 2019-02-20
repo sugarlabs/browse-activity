@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2018-02-22 17:39+0000\n"
+"PO-Revision-Date: 2018-06-12 08:11+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1519321143.000000\n"
+"X-POOTLE-MTIME: 1528791078.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -49,12 +49,16 @@ msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
+"ניתן להוסיף דפים למועדפים עם שותפים בזמן אמת - תכונה נהדרת לחקירה בקבוצה או "
+"למורים לטובת הצגת עמודים לכיתה שלהם"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
 msgstr ""
+"הוספת הערה על העמודים שהוספת לסימניות - כלי נהדר ליצירת אוספים שנאגרים לאורך "
+"זמן"
 
 #: browser.py:275
 #, python-format
@@ -181,13 +185,12 @@ msgid "No Downloads Running"
 msgstr "אין הורדות פעילות"
 
 #: webtoolbar.py:463
-#, fuzzy
 msgid "Bookmark"
-msgstr "מועדפים"
+msgstr "הוספה למועדפים"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr ""
+msgstr "{}% התקבלו"
 
 #: webtoolbar.py:762
 msgid "No Title"
@@ -303,13 +306,12 @@ msgid "Please make sure you are connected to the Internet."
 msgstr "נא לוודא שיש חיבור לאינטרנט."
 
 #: palettes.py:164
-#, fuzzy
 msgid "Follow link"
-msgstr "עקוב אחר קישור"
+msgstr "מעקב אחר קישור"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "מעקב אחר קישור בלשונית חדשה"
 
 #: palettes.py:178
 msgid "Keep link"

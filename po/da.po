@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-06-03 22:51+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2018-10-22 18:26+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1496530302.000000\n"
+"X-POOTLE-MTIME: 1540232785.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -85,7 +85,7 @@ msgstr "Ignorér"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr "Ingen titel"
+msgstr "Unavngivet"
 
 #: browser.py:606
 msgid "Loading..."
@@ -220,7 +220,7 @@ msgstr ""
 
 #: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "O.k."
+msgstr "Ok"
 
 #: downloadmanager.py:167
 msgid "Download started"
@@ -238,7 +238,7 @@ msgstr "Nedlastning færdig"
 
 #: downloadmanager.py:238
 msgid "Show in Journal"
-msgstr "Vis i logbog"
+msgstr "Vis i journal"
 
 #: downloadmanager.py:333
 #, python-format
@@ -305,7 +305,7 @@ msgstr "Gem PDF til journal"
 
 #: pdfviewer.py:335
 msgid "Cancel"
-msgstr "Afbryd"
+msgstr "Annullér"
 
 #: pdfviewer.py:485
 msgid "Downloading document..."

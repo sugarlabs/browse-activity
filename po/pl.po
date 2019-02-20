@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-12-18 15:08+0000\n"
-"Last-Translator: jszu <jszu@protonmail.com>\n"
+"PO-Revision-Date: 2018-12-14 18:55+0000\n"
+"Last-Translator: KrzysztofJ <krzysztofjesz@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1513609736.000000\n"
+"X-POOTLE-MTIME: 1544813706.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -269,9 +269,8 @@ msgid "Remove"
 msgstr "Usuń"
 
 #: linkbutton.py:152
-#, fuzzy
 msgid "Take notes on this page"
-msgstr "Zrób notatki o tej stronie"
+msgstr "Zrób notatki na tej stronie"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"

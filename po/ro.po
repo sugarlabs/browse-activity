@@ -7,23 +7,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2008-02-18 16:14-0500\n"
-"Last-Translator: Adi Roiban <adiroiban@gmail.com>\n"
+"PO-Revision-Date: 2018-04-05 16:07+0000\n"
+"Last-Translator: kosimo <duboisgeorges@gmx.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1522944435.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Navighează"
+msgstr "Navigați"
 
 #: activity/activity.info:3
 msgid "Surf the world!"
-msgstr ""
+msgstr "Navigați în toată lumea!"
 
 #: activity/activity.info:4
 msgid ""
@@ -32,57 +34,68 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Navigați în toată lumea!! Aici puteți cerceta, vedea filme educaționale, "
+"face cursuri online, găsii cărți, conecta cu prieteni si multe altele. \""
+"Browse\", acest navigator de Internet, folosește modulul de randare WebKit2 "
+"cu interpretorul de JavaScript \"Faster Than Light\" (\"Mai Rapid Că Lumina\""
+") - permițându-vă să vedeți furmusețea paginilor de pe Internet."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
 msgstr ""
+"Pentru a ajuta cercetarea, Browse oferă o multitudine de funcționalități:"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
+"Marcați (salvați) paginile bune pe care le găsiți - nu pierdeți niciodată "
+"resurse bune sau nu uitați să le adaugați în bibliografia dumneavoastră"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
+"Marcați paginile cu colaboratori în timp real - util pentru cercetarea în "
+"grup sau pentru profesori să prezinte pagini claselor de elevi"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
-msgstr ""
+msgstr "Comentați pe paginile marcate - o unealtă pentru a crea colecții curate"
 
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr ""
+msgstr "Acesta filă a oprit functionearea lui Browse: %s"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
 msgstr ""
+"Dacă redeschideți această filă, s-ar putea să oprească functionearea din nou"
 
 #: browser.py:277
 msgid "Reopen"
-msgstr ""
+msgstr "Re-deschideți"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr ""
+msgstr "Nu luați în considerare"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "Fără nume"
 
 #: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "Se încarcă..."
 
 #: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Această pagină web nu a putut fi încărcată"
 
 #: browser.py:851
 #, python-format
@@ -90,57 +103,62 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" nu a putut fi încărcat. Verificați vă rog dacă există erori de "
+"dactilografiere, și asigurați-va că sunteți conectat la Internet."
 
 #: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr ""
+msgstr "Încearcați din nou"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr ""
+msgstr "acces la locația dumneavoastra"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr ""
+msgstr "a arată notificările într-un chenar"
 
 #: browser.py:881
 #, python-format
 msgid "Allow %s to %s?"
-msgstr ""
+msgstr "Permite-ți %s să %?"
 
 #: browser.py:884
 msgid "You can change your choice later by reloading the page"
-msgstr ""
+msgstr "Puteți schimbă alegerea mai târziu reincarcand pagină"
 
 #: webactivity.py:183
 msgid "Bookmarks"
-msgstr ""
+msgstr "Marcaje"
 
 #: webactivity.py:398
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Pagină inițială a fost configurată"
 
 #: webactivity.py:402
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Pagină inițială prestabilită a fost configurată"
 
 #: webactivity.py:592
-#, fuzzy
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] "Descărcare în curs"
+msgstr[1] "Descărcari în curs"
+msgstr[2] ""
 
 #: webactivity.py:595
-#, fuzzy
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Oprirea acum va duce la anularea descărcării"
+msgstr[0] "Anulând acum va duce la stergrea descărcării"
+msgstr[1] "Anulând acum va duce la stergrea descărcărilor"
+msgstr[2] ""
 
 #: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Continuă descărcarea"
+msgstr[1] "Continuă descărcarile"
+msgstr[2] ""
 
 #: webactivity.py:605
 msgid "Stop"
@@ -148,23 +166,23 @@ msgstr "Oprește"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
-msgstr ""
+msgstr "Arată inspectorul Web"
 
 #: webtoolbar.py:369
 msgid "Home page"
-msgstr ""
+msgstr "Pagina de start"
 
 #: webtoolbar.py:375
 msgid "Select as initial page"
-msgstr ""
+msgstr "Selectați că pagină inițială"
 
 #: webtoolbar.py:380
 msgid "Reset initial page"
-msgstr ""
+msgstr "Resetează pagină inițială"
 
 #: webtoolbar.py:386
 msgid "Library"
-msgstr ""
+msgstr "Librărie"
 
 #: webtoolbar.py:426
 msgid "Back"
@@ -176,7 +194,7 @@ msgstr "Înainte"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr ""
+msgstr "Nici o Descărcare Activă"
 
 #: webtoolbar.py:463
 msgid "Bookmark"
@@ -184,15 +202,15 @@ msgstr "Marcaj"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr ""
+msgstr "{}% Descărcat"
 
 #: webtoolbar.py:762
 msgid "No Title"
-msgstr ""
+msgstr "Nici un Titlu"
 
 #: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Nu este destul spațiu pentru a descarca"
 
 #: downloadmanager.py:149
 #, python-brace-format
@@ -200,6 +218,8 @@ msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Descărcarea \"%{filename}\" necesită %{total_size_in_mb} MB de spațiu liber, "
+"doar %{free_sapce_inmb} MB sunt liberi."
 
 #: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
@@ -212,7 +232,7 @@ msgstr "A început descărcarea"
 #: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
 msgid "From: %s"
-msgstr ""
+msgstr "De la: %s"
 
 #: downloadmanager.py:234
 msgid "Download completed"
@@ -228,14 +248,16 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Se descarcă %(filename) de la \n"
+" %(source)."
 
 #: edittoolbar.py:67
 msgid "Previous"
-msgstr ""
+msgstr "Înapoi"
 
 #: edittoolbar.py:74
 msgid "Next"
-msgstr ""
+msgstr "Înainte"
 
 #: linkbutton.py:133
 msgid "Remove"
@@ -243,7 +265,7 @@ msgstr "Elimină"
 
 #: linkbutton.py:152
 msgid "Take notes on this page"
-msgstr ""
+msgstr "Luați note pe această pagină"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
@@ -255,7 +277,7 @@ msgstr "Măreşte"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
+msgstr "Mărimea actuală"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
@@ -271,15 +293,15 @@ msgstr "Ascunde zona de notificare"
 
 #: pdfviewer.py:117
 msgid "Previous page"
-msgstr ""
+msgstr "Pagină anterioară"
 
 #: pdfviewer.py:124
 msgid "Next page"
-msgstr ""
+msgstr "Pagina următoare"
 
 #: pdfviewer.py:136
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Salvați PDF în Jurnal"
 
 #: pdfviewer.py:335
 msgid "Cancel"
@@ -287,44 +309,44 @@ msgstr "Anulare"
 
 #: pdfviewer.py:485
 msgid "Downloading document..."
-msgstr ""
+msgstr "Se descarcă documentul..."
 
 #: pdfviewer.py:529
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Acest document nu poate fi încărcat"
 
 #: pdfviewer.py:537
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Asigurați-vă că sunteți conectat la Internet."
 
 #: palettes.py:164
 msgid "Follow link"
-msgstr ""
+msgstr "Urmați link-ul"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Urmați link-ul într-o filă nouă"
 
 #: palettes.py:178
 msgid "Keep link"
-msgstr ""
+msgstr "Păstrați link-ul"
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr ""
+msgstr "Copiați link-ul"
 
 #: palettes.py:191
 msgid "Copy link text"
-msgstr ""
+msgstr "Copiați textul link-ului"
 
 #: palettes.py:206
 msgid "Copy image"
-msgstr ""
+msgstr "Copiați imaginea"
 
 #: palettes.py:212
 msgid "Keep image"
-msgstr ""
+msgstr "Păstrați imaginea"
 
 #: palettes.py:227
 msgid "Copy text"
-msgstr ""
+msgstr "Copiați textul"

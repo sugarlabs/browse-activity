@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-06-20 13:08+0000\n"
-"Last-Translator: Mariana <dias.inkscape@gmail.com>\n"
+"PO-Revision-Date: 2018-09-03 19:42+0000\n"
+"Last-Translator: Paulo Francisco <slomp@ufrgs.br>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1497964115.000000\n"
+"X-POOTLE-MTIME: 1536003758.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -42,15 +42,15 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Surfe pelo mundo! Aqui você pode pesquisar, assistir videos educacionais, "
-"fazer cursos online, encontrar livros, conectar-se com amigos e mais.  A "
-"navegação é sustentada pelo mecanismo de renderização WebKit2 com o Faster "
-"Than Light interpretador javascript - permitindo que você possa experimentar "
-"de maneira única a beleza da internet."
+"Surfe pelo mundo! Aqui você pode pesquisar, assistir vídeos educacionais, "
+"fazer cursos online, encontrar livros, conectar-se com amigos e mais.  O "
+"motor da navegação é o mecanismo de renderização WebKit2 com o interpretador "
+"javascript Faster Than Light  - permitindo que você possa experimentar a "
+"beleza da internet."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr "Para ajudar na sua pesquisa, o Browse tem muitos recursos a oferecer:"
+msgstr "Para ajudar na sua pesquisa, o navegador tem muitos recursos:"
 
 #: activity/activity.info:4
 msgid ""
@@ -76,16 +76,16 @@ msgid ""
 "collections"
 msgstr ""
 "Faça comentários nas suas páginas salvas como favoritas - uma ótima "
-"ferramenta para criar coleções  profissional"
+"ferramenta para criar coleções revisadas"
 
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr "Esta guia apresentou erros Browse: %s"
+msgstr "Esta aba fez cair o Navegador: %s"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
-msgstr "Se você tentar reabrir a guia, ela pode apresentar erros novamente"
+msgstr "Se você tentar reabrir a aba, ela pode derrubar novamente o Navegador"
 
 #: browser.py:277
 msgid "Reopen"
@@ -93,7 +93,7 @@ msgstr "Abrir novamente"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr "Desconsidere"
+msgstr "Descartar"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
@@ -123,7 +123,7 @@ msgstr "Tente novamente"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr "acesso a sua localização"
+msgstr "acesso à sua localização"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
@@ -189,7 +189,7 @@ msgstr "Selecionar como página inicial"
 
 #: webtoolbar.py:380
 msgid "Reset initial page"
-msgstr "Resetar página inicial"
+msgstr "Restabelecer a página inicial"
 
 #: webtoolbar.py:386
 msgid "Library"
@@ -205,12 +205,12 @@ msgstr "Avançar"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr "Nenhum Download Ativo"
+msgstr "Nenhum download ativo"
 
 # Favorito?
 #: webtoolbar.py:463
 msgid "Bookmark"
-msgstr "Marcar"
+msgstr "Marcador"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
@@ -250,7 +250,7 @@ msgstr "De: %s"
 
 #: downloadmanager.py:234
 msgid "Download completed"
-msgstr "Transferência completada"
+msgstr "Transferência concluída"
 
 #: downloadmanager.py:238
 msgid "Show in Journal"
@@ -292,7 +292,7 @@ msgstr "Aumentar zoom"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr "Tamanho real"
+msgstr "Tamanho atual"
 
 # Encher o ecrã?
 #: viewtoolbar.py:62
@@ -337,7 +337,7 @@ msgstr "Por favor, certifique-se de estar conectado à Internet."
 
 #: palettes.py:164
 msgid "Follow link"
-msgstr "Seguir vínculo"
+msgstr "Seguir link"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
@@ -345,11 +345,11 @@ msgstr "Abrir link em uma nova aba"
 
 #: palettes.py:178
 msgid "Keep link"
-msgstr "Manter vínculo"
+msgstr "Manter link"
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr "Copiar vínculo"
+msgstr "Copiar link"
 
 #: palettes.py:191
 msgid "Copy link text"
