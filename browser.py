@@ -905,10 +905,10 @@ class Browser(WebKit2.WebView):
     def _get_permission_name(self, request):
         if hasattr(WebKit2, 'GeolocationPermissionRequest') and \
            isinstance(request, WebKit2.GeolocationPermissionRequest):
-            return _('access to your location')
+            return _('receive your location')
         if hasattr(WebKit2, 'NotificationPermissionRequest') and \
            isinstance(request, WebKit2.NotificationPermissionRequest):
-            return _('to display notifications in the frame')
+            return _('display notifications in the frame')
         # Should never be reached
         return type(request).__name__
 
@@ -920,8 +920,8 @@ class Browser(WebKit2.WebView):
             site = match.group(1)
 
         alert = ConfirmationAlert()
-        alert.props.title = _('Allow %s to %s?') % \
-            (site, description)
+        alert.props.title = _('Allow %{site} to %{description}?') % \
+            {'site': site, 'description': description}
         alert.props.msg = _(
             'You can change your choice later by reloading the page')
         alert.connect('response', self.__permission_request_alert_cb, request)

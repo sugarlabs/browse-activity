@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 12:40+1100\n"
+"POT-Creation-Date: 2019-02-20 15:18+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,72 +56,72 @@ msgid ""
 "collections"
 msgstr ""
 
-#: browser.py:309
+#: browser.py:310
 #, python-format
 msgid "This tab has crashed Browse: %s"
 msgstr ""
 
-#: browser.py:310
+#: browser.py:311
 msgid "If you reopen the tab, it may just crash again"
 msgstr ""
 
-#: browser.py:311
+#: browser.py:312
 msgid "Reopen"
 msgstr ""
 
-#: browser.py:312
+#: browser.py:313
 msgid "Disregard"
 msgstr ""
 
-#: browser.py:589 browser.py:634 browser.py:635 webactivity.py:377
+#: browser.py:590 browser.py:635 browser.py:636 webactivity.py:377
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:639
+#: browser.py:640
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:890 browser.py:891
+#: browser.py:891 browser.py:892
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:892
+#: browser.py:893
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:895 pdfviewer.py:391
+#: browser.py:896 pdfviewer.py:391
 msgid "Try again"
 msgstr ""
 
-#: browser.py:907
-msgid "access to your location"
+#: browser.py:908
+msgid "receive your location"
 msgstr ""
 
-#: browser.py:910
-msgid "to display notifications in the frame"
+#: browser.py:911
+msgid "display notifications in the frame"
 msgstr ""
 
-#: browser.py:922
-#, python-format
-msgid "Allow %s to %s?"
+#: browser.py:923
+#, python-brace-format
+msgid "Allow %{site} to %{description}?"
 msgstr ""
 
-#: browser.py:925
+#: browser.py:926
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
-#: collabwrapper/collabwrapper.py:178
+#: collabwrapper.py:194
 msgid "Joining activity..."
 msgstr ""
 
-#: collabwrapper/collabwrapper.py:179 collabwrapper/collabwrapper.py:191
+#: collabwrapper.py:195 collabwrapper.py:207
 msgid "Please wait for the connection..."
 msgstr ""
 
-#: collabwrapper/collabwrapper.py:190
+#: collabwrapper.py:206
 msgid "Resuming shared activity..."
 msgstr ""
 
