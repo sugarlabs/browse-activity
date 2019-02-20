@@ -1,3 +1,13 @@
+203
+
+* Fix unintended search when a URL begins with spaces (Avinash Bharti),
+* Fix licenses, add screenshots, metadata (Vipul Gupta),
+* Update CollabWrapper (James Cameron),
+* Use HTML5 DOCTYPE for static welcome page (James Cameron),
+* Update POT file with new strings (James Cameron),
+* Updated translations (Chris Leonard et al),
+* Adjust metadata description tags (James Cameron),
+
 202
 
 * Stop using GConf for settings (James Cameron),

@@ -1,6 +1,6 @@
 [Activity]
 name = Browse
-activity_version = 202
+activity_version = 203
 bundle_id = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
@@ -20,4 +20,4 @@ description:
 repository = https://github.com/sugarlabs/browse-activity
 screenshots = https://people.sugarlabs.org/sam/activity-ss/browse-1-1.png https://people.sugarlabs.org/sam/activity-ss/browse-1-2.png
 url = https://help.sugarlabs.org/en/browse.html
-tags = Internet;Utilities
+tags = Internet
