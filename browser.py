@@ -106,7 +106,21 @@ def _get_local_settings(activity):
         compiled = os.path.join(path, 'gschemas.compiled')
         if not os.access(compiled, os.R_OK):
             src = '%s.gschema.xml' % activity.get_bundle_id()
-            lines = open(os.path.join(get_bundle_path(), src), 'r').readlines()
+            lines = \
+                [
+                    '<?xml version="1.0" encoding="UTF-8"?>',
+                    '<schemalist>',
+                    '<schema id="org.laptop.WebActivity" '
+                    'path="/org/laptop/WebActivity/">',
+                    '<key name="home-page" type="s">',
+                    "<default>''</default>",
+                    '<summary>Home page URL</summary>',
+                    '<description>URL to show as default or when home button '
+                    'is pressed.</description>',
+                    '</key>',
+                    '</schema>',
+                    '</schemalist>',
+                ]
             open(os.path.join(path, src), 'w').writelines(lines)
             os.system('glib-compile-schemas %s' % path)
             os.remove(os.path.join(path, src))
