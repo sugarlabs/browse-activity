@@ -100,6 +100,7 @@ class Download(object):
 
         self.dl_jobject = None
         self._object_id = None
+        self._start_alert = None
         self._stop_alert = None
 
         self._dest_path = ''
@@ -167,12 +168,12 @@ class Download(object):
     def __decide_destination_cb(self, download, suggested_filename):
         logging.debug('__decide_desintation_cb suggests %s',
                       suggested_filename)
-        alert = TimeoutAlert(9)
-        alert.props.title = _('Download started')
-        alert.props.msg = suggested_filename
-        self._activity.add_alert(alert)
-        alert.connect('response', self.__start_response_cb)
-        alert.show()
+        self._start_alert = TimeoutAlert(9)
+        self._start_alert.props.title = _('Downloading')
+        self._start_alert.props.msg = suggested_filename
+        self._activity.add_alert(self._start_alert)
+        self._start_alert.connect('response', self.__start_response_cb)
+        self._start_alert.show()
 
         self._suggested_filename = suggested_filename
         # figure out download URI
@@ -240,8 +241,10 @@ class Download(object):
                         error_handler=self.__internal_error_cb,
                         timeout=360)
 
+        if self._start_alert is not None:
+            self._activity.remove_alert(self._start_alert)
         self._stop_alert = Alert()
-        self._stop_alert.props.title = _('Download completed')
+        self._stop_alert.props.title = _('Downloaded')
         self._stop_alert.props.msg = self._suggested_filename
 
         bundle = None
@@ -295,6 +298,7 @@ class Download(object):
                 self._activity.remove_alert(self._stop_alert)
 
         self._activity.remove_alert(alert)
+        self._start_alert = None
 
     def __stop_response_cb(self, alert, response_id):
         if response_id == Gtk.ResponseType.APPLY:

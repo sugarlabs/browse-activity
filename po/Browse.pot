@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-20 15:18+1100\n"
+"POT-Creation-Date: 2019-03-18 12:42+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,8 +140,8 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: downloadmanager.py:171
-msgid "Download started"
+#: downloadmanager.py:172
+msgid "Downloading"
 msgstr ""
 
 #: downloadmanager.py:219 pdfviewer.py:582
@@ -149,8 +149,8 @@ msgstr ""
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:244
-msgid "Download completed"
+#: downloadmanager.py:246
+msgid "Downloaded"
 msgstr ""
 
 #: downloadmanager.py:253
