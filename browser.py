@@ -69,6 +69,7 @@ DEFAULT_ERROR_PAGE = os.path.join(get_bundle_path(),
 
 SETTINGS_SCHEMA_ID = 'org.laptop.WebActivity'
 SETTINGS_KEY_HOME_PAGE = 'home-page'
+SETTINGS_KEY_SEARCH_URL = 'search-engine-url'
 
 TAB_BROWSER = 'browser'
 TAB_PDF = 'pdf'
@@ -97,33 +98,16 @@ def _get_local_settings(activity):
     global _settings
     if _settings is None:
 
-        # create schemas directory if missing
-        path = os.path.join(get_activity_root(), 'data', 'schemas')
-        if not os.access(path, os.F_OK):
-            os.makedirs(path)
-
-        # create compiled schema file if missing
+        # try to access schema file
+        path = '/usr/share/glib-2.0/schemas'
         compiled = os.path.join(path, 'gschemas.compiled')
         if not os.access(compiled, os.R_OK):
-            src = '%s.gschema.xml' % activity.get_bundle_id()
-            lines = \
-                [
-                    '<?xml version="1.0" encoding="UTF-8"?>',
-                    '<schemalist>',
-                    '<schema id="org.laptop.WebActivity" '
-                    'path="/org/laptop/WebActivity/">',
-                    '<key name="home-page" type="s">',
-                    "<default>''</default>",
-                    '<summary>Home page URL</summary>',
-                    '<description>URL to show as default or when home button '
-                    'is pressed.</description>',
-                    '</key>',
-                    '</schema>',
-                    '</schemalist>',
-                ]
-            open(os.path.join(path, src), 'w').writelines(lines)
-            os.system('glib-compile-schemas %s' % path)
-            os.remove(os.path.join(path, src))
+            raise IOError('Cannot access compiled GLib schema file %s' % compiled)
+            sys.exit(1)
+        src = os.path.join(path, '%s.gschema.xml' % activity.get_bundle_id())
+        if not os.access(src, os.R_OK):
+            raise IOError('Cannot access GLib source schema file %s' % src)
+            sys.exit(1)
 
         # create a local Gio.Settings based on the compiled schema
         source = Gio.SettingsSchemaSource.new_from_directory(path, None, True)
@@ -218,8 +202,10 @@ class TabbedView(BrowserNotebook):
             language_location = locale.split('.', 1)[0].lower()
             language = language_location.split('_')[0]
             # If the string doesn't look like an URI, let's search it:
-            url_search = 'http://www.google.com/search?' \
-                'q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'
+            url_search = self.settings.get_string(SETTINGS_KEY_SEARCH_URL)
+            if url_search == '':
+                url_search = 'http://www.google.com/search?' \
+                    'q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'
             query_param = Soup.form_encode_hash({'q': url})
             # [2:] here is getting rid of 'q=':
             effective_url = url_search % {'query': query_param[2:],
