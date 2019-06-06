@@ -69,6 +69,7 @@ DEFAULT_ERROR_PAGE = os.path.join(get_bundle_path(),
 
 SETTINGS_SCHEMA_ID = 'org.laptop.WebActivity'
 SETTINGS_KEY_HOME_PAGE = 'home-page'
+SETTINGS_KEY_SEARCH_URL = 'search-engine-url'
 
 TAB_BROWSER = 'browser'
 TAB_PDF = 'pdf'
@@ -98,7 +99,9 @@ def _get_local_settings(activity):
     if _settings is None:
 
         # create schemas directory if missing
-        path = os.path.join(get_activity_root(), 'data', 'schemas')
+        # NOTE: 'glib-2.0' is here so GLib can parse the file by reading from
+        # the 'XDG_DATA_DIRS' environment variable.
+        path = os.path.join(get_activity_root(), 'data', 'glib-2.0', 'schemas')
         if not os.access(path, os.F_OK):
             os.makedirs(path)
 
@@ -117,6 +120,14 @@ def _get_local_settings(activity):
                     '<summary>Home page URL</summary>',
                     '<description>URL to show as default or when home button '
                     'is pressed.</description>',
+                    '<key name="search-engine-url" type="s">',
+                    "<default>'http://www.google.com/search?"
+                    "q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'</default>",
+                    '<summary>Search engine URL</summary>',
+                    '<description>URL to which to submit search queries. '
+                    'Parameters: %(query)s: The search query. %(language)s: A '
+                    'POSIX-compliant language code describing the language of '
+                    'the results page.</description>',
                     '</key>',
                     '</schema>',
                     '</schemalist>',
@@ -218,8 +229,10 @@ class TabbedView(BrowserNotebook):
             language_location = locale.split('.', 1)[0].lower()
             language = language_location.split('_')[0]
             # If the string doesn't look like an URI, let's search it:
-            url_search = 'http://www.google.com/search?' \
-                'q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'
+            url_search = self.settings.get_string(SETTINGS_KEY_SEARCH_URL)
+            if url_search == '':
+                url_search = 'http://www.google.com/search?' \
+                    'q=%(query)s&ie=UTF-8&oe=UTF-8&hl=%(language)s'
             query_param = Soup.form_encode_hash({'q': url})
             # [2:] here is getting rid of 'q=':
             effective_url = url_search % {'query': query_param[2:],
