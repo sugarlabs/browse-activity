@@ -99,16 +99,8 @@ def _get_local_settings(activity):
     global _settings
     if _settings is None:
 
-        # delete old schemas directory data/schemas
-        # NOTE: This is transitional code to be removed in the near future.
-        path = os.path.join(get_activity_root(), 'data', 'schemas')
-        if os.access(path, os.F_OK):
-            shutil.rmtree(path)
-
         # create schemas directory if missing
-        # NOTE: 'glib-2.0' is here so GLib can parse the file by reading from
-        # the 'XDG_DATA_DIRS' environment variable.
-        path = os.path.join(get_activity_root(), 'data', 'glib-2.0', 'schemas')
+        path = os.path.join(get_activity_root(), 'data', 'schemas')
         if not os.access(path, os.F_OK):
             os.makedirs(path)
 
