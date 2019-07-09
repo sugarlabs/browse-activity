@@ -797,7 +797,7 @@ class Browser(WebKit2.WebView):
             temp_path = os.path.join(get_activity_root(), 'instance')
             file_path = os.path.join(temp_path, '%i' % time.time())
 
-            file_handle = file(file_path, 'w')
+            file_handle = open(file_path, 'w')
             file_handle.write(view.get_data_finish(result))
             file_handle.close()
             async_cb(file_path)
