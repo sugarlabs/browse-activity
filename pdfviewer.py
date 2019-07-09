@@ -405,6 +405,7 @@ class PDFTabPage(Gtk.HBox):
     When the file is remote, display a message while downloading.
 
     """
+
     def __init__(self, state=None):
         GObject.GObject.__init__(self)
         self._browser = DummyBrowser(self)
@@ -557,7 +558,7 @@ class PDFTabPage(Gtk.HBox):
         try:
             if self._downloaded_pdf:
                 os.remove(self._pdf_uri[len("file://"):])
-        except:
+        except BaseException:
             pass
 
     def __journal_id_to_uri(self, journal_id):
