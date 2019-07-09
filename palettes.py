@@ -19,7 +19,9 @@
 import logging
 import os
 import tempfile
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
+import urllib.error
+import urllib.parse
 
 from gettext import gettext as _
 

@@ -730,7 +730,7 @@ class Browser(WebKit2.WebView):
             gbytes = state.serialize()
             # JSON results in utf8-decoding, so it needs to be good data
             return b64encode(gbytes.get_data())
-        except:
+        except BaseException:
             return ""  # graceful degradation in case of old WebKit2
 
     def get_legacy_history(self):
@@ -907,7 +907,7 @@ class Browser(WebKit2.WebView):
                          'to the Internet.') % uri,
             'btn_value': _('Try again'),
             'url': uri,
-            }
+        }
 
         html = open(DEFAULT_ERROR_PAGE, 'r').read() % data
         web_view.load_alternate_html(html, uri, uri)

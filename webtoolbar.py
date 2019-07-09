@@ -23,7 +23,6 @@ from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import Gdk
-from gi.repository import Gio
 from gi.repository import Pango
 
 from sugar3.graphics.toolbutton import ToolButton
@@ -496,7 +495,7 @@ class PrimaryToolbar(ToolbarBase):
         self._download_icon.update(progress)
         if downloadmanager.num_downloads() > 0:
             self._download_icon.props.tooltip = \
-                _('{}% Downloaded').format(int(progress*100))
+                _('{}% Downloaded').format(int(progress * 100))
             return True
         else:
             self._download_running_hid = None
