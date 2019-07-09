@@ -39,7 +39,7 @@ class LinkButton(TrayButton, GObject.GObject):
     __gsignals__ = {
         'remove_link': (GObject.SignalFlags.RUN_FIRST,
                         None, ([str])),
-        }
+    }
     notes_changed_signal = GObject.Signal(
         'notes-changed', arg_types=[str, str])
 

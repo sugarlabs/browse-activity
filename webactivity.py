@@ -705,7 +705,7 @@ class WebActivity(activity.Activity):
 
         alert.connect('response', self.__incompatible_response_cb)
         stop.connect('clicked', self.__incompatible_stop_clicked_cb,
-                         alert)
+                     alert)
 
         self.show_all()
 
@@ -744,10 +744,10 @@ class AddLinkAnimation(Animation):
         # exponential ease in/out
         t /= duration / 2.0
         if t < 1:
-            frame = self.end/2.0 * pow(2, 10 * (t - 1))
+            frame = self.end / 2.0 * pow(2, 10 * (t - 1))
         else:
             t -= 1
-            frame = self.end/2.0 * (-pow(2, -10 * t) + 2)
+            frame = self.end / 2.0 * (-pow(2, -10 * t) + 2)
         self.next_frame(frame)
 
     def next_frame(self, frame):
