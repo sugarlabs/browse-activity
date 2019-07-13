@@ -271,6 +271,12 @@ class Download(object):
         self._stop_alert.connect('response', self.__stop_response_cb)
         self._stop_alert.show()
 
+    def remove_journal_object(self):
+        datastore.delete(self._object_id)
+        self._object_id = None
+        if os.path.isfile(self._dest_path):
+            os.remove(self._dest_path)
+
     def __download_failed_cb(self, download, error):
         logging.error('Error downloading URI due to %s'
                       % error)
@@ -305,6 +311,7 @@ class Download(object):
             launch_bundle(object_id=self._object_id)
         if response_id == Gtk.ResponseType.ACCEPT:
             activity.show_object_in_journal(self._object_id)
+        self.remove_journal_object()
         self._activity.remove_alert(alert)
 
     def cleanup(self):
