@@ -851,15 +851,14 @@ class Browser(WebKit2.WebView):
 
     def __decide_policy_cb(self, webview, policy_decision, decision_type):
         """Handle downloads and PDF files."""
+
         if decision_type != WebKit2.PolicyDecisionType.RESPONSE:
             return False
-        response = policy_decision.get_response()
-        mimetype = response.get_mime_type()
+
+        response = WebKit2.ResponsePolicyDecision.get_response(policy_decision)
+        mimetype = WebKit2.URIResponse.get_mime_type(response)
 
         if mimetype == 'application/pdf':
-            # FIXME: this causes two GET requests to the server; at
-            # this point the first is in progress and then abandoned,
-            # or already completed, then a second GET request is made.
             self.emit('open-pdf', response.get_uri())
             policy_decision.download()
             self._activity.unbusy()
