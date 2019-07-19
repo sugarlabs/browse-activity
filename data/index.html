@@ -41,9 +41,9 @@
             .link11:hover { color: white; background-color: #006e00; }
             .link12 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
             .link12:hover { color: white; background-color: #033cd2;}
-
-            .search{background: #FFFFFF; border-radius: 25px; border-width: 0.5px; border-color: #686868; height: 43px;width: 400px; outline: 0; padding: 0; padding-left: 5px; padding-right: 5px; margin: 0}
-            .btn{background: #5A89EB; border-radius: 25px; width: 121px;height: 45px;color:#FFFFFF;font-size: 13px;font-style: normal; border-color: #FFFFFF; padding:0; margin: 0; margin-left: 5px; outline: 0}
+            .center {text-align: center; position: static; border: 0}
+            .search{background: #FFFFFF; border-radius: 25px; border-width: 1px; border-color: #686868; height: 32px; width: 45%; outline: 0; padding: 0; padding-left: 5px; padding-right: 5px; margin: 0}
+            .btn{background: #5A89EB; border-radius: 25px; width: 15%; height: 32px; color:#FFFFFF; font-style: normal; border-color: #FFFFFF; padding:0; margin: 0; margin-left: 5px; outline: 0}
         </style>
         <title>Sugar Labs</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -54,24 +54,25 @@
             <script type="text/javascript" language="JavaScript">
                 document.write("<a class='" + link_colour() + "' href='https://www.sugarlabs.org/'>sugar labs</a> / <a class='" + link_colour() + "' href='https://wiki.sugarlabs.org/'>wiki</a> / <a class='" + link_colour() + "' href='https://bugs.sugarlabs.org/'>bugs</a> / <a class='" + link_colour() + "' href='http://schoolserver/'>school</a> / <a class='" + link_colour() + "' href='http://activities.sugarlabs.org/'>activities</a>")
             </script>
-        </div>>
-        <center>
-            <script type="text/javascript" language="JavaScript">
-                document.write("<br/><br/><br/><a href='https://www.sugarlabs.org/'><img src='")
-                document.write(logo_filename())
-                document.write("' alt='Sugar Labs' width='750' height='250' position='static' border='0'/></a><br/><br/>")
-            </script>
-            <table border="0" cellspacing="0" cellpadding="0" width="700px">
-                <tr>
-                    <td width="130px" align="center">
-                        <form action="http://google.com/search" name="f" target="_top">
-                            <input name="hl" type="hidden" value="en"/>
-                            <br><br>
-                            <input class="search" type="text" maxlength="2048" name="q" size="35" title="Google Search" value="" autofocus/><input class= "btn" name="btnG" type="submit" value="Google Search"/>
+        </div>
+        <div class="center">
+            <div style="display: inline-block">
+                <script type="text/javascript" language="JavaScript">
+                    document.write("<br><br><br><a href='https://www.sugarlabs.org/'><img src='")
+                    document.write(logo_filename())
+                    document.write("' alt='Sugar Labs' width='100%' height='250'></a><br><br>")
+                </script>
+                <table style="border: 0; width: 100%" cellspacing="0" cellpadding="0">
+                    <tr><td>
+                        <form style="width: 100%" action="http://google.com/search" name="f" target="_top">
+                            <div>
+                                <input class="search" type="search" maxlength="2048" name="q" title="Google Search" value="" autofocus>
+                                <input class= "btn" name="btnG" type="submit" value="Google Search">
+                            </div>
                         </form>
-                    </td>
-                </tr>
-            </table>
-        </center>
+                    </td></tr>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
