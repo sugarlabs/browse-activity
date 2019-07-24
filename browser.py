@@ -525,12 +525,15 @@ class TabbedView(BrowserNotebook):
         state = []
         for index in range(0, self.get_n_pages()):
             tab_page = self.get_nth_page(index)
-            type_name = TAB_BROWSER
             if isinstance(tab_page, PDFTabPage):
                 type_name = TAB_PDF
+                tab_state = tab_page.browser.get_state()
+            else:
+                type_name = TAB_BROWSER
+                tab_state = tab_page.browser.get_state().decode()
             state.append({
                 'type': type_name,
-                'state': tab_page.browser.get_state().decode()})
+                'state': tab_state})
         return state
 
     def set_session_state(self, states):
@@ -856,11 +859,8 @@ class Browser(WebKit2.WebView):
         mimetype = WebKit2.URIResponse.get_mime_type(response)
 
         if mimetype == 'application/pdf':
-            # FIXME: this causes two GET requests to the server; at
-            # this point the first is in progress and then abandoned,
-            # or already completed, then a second GET request is made.
             self.emit('open-pdf', response.get_uri())
-            policy_decision.ignore()
+            policy_decision.download()
             self._activity.unbusy()
             return True
 
