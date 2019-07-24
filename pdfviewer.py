@@ -503,7 +503,6 @@ class PDFTabPage(Gtk.HBox):
         context = WebKit2.WebContext.get_default()
         context.connect('download-started', self.__download_started_cb)
         downloadmanager.ignore_pdf(remote_uri)
-        context.download_uri(remote_uri)
 
     def __download_started_cb(self, context, download):
         self._download = download
