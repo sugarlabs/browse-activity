@@ -74,7 +74,7 @@ class LinkButton(TrayButton, GObject.GObject):
 
     def set_image(self, buf):
         self._img = Gtk.Image()
-        str_buf = io.StringIO(buf)
+        str_buf = io.BytesIO(buf)
         thumb_surface = cairo.ImageSurface.create_from_png(str_buf)
 
         xo_buddy = os.path.join(os.path.dirname(__file__), "icons/link.svg")
@@ -97,15 +97,15 @@ class LinkButton(TrayButton, GObject.GObject):
         self._img.show()
 
     def _read_link_background(self, filename):
-        icon_file = open(filename, 'r')
+        icon_file = open(filename, 'rb')
         data = icon_file.read()
         icon_file.close()
 
-        entity = '<!ENTITY fill_color "%s">' % self._fill
-        data = re.sub('<!ENTITY fill_color .*>', entity, data)
+        entity = b'<!ENTITY fill_color "%s">' % self._fill.encode()
+        data = re.sub(b'<!ENTITY fill_color .*>', entity, data)
 
-        entity = '<!ENTITY stroke_color "%s">' % self._stroke
-        data = re.sub('<!ENTITY stroke_color .*>', entity, data)
+        entity = b'<!ENTITY stroke_color "%s">' % self._stroke.encode()
+        data = re.sub(b'<!ENTITY stroke_color .*>', entity, data)
 
         link_width, link_height = style.zoom(120), style.zoom(110)
         link_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,

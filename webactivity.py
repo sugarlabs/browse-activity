@@ -509,7 +509,7 @@ class WebActivity(activity.Activity):
         if self.model.has_link(ui_uri):
             return
 
-        buf = b64encode(self._get_screenshot())
+        buf = b64encode(self._get_screenshot()).decode('ascii')
         timestamp = time.time()
         args = (ui_uri, browser.props.title, buf,
                 profile.get_nick_name(),
@@ -613,7 +613,7 @@ class WebActivity(activity.Activity):
         Gdk.cairo_set_source_window(cairo_context, window, 0, 0)
         cairo_context.paint()
 
-        thumb_str = io.StringIO()
+        thumb_str = io.BytesIO()
         thumb_surface.write_to_png(thumb_str)
         return thumb_str.getvalue()
 

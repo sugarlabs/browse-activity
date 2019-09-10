@@ -35,17 +35,23 @@ class Model(GObject.GObject):
 
     def has_link(self, uri):
         '''returns true if the uri is already bookmarked, O(n) oddly'''
+        if uri is None:
+            return False
         for link in self.data['shared_links']:
-            if link['hash'] == sha1(uri).hexdigest():
+            if link['hash'] == sha1(uri.encode()).hexdigest():
                 return True
         return False
 
     def add_link(self, url, title, thumb, owner, color, timestamp,
                  by_me=False):
-        info = {'hash': sha1.new(str(url)).hexdigest(), 'url': str(url),
-                'title': str(title), 'thumb': thumb,
-                'owner': str(owner), 'color': str(color),
-                'timestamp': float(timestamp)}
+        info = {}
+        info['hash'] = sha1(url.encode()).hexdigest()
+        info['url'] = str(url)
+        info['title'] = str(title)
+        info['thumb'] = thumb
+        info['owner'] = str(owner)
+        info['color'] = str(color)
+        info['timestamp'] = float(timestamp)
         self.add_link_from_info(info, by_me)
 
     def add_link_from_info(self, info_dict, by_me=False):
