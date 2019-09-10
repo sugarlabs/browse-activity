@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-18 12:42+1100\n"
+"POT-Creation-Date: 2019-09-10 17:33+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,87 +56,87 @@ msgid ""
 "collections"
 msgstr ""
 
-#: browser.py:310
+#: browser.py:324
 #, python-format
 msgid "This tab has crashed Browse: %s"
 msgstr ""
 
-#: browser.py:311
+#: browser.py:325
 msgid "If you reopen the tab, it may just crash again"
 msgstr ""
 
-#: browser.py:312
+#: browser.py:326
 msgid "Reopen"
 msgstr ""
 
-#: browser.py:313
+#: browser.py:327
 msgid "Disregard"
 msgstr ""
 
-#: browser.py:590 browser.py:635 browser.py:636 webactivity.py:377
+#: browser.py:605 browser.py:650 browser.py:651 webactivity.py:377
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:640
+#: browser.py:655
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:891 browser.py:892
+#: browser.py:903 browser.py:904
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:893
+#: browser.py:905
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:896 pdfviewer.py:391
+#: browser.py:908 pdfviewer.py:421
 msgid "Try again"
 msgstr ""
 
-#: browser.py:908
+#: browser.py:920
 msgid "receive your location"
 msgstr ""
 
-#: browser.py:911
+#: browser.py:923
 msgid "display notifications in the frame"
 msgstr ""
 
-#: browser.py:923
+#: browser.py:935
 #, python-brace-format
 msgid "Allow %{site} to %{description}?"
 msgstr ""
 
-#: browser.py:926
+#: browser.py:938
 msgid "You can change your choice later by reloading the page"
 msgstr ""
 
-#: collabwrapper.py:194
+#: collabwrapper.py:196
 msgid "Joining activity..."
 msgstr ""
 
-#: collabwrapper.py:195 collabwrapper.py:207
+#: collabwrapper.py:197 collabwrapper.py:209
 msgid "Please wait for the connection..."
 msgstr ""
 
-#: collabwrapper.py:206
+#: collabwrapper.py:208
 msgid "Resuming shared activity..."
 msgstr ""
 
-#: downloadmanager.py:141
+#: downloadmanager.py:142
 msgid "Not enough space to download"
 msgstr ""
 
-#: downloadmanager.py:150
+#: downloadmanager.py:151
 #, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:158 downloadmanager.py:264
+#: downloadmanager.py:159 downloadmanager.py:267
 msgid "Ok"
 msgstr ""
 
@@ -144,25 +144,25 @@ msgstr ""
 msgid "Downloading"
 msgstr ""
 
-#: downloadmanager.py:219 pdfviewer.py:582
+#: downloadmanager.py:220 pdfviewer.py:612
 #, python-format
 msgid "From: %s"
 msgstr ""
 
-#: downloadmanager.py:246
+#: downloadmanager.py:247
 msgid "Downloaded"
 msgstr ""
 
-#: downloadmanager.py:253
+#: downloadmanager.py:256
 #, python-format
 msgid "Open with %s"
 msgstr ""
 
-#: downloadmanager.py:257
+#: downloadmanager.py:260
 msgid "Show in Journal"
 msgstr ""
 
-#: downloadmanager.py:356
+#: downloadmanager.py:360
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -217,43 +217,51 @@ msgstr ""
 msgid "Copy text"
 msgstr ""
 
-#: pdfviewer.py:97 viewtoolbar.py:39
+#: pdfviewer.py:98 viewtoolbar.py:39
 msgid "Zoom out"
 msgstr ""
 
-#: pdfviewer.py:103 viewtoolbar.py:45
+#: pdfviewer.py:104 viewtoolbar.py:45
 msgid "Zoom in"
 msgstr ""
 
-#: pdfviewer.py:109 viewtoolbar.py:51
+#: pdfviewer.py:110 viewtoolbar.py:51
 msgid "Actual size"
 msgstr ""
 
-#: pdfviewer.py:120
+#: pdfviewer.py:121
 msgid "Previous page"
 msgstr ""
 
-#: pdfviewer.py:127
+#: pdfviewer.py:128
 msgid "Next page"
 msgstr ""
 
-#: pdfviewer.py:139
+#: pdfviewer.py:140
 msgid "Save PDF to Journal"
 msgstr ""
 
-#: pdfviewer.py:338
+#: pdfviewer.py:151 pdfviewer.py:196
+msgid "Inverted Colors"
+msgstr ""
+
+#: pdfviewer.py:193
+msgid "Normal Colors"
+msgstr ""
+
+#: pdfviewer.py:368
 msgid "Cancel"
 msgstr ""
 
-#: pdfviewer.py:488
+#: pdfviewer.py:519
 msgid "Downloading document..."
 msgstr ""
 
-#: pdfviewer.py:532
+#: pdfviewer.py:562
 msgid "This document could not be loaded"
 msgstr ""
 
-#: pdfviewer.py:540
+#: pdfviewer.py:570
 msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
@@ -317,46 +325,46 @@ msgid ""
 "sorry!"
 msgstr ""
 
-#: webtoolbar.py:353
+#: webtoolbar.py:352
 msgid "Show Web Inspector"
 msgstr ""
 
-#: webtoolbar.py:362
+#: webtoolbar.py:361
 msgid "Home page"
 msgstr ""
 
-#: webtoolbar.py:368
+#: webtoolbar.py:367
 msgid "Select as initial page"
 msgstr ""
 
-#: webtoolbar.py:373
+#: webtoolbar.py:372
 msgid "Reset initial page"
 msgstr ""
 
-#: webtoolbar.py:379
+#: webtoolbar.py:378
 msgid "Library"
 msgstr ""
 
-#: webtoolbar.py:418
+#: webtoolbar.py:417
 msgid "Back"
 msgstr ""
 
-#: webtoolbar.py:433
+#: webtoolbar.py:432
 msgid "Forward"
 msgstr ""
 
-#: webtoolbar.py:448 webtoolbar.py:503
+#: webtoolbar.py:447 webtoolbar.py:502
 msgid "No Downloads Running"
 msgstr ""
 
-#: webtoolbar.py:455
+#: webtoolbar.py:454
 msgid "Bookmark"
 msgstr ""
 
-#: webtoolbar.py:499
+#: webtoolbar.py:498
 msgid "{}% Downloaded"
 msgstr ""
 
-#: webtoolbar.py:753
+#: webtoolbar.py:752
 msgid "No Title"
 msgstr ""
