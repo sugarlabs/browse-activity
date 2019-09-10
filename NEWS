@@ -1,3 +1,18 @@
+204
+
+* Fix download started visible after download completed (Aarjav Jain),
+* Note dependency on glib-compile-schemas (James Cameron),
+* Update collabwrapper (Aniket Mathur),
+* Port to Python 3 (Rahul Bothra),
+* Change "file" to "open" (Aniket Mathur),
+* Download a PDF only once (Swarup N),
+* Enhance home page (Swarup N, Samson Goddy),
+* Scale home page (Swarup N),
+* Remove empty locale files (James Cameron),
+* Fix favourites regressions (James Cameron),
+* Feature - dark mode for PDFs (James Cameron),
+* Update POT file with new strings (James Cameron),
+
 203
 
 * Fix unintended search when a URL begins with spaces (Avinash Bharti),
