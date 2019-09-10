@@ -26,6 +26,7 @@ from gi.repository import WebKit
 
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.progressicon import ProgressIcon
 from sugar3.graphics import style
@@ -138,6 +139,18 @@ class EvinceViewer(Gtk.VBox):
         toolbar_box.toolbar.insert(self._save_to_journal_button, -1)
         self._save_to_journal_button.show()
 
+        separator = Gtk.SeparatorToolItem()
+        toolbar_box.toolbar.insert(separator, -1)
+        separator.show()
+
+        self._inverted_colors = ToggleToolButton(icon_name='dark-theme')
+        self._inverted_colors.set_tooltip(_('Inverted Colors'))
+        self._inverted_colors.set_accelerator('<Ctrl>i')
+        self._inverted_colors.connect(
+            'toggled', self.__inverted_colors_toggled_cb)
+        toolbar_box.toolbar.insert(self._inverted_colors, -1)
+        self._inverted_colors.show()
+
         return toolbar_box
 
     def disable_journal_button(self):
@@ -167,6 +180,23 @@ class EvinceViewer(Gtk.VBox):
     def __save_to_journal_button_cb(self, widget):
         self.emit('save-to-journal')
         self._save_to_journal_button.props.sensitive = False
+
+    def __inverted_colors_toggled_cb(self, button):
+        if hasattr(self._model, 'set_inverted_colors'):
+            self._model.set_inverted_colors(button.props.active)
+        if button.props.active:
+            button.set_icon_name('light-theme')
+            button.set_tooltip(_('Normal Colors'))
+        else:
+            button.set_icon_name('dark-theme')
+            button.set_tooltip(_('Inverted Colors'))
+
+    def show_inverted_colors_button(self):
+        self._inverted_colors.show()
+
+    def toggle_inverted_colors(self):
+        self._inverted_colors.set_active(
+            not self._inverted_colors.get_active())
 
     def _update_nav_buttons(self):
         current_page = self._model.props.page
