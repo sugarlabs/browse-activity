@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2018-10-22 18:26+0000\n"
+"PO-Revision-Date: 2019-05-18 22:41+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1540232785.000000\n"
+"X-POOTLE-MTIME: 1558219310.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
@@ -116,7 +116,7 @@ msgstr "adgang til din placering"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr "for at vise notifikationer i billedet"
+msgstr "for at vise underretninger i billedet"
 
 #: browser.py:881
 #, python-format
