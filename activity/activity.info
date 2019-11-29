@@ -1,6 +1,6 @@
 [Activity]
 name = Browse
-activity_version = 157.4
+activity_version = 157.5
 bundle_id = org.laptop.WebActivity
 icon = activity-web
 exec = sugar-activity webactivity.WebActivity -s
@@ -8,7 +8,7 @@ mime_types = image/png;image/gif;image/jpeg;text/html;text/uri-list;application/
 summary = Surf the world!
 max_participants = 100
 
-license = GPL-2.0+
+license = GPLv2+
 metadata_license = CC0-1.0
 description:
     <p>Surf the world! Here you can do research, watch educational videos, take online courses, find books, connect with friends and more.  Browse is powered by the WebKit rendering engine with the Faster Than Light javascript interpreter - allowing you to view the full beauty of the web.</p>
