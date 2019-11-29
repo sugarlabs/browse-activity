@@ -2,285 +2,343 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2008-01-09 09:03+0000\n"
-"Last-Translator: Sohaib Obaidi <ebtihaj_obaidi@yahoo.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-03-18 22:56+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1489877798.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "مرور"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr ""
+
+#: activity/activity.info:4
+#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
+msgstr ""
+"گشت و گذار در جهان! در اینجا شما می توانید تحقیق انجام دهید، فیلم های آموزشی "
+"را تماشا کنید، دوره های آنلاین را بگذرانید، کتاب پیدا کنید، با دوستان ارتباط "
+"برقرار کنید و بیشتر."
+
+
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
 msgstr ""
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr ""
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+
+#: browser.py:277
+msgid "Reopen"
+msgstr ""
+
+#: browser.py:278
+msgid "Disregard"
+msgstr ""
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "بدون‌عنوان"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "در حال بارگذاری ..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "این صفحه وب بارگذاری نمی شود"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" را نمی تواندن بارگذاری نمود. لطفا خطای تایپی خود را بررسی کنید، و "
+"مطمئن شوید که شما به اینترنت متصل هستید."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
+msgstr "تلاش مجدد"
+
+#: browser.py:866
+msgid "access to your location"
 msgstr ""
 
-#: downloadmanager.py:124
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr ""
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr ""
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr ""
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr ""
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "صفحه اولیه پیکربندی شده"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "صفحه اولیه به طور پیش فرض پیکربندی شده"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "در حال دریافت"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "توقف در این لحظه دریافتی شما را لغو خواهد کرد"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "ادامه دانلود"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "توقف"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr ""
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "صفحه اصلی"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "صفحه اولیه را انتخاب کنید"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "تنظیم مجدد صفحه اولیه"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "کتابخانه"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "عقب"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "جلو"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "نشانک"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr ""
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "فضای کافی برای دانلود وجود ندارد"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
+#, python-brace-format
+#, fuzzy
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"دانلود \"%{filename}\" requires %{total_size_in_mb} مگابایت فضای آزاد, تنها "
+"%{free_space_in_mb} مگابایت در دسترس است"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "صحیح"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "دریافت آغاز شد"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
+#, python-format
+msgid "From: %s"
+msgstr "ار: %s"
 
-#: downloadmanager.py:168
+#: downloadmanager.py:234
 msgid "Download completed"
 msgstr "دریافت کامل شد"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:238
 msgid "Show in Journal"
-msgstr ""
+msgstr "نمایش در مجله"
 
-#: downloadmanager.py:184 pdfviewer.py:589
+#: downloadmanager.py:333
 #, python-format
-msgid "From: %s"
-msgstr ""
-
-#: downloadmanager.py:292
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"در حال دانلود %(filename)s از \n"
+"%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
-msgstr ""
+msgstr "قبلی"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "برداشتن"
 
-#: palettes.py:184
-msgid "Follow link"
+#: linkbutton.py:152
+msgid "Take notes on this page"
 msgstr ""
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr ""
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr ""
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr ""
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr ""
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr ""
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr ""
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "دورنمایی"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "قریب نمایی"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "لغو"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "اندازه‌ی واقعی"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "همه صفحه"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "طبق را نشان بده"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "طبق را نشان نده"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "صفحهٔ قبلی"
+
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "صفحهٔ بعدی"
+
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "ذخیره PDF به مجله"
+
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "لغو"
+
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "در حال دریافت نوشتار..."
+
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "بارگزاری نوشتار ممکن نیست"
+
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "لطفا مطمئن شوید که شما به اینترنت متصل هستید."
+
+#: palettes.py:164
+msgid "Follow link"
+msgstr "دنبال کردن پیوند"
+
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "دنبال کردن پیوند در تب جدید"
+
+#: palettes.py:178
+msgid "Keep link"
+msgstr "حفظ پیوند"
+
+#: palettes.py:184
+msgid "Copy link"
+msgstr "نسخه‌برداری از پیوند"
+
+#: palettes.py:191
+msgid "Copy link text"
 msgstr ""
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr ""
+#: palettes.py:206
+msgid "Copy image"
+msgstr "رونوشت تصویر"
 
-#: webactivity.py:655
-#, fuzzy
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "در حال دریافت"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "نگه داشتن تصویر"
 
-#: webactivity.py:658
-#, fuzzy
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "توقف در این لحظه دریافتی شما را لغو خواهد کرد"
-
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] ""
-
-#: webactivity.py:668
-msgid "Stop"
-msgstr "توقف"
-
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr ""
-
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr ""
-
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr ""
-
-#: webtoolbar.py:305
-msgid "Library"
-msgstr ""
-
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "عقب"
-
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "جلو"
-
-#: webtoolbar.py:366
-#, fuzzy
-msgid "Bookmark"
-msgstr "نشان"
-
-#, python-format
-#, fuzzy
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "در حال دریافت %s از\n"
-#~ " %s"
-
-#~ msgid "View"
-#~ msgstr "نمایش"
-
-#~ msgid "Reload"
-#~ msgstr "بارگذاری دوباره"
-
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "%s پرونده از %s"
-
-#~ msgid "blank"
-#~ msgstr "نانوشته"
-
-#~ msgid "Source"
-#~ msgstr "منبع"
-
-#~ msgid "Open"
-#~ msgstr "باز"
-
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr "پرونده %s از/n %s دریافت شد"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "رونوشت متن"

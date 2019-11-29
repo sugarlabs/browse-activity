@@ -7,35 +7,41 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2011-09-05 18:47+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2017-04-15 23:12+0000\n"
+"Last-Translator: ariessa <ariessa.norramli@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sw\n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1492297952.000000\n"
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Kuvinjari"
+msgstr "Layar"
 
 #: activity/activity.info:3
 msgid "Surf the world!"
-msgstr ""
+msgstr "Layari dunia!"
 
 #: activity/activity.info:4
+#, fuzzy
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
 "online courses, find books, connect with friends and more.  Browse is "
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Layari dunia! Di sini anda boleh melakukan kajian, lihat video pendidikan, "
+"ambil kursus atas talian, cari buku, berhubung dengan rakan-rakan dan lebih. "
+"Layar dikuasai oleh enjin penterjemah WebKit2 dengan jurubahasa javascript "
+"Faster Than Light - membolehkan anda untuk melihat kecantikan penuh sesawang."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "Untuk membantu dalam mengkaji, Browse menawarkan pelbagai ciri:"
 
 #: activity/activity.info:4
 msgid ""
@@ -128,23 +134,20 @@ msgstr ""
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
 msgstr[0] ""
-msgstr[1] ""
 
 #: webactivity.py:605
 msgid "Stop"
-msgstr "Kuacha"
+msgstr ""
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
@@ -152,7 +155,7 @@ msgstr ""
 
 #: webtoolbar.py:369
 msgid "Home page"
-msgstr "Ukurasa wa nyumbani"
+msgstr ""
 
 #: webtoolbar.py:375
 msgid "Select as initial page"
@@ -168,11 +171,11 @@ msgstr ""
 
 #: webtoolbar.py:426
 msgid "Back"
-msgstr "Nyuma"
+msgstr ""
 
 #: webtoolbar.py:441
 msgid "Forward"
-msgstr "Mbele"
+msgstr ""
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
@@ -180,7 +183,7 @@ msgstr ""
 
 #: webtoolbar.py:463
 msgid "Bookmark"
-msgstr "Alamisho"
+msgstr ""
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
@@ -203,21 +206,20 @@ msgstr ""
 
 #: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "Sawa"
+msgstr ""
 
 #: downloadmanager.py:167
 msgid "Download started"
-msgstr "Kushusha kuanza"
+msgstr ""
 
 #: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-#, python-format
 msgid "From: %s"
-msgstr "Kutoka: %s"
+msgstr ""
 
 #: downloadmanager.py:234
 msgid "Download completed"
-msgstr "Kushusha kukamilika"
+msgstr ""
 
 #: downloadmanager.py:238
 msgid "Show in Journal"
@@ -232,15 +234,15 @@ msgstr ""
 
 #: edittoolbar.py:67
 msgid "Previous"
-msgstr "Awali"
+msgstr ""
 
 #: edittoolbar.py:74
 msgid "Next"
-msgstr "Ijayo"
+msgstr ""
 
 #: linkbutton.py:133
 msgid "Remove"
-msgstr "Kuondoa"
+msgstr ""
 
 #: linkbutton.py:152
 msgid "Take notes on this page"
@@ -260,15 +262,15 @@ msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr "screen kamili"
+msgstr ""
 
 #: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr "Kuonyesha tray"
+msgstr ""
 
 #: viewtoolbar.py:121
 msgid "Hide Tray"
-msgstr "Ku ficha tray"
+msgstr ""
 
 #: pdfviewer.py:117
 msgid "Previous page"

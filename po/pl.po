@@ -2,21 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-09-25 21:59+0200\n"
-"Last-Translator: Jakub <jamarat@o2.pl>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2018-12-14 18:55+0000\n"
+"Last-Translator: KrzysztofJ <krzysztofjesz@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -24,53 +16,206 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1544813706.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Internet"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Serfuj po świecie!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Surfuj po świecie! Tutaj możesz szukać, oglądać edukacyjne filmy, "
+"Surfuj po świecie! Tutaj możesz odkrywać, oglądać edukacyjne filmy, "
 "uczestniczyć w kursach online, znaleźć książki, kontaktować się ze znajomymi "
-"i o wiele więcej."
+"i o wiele więcej.Przeglądarka działa w oparciu o silnik renderujący WebKit2 "
+"z interpreterem javascript \"Szybszym Od Światła\" - dzieki temu możesz w "
+"pełni poznać piękno sieci. "
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "By pomóc w odkrywaniu, Przegladarka oferuje wiele funkcji:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Stwórz Zakładki (zapisz) do stron które znajdziesz - by nigdy ich nie zgubić "
+"lub zapomnieć możesz je dodać do swojej bibliografii. "
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Stwórz zakładki do stron z współtwórcami w czasie rzeczywistym - idealne dla "
+"grupowych okryć lub dla nauczycieli pokazującym strony swym uczniom. "
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Komentuj swoje zakładki - doskonały sposób na utrzymanie porządku w "
+"kolekcji. "
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Ta karta spowodowała awarię Przeglądarki: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Jeśli otworzysz ponownie tą kartę, awaria może się powtórzyć"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Otwórz ponownie"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Zignoruj"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Bez nazwy"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Ładowanie..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Ta strona internetowa nie mogła być załadowana"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
-"Nie można załadować \"%s\". Sprawdź czy nie ma błędów w pisowni i upewnij się, "
-"że masz połączenie z internetem."
+"Nie można załadować \"%s\". Sprawdź czy nie ma błędów w pisowni i upewnij "
+"się, że masz połączenie z internetem."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "dostęp do Twojej lokalizacji"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "by pokazywać notyfikacje w ramce"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Zezwalasz na %s do %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Możesz zmienić ustawienie poźniej poprzez przeładowanie strony"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Zakładki"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Ustawiono stronę startową"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Ustawiono domyślną stronę startową"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Pobieranie w trakcie"
+msgstr[1] "Pobieranie w trakcie"
+msgstr[2] "Pobieranie w trakcie"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Zatrzymanie spowoduje przerwanie pobierania"
+msgstr[1] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+msgstr[2] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Wznów pobieranie"
+msgstr[1] "Wznów pobieranie wszystkich plików"
+msgstr[2] "Wznów pobieranie wszystkich plików"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Zatrzymaj"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Pokaż Narzędzia Diagnostyczne"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Strona domowa"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Ustaw jako stronę startową"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Anuluj ustawienie strony startowej"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Biblioteka"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Wstecz"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Dalej"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Brak aktywnych pobierań"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Zakładka"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% Pobrane"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Brak Tytułu"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "Brak miejsca aby załadować plik"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
@@ -78,33 +223,30 @@ msgstr ""
 "Załadowanie \"%{filename}\" wymaga %{total_size_in_mb} MB wolnego miejsca na "
 "dysku, podczas gdy dostępne jest tylko %{free_space_in_mb} MB"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Pobieranie rozpoczęte"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Pobieranie zakończone"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Pokaż w Dzienniku"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "Z: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Pobieranie zakończone"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Pokaż w Dzienniku"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -114,205 +256,102 @@ msgstr ""
 "Pobieranie %(filename)s z \n"
 "%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Poprzedni"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Następny"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Usuń"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Idź za odnośnikiem"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Zrób notatki na tej stronie"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Idź za odnośnikiem w nowej karcie"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Zatrzymaj odnośnik"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Kopiuj odnośnik"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Kopiuj obrazek"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Zatrzymaj obrazek"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Kopiuj tekst"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Pomniejsz"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Powiększ"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Obecny rozmiar"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Poprzednia strona"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Następna strona"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Zapisz PDF do dziennika"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Anuluj"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Ładuję plik..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Nie można załadować tego dokumentu (pliku)"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Proszę upewnij się, że masz połączenie z internetem."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Pełny ekran"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Pokaż pasek"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Ukryj pasek"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Ustawiono stronę startową"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Poprzednia strona"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Ustawiono domyślną stronę startową"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Następna strona"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Pobieranie w trakcie"
-msgstr[1] "Pobieranie w trakcie"
-msgstr[2] "Pobieranie w trakcie"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Zapisz PDF do dziennika"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Zatrzymanie spowoduje przerwanie pobierania"
-msgstr[1] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
-msgstr[2] "Zatrzymanie spowoduje przerwanie pobierania wszystkich plików"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Anuluj"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Wznów pobieranie"
-msgstr[1] "Wznów pobieranie wszystkich plików"
-msgstr[2] "Wznów pobieranie wszystkich plików"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Ładuję plik..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Zatrzymaj"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Nie można załadować tego dokumentu (pliku)"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Strona domowa"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Proszę upewnij się, że masz połączenie z internetem."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Ustaw jako stronę startową"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Idź za odnośnikiem"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Anuluj ustawienie strony startowej"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Idź za odnośnikiem w nowej karcie"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Biblioteka"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Zatrzymaj odnośnik"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Wstecz"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Kopiuj odnośnik"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Dalej"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Skopiuj tekst łącza"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Zakładka"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Kopiuj obrazek"
 
-#, python-format
-#~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-#~ msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Zatrzymaj obrazek"
 
-#, python-format
-#, python-format,
-#~ msgid "Loading %s..."
-#~ msgstr "Ładowanie %s..."
-
-#, python-format
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "Pobieranie %s z \n"
-#~ "%s."
-
-#~ msgid "Edit"
-#~ msgstr "Edytuj"
-
-#~ msgid "View"
-#~ msgstr "Widok"
-
-#~ msgid "Add a tab"
-#~ msgstr "Dodaj zakładkę"
-
-#~ msgid "Reload"
-#~ msgstr "Odśwież"
-
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "Plik %s z %s."
-
-#~ msgid "blank"
-#~ msgstr "Pusty"
-
-#~ msgid "Source"
-#~ msgstr "Źródło"
-
-#~ msgid "Open"
-#~ msgstr "Otwórz"
-
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr ""
-#~ "Plik %s pobrano z \n"
-#~ "%s."
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Kopiuj tekst"

@@ -1,88 +1,105 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# This file is distributed under the same license as the PACKAGE package.
 # Fabian Affolter <fab@fedoraproject.org>, 2007.
 # Markus Schlager <m.slg@gmx.de>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: web\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-08-07 22:41+0200\n"
-"Last-Translator: Markus <m.slg@gmx.de>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-03 23:03+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Deutsche OLPC-Lokalisierung\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
-"X-Poedit-Language: German\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1496531002.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Browser"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Surf durch die Welt!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Surfe durch die Welt! Hier kannst du forschen, lehrreiche Videos betrachten, "
-"Online-Kurse besucht, Bücher finden, Kontakt mit Freunden aufnehmen und "
-"vieles mehr."
+"Surf durch die Welt! Hier kannst du recherchieren, Bildungsvideos ansehen, "
+"Online-Kurs besuchen, Bücher finden, Freunde kontaktieren und noch mehr. "
+"Browser nutzt WebKit2 zur Darstellung mit dem \"Faster Than Light\""
+"-Javascript-Interpreter -  damit kannst du das Web in seiner ganzen "
+"Schönheit betrachten."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "Browser biete viele Funktionen, die beim Recherchieren helfen:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Setze Lesezeichen für gute Seiten, die du findest - verliere niemals gute "
+"Quellen oder vergiss, sie in deine Bibliographie einzufügen"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Teile Lesezeichen in Echtzeit mit Leuten, mit denen du zusammenarbeitest - "
+"großartig, um in einer Gruppe zu recherchieren oder für Lehrer, um Seiten "
+"ihrer Klasse zu zeigen."
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Kommentiere deine Seiten mit gesetzten Lesezeichen - ein großartiges "
+"Werkzeug, um kuratierte Sammlungen anzulegen"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Dieser Reiter hat Browser zum Absturz gebracht: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Wenn du den Reiter erneut öffnest, stürzt er möglicherweise wieder ab"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Erneut öffen"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Ignorieren"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Lade..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Diese Webseite konnte nicht geladen werden."
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -92,49 +109,142 @@ msgstr ""
 "\"%s\" konnte nicht geladen werden. Überprüfe bitte etwaige Tippfehler und "
 "stelle sicher, dass du mit dem Internet verbunden bist."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Nochmals versuchen"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "Zugriff auf deine Position"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "um Anmerkungen in dem Rahmen anzuzeigen"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "%s zu %s erlauben?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Du kannst deine Wahl später ändern, indem du die Seite neu lädst"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Lesezeichen"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Die Startseite wurde angepasst."
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Die Standard-Startseite wurde angepasst."
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Datei wird heruntergeladen"
+msgstr[1] "Dateien werden heruntergeladen"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Jetzt anhalten wird das Herunterladen einer Datei abbrechen"
+msgstr[1] "Jetzt anhalten wird das Herunterladen mehrerer Dateien abbrechen"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Herunterladen der Datei fortsetzen"
+msgstr[1] "Herunterladen der Dateien fortsetzen"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Anhalten"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Web-Inspektor anzeigen"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Startseite"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Als Startseite wählen"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Startseite zurücksetzen"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Bibliothek"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Zurück"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Vor"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Keine Downloads aktiv"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Lesezeichen"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% heruntergeladen"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Kein Titel"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "Nicht genug Speicherplatz zum Herunterladen"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
-"Das Herunterladen von \"%{filename}\"  benötigt %{total_size_in_mb} MB freien "
+"Das Herunterladen von \"%{filename}\" benötigt %{total_size_in_mb} MB freien "
 "Speicherplatz, es sind aber nur %{free_space_in_mb} MB verfügbar."
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Herunterladen gestartet"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Herunterladen abgeschlossen"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Im Tagebuch anzeigen"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "Von: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Herunterladen abgeschlossen"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Im Tagebuch anzeigen"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
@@ -143,228 +253,102 @@ msgstr ""
 "Lade %(filename)s von \n"
 "%(source)s herunter."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Nächstes"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Entfernen"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Link öffnen"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Notizen auf dieser Seite machen"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Link in neuem Reiter öffnen"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Link speichern"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Link kopieren"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Bild kopieren"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Bild speichern"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Text kopieren"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Verkleinern"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Vergrößern"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Tatsächliche Größe"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Vorige Seite"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Nächste Seite"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Als PDF ins Tagebuch speichern"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Dokument wird heruntergeladen..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Dieses Dokument konnte nicht geladen werden."
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Stelle bitte sicher, dass du mit dem Internet verbunden bist."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Vollbild"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Ablage anzeigen"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Ablage verbergen"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Die Startseite wurde angepasst."
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Vorige Seite"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Die Standard-Startseite wurde angepasst."
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Nächste Seite"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Datei wird heruntergeladen"
-msgstr[1] "Dateien werden heruntergeladen"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Als PDF ins Tagebuch speichern"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Jetzt anhalten wird das Herunterladen einer Datei abbrechen"
-msgstr[1] "Jetzt anhalten wird das Herunterladen mehrerer Dateien abbrechen"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Abbrechen"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Herunterladen der Datei fortsetzen"
-msgstr[1] "Herunterladen der Dateien fortsetzen"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Dokument wird heruntergeladen..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Anhalten"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Dieses Dokument konnte nicht geladen werden."
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Startseite"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Stelle bitte sicher, dass du mit dem Internet verbunden bist."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Als Startseite wählen"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Link öffnen"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Startseite zurücksetzen"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Link in neuem Reiter öffnen"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Bibliothek"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Link speichern"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Zurück"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Link kopieren"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Vor"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Linktext kopieren"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Lesezeichen"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Bild kopieren"
 
-#, python-format
-#~ msgid ""
-#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
-#~ msgstr ""
-#~ "Das Herunterladen von \"%s\" benötigt %.2f MB freien Speicherplatz, nur %.2f "
-#~ "MB sind verfügbar."
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Bild speichern"
 
-#, python-format
-#~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-#~ msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-
-#, python-format
-#~ msgid "Loading %s..."
-#~ msgstr "Lade %s..."
-
-#, python-format
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "Lade %s von \n"
-#~ "%s herunter."
-
-#~ msgid "Edit"
-#~ msgstr "Bearbeiten"
-
-#~ msgid "View"
-#~ msgstr "Ansicht"
-
-#~ msgid "Add a tab"
-#~ msgstr "Reiter hinzufügen"
-
-#~ msgid "Reload"
-#~ msgstr "Neu laden"
-
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "Datei %s von %s."
-
-#~ msgid "Copy"
-#~ msgstr "Kopieren"
-
-#~ msgid "Download link"
-#~ msgstr "Verweis zum Herunterladen"
-
-#~ msgid "Download image"
-#~ msgstr "Bild herunterladen"
-
-#~ msgid "blank"
-#~ msgstr "leer"
-
-#~ msgid "Source"
-#~ msgstr "Quelle"
-
-#~ msgid "Open"
-#~ msgstr "Öffnen"
-
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr ""
-#~ "Datei %s heruntergeladen von\n"
-#~ "%s."
-
-#~ msgid ""
-#~ "Downloading %s from\n"
-#~ "%s. Progress %i%%."
-#~ msgstr ""
-#~ "Herunterladen %s von\n"
-#~ "%s. Fortschritt %i%%."
-
-#, python-format
-#~ msgid "Web Activity"
-#~ msgstr "Web-Aktivität"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Text kopieren"

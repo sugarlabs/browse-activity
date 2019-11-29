@@ -2,19 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2011-09-11 11:31+0200\n"
 "Last-Translator: <ganeshgajre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,262 +17,315 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "वेब भटकंती"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
-msgid ""
-"Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+#: activity/activity.info:3
+msgid "Surf the world!"
 msgstr ""
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid ""
+"Surf the world! Here you can do research, watch educational videos, take "
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
+msgstr ""
+
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr ""
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr ""
+
+#: browser.py:277
+msgid "Reopen"
+msgstr ""
+
+#: browser.py:278
+msgid "Disregard"
+msgstr ""
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr ""
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr ""
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr ""
 
-#: browser.py:759
+#: browser.py:851
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr ""
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr ""
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr ""
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr ""
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr ""
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr ""
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr ""
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr ""
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "डाऊनलोड सुरू आहे"
+msgstr[1] "डाऊनलोडस सुरू आहे"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "थांबवल्यास डाऊनलोड रद् होईल"
+msgstr[1] "थांबवल्यास डाऊनलोडस रद् होईल"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "डाऊनलोड सुरु ठेवा"
+msgstr[1] "डाऊनलोडस सुरु ठेवा"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "थांबा"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr ""
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "मुख प्रुष्ठ"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr ""
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr ""
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr ""
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "मागे"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "पुढे पाठविणे"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr ""
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "वाचनखुण"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr ""
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr ""
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr ""
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "ठीक"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "डाउनलोड सुरू झाले"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "डाउनलोड पूर्ण झाले"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "नियतकालीकामधे दाखवा"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "च्यापासुन: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "डाउनलोड पूर्ण झाले"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "नियतकालीकामधे दाखवा"
+
+#: downloadmanager.py:333
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "मागील"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "पुढील"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "काढून टाकणे"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "लिंक वर जा"
-
-#: palettes.py:189
-msgid "Follow link in new tab"
+#: linkbutton.py:152
+msgid "Take notes on this page"
 msgstr ""
 
-#: palettes.py:198
-msgid "Keep link"
-msgstr "लिंक संभाळा"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "लिंकची नक्कल बनवा"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "चित्राची नक्कल बनवा"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "चित्र सांभाळा"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr ""
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "झूम आउट"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "झूम ईन"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "रद्द करणे"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
 msgstr ""
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "पूर्ण पडदा"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "तबक दाखवा"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "तबक लपवा"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
+#: pdfviewer.py:117
+msgid "Previous page"
 msgstr ""
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
+#: pdfviewer.py:124
+msgid "Next page"
 msgstr ""
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "डाऊनलोड सुरू आहे"
-msgstr[1] "डाऊनलोडस सुरू आहे"
-
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "थांबवल्यास डाऊनलोड रद् होईल"
-msgstr[1] "थांबवल्यास डाऊनलोडस रद् होईल"
-
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "डाऊनलोड सुरु ठेवा"
-msgstr[1] "डाऊनलोडस सुरु ठेवा"
-
-#: webactivity.py:668
-msgid "Stop"
-msgstr "थांबा"
-
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "मुख प्रुष्ठ"
-
-#: webtoolbar.py:294
-msgid "Select as initial page"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
 msgstr ""
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "रद्द करणे"
+
+#: pdfviewer.py:485
+msgid "Downloading document..."
 msgstr ""
 
-#: webtoolbar.py:305
-msgid "Library"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
 msgstr ""
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "मागे"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr ""
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "पुढे पाठविणे"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "लिंक वर जा"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "वाचनखुण"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr ""
 
-#, python-format
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "डाउनलोड %s पासून \n"
-#~ " %s."
+#: palettes.py:178
+msgid "Keep link"
+msgstr "लिंक संभाळा"
 
-#~ msgid "Edit"
-#~ msgstr "संपादन करा"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "लिंकची नक्कल बनवा"
 
-#~ msgid "View"
-#~ msgstr "पहा"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr ""
 
-#~ msgid "Add a tab"
-#~ msgstr "टॅब जोडा"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "चित्राची नक्कल बनवा"
 
-#~ msgid "Reload"
-#~ msgstr "पुन्हा चालू करा"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "चित्र सांभाळा"
 
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "फाईल %s पासून %s"
-
-#~ msgid "Copy"
-#~ msgstr "नक्कल "
-
-#~ msgid "blank"
-#~ msgstr "रिकामा"
-
-#~ msgid "Source"
-#~ msgstr "स्तोत्र"
+#: palettes.py:227
+msgid "Copy text"
+msgstr ""

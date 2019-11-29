@@ -2,269 +2,349 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2009-08-25 15:51-0400\n"
-"Last-Translator: Chris Leonard <cjl@laptop.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-11-03 12:44+0000\n"
+"Last-Translator: jana <jpastyrova@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2 ;\n"
-"X-Generator: Pootle 1.2.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1509713046.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Prezerať"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Objavte svet!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Presurfujte svet! Tu môžete robiť prieskum, pozerať vzdelávacie videá, "
+"vzdelávať sa online, nájsť knihy, spojiť sa s priateľmi a oveľa viac.   "
+"Browse je podporený WebKit2 rendering engine s javascript prekladačom,  "
+"rýchlejším ako blesk, ktorý Vám umožní objavovať krásy webu. "
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "Na  pomoc pri prieskume, Browse ponúka mnoho funkcií:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Uložte si dobré stránky, ktoré ste si našli - nikdy nestratíte alebo "
+"zabudnete na dobré zdroje, keď si ich uložíte do bibliografie  "
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Označte si stránky so spolupracovníkmi v reálnom čase - super spôsob ako "
+"prehľadávať stránky ako skupina alebo pre učiteľov, keď potrebujú ukázať "
+"stránky triede. "
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Poznámky na vami označených stránkach - dobrý nástroj na vytvorenie zbierok. "
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Táto tabuľka zrútila Browse: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Ak znova otvoríte tabuľku, môže znova spadnúť. "
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Znovu otvoriť."
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Ignorovať"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "Neoznačený"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "Načítavanie...."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Táto stránka sa nedá načítať"
 
-#: browser.py:759
+#: browser.py:851
 #, python-format
 msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"\"%s\" sa nedá načítať. Prosím skontrolujte si preklepy a či ste pripojení "
+"na internet. "
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr ""
+msgstr "Skúste znova"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "prístup do vašej lokality"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "ukázať upozornenia v rámčeku"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Povoliť %s do %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Svoj výber môžete zmeniť neskôr znovu načítaním stránky"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Záložky"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Úvodná stránka bola nakonfigurovaná"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Defaltná úvodná stránka bola nakonfigurovaná"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Prebieha sťahovanie"
+msgstr[1] ""
+msgstr[2] ""
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Zastavenie sťahovania vymaže stiahnuté súbory"
+msgstr[1] ""
+msgstr[2] ""
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Pokračujte v sťahovaníPokračujte v sťahovaniach"
+msgstr[1] ""
+msgstr[2] ""
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Zastaviť"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Ukáž Web Inspector"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Domovská stránka"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Vyberte východiskovú stránku"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Vymažte východiskovú stránku"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Knižnica"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Späť"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Dopredu"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Neprebieha sťahovanie"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Záložka"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% Stiahnuté"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Bez mena"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Málo miesta na stiahnutie"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Sťahovanie\"%{názov}\" vyžaduje %{celková_veľkosť_v_mb} MB voľnej kapacity, "
+"iba %{voľného_miesta_v_mb} MB je dostupné"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Zdroj"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
+msgid "From: %s"
+msgstr "Z: %s"
 
-#: downloadmanager.py:168
+#: downloadmanager.py:234
 msgid "Download completed"
 msgstr "Sťahovanie dokončené"
 
-#: downloadmanager.py:173
+#: downloadmanager.py:238
 msgid "Show in Journal"
 msgstr "Zobraziť v denníku"
 
-#: downloadmanager.py:184 pdfviewer.py:589
-#, python-format
-msgid "From: %s"
-msgstr ""
-
-#: downloadmanager.py:292
+#: downloadmanager.py:333
 #, python-format
 msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Sťahovanie %(názov súboru)s z \n"
+"%(zdroj)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Predchádzajúci"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Ďaľší"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Odobrať"
 
-#: palettes.py:184
-#, fuzzy
-msgid "Follow link"
-msgstr "Prejsť na link"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Urobte si poznámky na tejto strane"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr ""
-
-#: palettes.py:198
-#, fuzzy
-msgid "Keep link"
-msgstr "Udržať na link"
-
-#: palettes.py:204
-#, fuzzy
-msgid "Copy link"
-msgstr "Kopírovať na link"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr ""
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr ""
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr ""
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Oddialiť"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Priblížiť"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr ""
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr ""
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr ""
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr ""
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr ""
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Skutočná veľkosť"
 
 #: viewtoolbar.py:62
-#, fuzzy
 msgid "Fullscreen"
 msgstr "Na celú obrazovku"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Zobraziť lištu"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Skryť lištu"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr ""
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Predchádzajúca stránka"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr ""
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Ďalšia stránka"
 
-#: webactivity.py:655
-#, fuzzy
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Prebieha sťahovanie"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Uložiť PDF do Journal"
 
-#: webactivity.py:658
-#, fuzzy
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Zastavenie sťahovania ho môže úplne zrušiť"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Zrušiť"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Sťahovanie dokumentu"
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Zastaviť"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Tento dokument sa nedá načítať"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr ""
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Prosím uistite sa, že ste pripojení na internet"
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr ""
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Držať sa linku"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr ""
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Sledujte link v novej tabuľke"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr ""
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Udržte link"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Späť"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Kopírovať link"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Dopredu"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Kopírovať text linku"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Záložka"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Kopírovať obrázok"
 
-#, python-format
-#, fuzzy
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "Sťahujem %s z \n"
-#~ "%s."
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Zachovať obraz"
 
-#~ msgid "Reload"
-#~ msgstr "Znovu načítať"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Kopírovať text"

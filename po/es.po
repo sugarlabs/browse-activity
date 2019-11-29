@@ -1,23 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Spanish translations for PACKAGE package.
 # Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -26,45 +6,98 @@ msgid ""
 msgstr ""
 "Project-Id-Version: web-activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-06-29 08:30+0200\n"
-"Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-04 02:32+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
-"X-Poedit-Language: Spanish\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1496543579.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Navegar"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "¡Navega el mundo!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"¡Navega por el mundo! Aquí puedes hacer investigaciónes, ver vídeos "
-"educativos, tomar cursos en línea, encontrar libros, conectarte con amigos y "
-"mucho más."
+"¡Navega el mundo! Aquí puedes hacer investigaciones, ver videos educativos, "
+"tomar cursos en linea, encontrar libros, conectarte con amigos y más.  "
+"Navegar está impulsado por el motor de renderizado WebKit2 con el intérprete "
+"javascript Faster Than Light (Más rápido que la luz) - permitiendo que veas "
+"toda la belleza de la web."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "Para ayudar en la investigación, Navegar ofrece muchas características:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Guarda páginas interesantes que encuentres - nunca pierdas buenos recursos u "
+"olvides añadirlos a tu bibliografía"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Guarda páginas con colaboradores en tiempo real - ideal para la "
+"investigación en grupo o para profesores que quieren mostrarlas en sus clases"
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Comenta en tus páginas guardadas - una gran herramienta para hacer "
+"colecciones revisadas"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Esta pestaña se ha estrellado Navegar: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Si reabres la pestaña, podría romperse de nuevo"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Reabrir"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Descartar"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
 msgstr "Sin titulo"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Esta página web no puede ser cargada"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -74,15 +107,114 @@ msgstr ""
 "\"%s\" no se pudo cargar. Comprueba si hay errores de escritura, y asegúrate "
 "de que estás conectado a Internet."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Inténtalo de nuevo"
 
-#: downloadmanager.py:124
+# Translation in subjunctive mood for use in "Permitir que {Navega} %s"
+#: browser.py:866
+msgid "access to your location"
+msgstr "tenga acceso a tu ubicación"
+
+# Translation in subjunctive mood for use in "Permitir que {Navega} %s"
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "muestre notificaciones en el marco"
+
+# This translation of a somewhat bogus sentence template depends on the action translations (second %s) being translated in the subjunctive mood. But it's not clear which strings are actions, and worse, some of them may be used in multiple contexts since the English versions match.
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "¿Permitir que %s %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Puedes cambiar su elección más tarde al volver a esta página"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Marcadores"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "La página inicial ha sido configurada"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "La página inicial por defecto ha sido configurada"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Descarga en curso"
+msgstr[1] "Descargas en curso"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Detener ahora cancelará la descarga"
+msgstr[1] "Detener ahora cancelará las descargas"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Continuar la descarga"
+msgstr[1] "Continuar las descargas"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Parar"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Mostrar inspector web"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Página inicial"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Seleccionar como página de inicio"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Restablecer página de inicio"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Biblioteca"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Volver"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Avanzar"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "No hay descargas en progreso"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Marcador"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% descargado"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Sin titulo"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "No hay suficiente espacio para descargar"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
@@ -90,34 +222,31 @@ msgstr ""
 "Descargar \"%{filename}\" requiere %{total_size_in_mb} MB de espacio libre, "
 "solo %{free_space_in_mb} MB hay disponibles"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
 msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Descarga iniciada"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Descarga terminada"
-
-# Just added "el" to make it more clear.
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Mostrar en el Diario"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "De: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Descarga terminada"
+
+# Just added "el" to make it more clear.
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Mostrar en el Diario"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -127,246 +256,102 @@ msgstr ""
 "Descargando %(filename)s de \n"
 "%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Anterior"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Siguiente"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Eliminar"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Seguir el enlace"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Tomar notas en esta página"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Seguir el enlace en una nueva pestaña"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Mantener el enlace"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Copiar el enlace"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Copiar la imagen"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Mantener la imagen"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Copiar texto"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Reducir"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Tamaño actual"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Página anterior"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Página siguiente"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Guardar PDF al Diario"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Descargando documento..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Este documento no se pudo cargar"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Asegúrate de que estás conectado a Internet."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Mostrar Bandeja"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Esconder Bandeja"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "La página inicial ha sido configurada"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Página anterior"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "La página inicial por defecto ha sido configurada"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Página siguiente"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Descarga en curso"
-msgstr[1] "Descargas en curso"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Guardar PDF al Diario"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Detener ahora cancelará la descarga"
-msgstr[1] "Detener ahora cancelará las descargas"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Continuar la descarga"
-msgstr[1] "Continuar las descargas"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Descargando documento..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Parar"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Este documento no se pudo cargar"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Página inicial"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Asegúrate de que estás conectado a Internet."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Seleccionar como página de inicio"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Seguir el enlace"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Restablecer página de inicio"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Seguir el enlace en una nueva pestaña"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Biblioteca"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Mantener el enlace"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Volver"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Copiar el enlace"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Avanzar"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Copiar el texto del enlace"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Marcador"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Copiar la imagen"
 
-#, python-format
-#~ msgid ""
-#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
-#~ msgstr ""
-#~ "Descargar \"%s\" requiere %.2f MB de espacio libre, solo %.2f MB están "
-#~ "disponible."
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Mantener la imagen"
 
-#, python-format
-#~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-#~ msgstr "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-
-#, python-format
-#, python-format,
-#~ msgid "Loading %s..."
-#~ msgstr "Cargando %s..."
-
-#, python-format
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "Bajando %s desde \n"
-#~ "%s."
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgid "View"
-#~ msgstr "Ver"
-
-#~ msgid "Add a tab"
-#~ msgstr "Añadir lengueta"
-
-# Recargar is more consistent with the term "cargar" used for "download" in these menus.
-#~ msgid "Reload"
-#~ msgstr "Recargar"
-
-#, python-format
-#~ msgid "File %s from %s."
-#~ msgstr "Archivo %s desde %s"
-
-#~ msgid "Copy"
-#~ msgstr "Copiar"
-
-#~ msgid "Download link"
-#~ msgstr "Descargar enlace"
-
-#~ msgid "Download image"
-#~ msgstr "Descargar imagen"
-
-#~ msgid "blank"
-#~ msgstr "vacío"
-
-# Fuente is commonly used to denote "source"
-#~ msgid "Source"
-#~ msgstr "Fuente"
-
-#~ msgid "Open"
-#~ msgstr "Abrir"
-
-#, python-format
-#~ msgid ""
-#~ "File %s downloaded from\n"
-#~ "%s."
-#~ msgstr ""
-#~ "El archivo %s se bajó de\n"
-#~ "%s."
-
-#~ msgid ""
-#~ "Downloading %s from\n"
-#~ "%s. Progress %i%%."
-#~ msgstr ""
-#~ "Bajando %s desde\n"
-#~ "%s. Progreso %i%%."
-
-#~ msgid "Web Activity"
-#~ msgstr "Actividad web"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgid "All supported formats"
-#~ msgstr "Todos los formatos soportados"
-
-#~ msgid "Web pages"
-#~ msgstr "Páginas web"
-
-#~ msgid "Images"
-#~ msgstr "Imágenes"
-
-#, python-format
-#~ msgid "All files"
-#~ msgstr "Todos los archivos"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Copiar texto"

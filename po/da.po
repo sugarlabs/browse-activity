@@ -2,55 +2,101 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 00:32-0400\n"
-"PO-Revision-Date: 2013-07-09 10:25+0200\n"
-"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2019-05-18 22:41+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1558219310.000000\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Browse"
 msgstr "Browse"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
+msgid "Surf the world!"
+msgstr "Surf verden rundt!"
+
+#: activity/activity.info:4
 msgid ""
 "Surf the world! Here you can do research, watch educational videos, take "
-"online courses, find books, connect with friends and more."
+"online courses, find books, connect with friends and more.  Browse is "
+"powered by the WebKit2 rendering engine with the Faster Than Light "
+"javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
-"Surf verdenen! Her kan du lave forskning, se undervisningsvideoer, tage "
-"kurser online, finde bøger, skabe kontakt til venner og mere."
+"Surf verden rundt! Her kan du lave research, se videoundervisning, tage "
+"onlinekurser, finde bøger, koble til venner og mere.  Browse bliver drevet "
+"af WebKit2-motoren med en JavaScript-fortolker, der er hurtigere en lyset - "
+"hvilket lader dig opleve internettets skønhed fuldt ud."
 
-#: browser.py:472 browser.py:524 browser.py:525 webactivity.py:451
+#: activity/activity.info:4
+msgid "To help in researching, Browse offers many features:"
+msgstr "For at bidrage til din research, så tilbyder Browse mange egenskaber:"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark (save) good pages you find - never loose good resources or forget "
+"to add them to your bibliography"
+msgstr ""
+"Bogmærk (gem) de gode sider du støder på - undgå at miste gode ressourcer "
+"eller glemme at tilføje dem til din bibliografi"
+
+#: activity/activity.info:4
+msgid ""
+"Bookmark pages with collaborators in real time - great for researching as a "
+"group or teachers showing pages to their class"
+msgstr ""
+"Bogmærk sider med samarbejdspartnere i realtid - velegnet til research for "
+"grupper eller undervisere, der viser sider for deres klasser"
+
+#: activity/activity.info:4
+msgid ""
+"Comment on your bookmarked pages - a great tool for making curated "
+"collections"
+msgstr ""
+"Kommentér sider som har bogmærke - et glimrende værktøj til kuraterede "
+"samlinger"
+
+#: browser.py:275
+#, python-format
+msgid "This tab has crashed Browse: %s"
+msgstr "Denne fane fik Browse til at bryde sammen: %s"
+
+#: browser.py:276
+msgid "If you reopen the tab, it may just crash again"
+msgstr "Hvis du genåbner fanen, så kan den bryde sammen påny"
+
+#: browser.py:277
+msgid "Reopen"
+msgstr "Genåbn"
+
+#: browser.py:278
+msgid "Disregard"
+msgstr "Ignorér"
+
+#: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr "Ingen titel"
+msgstr "Unavngivet"
 
-#: browser.py:521
+#: browser.py:606
 msgid "Loading..."
 msgstr "Indlæser..."
 
-#: browser.py:757 browser.py:758
+#: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
 msgstr "Denne webside kunne ikke indlæses"
 
-#: browser.py:759
+#: browser.py:851
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -60,49 +106,142 @@ msgstr ""
 "\"%s\" kunne ikke indlæses. Tjek venligst for tastefejl, og tjek om du har "
 "internetforbindelse."
 
-#: browser.py:762 pdfviewer.py:394
+#: browser.py:854 pdfviewer.py:388
 msgid "Try again"
 msgstr "Forsøg igen"
 
-#: downloadmanager.py:124
+#: browser.py:866
+msgid "access to your location"
+msgstr "adgang til din placering"
+
+#: browser.py:869
+msgid "to display notifications in the frame"
+msgstr "for at vise underretninger i billedet"
+
+#: browser.py:881
+#, python-format
+msgid "Allow %s to %s?"
+msgstr "Tillad %s at %s?"
+
+#: browser.py:884
+msgid "You can change your choice later by reloading the page"
+msgstr "Du kan ændre dit valg senere ved at genindlæse siden"
+
+#: webactivity.py:183
+msgid "Bookmarks"
+msgstr "Bogmærker"
+
+#: webactivity.py:398
+msgid "The initial page was configured"
+msgstr "Den første side blev konfigureret"
+
+#: webactivity.py:402
+msgid "The default initial page was configured"
+msgstr "Standard for første side blev konfigureret"
+
+#: webactivity.py:592
+msgid "Download in progress"
+msgid_plural "Downloads in progress"
+msgstr[0] "Overførsel i gang"
+msgstr[1] "Overførsler i gang"
+
+#: webactivity.py:595
+msgid "Stopping now will erase your download"
+msgid_plural "Stopping now will erase your downloads"
+msgstr[0] "Stopper du nu vil du slette overførslen"
+msgstr[1] "Stopper du nu vil du slette overførslerne"
+
+#: webactivity.py:600
+msgid "Continue download"
+msgid_plural "Continue downloads"
+msgstr[0] "Fortsæt overførsel"
+msgstr[1] "Fortsæt overførsler"
+
+#: webactivity.py:605
+msgid "Stop"
+msgstr "Stop"
+
+#: webtoolbar.py:360
+msgid "Show Web Inspector"
+msgstr "Vis webinspektøren"
+
+#: webtoolbar.py:369
+msgid "Home page"
+msgstr "Hjemmeside"
+
+#: webtoolbar.py:375
+msgid "Select as initial page"
+msgstr "Vælg som første side"
+
+#: webtoolbar.py:380
+msgid "Reset initial page"
+msgstr "Nulstil første side"
+
+#: webtoolbar.py:386
+msgid "Library"
+msgstr "Bibliotek"
+
+#: webtoolbar.py:426
+msgid "Back"
+msgstr "Tilbage"
+
+#: webtoolbar.py:441
+msgid "Forward"
+msgstr "Frem"
+
+#: webtoolbar.py:456 webtoolbar.py:514
+msgid "No Downloads Running"
+msgstr "Ingen igangværende downloads"
+
+#: webtoolbar.py:463
+msgid "Bookmark"
+msgstr "Bogmærke"
+
+#: webtoolbar.py:508
+msgid "{}% Downloaded"
+msgstr "{}% downloaded"
+
+#: webtoolbar.py:762
+msgid "No Title"
+msgstr "Ingen titel"
+
+#: downloadmanager.py:140
 msgid "Not enough space to download"
 msgstr "Der er ikke nok plads til at hente"
 
-#: downloadmanager.py:133
+#: downloadmanager.py:149
+#, python-brace-format
 msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
-"For at hente \"%{filename}\" kræves der %{total_size_in_mb} MB fri plads, men "
-"der er kun %{free_space_in_mb} MB tilgængelig"
+"For at hente \"%{filename}\" kræves der %{total_size_in_mb} MB fri plads, "
+"men der er kun %{free_space_in_mb} MB tilgængelig"
 
-#: downloadmanager.py:141 downloadmanager.py:176
+#: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "O.k."
+msgstr "Ok"
 
-#: downloadmanager.py:157
+#: downloadmanager.py:167
 msgid "Download started"
 msgstr "Nedlastning startet"
 
-#: downloadmanager.py:158 downloadmanager.py:170
+#: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#: downloadmanager.py:168
-msgid "Download completed"
-msgstr "Nedlastning færdig"
-
-#: downloadmanager.py:173
-msgid "Show in Journal"
-msgstr "Vis i logbog"
-
-#: downloadmanager.py:184 pdfviewer.py:589
 #, python-format
 msgid "From: %s"
 msgstr "Fra: %s"
 
-#: downloadmanager.py:292
+#: downloadmanager.py:234
+msgid "Download completed"
+msgstr "Nedlastning færdig"
+
+#: downloadmanager.py:238
+msgid "Show in Journal"
+msgstr "Vis i journal"
+
+#: downloadmanager.py:333
+#, python-format
 #, python-format
 #, python-format,
 msgid ""
@@ -112,192 +251,102 @@ msgstr ""
 "Henter %(filename)s fra \n"
 "%(source)s."
 
-#: edittoolbar.py:65
+#: edittoolbar.py:67
 msgid "Previous"
 msgstr "Forrige"
 
-#: edittoolbar.py:72
+#: edittoolbar.py:74
 msgid "Next"
 msgstr "Næste"
 
-#: linkbutton.py:108
+#: linkbutton.py:133
 msgid "Remove"
 msgstr "Fjern"
 
-#: palettes.py:184
-msgid "Follow link"
-msgstr "Følg henvisning"
+#: linkbutton.py:152
+msgid "Take notes on this page"
+msgstr "Tag noter på denne side"
 
-#: palettes.py:189
-msgid "Follow link in new tab"
-msgstr "Følg henvisning i ny fane"
-
-#: palettes.py:198
-msgid "Keep link"
-msgstr "Bevar henvisning"
-
-#: palettes.py:204
-msgid "Copy link"
-msgstr "Kopiér henvisning"
-
-#: palettes.py:218
-msgid "Copy image"
-msgstr "Kopiér billede"
-
-#: palettes.py:224
-msgid "Keep image"
-msgstr "Bevar billede"
-
-#: palettes.py:238
-msgid "Copy text"
-msgstr "Kopiér tekst"
-
-#: pdfviewer.py:91 viewtoolbar.py:39
+#: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: pdfviewer.py:97 viewtoolbar.py:45
+#: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
 msgstr "Forstør"
 
-#: pdfviewer.py:103 viewtoolbar.py:51
+#: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
 msgstr "Faktisk størrelse"
-
-#: pdfviewer.py:114
-msgid "Previous page"
-msgstr "Forrige side"
-
-#: pdfviewer.py:121
-msgid "Next page"
-msgstr "Næste side"
-
-#: pdfviewer.py:133
-msgid "Save PDF to Journal"
-msgstr "Gem PDF til journal"
-
-#: pdfviewer.py:341
-msgid "Cancel"
-msgstr "Afbryd"
-
-#: pdfviewer.py:490
-msgid "Downloading document..."
-msgstr "Henter dokument ..."
-
-#: pdfviewer.py:546
-msgid "This document could not be loaded"
-msgstr "Denne dokument kunne ikke indlæses"
-
-#: pdfviewer.py:554
-msgid "Please make sure you are connected to the Internet."
-msgstr "Tjek venligst om du har internetforbindelse."
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: viewtoolbar.py:113
+#: viewtoolbar.py:119
 msgid "Show Tray"
 msgstr "Vis skuffe"
 
-#: viewtoolbar.py:116
+#: viewtoolbar.py:121
 msgid "Hide Tray"
 msgstr "Skjul skuffe"
 
-#: webactivity.py:490
-msgid "The initial page was configured"
-msgstr "Den første side blev konfigureret"
+#: pdfviewer.py:117
+msgid "Previous page"
+msgstr "Forrige side"
 
-#: webactivity.py:494
-msgid "The default initial page was configured"
-msgstr "Standard for første side blev konfigureret"
+#: pdfviewer.py:124
+msgid "Next page"
+msgstr "Næste side"
 
-#: webactivity.py:655
-msgid "Download in progress"
-msgid_plural "Downloads in progress"
-msgstr[0] "Overførsel i gang"
-msgstr[1] "Overførsler i gang"
+#: pdfviewer.py:136
+msgid "Save PDF to Journal"
+msgstr "Gem PDF til journal"
 
-#: webactivity.py:658
-msgid "Stopping now will erase your download"
-msgid_plural "Stopping now will erase your downloads"
-msgstr[0] "Stopper du nu vil du slette overførslen"
-msgstr[1] "Stopper du nu vil du slette overførslerne"
+#: pdfviewer.py:335
+msgid "Cancel"
+msgstr "Annullér"
 
-#: webactivity.py:663
-msgid "Continue download"
-msgid_plural "Continue downloads"
-msgstr[0] "Fortsæt overførsel"
-msgstr[1] "Fortsæt overførsler"
+#: pdfviewer.py:485
+msgid "Downloading document..."
+msgstr "Henter dokument ..."
 
-#: webactivity.py:668
-msgid "Stop"
-msgstr "Stop"
+#: pdfviewer.py:529
+msgid "This document could not be loaded"
+msgstr "Denne dokument kunne ikke indlæses"
 
-#: webtoolbar.py:288
-msgid "Home page"
-msgstr "Hjemmeside"
+#: pdfviewer.py:537
+msgid "Please make sure you are connected to the Internet."
+msgstr "Tjek venligst om du har internetforbindelse."
 
-#: webtoolbar.py:294
-msgid "Select as initial page"
-msgstr "Vælg som første side"
+#: palettes.py:164
+msgid "Follow link"
+msgstr "Følg henvisning"
 
-#: webtoolbar.py:299
-msgid "Reset initial page"
-msgstr "Nulstil første side"
+#: palettes.py:169
+msgid "Follow link in new tab"
+msgstr "Følg henvisning i ny fane"
 
-#: webtoolbar.py:305
-msgid "Library"
-msgstr "Bibliotek"
+#: palettes.py:178
+msgid "Keep link"
+msgstr "Bevar henvisning"
 
-#: webtoolbar.py:338
-msgid "Back"
-msgstr "Tilbage"
+#: palettes.py:184
+msgid "Copy link"
+msgstr "Kopiér henvisning"
 
-#: webtoolbar.py:352
-msgid "Forward"
-msgstr "Frem"
+#: palettes.py:191
+msgid "Copy link text"
+msgstr "Kopiér linktekst"
 
-#: webtoolbar.py:366
-msgid "Bookmark"
-msgstr "Bogmærke"
+#: palettes.py:206
+msgid "Copy image"
+msgstr "Kopiér billede"
 
-#, python-format
-#~ msgid ""
-#~ "Download \"%s\" requires %.2f MB of free space, only %.2f MB is available"
-#~ msgstr ""
-#~ "For at hente \"%s\" kræver der %.2f MB fri plads, men der er blot %.2f MB "
-#~ "tilgængelig"
+#: palettes.py:212
+msgid "Keep image"
+msgstr "Bevar billede"
 
-#, python-format
-#~ msgid "http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8"
-#~ msgstr "http://www.google.dk/search?q=%s&ie=UTF-8&oe=UTF-8"
-
-#, python-format
-#, python-format,
-#~ msgid "Loading %s..."
-#~ msgstr "Indlæser %s..."
-
-#, python-format
-#, python-format,
-#~ msgid ""
-#~ "Downloading %s from \n"
-#~ "%s."
-#~ msgstr ""
-#~ "Henter %s fra \n"
-#~ "%s."
-
-#~ msgid "Edit"
-#~ msgstr "Redigér"
-
-#~ msgid "View"
-#~ msgstr "Vis"
-
-#~ msgid "Add a tab"
-#~ msgstr "Tilføj en fane"
-
-#~ msgid "Reload"
-#~ msgstr "Genindlæs"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiér"
+#: palettes.py:227
+msgid "Copy text"
+msgstr "Kopiér tekst"

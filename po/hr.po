@@ -1,29 +1,29 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the Web package.
+# Božidar Putanec <bozidarp@yahoo.com>, 2017.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Web\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2011-09-05 18:47+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sw\n"
+"PO-Revision-Date: 2017-05-16 15:36-0700\n"
+"Last-Translator: Božidar Putanec <bozidarp@yahoo.com>\n"
+"Language-Team: Croatian <LL@li.org>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Browse"
-msgstr "Kuvinjari"
+msgstr "Pregledavamo"
 
 #: activity/activity.info:3
 msgid "Surf the world!"
-msgstr ""
+msgstr "Istraži svijet!"
 
 #: activity/activity.info:4
 msgid ""
@@ -32,57 +32,67 @@ msgid ""
 "powered by the WebKit2 rendering engine with the Faster Than Light "
 "javascript interpreter - allowing you to view the full beauty of the web."
 msgstr ""
+"Surfaj po svijetu! Možeš istraživati, gledati edukativne videozapise, "
+"preuzeti tečajeve s interneta, pronaći knjige, povezati se s prijateljima i "
+"još puno toga.  Pregledniku pomaže WebKit2 motor s bržim od svjetla "
+"Javascript prevoditeljem - omogućuju ti da pregledaš svu ljepotu weba."
 
 #: activity/activity.info:4
 msgid "To help in researching, Browse offers many features:"
-msgstr ""
+msgstr "Preglednik ima puno funkcija za pomoć u istraživanju:"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark (save) good pages you find - never loose good resources or forget "
 "to add them to your bibliography"
 msgstr ""
+"Označi (spremi) dobre stranice koje si pronašao - nikada ne gubi dobre "
+"resurse i ne zaboravi ih dodali u svoju bibliografiju"
 
 #: activity/activity.info:4
 msgid ""
 "Bookmark pages with collaborators in real time - great for researching as a "
 "group or teachers showing pages to their class"
 msgstr ""
+"Označi stranice, u stvarnom vremenu, za vrijeme druženja s poznanicima na "
+"internetu - to je korisno za grupno istraživanje, ili učitelju da ih pokaže "
+"u razredu"
 
 #: activity/activity.info:4
 msgid ""
 "Comment on your bookmarked pages - a great tool for making curated "
 "collections"
 msgstr ""
+"Zapiši bilješke o označenim stranicama - izvrstan alat za organizaciju zbirke"
 
 #: browser.py:275
 #, python-format
 msgid "This tab has crashed Browse: %s"
-msgstr ""
+msgstr "Ova kartica je skrahirala preglednik: %s"
 
 #: browser.py:276
 msgid "If you reopen the tab, it may just crash again"
-msgstr ""
+msgstr "Ponovno otvaranje te karticu moglo bi ponovno skrahirati preglednik"
 
 #: browser.py:277
 msgid "Reopen"
-msgstr ""
+msgstr "Ponovno otvori"
 
 #: browser.py:278
 msgid "Disregard"
-msgstr ""
+msgstr "Zanemari"
 
 #: browser.py:558 browser.py:603 browser.py:604 webactivity.py:351
 msgid "Untitled"
-msgstr ""
+msgstr "Bez naslova"
 
 #: browser.py:606
 msgid "Loading..."
-msgstr ""
+msgstr "Učitavanje..."
 
 #: browser.py:849 browser.py:850
 msgid "This web page could not be loaded"
-msgstr ""
+msgstr "Ovu stranicu nije bilo moguće učitati"
 
 #: browser.py:851
 #, python-format
@@ -90,109 +100,114 @@ msgid ""
 "\"%s\" could not be loaded. Please check for typing errors, and make sure "
 "you are connected to the Internet."
 msgstr ""
+"„%s“ nije bilo moguće učitati. Provjeri točnost tipkanja i imaš li vezu s "
+"internetom."
 
 #: browser.py:854 pdfviewer.py:388
 msgid "Try again"
-msgstr ""
+msgstr "Pokušaj ponovno"
 
 #: browser.py:866
 msgid "access to your location"
-msgstr ""
+msgstr "pristup tvojoj lokaciji"
 
 #: browser.py:869
 msgid "to display notifications in the frame"
-msgstr ""
+msgstr "za prikaz obavijesti u okviru"
 
 #: browser.py:881
 #, python-format
 msgid "Allow %s to %s?"
-msgstr ""
+msgstr "Dopustiti %s u %s?"
 
 #: browser.py:884
 msgid "You can change your choice later by reloading the page"
-msgstr ""
+msgstr "Svoj odabir možeš kasnije promijeniti ponovnim učitavanjem stranice"
 
 #: webactivity.py:183
 msgid "Bookmarks"
-msgstr ""
+msgstr "Oznake stranica"
 
 #: webactivity.py:398
 msgid "The initial page was configured"
-msgstr ""
+msgstr "Početna stranica je namještena"
 
 #: webactivity.py:402
 msgid "The default initial page was configured"
-msgstr ""
+msgstr "Zadana početna stranica je namještena"
 
 #: webactivity.py:592
 msgid "Download in progress"
 msgid_plural "Downloads in progress"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Preuzimanje je u tijeku"
+msgstr[1] "Preuzimanja su u tijeku"
+msgstr[2] "Preuzimanja su u tijeku"
 
 #: webactivity.py:595
 msgid "Stopping now will erase your download"
 msgid_plural "Stopping now will erase your downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Zaustavljanje će izbrisati preuzimanje"
+msgstr[1] "Zaustavljanje će izbrisati preuzimanja"
+msgstr[2] "Zaustavljanje će izbrisati preuzimanja"
 
 #: webactivity.py:600
 msgid "Continue download"
 msgid_plural "Continue downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nastavi preuzimanje"
+msgstr[1] "Nastavi preuzimanja"
+msgstr[2] "Nastavi preuzimanja"
 
 #: webactivity.py:605
 msgid "Stop"
-msgstr "Kuacha"
+msgstr "Zaustavi"
 
 #: webtoolbar.py:360
 msgid "Show Web Inspector"
-msgstr ""
+msgstr "Web inspektor"
 
 #: webtoolbar.py:369
 msgid "Home page"
-msgstr "Ukurasa wa nyumbani"
+msgstr "Početna stranica"
 
 #: webtoolbar.py:375
 msgid "Select as initial page"
-msgstr ""
+msgstr "Odaberi kao početnu stranicu"
 
 #: webtoolbar.py:380
 msgid "Reset initial page"
-msgstr ""
+msgstr "Vrati izvornu početnu stranicu"
 
 #: webtoolbar.py:386
 msgid "Library"
-msgstr ""
+msgstr "Knjižnica"
 
 #: webtoolbar.py:426
 msgid "Back"
-msgstr "Nyuma"
+msgstr "Natrag"
 
 #: webtoolbar.py:441
 msgid "Forward"
-msgstr "Mbele"
+msgstr "Naprijed"
 
 #: webtoolbar.py:456 webtoolbar.py:514
 msgid "No Downloads Running"
-msgstr ""
+msgstr "Nema aktivnih preuzimanja"
 
 #: webtoolbar.py:463
 msgid "Bookmark"
-msgstr "Alamisho"
+msgstr "Oznaka stranice"
 
 #: webtoolbar.py:508
 msgid "{}% Downloaded"
-msgstr ""
+msgstr "Preuzeto {}%"
 
 #: webtoolbar.py:762
 msgid "No Title"
-msgstr ""
+msgstr "Nema naslova"
 
 #: downloadmanager.py:140
 msgid "Not enough space to download"
-msgstr ""
+msgstr "Nema dovoljno mjesta za preuzimanje"
 
 #: downloadmanager.py:149
 #, python-brace-format
@@ -200,28 +215,29 @@ msgid ""
 "Download \"%{filename}\" requires %{total_size_in_mb} MB of free space, only "
 "%{free_space_in_mb} MB is available"
 msgstr ""
+"Za preuzimanje „%{filename}“ treba %{total_size_in_mb} MB slobodnog "
+"prostora, a samo %{free_space_in_mb} MB je dostupno"
 
 #: downloadmanager.py:157 downloadmanager.py:241
 msgid "Ok"
-msgstr "Sawa"
+msgstr "U redu"
 
 #: downloadmanager.py:167
 msgid "Download started"
-msgstr "Kushusha kuanza"
+msgstr "Preuzimanje je započelo"
 
 #: downloadmanager.py:211 pdfviewer.py:579
 #, python-format
-#, python-format
 msgid "From: %s"
-msgstr "Kutoka: %s"
+msgstr "Od: %s"
 
 #: downloadmanager.py:234
 msgid "Download completed"
-msgstr "Kushusha kukamilika"
+msgstr "Preuzimanje je završeno"
 
 #: downloadmanager.py:238
 msgid "Show in Journal"
-msgstr ""
+msgstr "Pokaži u dnevniku"
 
 #: downloadmanager.py:333
 #, python-format
@@ -229,103 +245,105 @@ msgid ""
 "Downloading %(filename)s from \n"
 "%(source)s."
 msgstr ""
+"Preuzimanje %(filename)s od \n"
+"%(source)s."
 
 #: edittoolbar.py:67
 msgid "Previous"
-msgstr "Awali"
+msgstr "Prethodno"
 
 #: edittoolbar.py:74
 msgid "Next"
-msgstr "Ijayo"
+msgstr "Sljedeće"
 
 #: linkbutton.py:133
 msgid "Remove"
-msgstr "Kuondoa"
+msgstr "Ukloni"
 
 #: linkbutton.py:152
 msgid "Take notes on this page"
-msgstr ""
+msgstr "Napravi bilješke na ovoj stranici"
 
 #: viewtoolbar.py:39 pdfviewer.py:94
 msgid "Zoom out"
-msgstr ""
+msgstr "Smanjivanje"
 
 #: viewtoolbar.py:45 pdfviewer.py:100
 msgid "Zoom in"
-msgstr ""
+msgstr "Povećavanje"
 
 #: viewtoolbar.py:51 pdfviewer.py:106
 msgid "Actual size"
-msgstr ""
+msgstr "Stvarna veličina"
 
 #: viewtoolbar.py:62
 msgid "Fullscreen"
-msgstr "screen kamili"
+msgstr "Po cijelom zaslonu"
 
 #: viewtoolbar.py:119
 msgid "Show Tray"
-msgstr "Kuonyesha tray"
+msgstr "Pokaži traku"
 
 #: viewtoolbar.py:121
 msgid "Hide Tray"
-msgstr "Ku ficha tray"
+msgstr "Sakrij traku"
 
 #: pdfviewer.py:117
 msgid "Previous page"
-msgstr ""
+msgstr "Prethodna stranica"
 
 #: pdfviewer.py:124
 msgid "Next page"
-msgstr ""
+msgstr "Sljedeća stranica"
 
 #: pdfviewer.py:136
 msgid "Save PDF to Journal"
-msgstr ""
+msgstr "Spremi PDF u dnevnik"
 
 #: pdfviewer.py:335
 msgid "Cancel"
-msgstr ""
+msgstr "Odustani"
 
 #: pdfviewer.py:485
 msgid "Downloading document..."
-msgstr ""
+msgstr "Preuzimanje dokumenta..."
 
 #: pdfviewer.py:529
 msgid "This document could not be loaded"
-msgstr ""
+msgstr "Ovaj dokument nije bilo moguće učitati"
 
 #: pdfviewer.py:537
 msgid "Please make sure you are connected to the Internet."
-msgstr ""
+msgstr "Provjeri da li si spojen na internet."
 
 #: palettes.py:164
 msgid "Follow link"
-msgstr ""
+msgstr "Otvori poveznicu"
 
 #: palettes.py:169
 msgid "Follow link in new tab"
-msgstr ""
+msgstr "Otvori poveznicu u novoj kartici"
 
 #: palettes.py:178
 msgid "Keep link"
-msgstr ""
+msgstr "Spremi poveznicu"
 
 #: palettes.py:184
 msgid "Copy link"
-msgstr ""
+msgstr "Kopiraj poveznicu"
 
 #: palettes.py:191
 msgid "Copy link text"
-msgstr ""
+msgstr "Kopiraj tekst poveznice"
 
 #: palettes.py:206
 msgid "Copy image"
-msgstr ""
+msgstr "Kopiraj sliku"
 
 #: palettes.py:212
 msgid "Keep image"
-msgstr ""
+msgstr "Spremi sliku"
 
 #: palettes.py:227
 msgid "Copy text"
-msgstr ""
+msgstr "Kopiraj tekst"
