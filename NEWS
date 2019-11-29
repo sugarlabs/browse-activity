@@ -1,3 +1,19 @@
+157.5
+
+* collabwrapper, destroy submodule, include source,
+* Hide notebook tabs in fullscreen, #69,
+* Reset title to initial value after a resource download starts,
+* Fix duplicate use of "activity",
+* Mark get_sugar_version as private to module,
+* lstrip URL before normalising,
+* Fix bad address in licenses,
+* Collabwrapper - remove unused source, and directory,
+* Collabwrapper - Emit buddy_joined for others on joining,
+* Remove empty locale files,
+* Feature - dark mode for PDFs, #104,
+* translate.sugarlabs.org synchronisation,
+* Update CollabWrapper and test.
+
 157.4
 
 * Fix resuming a journal object from older version of Browse,
