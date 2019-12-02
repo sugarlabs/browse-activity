@@ -70,9 +70,23 @@ The `master` branch targets an environment with latest stable release
 of [Sugar](https://github.com/sugarlabs/sugar), with dependencies on
 latest stable release of Fedora and Debian distributions.
 
+Release tags are v204 and higher.
+
+Branch python2
+==============
+
+The `python2` branch is a backport of features and bug fixes from the
+`master` branch for ongoing maintenance of the activity on Ubuntu
+16.04 and Ubuntu 18.04 systems which don't have a Python 3 capable
+release of Sugar.
+
+Release tags are v203.2 and higher, but lower than v204.
+
 Branch not-webkit2
 ==================
 
 The `not-webkit2` branch is a backport of features and bug fixes from
 the `master` branch for ongoing maintenance of the activity on Fedora
 18 systems which don't have well-functioning WebKit2 packages.
+
+Release tags are v157.5 and higher, but lower than v200.
