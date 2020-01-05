@@ -406,7 +406,7 @@ class Download(object):
         Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
         cr.paint()
 
-        preview_str = io.StringIO()
+        preview_str = io.BytesIO()
         preview_surface.write_to_png(preview_str)
         return preview_str.getvalue()
 
