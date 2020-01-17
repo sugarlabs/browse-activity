@@ -86,7 +86,7 @@ if _profile_version < PROFILE_VERSION:
     else:
         # wikipedia activity use a empty file
         with open(os.path.join(_profile_path, 'cert8.db'), 'w') as cert_file:
-            cert_file.write()
+            cert_file.write('')
 
     os.chmod(os.path.join(_profile_path, 'cert8.db'), 0o660)
 
