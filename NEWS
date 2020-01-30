@@ -1,3 +1,9 @@
+205
+
+* New translations,
+* Fix image download (Bas Hulsken),
+* Fix write error for cert.db (Srevin Saju),
+
 204
 
 * Fix download started visible after download completed (Aarjav Jain),
