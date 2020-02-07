@@ -729,7 +729,7 @@ class OutgoingBlobTransfer(_BaseOutgoingTransfer):
         _BaseOutgoingTransfer.__init__(
             self, buddy, conn, filename, description, mime)
 
-        self._blob = blob
+        self._blob = blob.encode('utf-8')
         self._create_channel(len(self._blob))
 
     def _get_input_stream(self):
