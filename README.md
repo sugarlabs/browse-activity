@@ -53,15 +53,15 @@ How to develop?
 * setup a development environment for Sugar desktop,
 * clone this repository,
 * edit source files,
-* test in Terminal by typing `sugar-activity .`
+* test in Terminal by typing `sugar-activity3`
 
 APIs
 ====
 
 Code inside Browse depends on several APIs, including;
 
-* [PyGObject API Reference](https://lazka.github.io/pgi-docs/), and;
-* [Sugar Toolkit API](https://developer.sugarlabs.org/sugar3).
+* [PyGObject](https://lazka.github.io/pgi-docs/), and;
+* [Sugar Toolkit](https://developer.sugarlabs.org/sugar3).
 
 Branch master
 =============
