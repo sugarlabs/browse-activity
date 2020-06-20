@@ -44,7 +44,7 @@ import globalhistory
 from pdfviewer import PDFTabPage
 
 # Sugar is relative to 100x (XO), the web is relative to 72x (desktop) scale
-ZOOM_ORIGINAL = style.zoom(100 * 100 / 72) / 100.0
+ZOOM_ORIGINAL = style.zoom(100 * 100 // 72) / 100.0
 _ZOOM_AMOUNT = 0.1
 LIBRARY_PATH = '/usr/share/library-common/index.html'
 
