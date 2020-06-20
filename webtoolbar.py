@@ -170,7 +170,8 @@ class WebEntry(iconentry.IconEntry):
 
         search_text = self.props.text
         for place in places.get_store().search(search_text):
-            title = '<span weight="bold" >%s</span>' % (place.title)
+            title = '<span weight="bold" >%s</span>' % (GLib.markup_escape_text(place.title))
+            place.uri = GLib.markup_escape_text(place.uri)
             list_store.append([title + '\n' + place.uri, place.uri])
 
         self._search_view.set_model(list_store)
