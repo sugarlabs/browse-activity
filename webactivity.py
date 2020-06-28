@@ -411,7 +411,7 @@ class WebActivity(activity.Activity):
     def __link_remove_button_cb(self, button):
         browser = self._tabbed_view.props.current_browser
         uri = browser.get_uri()
-        self.__link_removed_cb(None, sha1(uri).hexdigest())
+        self.__link_removed_cb(None, sha1(uri.encode('utf-8')).hexdigest())
 
     def _go_home_button_cb(self, button):
         self._tabbed_view.load_homepage()
