@@ -549,7 +549,7 @@ class PDFTabPage(Gtk.HBox):
 
     def __download_finished_cb(self, download):
         self._pdf_uri = download.get_destination()
-        logging.error('FINISHED %s', self._pdf_uri)
+        logging.debug('FINISHED %s', self._pdf_uri)
         self.remove(self._message_box)
         self._message_box = None
         self._show_pdf()
