@@ -328,6 +328,19 @@ class DummyBrowser(GObject.GObject):
     def get_window(self):
         return self._tab.get_window()
 
+    def get_allocation(self):
+        return self._tab.get_allocation()
+
+    def translate_coordinates(self, widget, x, y):
+        return self._tab.translate_coordinates(widget, x, y)
+
+    # FIXME provide implementations
+    def can_execute_editing_command_finish(self):
+        pass
+
+    def get_find_controller(self):
+        return
+
 
 class PDFProgressMessageBox(Gtk.EventBox):
     def __init__(self, message, button_callback):
@@ -456,7 +469,6 @@ class PDFTabPage(Gtk.HBox):
             self._browser.props.title = title
 
         self._browser.props.uri = requested_uri
-
         # show PDF directly if the file is local (from the system tree
         # or from the journal)
 
