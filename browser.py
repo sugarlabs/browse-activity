@@ -81,13 +81,10 @@ def _get_sugar_version():
     global _sugar_version
     if _sugar_version is None:
         if 'SUGAR_VERSION' in os.environ:
-            version = os.environ['SUGAR_VERSION']
-            major, minor = version.split('.')[0:2]
-            # use the last stable version
-            _sugar_version = '%s.%s' % (major, int(minor) - int(minor) % 2)
+            _sugar_version = os.environ['SUGAR_VERSION']
         else:
             logging.error('SUGAR_VERSION env variable not found')
-            _sugar_version = '0.100'
+            _sugar_version = '0.114'
     return _sugar_version
 
 
