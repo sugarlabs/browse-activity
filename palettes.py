@@ -245,7 +245,12 @@ class BrowsePalette(Palette):
     def __copy_image_activate_cb(self, menu_item):
         # Download the image
         temp_file = tempfile.NamedTemporaryFile(delete=False)
-        data = urllib.request.urlopen(self._image_url).read()
+
+        user_agent = self._browser.get_settings().props.user_agent
+        req = urllib.request.Request(self._image_url)
+        req.add_header('User-Agent', user_agent)
+        data = urllib.request.urlopen(req).read()
+
         temp_file.write(data)
         temp_file.close()
 
