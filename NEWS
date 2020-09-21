@@ -1,3 +1,16 @@
+206
+
+* Fix README (James Cameron),
+* Fix TypeError in collaboration (Srevin Saju)
+* Fix expected type error on zoom (Saumya Mishra),
+* Fix warnings when typing in address bar (Saumya Mishra),
+* Use file transfer constants (James Cameron),
+* Fix error encoding URI (Saumya Mishra),
+* Remove FINISHED error (Saumya Mishra),
+* Fix selecting favourite, search in PDF (Saumya Mishra),
+* Fix HTTP error 403 on copying image (Shaan Subbaiah),
+* Fix Sugar version used in custom user-agent (Shaan Subbaiah),
+
 205
 
 * New translations,
