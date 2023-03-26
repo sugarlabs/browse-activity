@@ -241,8 +241,9 @@ class TabbedView(BrowserNotebook):
             self._update_closing_buttons()
             self._update_tab_sizes()
 
-    def __new_tab_cb(self, browser, url):
-        new_browser = self.add_tab(next_to_current=True)
+    def __new_tab_cb(self, browser, url, maintain_view=False):
+        new_browser = self.add_tab(next_to_current=True,
+                                   maintain_view=maintain_view)
         new_browser.load_uri(url)
         new_browser.grab_focus()
 
@@ -332,7 +333,7 @@ class TabbedView(BrowserNotebook):
             browser = self.add_tab()
             browser.props.uri = uri
 
-    def add_tab(self, next_to_current=False):
+    def add_tab(self, next_to_current=False, maintain_view=False):
         browser = Browser(self._activity)
         browser.connect('new-tab', self.__new_tab_cb)
         browser.connect('web-process-crashed', self.__crashed_cb)
@@ -343,13 +344,13 @@ class TabbedView(BrowserNotebook):
         browser.connect('create', self.__create_web_view_cb)
 
         if next_to_current:
-            self._insert_tab_next(browser)
+            self._insert_tab_next(browser, maintain_view)
         else:
             self._append_tab(browser)
         self.emit('focus-url-entry')
         return browser
 
-    def _insert_tab_next(self, browser):
+    def _insert_tab_next(self, browser, maintain_view=False):
         tab_page = TabPage(browser)
         label = TabLabel(browser)
         label.connect('tab-close', self.__tab_close_cb, tab_page)
@@ -357,7 +358,10 @@ class TabbedView(BrowserNotebook):
         next_index = self.get_current_page() + 1
         self.insert_page(tab_page, label, next_index)
         tab_page.show()
-        self.set_current_page(next_index)
+        if maintain_view:
+            self.set_current_page(next_index - 1)
+        else:
+            self.set_current_page(next_index)
 
     def _append_tab(self, browser):
         tab_page = TabPage(browser)
@@ -660,7 +664,7 @@ class Browser(WebKit2.WebView):
     __gsignals__ = {
         'new-tab': (GObject.SignalFlags.RUN_FIRST,
                     None,
-                    ([str])),
+                    ([str, bool])),
         'open-pdf': (GObject.SignalFlags.RUN_FIRST,
                      None,
                      ([str])),
@@ -804,8 +808,8 @@ class Browser(WebKit2.WebView):
 
         self.get_main_resource().get_data(None, writer)
 
-    def open_new_tab(self, url):
-        self.emit('new-tab', url)
+    def open_new_tab(self, url, maintain_view=False):
+        self.emit('new-tab', url, maintain_view)
 
     def __run_file_chooser(self, browser, request):
         picker = FilePicker(self)
@@ -847,7 +851,18 @@ class Browser(WebKit2.WebView):
             self._global_history.set_page_title(uri, title)
 
     def __decide_policy_cb(self, webview, policy_decision, decision_type):
-        """Handle downloads and PDF files."""
+        """Handle downloads and PDF files and opens them in a new tab,
+        and handling middle-clicking on links"""
+
+        if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
+            navigation_action = policy_decision.get_navigation_action()
+            request = navigation_action.get_request()
+            button = navigation_action.get_mouse_button()
+            if button == 2:  # Middle mouse button
+                uri = request.get_uri()
+                policy_decision.ignore()
+                self.open_new_tab(uri, maintain_view=True)
+                return True
 
         if decision_type != WebKit2.PolicyDecisionType.RESPONSE:
             return False
