@@ -347,7 +347,8 @@ class TabbedView(BrowserNotebook):
             self._insert_tab_next(browser, maintain_view)
         else:
             self._append_tab(browser)
-        self.emit('focus-url-entry')
+        if not maintain_view:
+            self.emit('focus-url-entry')
         return browser
 
     def _insert_tab_next(self, browser, maintain_view=False):
