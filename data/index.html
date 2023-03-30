@@ -1,66 +1,135 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" language="JavaScript">
-            logos = new Array();
-            logos = ['logo_white_01.png', 'logo_white_02.png', 'logo_white_03.png', 'logo_white_04.png', 'logo_white_05.png', 'logo_white_06.png', 'logo_white_07.png', 'logo_white_08.png', 'logo_white_09.png', 'logo_white_10.png', 'logo_white_11.png', 'logo_white_12.png'];
-            link_colours = new Array();
-            link_colours = ['link1', 'link2', 'link3', 'link4', 'link5', 'link6', 'link7', 'link8', 'link9', 'link10', 'link11', 'link12'];
-            r = Math.round(Math.random() * 11);
-            function logo_filename() {
-                return logos[r]
-            }
-            function link_colour() {
-                return link_colours[r]
-            }
-        </script>
-        <style type="text/css">
-            html {  margin-right: 8px; 	margin-left: 8px; 	font-family: Helvetica, Arial, sans-serif;}
-            .links-container { 	padding-bottom: 4px; 	padding-top: 4px; 	display: block; 	text-align: right;}
-            .link1 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #006e00;}
-            .link1:hover { color: white; background-color: #006e00;}
-            .link2 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
-            .link2:hover { color: white; background-color: #033cd2;}
-            .link3 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #006e00;}
-            .link3:hover { color: white; background-color: #006e00;}
-            .link4 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
-            .link4:hover { color: white; background-color: #033cd2;}
-            .link5 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #6e008c;}
-            .link5:hover { color: white; background-color: #6e008c;}
-            .link6 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #a00000;}
-            .link6:hover { color: white; background-color: #a00000;}
-            .link7 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
-            .link7:hover { color: white; background-color: #033cd2;}
-            .link8 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #6e008c;}
-            .link8:hover { color: white; background-color: #6e008c;}
-            .link9 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #6e008c;}
-            .link9:hover { color: white; background-color: #6e008c;}
-            .link10 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
-            .link10:hover { color: white; background-color: #033cd2;}
-            .link11 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #006e00;}
-            .link11:hover { color: white; background-color: #006e00; }
-            .link12 { padding-bottom: 4px; padding-top: 4px; text-decoration: none; color: #033cd2;}
-            .link12:hover { color: white; background-color: #033cd2;}
-            .center {text-align: center; position: static; border: 0}
-            .search{background: #FFFFFF; border-radius: 25px; border-width: 1px; border-color: #686868; height: 32px; width: 45%; outline: 0; padding: 0; padding-left: 5px; padding-right: 5px; margin: 0}
-            .btn{background: #5A89EB; border-radius: 25px; width: 15%; height: 32px; color:#FFFFFF; font-style: normal; border-color: #FFFFFF; padding:0; margin: 0; margin-left: 5px; outline: 0; cursor: pointer}
-        </style>
         <title>Sugar Labs</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
         <link rel="shortcut icon" href="favicon_01.png"/>
+        <script type="text/javascript" language="JavaScript">
+            const logos = [
+                'logo_white_01.png', 'logo_white_02.png', 'logo_white_03.png', 'logo_white_04.png',
+                'logo_white_05.png', 'logo_white_06.png', 'logo_white_07.png', 'logo_white_08.png',
+                'logo_white_09.png', 'logo_white_10.png', 'logo_white_11.png', 'logo_white_12.png'
+            ];
+            const linkColours = [
+                'link1', 'link2', 'link3', 'link4',
+                'link5', 'link6', 'link7', 'link8',
+                'link9', 'link10', 'link11', 'link12'
+            ];
+            const randomIndex = Math.round(Math.random() * 11);
+
+            function logoFilename() {
+                return logos[randomIndex];
+            }
+
+            function linkColour() {
+                return linkColours[randomIndex];
+            }
+        </script>
+        <style type="text/css">
+            html {
+                margin-right: 8px;
+                margin-left: 8px;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            .links-container {
+                padding-bottom: 4px;
+                padding-top: 4px;
+                display: block;
+                text-align: right;
+            }
+            .link {
+                padding-bottom: 4px;
+                padding-top: 4px;
+                text-decoration: none;
+            }
+            .link:hover {
+                color: white;
+            }
+            .link1 { color: #006e00; }
+            .link1:hover { background-color: #006e00; }
+            .link2 { color: #033cd2; }
+            .link2:hover { background-color: #033cd2; }
+            .link3 { color: #006e00; }
+            .link3:hover { background-color: #006e00; }
+            .link4 { color: #033cd2; }
+            .link4:hover { background-color: #033cd2; }
+            .link5 { color: #6e008c; }
+            .link5:hover { background-color: #6e008c; }
+            .link6 { color: #a00000; }
+            .link6:hover { background-color: #a00000; }
+            .link7 { color: #033cd2; }
+            .link7:hover { background-color: #033cd2; }
+            .link8 { color: #6e008c; }
+            .link8:hover { background-color: #6e008c; }
+            .link9 { color: #6e008c; }
+            .link9:hover { background-color: #6e008c; }
+            .link10 { color: #033cd2; }
+            .link10:hover { background-color: #033cd2; }
+            .link11 { color: #006e00; }
+            .link11:hover { background-color: #006e00; }
+            .link12 { color: #033cd2; }
+            .link12:hover { background-color: #033cd2; }
+            .center {
+                text-align: center;
+                position: static;
+                border: 0;
+            }
+            .search {
+                background: #FFFFFF;
+                border-radius: 25px;
+                border-width: 1px;
+                border-color: #686868;
+                height: 32px;
+                width: 45%;
+                outline: 0;
+                padding: 0;
+                padding-left: 5px;
+                padding-right: 5px;
+                margin: 0;
+            }
+            .btn {
+                background: #5A89EB;
+                border-radius: 25px;
+                width: 15%;
+                height: 32px;
+                color: #FFFFFF;
+                font-style: normal;
+                border-color: #FFFFFF;
+                padding: 0;
+                margin: 0;
+                margin-left: 5px;
+                outline: 0;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <div class="links-container">
             <script type="text/javascript" language="JavaScript">
-                document.write("<a class='" + link_colour() + "' href='https://www.sugarlabs.org/'>sugar labs</a> / <a class='" + link_colour() + "' href='https://wiki.sugarlabs.org/'>wiki</a> / <a class='" + link_colour() + "' href='http://schoolserver/'>school</a> / <a class='" + link_colour() + "' href='https://v4.activities.sugarlabs.org/'>activities</a>")
+                const links = [
+                { href: 'https://www.sugarlabs.org/', text: 'sugar labs' },
+                { href: 'https://wiki.sugarlabs.org/', text: 'wiki' },
+                { href: 'http://schoolserver/', text: 'school' },
+                { href: 'https://v4.activities.sugarlabs.org/', text: 'activities' }
+                ];
+                links.forEach(link => {
+                    document.write(`<a class='link ${linkColour()}' href='${link.href}'>${link.text}</a>`);
+                    if (link !== links[links.length - 1]) {
+                        document.write(' / ');
+                    }
+                });
             </script>
         </div>
         <div class="center">
             <div style="display: inline-block">
                 <script type="text/javascript" language="JavaScript">
-                    document.write("<br><br><br><a href='https://www.sugarlabs.org/'><img src='")
-                    document.write(logo_filename())
-                    document.write("' alt='Sugar Labs' width='100%' height='250'></a><br><br>")
+                    document.write(`
+                        <br><br><br>
+                        <a href='https://www.sugarlabs.org/'>
+                            <img src='${logoFilename()}' alt='Sugar Labs' width='100%' height='250'>
+                        </a>
+                        <br><br>
+                    `);
                 </script>
                 <table style="border: 0; width: 100%" cellspacing="0" cellpadding="0">
                     <tr><td>
