@@ -38,9 +38,10 @@
                 text-align: right;
             }
             .link {
-                padding-bottom: 4px;
-                padding-top: 4px;
+                margin: 5px;
+                padding: 10px;
                 text-decoration: none;
+                background-color: rgba(211, 211, 211, 0.3); border-radius: 15px; transition: background-color 0.4s;
             }
             .link:hover {
                 color: white;
@@ -111,16 +112,13 @@
         <div class="links-container">
             <script type="text/javascript" language="JavaScript">
                 const links = [
-                { href: 'https://www.sugarlabs.org/', text: 'sugar labs' },
-                { href: 'https://wiki.sugarlabs.org/', text: 'wiki' },
-                { href: 'http://schoolserver/', text: 'school' },
-                { href: 'https://v4.activities.sugarlabs.org/', text: 'activities' }
+                { href: 'https://www.sugarlabs.org/', text: 'Sugar labs' },
+                { href: 'https://wiki.sugarlabs.org/', text: 'Wiki' },
+                { href: 'http://schoolserver/', text: 'School' },
+                { href: 'https://v4.activities.sugarlabs.org/', text: 'Activities' }
                 ];
                 links.forEach(link => {
                     document.write(`<a class='link ${linkColour()}' href='${link.href}'>${link.text}</a>`);
-                    if (link !== links[links.length - 1]) {
-                        document.write(' / ');
-                    }
                 });
             </script>
         </div>
