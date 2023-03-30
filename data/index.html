@@ -74,6 +74,10 @@
                 position: static;
                 border: 0;
             }
+            /* removes the default styling applied by the WebKit engine to the search input */
+            input[type="search"] {
+                -webkit-appearance: textfield;
+            }
             .search {
                 background: #FFFFFF;
                 border-radius: 25px;
