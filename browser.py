@@ -244,8 +244,29 @@ class TabbedView(BrowserNotebook):
             self._update_closing_buttons()
             self._update_tab_sizes()
 
+    def _add_tab_page_and_label(self, browser, next_index, current_page=None):
+        tab_page = TabPage(browser)
+        label = TabLabel(browser)
+        label.connect('tab-close', self.__tab_close_cb, tab_page)
+
+        self.insert_page(tab_page, label, next_index)
+        tab_page.show()
+        if current_page is not None:
+            self.set_current_page(current_page)
+            self.emit('focus-url-entry')
+
     def __new_tab_cb(self, browser, url):
         new_browser = self.add_tab(next_to_current=True)
+        self.emit('focus-url-entry')
+        new_browser.load_uri(url)
+        new_browser.grab_focus()
+
+    def __new_tab_background_cb(self, browser, url):
+        new_browser = self._create_new_browser()
+
+        next_index = self.get_current_page() + 1
+        self._add_tab_page_and_label(new_browser, -1)
+        self.set_current_page(next_index - 1)
         new_browser.load_uri(url)
         new_browser.grab_focus()
 
@@ -335,41 +356,35 @@ class TabbedView(BrowserNotebook):
             browser = self.add_tab()
             browser.props.uri = uri
 
+    def _create_new_browser(self):
+        new_browser = Browser(self._activity)
+        new_browser.connect('new-tab', self.__new_tab_cb)
+        new_browser.connect('new-tab-background', self.__new_tab_background_cb)
+        new_browser.connect('web-process-crashed', self.__crashed_cb)
+        new_browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
+        new_browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
+        new_browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
+        new_browser.connect('ready-to-show', self.__web_view_ready_cb)
+        new_browser.connect('create', self.__create_web_view_cb)
+        return new_browser
+
     def add_tab(self, next_to_current=False):
-        browser = Browser(self._activity)
-        browser.connect('new-tab', self.__new_tab_cb)
-        browser.connect('web-process-crashed', self.__crashed_cb)
-        browser.connect('enter-fullscreen', self.__enter_fullscreen_cb)
-        browser.connect('leave-fullscreen', self.__leave_fullscreen_cb)
-        browser.connect('open-pdf', self.__open_pdf_in_new_tab_cb)
-        browser.connect('ready-to-show', self.__web_view_ready_cb)
-        browser.connect('create', self.__create_web_view_cb)
+        browser = self._create_new_browser()
 
         if next_to_current:
-            self._insert_tab_next(browser)
+            next_index = self.get_current_page() + 1
         else:
-            self._append_tab(browser)
-        self.emit('focus-url-entry')
+            next_index = self.get_n_pages()
+        self._add_tab_page_and_label(browser, next_index, next_index)
         return browser
 
     def _insert_tab_next(self, browser):
-        tab_page = TabPage(browser)
-        label = TabLabel(browser)
-        label.connect('tab-close', self.__tab_close_cb, tab_page)
-
         next_index = self.get_current_page() + 1
-        self.insert_page(tab_page, label, next_index)
-        tab_page.show()
-        self.set_current_page(next_index)
+        self._add_tab_page_and_label(browser, next_index, next_index)
 
     def _append_tab(self, browser):
-        tab_page = TabPage(browser)
-        label = TabLabel(browser)
-        label.connect('tab-close', self.__tab_close_cb, tab_page)
-
-        self.append_page(tab_page, label)
-        tab_page.show()
-        self.set_current_page(-1)
+        next_index = self.get_n_pages()
+        self._add_tab_page_and_label(browser, next_index, -1)
 
     def on_add_tab(self, gobject, uri):
         browser = self.add_tab()
@@ -664,6 +679,9 @@ class Browser(WebKit2.WebView):
         'new-tab': (GObject.SignalFlags.RUN_FIRST,
                     None,
                     ([str])),
+        'new-tab-background': (GObject.SignalFlags.RUN_FIRST,
+                               None,
+                               ([str])),
         'open-pdf': (GObject.SignalFlags.RUN_FIRST,
                      None,
                      ([str])),
@@ -810,6 +828,9 @@ class Browser(WebKit2.WebView):
     def open_new_tab(self, url):
         self.emit('new-tab', url)
 
+    def open_new_tab_background(self, url):
+        self.emit('new-tab-background', url)
+
     def __run_file_chooser(self, browser, request):
         picker = FilePicker(self)
         chosen = picker.run()
@@ -850,7 +871,18 @@ class Browser(WebKit2.WebView):
             self._global_history.set_page_title(uri, title)
 
     def __decide_policy_cb(self, webview, policy_decision, decision_type):
-        """Handle downloads and PDF files."""
+        """Handle downloads and PDF files and
+           handles middle-clicking on links"""
+
+        if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
+            navigation_action = policy_decision.get_navigation_action()
+            request = navigation_action.get_request()
+            button = navigation_action.get_mouse_button()
+            if button == 2:  # Middle mouse button
+                uri = request.get_uri()
+                policy_decision.ignore()
+                self.open_new_tab_background(uri)
+                return True
 
         if decision_type != WebKit2.PolicyDecisionType.RESPONSE:
             return False
