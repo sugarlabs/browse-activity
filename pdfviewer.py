@@ -483,7 +483,18 @@ class PDFTabPage(Gtk.HBox):
         # download first if file is remote
         elif requested_uri.startswith('http://') or \
                 requested_uri.startswith('https://'):
-            self._download_from_http(requested_uri)
+            
+            # The local file path of the file
+            downloads_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOWNLOAD)
+            local_path = os.path.join(downloads_dir, os.path.basename(requested_uri))
+
+            if os.path.isfile(local_path):
+                # If file already exists in local, no need to download
+                self._pdf_uri = "file://" + local_path
+                self._show_pdf()
+            else:
+                # If file does not exist, then download it
+                self._download_from_http(requested_uri)
 
     def _get_browser(self):
         return self._browser
