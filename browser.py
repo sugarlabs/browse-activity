@@ -23,6 +23,9 @@ import logging
 from gettext import gettext as _
 from base64 import b64decode, b64encode
 
+from gi import require_version
+require_version('Soup', '3.0')
+
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
@@ -174,9 +177,9 @@ class TabbedView(BrowserNotebook):
     def normalize_or_autosearch_url(self, url):
         """Normalize the url input or return a url for search.
 
-        We use SoupURI as an indication of whether the value given in url
+        We use GLib.URI as an indication of whether the value given in url
         is not something we want to search; we only do that, though, if
-        the address has a web scheme, because SoupURI will consider any
+        the address has a web scheme, because GLib.URI will consider any
         string: as a valid scheme, and we will end up prepending http://
         to it.
 
@@ -198,17 +201,17 @@ class TabbedView(BrowserNotebook):
 
             return scheme in _WEB_SCHEMES
 
-        soup_uri = None
+        glib_uri = None
         effective_url = None
         url = url.lstrip()
 
         if has_web_scheme(url):
             try:
-                soup_uri = Soup.URI.new(url)
+                glib_uri = GLib.Uri.parse(url, GLib.UriFlags.NONE)
             except TypeError:
                 pass
 
-        if soup_uri is None and not _NON_SEARCH_REGEX.match(url):
+        if glib_uri is None and not _NON_SEARCH_REGEX.match(url):
             # Get the user's LANG to use as default language of
             # the results
             locale = os.environ.get('LANG', '')

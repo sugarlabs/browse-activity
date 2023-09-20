@@ -25,10 +25,10 @@ import gi
 gi.require_version('Gtk', '3.0')
 try:
     incompatible = False
-    gi.require_version('WebKit2', '4.0')
+    gi.require_version('WebKit2', '4.1')
 except BaseException:
     incompatible = True
-gi.require_version('SoupGNOME', '2.4')
+gi.require_version('Soup', '3.0')
 
 from gi.repository import GObject
 GObject.threads_init()
@@ -38,7 +38,6 @@ from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import WebKit2
 from gi.repository import Soup
-from gi.repository import SoupGNOME
 
 from base64 import b64decode, b64encode
 import time
@@ -111,11 +110,9 @@ def _seed_xs_cookie(cookie_jar):
     settings = Gio.Settings('org.sugarlabs.collaboration')
     jabber_server = settings.get_string('jabber-server')
 
-    soup_uri = Soup.URI()
-    soup_uri.set_scheme('xmpp')
-    soup_uri.set_host(jabber_server)
-    soup_uri.set_path('/')
-    xs_cookie = cookie_jar.get_cookies(soup_uri, for_http=False)
+    glib_uri = GLib.Uri.build(GLib.UriFlags.NONE, 'xmpp', None,
+                              jabber_server, -1, '/', None, None)
+    xs_cookie = cookie_jar.get_cookies(glib_uri, for_http=False)
     if xs_cookie is not None:
         _logger.debug('seed_xs_cookie: Cookie exists already')
         return
@@ -175,7 +172,7 @@ class WebActivity(activity.Activity):
 
         # But of a hack, but webkit doesn't let us change the cookie jar
         # contents, we we can just pre-seed it
-        cookie_jar = SoupGNOME.CookieJarSqlite(filename=_cookies_db_path,
+        cookie_jar = Soup.CookieJarDB(filename=_cookies_db_path,
                                                read_only=False)
         _seed_xs_cookie(cookie_jar)
         del cookie_jar
