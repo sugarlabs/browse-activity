@@ -1,3 +1,14 @@
+208
+
+* Remove bugs.sugarlabs.org (James Cameron),
+* Updated button class to ahve cursor pointer so that it feels interactable (Spandan Barve)
+* Refactor default page (Dimitris Mylonas)
+* Fix missing corners of search-box (Dimitris Mylonas)
+* Fix opening already opened pdf (Dimitris Mylonas)
+* Port to Soup 3.0 (Nteodosio)
+* Visually change the top-right menu (Dimitris Mylonas)
+* Configure middle-clicking on any link (Dimitris Mylonas)
+
 207
 
 * Change activities link to v4.activities.sugarlabs.org (James Cameron),
