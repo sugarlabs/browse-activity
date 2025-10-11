@@ -35,7 +35,7 @@ class TabAdd(Gtk.HBox):
     def __init__(self):
         GObject.GObject.__init__(self)
 
-        add_tab_icon = Icon(icon_name='add')
+        add_tab_icon = Icon(icon_name='list-add')
         button = Gtk.Button()
         button.drag_dest_set(0, [], 0)
         button.props.relief = Gtk.ReliefStyle.NONE
