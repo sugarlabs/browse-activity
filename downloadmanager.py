@@ -182,7 +182,7 @@ class Download(object):
             prefix='tmp')
         logging.debug('Download destination path: %s' % self._dest_path)
         self._download.set_destination('file://' + self._dest_path)
-        logging.error(self._download.get_destination)
+        logging.debug('Download destination URI: %s', self._download.get_destination())
         return True
 
     def __created_destination_cb(self, download, dest):
