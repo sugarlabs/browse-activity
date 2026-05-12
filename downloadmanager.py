@@ -248,10 +248,14 @@ class Download(object):
         self._stop_alert.props.msg = self._suggested_filename
 
         bundle = None
-        if _HAS_BUNDLE_LAUNCHER:
+        if _HAS_BUNDLE_LAUNCHER and mime_type != 'application/vnd.olpc-sugar':
             bundle = get_bundle(object_id=self._object_id)
 
-        if bundle is not None:
+        if mime_type == 'application/vnd.olpc-sugar':
+            icon = Icon(icon_name='media-playback-start')
+            label = _('Run downloaded activity')
+            response_id = Gtk.ResponseType.APPLY
+        elif bundle is not None:
             icon = Icon(file=bundle.get_icon())
             label = _('Open with %s') % bundle.get_name()
             response_id = Gtk.ResponseType.APPLY
